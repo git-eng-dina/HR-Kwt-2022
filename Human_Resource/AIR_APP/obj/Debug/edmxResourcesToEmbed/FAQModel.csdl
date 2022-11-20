@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FAQModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ArabicDectionary">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Word" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ArabicNames">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Document">
+    <Key>
+      <PropertyRef Name="Doc_ID" />
+    </Key>
+    <Property Name="Doc_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Doc_Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Class" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Document_Term" Relationship="Self.FK_Document_Term_Document" FromRole="Document" ToRole="Document_Term" />
+  </EntityType>
+  <EntityType Name="Document_Term">
+    <Key>
+      <PropertyRef Name="Term_ID" />
+      <PropertyRef Name="Doc_ID" />
+    </Key>
+    <Property Name="Term_ID" Type="Int64" Nullable="false" />
+    <Property Name="Doc_ID" Type="Int64" Nullable="false" />
+    <Property Name="Frequency" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Document" Relationship="Self.FK_Document_Term_Document" FromRole="Document_Term" ToRole="Document" />
+    <NavigationProperty Name="Terms" Relationship="Self.FK_Document_Term_Terms" FromRole="Document_Term" ToRole="Terms" />
+  </EntityType>
+  <EntityType Name="ISRI_Document">
+    <Key>
+      <PropertyRef Name="Doc_ID" />
+    </Key>
+    <Property Name="Doc_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Doc_Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ISRI_Document_Term" Relationship="Self.FK_ISRI_Document_Term_ISRI_Document" FromRole="ISRI_Document" ToRole="ISRI_Document_Term" />
+  </EntityType>
+  <EntityType Name="ISRI_Document_Term">
+    <Key>
+      <PropertyRef Name="Term_ID" />
+      <PropertyRef Name="Doc_ID" />
+    </Key>
+    <Property Name="Term_ID" Type="Int64" Nullable="false" />
+    <Property Name="Doc_ID" Type="Int64" Nullable="false" />
+    <Property Name="Frequency" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ISRI_Document" Relationship="Self.FK_ISRI_Document_Term_ISRI_Document" FromRole="ISRI_Document_Term" ToRole="ISRI_Document" />
+    <NavigationProperty Name="ISRI_Terms" Relationship="Self.FK_ISRI_Document_Term_ISRI_Terms" FromRole="ISRI_Document_Term" ToRole="ISRI_Terms" />
+  </EntityType>
+  <EntityType Name="ISRI_Terms">
+    <Key>
+      <PropertyRef Name="Term_ID" />
+    </Key>
+    <Property Name="Term_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Term" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Documents_Num" Type="Int32" />
+    <Property Name="Total_Frequency" Type="Int64" />
+    <NavigationProperty Name="ISRI_Document_Term" Relationship="Self.FK_ISRI_Document_Term_ISRI_Terms" FromRole="ISRI_Terms" ToRole="ISRI_Document_Term" />
+  </EntityType>
+  <EntityType Name="Terms">
+    <Key>
+      <PropertyRef Name="Term_ID" />
+    </Key>
+    <Property Name="Term_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Term" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Documents_Num" Type="Int32" />
+    <Property Name="Total_Frequency" Type="Int64" />
+    <NavigationProperty Name="Document_Term" Relationship="Self.FK_Document_Term_Terms" FromRole="Terms" ToRole="Document_Term" />
+  </EntityType>
+  <EntityType Name="TrainingData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Class" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Source" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="BinaryVector">
+    <Key>
+      <PropertyRef Name="Doc_ID" />
+      <PropertyRef Name="Term_ID" />
+      <PropertyRef Name="Appear" />
+    </Key>
+    <Property Name="Doc_ID" Type="Int64" Nullable="false" />
+    <Property Name="Term_ID" Type="Int64" Nullable="false" />
+    <Property Name="Appear" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Document_Term_Document">
+    <End Role="Document" Type="Self.Document" Multiplicity="1" />
+    <End Role="Document_Term" Type="Self.Document_Term" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Document">
+        <PropertyRef Name="Doc_ID" />
+      </Principal>
+      <Dependent Role="Document_Term">
+        <PropertyRef Name="Doc_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Document_Term_Terms">
+    <End Role="Terms" Type="Self.Terms" Multiplicity="1" />
+    <End Role="Document_Term" Type="Self.Document_Term" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Terms">
+        <PropertyRef Name="Term_ID" />
+      </Principal>
+      <Dependent Role="Document_Term">
+        <PropertyRef Name="Term_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ISRI_Document_Term_ISRI_Document">
+    <End Role="ISRI_Document" Type="Self.ISRI_Document" Multiplicity="1" />
+    <End Role="ISRI_Document_Term" Type="Self.ISRI_Document_Term" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ISRI_Document">
+        <PropertyRef Name="Doc_ID" />
+      </Principal>
+      <Dependent Role="ISRI_Document_Term">
+        <PropertyRef Name="Doc_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ISRI_Document_Term_ISRI_Terms">
+    <End Role="ISRI_Terms" Type="Self.ISRI_Terms" Multiplicity="1" />
+    <End Role="ISRI_Document_Term" Type="Self.ISRI_Document_Term" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ISRI_Terms">
+        <PropertyRef Name="Term_ID" />
+      </Principal>
+      <Dependent Role="ISRI_Document_Term">
+        <PropertyRef Name="Term_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FAQEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ArabicDectionary" EntityType="Self.ArabicDectionary" />
+    <EntitySet Name="ArabicNames" EntityType="Self.ArabicNames" />
+    <EntitySet Name="Document" EntityType="Self.Document" />
+    <EntitySet Name="Document_Term" EntityType="Self.Document_Term" />
+    <EntitySet Name="ISRI_Document" EntityType="Self.ISRI_Document" />
+    <EntitySet Name="ISRI_Document_Term" EntityType="Self.ISRI_Document_Term" />
+    <EntitySet Name="ISRI_Terms" EntityType="Self.ISRI_Terms" />
+    <EntitySet Name="Terms" EntityType="Self.Terms" />
+    <EntitySet Name="TrainingData" EntityType="Self.TrainingData" />
+    <EntitySet Name="BinaryVector" EntityType="Self.BinaryVector" />
+    <AssociationSet Name="FK_Document_Term_Document" Association="Self.FK_Document_Term_Document">
+      <End Role="Document" EntitySet="Document" />
+      <End Role="Document_Term" EntitySet="Document_Term" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Document_Term_Terms" Association="Self.FK_Document_Term_Terms">
+      <End Role="Terms" EntitySet="Terms" />
+      <End Role="Document_Term" EntitySet="Document_Term" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ISRI_Document_Term_ISRI_Document" Association="Self.FK_ISRI_Document_Term_ISRI_Document">
+      <End Role="ISRI_Document" EntitySet="ISRI_Document" />
+      <End Role="ISRI_Document_Term" EntitySet="ISRI_Document_Term" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ISRI_Document_Term_ISRI_Terms" Association="Self.FK_ISRI_Document_Term_ISRI_Terms">
+      <End Role="ISRI_Terms" EntitySet="ISRI_Terms" />
+      <End Role="ISRI_Document_Term" EntitySet="ISRI_Document_Term" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

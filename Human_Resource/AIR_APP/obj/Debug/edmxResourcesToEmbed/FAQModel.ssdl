@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FAQModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ArabicDectionary">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Word" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="ArabicNames">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FAQ.dbo.BinaryVector' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="BinaryVector">
+    <Key>
+      <PropertyRef Name="Doc_ID" />
+      <PropertyRef Name="Term_ID" />
+      <PropertyRef Name="Appear" />
+    </Key>
+    <Property Name="Doc_ID" Type="bigint" Nullable="false" />
+    <Property Name="Term_ID" Type="bigint" Nullable="false" />
+    <Property Name="Appear" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Document">
+    <Key>
+      <PropertyRef Name="Doc_ID" />
+    </Key>
+    <Property Name="Doc_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Doc_Text" Type="ntext" />
+    <Property Name="Class" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Document_Term">
+    <Key>
+      <PropertyRef Name="Term_ID" />
+      <PropertyRef Name="Doc_ID" />
+    </Key>
+    <Property Name="Term_ID" Type="bigint" Nullable="false" />
+    <Property Name="Doc_ID" Type="bigint" Nullable="false" />
+    <Property Name="Frequency" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ISRI_Document">
+    <Key>
+      <PropertyRef Name="Doc_ID" />
+    </Key>
+    <Property Name="Doc_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Doc_Text" Type="ntext" />
+  </EntityType>
+  <EntityType Name="ISRI_Document_Term">
+    <Key>
+      <PropertyRef Name="Term_ID" />
+      <PropertyRef Name="Doc_ID" />
+    </Key>
+    <Property Name="Term_ID" Type="bigint" Nullable="false" />
+    <Property Name="Doc_ID" Type="bigint" Nullable="false" />
+    <Property Name="Frequency" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ISRI_Terms">
+    <Key>
+      <PropertyRef Name="Term_ID" />
+    </Key>
+    <Property Name="Term_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Term" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Documents_Num" Type="int" />
+    <Property Name="Total_Frequency" Type="bigint" />
+  </EntityType>
+  <EntityType Name="Terms">
+    <Key>
+      <PropertyRef Name="Term_ID" />
+    </Key>
+    <Property Name="Term_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Term" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Documents_Num" Type="int" />
+    <Property Name="Total_Frequency" Type="bigint" />
+  </EntityType>
+  <EntityType Name="TrainingData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Text" Type="ntext" />
+    <Property Name="Class" Type="nvarchar" MaxLength="50" />
+    <Property Name="Source" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Document_Term_Document">
+    <End Role="Document" Type="Self.Document" Multiplicity="1" />
+    <End Role="Document_Term" Type="Self.Document_Term" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Document">
+        <PropertyRef Name="Doc_ID" />
+      </Principal>
+      <Dependent Role="Document_Term">
+        <PropertyRef Name="Doc_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Document_Term_Terms">
+    <End Role="Terms" Type="Self.Terms" Multiplicity="1" />
+    <End Role="Document_Term" Type="Self.Document_Term" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Terms">
+        <PropertyRef Name="Term_ID" />
+      </Principal>
+      <Dependent Role="Document_Term">
+        <PropertyRef Name="Term_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ISRI_Document_Term_ISRI_Document">
+    <End Role="ISRI_Document" Type="Self.ISRI_Document" Multiplicity="1" />
+    <End Role="ISRI_Document_Term" Type="Self.ISRI_Document_Term" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ISRI_Document">
+        <PropertyRef Name="Doc_ID" />
+      </Principal>
+      <Dependent Role="ISRI_Document_Term">
+        <PropertyRef Name="Doc_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ISRI_Document_Term_ISRI_Terms">
+    <End Role="ISRI_Terms" Type="Self.ISRI_Terms" Multiplicity="1" />
+    <End Role="ISRI_Document_Term" Type="Self.ISRI_Document_Term" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ISRI_Terms">
+        <PropertyRef Name="Term_ID" />
+      </Principal>
+      <Dependent Role="ISRI_Document_Term">
+        <PropertyRef Name="Term_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FAQModelStoreContainer">
+    <EntitySet Name="ArabicDectionary" EntityType="Self.ArabicDectionary" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ArabicNames" EntityType="Self.ArabicNames" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Document_Term" EntityType="Self.Document_Term" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ISRI_Document" EntityType="Self.ISRI_Document" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ISRI_Document_Term" EntityType="Self.ISRI_Document_Term" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ISRI_Terms" EntityType="Self.ISRI_Terms" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Terms" EntityType="Self.Terms" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TrainingData" EntityType="Self.TrainingData" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BinaryVector" EntityType="Self.BinaryVector" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[BinaryVector].[Doc_ID] AS [Doc_ID], 
+[BinaryVector].[Term_ID] AS [Term_ID], 
+[BinaryVector].[Appear] AS [Appear]
+FROM [dbo].[BinaryVector] AS [BinaryVector]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Document_Term_Document" Association="Self.FK_Document_Term_Document">
+      <End Role="Document" EntitySet="Document" />
+      <End Role="Document_Term" EntitySet="Document_Term" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Document_Term_Terms" Association="Self.FK_Document_Term_Terms">
+      <End Role="Terms" EntitySet="Terms" />
+      <End Role="Document_Term" EntitySet="Document_Term" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ISRI_Document_Term_ISRI_Document" Association="Self.FK_ISRI_Document_Term_ISRI_Document">
+      <End Role="ISRI_Document" EntitySet="ISRI_Document" />
+      <End Role="ISRI_Document_Term" EntitySet="ISRI_Document_Term" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ISRI_Document_Term_ISRI_Terms" Association="Self.FK_ISRI_Document_Term_ISRI_Terms">
+      <End Role="ISRI_Terms" EntitySet="ISRI_Terms" />
+      <End Role="ISRI_Document_Term" EntitySet="ISRI_Document_Term" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

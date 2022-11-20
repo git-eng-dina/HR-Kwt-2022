@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FAQ_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="QA">
+    <Key>
+      <PropertyRef Name="QA_ID" />
+    </Key>
+    <Property Name="QA_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QUESTION" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ANSWER" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Question_Term">
+    <Key>
+      <PropertyRef Name="Term_ID" />
+      <PropertyRef Name="QA_ID" />
+    </Key>
+    <Property Name="Term_ID" Type="int" Nullable="false" />
+    <Property Name="QA_ID" Type="int" Nullable="false" />
+    <Property Name="Frequency" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Terms">
+    <Key>
+      <PropertyRef Name="Term_ID" />
+    </Key>
+    <Property Name="Term_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Term" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Questions_Num" Type="int" />
+    <Property Name="Total_Frequency" Type="bigint" />
+  </EntityType>
+  <Association Name="FK_Question_Term_QA">
+    <End Role="QA" Type="Self.QA" Multiplicity="1" />
+    <End Role="Question_Term" Type="Self.Question_Term" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QA">
+        <PropertyRef Name="QA_ID" />
+      </Principal>
+      <Dependent Role="Question_Term">
+        <PropertyRef Name="QA_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_Term_Terms">
+    <End Role="Terms" Type="Self.Terms" Multiplicity="1" />
+    <End Role="Question_Term" Type="Self.Question_Term" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Terms">
+        <PropertyRef Name="Term_ID" />
+      </Principal>
+      <Dependent Role="Question_Term">
+        <PropertyRef Name="Term_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FAQ_DBModelStoreContainer">
+    <EntitySet Name="QA" EntityType="Self.QA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Question_Term" EntityType="Self.Question_Term" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Terms" EntityType="Self.Terms" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Question_Term_QA" Association="Self.FK_Question_Term_QA">
+      <End Role="QA" EntitySet="QA" />
+      <End Role="Question_Term" EntitySet="Question_Term" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_Term_Terms" Association="Self.FK_Question_Term_Terms">
+      <End Role="Terms" EntitySet="Terms" />
+      <End Role="Question_Term" EntitySet="Question_Term" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
