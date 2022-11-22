@@ -79,8 +79,12 @@
     <Property Name="CreateUserID" Type="Int32" />
     <Property Name="UpdateUserID" Type="Int32" />
     <Property Name="IsActive" Type="Boolean" />
+    <Property Name="ManagerID" Type="Int32" />
+    <Property Name="Mobile" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="companies" Relationship="Self.FK_departments_companies" FromRole="departments" ToRole="companies" />
     <NavigationProperty Name="confirms" Relationship="Self.FK_confirms_departments" FromRole="departments" ToRole="confirms" />
+    <NavigationProperty Name="departments1" Relationship="Self.FK_departments_departments" FromRole="departments" ToRole="departments1" />
+    <NavigationProperty Name="departments2" Relationship="Self.FK_departments_departments" FromRole="departments1" ToRole="departments" />
     <NavigationProperty Name="offices" Relationship="Self.FK_offices_departments" FromRole="departments" ToRole="offices" />
     <NavigationProperty Name="userCardSettings" Relationship="Self.FK_userCardSettings_departments" FromRole="departments" ToRole="userCardSettings" />
   </EntityType>
@@ -145,6 +149,7 @@
     <Property Name="TransportationCompensationType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="HousingCompensationType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="CompanyID" Type="Int32" />
+    <Property Name="HiringDate" Type="DateTime" Precision="7" />
     <NavigationProperty Name="companies" Relationship="Self.FK_employees_companies" FromRole="employees" ToRole="companies" />
     <NavigationProperty Name="confirms" Relationship="Self.FK_confirms_employees" FromRole="employees" ToRole="confirms" />
     <NavigationProperty Name="custodies" Relationship="Self.FK_custodies_employees" FromRole="employees" ToRole="custodies" />
@@ -583,6 +588,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_departments_departments">
+    <End Role="departments" Type="Self.departments" Multiplicity="0..1" />
+    <End Role="departments1" Type="Self.departments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="departments">
+        <PropertyRef Name="DepartmentID" />
+      </Principal>
+      <Dependent Role="departments1">
+        <PropertyRef Name="ParentDepartmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_offices_departments">
     <End Role="departments" Type="Self.departments" Multiplicity="0..1" />
     <End Role="offices" Type="Self.offices" Multiplicity="*" />
@@ -853,6 +870,10 @@
       <End Role="employees" EntitySet="employees" />
       <End Role="custodies" EntitySet="custodies" />
     </AssociationSet>
+    <AssociationSet Name="FK_departments_departments" Association="Self.FK_departments_departments">
+      <End Role="departments" EntitySet="departments" />
+      <End Role="departments1" EntitySet="departments" />
+    </AssociationSet>
     <AssociationSet Name="FK_offices_departments" Association="Self.FK_offices_departments">
       <End Role="departments" EntitySet="departments" />
       <End Role="offices" EntitySet="offices" />
@@ -921,5 +942,46 @@
       <End Role="tasks" EntitySet="tasks" />
       <End Role="employeesTasks" EntitySet="employeesTasks" />
     </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(HRSystemModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(HRSystemModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
   </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
 </Schema>

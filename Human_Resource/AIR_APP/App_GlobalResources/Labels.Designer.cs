@@ -97,6 +97,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancle.
+        /// </summary>
+        internal static string Cancle {
+            get {
+                return ResourceManager.GetString("Cancle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Company Information.
         /// </summary>
         internal static string CompanyInfo {
@@ -133,11 +142,38 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Department.
+        /// </summary>
+        internal static string Department {
+            get {
+                return ResourceManager.GetString("Department", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Departments.
         /// </summary>
         internal static string Departments {
             get {
                 return ResourceManager.GetString("Departments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department Manager.
+        /// </summary>
+        internal static string DeptManager {
+            get {
+                return ResourceManager.GetString("DeptManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department Manager Assestant.
+        /// </summary>
+        internal static string DeptManagerAssestant {
+            get {
+                return ResourceManager.GetString("DeptManagerAssestant", resourceCulture);
             }
         }
         
@@ -412,6 +448,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        internal static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Saved successfully.
         /// </summary>
         internal static string SaveSuccessfully {
@@ -498,6 +543,15 @@ namespace Resources {
         internal static string VaccationTypes {
             get {
                 return ResourceManager.GetString("VaccationTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Working Permission.
+        /// </summary>
+        internal static string WorkingPermission {
+            get {
+                return ResourceManager.GetString("WorkingPermission", resourceCulture);
             }
         }
     }

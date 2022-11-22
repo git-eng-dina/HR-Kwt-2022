@@ -69,6 +69,8 @@
     <Property Name="CreateUserID" Type="int" />
     <Property Name="UpdateUserID" Type="int" />
     <Property Name="IsActive" Type="bit" />
+    <Property Name="ManagerID" Type="int" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="employees">
     <Key>
@@ -131,6 +133,7 @@
     <Property Name="TransportationCompensationType" Type="nvarchar" MaxLength="100" />
     <Property Name="HousingCompensationType" Type="nvarchar" MaxLength="100" />
     <Property Name="CompanyID" Type="int" />
+    <Property Name="HiringDate" Type="datetime2" Precision="7" />
   </EntityType>
   <EntityType Name="employeesScheduleVacations">
     <Key>
@@ -519,6 +522,18 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_departments_departments">
+    <End Role="departments" Type="Self.departments" Multiplicity="0..1" />
+    <End Role="departments1" Type="Self.departments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="departments">
+        <PropertyRef Name="DepartmentID" />
+      </Principal>
+      <Dependent Role="departments1">
+        <PropertyRef Name="ParentDepartmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_employees_companies">
     <End Role="companies" Type="Self.companies" Multiplicity="0..1" />
     <End Role="employees" Type="Self.employees" Multiplicity="*" />
@@ -735,6 +750,37 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="HRSystemModelStoreContainer">
     <EntitySet Name="companies" EntityType="Self.companies" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="confirms" EntityType="Self.confirms" Schema="dbo" store:Type="Tables" />
@@ -809,6 +855,10 @@ FROM [dbo].[employeesTasks] AS [employeesTasks]</DefiningQuery>
     <AssociationSet Name="FK_departments_companies" Association="Self.FK_departments_companies">
       <End Role="companies" EntitySet="companies" />
       <End Role="departments" EntitySet="departments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_departments_departments" Association="Self.FK_departments_departments">
+      <End Role="departments" EntitySet="departments" />
+      <End Role="departments1" EntitySet="departments" />
     </AssociationSet>
     <AssociationSet Name="FK_employees_companies" Association="Self.FK_employees_companies">
       <End Role="companies" EntitySet="companies" />

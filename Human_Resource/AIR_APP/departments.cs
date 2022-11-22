@@ -17,6 +17,7 @@ namespace Human_Resource
         public departments()
         {
             this.confirms = new HashSet<confirms>();
+            this.departments1 = new HashSet<departments>();
             this.offices = new HashSet<offices>();
             this.userCardSettings = new HashSet<userCardSettings>();
         }
@@ -31,9 +32,13 @@ namespace Human_Resource
         public Nullable<int> CreateUserID { get; set; }
         public Nullable<int> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
+        public Nullable<int> ManagerID { get; set; }
+        public string Mobile { get; set; }
     
         public virtual companies companies { get; set; }
         public virtual ICollection<confirms> confirms { get; set; }
+        public virtual ICollection<departments> departments1 { get; set; }
+        public virtual departments departments2 { get; set; }
         public virtual ICollection<offices> offices { get; set; }
         public virtual ICollection<userCardSettings> userCardSettings { get; set; }
     }

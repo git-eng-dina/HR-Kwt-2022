@@ -74,7 +74,7 @@
                                    </asp:TemplateField>                          
                                    <asp:TemplateField ShowHeader="false">
                                              <ItemTemplate>                     
-                                                     <asp:ImageButton CommandArgument='<%# Eval("UserID")%>' OnCommand="deletedatafromgrid"
+                                                     <asp:ImageButton CommandArgument='<%# Eval("EmployeeID")%>' OnCommand="deletedatafromgrid"
                                                             OnClientClick="return confirm('<%$ Resources:Labels,ConfirmDelete%>');return false;"
                                                             ID="Image1" runat="server" ImageUrl="~/Images/delete.ico" />
                                                              
@@ -82,7 +82,7 @@
                                     </asp:TemplateField> 
                                     <asp:TemplateField ShowHeader="false">
                                           <ItemTemplate>                     
-                                                     <asp:ImageButton CommandArgument='<%# Eval("UserID")%>' OnCommand="deletedatafromgrid"
+                                                     <asp:ImageButton CommandArgument='<%# Eval("EmployeeID")%>' OnCommand="deletedatafromgrid"
                                                         ID="Image2" runat="server" ImageUrl="~/Images/edit.ico" />
                                       
                                              </ItemTemplate>

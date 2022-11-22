@@ -725,14 +725,15 @@ nav .logo {
   .c-form .form-group {
         width: 100%;
     }
-   .c-form span {
+    .c-form span {
         display: block;
         width: 20%;
-        float:right;
-        text-align:right;
+        float: right;
+        text-align: right;
+        margin-top: 7px;
     }
     
-   .c-form input {
+   .c-form  input,select,option {
         font-weight: bold;
         display: block;
         width: 80%;
@@ -746,26 +747,31 @@ nav .logo {
      float:left;
     }
 
+.ui-widget input{
+    font-size:14px;
+}
+
 .btn-search {
     color: #fff;
     background-color: #28a745;
     border-color: #28a745;
     width: 80px;
     height: 80%;
-    margin-top:5px;
+    margin-top: 5px;
 }
 .btn-new {
     color: #fff;
-    background-color: #ad891d;
-    border-color: #ad891d;
+    background-color: #895206;
+    border-color: #895206;
     width: 80px;
     height: 80%;
     margin-top: 5px;
-    float:right;
+    float: right;
 }
 
 .gridView {
     text-align: center;
+    min-width: 600px;
     width: 90%;
     float: right;
     margin-top: 10px;
@@ -778,10 +784,13 @@ nav .logo {
         text-align: center;
         font-weight: bold;
         font-size: 15px;
+        line-height: 30px;
+        background-color: #cacfd3;
     }
 
     .gridView tr td {
         font-size: 15px;
+        background-color: #f8f9fa;
     }
     .gridView button {
         line-height: 1.0;
@@ -809,11 +818,11 @@ nav .logo {
     z-index: 100;
 }
 .modal-dialog, .modal-content {
-     height: 95%; 
+    height: 100%;
     max-height: calc(100% - 20px);
     width: 100%;
-  
-     min-height: calc(75% - 20px); 
+    min-height: calc(75% - 20px);
+    margin-top: 0px;
 }
 .modal-content {
     position: relative;
@@ -826,6 +835,7 @@ nav .logo {
     outline: 0;
     -webkit-box-shadow: 0 3px 9px rgba(0,0,0,.5);
     box-shadow: 0 3px 9px rgba(0,0,0,.5);
+    width:100%;
 }
 /*.panel {
     margin-bottom: 20px;
@@ -841,7 +851,7 @@ nav .logo {
 }
 .panel-heading {
     color: #000;
-    background-color: #1eb3b3;
+    background-color: #895206;
     /*border-color: #ddd;*/
     height: 30px;
     padding-top: 5px;
@@ -882,6 +892,7 @@ nav .logo {
 
 .modal-dialog .panel-body {
     padding: 10px;
+    padding-top :2px;
     padding-bottom: 0px;
     max-height: calc(100% - 120px);
     overflow-y: scroll;
@@ -960,4 +971,16 @@ input[type=checkbox], input[type=radio] {
 }
 .float2 {
     float: left;
+}
+.frame-panel-heading {
+    color: #000;
+    background-color: #895206;
+    /*border-color: #ddd;*/
+    height: 40px;
+    padding-top: 5px;
+    padding-right: 5px;
+}
+
+.modal-dialog .modal-footer {
+    padding: 9px;
 }

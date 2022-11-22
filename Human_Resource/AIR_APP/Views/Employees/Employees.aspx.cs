@@ -13,7 +13,7 @@ namespace Human_Resource.Views.Employees
         protected void Page_Load(object sender, EventArgs e)
         {
             EmployeeModel emp = new EmployeeModel();
-            var users = emp.GetAllUsers(true);
+            var users = emp.GetHiredEmps(true);
             gv_employees.DataSource = users;
             DataBind();
 

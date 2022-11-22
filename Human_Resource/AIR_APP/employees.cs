@@ -88,6 +88,7 @@ namespace Human_Resource
         public string TransportationCompensationType { get; set; }
         public string HousingCompensationType { get; set; }
         public Nullable<int> CompanyID { get; set; }
+        public Nullable<System.DateTime> HiringDate { get; set; }
     
         public virtual companies companies { get; set; }
         public virtual ICollection<confirms> confirms { get; set; }

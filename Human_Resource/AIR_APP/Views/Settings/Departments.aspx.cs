@@ -12,14 +12,49 @@ namespace Human_Resource.Views.Settings
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //UserModel user = new UserModel();
-            //var users = user.GetAllUsers(1);
-            //gv_departments.DataSource = users;
-            //DataBind();
 
+            DepartmentModel dept = new DepartmentModel();
+            var depts = dept.getCompanyDeps();
+            gv_departments.DataSource = depts;
+            
+
+            EmployeeModel employeeModel = new EmployeeModel();
+            List<EmployeeModel> employees = new List<EmployeeModel>();
+            employees = employeeModel.GetHiredEmps(true);
+            emp.DataSource = employees;
+            emp.DataValueField = "EmployeeID";
+            emp.DataTextField = "FullName";
+
+            DataBind();
             btn_new.Attributes.Add("OnClick", "ShowDialog();");
         }
 
+        [System.Web.Services.WebMethod]
+        public static string SaveDept(string name)
+        {
+            return "Hello " + name.ToString()+ Resources.Labels.SaveSuccessfully;
+        }
+        protected void btn_Add_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DepartmentModel dept = new DepartmentModel();
+                dept.Name = txt_name.Value;
+                dept.Mobile = txt_mobile.Value;
+                dept.ManagerID = int.Parse(emp.Value);
+
+                if (Session["user_id"] != null && Session["user_id"].ToString() != "")
+                    dept.CreateUserID = dept.UpdateUserID = int.Parse(Session["user_id"].ToString());
+
+
+                int deptId = dept.SaveDept(dept);
+                if (deptId != 0)
+                {
+                    Response.Write("<script>alert('" + Resources.Labels.SaveSuccessfully + "')</script>");
+                }
+            }
+            catch { }
+        }
         protected void deletedatafromgrid(object sender, CommandEventArgs e)
         {
 

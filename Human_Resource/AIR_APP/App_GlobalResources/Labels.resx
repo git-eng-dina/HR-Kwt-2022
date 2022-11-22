@@ -264,4 +264,22 @@
   <data name="SaveSuccessfully" xml:space="preserve">
     <value>Saved successfully</value>
   </data>
+  <data name="Department" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="DeptManager" xml:space="preserve">
+    <value>Department Manager</value>
+  </data>
+  <data name="DeptManagerAssestant" xml:space="preserve">
+    <value>Department Manager Assestant</value>
+  </data>
+  <data name="Cancle" xml:space="preserve">
+    <value>Cancle</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="WorkingPermission" xml:space="preserve">
+    <value>Working Permission</value>
+  </data>
 </root>

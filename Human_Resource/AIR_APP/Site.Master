@@ -82,20 +82,49 @@
 
 				</svg><asp:Literal runat="server" Text="<%$ Resources:Labels,Home%>" />
                  </a>
-            <a href="/Views/Employees/Employees.aspx" class="">
+
+             <a href="" class="" data-toggle="collapse" data-target="#demo_emp">
+                    <i class="fa fa-users" aria-hidden="true"></i>
+                    <asp:Literal runat="server" Text="<%$ Resources:Labels,Employees%>" />
+                    <i class="fa fa-fw fa-caret-down"></i>
+            </a>
+            <ul id="demo_emp" class="collapse in" aria-expanded="true">
+                <li>
+                    <a href="/Views/Employees/Employees.aspx"> 
+                        <asp:Literal runat="server" Text="<%$ Resources:Labels,EmployeesInfo%>" />
+                    </a>
+                </li>
+                <li>
+                    <a href="/Views/Settings/NewEmployee.aspx"> 
+                        <asp:Literal runat="server" Text="<%$ Resources:Labels,NewEmployee%>" />
+                    </a>
+                </li> 
+                <li>
+                    <a href="/Views/Settings/NewEmployee.aspx"> 
+                        <asp:Literal runat="server" Text="<%$ Resources:Labels,WorkingPermission%>" />
+                    </a>
+                </li>  
+                <li>
+                    <a href="/Views/Settings/NewEmployee.aspx"> 
+                        <asp:Literal runat="server" Text="<%$ Resources:Labels,ExpiredPassports%>" />
+                    </a>
+                </li> 
+            </ul>
+
+        <%--    <a href="/Views/Employees/Employees.aspx" class="">
                 <i class="fa fa-users" aria-hidden="true"></i>
              <asp:Literal runat="server" Text="<%$ Resources:Labels,EmployeesInfo%>" />
-            </a>
+            </a>--%>
       
-            <a href="/PreProcessing.aspx" class="">
+            <%--<a href="/PreProcessing.aspx" class="">
                    <i class="fa fa-id-card-o" aria-hidden="true"></i>
                <asp:Literal runat="server" Text="<%$ Resources:Labels,ExpiredPassports%>" />
-            </a>
+            </a>--%>
              
-            <a href="/Views/Employee/NewEmployee.aspx" class="">
+            <%--<a href="/Views/Employee/NewEmployee.aspx" class="">
                <i class="fa fa-user-plus" aria-hidden="true"></i>
               <asp:Literal runat="server" Text="<%$ Resources:Labels,NewEmployee%>" />
-            </a>
+            </a>--%>
 
             
                 <a href="" class="">

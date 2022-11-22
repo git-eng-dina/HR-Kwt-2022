@@ -264,4 +264,22 @@
   <data name="SaveSuccessfully" xml:space="preserve">
     <value>تم الحفظ </value>
   </data>
+  <data name="Department" xml:space="preserve">
+    <value>القسم</value>
+  </data>
+  <data name="DeptManager" xml:space="preserve">
+    <value>مدير القسم</value>
+  </data>
+  <data name="DeptManagerAssestant" xml:space="preserve">
+    <value>نائب مدير القسم</value>
+  </data>
+  <data name="Cancle" xml:space="preserve">
+    <value>إلغاء</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>حفظ</value>
+  </data>
+  <data name="WorkingPermission" xml:space="preserve">
+    <value>أذن عمل</value>
+  </data>
 </root>
