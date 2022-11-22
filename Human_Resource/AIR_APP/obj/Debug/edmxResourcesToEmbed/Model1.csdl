@@ -81,6 +81,7 @@
     <Property Name="IsActive" Type="Boolean" />
     <Property Name="ManagerID" Type="Int32" />
     <Property Name="Mobile" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="companies" Relationship="Self.FK_departments_companies" FromRole="departments" ToRole="companies" />
     <NavigationProperty Name="confirms" Relationship="Self.FK_confirms_departments" FromRole="departments" ToRole="confirms" />
     <NavigationProperty Name="departments1" Relationship="Self.FK_departments_departments" FromRole="departments" ToRole="departments1" />
@@ -97,8 +98,8 @@
     <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="VacationsBalance" Type="Int32" />
     <Property Name="WarningPeriod" Type="Boolean" />
-    <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="NameAr" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="NameEn" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="DOB" Type="DateTime" Precision="7" />
     <Property Name="Gender" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="MaritalStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -150,6 +151,8 @@
     <Property Name="HousingCompensationType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="CompanyID" Type="Int32" />
     <Property Name="HiringDate" Type="DateTime" Precision="7" />
+    <Property Name="Sequence" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="UnifiedNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="companies" Relationship="Self.FK_employees_companies" FromRole="employees" ToRole="companies" />
     <NavigationProperty Name="confirms" Relationship="Self.FK_confirms_employees" FromRole="employees" ToRole="confirms" />
     <NavigationProperty Name="custodies" Relationship="Self.FK_custodies_employees" FromRole="employees" ToRole="custodies" />

@@ -120,6 +120,7 @@ namespace Human_Resource.App_Code
         public string Mobile { get; set; }
 
         public string Notes { get; set; }
+        public string Address { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public Nullable<int> CreateUserID { get; set; }
@@ -138,11 +139,12 @@ namespace Human_Resource.App_Code
                                 ParentDepartmentID=x.ParentDepartmentID,
                                 ParentDepartmentName = entity.departments.Where(m => m.DepartmentID == x.ParentDepartmentID).Select(m => m.Name).FirstOrDefault(),
                                 ManagerID = x.ManagerID,
-                                ManagerName = entity.employees.Where(m => m.EmployeeID == x.ManagerID).Select(m => m.FirstName + " " + m.LastName).FirstOrDefault(),
+                                ManagerName = entity.employees.Where(m => m.EmployeeID == x.ManagerID).Select(m => m.NameAr).FirstOrDefault(),
                                 CreateUserID = x.CreateUserID,
                                 UpdateUserID = x.UpdateUserID,
                                 Notes=x.Notes,
-                                CreateDate= x.CreateDate,
+                                    Address= x.Address,
+                                CreateDate = x.CreateDate,
                                 UpdateDate= x.UpdateDate,
                                 }).ToList();
                 return depts;
@@ -164,12 +166,7 @@ namespace Human_Resource.App_Code
                             Name = dept.Name,
                             ManagerID = dept.ManagerID,
                             Mobile = dept.Mobile,
-                            //Address = dept.Address,
-                            //Email = dept.Email,
-                            //Phone = dept.Phone,
-                            //Fax = dept.Fax,
-                            //Mobile = dept.Mobile,
-                            //Notes = dept.Notes,
+                            Address = dept.Address,
                             CompanyID = entity.companies.Where(x => x.OurCompany == true).Select(x => x.CompanyID).FirstOrDefault(),
                             IsActive = true,
                             CreateUserID = dept.CreateUserID,
@@ -184,11 +181,7 @@ namespace Human_Resource.App_Code
                         department = entity.departments.Find(dept.DepartmentID);
                         department.Name = dept.Name;
                         department.ManagerID = dept.ManagerID;
-                        //department.Address = dept.Address;
-                        //department.Email = dept.Email;
-                        //department.Phone = dept.Phone;
-                        //department.Fax = dept.Fax;
-                        //department.Mobile = dept.Mobile;
+                        department.Address = dept.Address;
                         department.Notes = dept.Notes;
                         department.IsActive = true;
                         department.UpdateUserID = dept.UpdateUserID;

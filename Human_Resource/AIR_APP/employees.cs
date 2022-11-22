@@ -36,8 +36,8 @@ namespace Human_Resource
         public string Password { get; set; }
         public Nullable<int> VacationsBalance { get; set; }
         public Nullable<bool> WarningPeriod { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string NameAr { get; set; }
+        public string NameEn { get; set; }
         public Nullable<System.DateTime> DOB { get; set; }
         public string Gender { get; set; }
         public string MaritalStatus { get; set; }
@@ -89,6 +89,8 @@ namespace Human_Resource
         public string HousingCompensationType { get; set; }
         public Nullable<int> CompanyID { get; set; }
         public Nullable<System.DateTime> HiringDate { get; set; }
+        public string Sequence { get; set; }
+        public string UnifiedNumber { get; set; }
     
         public virtual companies companies { get; set; }
         public virtual ICollection<confirms> confirms { get; set; }

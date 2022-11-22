@@ -34,6 +34,7 @@ namespace Human_Resource
         public Nullable<bool> IsActive { get; set; }
         public Nullable<int> ManagerID { get; set; }
         public string Mobile { get; set; }
+        public string Address { get; set; }
     
         public virtual companies companies { get; set; }
         public virtual ICollection<confirms> confirms { get; set; }

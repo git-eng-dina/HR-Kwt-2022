@@ -14,9 +14,9 @@ namespace Human_Resource.App_Code
         public string Password { get; set; }
         public Nullable<int> VacationsBalance { get; set; }
         public Nullable<bool> WarningPeriod { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string FullName { get; set; }
+        public string NameAr { get; set; }
+        public string NameEn { get; set; }
+
         public Nullable<System.DateTime> DOB { get; set; }
         public string Gender { get; set; }
         public string MaritalStatus { get; set; }
@@ -40,7 +40,8 @@ namespace Human_Resource.App_Code
         public string BankAccount { get; set; }
         public string BankName { get; set; }
         public Nullable<System.DateTime> HiringDate { get; set; }
-
+        public string Sequence { get; set; }
+        public string UnifiedNumber { get; set; }
         public string IBANNumber { get; set; }
         public string SWIFTCODE { get; set; }
         public string PaymentType { get; set; }
@@ -112,9 +113,8 @@ namespace Human_Resource.App_Code
                                 EmployeeID = x.EmployeeID,
                                 IsActive = x.IsActive,
                                 Username = x.Username,
-                                FirstName = x.FirstName,
-                                LastName = x.LastName,
-                                FullName = x.FirstName +" " + x.LastName,
+                                NameAr = x.NameAr,
+                                NameEn = x.NameEn,
                             }).ToList();
                 return user;
             }

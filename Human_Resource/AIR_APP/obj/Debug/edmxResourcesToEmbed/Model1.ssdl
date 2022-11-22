@@ -71,6 +71,7 @@
     <Property Name="IsActive" Type="bit" />
     <Property Name="ManagerID" Type="int" />
     <Property Name="Mobile" Type="nvarchar" MaxLength="100" />
+    <Property Name="Address" Type="ntext" />
   </EntityType>
   <EntityType Name="employees">
     <Key>
@@ -81,8 +82,8 @@
     <Property Name="Password" Type="nvarchar" MaxLength="100" />
     <Property Name="VacationsBalance" Type="int" />
     <Property Name="WarningPeriod" Type="bit" />
-    <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
-    <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+    <Property Name="NameAr" Type="nvarchar" MaxLength="100" />
+    <Property Name="NameEn" Type="nvarchar" MaxLength="100" />
     <Property Name="DOB" Type="datetime2" Precision="7" />
     <Property Name="Gender" Type="nvarchar" MaxLength="100" />
     <Property Name="MaritalStatus" Type="nvarchar" MaxLength="100" />
@@ -134,6 +135,8 @@
     <Property Name="HousingCompensationType" Type="nvarchar" MaxLength="100" />
     <Property Name="CompanyID" Type="int" />
     <Property Name="HiringDate" Type="datetime2" Precision="7" />
+    <Property Name="Sequence" Type="nvarchar" MaxLength="100" />
+    <Property Name="UnifiedNumber" Type="nvarchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="employeesScheduleVacations">
     <Key>

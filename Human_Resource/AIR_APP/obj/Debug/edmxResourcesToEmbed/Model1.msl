@@ -74,6 +74,7 @@
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
           <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
           <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -85,8 +86,8 @@
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="VacationsBalance" ColumnName="VacationsBalance" />
           <ScalarProperty Name="WarningPeriod" ColumnName="WarningPeriod" />
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="NameAr" ColumnName="NameAr" />
+          <ScalarProperty Name="NameEn" ColumnName="NameEn" />
           <ScalarProperty Name="DOB" ColumnName="DOB" />
           <ScalarProperty Name="Gender" ColumnName="Gender" />
           <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
@@ -138,6 +139,8 @@
           <ScalarProperty Name="HousingCompensationType" ColumnName="HousingCompensationType" />
           <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
           <ScalarProperty Name="HiringDate" ColumnName="HiringDate" />
+          <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+          <ScalarProperty Name="UnifiedNumber" ColumnName="UnifiedNumber" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

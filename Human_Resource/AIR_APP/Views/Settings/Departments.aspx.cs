@@ -23,7 +23,10 @@ namespace Human_Resource.Views.Settings
             employees = employeeModel.GetHiredEmps(true);
             emp.DataSource = employees;
             emp.DataValueField = "EmployeeID";
-            emp.DataTextField = "FullName";
+            if(Session["CultureName"].ToString().ToLower() == "en-us")
+                emp.DataTextField = "NameEn";
+            else
+                emp.DataTextField = "NameAr";
 
             DataBind();
             btn_new.Attributes.Add("OnClick", "ShowDialog();");

@@ -76,6 +76,7 @@
           <Property Name="IsActive" Type="bit" />
           <Property Name="ManagerID" Type="int" />
           <Property Name="Mobile" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address" Type="ntext" />
         </EntityType>
         <EntityType Name="employees">
           <Key>
@@ -86,8 +87,8 @@
           <Property Name="Password" Type="nvarchar" MaxLength="100" />
           <Property Name="VacationsBalance" Type="int" />
           <Property Name="WarningPeriod" Type="bit" />
-          <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
-          <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+          <Property Name="NameAr" Type="nvarchar" MaxLength="100" />
+          <Property Name="NameEn" Type="nvarchar" MaxLength="100" />
           <Property Name="DOB" Type="datetime2" Precision="7" />
           <Property Name="Gender" Type="nvarchar" MaxLength="100" />
           <Property Name="MaritalStatus" Type="nvarchar" MaxLength="100" />
@@ -139,6 +140,8 @@
           <Property Name="HousingCompensationType" Type="nvarchar" MaxLength="100" />
           <Property Name="CompanyID" Type="int" />
           <Property Name="HiringDate" Type="datetime2" Precision="7" />
+          <Property Name="Sequence" Type="nvarchar" MaxLength="100" />
+          <Property Name="UnifiedNumber" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="employeesScheduleVacations">
           <Key>
@@ -1024,6 +1027,7 @@ FROM [dbo].[employeesTasks] AS [employeesTasks]</DefiningQuery>
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="ManagerID" Type="Int32" />
           <Property Name="Mobile" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="companies" Relationship="Self.FK_departments_companies" FromRole="departments" ToRole="companies" />
           <NavigationProperty Name="confirms" Relationship="Self.FK_confirms_departments" FromRole="departments" ToRole="confirms" />
           <NavigationProperty Name="departments1" Relationship="Self.FK_departments_departments" FromRole="departments" ToRole="departments1" />
@@ -1040,8 +1044,8 @@ FROM [dbo].[employeesTasks] AS [employeesTasks]</DefiningQuery>
           <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="VacationsBalance" Type="Int32" />
           <Property Name="WarningPeriod" Type="Boolean" />
-          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NameAr" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NameEn" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="DOB" Type="DateTime" Precision="7" />
           <Property Name="Gender" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="MaritalStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -1093,6 +1097,8 @@ FROM [dbo].[employeesTasks] AS [employeesTasks]</DefiningQuery>
           <Property Name="HousingCompensationType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="CompanyID" Type="Int32" />
           <Property Name="HiringDate" Type="DateTime" Precision="7" />
+          <Property Name="Sequence" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UnifiedNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="companies" Relationship="Self.FK_employees_companies" FromRole="employees" ToRole="companies" />
           <NavigationProperty Name="confirms" Relationship="Self.FK_confirms_employees" FromRole="employees" ToRole="confirms" />
           <NavigationProperty Name="custodies" Relationship="Self.FK_custodies_employees" FromRole="employees" ToRole="custodies" />
@@ -2006,6 +2012,7 @@ FROM [dbo].[employeesTasks] AS [employeesTasks]</DefiningQuery>
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
                 <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2017,8 +2024,8 @@ FROM [dbo].[employeesTasks] AS [employeesTasks]</DefiningQuery>
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="VacationsBalance" ColumnName="VacationsBalance" />
                 <ScalarProperty Name="WarningPeriod" ColumnName="WarningPeriod" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="NameAr" ColumnName="NameAr" />
+                <ScalarProperty Name="NameEn" ColumnName="NameEn" />
                 <ScalarProperty Name="DOB" ColumnName="DOB" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
@@ -2070,6 +2077,8 @@ FROM [dbo].[employeesTasks] AS [employeesTasks]</DefiningQuery>
                 <ScalarProperty Name="HousingCompensationType" ColumnName="HousingCompensationType" />
                 <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
                 <ScalarProperty Name="HiringDate" ColumnName="HiringDate" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="UnifiedNumber" ColumnName="UnifiedNumber" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
