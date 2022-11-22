@@ -23,7 +23,7 @@ namespace Human_Resource.Views.Settings
             employees = employeeModel.GetHiredEmps(true);
             emp.DataSource = employees;
             emp.DataValueField = "EmployeeID";
-            if(Session["CultureName"].ToString().ToLower() == "en-us")
+            if(Session["CultureName"] != null && Session["CultureName"].ToString().ToLower() == "en-us")
                 emp.DataTextField = "NameEn";
             else
                 emp.DataTextField = "NameAr";

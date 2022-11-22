@@ -142,7 +142,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Department.
+        ///   Looks up a localized string similar to Branch.
         /// </summary>
         internal static string Department {
             get {
@@ -151,7 +151,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Departments.
+        ///   Looks up a localized string similar to Branchs.
         /// </summary>
         internal static string Departments {
             get {
@@ -160,7 +160,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Department Manager.
+        ///   Looks up a localized string similar to Branch Manager.
         /// </summary>
         internal static string DeptManager {
             get {
@@ -471,6 +471,15 @@ namespace Resources {
         internal static string Search {
             get {
                 return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No..
+        /// </summary>
+        internal static string Sequence {
+            get {
+                return ResourceManager.GetString("Sequence", resourceCulture);
             }
         }
         

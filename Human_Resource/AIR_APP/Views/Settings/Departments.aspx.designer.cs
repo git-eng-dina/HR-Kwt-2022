@@ -49,6 +49,15 @@ namespace Human_Resource.Views.Settings {
         protected global::System.Web.UI.WebControls.GridView gv_departments;
         
         /// <summary>
+        /// LblDno control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblDno;
+        
+        /// <summary>
         /// txt_name control.
         /// </summary>
         /// <remarks>
@@ -65,6 +74,15 @@ namespace Human_Resource.Views.Settings {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText txt_mobile;
+        
+        /// <summary>
+        /// txt_address control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_address;
         
         /// <summary>
         /// emp control.

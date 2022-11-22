@@ -133,7 +133,7 @@
     <value>بيانات الشركة</value>
   </data>
   <data name="Departments" xml:space="preserve">
-    <value>الأقسام</value>
+    <value>الفروع</value>
   </data>
   <data name="Employees" xml:space="preserve">
     <value>الموظفون</value>
@@ -217,7 +217,7 @@
     <value>هل أنت متأكد من حذف العنصر؟</value>
   </data>
   <data name="AddDepartment" xml:space="preserve">
-    <value>إضافة قسم</value>
+    <value>إضافة فرع</value>
   </data>
   <data name="AcademicEducation" xml:space="preserve">
     <value>التعليم الأكاديمي</value>
@@ -265,10 +265,10 @@
     <value>تم الحفظ </value>
   </data>
   <data name="Department" xml:space="preserve">
-    <value>القسم</value>
+    <value>الفرع</value>
   </data>
   <data name="DeptManager" xml:space="preserve">
-    <value>مدير القسم</value>
+    <value>مدير الفرع</value>
   </data>
   <data name="DeptManagerAssestant" xml:space="preserve">
     <value>نائب مدير القسم</value>
@@ -281,5 +281,8 @@
   </data>
   <data name="WorkingPermission" xml:space="preserve">
     <value>أذن عمل</value>
+  </data>
+  <data name="Sequence" xml:space="preserve">
+    <value>م</value>
   </data>
 </root>

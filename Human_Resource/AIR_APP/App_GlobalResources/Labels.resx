@@ -133,7 +133,7 @@
     <value>Company Information</value>
   </data>
   <data name="Departments" xml:space="preserve">
-    <value>Departments</value>
+    <value>Branchs</value>
   </data>
   <data name="Employees" xml:space="preserve">
     <value>Employees</value>
@@ -265,10 +265,10 @@
     <value>Saved successfully</value>
   </data>
   <data name="Department" xml:space="preserve">
-    <value>Department</value>
+    <value>Branch</value>
   </data>
   <data name="DeptManager" xml:space="preserve">
-    <value>Department Manager</value>
+    <value>Branch Manager</value>
   </data>
   <data name="DeptManagerAssestant" xml:space="preserve">
     <value>Department Manager Assestant</value>
@@ -281,5 +281,8 @@
   </data>
   <data name="WorkingPermission" xml:space="preserve">
     <value>Working Permission</value>
+  </data>
+  <data name="Sequence" xml:space="preserve">
+    <value>No.</value>
   </data>
 </root>

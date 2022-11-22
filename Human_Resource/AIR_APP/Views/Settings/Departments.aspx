@@ -18,7 +18,12 @@
                 position: { my: 'top', at: 'top+75' },
                 autoOpen: false,
                 draggable: true,
-                overlay: { opacity: 0.5, background: 'black' }
+                overlay: { opacity: 0.5, background: 'black' },
+                buttons: {
+                    'Send PIN': function () {
+                        saveDept()
+                        $(this).dialog('close')
+                    }
 
         });
         });
@@ -37,7 +42,7 @@
         function saveDept() {
             $.ajax({
                 type: "POST",
-                url: "departments.aspx/SaveDept",
+                url: "Departments.aspx/SaveDept",
                 data: '{name: "' + $("#txt_name").val + '" }',
                    contentType: "application/json; charset=utf-8",
                    dataType: "json",
@@ -90,26 +95,38 @@
                                 AutoGenerateColumns="False"  Width="90%" 
                                 class="table table-bordered table-condensed table-responsive table-hover ">
                                 <Columns>
-                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,Department%>" ItemStyle-Width="30px">
+                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,Sequence%>" ItemStyle-Width="30px">
                                          <ItemTemplate>
                                                  <asp:Label ID="LblDno" runat="server" 
                                                  Text='<%# Eval("Name") %>' />                              
-                                         </ItemTemplate>
-                                   </asp:TemplateField>             
-                                           <asp:TemplateField HeaderText="<%$ Resources:Labels,DeptManager%>">
+                                         </ItemTemplate> 
+                                       </asp:TemplateField>
+                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,Department%>" ItemStyle-Width="30px">
                                          <ItemTemplate>
                                                  <asp:Label ID="LblDname" runat="server" 
+                                                 Text='<%# Eval("Name") %>' />                              
+                                         </ItemTemplate>
+                                   </asp:TemplateField>             
+                                          
+                                <asp:TemplateField HeaderText="<%$ Resources:Labels,Mobile%>">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblMobile" runat="server" 
+                                                 Text='<%# Eval("Mobile") %>' />                              
+                                         </ItemTemplate>
+                                        </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,Address%>">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblAddress" runat="server" 
+                                                 Text='<%# Eval("Address") %>' />                              
+                                         </ItemTemplate>
+                                   </asp:TemplateField>  
+                                        <asp:TemplateField HeaderText="<%$ Resources:Labels,DeptManager%>">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblDmanager" runat="server" 
                                                  Text='<%# Eval("ManagerName") %>' />                              
                                          </ItemTemplate>
                                         </asp:TemplateField>
-    
-                                    <asp:TemplateField HeaderText="Location">
-                                         <ItemTemplate>
-                                                 <asp:Label ID="LblLoc" runat="server" 
-                                                 Text='<%# Eval("ParentDepartmentName") %>' />                              
-                                         </ItemTemplate>
-                                   </asp:TemplateField>                          
-                                   <asp:TemplateField ShowHeader="false">
+                                   <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%">
                                              <ItemTemplate>                     
                                                      <asp:ImageButton CommandArgument='<%# Eval("DepartmentID")%>' OnCommand="deletedatafromgrid"
                                                             OnClientClick="return confirm('<%$ Resources:Labels,ConfirmDelete%>');return false;"
@@ -117,7 +134,7 @@
                                                              
                                              </ItemTemplate>
                                     </asp:TemplateField> 
-                                    <asp:TemplateField ShowHeader="false">
+                                    <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%">
                                           <ItemTemplate>                     
                                                      <asp:ImageButton CommandArgument='<%# Eval("DepartmentID")%>' OnCommand="deletedatafromgrid"
                                                         ID="Image2" runat="server" ImageUrl="~/Images/edit.ico" />
@@ -161,26 +178,47 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Mobile%>" /></span>
                                 <input type="text" class="form-control input-lg" id="txt_mobile"  runat="server" value=""  />
                             </div>
-                        </div>
+                        </div> 
                      <div class ="row">
+                    <div class="form-group" style="display:block">
+                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Address%>" /></span>
+                                <input type="text" class="form-control input-lg" id="txt_address"  runat="server" value=""  />
+                            </div>
+                         </div>
+                    <div class="row">
                      <div class="form-group" style="display:block">
                               <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,DeptManager%>" /></span>
         
                                 <select runat="server" id="emp" style="width:80%" class="form-control input-lg"></select>
                             </div>
-                    </div>
+                        </div>
+                  </div>
+                    
                  </div>
                 <div class="modal-footer">
-                <asp:Button runat="server" Text = "<%$ Resources:Labels,Save%>" class="btn  btn-new" id="btn_edit"  CausesValidation="false" >
+                <asp:Button runat="server" Text = "<%$ Resources:Labels,Save%>" class="btn  btn-new" id="btn_edit"  CausesValidation="false" onClick="saveDept()">
                             </asp:Button>
 
                     </div>
                 </div>
             </div>
         </div>
-        </div>
-
+     
+    <script>
+        function saveDept() {
+            $.ajax({
+                type: "POST",
+                url: "Departments.aspx/SaveDept",
+                data: '{name: "' + $("#txt_name").val + '" }',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: OnSuccess,
+                failure: function (response) {
+                    alert(response.d);
+                }
+            });
+        }
+    </script>
 
 </asp:Content>
-
 
