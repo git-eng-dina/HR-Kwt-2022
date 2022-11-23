@@ -28,8 +28,8 @@
 
 </head>
 <body>
-    <form runat="server" dir="<%$ Resources:Labels,TextDirection%>">
-        <asp:ScriptManager runat="server">
+    <form runat="server" dir="<%$ Resources:Labels,TextDirection%>" name="base_form" id="base_form">
+        <asp:ScriptManager runat="server" EnablePageMethods="True">
             <Scripts>
                 <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
                 <%--Framework Scripts--%>

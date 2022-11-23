@@ -87,7 +87,6 @@ D:\Kuwait Tech\HR\Human_Resource\AIR_APP\bin\Antlr3.Runtime.dll
 D:\Kuwait Tech\HR\Human_Resource\AIR_APP\bin\AspNet.ScriptManager.bootstrap.dll
 D:\Kuwait Tech\HR\Human_Resource\AIR_APP\bin\AspNet.ScriptManager.jQuery.dll
 D:\Kuwait Tech\HR\Human_Resource\AIR_APP\bin\EntityFramework.dll
-D:\Kuwait Tech\HR\Human_Resource\AIR_APP\bin\IronPython.dll
 D:\Kuwait Tech\HR\Human_Resource\AIR_APP\bin\Microsoft.AI.Agent.Intercept.dll
 D:\Kuwait Tech\HR\Human_Resource\AIR_APP\bin\Microsoft.AI.DependencyCollector.dll
 D:\Kuwait Tech\HR\Human_Resource\AIR_APP\bin\Microsoft.AI.PerfCounterCollector.dll
@@ -123,7 +122,6 @@ D:\Kuwait Tech\HR\Human_Resource\AIR_APP\bin\System.Web.WebPages.dll
 D:\Kuwait Tech\HR\Human_Resource\AIR_APP\bin\System.Web.WebPages.Razor.dll
 D:\Kuwait Tech\HR\Human_Resource\AIR_APP\bin\WebGrease.dll
 D:\Kuwait Tech\HR\Human_Resource\AIR_APP\bin\EntityFramework.xml
-D:\Kuwait Tech\HR\Human_Resource\AIR_APP\bin\IronPython.xml
 D:\Kuwait Tech\HR\Human_Resource\AIR_APP\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\Kuwait Tech\HR\Human_Resource\AIR_APP\bin\Microsoft.Dynamic.xml
 D:\Kuwait Tech\HR\Human_Resource\AIR_APP\bin\Microsoft.Scripting.xml

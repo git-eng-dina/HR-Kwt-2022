@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -29,6 +30,29 @@ namespace Human_Resource
             else
             {
                 Session["user_id"] = loginUser.EmployeeID;
+
+                //FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket
+                //              (
+                //              1,
+                //              loginUser.Username,
+                //              DateTime.Now,
+                //              DateTime.Now.AddMinutes(15), // expiry
+                //              false,
+                //              "",
+                //              "/"
+                //              );
+
+                ////encrypt the ticket and add it to a cookie
+                //string enTicket = FormsAuthentication.Encrypt(authTicket);
+                //HttpCookie cookie = new HttpCookie("POSCookie", enTicket);
+                //cookie.Expires = DateTime.Now.AddMinutes(15);
+                //cookie.HttpOnly = false;
+                //cookie.Values.Add("UserName", HttpUtility.UrlEncode(loginUser.Username));
+                //cookie.Values.Add("UserId", loginUser.EmployeeID.ToString());
+
+
+                //Response.Charset = "UTF-8";
+                //Response.Cookies.Add(cookie);
                 Response.Redirect("Views/Home/HomePage.aspx");
 
             }
