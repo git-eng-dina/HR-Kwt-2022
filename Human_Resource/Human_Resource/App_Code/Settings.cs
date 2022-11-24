@@ -207,6 +207,7 @@ namespace Human_Resource.App_Code
                         department.Name = dept.Name;
                         department.ManagerID = dept.ManagerID;
                         department.Address = dept.Address;
+                        department.Mobile = dept.Mobile;
                         department.Notes = dept.Notes;
                         department.IsActive = true;
                         department.UpdateUserID = dept.UpdateUserID;
