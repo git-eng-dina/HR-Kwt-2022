@@ -288,4 +288,7 @@
   <data name="DeleteSuccessfully" xml:space="preserve">
     <value>تم الحذف</value>
   </data>
+  <data name="ErrorOccured" xml:space="preserve">
+    <value>حدث خطأ</value>
+  </data>
 </root>
