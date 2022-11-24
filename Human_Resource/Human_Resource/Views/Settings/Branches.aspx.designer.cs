@@ -22,13 +22,13 @@ namespace Human_Resource.Views.Settings {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txt_search;
         
         /// <summary>
-        /// btn_search control.
+        /// ButtonSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btn_search;
+        protected global::System.Web.UI.WebControls.Button ButtonSearch;
         
         /// <summary>
         /// btn_new control.

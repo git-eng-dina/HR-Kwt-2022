@@ -723,7 +723,7 @@ padding-left: 5px;
     margin-top: 10px;
 }
 
-    .statis .SearchAddbar input {
+    .statis .SearchAddbar input:not([type=button]):not([type=reset]):not([type=submit]) {
         border-radius: 4px;
         /*border-top-right-radius: 4px;*/
         border-bottom-left-radius: 0;
