@@ -95,7 +95,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/Views/Settings/NewEmployee.aspx"> 
+                    <a href="/Views/Employees/NewEmployee.aspx"> 
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,NewEmployee%>" />
                     </a>
                 </li> 
@@ -111,22 +111,7 @@
                 </li> 
             </ul>
 
-        <%--    <a href="/Views/Employees/Employees.aspx" class="">
-                <i class="fa fa-users" aria-hidden="true"></i>
-             <asp:Literal runat="server" Text="<%$ Resources:Labels,EmployeesInfo%>" />
-            </a>--%>
       
-            <%--<a href="/PreProcessing.aspx" class="">
-                   <i class="fa fa-id-card-o" aria-hidden="true"></i>
-               <asp:Literal runat="server" Text="<%$ Resources:Labels,ExpiredPassports%>" />
-            </a>--%>
-             
-            <%--<a href="/Views/Employee/NewEmployee.aspx" class="">
-               <i class="fa fa-user-plus" aria-hidden="true"></i>
-              <asp:Literal runat="server" Text="<%$ Resources:Labels,NewEmployee%>" />
-            </a>--%>
-
-            
                 <a href="" class="">
                     <i class="fa fa-calendar-check" aria-hidden="true"></i>
                     <asp:Literal runat="server" Text="<%$ Resources:Labels,Events%>" />
@@ -161,8 +146,13 @@
                     </a>
                 </li> 
                 <li>
-                    <a href="/Views/Settings/Offices.aspx"> 
-                        <asp:Literal runat="server" Text="<%$ Resources:Labels,Offices%>" />
+                    <a href="/Views/Settings/Managements.aspx"> 
+                        <asp:Literal runat="server" Text="<%$ Resources:Labels,Managements%>" />
+                    </a>
+                </li> 
+                <li>
+                    <a href="/Views/Settings/Departments.aspx"> 
+                        <asp:Literal runat="server" Text="<%$ Resources:Labels,Departments%>" />
 
                     </a>
                 </li> 

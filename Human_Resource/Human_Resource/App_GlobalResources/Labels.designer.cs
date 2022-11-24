@@ -376,6 +376,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to managements.
+        /// </summary>
+        internal static string Managements {
+            get {
+                return ResourceManager.GetString("Managements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Managing Director in arabic.
         /// </summary>
         internal static string ManagingDirectorAr {

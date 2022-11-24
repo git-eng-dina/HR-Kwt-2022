@@ -129,10 +129,6 @@
                             <div style="width:90px">
                                 <asp:Button ID="ButtonSearch" runat="server" CssClass="btn btn-search" Text=" <%$ Resources:Labels,Search%>"
                                     OnClick="btn_Search_Click" />
-                            <%--<Button type="submit" runat="server" class="btn btn-search" id="btn_search" OnClick="btn_Search_Click()" CausesValidation="false" >
-                                <asp:Literal  runat="server" Text=" <%$ Resources:Labels,Search%>" />
-                                <i class="fa fa-search" style="color:antiquewhite;padding:2px"></i>
-                            </Button>--%>
                             </div> 
                             <div style="width:80px">
                             <Button type="button" runat="server" class="btn btn-new btn-block" id="btn_new"  CausesValidation="false" >

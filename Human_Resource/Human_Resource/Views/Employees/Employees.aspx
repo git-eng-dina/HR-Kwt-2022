@@ -25,14 +25,12 @@
                         <div class="SearchAddbar">
 
                         <div class="input-group">
-                            <div class="col-3">
+                            <div class="col-4">
                                 <input type="text" runat="server" id="txt_search" placeholder="<%$ Resources:Labels,Search%>" />
                             </div>
                             <div style="width:90px">
-                            <Button runat="server" class="btn btn-search btn-block" id="btn_search"  CausesValidation="false" >
-                                <asp:Literal  runat="server" Text=" <%$ Resources:Labels,Search%>" />
-                                <i class="fa fa-search" style="color:antiquewhite;padding:2px"></i>
-                            </Button>
+                                <asp:Button ID="ButtonSearch" runat="server" CssClass="btn btn-search" Text=" <%$ Resources:Labels,Search%>"
+                                    OnClick="btn_Search_Click" />
                             </div> 
                             <div style="width:80px">
                             <Button type="button" runat="server" class="btn btn-new btn-block" id="btn_new"  CausesValidation="false" >
@@ -44,20 +42,24 @@
                         </div>
 
                        <!---- table -->
-                       <div class="row ">
-                            <asp:GridView ID="gv_employees" runat="server" style="width:90%;" CssClass="gridView"  
+                            <asp:GridView ID="gv_employees" runat="server" style="width:90%;" CssClass="gridView col-md-12"  
                                 AutoGenerateColumns="False"  Width="90%">
                                 <Columns>
-                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,TheName%>">
+                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,Sequence%>" ItemStyle-Width="5%">
+                                         <ItemTemplate>
+                                                 <%#Container.DataItemIndex+1 %>                            
+                                         </ItemTemplate> 
+                                       </asp:TemplateField>
+                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,NameAR%>">
                                          <ItemTemplate>
                                                  <asp:Label ID="LblDno" runat="server" 
-                                                 Text='<%# Eval("UserName") %>' />                              
+                                                 Text='<%# Eval("NameAr") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField> 
-                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,TheName%>">
+                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,NameEN%>">
                                          <ItemTemplate>
                                                  <asp:Label ID="LblDno" runat="server" 
-                                                 Text='<%# Eval("UserName") %>' />                              
+                                                 Text='<%# Eval("NameEn") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>             
                                    <asp:TemplateField HeaderText="Dept Name">
@@ -90,8 +92,7 @@
                                 </Columns>
                                 <EditRowStyle BackColor="#009999" VerticalAlign="Middle" />
                             </asp:GridView>
-    
-                       </div>
+
    
                     </div>
 

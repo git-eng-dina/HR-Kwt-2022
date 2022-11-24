@@ -11,14 +11,32 @@ namespace Human_Resource.Views.Employees
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            EmployeeModel emp = new EmployeeModel();
-            var users = emp.GetHiredEmps(true);
-            gv_employees.DataSource = users;
-            DataBind();
+            if(!IsPostBack)
+            {
 
-            btn_new.Attributes.Add("OnClick", "NewEmployee();");
+                BindData();
+                btn_new.Attributes.Add("OnClick", "NewEmployee();");
+            }
         }
-
+        protected void btn_Search_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string textSearch = txt_search.Value;
+                BindData(textSearch);
+            }
+            catch { }
+        }
+        private void BindData(string textSearch = "")
+        {
+            EmployeeModel emp = new EmployeeModel();
+            var employees = emp.GetHiredEmps(true);
+            if (textSearch != "")
+                employees = employees.Where(x => x.NameAr.ToLower().Contains(textSearch.ToLower())
+                                || x.NameEn.ToLower().Contains(textSearch.ToLower())).ToList();
+            gv_employees.DataSource = employees;
+            DataBind();
+        }
         protected void deletedatafromgrid(object sender, CommandEventArgs e)
         {
 

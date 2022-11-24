@@ -220,7 +220,9 @@
     <Content Include="Views\Home\HomePage.aspx" />
     <Content Include="Views\Settings\CompanyInfo.aspx" />
     <Content Include="Views\Settings\Branches.aspx" />
+    <Content Include="Views\Settings\Departments.aspx" />
     <Content Include="Views\Settings\Jobs.aspx" />
+    <Content Include="Views\Settings\Managements.aspx" />
     <Content Include="Views\Settings\Offices.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -371,12 +373,26 @@
     <Compile Include="Views\Settings\Branches.aspx.designer.cs">
       <DependentUpon>Branches.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Settings\Departments.aspx.cs">
+      <DependentUpon>Departments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Settings\Departments.aspx.designer.cs">
+      <DependentUpon>Departments.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Settings\Jobs.aspx.cs">
       <DependentUpon>Jobs.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Settings\Jobs.aspx.designer.cs">
       <DependentUpon>Jobs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\Managements.aspx.cs">
+      <DependentUpon>Managements.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Settings\Managements.aspx.designer.cs">
+      <DependentUpon>Managements.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Settings\Offices.aspx.cs">
       <DependentUpon>Offices.aspx</DependentUpon>
