@@ -152,6 +152,29 @@ namespace Human_Resource.App_Code
                 return depts;
             }
         }
+         public DepartmentModel getDepartment(int departmentId)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var dept = entity.departments.Where(x => x.DepartmentID == departmentId)
+                                .Select(x=> new DepartmentModel() {
+                                    DepartmentID = x.DepartmentID,
+                                Name = x.Name,
+                                Mobile = x.Mobile,
+                                ParentDepartmentID=x.ParentDepartmentID,
+                                ParentDepartmentName = entity.departments.Where(m => m.DepartmentID == x.ParentDepartmentID).Select(m => m.Name).FirstOrDefault(),
+                                ManagerID = x.ManagerID,
+                                ManagerName = entity.employees.Where(m => m.EmployeeID == x.ManagerID).Select(m => m.NameAr).FirstOrDefault(),
+                                CreateUserID = x.CreateUserID,
+                                UpdateUserID = x.UpdateUserID,
+                                Notes=x.Notes,
+                                    Address= x.Address,
+                                CreateDate = x.CreateDate,
+                                UpdateDate= x.UpdateDate,
+                                }).FirstOrDefault();
+                return dept;
+            }
+        }
 
         public int SaveDept(DepartmentModel dept)
         {
