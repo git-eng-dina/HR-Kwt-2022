@@ -57,7 +57,7 @@ namespace Human_Resource.Views.Settings
 
             DataBind();
         }
-        [WebMethod]
+        [WebMethod(EnableSession = true)]
         public static string SaveBranch(string departmentId,string name, string mobile, string address, string managerId)
         {
             try
@@ -72,8 +72,8 @@ namespace Human_Resource.Views.Settings
                 dept.Address = address;
                 dept.ManagerID = int.Parse(managerId);
 
-                //if (Session["user_id"] != null && Session["user_id"].ToString() != "")
-                //    dept.CreateUserID = dept.UpdateUserID = int.Parse(Session["user_id"].ToString());
+                if (HttpContext.Current.Session["user_id"] != null && HttpContext.Current.Session["user_id"].ToString() != "")
+                    dept.CreateUserID = dept.UpdateUserID = int.Parse(HttpContext.Current.Session["user_id"].ToString());
 
 
                 int deptId = dept.SaveDept(dept);
