@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5c2a018981aa45c6834f20f5b9d799ec" Name="Diagram1">
+        <EntityTypeShape EntityType="HRSystemModel.companies" Width="1.5" PointX="0.75" PointY="29.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.confirms" Width="1.5" PointX="7.5" PointY="31" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.custodies" Width="1.5" PointX="5.25" PointY="31" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.departments" Width="1.5" PointX="3" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.employees" Width="1.5" PointX="3" PointY="36.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.employeesScheduleVacations" Width="1.5" PointX="5.25" PointY="42.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.employeesTrainings" Width="1.5" PointX="8.25" PointY="42.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.employeesVacations" Width="1.5" PointX="8.25" PointY="38.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.hourlyPermissions" Width="1.5" PointX="5.25" PointY="47" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.Images" Width="1.5" PointX="5.25" PointY="51" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.jobs" Width="1.5" PointX="5.25" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.materialsConsumption" Width="1.5" PointX="5.25" PointY="54" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.messages" Width="1.5" PointX="5.25" PointY="58" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.messagesTemplates" Width="1.5" PointX="5.25" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.offices" Width="1.5" PointX="5.25" PointY="36" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.periods" Width="1.5" PointX="5.25" PointY="61.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.rewards" Width="1.5" PointX="5.25" PointY="65.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.salaryIncrease" Width="1.5" PointX="5.25" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.scheduleVacations" Width="1.5" PointX="3" PointY="32.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.tasks" Width="1.5" PointX="5.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.trainings" Width="1.5" PointX="6" PointY="73.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.userCardSettings" Width="1.5" PointX="5.25" PointY="26.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.vacations" Width="1.5" PointX="6" PointY="69.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.employeesTasks" Width="1.5" PointX="8.25" PointY="47.375" IsExpanded="true" />
+        <AssociationConnector Association="HRSystemModel.FK_departments_companies" ManuallyRouted="false" />
+        <AssociationConnector Association="HRSystemModel.FK_employees_companies" ManuallyRouted="false" />
+        <AssociationConnector Association="HRSystemModel.FK_confirms_departments" ManuallyRouted="false" />
+        <AssociationConnector Association="HRSystemModel.FK_confirms_employees" ManuallyRouted="false" />
+        <AssociationConnector Association="HRSystemModel.FK_confirms_hourlyPermissions" ManuallyRouted="false" />
+        <AssociationConnector Association="HRSystemModel.FK_confirms_jobs" ManuallyRouted="false" />
+        <AssociationConnector Association="HRSystemModel.FK_confirms_messagesTemplates" ManuallyRouted="false" />
+        <AssociationConnector Association="HRSystemModel.FK_confirms_salaryIncrease" ManuallyRouted="false" />
+        <AssociationConnector Association="HRSystemModel.FK_confirms_tasks" ManuallyRouted="false" />
+        <AssociationConnector Association="HRSystemModel.FK_custodies_employees" ManuallyRouted="false" />
+        <AssociationConnector Association="HRSystemModel.FK_departments_departments" ManuallyRouted="false" />
+        <AssociationConnector Association="HRSystemModel.FK_offices_departments" ManuallyRouted="false" />
+        <AssociationConnector Association="HRSystemModel.FK_userCardSettings_departments" ManuallyRouted="false" />
+        <AssociationConnector Association="HRSystemModel.FK_employeesScheduleVacations_employees" ManuallyRouted="false" />
+        <AssociationConnector Association="HRSystemModel.FK_employeesTasks_employees" ManuallyRouted="false" />
+        <AssociationConnector Association="HRSystemModel.FK_employeesTrainings_employees1" ManuallyRouted="false" />
+        <AssociationConnector Association="HRSystemModel.FK_employeesVacations_employees" ManuallyRouted="false" />
+        <AssociationConnector Association="HRSystemModel.FK_hourlyPermissions_employees" ManuallyRouted="false" />
+        <AssociationConnector Association="HRSystemModel.FK_Images_employees" ManuallyRouted="false" />
+        <AssociationConnector Association="HRSystemModel.FK_materialsConsumption_employees" ManuallyRouted="false" />
+        <AssociationConnector Association="HRSystemModel.FK_messages_employees" ManuallyRouted="false" />
+        <AssociationConnector Association="HRSystemModel.FK_offices_employees" ManuallyRouted="false" />
+        <AssociationConnector Association="HRSystemModel.FK_periods_employees" ManuallyRouted="false" />
+        <AssociationConnector Association="HRSystemModel.FK_rewards_employees" ManuallyRouted="false" />
+        <AssociationConnector Association="HRSystemModel.FK_employeesScheduleVacations_scheduleVacations" ManuallyRouted="false" />
+        <AssociationConnector Association="HRSystemModel.FK_employeesTrainings_trainings1" ManuallyRouted="false" />
+        <AssociationConnector Association="HRSystemModel.FK_employeesVacations_vacations" ManuallyRouted="false" />
+        <AssociationConnector Association="HRSystemModel.FK_employeesTasks_tasks" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
