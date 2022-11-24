@@ -107,7 +107,7 @@ namespace Human_Resource.App_Code
         #endregion
     }
 
-    public class DepartmentModel
+    public class BranchModel
     {
         #region Attributes
         public int DepartmentID { get; set; }
@@ -129,12 +129,12 @@ namespace Human_Resource.App_Code
         #endregion
 
         #region methods
-        public List<DepartmentModel> getCompanyDeps()
+        public List<BranchModel> getCompanyDeps()
         {
             using (HRSystemEntities entity = new HRSystemEntities())
             {
                 var depts = entity.departments.Where(x => x.CompanyID == entity.companies.Where(c => c.OurCompany == true && c.IsActive == true).Select(c => c.CompanyID).FirstOrDefault() && x.IsActive == true)
-                                .Select(x=> new DepartmentModel() {
+                                .Select(x=> new BranchModel() {
                                     DepartmentID = x.DepartmentID,
                                 Name = x.Name,
                                 Mobile = x.Mobile,
@@ -152,12 +152,12 @@ namespace Human_Resource.App_Code
                 return depts;
             }
         }
-         public DepartmentModel getDepartment(int departmentId)
+         public BranchModel getDepartment(int departmentId)
         {
             using (HRSystemEntities entity = new HRSystemEntities())
             {
                 var dept = entity.departments.Where(x => x.DepartmentID == departmentId)
-                                .Select(x=> new DepartmentModel() {
+                                .Select(x=> new BranchModel() {
                                     DepartmentID = x.DepartmentID,
                                 Name = x.Name,
                                 Mobile = x.Mobile,
@@ -176,7 +176,7 @@ namespace Human_Resource.App_Code
             }
         }
 
-        public int SaveDept(DepartmentModel dept)
+        public int SaveDept(BranchModel dept)
         {
             try
             {
