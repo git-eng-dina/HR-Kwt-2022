@@ -133,7 +133,7 @@
     <value>Company Information</value>
   </data>
   <data name="Departments" xml:space="preserve">
-    <value>Branchs</value>
+    <value>Departments</value>
   </data>
   <data name="Employees" xml:space="preserve">
     <value>Employees</value>
@@ -268,7 +268,7 @@
     <value>Branch</value>
   </data>
   <data name="DeptManager" xml:space="preserve">
-    <value>Branch Manager</value>
+    <value>Department Manager</value>
   </data>
   <data name="DeptManagerAssestant" xml:space="preserve">
     <value>Department Manager Assestant</value>
@@ -283,12 +283,24 @@
     <value>Working Permission</value>
   </data>
   <data name="Sequence" xml:space="preserve">
-    <value>No.</value>
+    <value>#</value>
   </data>
   <data name="DeleteSuccessfully" xml:space="preserve">
     <value>Deleted Successfully</value>
   </data>
   <data name="ErrorOccured" xml:space="preserve">
     <value>Error Occured</value>
+  </data>
+  <data name="AddBrannch" xml:space="preserve">
+    <value>Add Brannch</value>
+  </data>
+  <data name="Branch" xml:space="preserve">
+    <value>Branch</value>
+  </data>
+  <data name="Branches" xml:space="preserve">
+    <value>Branches</value>
+  </data>
+  <data name="BranchManager" xml:space="preserve">
+    <value>Branch Manager</value>
   </data>
 </root>

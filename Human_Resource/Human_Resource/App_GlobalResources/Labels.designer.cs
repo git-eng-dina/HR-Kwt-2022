@@ -70,6 +70,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Brannch.
+        /// </summary>
+        internal static string AddBrannch {
+            get {
+                return ResourceManager.GetString("AddBrannch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Department.
         /// </summary>
         internal static string AddDepartment {
@@ -93,6 +102,33 @@ namespace Resources {
         internal static string BasicInformation {
             get {
                 return ResourceManager.GetString("BasicInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Branch.
+        /// </summary>
+        internal static string Branch {
+            get {
+                return ResourceManager.GetString("Branch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Branches.
+        /// </summary>
+        internal static string Branches {
+            get {
+                return ResourceManager.GetString("Branches", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Branch Manager.
+        /// </summary>
+        internal static string BranchManager {
+            get {
+                return ResourceManager.GetString("BranchManager", resourceCulture);
             }
         }
         
@@ -160,7 +196,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Branchs.
+        ///   Looks up a localized string similar to Departments.
         /// </summary>
         internal static string Departments {
             get {
@@ -169,7 +205,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Branch Manager.
+        ///   Looks up a localized string similar to Department Manager.
         /// </summary>
         internal static string DeptManager {
             get {
@@ -493,7 +529,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No..
+        ///   Looks up a localized string similar to #.
         /// </summary>
         internal static string Sequence {
             get {
