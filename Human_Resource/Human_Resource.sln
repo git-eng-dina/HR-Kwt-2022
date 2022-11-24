@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28922.388
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HR", "AIR_APP\HR.csproj", "{9EB375E3-BB10-4FC6-B28C-705744192245}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Human_Resource", "Human_Resource\Human_Resource.csproj", "{C76FD200-08D1-4315-81C4-2994F5B5AF4C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9EB375E3-BB10-4FC6-B28C-705744192245}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9EB375E3-BB10-4FC6-B28C-705744192245}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9EB375E3-BB10-4FC6-B28C-705744192245}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9EB375E3-BB10-4FC6-B28C-705744192245}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C76FD200-08D1-4315-81C4-2994F5B5AF4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C76FD200-08D1-4315-81C4-2994F5B5AF4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C76FD200-08D1-4315-81C4-2994F5B5AF4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C76FD200-08D1-4315-81C4-2994F5B5AF4C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {60C74737-D17A-4134-B7C2-BB1632849CE4}
+		SolutionGuid = {5BC6A830-3F83-4C73-8131-FD9538569033}
 	EndGlobalSection
 EndGlobal
