@@ -33,7 +33,8 @@ namespace Human_Resource.Views.Employees
             var employees = emp.GetHiredEmps(true);
             if (textSearch != "")
                 employees = employees.Where(x => x.NameAr.ToLower().Contains(textSearch.ToLower())
-                                || x.NameEn.ToLower().Contains(textSearch.ToLower())).ToList();
+                                || x.NameEn.ToLower().Contains(textSearch.ToLower())
+                                || x.IdentityNumber.ToLower().Contains(textSearch.ToLower())).ToList();
             gv_employees.DataSource = employees;
             DataBind();
         }

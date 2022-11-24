@@ -303,6 +303,9 @@
   <data name="BranchManager" xml:space="preserve">
     <value>Branch Manager</value>
   </data>
+  <data name="CivilNo" xml:space="preserve">
+    <value>Civil No</value>
+  </data>
   <data name="Managements" xml:space="preserve">
     <value>managements</value>
   </data>

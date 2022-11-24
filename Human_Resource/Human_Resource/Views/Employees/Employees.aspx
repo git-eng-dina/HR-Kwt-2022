@@ -62,16 +62,16 @@
                                                  Text='<%# Eval("NameEn") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>             
-                                   <asp:TemplateField HeaderText="Dept Name">
+                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,CivilNo%>">
                                          <ItemTemplate>
                                                  <asp:Label ID="LblDname" runat="server" 
-                                                 Text='<%# Eval("UserName") %>' />                              
+                                                 Text='<%# Eval("IdentityNumber") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>
                                            <asp:TemplateField HeaderText="Location">
                                          <ItemTemplate>
                                                  <asp:Label ID="LblLoc" runat="server" 
-                                                 Text='<%# Eval("UserName") %>' />                              
+                                                 Text='<%# Eval("IdentityNumber") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>                          
                                    <asp:TemplateField ShowHeader="false">

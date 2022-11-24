@@ -142,6 +142,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Civil No.
+        /// </summary>
+        internal static string CivilNo {
+            get {
+                return ResourceManager.GetString("CivilNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Company Information.
         /// </summary>
         internal static string CompanyInfo {
