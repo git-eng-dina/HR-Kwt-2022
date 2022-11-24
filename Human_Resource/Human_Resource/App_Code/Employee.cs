@@ -70,6 +70,9 @@ namespace Human_Resource
         public string TransportationCompensationType { get; set; }
         public string HousingCompensationType { get; set; }
         #endregion
+        #region extra info
+        public int Age { get; set; }
+        #endregion
         public List<string> Nationalities { get; } = new List<string>()
         {
             "بحريني",
@@ -103,7 +106,7 @@ namespace Human_Resource
             }
         }
 
-        public List<EmployeeModel> GetHiredEmps(bool isActive)
+        public List<EmployeeModel> GetHiredEmployees(bool isActive)
         {
             using (HRSystemEntities entity = new HRSystemEntities())
             {
@@ -117,6 +120,27 @@ namespace Human_Resource
                                 NameEn = x.NameEn,
                             }).ToList();
                 return user;
+            }
+        }
+
+        public bool DeleteEmp(int empId, int? userId)
+        {
+            try
+            {
+                using (HRSystemEntities entity = new HRSystemEntities())
+                {
+                    var emp = entity.employees.Find(empId);
+                    emp.IsActive = false;
+                    emp.UpdateDate = DateTime.Now;
+                    emp.UpdateUserID = userId;
+                    entity.SaveChanges();
+                }
+                return true;
+            }
+
+            catch
+            {
+                return false;
             }
         }
 

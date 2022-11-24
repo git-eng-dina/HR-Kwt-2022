@@ -294,6 +294,9 @@
   <data name="AddBrannch" xml:space="preserve">
     <value>Add Brannch</value>
   </data>
+  <data name="Age" xml:space="preserve">
+    <value>Age</value>
+  </data>
   <data name="Branch" xml:space="preserve">
     <value>Branch</value>
   </data>

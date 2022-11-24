@@ -303,6 +303,9 @@
   <data name="BranchManager" xml:space="preserve">
     <value>مدير الفرع</value>
   </data>
+  <data name="Age" xml:space="preserve">
+    <value>العمر</value>
+  </data>
   <data name="CivilNo" xml:space="preserve">
     <value>الرقم المدني</value>
   </data>
