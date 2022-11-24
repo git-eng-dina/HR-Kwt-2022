@@ -16,11 +16,11 @@ namespace Human_Resource.Views.Settings
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
+            //if (!IsPostBack)
+            //{
                 BindData();
                 btn_new.Attributes.Add("OnClick", "ShowDialog('');");
-            }
+            //}
         }
 
         private void BindData()
@@ -28,7 +28,7 @@ namespace Human_Resource.Views.Settings
             DepartmentModel dept = new DepartmentModel();
 
             var depts = dept.getCompanyDeps();
-            gv_departments.DataSource = depts;
+            gv_data.DataSource = depts;
 
 
             EmployeeModel employeeModel = new EmployeeModel();
@@ -93,7 +93,7 @@ namespace Human_Resource.Views.Settings
                 else
                 {
 
-                    Response.Write("<script>alert('Row n'a pas été supprimé')</script>");
+                    Response.Write("<script>alert('" + Resources.Labels.DeleteSuccessfully + "')</script>");
                 }
             }
             catch (Exception ex)

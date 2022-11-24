@@ -13,7 +13,7 @@
             //instantiate the dialog
             $myWindow.dialog({
                 height: 500,
-                width: 480,
+                width: 400,
                 modal: true,
                 closeOnEscape: true,
                 position: { my: 'top', at: 'top+75' },
@@ -33,7 +33,7 @@
         function ShowDialog(deptId) {
             alert(deptId);
             $("#dialog").dialog("open");
-            //$(".ui-dialog-titlebar").hide();
+            $(".ui-dialog-titlebar").hide();
               var retval = "";
         }
 
@@ -58,6 +58,7 @@
                 dataType: "json",
                 success: function (data) {
                     alert("==" + data.d);
+                    __doPostBack('','');
                     closeDialog();
                 },
                 failure: function (response) {
@@ -103,7 +104,7 @@
                         </div>
 
                        <!---- table -->
-                            <asp:GridView ID="gv_departments" runat="server"  CssClass="gridView col-md-12"  
+                            <asp:GridView ID="gv_data" runat="server"  CssClass="gridView col-md-12"  
                                 AutoGenerateColumns="False"  Width="90%" 
                                 class="table table-bordered table-condensed table-responsive table-hover ">
                                 <Columns>
@@ -141,7 +142,7 @@
                                    <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%">
                                              <ItemTemplate>                     
                                                      <asp:ImageButton CommandArgument='<%# Eval("DepartmentID")%>' OnCommand="deletedatafromgrid"
-                                                            OnClientClick="return confirm(<%$ Resources.Labels.DeleteSuccessfully %>);return false;"
+                                                            OnClientClick="return confirm(<%= Resources.Labels.DeleteSuccessfully %>);return false;"
                                                             ID="Image1" runat="server" ImageUrl="~/Images/delete.ico" />
                                                              
                                              </ItemTemplate>
@@ -209,12 +210,13 @@
                         </div>
                   </div>
                     
-                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-new" Text = "<%$ Resources:Labels,Save%>" runat="server" onclick="saveDept()" id="btn_add" ></button>
 
                     </div>
                 </div>
+                 </div>
+                
             </div>
         </div>
      
