@@ -733,6 +733,7 @@ padding-left: 5px;
         margin-top: 5px;
         font-size: small;
         font-weight: 100;
+        padding-left: 5px;
     }
 .btn-search {
     color: #fff;
@@ -802,7 +803,7 @@ padding-left: 5px;
 
 .modal-dialog, .modal-content {
     height: 100%;
-    max-height: calc(100% - 20px);
+    /*max-height: calc(100% - 20px);*/
     width: 100%;
     min-height: calc(75% - 20px);
     margin-top: 0px;
@@ -869,6 +870,7 @@ padding-left: 5px;
 .frame-panel-heading span {
     font-size: 18px;
     color: white;
+    padding-left: 5px;
 }
 .modal-dialog .panel-body {
     padding: 10px;
@@ -972,4 +974,5 @@ input[type=checkbox], input[type=radio] {
 }
 .modal-dialog .modal-footer {
     padding: 9px;
+    border-top:0px;
 }

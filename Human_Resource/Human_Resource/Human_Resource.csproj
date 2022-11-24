@@ -218,7 +218,7 @@
     <Content Include="Views\Employees\NewEmployee.aspx" />
     <Content Include="Views\Home\HomePage.aspx" />
     <Content Include="Views\Settings\CompanyInfo.aspx" />
-    <Content Include="Views\Settings\Departments.aspx" />
+    <Content Include="Views\Settings\Branches.aspx" />
     <Content Include="Views\Settings\Jobs.aspx" />
     <Content Include="Views\Settings\Offices.aspx" />
     <Content Include="Web.config" />
@@ -363,12 +363,12 @@
     <Compile Include="Views\Settings\CompanyInfo.aspx.designer.cs">
       <DependentUpon>CompanyInfo.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Settings\Departments.aspx.cs">
-      <DependentUpon>Departments.aspx</DependentUpon>
+    <Compile Include="Views\Settings\Branches.aspx.cs">
+      <DependentUpon>Branches.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Settings\Departments.aspx.designer.cs">
-      <DependentUpon>Departments.aspx</DependentUpon>
+    <Compile Include="Views\Settings\Branches.aspx.designer.cs">
+      <DependentUpon>Branches.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Settings\Jobs.aspx.cs">
       <DependentUpon>Jobs.aspx</DependentUpon>
