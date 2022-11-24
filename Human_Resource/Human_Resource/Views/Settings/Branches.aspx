@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Departments.aspx.cs" Inherits="Human_Resource.Views.Settings.Departments" EnableEventValidation="true" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Branches.aspx.cs" Inherits="Human_Resource.Views.Settings.Departments" EnableEventValidation="true" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
  
@@ -23,6 +23,12 @@
 
             });
 
+            $('.td-edit').click(function () {
+                var customID = $(this).attr('myCustomID');
+                ShowDialogWithData(customID);
+                return false;
+            });
+
         });
 
         //function to close dialog, probably called by a button in the dialog
@@ -30,21 +36,50 @@
             $("#dialog").dialog("close");
         }
 
-        function ShowDialog(deptId) {
-            alert(deptId);
+        function ShowDialog() {
+   
             $("#dialog").dialog("open");
             $(".ui-dialog-titlebar").hide();
               var retval = "";
         }
+        function ShowDialogWithData(customID) {
+            var parameter = {
+                ID: customID
+            };
+            $.ajax({
+                type: "POST",
+                url: "Branches.aspx/GetBranch",
+                data: JSON.stringify(parameter),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    ShowDialog();
+                    for (var prop in data) {
+                        var item = data[prop];
+                        $('#MainContent_hid_departmentId').val(item.DepartmentID);
+                        $('#MainContent_dept_name').val(item.Name);
+                        $('#MainContent_txt_mobile').val(item.Mobile);
+                        $('#MainContent_txt_address').val(item.Address);
+                        $('#MainContent_emp').val(item.ManagerID);
+                    }
 
 
-        function saveDept() {
-           
+                },
+                failure: function (response) {
+                    alert(response.d);
+                }
+            });
+        }
+
+        function saveBranch() {
+            var id = $('#MainContent_hid_departmentId').val();
+
             var name = $("#MainContent_dept_name").val();
             var mobile = $("#MainContent_txt_mobile").val();
             var address = $("#MainContent_txt_address").val();
             var emp = $("#MainContent_emp").find(":selected").val();
             var parameter = {
+                departmentId :id,
                 name: name,
                 mobile: mobile,
                 address: address,
@@ -52,14 +87,13 @@
             };
             $.ajax({
                 type: "POST",
-                url: "Departments.aspx/SaveDepartment",
+                url: "Branches.aspx/SaveBranch",
                 data: JSON.stringify(parameter),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (data) {
-                    alert("==" + data.d);
-                    __doPostBack('','');
-                    closeDialog();
+                    window.top.location = "departments.aspx";  
+                    
                 },
                 failure: function (response) {
                     alert(response.d);
@@ -67,6 +101,10 @@
             });
  
         }
+
+
+            
+
 
 
 </script>
@@ -77,7 +115,7 @@
                         <div class="bcrumb-block">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a id="a_title" href="#"><asp:Literal  runat="server" Text="<%$ Resources:Labels,Departments%>" /></a></li>
+                                    <li class="breadcrumb-item"><a id="a_title" href="#"><asp:Literal  runat="server" Text="<%$ Resources:Labels,Branches%>" /></a></li>
                                 </ol>
                             </nav>
                         </div>
@@ -85,8 +123,8 @@
                         <div class="SearchAddbar">
 
                         <div class="input-group">
-                            <div class="col-3">
-                                <input type="text" runat="server" id="txt_search" placeholder="<%$ Resources:Labels,Search%>" />
+                            <div class="col-4">
+                                <input type="text" runat="server" id="txt_search" placeholder="<%$ Resources:Labels,Search%>"  OnClick="btn_Search_Click"/>
                             </div>
                             <div style="width:90px">
                             <Button runat="server" class="btn btn-search btn-block" id="btn_search"  CausesValidation="false" >
@@ -108,52 +146,53 @@
                                 AutoGenerateColumns="False"  Width="90%" 
                                 class="table table-bordered table-condensed table-responsive table-hover ">
                                 <Columns>
-                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,Sequence%>" ItemStyle-Width="30px">
+
+                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,Sequence%>" ItemStyle-Width="5%">
                                          <ItemTemplate>
-                                                 <asp:Label ID="LblDno" runat="server" 
-                                                 Text='<%# Eval("Name") %>' />                              
+                                                 <%#Container.DataItemIndex+1 %>                            
                                          </ItemTemplate> 
                                        </asp:TemplateField>
-                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,Department%>" ItemStyle-Width="30px">
+                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,Branch%>" ItemStyle-Width="15%">
                                          <ItemTemplate>
                                                  <asp:Label ID="LblDname" runat="server" 
                                                  Text='<%# Eval("Name") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>             
                                           
-                                <asp:TemplateField HeaderText="<%$ Resources:Labels,Mobile%>">
+                                <asp:TemplateField HeaderText="<%$ Resources:Labels,Mobile%>" ItemStyle-Width="25%">
                                          <ItemTemplate>
                                                  <asp:Label ID="LblMobile" runat="server" 
                                                  Text='<%# Eval("Mobile") %>' />                              
                                          </ItemTemplate>
                                         </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,Address%>">
+                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,Address%>" ItemStyle-Width="25%">
                                          <ItemTemplate>
                                                  <asp:Label ID="LblAddress" runat="server" 
                                                  Text='<%# Eval("Address") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>  
-                                        <asp:TemplateField HeaderText="<%$ Resources:Labels,DeptManager%>">
+                                        <asp:TemplateField HeaderText="<%$ Resources:Labels,BranchManager%>" ItemStyle-Width="20%">
                                          <ItemTemplate>
                                                  <asp:Label ID="LblDmanager" runat="server" 
                                                  Text='<%# Eval("ManagerName") %>' />                              
                                          </ItemTemplate>
                                         </asp:TemplateField>
-                                   <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%">
+                                    <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-edit">
+                                          <ItemTemplate>                     
+                                                     <asp:LinkButton ID="LinkProducts" runat="server" myCustomID='<%# Eval("DepartmentID")%>'  CssClass="td-edit">
+                                                         <asp:Image ImageUrl="~/Images/edit.ico" runat="server" Width="20px" Height="20px" />
+                                                     </asp:LinkButton>  
+                                             </ItemTemplate>
+                                        </asp:TemplateField>
+                                   <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-Edit">
                                              <ItemTemplate>                     
-                                                     <asp:ImageButton CommandArgument='<%# Eval("DepartmentID")%>' OnCommand="deletedatafromgrid"
-                                                            OnClientClick="return confirm(<%= Resources.Labels.DeleteSuccessfully %>);return false;"
+                                                     <asp:ImageButton  CommandArgument='<%# Eval("DepartmentID")%>' OnCommand="deletedatafromgrid"
+                                                            OnClientClick="return confirm(<%= Resources.Labels.ConfirmDelete %>);return false;"
                                                             ID="Image1" runat="server" ImageUrl="~/Images/delete.ico" />
                                                              
                                              </ItemTemplate>
                                     </asp:TemplateField> 
-                                    <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%">
-                                          <ItemTemplate>                     
-                                                     <asp:ImageButton CommandArgument='<%# Eval("DepartmentID")%>' OnCommand="deletedatafromgrid"
-                                                        ID="Image2" runat="server" ImageUrl="~/Images/edit.ico" />
-                                      
-                                             </ItemTemplate>
-                                        </asp:TemplateField>
+                                   
                                 </Columns>
                                 <EditRowStyle BackColor="#009999" VerticalAlign="Middle" />
                             </asp:GridView>
@@ -173,8 +212,8 @@
         <div class ="modal-content panel panel-default">
         <div class="modal-header frame-panel-heading">
            
-            <div class="col-md-7"><span >
-                <asp:Literal runat="server" Text="<%$ Resources:Labels,AddDepartment%>"></asp:Literal>
+            <div ><span >
+                <asp:Literal runat="server" Text="<%$ Resources:Labels,AddBrannch%>"></asp:Literal>
             </span>
                 </div>
             <div class="float2" style="width:10px">
@@ -186,6 +225,7 @@
                     <div class ="row">
                      <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,TheName%>" /></span>
+                                <input type="hidden"  id="hid_departmentId" name="hid_departmentId" runat="server" value=""  />
                                 <input type="text" class="form-control input-lg" id="dept_name" name="dept_name" runat="server" value=""  />
                             </div>
                         </div>
@@ -203,7 +243,7 @@
                          </div>
                     <div class="row">
                      <div class="form-group" style="display:block">
-                              <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,DeptManager%>" /></span>
+                              <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,BranchManager%>" /></span>
         
                                 <select runat="server" id="emp" name="emp" style="width:80%" class="form-control input-lg"></select>
                             </div>
@@ -211,7 +251,10 @@
                   </div>
                     
                 <div class="modal-footer">
-                    <button class="btn btn-new" Text = "<%$ Resources:Labels,Save%>" runat="server" onclick="saveDept()" id="btn_add" ></button>
+                    <button class="btn btn-new"  runat="server" onclick="saveBranch()" id="btn_ads" >
+                        <asp:Literal  runat="server" Text=" <%$ Resources:Labels,Save%>" />
+                    </button>
+ 
 
                     </div>
                 </div>

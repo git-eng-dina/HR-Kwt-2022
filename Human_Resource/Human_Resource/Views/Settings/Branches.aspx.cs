@@ -16,18 +16,32 @@ namespace Human_Resource.Views.Settings
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (!IsPostBack)
-            //{
+            if (!IsPostBack)
+            {
                 BindData();
                 btn_new.Attributes.Add("OnClick", "ShowDialog('');");
-            //}
+            }
         }
 
-        private void BindData()
+        protected void btn_Search_Click(object sender, EventArgs e)
         {
-            DepartmentModel dept = new DepartmentModel();
+            try
+            {
+                string textSearch = txt_search.Value;
+                BindData(textSearch);
+            }
+            catch { }
+        }
+        private void BindData(string textSearch="")
+        {
+            BranchModel dept = new BranchModel();
 
             var depts = dept.getCompanyDeps();
+            if (textSearch != "")
+                depts = depts.Where(x => x.Name.ToLower().Contains(textSearch.ToLower()) 
+                                || x.Mobile.Contains(textSearch)
+                                || x.Address.ToLower().Contains(textSearch.ToLower())
+                                || x.ManagerName.ToLower().Contains(textSearch.ToLower())).ToList();
             gv_data.DataSource = depts;
 
 
@@ -44,11 +58,15 @@ namespace Human_Resource.Views.Settings
             DataBind();
         }
         [WebMethod]
-        public static string SaveDepartment(string name, string mobile, string address, string managerId)
+        public static string SaveBranch(string departmentId,string name, string mobile, string address, string managerId)
         {
             try
             {
-                DepartmentModel dept = new DepartmentModel();
+                BranchModel dept = new BranchModel();
+                if (departmentId != "")
+                    dept.DepartmentID = int.Parse(departmentId);
+                else
+                    dept.DepartmentID = 0;
                 dept.Name = name;
                 dept.Mobile = mobile;
                 dept.Address = address;
@@ -72,12 +90,32 @@ namespace Human_Resource.Views.Settings
             }
 
         }
+
+        [WebMethod]
+        public static BranchModel GetBranch(string ID)
+        {
+            try
+            {
+                BranchModel dept = new BranchModel();
+
+                int departmentId = int.Parse(ID);
+                dept = dept.getDepartment(departmentId);
+
+                return dept;
+            }
+            catch
+            {
+                return null;
+
+            }
+
+        }
         protected void deletedatafromgrid(object sender, CommandEventArgs e)
         {
 
             try
             {
-                DepartmentModel dept = new DepartmentModel();
+                BranchModel dept = new BranchModel();
                 int Ref = Convert.ToInt32(e.CommandArgument.ToString());
 
                 int? userId = null;

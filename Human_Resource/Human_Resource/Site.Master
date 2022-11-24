@@ -156,8 +156,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/Views/Settings/Departments.aspx"> 
-                        <asp:Literal runat="server" Text="<%$ Resources:Labels,Departments%>" />
+                    <a href="/Views/Settings/Branches.aspx"> 
+                        <asp:Literal runat="server" Text="<%$ Resources:Labels,Branches%>" />
                     </a>
                 </li> 
                 <li>

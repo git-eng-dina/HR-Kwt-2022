@@ -94,12 +94,12 @@ namespace Human_Resource.Views.Settings {
         protected global::System.Web.UI.HtmlControls.HtmlSelect emp;
         
         /// <summary>
-        /// btn_add control.
+        /// btn_ads control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btn_add;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btn_ads;
     }
 }
