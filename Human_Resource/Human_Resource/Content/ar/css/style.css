@@ -89,7 +89,7 @@ body a:hover{text-decoration: none !important;}
         width: 100%;     
     }
 
-    .statis .bcrumb-block .breadcrumb span {
+    .statis .bcrumb-block .breadcrumb span,a {
        color: white;
     }
     .statis .main-list span {

@@ -254,7 +254,7 @@ nav .logo {
     background-color: #5c5555;
     margin-bottom: 0;
 }
-.statis .bcrumb-block .breadcrumb span {
+.statis .bcrumb-block .breadcrumb span,a {
     color: white;
 }
 .statis .c-profile  input[type=submit].back {
