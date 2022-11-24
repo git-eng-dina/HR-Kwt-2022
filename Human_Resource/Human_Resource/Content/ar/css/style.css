@@ -246,8 +246,8 @@ body a:hover{text-decoration: none !important;}
     margin-top: 10px;
 }
     .statis .SearchAddbar input {
-        border-bottom-left-radius: 4px;
-        border-top-left-radius: 4px;
+        border-radius: 4px;
+        /*border-top-left-radius: 4px;*/
         border-bottom-right-radius: 0;
         border-top-right-radius: 0;
         height: 80%;
@@ -256,6 +256,7 @@ body a:hover{text-decoration: none !important;}
         font-size: small;
         font-weight: 100;
         padding-right: 5px;
+        box-shadow: 0px 1px 2px rgb(81, 184, 228) inset;
     }
   
 .statis .grid-block, .statis .back-block {
@@ -754,12 +755,16 @@ nav .logo {
 
 .btn-search {
     color: #fff;
-    background-color: #28a745;
-    border-color: #28a745;
+    background-color: rgb(0, 143, 213);
+    border-color: rgb(0, 143, 213);
     width: 80px;
     height: 80%;
     margin-top: 5px;
 }
+    .btn-search:hover {
+        background-color: rgb(16,85,118);
+        color:white;
+    }
 .btn-new {
     color: #fff;
     background-color: #895206;
@@ -769,7 +774,9 @@ nav .logo {
     margin-top: 5px;
     float: right;
 }
-
+    .btn-new:hover {
+        color: white;
+    }
 .gridView {
     text-align: center;
     min-width: 600px;
