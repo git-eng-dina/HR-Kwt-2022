@@ -754,7 +754,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vaccaition Approval.
+        ///   Looks up a localized string similar to Vacaition Approval.
         /// </summary>
         internal static string VaccaitionApproval {
             get {
@@ -763,7 +763,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vaccation Types.
+        ///   Looks up a localized string similar to Vacation Types.
         /// </summary>
         internal static string VaccationTypes {
             get {

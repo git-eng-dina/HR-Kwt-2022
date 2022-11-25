@@ -224,6 +224,7 @@
     <Content Include="Views\Settings\Jobs.aspx" />
     <Content Include="Views\Settings\Managements.aspx" />
     <Content Include="Views\Settings\Offices.aspx" />
+    <Content Include="Views\Settings\VaccationType.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
@@ -457,6 +458,13 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\VaccationType.aspx.cs">
+      <DependentUpon>VaccationType.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Settings\VaccationType.aspx.designer.cs">
+      <DependentUpon>VaccationType.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
