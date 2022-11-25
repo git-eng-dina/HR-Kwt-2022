@@ -61,34 +61,40 @@
                                                  <asp:Label ID="LblDno" runat="server" 
                                                  Text='<%# Eval("NameEn") %>' />                              
                                          </ItemTemplate>
+                                   </asp:TemplateField> 
+                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,Position%>">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblDno" runat="server" 
+                                                 Text='<%# Eval("NameEn") %>' />                              
+                                         </ItemTemplate>
                                    </asp:TemplateField>             
-                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,CivilNo%>">
+                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,Age%>">
                                          <ItemTemplate>
                                                  <asp:Label ID="LblDname" runat="server" 
-                                                 Text='<%# Eval("IdentityNumber") %>' />                              
+                                                 Text='<%# Eval("Age") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>
-                                           <asp:TemplateField HeaderText="Location">
+                                           <asp:TemplateField HeaderText="<%$ Resources:Labels,CivilNo%>">
                                          <ItemTemplate>
                                                  <asp:Label ID="LblLoc" runat="server" 
                                                  Text='<%# Eval("IdentityNumber") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>                          
-                                   <asp:TemplateField ShowHeader="false">
+                                   <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-edit">
+                                          <ItemTemplate>                     
+                                                     <asp:LinkButton ID="LinkProducts" runat="server" myCustomID='<%# Eval("EmployeeID")%>'  CssClass="td-edit">
+                                                         <asp:Image ImageUrl="~/Images/edit.ico" runat="server" Width="20px" Height="20px" />
+                                                     </asp:LinkButton>  
+                                             </ItemTemplate>
+                                        </asp:TemplateField>
+                                   <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-Edit">
                                              <ItemTemplate>                     
-                                                     <asp:ImageButton CommandArgument='<%# Eval("EmployeeID")%>' OnCommand="deletedatafromgrid"
-                                                            OnClientClick="return confirm('<%$ Resources:Labels,ConfirmDelete%>');return false;"
+                                                     <asp:ImageButton  CommandArgument='<%# Eval("EmployeeID")%>' OnCommand="deletedatafromgrid"
+                                                            OnClientClick="return confirm(<%= Resources.Labels.ConfirmDelete %>);return false;"
                                                             ID="Image1" runat="server" ImageUrl="~/Images/delete.ico" />
                                                              
                                              </ItemTemplate>
                                     </asp:TemplateField> 
-                                    <asp:TemplateField ShowHeader="false">
-                                          <ItemTemplate>                     
-                                                     <asp:ImageButton CommandArgument='<%# Eval("EmployeeID")%>' OnCommand="deletedatafromgrid"
-                                                        ID="Image2" runat="server" ImageUrl="~/Images/edit.ico" />
-                                      
-                                             </ItemTemplate>
-                                        </asp:TemplateField>
                                 </Columns>
                                 <EditRowStyle BackColor="#009999" VerticalAlign="Middle" />
                             </asp:GridView>

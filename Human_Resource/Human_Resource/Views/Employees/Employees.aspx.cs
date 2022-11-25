@@ -30,7 +30,7 @@ namespace Human_Resource.Views.Employees
         private void BindData(string textSearch = "")
         {
             EmployeeModel emp = new EmployeeModel();
-            var employees = emp.GetHiredEmps(true);
+            var employees = emp.GetHiredEmployees(true);
             if (textSearch != "")
                 employees = employees.Where(x => x.NameAr.ToLower().Contains(textSearch.ToLower())
                                 || x.NameEn.ToLower().Contains(textSearch.ToLower())
@@ -43,19 +43,24 @@ namespace Human_Resource.Views.Employees
 
             try
             {
+                EmployeeModel emp = new EmployeeModel();
                 int Ref = Convert.ToInt32(e.CommandArgument.ToString());
-                //if (service.deletedatafromgird(Ref))
-                //{
 
-                //    Response.Write("<script>alert('La ligne a été supprimée')</script>");
-                //    vadminservice.Contacts_Fact[] Data = service.Getallcontacts();
-                //    BindDataSourceToGridview(Data);
-                //}
-                //else
-                //{
+                int? userId = null;
+                if (Session["user_id"] != null && Session["user_id"].ToString() != "")
+                    userId = emp.UpdateUserID = int.Parse(Session["user_id"].ToString());
 
-                //    Response.Write("<script>alert('Row n'a pas été supprimé')</script>");
-                //}
+                if (emp.DeleteEmp(Ref, userId))
+                {
+
+                    Response.Write("<script>alert('" + Resources.Labels.DeleteSuccessfully + "')</script>");
+                    BindData();
+                }
+                else
+                {
+
+                    Response.Write("<script>alert('" + Resources.Labels.ErrorOccured + "')</script>");
+                }
             }
             catch (Exception ex)
             {
