@@ -12,7 +12,7 @@ using System.Web.UI.WebControls;
 
 namespace Human_Resource.Views.Settings
 {
-    public partial class Departments : System.Web.UI.Page
+    public partial class Branches : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -64,9 +64,9 @@ namespace Human_Resource.Views.Settings
             {
                 BranchModel dept = new BranchModel();
                 if (departmentId != "")
-                    dept.DepartmentID = int.Parse(departmentId);
+                    dept.BranchID = int.Parse(departmentId);
                 else
-                    dept.DepartmentID = 0;
+                    dept.BranchID = 0;
                 dept.Name = name;
                 dept.Mobile = mobile;
                 dept.Address = address;
@@ -99,7 +99,7 @@ namespace Human_Resource.Views.Settings
                 BranchModel dept = new BranchModel();
 
                 int departmentId = int.Parse(ID);
-                dept = dept.getDepartment(departmentId);
+                dept = dept.getBranch(departmentId);
 
                 return dept;
             }

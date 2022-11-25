@@ -17,8 +17,7 @@ namespace Human_Resource
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public companies()
         {
-            this.departments = new HashSet<departments>();
-            this.employees = new HashSet<employees>();
+            this.branches = new HashSet<branches>();
         }
     
         public int CompanyID { get; set; }
@@ -35,10 +34,11 @@ namespace Human_Resource
         public Nullable<int> CreateUserID { get; set; }
         public Nullable<int> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
+        public Nullable<int> GeneralDirector { get; set; }
+        public Nullable<int> FinancialManager { get; set; }
+        public Nullable<int> HRManager { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<departments> departments { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<employees> employees { get; set; }
+        public virtual ICollection<branches> branches { get; set; }
     }
 }

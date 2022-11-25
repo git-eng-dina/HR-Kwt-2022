@@ -10,7 +10,7 @@
 namespace Human_Resource.Views.Settings {
     
     
-    public partial class Departments {
+    public partial class Branches {
         
         /// <summary>
         /// txt_search control.

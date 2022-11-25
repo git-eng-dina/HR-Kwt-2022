@@ -18,6 +18,7 @@ namespace Human_Resource
         public jobs()
         {
             this.confirms = new HashSet<confirms>();
+            this.employees = new HashSet<employees>();
         }
     
         public int JobID { get; set; }
@@ -32,5 +33,7 @@ namespace Human_Resource
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<confirms> confirms { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<employees> employees { get; set; }
     }
 }

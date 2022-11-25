@@ -4,34 +4,36 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5c2a018981aa45c6834f20f5b9d799ec" Name="Diagram1">
-        <EntityTypeShape EntityType="HRSystemModel.companies" Width="1.5" PointX="0.75" PointY="29.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRSystemModel.confirms" Width="1.5" PointX="7.5" PointY="31" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRSystemModel.custodies" Width="1.5" PointX="5.25" PointY="31" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRSystemModel.departments" Width="1.5" PointX="3" PointY="15.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRSystemModel.employees" Width="1.5" PointX="3" PointY="36.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRSystemModel.employeesScheduleVacations" Width="1.5" PointX="5.25" PointY="42.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRSystemModel.employeesTrainings" Width="1.5" PointX="8.25" PointY="42.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRSystemModel.employeesVacations" Width="1.5" PointX="8.25" PointY="38.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRSystemModel.hourlyPermissions" Width="1.5" PointX="5.25" PointY="47" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRSystemModel.Images" Width="1.5" PointX="5.25" PointY="51" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRSystemModel.jobs" Width="1.5" PointX="5.25" PointY="22.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRSystemModel.materialsConsumption" Width="1.5" PointX="5.25" PointY="54" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRSystemModel.messages" Width="1.5" PointX="5.25" PointY="58" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRSystemModel.messagesTemplates" Width="1.5" PointX="5.25" PointY="19.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRSystemModel.offices" Width="1.5" PointX="5.25" PointY="36" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRSystemModel.periods" Width="1.5" PointX="5.25" PointY="61.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRSystemModel.rewards" Width="1.5" PointX="5.25" PointY="65.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRSystemModel.salaryIncrease" Width="1.5" PointX="5.25" PointY="14.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRSystemModel.scheduleVacations" Width="1.5" PointX="3" PointY="32.75" IsExpanded="true" />
+      <Diagram DiagramId="d2dd7d9ea0334c54b5ec27ba1c4249b7" Name="Diagram1">
+        <EntityTypeShape EntityType="HRSystemModel.branches" Width="1.5" PointX="1.5" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.companies" Width="1.5" PointX="1.5" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.confirms" Width="1.5" PointX="3" PointY="26.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.custodies" Width="1.5" PointX="8.25" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.departments" Width="1.5" PointX="0.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.EemployeesEvents" Width="1.5" PointX="8.25" PointY="27.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.employees" Width="1.5" PointX="6" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.employeesScheduleVacations" Width="1.5" PointX="11.25" PointY="27.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.employeesTrainings" Width="1.5" PointX="8.25" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.employeesVacations" Width="1.5" PointX="8.25" PointY="31.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.events" Width="1.5" PointX="6" PointY="38.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.hourlyPermissions" Width="1.5" PointX="8.25" PointY="35.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.Images" Width="1.5" PointX="8.25" PointY="39.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.jobs" Width="1.5" PointX="0.75" PointY="27.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.managements" Width="1.5" PointX="1.5" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.materialsConsumption" Width="1.5" PointX="8.25" PointY="42.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.messages" Width="1.5" PointX="8.25" PointY="46.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.messagesTemplates" Width="1.5" PointX="0.75" PointY="31.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.periods" Width="1.5" PointX="8.25" PointY="50.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.rewards" Width="1.5" PointX="8.25" PointY="54.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.salaryIncrease" Width="1.5" PointX="0.75" PointY="34.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.scheduleVacations" Width="1.5" PointX="9" PointY="12" IsExpanded="true" />
         <EntityTypeShape EntityType="HRSystemModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRSystemModel.tasks" Width="1.5" PointX="5.25" PointY="10.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRSystemModel.trainings" Width="1.5" PointX="6" PointY="73.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRSystemModel.userCardSettings" Width="1.5" PointX="5.25" PointY="26.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRSystemModel.vacations" Width="1.5" PointX="6" PointY="69.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRSystemModel.employeesTasks" Width="1.5" PointX="8.25" PointY="47.375" IsExpanded="true" />
-        <AssociationConnector Association="HRSystemModel.FK_departments_companies" ManuallyRouted="false" />
-        <AssociationConnector Association="HRSystemModel.FK_employees_companies" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="HRSystemModel.tasks" Width="1.5" PointX="0.75" PointY="38.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.trainings" Width="1.5" PointX="6" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.vacations" Width="1.5" PointX="6" PointY="42.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRSystemModel.employeesTasks" Width="1.5" PointX="11.25" PointY="23.625" IsExpanded="true" />
+        <AssociationConnector Association="HRSystemModel.FK_branches_companies" ManuallyRouted="false" />
+        <AssociationConnector Association="HRSystemModel.FK_managements_branches" ManuallyRouted="false" />
         <AssociationConnector Association="HRSystemModel.FK_confirms_departments" ManuallyRouted="false" />
         <AssociationConnector Association="HRSystemModel.FK_confirms_employees" ManuallyRouted="false" />
         <AssociationConnector Association="HRSystemModel.FK_confirms_hourlyPermissions" ManuallyRouted="false" />
@@ -40,9 +42,11 @@
         <AssociationConnector Association="HRSystemModel.FK_confirms_salaryIncrease" ManuallyRouted="false" />
         <AssociationConnector Association="HRSystemModel.FK_confirms_tasks" ManuallyRouted="false" />
         <AssociationConnector Association="HRSystemModel.FK_custodies_employees" ManuallyRouted="false" />
-        <AssociationConnector Association="HRSystemModel.FK_departments_departments" ManuallyRouted="false" />
-        <AssociationConnector Association="HRSystemModel.FK_offices_departments" ManuallyRouted="false" />
-        <AssociationConnector Association="HRSystemModel.FK_userCardSettings_departments" ManuallyRouted="false" />
+        <AssociationConnector Association="HRSystemModel.FK_departments_managements" ManuallyRouted="false" />
+        <AssociationConnector Association="HRSystemModel.FK_employees_departments" ManuallyRouted="false" />
+        <AssociationConnector Association="HRSystemModel.FK_EemployeesEvents_employees" ManuallyRouted="false" />
+        <AssociationConnector Association="HRSystemModel.FK_EemployeesEvents_events" ManuallyRouted="false" />
+        <AssociationConnector Association="HRSystemModel.FK_employees_jobs" ManuallyRouted="false" />
         <AssociationConnector Association="HRSystemModel.FK_employeesScheduleVacations_employees" ManuallyRouted="false" />
         <AssociationConnector Association="HRSystemModel.FK_employeesTasks_employees" ManuallyRouted="false" />
         <AssociationConnector Association="HRSystemModel.FK_employeesTrainings_employees1" ManuallyRouted="false" />
@@ -51,7 +55,6 @@
         <AssociationConnector Association="HRSystemModel.FK_Images_employees" ManuallyRouted="false" />
         <AssociationConnector Association="HRSystemModel.FK_materialsConsumption_employees" ManuallyRouted="false" />
         <AssociationConnector Association="HRSystemModel.FK_messages_employees" ManuallyRouted="false" />
-        <AssociationConnector Association="HRSystemModel.FK_offices_employees" ManuallyRouted="false" />
         <AssociationConnector Association="HRSystemModel.FK_periods_employees" ManuallyRouted="false" />
         <AssociationConnector Association="HRSystemModel.FK_rewards_employees" ManuallyRouted="false" />
         <AssociationConnector Association="HRSystemModel.FK_employeesScheduleVacations_scheduleVacations" ManuallyRouted="false" />

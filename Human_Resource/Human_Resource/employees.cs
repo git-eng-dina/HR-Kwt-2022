@@ -19,6 +19,7 @@ namespace Human_Resource
         {
             this.confirms = new HashSet<confirms>();
             this.custodies = new HashSet<custodies>();
+            this.EemployeesEvents = new HashSet<EemployeesEvents>();
             this.employeesScheduleVacations = new HashSet<employeesScheduleVacations>();
             this.employeesTasks = new HashSet<employeesTasks>();
             this.employeesTrainings = new HashSet<employeesTrainings>();
@@ -27,7 +28,6 @@ namespace Human_Resource
             this.Images = new HashSet<Images>();
             this.materialsConsumption = new HashSet<materialsConsumption>();
             this.messages = new HashSet<messages>();
-            this.offices = new HashSet<offices>();
             this.periods = new HashSet<periods>();
             this.rewards = new HashSet<rewards>();
         }
@@ -35,6 +35,7 @@ namespace Human_Resource
         public int EmployeeID { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
+        public Nullable<int> DepartmentID { get; set; }
         public Nullable<int> VacationsBalance { get; set; }
         public Nullable<bool> WarningPeriod { get; set; }
         public string NameAr { get; set; }
@@ -88,16 +89,20 @@ namespace Human_Resource
         public Nullable<decimal> BasicSalary { get; set; }
         public string TransportationCompensationType { get; set; }
         public string HousingCompensationType { get; set; }
-        public Nullable<int> CompanyID { get; set; }
         public Nullable<System.DateTime> HiringDate { get; set; }
         public string Sequence { get; set; }
         public string UnifiedNumber { get; set; }
+        public Nullable<System.DateTime> ResidenceDate { get; set; }
+        public Nullable<int> JobID { get; set; }
     
-        public virtual companies companies { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<confirms> confirms { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<custodies> custodies { get; set; }
+        public virtual departments departments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EemployeesEvents> EemployeesEvents { get; set; }
+        public virtual jobs jobs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<employeesScheduleVacations> employeesScheduleVacations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -114,8 +119,6 @@ namespace Human_Resource
         public virtual ICollection<materialsConsumption> materialsConsumption { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<messages> messages { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<offices> offices { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<periods> periods { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

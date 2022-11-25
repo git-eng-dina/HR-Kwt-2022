@@ -1,5 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="HRSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="branches">
+    <Key>
+      <PropertyRef Name="BranchID" />
+    </Key>
+    <Property Name="BranchID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CompanyID" Type="Int32" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Precision="7" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+    <Property Name="CreateUserID" Type="Int32" />
+    <Property Name="UpdateUserID" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="ManagerID" Type="Int32" />
+    <Property Name="Mobile" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="companies" Relationship="Self.FK_branches_companies" FromRole="branches" ToRole="companies" />
+    <NavigationProperty Name="managements" Relationship="Self.FK_managements_branches" FromRole="branches" ToRole="managements" />
+  </EntityType>
   <EntityType Name="companies">
     <Key>
       <PropertyRef Name="CompanyID" />
@@ -18,8 +37,10 @@
     <Property Name="CreateUserID" Type="Int32" />
     <Property Name="UpdateUserID" Type="Int32" />
     <Property Name="IsActive" Type="Boolean" />
-    <NavigationProperty Name="departments" Relationship="Self.FK_departments_companies" FromRole="companies" ToRole="departments" />
-    <NavigationProperty Name="employees" Relationship="Self.FK_employees_companies" FromRole="companies" ToRole="employees" />
+    <Property Name="GeneralDirector" Type="Int32" />
+    <Property Name="FinancialManager" Type="Int32" />
+    <Property Name="HRManager" Type="Int32" />
+    <NavigationProperty Name="branches" Relationship="Self.FK_branches_companies" FromRole="companies" ToRole="branches" />
   </EntityType>
   <EntityType Name="confirms">
     <Key>
@@ -71,8 +92,6 @@
     </Key>
     <Property Name="DepartmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="CompanyID" Type="Int32" />
-    <Property Name="ParentDepartmentID" Type="Int32" />
     <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="CreateDate" Type="DateTime" Precision="7" />
     <Property Name="UpdateDate" Type="DateTime" Precision="7" />
@@ -81,13 +100,26 @@
     <Property Name="IsActive" Type="Boolean" />
     <Property Name="ManagerID" Type="Int32" />
     <Property Name="Mobile" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="companies" Relationship="Self.FK_departments_companies" FromRole="departments" ToRole="companies" />
+    <Property Name="ManagementID" Type="Int32" />
     <NavigationProperty Name="confirms" Relationship="Self.FK_confirms_departments" FromRole="departments" ToRole="confirms" />
-    <NavigationProperty Name="departments1" Relationship="Self.FK_departments_departments" FromRole="departments" ToRole="departments1" />
-    <NavigationProperty Name="departments2" Relationship="Self.FK_departments_departments" FromRole="departments1" ToRole="departments" />
-    <NavigationProperty Name="offices" Relationship="Self.FK_offices_departments" FromRole="departments" ToRole="offices" />
-    <NavigationProperty Name="userCardSettings" Relationship="Self.FK_userCardSettings_departments" FromRole="departments" ToRole="userCardSettings" />
+    <NavigationProperty Name="managements" Relationship="Self.FK_departments_managements" FromRole="departments" ToRole="managements" />
+    <NavigationProperty Name="employees" Relationship="Self.FK_employees_departments" FromRole="departments" ToRole="employees" />
+  </EntityType>
+  <EntityType Name="EemployeesEvents">
+    <Key>
+      <PropertyRef Name="EmployeesEventsID" />
+    </Key>
+    <Property Name="EmployeesEventsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventID" Type="Int32" />
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Precision="7" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+    <Property Name="CreateUserID" Type="Int32" />
+    <Property Name="UpdateUserID" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="employees" Relationship="Self.FK_EemployeesEvents_employees" FromRole="EemployeesEvents" ToRole="employees" />
+    <NavigationProperty Name="events" Relationship="Self.FK_EemployeesEvents_events" FromRole="EemployeesEvents" ToRole="events" />
   </EntityType>
   <EntityType Name="employees">
     <Key>
@@ -96,6 +128,7 @@
     <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DepartmentID" Type="Int32" />
     <Property Name="VacationsBalance" Type="Int32" />
     <Property Name="WarningPeriod" Type="Boolean" />
     <Property Name="NameAr" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -149,13 +182,16 @@
     <Property Name="BasicSalary" Type="Decimal" Precision="20" Scale="3" />
     <Property Name="TransportationCompensationType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="HousingCompensationType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="CompanyID" Type="Int32" />
     <Property Name="HiringDate" Type="DateTime" Precision="7" />
     <Property Name="Sequence" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="UnifiedNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="companies" Relationship="Self.FK_employees_companies" FromRole="employees" ToRole="companies" />
+    <Property Name="ResidenceDate" Type="DateTime" Precision="7" />
+    <Property Name="JobID" Type="Int32" />
     <NavigationProperty Name="confirms" Relationship="Self.FK_confirms_employees" FromRole="employees" ToRole="confirms" />
     <NavigationProperty Name="custodies" Relationship="Self.FK_custodies_employees" FromRole="employees" ToRole="custodies" />
+    <NavigationProperty Name="departments" Relationship="Self.FK_employees_departments" FromRole="employees" ToRole="departments" />
+    <NavigationProperty Name="EemployeesEvents" Relationship="Self.FK_EemployeesEvents_employees" FromRole="employees" ToRole="EemployeesEvents" />
+    <NavigationProperty Name="jobs" Relationship="Self.FK_employees_jobs" FromRole="employees" ToRole="jobs" />
     <NavigationProperty Name="employeesScheduleVacations" Relationship="Self.FK_employeesScheduleVacations_employees" FromRole="employees" ToRole="employeesScheduleVacations" />
     <NavigationProperty Name="employeesTasks" Relationship="Self.FK_employeesTasks_employees" FromRole="employees" ToRole="employeesTasks" />
     <NavigationProperty Name="employeesTrainings" Relationship="Self.FK_employeesTrainings_employees1" FromRole="employees" ToRole="employeesTrainings" />
@@ -164,7 +200,6 @@
     <NavigationProperty Name="Images" Relationship="Self.FK_Images_employees" FromRole="employees" ToRole="Images" />
     <NavigationProperty Name="materialsConsumption" Relationship="Self.FK_materialsConsumption_employees" FromRole="employees" ToRole="materialsConsumption" />
     <NavigationProperty Name="messages" Relationship="Self.FK_messages_employees" FromRole="employees" ToRole="messages" />
-    <NavigationProperty Name="offices" Relationship="Self.FK_offices_employees" FromRole="employees" ToRole="offices" />
     <NavigationProperty Name="periods" Relationship="Self.FK_periods_employees" FromRole="employees" ToRole="periods" />
     <NavigationProperty Name="rewards" Relationship="Self.FK_rewards_employees" FromRole="employees" ToRole="rewards" />
   </EntityType>
@@ -197,7 +232,6 @@
     <Property Name="CreateUserID" Type="Int32" />
     <Property Name="UpdateUserID" Type="Int32" />
     <Property Name="IsActive" Type="Boolean" />
-    <Property Name="Status" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="employees" Relationship="Self.FK_employeesTrainings_employees1" FromRole="employeesTrainings" ToRole="employees" />
     <NavigationProperty Name="trainings" Relationship="Self.FK_employeesTrainings_trainings1" FromRole="employeesTrainings" ToRole="trainings" />
   </EntityType>
@@ -216,6 +250,21 @@
     <Property Name="IsActive" Type="Boolean" />
     <NavigationProperty Name="employees" Relationship="Self.FK_employeesVacations_employees" FromRole="employeesVacations" ToRole="employees" />
     <NavigationProperty Name="vacations" Relationship="Self.FK_employeesVacations_vacations" FromRole="employeesVacations" ToRole="vacations" />
+  </EntityType>
+  <EntityType Name="events">
+    <Key>
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="EventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Precision="7" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+    <Property Name="CreateUserID" Type="Int32" />
+    <Property Name="UpdateUserID" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="EemployeesEvents" Relationship="Self.FK_EemployeesEvents_events" FromRole="events" ToRole="EemployeesEvents" />
   </EntityType>
   <EntityType Name="hourlyPermissions">
     <Key>
@@ -259,6 +308,25 @@
     <Property Name="UpdateUserID" Type="Int32" />
     <Property Name="IsActive" Type="Boolean" />
     <NavigationProperty Name="confirms" Relationship="Self.FK_confirms_jobs" FromRole="jobs" ToRole="confirms" />
+    <NavigationProperty Name="employees" Relationship="Self.FK_employees_jobs" FromRole="jobs" ToRole="employees" />
+  </EntityType>
+  <EntityType Name="managements">
+    <Key>
+      <PropertyRef Name="ManagementID" />
+    </Key>
+    <Property Name="ManagementID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BranchID" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Precision="7" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+    <Property Name="CreateUserID" Type="Int32" />
+    <Property Name="UpdateUserID" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="ManagerID" Type="Int32" />
+    <Property Name="Mobile" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="branches" Relationship="Self.FK_managements_branches" FromRole="managements" ToRole="branches" />
+    <NavigationProperty Name="departments" Relationship="Self.FK_departments_managements" FromRole="managements" ToRole="departments" />
   </EntityType>
   <EntityType Name="materialsConsumption">
     <Key>
@@ -303,23 +371,6 @@
     <Property Name="UpdateUserID" Type="Int32" />
     <Property Name="IsActive" Type="Boolean" />
     <NavigationProperty Name="confirms" Relationship="Self.FK_confirms_messagesTemplates" FromRole="messagesTemplates" ToRole="confirms" />
-  </EntityType>
-  <EntityType Name="offices">
-    <Key>
-      <PropertyRef Name="OfficeID" />
-    </Key>
-    <Property Name="OfficeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="DepartmentD" Type="Int32" />
-    <Property Name="EmployeeID" Type="Int32" />
-    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="CreateDate" Type="DateTime" Precision="7" />
-    <Property Name="UpdateDate" Type="DateTime" Precision="7" />
-    <Property Name="CreateUserID" Type="Int32" />
-    <Property Name="UpdateUserID" Type="Int32" />
-    <Property Name="IsActive" Type="Boolean" />
-    <NavigationProperty Name="departments" Relationship="Self.FK_offices_departments" FromRole="offices" ToRole="departments" />
-    <NavigationProperty Name="employees" Relationship="Self.FK_offices_employees" FromRole="offices" ToRole="employees" />
   </EntityType>
   <EntityType Name="periods">
     <Key>
@@ -426,20 +477,6 @@
     <Property Name="IsActive" Type="Boolean" />
     <NavigationProperty Name="employeesTrainings" Relationship="Self.FK_employeesTrainings_trainings1" FromRole="trainings" ToRole="employeesTrainings" />
   </EntityType>
-  <EntityType Name="userCardSettings">
-    <Key>
-      <PropertyRef Name="UserCardSettingID" />
-    </Key>
-    <Property Name="UserCardSettingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="DepartmentID" Type="Int32" />
-    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="CreateDate" Type="DateTime" Precision="7" />
-    <Property Name="UpdateDate" Type="DateTime" Precision="7" />
-    <Property Name="CreateUserID" Type="Int32" />
-    <Property Name="UpdateUserID" Type="Int32" />
-    <Property Name="IsActive" Type="Boolean" />
-    <NavigationProperty Name="departments" Relationship="Self.FK_userCardSettings_departments" FromRole="userCardSettings" ToRole="departments" />
-  </EntityType>
   <EntityType Name="vacations">
     <Key>
       <PropertyRef Name="VacationID" />
@@ -471,27 +508,27 @@
     <NavigationProperty Name="employees" Relationship="Self.FK_employeesTasks_employees" FromRole="employeesTasks" ToRole="employees" />
     <NavigationProperty Name="tasks" Relationship="Self.FK_employeesTasks_tasks" FromRole="employeesTasks" ToRole="tasks" />
   </EntityType>
-  <Association Name="FK_departments_companies">
+  <Association Name="FK_branches_companies">
     <End Role="companies" Type="Self.companies" Multiplicity="0..1" />
-    <End Role="departments" Type="Self.departments" Multiplicity="*" />
+    <End Role="branches" Type="Self.branches" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="companies">
         <PropertyRef Name="CompanyID" />
       </Principal>
-      <Dependent Role="departments">
+      <Dependent Role="branches">
         <PropertyRef Name="CompanyID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_employees_companies">
-    <End Role="companies" Type="Self.companies" Multiplicity="0..1" />
-    <End Role="employees" Type="Self.employees" Multiplicity="*" />
+  <Association Name="FK_managements_branches">
+    <End Role="branches" Type="Self.branches" Multiplicity="0..1" />
+    <End Role="managements" Type="Self.managements" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="companies">
-        <PropertyRef Name="CompanyID" />
+      <Principal Role="branches">
+        <PropertyRef Name="BranchID" />
       </Principal>
-      <Dependent Role="employees">
-        <PropertyRef Name="CompanyID" />
+      <Dependent Role="managements">
+        <PropertyRef Name="BranchID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -591,39 +628,63 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_departments_departments">
-    <End Role="departments" Type="Self.departments" Multiplicity="0..1" />
-    <End Role="departments1" Type="Self.departments" Multiplicity="*" />
+  <Association Name="FK_departments_managements">
+    <End Role="managements" Type="Self.managements" Multiplicity="0..1" />
+    <End Role="departments" Type="Self.departments" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="departments">
-        <PropertyRef Name="DepartmentID" />
+      <Principal Role="managements">
+        <PropertyRef Name="ManagementID" />
       </Principal>
-      <Dependent Role="departments1">
-        <PropertyRef Name="ParentDepartmentID" />
+      <Dependent Role="departments">
+        <PropertyRef Name="ManagementID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_offices_departments">
+  <Association Name="FK_employees_departments">
     <End Role="departments" Type="Self.departments" Multiplicity="0..1" />
-    <End Role="offices" Type="Self.offices" Multiplicity="*" />
+    <End Role="employees" Type="Self.employees" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="departments">
         <PropertyRef Name="DepartmentID" />
       </Principal>
-      <Dependent Role="offices">
-        <PropertyRef Name="DepartmentD" />
+      <Dependent Role="employees">
+        <PropertyRef Name="DepartmentID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_userCardSettings_departments">
-    <End Role="departments" Type="Self.departments" Multiplicity="0..1" />
-    <End Role="userCardSettings" Type="Self.userCardSettings" Multiplicity="*" />
+  <Association Name="FK_EemployeesEvents_employees">
+    <End Role="employees" Type="Self.employees" Multiplicity="1" />
+    <End Role="EemployeesEvents" Type="Self.EemployeesEvents" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="departments">
-        <PropertyRef Name="DepartmentID" />
+      <Principal Role="employees">
+        <PropertyRef Name="EmployeeID" />
       </Principal>
-      <Dependent Role="userCardSettings">
-        <PropertyRef Name="DepartmentID" />
+      <Dependent Role="EemployeesEvents">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EemployeesEvents_events">
+    <End Role="events" Type="Self.events" Multiplicity="0..1" />
+    <End Role="EemployeesEvents" Type="Self.EemployeesEvents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="events">
+        <PropertyRef Name="EventID" />
+      </Principal>
+      <Dependent Role="EemployeesEvents">
+        <PropertyRef Name="EventID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_employees_jobs">
+    <End Role="jobs" Type="Self.jobs" Multiplicity="0..1" />
+    <End Role="employees" Type="Self.employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="jobs">
+        <PropertyRef Name="JobID" />
+      </Principal>
+      <Dependent Role="employees">
+        <PropertyRef Name="JobID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -723,18 +784,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_offices_employees">
-    <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
-    <End Role="offices" Type="Self.offices" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="employees">
-        <PropertyRef Name="EmployeeID" />
-      </Principal>
-      <Dependent Role="offices">
-        <PropertyRef Name="EmployeeID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_periods_employees">
     <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
     <End Role="periods" Type="Self.periods" Multiplicity="*" />
@@ -808,21 +857,24 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="HRSystemEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="branches" EntityType="Self.branches" />
     <EntitySet Name="companies" EntityType="Self.companies" />
     <EntitySet Name="confirms" EntityType="Self.confirms" />
     <EntitySet Name="custodies" EntityType="Self.custodies" />
     <EntitySet Name="departments" EntityType="Self.departments" />
+    <EntitySet Name="EemployeesEvents" EntityType="Self.EemployeesEvents" />
     <EntitySet Name="employees" EntityType="Self.employees" />
     <EntitySet Name="employeesScheduleVacations" EntityType="Self.employeesScheduleVacations" />
     <EntitySet Name="employeesTrainings" EntityType="Self.employeesTrainings" />
     <EntitySet Name="employeesVacations" EntityType="Self.employeesVacations" />
+    <EntitySet Name="events" EntityType="Self.events" />
     <EntitySet Name="hourlyPermissions" EntityType="Self.hourlyPermissions" />
     <EntitySet Name="Images" EntityType="Self.Images" />
     <EntitySet Name="jobs" EntityType="Self.jobs" />
+    <EntitySet Name="managements" EntityType="Self.managements" />
     <EntitySet Name="materialsConsumption" EntityType="Self.materialsConsumption" />
     <EntitySet Name="messages" EntityType="Self.messages" />
     <EntitySet Name="messagesTemplates" EntityType="Self.messagesTemplates" />
-    <EntitySet Name="offices" EntityType="Self.offices" />
     <EntitySet Name="periods" EntityType="Self.periods" />
     <EntitySet Name="rewards" EntityType="Self.rewards" />
     <EntitySet Name="salaryIncrease" EntityType="Self.salaryIncrease" />
@@ -830,16 +882,15 @@
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
     <EntitySet Name="tasks" EntityType="Self.tasks" />
     <EntitySet Name="trainings" EntityType="Self.trainings" />
-    <EntitySet Name="userCardSettings" EntityType="Self.userCardSettings" />
     <EntitySet Name="vacations" EntityType="Self.vacations" />
     <EntitySet Name="employeesTasks" EntityType="Self.employeesTasks" />
-    <AssociationSet Name="FK_departments_companies" Association="Self.FK_departments_companies">
+    <AssociationSet Name="FK_branches_companies" Association="Self.FK_branches_companies">
       <End Role="companies" EntitySet="companies" />
-      <End Role="departments" EntitySet="departments" />
+      <End Role="branches" EntitySet="branches" />
     </AssociationSet>
-    <AssociationSet Name="FK_employees_companies" Association="Self.FK_employees_companies">
-      <End Role="companies" EntitySet="companies" />
-      <End Role="employees" EntitySet="employees" />
+    <AssociationSet Name="FK_managements_branches" Association="Self.FK_managements_branches">
+      <End Role="branches" EntitySet="branches" />
+      <End Role="managements" EntitySet="managements" />
     </AssociationSet>
     <AssociationSet Name="FK_confirms_departments" Association="Self.FK_confirms_departments">
       <End Role="departments" EntitySet="departments" />
@@ -873,17 +924,25 @@
       <End Role="employees" EntitySet="employees" />
       <End Role="custodies" EntitySet="custodies" />
     </AssociationSet>
-    <AssociationSet Name="FK_departments_departments" Association="Self.FK_departments_departments">
+    <AssociationSet Name="FK_departments_managements" Association="Self.FK_departments_managements">
+      <End Role="managements" EntitySet="managements" />
       <End Role="departments" EntitySet="departments" />
-      <End Role="departments1" EntitySet="departments" />
     </AssociationSet>
-    <AssociationSet Name="FK_offices_departments" Association="Self.FK_offices_departments">
+    <AssociationSet Name="FK_employees_departments" Association="Self.FK_employees_departments">
       <End Role="departments" EntitySet="departments" />
-      <End Role="offices" EntitySet="offices" />
+      <End Role="employees" EntitySet="employees" />
     </AssociationSet>
-    <AssociationSet Name="FK_userCardSettings_departments" Association="Self.FK_userCardSettings_departments">
-      <End Role="departments" EntitySet="departments" />
-      <End Role="userCardSettings" EntitySet="userCardSettings" />
+    <AssociationSet Name="FK_EemployeesEvents_employees" Association="Self.FK_EemployeesEvents_employees">
+      <End Role="employees" EntitySet="employees" />
+      <End Role="EemployeesEvents" EntitySet="EemployeesEvents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EemployeesEvents_events" Association="Self.FK_EemployeesEvents_events">
+      <End Role="events" EntitySet="events" />
+      <End Role="EemployeesEvents" EntitySet="EemployeesEvents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_employees_jobs" Association="Self.FK_employees_jobs">
+      <End Role="jobs" EntitySet="jobs" />
+      <End Role="employees" EntitySet="employees" />
     </AssociationSet>
     <AssociationSet Name="FK_employeesScheduleVacations_employees" Association="Self.FK_employeesScheduleVacations_employees">
       <End Role="employees" EntitySet="employees" />
@@ -917,10 +976,6 @@
       <End Role="employees" EntitySet="employees" />
       <End Role="messages" EntitySet="messages" />
     </AssociationSet>
-    <AssociationSet Name="FK_offices_employees" Association="Self.FK_offices_employees">
-      <End Role="employees" EntitySet="employees" />
-      <End Role="offices" EntitySet="offices" />
-    </AssociationSet>
     <AssociationSet Name="FK_periods_employees" Association="Self.FK_periods_employees">
       <End Role="employees" EntitySet="employees" />
       <End Role="periods" EntitySet="periods" />
@@ -945,46 +1000,5 @@
       <End Role="tasks" EntitySet="tasks" />
       <End Role="employeesTasks" EntitySet="employeesTasks" />
     </AssociationSet>
-    <FunctionImport Name="sp_alterdiagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-      <Parameter Name="version" Mode="In" Type="Int32" />
-      <Parameter Name="definition" Mode="In" Type="Binary" />
-    </FunctionImport>
-    <FunctionImport Name="sp_creatediagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-      <Parameter Name="version" Mode="In" Type="Int32" />
-      <Parameter Name="definition" Mode="In" Type="Binary" />
-    </FunctionImport>
-    <FunctionImport Name="sp_dropdiagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(HRSystemModel.sp_helpdiagramdefinition_Result)">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(HRSystemModel.sp_helpdiagrams_Result)">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_renamediagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-      <Parameter Name="new_diagramname" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="sp_upgraddiagrams" />
   </EntityContainer>
-  <ComplexType Name="sp_helpdiagramdefinition_Result">
-    <Property Type="Int32" Name="version" Nullable="true" />
-    <Property Type="Binary" Name="definition" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="sp_helpdiagrams_Result">
-    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-    <Property Type="Int32" Name="ID" Nullable="false" />
-    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-    <Property Type="Int32" Name="OwnerID" Nullable="false" />
-  </ComplexType>
 </Schema>

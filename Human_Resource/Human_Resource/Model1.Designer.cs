@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\Kuwait Tech\HR_New\Human_Resource\Human_Resource\Model1.edmx'. 
+﻿// T4 code generation is enabled for model 'E:\job with Dina\HR System\HR-Kwt-2022\Human_Resource\Human_Resource\Model1.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

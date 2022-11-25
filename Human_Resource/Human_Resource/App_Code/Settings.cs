@@ -110,12 +110,10 @@ namespace Human_Resource.App_Code
     public class BranchModel
     {
         #region Attributes
-        public int DepartmentID { get; set; }
+        public int BranchID { get; set; }
         public string Name { get; set; }
         public Nullable<int> CompanyID { get; set; }
-        public Nullable<int> ParentDepartmentID { get; set; }
-        public string ParentDepartmentName { get; set; }
-        public Nullable<int> ManagerID { get; set; }
+         public Nullable<int> ManagerID { get; set; }
         public string ManagerName { get; set; }
         public string Mobile { get; set; }
 
@@ -133,14 +131,12 @@ namespace Human_Resource.App_Code
         {
             using (HRSystemEntities entity = new HRSystemEntities())
             {
-                var depts = entity.departments.Where(x => x.CompanyID == entity.companies.Where(c => c.OurCompany == true && c.IsActive == true).Select(c => c.CompanyID).FirstOrDefault() && x.IsActive == true)
+                var depts = entity.branches.Where(x => x.CompanyID == entity.companies.Where(c => c.OurCompany == true && c.IsActive == true).Select(c => c.CompanyID).FirstOrDefault() && x.IsActive == true)
                                 .Select(x=> new BranchModel() {
-                                    DepartmentID = x.DepartmentID,
+                                    BranchID = x.BranchID,
                                 Name = x.Name,
                                 Mobile = x.Mobile,
-                                ParentDepartmentID=x.ParentDepartmentID,
-                                ParentDepartmentName = entity.departments.Where(m => m.DepartmentID == x.ParentDepartmentID).Select(m => m.Name).FirstOrDefault(),
-                                ManagerID = x.ManagerID,
+                                 ManagerID = x.ManagerID,
                                 ManagerName = entity.employees.Where(m => m.EmployeeID == x.ManagerID).Select(m => m.NameAr).FirstOrDefault(),
                                 CreateUserID = x.CreateUserID,
                                 UpdateUserID = x.UpdateUserID,
@@ -152,18 +148,16 @@ namespace Human_Resource.App_Code
                 return depts;
             }
         }
-         public BranchModel getDepartment(int departmentId)
+         public BranchModel getBranch(int branchId)
         {
             using (HRSystemEntities entity = new HRSystemEntities())
             {
-                var dept = entity.departments.Where(x => x.DepartmentID == departmentId)
+                var dept = entity.branches.Where(x => x.BranchID == branchId)
                                 .Select(x=> new BranchModel() {
-                                    DepartmentID = x.DepartmentID,
+                                    BranchID = x.BranchID,
                                 Name = x.Name,
                                 Mobile = x.Mobile,
-                                ParentDepartmentID=x.ParentDepartmentID,
-                                ParentDepartmentName = entity.departments.Where(m => m.DepartmentID == x.ParentDepartmentID).Select(m => m.Name).FirstOrDefault(),
-                                ManagerID = x.ManagerID,
+                                 ManagerID = x.ManagerID,
                                 ManagerName = entity.employees.Where(m => m.EmployeeID == x.ManagerID).Select(m => m.NameAr).FirstOrDefault(),
                                 CreateUserID = x.CreateUserID,
                                 UpdateUserID = x.UpdateUserID,
@@ -180,6 +174,144 @@ namespace Human_Resource.App_Code
         {
             try
             {
+                branches branch;
+
+                using (HRSystemEntities entity = new HRSystemEntities())
+                {
+                    if (dept.BranchID.Equals(0))
+                    {
+                        branch = new branches()
+                        {
+                            Name = dept.Name,
+                            ManagerID = dept.ManagerID,
+                            Mobile = dept.Mobile,
+                            Address = dept.Address,
+                            CompanyID = entity.companies.Where(x => x.OurCompany == true).Select(x => x.CompanyID).FirstOrDefault(),
+                            IsActive = true,
+                            CreateUserID = dept.CreateUserID,
+                            UpdateUserID = dept.UpdateUserID,
+                            CreateDate = DateTime.Now,
+                            UpdateDate = DateTime.Now,
+                        };
+                        branch = entity.branches.Add(branch);
+                    }
+                    else
+                    {
+                        branch = entity.branches.Find(dept.BranchID);
+                        branch.Name = dept.Name;
+                        branch.ManagerID = dept.ManagerID;
+                        branch.Address = dept.Address;
+                        branch.Mobile = dept.Mobile;
+                        branch.Notes = dept.Notes;
+                        branch.IsActive = true;
+                        branch.UpdateUserID = dept.UpdateUserID;
+                        branch.UpdateDate = DateTime.Now;
+                    }
+                    entity.SaveChanges();
+                }
+                return branch.BranchID;
+            }
+
+            catch
+            {
+                return 0;
+            }
+        }
+        public bool DeleteDept(int deptId,int? userId)
+        {
+            try
+            {
+                using (HRSystemEntities entity = new HRSystemEntities())
+                {
+                    var dept = entity.branches.Find(deptId);
+                    dept.IsActive = false;
+                    dept.UpdateDate = DateTime.Now;
+                    dept.UpdateUserID = userId;
+                    entity.SaveChanges();
+                }
+                return true;
+            }
+
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+    }
+    
+
+    public class DepartmentModel
+    {
+        #region Attributes
+        public int DepartmentID { get; set; }
+        public string Name { get; set; }
+        public Nullable<int> ManagementID { get; set; }
+        public string ManagementName { get; set; }
+        public Nullable<int> ManagerID { get; set; }
+        public string ManagerName { get; set; }
+        public string Mobile { get; set; }
+
+        public string Notes { get; set; }
+        public Nullable<System.DateTime> CreateDate { get; set; }
+        public Nullable<System.DateTime> UpdateDate { get; set; }
+        public Nullable<int> CreateUserID { get; set; }
+        public Nullable<int> UpdateUserID { get; set; }
+        public Nullable<bool> IsActive { get; set; }
+        #endregion
+
+        #region methods
+        public List<DepartmentModel> getAll()
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var depts = entity.departments
+                                .Select(x => new DepartmentModel()
+                                {
+                                    DepartmentID = x.DepartmentID,
+                                    Name = x.Name,
+                                    Mobile = x.Mobile,
+                                    ManagerID = x.ManagerID,
+                                    ManagerName = entity.employees.Where(m => m.EmployeeID == x.ManagerID).Select(m => m.NameAr).FirstOrDefault(),
+                                    ManagementID = x.ManagementID,
+                                    ManagementName = entity.managements.Where(m => m.ManagementID == x.ManagementID).Select(m => m.Name).FirstOrDefault(),
+                                    CreateUserID = x.CreateUserID,
+                                    UpdateUserID = x.UpdateUserID,
+                                    Notes = x.Notes,
+                                    CreateDate = x.CreateDate,
+                                    UpdateDate = x.UpdateDate,
+                                }).ToList();
+                return depts;
+            }
+        }
+        public DepartmentModel getDepartment(int departmentId)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var dept = entity.departments.Where(x => x.DepartmentID == departmentId)
+                                .Select(x => new DepartmentModel()
+                                {
+                                    DepartmentID = x.DepartmentID,
+                                    Name = x.Name,
+                                    Mobile = x.Mobile,
+                                    ManagerID = x.ManagerID,
+                                    ManagerName = entity.employees.Where(m => m.EmployeeID == x.ManagerID).Select(m => m.NameAr).FirstOrDefault(),
+                                    ManagementID = x.ManagementID,
+                                    ManagementName = entity.managements.Where(m => m.ManagementID == x.ManagementID).Select(m => m.Name).FirstOrDefault(),
+                                    CreateUserID = x.CreateUserID,
+                                    UpdateUserID = x.UpdateUserID,
+                                    Notes = x.Notes,
+                                    CreateDate = x.CreateDate,
+                                    UpdateDate = x.UpdateDate,
+                                }).FirstOrDefault();
+                return dept;
+            }
+        }
+
+        public int SaveDept(DepartmentModel dept)
+        {
+            try
+            {
                 departments department;
 
                 using (HRSystemEntities entity = new HRSystemEntities())
@@ -189,10 +321,9 @@ namespace Human_Resource.App_Code
                         department = new departments()
                         {
                             Name = dept.Name,
-                            ManagerID = dept.ManagerID,
                             Mobile = dept.Mobile,
-                            Address = dept.Address,
-                            CompanyID = entity.companies.Where(x => x.OurCompany == true).Select(x => x.CompanyID).FirstOrDefault(),
+                            ManagerID = dept.ManagerID,
+                            ManagementID = dept.ManagementID,
                             IsActive = true,
                             CreateUserID = dept.CreateUserID,
                             UpdateUserID = dept.UpdateUserID,
@@ -206,8 +337,8 @@ namespace Human_Resource.App_Code
                         department = entity.departments.Find(dept.DepartmentID);
                         department.Name = dept.Name;
                         department.ManagerID = dept.ManagerID;
-                        department.Address = dept.Address;
-                        department.Mobile = dept.Mobile;
+                        department.ManagementID = dept.ManagementID;
+                         department.Mobile = dept.Mobile;
                         department.Notes = dept.Notes;
                         department.IsActive = true;
                         department.UpdateUserID = dept.UpdateUserID;
@@ -223,7 +354,7 @@ namespace Human_Resource.App_Code
                 return 0;
             }
         }
-        public bool DeleteDept(int deptId,int? userId)
+        public bool DeleteDept(int deptId, int? userId)
         {
             try
             {

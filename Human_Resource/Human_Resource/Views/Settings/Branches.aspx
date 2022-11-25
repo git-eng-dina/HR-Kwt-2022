@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Branches.aspx.cs" Inherits="Human_Resource.Views.Settings.Departments" EnableEventValidation="true" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Branches.aspx.cs" Inherits="Human_Resource.Views.Settings.Branches" EnableEventValidation="true" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
  
@@ -56,7 +56,7 @@
                     ShowDialog();
                     for (var prop in data) {
                         var item = data[prop];
-                        $('#MainContent_hid_departmentId').val(item.DepartmentID);
+                        $('#MainContent_hid_departmentId').val(item.BranchID);
                         $('#MainContent_dept_name').val(item.Name);
                         $('#MainContent_txt_mobile').val(item.Mobile);
                         $('#MainContent_txt_address').val(item.Address);
@@ -177,14 +177,14 @@
                                         </asp:TemplateField>
                                     <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-edit">
                                           <ItemTemplate>                     
-                                                     <asp:LinkButton ID="LinkProducts" runat="server" myCustomID='<%# Eval("DepartmentID")%>'  CssClass="td-edit">
+                                                     <asp:LinkButton ID="LinkProducts" runat="server" myCustomID='<%# Eval("BranchID")%>'  CssClass="td-edit">
                                                          <asp:Image ImageUrl="~/Images/edit.ico" runat="server" Width="20px" Height="20px" />
                                                      </asp:LinkButton>  
                                              </ItemTemplate>
                                         </asp:TemplateField>
                                    <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-Edit">
                                              <ItemTemplate>                     
-                                                     <asp:ImageButton  CommandArgument='<%# Eval("DepartmentID")%>' OnCommand="deletedatafromgrid"
+                                                     <asp:ImageButton  CommandArgument='<%# Eval("BranchID")%>' OnCommand="deletedatafromgrid"
                                                             OnClientClick="return confirm(<%= Resources.Labels.ConfirmDelete %>);return false;"
                                                             ID="Image1" runat="server" ImageUrl="~/Images/delete.ico" />
                                                              

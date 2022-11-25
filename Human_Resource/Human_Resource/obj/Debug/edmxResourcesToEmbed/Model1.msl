@@ -1,6 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="HRSystemModelStoreContainer" CdmEntityContainer="HRSystemEntities">
+    <EntitySetMapping Name="branches">
+      <EntityTypeMapping TypeName="HRSystemModel.branches">
+        <MappingFragment StoreEntitySet="branches">
+          <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+          <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="companies">
       <EntityTypeMapping TypeName="HRSystemModel.companies">
         <MappingFragment StoreEntitySet="companies">
@@ -18,6 +36,9 @@
           <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
           <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="GeneralDirector" ColumnName="GeneralDirector" />
+          <ScalarProperty Name="FinancialManager" ColumnName="FinancialManager" />
+          <ScalarProperty Name="HRManager" ColumnName="HRManager" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -64,8 +85,6 @@
         <MappingFragment StoreEntitySet="departments">
           <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
-          <ScalarProperty Name="ParentDepartmentID" ColumnName="ParentDepartmentID" />
           <ScalarProperty Name="Notes" ColumnName="Notes" />
           <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
           <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
@@ -74,7 +93,22 @@
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
           <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
           <ScalarProperty Name="Mobile" ColumnName="Mobile" />
-          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="ManagementID" ColumnName="ManagementID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EemployeesEvents">
+      <EntityTypeMapping TypeName="HRSystemModel.EemployeesEvents">
+        <MappingFragment StoreEntitySet="EemployeesEvents">
+          <ScalarProperty Name="EmployeesEventsID" ColumnName="EmployeesEventsID" />
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+          <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -84,6 +118,7 @@
           <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
           <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
           <ScalarProperty Name="VacationsBalance" ColumnName="VacationsBalance" />
           <ScalarProperty Name="WarningPeriod" ColumnName="WarningPeriod" />
           <ScalarProperty Name="NameAr" ColumnName="NameAr" />
@@ -137,10 +172,11 @@
           <ScalarProperty Name="BasicSalary" ColumnName="BasicSalary" />
           <ScalarProperty Name="TransportationCompensationType" ColumnName="TransportationCompensationType" />
           <ScalarProperty Name="HousingCompensationType" ColumnName="HousingCompensationType" />
-          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
           <ScalarProperty Name="HiringDate" ColumnName="HiringDate" />
           <ScalarProperty Name="Sequence" ColumnName="Sequence" />
           <ScalarProperty Name="UnifiedNumber" ColumnName="UnifiedNumber" />
+          <ScalarProperty Name="ResidenceDate" ColumnName="ResidenceDate" />
+          <ScalarProperty Name="JobID" ColumnName="JobID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -171,7 +207,6 @@
           <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
           <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -181,6 +216,21 @@
           <ScalarProperty Name="EmployeesVacationsID" ColumnName="EmployeesVacationsID" />
           <ScalarProperty Name="VacationID" ColumnName="VacationID" />
           <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+          <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="events">
+      <EntityTypeMapping TypeName="HRSystemModel.events">
+        <MappingFragment StoreEntitySet="events">
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Notes" ColumnName="Notes" />
           <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
           <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
@@ -232,6 +282,23 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="managements">
+      <EntityTypeMapping TypeName="HRSystemModel.managements">
+        <MappingFragment StoreEntitySet="managements">
+          <ScalarProperty Name="ManagementID" ColumnName="ManagementID" />
+          <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+          <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="materialsConsumption">
       <EntityTypeMapping TypeName="HRSystemModel.materialsConsumption">
         <MappingFragment StoreEntitySet="materialsConsumption">
@@ -267,22 +334,6 @@
       <EntityTypeMapping TypeName="HRSystemModel.messagesTemplates">
         <MappingFragment StoreEntitySet="messagesTemplates">
           <ScalarProperty Name="MessagesTemplateID" ColumnName="MessagesTemplateID" />
-          <ScalarProperty Name="Notes" ColumnName="Notes" />
-          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
-          <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
-          <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
-          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="offices">
-      <EntityTypeMapping TypeName="HRSystemModel.offices">
-        <MappingFragment StoreEntitySet="offices">
-          <ScalarProperty Name="OfficeID" ColumnName="OfficeID" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="DepartmentD" ColumnName="DepartmentD" />
-          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
           <ScalarProperty Name="Notes" ColumnName="Notes" />
           <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
           <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
@@ -397,20 +448,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="userCardSettings">
-      <EntityTypeMapping TypeName="HRSystemModel.userCardSettings">
-        <MappingFragment StoreEntitySet="userCardSettings">
-          <ScalarProperty Name="UserCardSettingID" ColumnName="UserCardSettingID" />
-          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
-          <ScalarProperty Name="Notes" ColumnName="Notes" />
-          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
-          <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
-          <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
-          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="vacations">
       <EntityTypeMapping TypeName="HRSystemModel.vacations">
         <MappingFragment StoreEntitySet="vacations">
@@ -441,29 +478,5 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="HRSystemModel.Store.sp_alterdiagram" />
-    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="HRSystemModel.Store.sp_creatediagram" />
-    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="HRSystemModel.Store.sp_dropdiagram" />
-    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="HRSystemModel.Store.sp_helpdiagramdefinition">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="HRSystemModel.sp_helpdiagramdefinition_Result">
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="definition" ColumnName="definition" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="HRSystemModel.Store.sp_helpdiagrams">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="HRSystemModel.sp_helpdiagrams_Result">
-          <ScalarProperty Name="Database" ColumnName="Database" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Owner" ColumnName="Owner" />
-          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="HRSystemModel.Store.sp_renamediagram" />
-    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="HRSystemModel.Store.sp_upgraddiagrams" />
   </EntityContainerMapping>
 </Mapping>
