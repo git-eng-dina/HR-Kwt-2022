@@ -1,0 +1,2478 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HRSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="branches">
+          <Key>
+            <PropertyRef Name="BranchID" />
+          </Key>
+          <Property Name="BranchID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="CompanyID" Type="int" />
+          <Property Name="Notes" Type="ntext" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="CreateUserID" Type="int" />
+          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="ManagerID" Type="int" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address" Type="ntext" />
+        </EntityType>
+        <EntityType Name="companies">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address" Type="ntext" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="100" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="100" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="100" />
+          <Property Name="Notes" Type="ntext" />
+          <Property Name="OurCompany" Type="bit" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="CreateUserID" Type="int" />
+          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="GeneralDirector" Type="int" />
+          <Property Name="FinancialManager" Type="int" />
+          <Property Name="HRManager" Type="int" />
+        </EntityType>
+        <EntityType Name="confirms">
+          <Key>
+            <PropertyRef Name="ConfirmID" />
+          </Key>
+          <Property Name="ConfirmID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Notes" Type="ntext" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="CreateUserID" Type="int" />
+          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="TaskID" Type="int" />
+          <Property Name="SalaryIncreaseID" Type="int" />
+          <Property Name="MessagesTemplateID" Type="int" />
+          <Property Name="HourlyPermissionID" Type="int" />
+          <Property Name="JobID" Type="int" />
+          <Property Name="DepartmentID" Type="int" />
+          <Property Name="ConfirmType" Type="nvarchar" MaxLength="100" />
+          <Property Name="EmployeeID" Type="int" />
+        </EntityType>
+        <EntityType Name="custodies">
+          <Key>
+            <PropertyRef Name="CustodyID" />
+          </Key>
+          <Property Name="CustodyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="100" />
+          <Property Name="Details" Type="ntext" />
+          <Property Name="Value" Type="nvarchar" MaxLength="100" />
+          <Property Name="Notes" Type="ntext" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="CreateUserID" Type="int" />
+          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="EmployeeID" Type="int" />
+        </EntityType>
+        <EntityType Name="departments">
+          <Key>
+            <PropertyRef Name="DepartmentID" />
+          </Key>
+          <Property Name="DepartmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Notes" Type="ntext" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="CreateUserID" Type="int" />
+          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="ManagerID" Type="int" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="100" />
+          <Property Name="ManagementID" Type="int" />
+        </EntityType>
+        <EntityType Name="EemployeesEvents">
+          <Key>
+            <PropertyRef Name="EmployeesEventsID" />
+          </Key>
+          <Property Name="EmployeesEventsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventID" Type="int" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="Notes" Type="ntext" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="CreateUserID" Type="int" />
+          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="employees">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="100" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" />
+          <Property Name="DepartmentID" Type="int" />
+          <Property Name="VacationsBalance" Type="int" />
+          <Property Name="WarningPeriod" Type="bit" />
+          <Property Name="NameAr" Type="nvarchar" MaxLength="100" />
+          <Property Name="NameEn" Type="nvarchar" MaxLength="100" />
+          <Property Name="DOB" Type="datetime2" Precision="7" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="100" />
+          <Property Name="MaritalStatus" Type="nvarchar" MaxLength="100" />
+          <Property Name="Nationality" Type="nvarchar" MaxLength="100" />
+          <Property Name="Religion" Type="nvarchar" MaxLength="100" />
+          <Property Name="BloodType" Type="nvarchar" MaxLength="100" />
+          <Property Name="Image" Type="ntext" />
+          <Property Name="IdentityType" Type="nvarchar" MaxLength="100" />
+          <Property Name="IdentityNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="IdentityReleaseDate" Type="datetime2" Precision="7" />
+          <Property Name="IdentityExpiryDate" Type="datetime2" Precision="7" />
+          <Property Name="PassportNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="PassportReleaseDate" Type="datetime2" Precision="7" />
+          <Property Name="PassportExpiryDate" Type="datetime2" Precision="7" />
+          <Property Name="PassportCountry" Type="nvarchar" MaxLength="100" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="100" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address" Type="ntext" />
+          <Property Name="NoConviction" Type="bit" />
+          <Property Name="BankAccount" Type="nvarchar" MaxLength="100" />
+          <Property Name="BankName" Type="nvarchar" MaxLength="100" />
+          <Property Name="IBANNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="SWIFTCODE" Type="nvarchar" MaxLength="100" />
+          <Property Name="PaymentType" Type="nvarchar" MaxLength="100" />
+          <Property Name="EducationCertificate1" Type="nvarchar" MaxLength="100" />
+          <Property Name="EducationCertificateFromDate1" Type="datetime2" Precision="7" />
+          <Property Name="EducationCertificateToDate1" Type="datetime2" Precision="7" />
+          <Property Name="EducationCertificateSource1" Type="nvarchar" MaxLength="100" />
+          <Property Name="EducationCertificate2" Type="nvarchar" MaxLength="100" />
+          <Property Name="EducationCertificateFromDate2" Type="datetime2" Precision="7" />
+          <Property Name="EducationCertificateToDate2" Type="datetime2" Precision="7" />
+          <Property Name="EducationCertificateSource2" Type="nvarchar" MaxLength="100" />
+          <Property Name="EducationCertificate3" Type="nvarchar" MaxLength="100" />
+          <Property Name="EducationCertificateFromDate3" Type="datetime2" Precision="7" />
+          <Property Name="EducationCertificateToDate3" Type="datetime2" Precision="7" />
+          <Property Name="EducationCertificateSource3" Type="nvarchar" MaxLength="100" />
+          <Property Name="WorkExperience1" Type="ntext" />
+          <Property Name="WorkExperience2" Type="ntext" />
+          <Property Name="WorkExperience3" Type="ntext" />
+          <Property Name="Notes" Type="ntext" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="CreateUserID" Type="int" />
+          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="BasicSalary" Type="decimal" Precision="20" Scale="3" />
+          <Property Name="TransportationCompensationType" Type="nvarchar" MaxLength="100" />
+          <Property Name="HousingCompensationType" Type="nvarchar" MaxLength="100" />
+          <Property Name="HiringDate" Type="datetime2" Precision="7" />
+          <Property Name="Sequence" Type="nvarchar" MaxLength="100" />
+          <Property Name="UnifiedNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="ResidenceDate" Type="datetime2" Precision="7" />
+          <Property Name="JobID" Type="int" />
+        </EntityType>
+        <EntityType Name="employeesScheduleVacations">
+          <Key>
+            <PropertyRef Name="EmployeesScheduleVacationsID" />
+          </Key>
+          <Property Name="EmployeesScheduleVacationsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ScheduleVacationID" Type="int" />
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="Notes" Type="ntext" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="CreateUserID" Type="int" />
+          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="employeesTasks">
+          <Key>
+            <PropertyRef Name="EmployeesTasksID" />
+          </Key>
+          <Property Name="EmployeesTasksID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Notes" Type="ntext" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="CreateUserID" Type="int" />
+          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="TaskID" Type="int" />
+          <Property Name="Status" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="employeesTrainings">
+          <Key>
+            <PropertyRef Name="EmployeesTrainingsID" />
+          </Key>
+          <Property Name="EmployeesTrainingsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TrainingID" Type="int" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="Notes" Type="ntext" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="CreateUserID" Type="int" />
+          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="employeesVacations">
+          <Key>
+            <PropertyRef Name="EmployeesVacationsID" />
+          </Key>
+          <Property Name="EmployeesVacationsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VacationID" Type="int" />
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="Notes" Type="ntext" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="CreateUserID" Type="int" />
+          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="events">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="ntext" />
+          <Property Name="Notes" Type="ntext" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="CreateUserID" Type="int" />
+          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="hourlyPermissions">
+          <Key>
+            <PropertyRef Name="HourlyPermissionID" />
+          </Key>
+          <Property Name="HourlyPermissionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="ntext" />
+          <Property Name="Notes" Type="ntext" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="CreateUserID" Type="int" />
+          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="employeeID" Type="int" />
+        </EntityType>
+        <EntityType Name="Images">
+          <Key>
+            <PropertyRef Name="ImageId" />
+          </Key>
+          <Property Name="ImageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="docName" Type="nvarchar" MaxLength="200" />
+          <Property Name="docnum" Type="nvarchar" MaxLength="200" />
+          <Property Name="image" Type="ntext" />
+          <Property Name="EmployeeID" Type="int" />
+        </EntityType>
+        <EntityType Name="jobs">
+          <Key>
+            <PropertyRef Name="JobID" />
+          </Key>
+          <Property Name="JobID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="JobLevel" Type="int" />
+          <Property Name="Notes" Type="ntext" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="CreateUserID" Type="int" />
+          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="managements">
+          <Key>
+            <PropertyRef Name="ManagementID" />
+          </Key>
+          <Property Name="ManagementID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BranchID" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Notes" Type="ntext" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="CreateUserID" Type="int" />
+          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="ManagerID" Type="int" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="materialsConsumption">
+          <Key>
+            <PropertyRef Name="MaterialsConsumptionID" />
+          </Key>
+          <Property Name="MaterialsConsumptionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="100" />
+          <Property Name="Details" Type="ntext" />
+          <Property Name="Value" Type="nvarchar" MaxLength="100" />
+          <Property Name="Notes" Type="ntext" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="CreateUserID" Type="int" />
+          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="EmployeeID" Type="int" />
+        </EntityType>
+        <EntityType Name="messages">
+          <Key>
+            <PropertyRef Name="MessageID" />
+          </Key>
+          <Property Name="MessageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Notes" Type="ntext" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="CreateUserID" Type="int" />
+          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="EmployeeID" Type="int" />
+        </EntityType>
+        <EntityType Name="messagesTemplates">
+          <Key>
+            <PropertyRef Name="MessagesTemplateID" />
+          </Key>
+          <Property Name="MessagesTemplateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Notes" Type="ntext" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="CreateUserID" Type="int" />
+          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="periods">
+          <Key>
+            <PropertyRef Name="PeriodID" />
+          </Key>
+          <Property Name="PeriodID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Notes" Type="ntext" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="CreateUserID" Type="int" />
+          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="StartTime" Type="datetime2" Precision="7" />
+          <Property Name="EndTime" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="rewards">
+          <Key>
+            <PropertyRef Name="RewardID" />
+          </Key>
+          <Property Name="RewardID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="100" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="ntext" />
+          <Property Name="Value" Type="nvarchar" MaxLength="100" />
+          <Property Name="Notes" Type="ntext" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="CreateUserID" Type="int" />
+          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="EmployeeID" Type="int" />
+        </EntityType>
+        <EntityType Name="salaryIncrease">
+          <Key>
+            <PropertyRef Name="SalaryIncreaseID" />
+          </Key>
+          <Property Name="SalaryIncreaseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="IncreaseType" Type="nvarchar" MaxLength="100" />
+          <Property Name="IncreaseValue" Type="decimal" Precision="20" Scale="3" />
+          <Property Name="Notes" Type="ntext" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="CreateUserID" Type="int" />
+          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="scheduleVacations">
+          <Key>
+            <PropertyRef Name="ScheduleVacationID" />
+          </Key>
+          <Property Name="ScheduleVacationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Notes" Type="ntext" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="CreateUserID" Type="int" />
+          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tasks">
+          <Key>
+            <PropertyRef Name="TaskID" />
+          </Key>
+          <Property Name="TaskID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="ntext" />
+          <Property Name="RepeatedEvery" Type="nvarchar" MaxLength="100" />
+          <Property Name="Notes" Type="ntext" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="CreateUserID" Type="int" />
+          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="trainings">
+          <Key>
+            <PropertyRef Name="TrainingID" />
+          </Key>
+          <Property Name="TrainingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="ntext" />
+          <Property Name="Notes" Type="ntext" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="CreateUserID" Type="int" />
+          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="vacations">
+          <Key>
+            <PropertyRef Name="VacationID" />
+          </Key>
+          <Property Name="VacationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Notes" Type="ntext" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="CreateUserID" Type="int" />
+          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <Association Name="FK_branches_companies">
+          <End Role="companies" Type="Self.companies" Multiplicity="0..1" />
+          <End Role="branches" Type="Self.branches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="branches">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_confirms_departments">
+          <End Role="departments" Type="Self.departments" Multiplicity="0..1" />
+          <End Role="confirms" Type="Self.confirms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="departments">
+              <PropertyRef Name="DepartmentID" />
+            </Principal>
+            <Dependent Role="confirms">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_confirms_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="confirms" Type="Self.confirms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="confirms">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_confirms_hourlyPermissions">
+          <End Role="hourlyPermissions" Type="Self.hourlyPermissions" Multiplicity="0..1" />
+          <End Role="confirms" Type="Self.confirms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hourlyPermissions">
+              <PropertyRef Name="HourlyPermissionID" />
+            </Principal>
+            <Dependent Role="confirms">
+              <PropertyRef Name="HourlyPermissionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_confirms_jobs">
+          <End Role="jobs" Type="Self.jobs" Multiplicity="0..1" />
+          <End Role="confirms" Type="Self.confirms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="jobs">
+              <PropertyRef Name="JobID" />
+            </Principal>
+            <Dependent Role="confirms">
+              <PropertyRef Name="JobID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_confirms_messagesTemplates">
+          <End Role="messagesTemplates" Type="Self.messagesTemplates" Multiplicity="0..1" />
+          <End Role="confirms" Type="Self.confirms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="messagesTemplates">
+              <PropertyRef Name="MessagesTemplateID" />
+            </Principal>
+            <Dependent Role="confirms">
+              <PropertyRef Name="MessagesTemplateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_confirms_salaryIncrease">
+          <End Role="salaryIncrease" Type="Self.salaryIncrease" Multiplicity="0..1" />
+          <End Role="confirms" Type="Self.confirms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="salaryIncrease">
+              <PropertyRef Name="SalaryIncreaseID" />
+            </Principal>
+            <Dependent Role="confirms">
+              <PropertyRef Name="SalaryIncreaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_confirms_tasks">
+          <End Role="tasks" Type="Self.tasks" Multiplicity="0..1" />
+          <End Role="confirms" Type="Self.confirms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tasks">
+              <PropertyRef Name="TaskID" />
+            </Principal>
+            <Dependent Role="confirms">
+              <PropertyRef Name="TaskID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_custodies_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="custodies" Type="Self.custodies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="custodies">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_departments_managements">
+          <End Role="managements" Type="Self.managements" Multiplicity="0..1" />
+          <End Role="departments" Type="Self.departments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="managements">
+              <PropertyRef Name="ManagementID" />
+            </Principal>
+            <Dependent Role="departments">
+              <PropertyRef Name="ManagementID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EemployeesEvents_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="1" />
+          <End Role="EemployeesEvents" Type="Self.EemployeesEvents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="EemployeesEvents">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EemployeesEvents_events">
+          <End Role="events" Type="Self.events" Multiplicity="0..1" />
+          <End Role="EemployeesEvents" Type="Self.EemployeesEvents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="events">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="EemployeesEvents">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employees_departments">
+          <End Role="departments" Type="Self.departments" Multiplicity="0..1" />
+          <End Role="employees" Type="Self.employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="departments">
+              <PropertyRef Name="DepartmentID" />
+            </Principal>
+            <Dependent Role="employees">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employees_jobs">
+          <End Role="jobs" Type="Self.jobs" Multiplicity="0..1" />
+          <End Role="employees" Type="Self.employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="jobs">
+              <PropertyRef Name="JobID" />
+            </Principal>
+            <Dependent Role="employees">
+              <PropertyRef Name="JobID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employeesScheduleVacations_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="employeesScheduleVacations" Type="Self.employeesScheduleVacations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="employeesScheduleVacations">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employeesScheduleVacations_scheduleVacations">
+          <End Role="scheduleVacations" Type="Self.scheduleVacations" Multiplicity="0..1" />
+          <End Role="employeesScheduleVacations" Type="Self.employeesScheduleVacations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="scheduleVacations">
+              <PropertyRef Name="ScheduleVacationID" />
+            </Principal>
+            <Dependent Role="employeesScheduleVacations">
+              <PropertyRef Name="ScheduleVacationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employeesTasks_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="employeesTasks" Type="Self.employeesTasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="employeesTasks">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employeesTasks_tasks">
+          <End Role="tasks" Type="Self.tasks" Multiplicity="0..1" />
+          <End Role="employeesTasks" Type="Self.employeesTasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tasks">
+              <PropertyRef Name="TaskID" />
+            </Principal>
+            <Dependent Role="employeesTasks">
+              <PropertyRef Name="TaskID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employeesTrainings_employees1">
+          <End Role="employees" Type="Self.employees" Multiplicity="1" />
+          <End Role="employeesTrainings" Type="Self.employeesTrainings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="employeesTrainings">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employeesTrainings_trainings1">
+          <End Role="trainings" Type="Self.trainings" Multiplicity="0..1" />
+          <End Role="employeesTrainings" Type="Self.employeesTrainings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trainings">
+              <PropertyRef Name="TrainingID" />
+            </Principal>
+            <Dependent Role="employeesTrainings">
+              <PropertyRef Name="TrainingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employeesVacations_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="employeesVacations" Type="Self.employeesVacations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="employeesVacations">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employeesVacations_vacations">
+          <End Role="vacations" Type="Self.vacations" Multiplicity="0..1" />
+          <End Role="employeesVacations" Type="Self.employeesVacations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vacations">
+              <PropertyRef Name="VacationID" />
+            </Principal>
+            <Dependent Role="employeesVacations">
+              <PropertyRef Name="VacationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hourlyPermissions_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="hourlyPermissions" Type="Self.hourlyPermissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="hourlyPermissions">
+              <PropertyRef Name="employeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Images_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="Images" Type="Self.Images" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="Images">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_managements_branches">
+          <End Role="branches" Type="Self.branches" Multiplicity="0..1" />
+          <End Role="managements" Type="Self.managements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="branches">
+              <PropertyRef Name="BranchID" />
+            </Principal>
+            <Dependent Role="managements">
+              <PropertyRef Name="BranchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_materialsConsumption_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="materialsConsumption" Type="Self.materialsConsumption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="materialsConsumption">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_messages_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="messages" Type="Self.messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="messages">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_periods_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="periods" Type="Self.periods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="periods">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rewards_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="rewards" Type="Self.rewards" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="rewards">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HRSystemModelStoreContainer">
+          <EntitySet Name="branches" EntityType="Self.branches" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="companies" EntityType="Self.companies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="confirms" EntityType="Self.confirms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="custodies" EntityType="Self.custodies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="departments" EntityType="Self.departments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EemployeesEvents" EntityType="Self.EemployeesEvents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employees" EntityType="Self.employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employeesScheduleVacations" EntityType="Self.employeesScheduleVacations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employeesTrainings" EntityType="Self.employeesTrainings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employeesVacations" EntityType="Self.employeesVacations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="events" EntityType="Self.events" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="hourlyPermissions" EntityType="Self.hourlyPermissions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="jobs" EntityType="Self.jobs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="managements" EntityType="Self.managements" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="materialsConsumption" EntityType="Self.materialsConsumption" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="messages" EntityType="Self.messages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="messagesTemplates" EntityType="Self.messagesTemplates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="periods" EntityType="Self.periods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rewards" EntityType="Self.rewards" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="salaryIncrease" EntityType="Self.salaryIncrease" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="scheduleVacations" EntityType="Self.scheduleVacations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tasks" EntityType="Self.tasks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="trainings" EntityType="Self.trainings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vacations" EntityType="Self.vacations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employeesTasks" EntityType="Self.employeesTasks" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [employeesTasks].[EmployeesTasksID] AS [EmployeesTasksID], 
+    [employeesTasks].[Notes] AS [Notes], 
+    [employeesTasks].[CreateDate] AS [CreateDate], 
+    [employeesTasks].[UpdateDate] AS [UpdateDate], 
+    [employeesTasks].[CreateUserID] AS [CreateUserID], 
+    [employeesTasks].[UpdateUserID] AS [UpdateUserID], 
+    [employeesTasks].[IsActive] AS [IsActive], 
+    [employeesTasks].[EmployeeID] AS [EmployeeID], 
+    [employeesTasks].[TaskID] AS [TaskID], 
+    [employeesTasks].[Status] AS [Status]
+    FROM [dbo].[employeesTasks] AS [employeesTasks]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_branches_companies" Association="Self.FK_branches_companies">
+            <End Role="companies" EntitySet="companies" />
+            <End Role="branches" EntitySet="branches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_confirms_departments" Association="Self.FK_confirms_departments">
+            <End Role="departments" EntitySet="departments" />
+            <End Role="confirms" EntitySet="confirms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_confirms_employees" Association="Self.FK_confirms_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="confirms" EntitySet="confirms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_confirms_hourlyPermissions" Association="Self.FK_confirms_hourlyPermissions">
+            <End Role="hourlyPermissions" EntitySet="hourlyPermissions" />
+            <End Role="confirms" EntitySet="confirms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_confirms_jobs" Association="Self.FK_confirms_jobs">
+            <End Role="jobs" EntitySet="jobs" />
+            <End Role="confirms" EntitySet="confirms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_confirms_messagesTemplates" Association="Self.FK_confirms_messagesTemplates">
+            <End Role="messagesTemplates" EntitySet="messagesTemplates" />
+            <End Role="confirms" EntitySet="confirms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_confirms_salaryIncrease" Association="Self.FK_confirms_salaryIncrease">
+            <End Role="salaryIncrease" EntitySet="salaryIncrease" />
+            <End Role="confirms" EntitySet="confirms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_confirms_tasks" Association="Self.FK_confirms_tasks">
+            <End Role="tasks" EntitySet="tasks" />
+            <End Role="confirms" EntitySet="confirms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_custodies_employees" Association="Self.FK_custodies_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="custodies" EntitySet="custodies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_departments_managements" Association="Self.FK_departments_managements">
+            <End Role="managements" EntitySet="managements" />
+            <End Role="departments" EntitySet="departments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EemployeesEvents_employees" Association="Self.FK_EemployeesEvents_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="EemployeesEvents" EntitySet="EemployeesEvents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EemployeesEvents_events" Association="Self.FK_EemployeesEvents_events">
+            <End Role="events" EntitySet="events" />
+            <End Role="EemployeesEvents" EntitySet="EemployeesEvents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employees_departments" Association="Self.FK_employees_departments">
+            <End Role="departments" EntitySet="departments" />
+            <End Role="employees" EntitySet="employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employees_jobs" Association="Self.FK_employees_jobs">
+            <End Role="jobs" EntitySet="jobs" />
+            <End Role="employees" EntitySet="employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employeesScheduleVacations_employees" Association="Self.FK_employeesScheduleVacations_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="employeesScheduleVacations" EntitySet="employeesScheduleVacations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employeesScheduleVacations_scheduleVacations" Association="Self.FK_employeesScheduleVacations_scheduleVacations">
+            <End Role="scheduleVacations" EntitySet="scheduleVacations" />
+            <End Role="employeesScheduleVacations" EntitySet="employeesScheduleVacations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employeesTasks_employees" Association="Self.FK_employeesTasks_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="employeesTasks" EntitySet="employeesTasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employeesTasks_tasks" Association="Self.FK_employeesTasks_tasks">
+            <End Role="tasks" EntitySet="tasks" />
+            <End Role="employeesTasks" EntitySet="employeesTasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employeesTrainings_employees1" Association="Self.FK_employeesTrainings_employees1">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="employeesTrainings" EntitySet="employeesTrainings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employeesTrainings_trainings1" Association="Self.FK_employeesTrainings_trainings1">
+            <End Role="trainings" EntitySet="trainings" />
+            <End Role="employeesTrainings" EntitySet="employeesTrainings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employeesVacations_employees" Association="Self.FK_employeesVacations_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="employeesVacations" EntitySet="employeesVacations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employeesVacations_vacations" Association="Self.FK_employeesVacations_vacations">
+            <End Role="vacations" EntitySet="vacations" />
+            <End Role="employeesVacations" EntitySet="employeesVacations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hourlyPermissions_employees" Association="Self.FK_hourlyPermissions_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="hourlyPermissions" EntitySet="hourlyPermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Images_employees" Association="Self.FK_Images_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="Images" EntitySet="Images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_managements_branches" Association="Self.FK_managements_branches">
+            <End Role="branches" EntitySet="branches" />
+            <End Role="managements" EntitySet="managements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_materialsConsumption_employees" Association="Self.FK_materialsConsumption_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="materialsConsumption" EntitySet="materialsConsumption" />
+          </AssociationSet>
+          <AssociationSet Name="FK_messages_employees" Association="Self.FK_messages_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="messages" EntitySet="messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_periods_employees" Association="Self.FK_periods_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="periods" EntitySet="periods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_rewards_employees" Association="Self.FK_rewards_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="rewards" EntitySet="rewards" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HRSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="branches">
+          <Key>
+            <PropertyRef Name="BranchID" />
+          </Key>
+          <Property Name="BranchID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyID" Type="Int32" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="CreateUserID" Type="Int32" />
+          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="ManagerID" Type="Int32" />
+          <Property Name="Mobile" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="companies" Relationship="Self.FK_branches_companies" FromRole="branches" ToRole="companies" />
+          <NavigationProperty Name="managements" Relationship="Self.FK_managements_branches" FromRole="branches" ToRole="managements" />
+        </EntityType>
+        <EntityType Name="companies">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OurCompany" Type="Boolean" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="CreateUserID" Type="Int32" />
+          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="GeneralDirector" Type="Int32" />
+          <Property Name="FinancialManager" Type="Int32" />
+          <Property Name="HRManager" Type="Int32" />
+          <NavigationProperty Name="branches" Relationship="Self.FK_branches_companies" FromRole="companies" ToRole="branches" />
+        </EntityType>
+        <EntityType Name="confirms">
+          <Key>
+            <PropertyRef Name="ConfirmID" />
+          </Key>
+          <Property Name="ConfirmID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="CreateUserID" Type="Int32" />
+          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="TaskID" Type="Int32" />
+          <Property Name="SalaryIncreaseID" Type="Int32" />
+          <Property Name="MessagesTemplateID" Type="Int32" />
+          <Property Name="HourlyPermissionID" Type="Int32" />
+          <Property Name="JobID" Type="Int32" />
+          <Property Name="DepartmentID" Type="Int32" />
+          <Property Name="ConfirmType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <NavigationProperty Name="departments" Relationship="Self.FK_confirms_departments" FromRole="confirms" ToRole="departments" />
+          <NavigationProperty Name="employees" Relationship="Self.FK_confirms_employees" FromRole="confirms" ToRole="employees" />
+          <NavigationProperty Name="hourlyPermissions" Relationship="Self.FK_confirms_hourlyPermissions" FromRole="confirms" ToRole="hourlyPermissions" />
+          <NavigationProperty Name="jobs" Relationship="Self.FK_confirms_jobs" FromRole="confirms" ToRole="jobs" />
+          <NavigationProperty Name="messagesTemplates" Relationship="Self.FK_confirms_messagesTemplates" FromRole="confirms" ToRole="messagesTemplates" />
+          <NavigationProperty Name="salaryIncrease" Relationship="Self.FK_confirms_salaryIncrease" FromRole="confirms" ToRole="salaryIncrease" />
+          <NavigationProperty Name="tasks" Relationship="Self.FK_confirms_tasks" FromRole="confirms" ToRole="tasks" />
+        </EntityType>
+        <EntityType Name="custodies">
+          <Key>
+            <PropertyRef Name="CustodyID" />
+          </Key>
+          <Property Name="CustodyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="CreateUserID" Type="Int32" />
+          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <NavigationProperty Name="employees" Relationship="Self.FK_custodies_employees" FromRole="custodies" ToRole="employees" />
+        </EntityType>
+        <EntityType Name="departments">
+          <Key>
+            <PropertyRef Name="DepartmentID" />
+          </Key>
+          <Property Name="DepartmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="CreateUserID" Type="Int32" />
+          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="ManagerID" Type="Int32" />
+          <Property Name="Mobile" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ManagementID" Type="Int32" />
+          <NavigationProperty Name="confirms" Relationship="Self.FK_confirms_departments" FromRole="departments" ToRole="confirms" />
+          <NavigationProperty Name="managements" Relationship="Self.FK_departments_managements" FromRole="departments" ToRole="managements" />
+          <NavigationProperty Name="employees" Relationship="Self.FK_employees_departments" FromRole="departments" ToRole="employees" />
+        </EntityType>
+        <EntityType Name="EemployeesEvents">
+          <Key>
+            <PropertyRef Name="EmployeesEventsID" />
+          </Key>
+          <Property Name="EmployeesEventsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventID" Type="Int32" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="CreateUserID" Type="Int32" />
+          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="employees" Relationship="Self.FK_EemployeesEvents_employees" FromRole="EemployeesEvents" ToRole="employees" />
+          <NavigationProperty Name="events" Relationship="Self.FK_EemployeesEvents_events" FromRole="EemployeesEvents" ToRole="events" />
+        </EntityType>
+        <EntityType Name="employees">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentID" Type="Int32" />
+          <Property Name="VacationsBalance" Type="Int32" />
+          <Property Name="WarningPeriod" Type="Boolean" />
+          <Property Name="NameAr" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NameEn" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Precision="7" />
+          <Property Name="Gender" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MaritalStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Nationality" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Religion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BloodType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdentityType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IdentityNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IdentityReleaseDate" Type="DateTime" Precision="7" />
+          <Property Name="IdentityExpiryDate" Type="DateTime" Precision="7" />
+          <Property Name="PassportNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PassportReleaseDate" Type="DateTime" Precision="7" />
+          <Property Name="PassportExpiryDate" Type="DateTime" Precision="7" />
+          <Property Name="PassportCountry" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NoConviction" Type="Boolean" />
+          <Property Name="BankAccount" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BankName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IBANNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SWIFTCODE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PaymentType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EducationCertificate1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EducationCertificateFromDate1" Type="DateTime" Precision="7" />
+          <Property Name="EducationCertificateToDate1" Type="DateTime" Precision="7" />
+          <Property Name="EducationCertificateSource1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EducationCertificate2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EducationCertificateFromDate2" Type="DateTime" Precision="7" />
+          <Property Name="EducationCertificateToDate2" Type="DateTime" Precision="7" />
+          <Property Name="EducationCertificateSource2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EducationCertificate3" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EducationCertificateFromDate3" Type="DateTime" Precision="7" />
+          <Property Name="EducationCertificateToDate3" Type="DateTime" Precision="7" />
+          <Property Name="EducationCertificateSource3" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="WorkExperience1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WorkExperience2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WorkExperience3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="CreateUserID" Type="Int32" />
+          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="BasicSalary" Type="Decimal" Precision="20" Scale="3" />
+          <Property Name="TransportationCompensationType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HousingCompensationType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HiringDate" Type="DateTime" Precision="7" />
+          <Property Name="Sequence" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UnifiedNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ResidenceDate" Type="DateTime" Precision="7" />
+          <Property Name="JobID" Type="Int32" />
+          <NavigationProperty Name="confirms" Relationship="Self.FK_confirms_employees" FromRole="employees" ToRole="confirms" />
+          <NavigationProperty Name="custodies" Relationship="Self.FK_custodies_employees" FromRole="employees" ToRole="custodies" />
+          <NavigationProperty Name="departments" Relationship="Self.FK_employees_departments" FromRole="employees" ToRole="departments" />
+          <NavigationProperty Name="EemployeesEvents" Relationship="Self.FK_EemployeesEvents_employees" FromRole="employees" ToRole="EemployeesEvents" />
+          <NavigationProperty Name="jobs" Relationship="Self.FK_employees_jobs" FromRole="employees" ToRole="jobs" />
+          <NavigationProperty Name="employeesScheduleVacations" Relationship="Self.FK_employeesScheduleVacations_employees" FromRole="employees" ToRole="employeesScheduleVacations" />
+          <NavigationProperty Name="employeesTasks" Relationship="Self.FK_employeesTasks_employees" FromRole="employees" ToRole="employeesTasks" />
+          <NavigationProperty Name="employeesTrainings" Relationship="Self.FK_employeesTrainings_employees1" FromRole="employees" ToRole="employeesTrainings" />
+          <NavigationProperty Name="employeesVacations" Relationship="Self.FK_employeesVacations_employees" FromRole="employees" ToRole="employeesVacations" />
+          <NavigationProperty Name="hourlyPermissions" Relationship="Self.FK_hourlyPermissions_employees" FromRole="employees" ToRole="hourlyPermissions" />
+          <NavigationProperty Name="Images" Relationship="Self.FK_Images_employees" FromRole="employees" ToRole="Images" />
+          <NavigationProperty Name="materialsConsumption" Relationship="Self.FK_materialsConsumption_employees" FromRole="employees" ToRole="materialsConsumption" />
+          <NavigationProperty Name="messages" Relationship="Self.FK_messages_employees" FromRole="employees" ToRole="messages" />
+          <NavigationProperty Name="periods" Relationship="Self.FK_periods_employees" FromRole="employees" ToRole="periods" />
+          <NavigationProperty Name="rewards" Relationship="Self.FK_rewards_employees" FromRole="employees" ToRole="rewards" />
+        </EntityType>
+        <EntityType Name="employeesScheduleVacations">
+          <Key>
+            <PropertyRef Name="EmployeesScheduleVacationsID" />
+          </Key>
+          <Property Name="EmployeesScheduleVacationsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ScheduleVacationID" Type="Int32" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="CreateUserID" Type="Int32" />
+          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="employees" Relationship="Self.FK_employeesScheduleVacations_employees" FromRole="employeesScheduleVacations" ToRole="employees" />
+          <NavigationProperty Name="scheduleVacations" Relationship="Self.FK_employeesScheduleVacations_scheduleVacations" FromRole="employeesScheduleVacations" ToRole="scheduleVacations" />
+        </EntityType>
+        <EntityType Name="employeesTrainings">
+          <Key>
+            <PropertyRef Name="EmployeesTrainingsID" />
+          </Key>
+          <Property Name="EmployeesTrainingsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TrainingID" Type="Int32" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="CreateUserID" Type="Int32" />
+          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="employees" Relationship="Self.FK_employeesTrainings_employees1" FromRole="employeesTrainings" ToRole="employees" />
+          <NavigationProperty Name="trainings" Relationship="Self.FK_employeesTrainings_trainings1" FromRole="employeesTrainings" ToRole="trainings" />
+        </EntityType>
+        <EntityType Name="employeesVacations">
+          <Key>
+            <PropertyRef Name="EmployeesVacationsID" />
+          </Key>
+          <Property Name="EmployeesVacationsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VacationID" Type="Int32" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="CreateUserID" Type="Int32" />
+          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="employees" Relationship="Self.FK_employeesVacations_employees" FromRole="employeesVacations" ToRole="employees" />
+          <NavigationProperty Name="vacations" Relationship="Self.FK_employeesVacations_vacations" FromRole="employeesVacations" ToRole="vacations" />
+        </EntityType>
+        <EntityType Name="events">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="CreateUserID" Type="Int32" />
+          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="EemployeesEvents" Relationship="Self.FK_EemployeesEvents_events" FromRole="events" ToRole="EemployeesEvents" />
+        </EntityType>
+        <EntityType Name="hourlyPermissions">
+          <Key>
+            <PropertyRef Name="HourlyPermissionID" />
+          </Key>
+          <Property Name="HourlyPermissionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="CreateUserID" Type="Int32" />
+          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="employeeID" Type="Int32" />
+          <NavigationProperty Name="confirms" Relationship="Self.FK_confirms_hourlyPermissions" FromRole="hourlyPermissions" ToRole="confirms" />
+          <NavigationProperty Name="employees" Relationship="Self.FK_hourlyPermissions_employees" FromRole="hourlyPermissions" ToRole="employees" />
+        </EntityType>
+        <EntityType Name="Images">
+          <Key>
+            <PropertyRef Name="ImageId" />
+          </Key>
+          <Property Name="ImageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="docName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="docnum" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <NavigationProperty Name="employees" Relationship="Self.FK_Images_employees" FromRole="Images" ToRole="employees" />
+        </EntityType>
+        <EntityType Name="jobs">
+          <Key>
+            <PropertyRef Name="JobID" />
+          </Key>
+          <Property Name="JobID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="JobLevel" Type="Int32" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="CreateUserID" Type="Int32" />
+          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="confirms" Relationship="Self.FK_confirms_jobs" FromRole="jobs" ToRole="confirms" />
+          <NavigationProperty Name="employees" Relationship="Self.FK_employees_jobs" FromRole="jobs" ToRole="employees" />
+        </EntityType>
+        <EntityType Name="managements">
+          <Key>
+            <PropertyRef Name="ManagementID" />
+          </Key>
+          <Property Name="ManagementID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BranchID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="CreateUserID" Type="Int32" />
+          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="ManagerID" Type="Int32" />
+          <Property Name="Mobile" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="branches" Relationship="Self.FK_managements_branches" FromRole="managements" ToRole="branches" />
+          <NavigationProperty Name="departments" Relationship="Self.FK_departments_managements" FromRole="managements" ToRole="departments" />
+        </EntityType>
+        <EntityType Name="materialsConsumption">
+          <Key>
+            <PropertyRef Name="MaterialsConsumptionID" />
+          </Key>
+          <Property Name="MaterialsConsumptionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="CreateUserID" Type="Int32" />
+          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <NavigationProperty Name="employees" Relationship="Self.FK_materialsConsumption_employees" FromRole="materialsConsumption" ToRole="employees" />
+        </EntityType>
+        <EntityType Name="messages">
+          <Key>
+            <PropertyRef Name="MessageID" />
+          </Key>
+          <Property Name="MessageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="CreateUserID" Type="Int32" />
+          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <NavigationProperty Name="employees" Relationship="Self.FK_messages_employees" FromRole="messages" ToRole="employees" />
+        </EntityType>
+        <EntityType Name="messagesTemplates">
+          <Key>
+            <PropertyRef Name="MessagesTemplateID" />
+          </Key>
+          <Property Name="MessagesTemplateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="CreateUserID" Type="Int32" />
+          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="confirms" Relationship="Self.FK_confirms_messagesTemplates" FromRole="messagesTemplates" ToRole="confirms" />
+        </EntityType>
+        <EntityType Name="periods">
+          <Key>
+            <PropertyRef Name="PeriodID" />
+          </Key>
+          <Property Name="PeriodID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="CreateUserID" Type="Int32" />
+          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="StartTime" Type="DateTime" Precision="7" />
+          <Property Name="EndTime" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="employees" Relationship="Self.FK_periods_employees" FromRole="periods" ToRole="employees" />
+        </EntityType>
+        <EntityType Name="rewards">
+          <Key>
+            <PropertyRef Name="RewardID" />
+          </Key>
+          <Property Name="RewardID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="CreateUserID" Type="Int32" />
+          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <NavigationProperty Name="employees" Relationship="Self.FK_rewards_employees" FromRole="rewards" ToRole="employees" />
+        </EntityType>
+        <EntityType Name="salaryIncrease">
+          <Key>
+            <PropertyRef Name="SalaryIncreaseID" />
+          </Key>
+          <Property Name="SalaryIncreaseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IncreaseType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IncreaseValue" Type="Decimal" Precision="20" Scale="3" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="CreateUserID" Type="Int32" />
+          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="confirms" Relationship="Self.FK_confirms_salaryIncrease" FromRole="salaryIncrease" ToRole="confirms" />
+        </EntityType>
+        <EntityType Name="scheduleVacations">
+          <Key>
+            <PropertyRef Name="ScheduleVacationID" />
+          </Key>
+          <Property Name="ScheduleVacationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="CreateUserID" Type="Int32" />
+          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="employeesScheduleVacations" Relationship="Self.FK_employeesScheduleVacations_scheduleVacations" FromRole="scheduleVacations" ToRole="employeesScheduleVacations" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tasks">
+          <Key>
+            <PropertyRef Name="TaskID" />
+          </Key>
+          <Property Name="TaskID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RepeatedEvery" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="CreateUserID" Type="Int32" />
+          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="confirms" Relationship="Self.FK_confirms_tasks" FromRole="tasks" ToRole="confirms" />
+          <NavigationProperty Name="employeesTasks" Relationship="Self.FK_employeesTasks_tasks" FromRole="tasks" ToRole="employeesTasks" />
+        </EntityType>
+        <EntityType Name="trainings">
+          <Key>
+            <PropertyRef Name="TrainingID" />
+          </Key>
+          <Property Name="TrainingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="CreateUserID" Type="Int32" />
+          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="employeesTrainings" Relationship="Self.FK_employeesTrainings_trainings1" FromRole="trainings" ToRole="employeesTrainings" />
+        </EntityType>
+        <EntityType Name="vacations">
+          <Key>
+            <PropertyRef Name="VacationID" />
+          </Key>
+          <Property Name="VacationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="CreateUserID" Type="Int32" />
+          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="employeesVacations" Relationship="Self.FK_employeesVacations_vacations" FromRole="vacations" ToRole="employeesVacations" />
+        </EntityType>
+        <EntityType Name="employeesTasks">
+          <Key>
+            <PropertyRef Name="EmployeesTasksID" />
+          </Key>
+          <Property Name="EmployeesTasksID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="CreateUserID" Type="Int32" />
+          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="TaskID" Type="Int32" />
+          <Property Name="Status" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="employees" Relationship="Self.FK_employeesTasks_employees" FromRole="employeesTasks" ToRole="employees" />
+          <NavigationProperty Name="tasks" Relationship="Self.FK_employeesTasks_tasks" FromRole="employeesTasks" ToRole="tasks" />
+        </EntityType>
+        <Association Name="FK_branches_companies">
+          <End Role="companies" Type="Self.companies" Multiplicity="0..1" />
+          <End Role="branches" Type="Self.branches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="branches">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_managements_branches">
+          <End Role="branches" Type="Self.branches" Multiplicity="0..1" />
+          <End Role="managements" Type="Self.managements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="branches">
+              <PropertyRef Name="BranchID" />
+            </Principal>
+            <Dependent Role="managements">
+              <PropertyRef Name="BranchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_confirms_departments">
+          <End Role="departments" Type="Self.departments" Multiplicity="0..1" />
+          <End Role="confirms" Type="Self.confirms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="departments">
+              <PropertyRef Name="DepartmentID" />
+            </Principal>
+            <Dependent Role="confirms">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_confirms_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="confirms" Type="Self.confirms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="confirms">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_confirms_hourlyPermissions">
+          <End Role="hourlyPermissions" Type="Self.hourlyPermissions" Multiplicity="0..1" />
+          <End Role="confirms" Type="Self.confirms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hourlyPermissions">
+              <PropertyRef Name="HourlyPermissionID" />
+            </Principal>
+            <Dependent Role="confirms">
+              <PropertyRef Name="HourlyPermissionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_confirms_jobs">
+          <End Role="jobs" Type="Self.jobs" Multiplicity="0..1" />
+          <End Role="confirms" Type="Self.confirms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="jobs">
+              <PropertyRef Name="JobID" />
+            </Principal>
+            <Dependent Role="confirms">
+              <PropertyRef Name="JobID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_confirms_messagesTemplates">
+          <End Role="messagesTemplates" Type="Self.messagesTemplates" Multiplicity="0..1" />
+          <End Role="confirms" Type="Self.confirms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="messagesTemplates">
+              <PropertyRef Name="MessagesTemplateID" />
+            </Principal>
+            <Dependent Role="confirms">
+              <PropertyRef Name="MessagesTemplateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_confirms_salaryIncrease">
+          <End Role="salaryIncrease" Type="Self.salaryIncrease" Multiplicity="0..1" />
+          <End Role="confirms" Type="Self.confirms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="salaryIncrease">
+              <PropertyRef Name="SalaryIncreaseID" />
+            </Principal>
+            <Dependent Role="confirms">
+              <PropertyRef Name="SalaryIncreaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_confirms_tasks">
+          <End Role="tasks" Type="Self.tasks" Multiplicity="0..1" />
+          <End Role="confirms" Type="Self.confirms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tasks">
+              <PropertyRef Name="TaskID" />
+            </Principal>
+            <Dependent Role="confirms">
+              <PropertyRef Name="TaskID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_custodies_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="custodies" Type="Self.custodies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="custodies">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_departments_managements">
+          <End Role="managements" Type="Self.managements" Multiplicity="0..1" />
+          <End Role="departments" Type="Self.departments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="managements">
+              <PropertyRef Name="ManagementID" />
+            </Principal>
+            <Dependent Role="departments">
+              <PropertyRef Name="ManagementID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employees_departments">
+          <End Role="departments" Type="Self.departments" Multiplicity="0..1" />
+          <End Role="employees" Type="Self.employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="departments">
+              <PropertyRef Name="DepartmentID" />
+            </Principal>
+            <Dependent Role="employees">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EemployeesEvents_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="1" />
+          <End Role="EemployeesEvents" Type="Self.EemployeesEvents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="EemployeesEvents">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EemployeesEvents_events">
+          <End Role="events" Type="Self.events" Multiplicity="0..1" />
+          <End Role="EemployeesEvents" Type="Self.EemployeesEvents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="events">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="EemployeesEvents">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employees_jobs">
+          <End Role="jobs" Type="Self.jobs" Multiplicity="0..1" />
+          <End Role="employees" Type="Self.employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="jobs">
+              <PropertyRef Name="JobID" />
+            </Principal>
+            <Dependent Role="employees">
+              <PropertyRef Name="JobID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employeesScheduleVacations_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="employeesScheduleVacations" Type="Self.employeesScheduleVacations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="employeesScheduleVacations">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employeesTasks_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="employeesTasks" Type="Self.employeesTasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="employeesTasks">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employeesTrainings_employees1">
+          <End Role="employees" Type="Self.employees" Multiplicity="1" />
+          <End Role="employeesTrainings" Type="Self.employeesTrainings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="employeesTrainings">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employeesVacations_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="employeesVacations" Type="Self.employeesVacations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="employeesVacations">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hourlyPermissions_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="hourlyPermissions" Type="Self.hourlyPermissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="hourlyPermissions">
+              <PropertyRef Name="employeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Images_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="Images" Type="Self.Images" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="Images">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_materialsConsumption_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="materialsConsumption" Type="Self.materialsConsumption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="materialsConsumption">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_messages_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="messages" Type="Self.messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="messages">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_periods_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="periods" Type="Self.periods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="periods">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rewards_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="rewards" Type="Self.rewards" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="rewards">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employeesScheduleVacations_scheduleVacations">
+          <End Role="scheduleVacations" Type="Self.scheduleVacations" Multiplicity="0..1" />
+          <End Role="employeesScheduleVacations" Type="Self.employeesScheduleVacations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="scheduleVacations">
+              <PropertyRef Name="ScheduleVacationID" />
+            </Principal>
+            <Dependent Role="employeesScheduleVacations">
+              <PropertyRef Name="ScheduleVacationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employeesTrainings_trainings1">
+          <End Role="trainings" Type="Self.trainings" Multiplicity="0..1" />
+          <End Role="employeesTrainings" Type="Self.employeesTrainings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trainings">
+              <PropertyRef Name="TrainingID" />
+            </Principal>
+            <Dependent Role="employeesTrainings">
+              <PropertyRef Name="TrainingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employeesVacations_vacations">
+          <End Role="vacations" Type="Self.vacations" Multiplicity="0..1" />
+          <End Role="employeesVacations" Type="Self.employeesVacations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vacations">
+              <PropertyRef Name="VacationID" />
+            </Principal>
+            <Dependent Role="employeesVacations">
+              <PropertyRef Name="VacationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employeesTasks_tasks">
+          <End Role="tasks" Type="Self.tasks" Multiplicity="0..1" />
+          <End Role="employeesTasks" Type="Self.employeesTasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tasks">
+              <PropertyRef Name="TaskID" />
+            </Principal>
+            <Dependent Role="employeesTasks">
+              <PropertyRef Name="TaskID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HRSystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="branches" EntityType="Self.branches" />
+          <EntitySet Name="companies" EntityType="Self.companies" />
+          <EntitySet Name="confirms" EntityType="Self.confirms" />
+          <EntitySet Name="custodies" EntityType="Self.custodies" />
+          <EntitySet Name="departments" EntityType="Self.departments" />
+          <EntitySet Name="EemployeesEvents" EntityType="Self.EemployeesEvents" />
+          <EntitySet Name="employees" EntityType="Self.employees" />
+          <EntitySet Name="employeesScheduleVacations" EntityType="Self.employeesScheduleVacations" />
+          <EntitySet Name="employeesTrainings" EntityType="Self.employeesTrainings" />
+          <EntitySet Name="employeesVacations" EntityType="Self.employeesVacations" />
+          <EntitySet Name="events" EntityType="Self.events" />
+          <EntitySet Name="hourlyPermissions" EntityType="Self.hourlyPermissions" />
+          <EntitySet Name="Images" EntityType="Self.Images" />
+          <EntitySet Name="jobs" EntityType="Self.jobs" />
+          <EntitySet Name="managements" EntityType="Self.managements" />
+          <EntitySet Name="materialsConsumption" EntityType="Self.materialsConsumption" />
+          <EntitySet Name="messages" EntityType="Self.messages" />
+          <EntitySet Name="messagesTemplates" EntityType="Self.messagesTemplates" />
+          <EntitySet Name="periods" EntityType="Self.periods" />
+          <EntitySet Name="rewards" EntityType="Self.rewards" />
+          <EntitySet Name="salaryIncrease" EntityType="Self.salaryIncrease" />
+          <EntitySet Name="scheduleVacations" EntityType="Self.scheduleVacations" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="tasks" EntityType="Self.tasks" />
+          <EntitySet Name="trainings" EntityType="Self.trainings" />
+          <EntitySet Name="vacations" EntityType="Self.vacations" />
+          <EntitySet Name="employeesTasks" EntityType="Self.employeesTasks" />
+          <AssociationSet Name="FK_branches_companies" Association="Self.FK_branches_companies">
+            <End Role="companies" EntitySet="companies" />
+            <End Role="branches" EntitySet="branches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_managements_branches" Association="Self.FK_managements_branches">
+            <End Role="branches" EntitySet="branches" />
+            <End Role="managements" EntitySet="managements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_confirms_departments" Association="Self.FK_confirms_departments">
+            <End Role="departments" EntitySet="departments" />
+            <End Role="confirms" EntitySet="confirms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_confirms_employees" Association="Self.FK_confirms_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="confirms" EntitySet="confirms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_confirms_hourlyPermissions" Association="Self.FK_confirms_hourlyPermissions">
+            <End Role="hourlyPermissions" EntitySet="hourlyPermissions" />
+            <End Role="confirms" EntitySet="confirms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_confirms_jobs" Association="Self.FK_confirms_jobs">
+            <End Role="jobs" EntitySet="jobs" />
+            <End Role="confirms" EntitySet="confirms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_confirms_messagesTemplates" Association="Self.FK_confirms_messagesTemplates">
+            <End Role="messagesTemplates" EntitySet="messagesTemplates" />
+            <End Role="confirms" EntitySet="confirms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_confirms_salaryIncrease" Association="Self.FK_confirms_salaryIncrease">
+            <End Role="salaryIncrease" EntitySet="salaryIncrease" />
+            <End Role="confirms" EntitySet="confirms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_confirms_tasks" Association="Self.FK_confirms_tasks">
+            <End Role="tasks" EntitySet="tasks" />
+            <End Role="confirms" EntitySet="confirms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_custodies_employees" Association="Self.FK_custodies_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="custodies" EntitySet="custodies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_departments_managements" Association="Self.FK_departments_managements">
+            <End Role="managements" EntitySet="managements" />
+            <End Role="departments" EntitySet="departments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employees_departments" Association="Self.FK_employees_departments">
+            <End Role="departments" EntitySet="departments" />
+            <End Role="employees" EntitySet="employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EemployeesEvents_employees" Association="Self.FK_EemployeesEvents_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="EemployeesEvents" EntitySet="EemployeesEvents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EemployeesEvents_events" Association="Self.FK_EemployeesEvents_events">
+            <End Role="events" EntitySet="events" />
+            <End Role="EemployeesEvents" EntitySet="EemployeesEvents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employees_jobs" Association="Self.FK_employees_jobs">
+            <End Role="jobs" EntitySet="jobs" />
+            <End Role="employees" EntitySet="employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employeesScheduleVacations_employees" Association="Self.FK_employeesScheduleVacations_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="employeesScheduleVacations" EntitySet="employeesScheduleVacations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employeesTasks_employees" Association="Self.FK_employeesTasks_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="employeesTasks" EntitySet="employeesTasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employeesTrainings_employees1" Association="Self.FK_employeesTrainings_employees1">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="employeesTrainings" EntitySet="employeesTrainings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employeesVacations_employees" Association="Self.FK_employeesVacations_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="employeesVacations" EntitySet="employeesVacations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hourlyPermissions_employees" Association="Self.FK_hourlyPermissions_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="hourlyPermissions" EntitySet="hourlyPermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Images_employees" Association="Self.FK_Images_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="Images" EntitySet="Images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_materialsConsumption_employees" Association="Self.FK_materialsConsumption_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="materialsConsumption" EntitySet="materialsConsumption" />
+          </AssociationSet>
+          <AssociationSet Name="FK_messages_employees" Association="Self.FK_messages_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="messages" EntitySet="messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_periods_employees" Association="Self.FK_periods_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="periods" EntitySet="periods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_rewards_employees" Association="Self.FK_rewards_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="rewards" EntitySet="rewards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employeesScheduleVacations_scheduleVacations" Association="Self.FK_employeesScheduleVacations_scheduleVacations">
+            <End Role="scheduleVacations" EntitySet="scheduleVacations" />
+            <End Role="employeesScheduleVacations" EntitySet="employeesScheduleVacations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employeesTrainings_trainings1" Association="Self.FK_employeesTrainings_trainings1">
+            <End Role="trainings" EntitySet="trainings" />
+            <End Role="employeesTrainings" EntitySet="employeesTrainings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employeesVacations_vacations" Association="Self.FK_employeesVacations_vacations">
+            <End Role="vacations" EntitySet="vacations" />
+            <End Role="employeesVacations" EntitySet="employeesVacations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employeesTasks_tasks" Association="Self.FK_employeesTasks_tasks">
+            <End Role="tasks" EntitySet="tasks" />
+            <End Role="employeesTasks" EntitySet="employeesTasks" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HRSystemModelStoreContainer" CdmEntityContainer="HRSystemEntities">
+          <EntitySetMapping Name="branches">
+            <EntityTypeMapping TypeName="HRSystemModel.branches">
+              <MappingFragment StoreEntitySet="branches">
+                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="companies">
+            <EntityTypeMapping TypeName="HRSystemModel.companies">
+              <MappingFragment StoreEntitySet="companies">
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="OurCompany" ColumnName="OurCompany" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="GeneralDirector" ColumnName="GeneralDirector" />
+                <ScalarProperty Name="FinancialManager" ColumnName="FinancialManager" />
+                <ScalarProperty Name="HRManager" ColumnName="HRManager" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="confirms">
+            <EntityTypeMapping TypeName="HRSystemModel.confirms">
+              <MappingFragment StoreEntitySet="confirms">
+                <ScalarProperty Name="ConfirmID" ColumnName="ConfirmID" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+                <ScalarProperty Name="SalaryIncreaseID" ColumnName="SalaryIncreaseID" />
+                <ScalarProperty Name="MessagesTemplateID" ColumnName="MessagesTemplateID" />
+                <ScalarProperty Name="HourlyPermissionID" ColumnName="HourlyPermissionID" />
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="ConfirmType" ColumnName="ConfirmType" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="custodies">
+            <EntityTypeMapping TypeName="HRSystemModel.custodies">
+              <MappingFragment StoreEntitySet="custodies">
+                <ScalarProperty Name="CustodyID" ColumnName="CustodyID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="departments">
+            <EntityTypeMapping TypeName="HRSystemModel.departments">
+              <MappingFragment StoreEntitySet="departments">
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="ManagementID" ColumnName="ManagementID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EemployeesEvents">
+            <EntityTypeMapping TypeName="HRSystemModel.EemployeesEvents">
+              <MappingFragment StoreEntitySet="EemployeesEvents">
+                <ScalarProperty Name="EmployeesEventsID" ColumnName="EmployeesEventsID" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employees">
+            <EntityTypeMapping TypeName="HRSystemModel.employees">
+              <MappingFragment StoreEntitySet="employees">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="VacationsBalance" ColumnName="VacationsBalance" />
+                <ScalarProperty Name="WarningPeriod" ColumnName="WarningPeriod" />
+                <ScalarProperty Name="NameAr" ColumnName="NameAr" />
+                <ScalarProperty Name="NameEn" ColumnName="NameEn" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="Religion" ColumnName="Religion" />
+                <ScalarProperty Name="BloodType" ColumnName="BloodType" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="IdentityType" ColumnName="IdentityType" />
+                <ScalarProperty Name="IdentityNumber" ColumnName="IdentityNumber" />
+                <ScalarProperty Name="IdentityReleaseDate" ColumnName="IdentityReleaseDate" />
+                <ScalarProperty Name="IdentityExpiryDate" ColumnName="IdentityExpiryDate" />
+                <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
+                <ScalarProperty Name="PassportReleaseDate" ColumnName="PassportReleaseDate" />
+                <ScalarProperty Name="PassportExpiryDate" ColumnName="PassportExpiryDate" />
+                <ScalarProperty Name="PassportCountry" ColumnName="PassportCountry" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="NoConviction" ColumnName="NoConviction" />
+                <ScalarProperty Name="BankAccount" ColumnName="BankAccount" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="IBANNumber" ColumnName="IBANNumber" />
+                <ScalarProperty Name="SWIFTCODE" ColumnName="SWIFTCODE" />
+                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+                <ScalarProperty Name="EducationCertificate1" ColumnName="EducationCertificate1" />
+                <ScalarProperty Name="EducationCertificateFromDate1" ColumnName="EducationCertificateFromDate1" />
+                <ScalarProperty Name="EducationCertificateToDate1" ColumnName="EducationCertificateToDate1" />
+                <ScalarProperty Name="EducationCertificateSource1" ColumnName="EducationCertificateSource1" />
+                <ScalarProperty Name="EducationCertificate2" ColumnName="EducationCertificate2" />
+                <ScalarProperty Name="EducationCertificateFromDate2" ColumnName="EducationCertificateFromDate2" />
+                <ScalarProperty Name="EducationCertificateToDate2" ColumnName="EducationCertificateToDate2" />
+                <ScalarProperty Name="EducationCertificateSource2" ColumnName="EducationCertificateSource2" />
+                <ScalarProperty Name="EducationCertificate3" ColumnName="EducationCertificate3" />
+                <ScalarProperty Name="EducationCertificateFromDate3" ColumnName="EducationCertificateFromDate3" />
+                <ScalarProperty Name="EducationCertificateToDate3" ColumnName="EducationCertificateToDate3" />
+                <ScalarProperty Name="EducationCertificateSource3" ColumnName="EducationCertificateSource3" />
+                <ScalarProperty Name="WorkExperience1" ColumnName="WorkExperience1" />
+                <ScalarProperty Name="WorkExperience2" ColumnName="WorkExperience2" />
+                <ScalarProperty Name="WorkExperience3" ColumnName="WorkExperience3" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="BasicSalary" ColumnName="BasicSalary" />
+                <ScalarProperty Name="TransportationCompensationType" ColumnName="TransportationCompensationType" />
+                <ScalarProperty Name="HousingCompensationType" ColumnName="HousingCompensationType" />
+                <ScalarProperty Name="HiringDate" ColumnName="HiringDate" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="UnifiedNumber" ColumnName="UnifiedNumber" />
+                <ScalarProperty Name="ResidenceDate" ColumnName="ResidenceDate" />
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employeesScheduleVacations">
+            <EntityTypeMapping TypeName="HRSystemModel.employeesScheduleVacations">
+              <MappingFragment StoreEntitySet="employeesScheduleVacations">
+                <ScalarProperty Name="EmployeesScheduleVacationsID" ColumnName="EmployeesScheduleVacationsID" />
+                <ScalarProperty Name="ScheduleVacationID" ColumnName="ScheduleVacationID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employeesTrainings">
+            <EntityTypeMapping TypeName="HRSystemModel.employeesTrainings">
+              <MappingFragment StoreEntitySet="employeesTrainings">
+                <ScalarProperty Name="EmployeesTrainingsID" ColumnName="EmployeesTrainingsID" />
+                <ScalarProperty Name="TrainingID" ColumnName="TrainingID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employeesVacations">
+            <EntityTypeMapping TypeName="HRSystemModel.employeesVacations">
+              <MappingFragment StoreEntitySet="employeesVacations">
+                <ScalarProperty Name="EmployeesVacationsID" ColumnName="EmployeesVacationsID" />
+                <ScalarProperty Name="VacationID" ColumnName="VacationID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="events">
+            <EntityTypeMapping TypeName="HRSystemModel.events">
+              <MappingFragment StoreEntitySet="events">
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="hourlyPermissions">
+            <EntityTypeMapping TypeName="HRSystemModel.hourlyPermissions">
+              <MappingFragment StoreEntitySet="hourlyPermissions">
+                <ScalarProperty Name="HourlyPermissionID" ColumnName="HourlyPermissionID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="employeeID" ColumnName="employeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Images">
+            <EntityTypeMapping TypeName="HRSystemModel.Images">
+              <MappingFragment StoreEntitySet="Images">
+                <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+                <ScalarProperty Name="docName" ColumnName="docName" />
+                <ScalarProperty Name="docnum" ColumnName="docnum" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="jobs">
+            <EntityTypeMapping TypeName="HRSystemModel.jobs">
+              <MappingFragment StoreEntitySet="jobs">
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="JobLevel" ColumnName="JobLevel" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="managements">
+            <EntityTypeMapping TypeName="HRSystemModel.managements">
+              <MappingFragment StoreEntitySet="managements">
+                <ScalarProperty Name="ManagementID" ColumnName="ManagementID" />
+                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="materialsConsumption">
+            <EntityTypeMapping TypeName="HRSystemModel.materialsConsumption">
+              <MappingFragment StoreEntitySet="materialsConsumption">
+                <ScalarProperty Name="MaterialsConsumptionID" ColumnName="MaterialsConsumptionID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="messages">
+            <EntityTypeMapping TypeName="HRSystemModel.messages">
+              <MappingFragment StoreEntitySet="messages">
+                <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="messagesTemplates">
+            <EntityTypeMapping TypeName="HRSystemModel.messagesTemplates">
+              <MappingFragment StoreEntitySet="messagesTemplates">
+                <ScalarProperty Name="MessagesTemplateID" ColumnName="MessagesTemplateID" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="periods">
+            <EntityTypeMapping TypeName="HRSystemModel.periods">
+              <MappingFragment StoreEntitySet="periods">
+                <ScalarProperty Name="PeriodID" ColumnName="PeriodID" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rewards">
+            <EntityTypeMapping TypeName="HRSystemModel.rewards">
+              <MappingFragment StoreEntitySet="rewards">
+                <ScalarProperty Name="RewardID" ColumnName="RewardID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="salaryIncrease">
+            <EntityTypeMapping TypeName="HRSystemModel.salaryIncrease">
+              <MappingFragment StoreEntitySet="salaryIncrease">
+                <ScalarProperty Name="SalaryIncreaseID" ColumnName="SalaryIncreaseID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IncreaseType" ColumnName="IncreaseType" />
+                <ScalarProperty Name="IncreaseValue" ColumnName="IncreaseValue" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="scheduleVacations">
+            <EntityTypeMapping TypeName="HRSystemModel.scheduleVacations">
+              <MappingFragment StoreEntitySet="scheduleVacations">
+                <ScalarProperty Name="ScheduleVacationID" ColumnName="ScheduleVacationID" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="HRSystemModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tasks">
+            <EntityTypeMapping TypeName="HRSystemModel.tasks">
+              <MappingFragment StoreEntitySet="tasks">
+                <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="RepeatedEvery" ColumnName="RepeatedEvery" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="trainings">
+            <EntityTypeMapping TypeName="HRSystemModel.trainings">
+              <MappingFragment StoreEntitySet="trainings">
+                <ScalarProperty Name="TrainingID" ColumnName="TrainingID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vacations">
+            <EntityTypeMapping TypeName="HRSystemModel.vacations">
+              <MappingFragment StoreEntitySet="vacations">
+                <ScalarProperty Name="VacationID" ColumnName="VacationID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employeesTasks">
+            <EntityTypeMapping TypeName="HRSystemModel.employeesTasks">
+              <MappingFragment StoreEntitySet="employeesTasks">
+                <ScalarProperty Name="EmployeesTasksID" ColumnName="EmployeesTasksID" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
