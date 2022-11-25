@@ -239,20 +239,20 @@ namespace Human_Resource.App_Code
         }
         #endregion
     }
-    
 
-    public class DepartmentModel
+     
+    public class ManagementModel
     {
         #region Attributes
-        public int DepartmentID { get; set; }
+        public int ManagementID { get; set; }
         public string Name { get; set; }
-        public Nullable<int> ManagementID { get; set; }
-        public string ManagementName { get; set; }
+        public Nullable<int> BranchID { get; set; }
         public Nullable<int> ManagerID { get; set; }
         public string ManagerName { get; set; }
         public string Mobile { get; set; }
 
         public string Notes { get; set; }
+        public string Address { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public Nullable<int> CreateUserID { get; set; }
@@ -261,11 +261,164 @@ namespace Human_Resource.App_Code
         #endregion
 
         #region methods
-        public List<DepartmentModel> getAll()
+        public List<ManagementModel> getActivity()
         {
             using (HRSystemEntities entity = new HRSystemEntities())
             {
-                var depts = entity.departments
+                var depts = entity.managements.Where(x => x.IsActive == true)
+                                .Select(x => new ManagementModel()
+                                {
+                                    ManagementID = x.ManagementID,
+                                    Name = x.Name,
+                                    Mobile = x.Mobile,
+                                    ManagerID = x.ManagerID,
+                                    ManagerName = entity.employees.Where(m => m.EmployeeID == x.ManagerID).Select(m => m.NameAr).FirstOrDefault(),
+                                    CreateUserID = x.CreateUserID,
+                                    UpdateUserID = x.UpdateUserID,
+                                    Notes = x.Notes,
+                                    CreateDate = x.CreateDate,
+                                    UpdateDate = x.UpdateDate,
+                                }).ToList();
+                return depts;
+            }
+        }
+        public List<ManagementModel> getManagementByBranch(int BranchID)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var depts = entity.managements.Where(x => x.BranchID == BranchID && x.IsActive == true)
+                                .Select(x => new ManagementModel()
+                                {
+                                    ManagementID = x.ManagementID,
+                                    Name = x.Name,
+                                    Mobile = x.Mobile,
+                                    ManagerID = x.ManagerID,
+                                    ManagerName = entity.employees.Where(m => m.EmployeeID == x.ManagerID).Select(m => m.NameAr).FirstOrDefault(),
+                                    CreateUserID = x.CreateUserID,
+                                    UpdateUserID = x.UpdateUserID,
+                                    Notes = x.Notes,
+                                    CreateDate = x.CreateDate,
+                                    UpdateDate = x.UpdateDate,
+                                }).ToList();
+                return depts;
+            }
+        }
+        public ManagementModel getManagement(int managementId)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var dept = entity.managements.Where(x => x.ManagementID == managementId)
+                                .Select(x => new ManagementModel()
+                                {
+                                    ManagementID = x.ManagementID,
+                                    Name = x.Name,
+                                    Mobile = x.Mobile,
+                                    ManagerID = x.ManagerID,
+                                    ManagerName = entity.employees.Where(m => m.EmployeeID == x.ManagerID).Select(m => m.NameAr).FirstOrDefault(),
+                                    CreateUserID = x.CreateUserID,
+                                    UpdateUserID = x.UpdateUserID,
+                                    Notes = x.Notes,
+                                    CreateDate = x.CreateDate,
+                                    UpdateDate = x.UpdateDate,
+                                }).FirstOrDefault();
+                return dept;
+            }
+        }
+
+        public int SaveDept(ManagementModel dept)
+        {
+            try
+            {
+                managements management;
+
+                using (HRSystemEntities entity = new HRSystemEntities())
+                {
+                    if (dept.ManagementID.Equals(0))
+                    {
+                        management = new managements()
+                        {
+                            Name = dept.Name,
+                            ManagerID = dept.ManagerID,
+                            Mobile = dept.Mobile,
+                            BranchID = dept.BranchID,
+                            IsActive = true,
+                            CreateUserID = dept.CreateUserID,
+                            UpdateUserID = dept.UpdateUserID,
+                            CreateDate = DateTime.Now,
+                            UpdateDate = DateTime.Now,
+                        };
+                        management = entity.managements.Add(management);
+                    }
+                    else
+                    {
+                        management = entity.managements.Find(dept.ManagementID);
+                        management.Name = dept.Name;
+                        management.ManagerID = dept.ManagerID;
+                        management.Mobile = dept.Mobile;
+                        management.Notes = dept.Notes;
+                        management.IsActive = true;
+                        management.UpdateUserID = dept.UpdateUserID;
+                        management.UpdateDate = DateTime.Now;
+                    }
+                    entity.SaveChanges();
+                }
+                return management.ManagementID;
+            }
+
+            catch
+            {
+                return 0;
+            }
+        }
+        public bool DeleteDept(int deptId, int? userId)
+        {
+            try
+            {
+                using (HRSystemEntities entity = new HRSystemEntities())
+                {
+                    var dept = entity.managements.Find(deptId);
+                    dept.IsActive = false;
+                    dept.UpdateDate = DateTime.Now;
+                    dept.UpdateUserID = userId;
+                    entity.SaveChanges();
+                }
+                return true;
+            }
+
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+    }
+
+    
+    public class DepartmentModel
+    {
+        #region Attributes
+        public int DepartmentID { get; set; }
+        public string Name { get; set; }
+        public Nullable<int> ManagementID { get; set; }
+        public Nullable<int> ManagerID { get; set; }
+        public string ManagerName { get; set; }
+        public string Mobile { get; set; }
+
+        public string Notes { get; set; }
+        public string Address { get; set; }
+        public Nullable<System.DateTime> CreateDate { get; set; }
+        public Nullable<System.DateTime> UpdateDate { get; set; }
+        public Nullable<int> CreateUserID { get; set; }
+        public Nullable<int> UpdateUserID { get; set; }
+        public Nullable<bool> IsActive { get; set; }
+        #endregion
+
+        #region methods
+        public List<DepartmentModel> getActivity()
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var depts = entity.departments.Where(x => x.IsActive == true)
                                 .Select(x => new DepartmentModel()
                                 {
                                     DepartmentID = x.DepartmentID,
@@ -273,8 +426,27 @@ namespace Human_Resource.App_Code
                                     Mobile = x.Mobile,
                                     ManagerID = x.ManagerID,
                                     ManagerName = entity.employees.Where(m => m.EmployeeID == x.ManagerID).Select(m => m.NameAr).FirstOrDefault(),
-                                    ManagementID = x.ManagementID,
-                                    ManagementName = entity.managements.Where(m => m.ManagementID == x.ManagementID).Select(m => m.Name).FirstOrDefault(),
+                                    CreateUserID = x.CreateUserID,
+                                    UpdateUserID = x.UpdateUserID,
+                                    Notes = x.Notes,
+                                    CreateDate = x.CreateDate,
+                                    UpdateDate = x.UpdateDate,
+                                }).ToList();
+                return depts;
+            }
+        }
+        public List<DepartmentModel> getDepartmentByManagement(int ManagementID)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var depts = entity.departments.Where(x => x.ManagementID == ManagementID && x.IsActive == true)
+                                .Select(x => new DepartmentModel()
+                                {
+                                    DepartmentID = x.DepartmentID,
+                                    Name = x.Name,
+                                    Mobile = x.Mobile,
+                                    ManagerID = x.ManagerID,
+                                    ManagerName = entity.employees.Where(m => m.EmployeeID == x.ManagerID).Select(m => m.NameAr).FirstOrDefault(),
                                     CreateUserID = x.CreateUserID,
                                     UpdateUserID = x.UpdateUserID,
                                     Notes = x.Notes,
@@ -296,8 +468,6 @@ namespace Human_Resource.App_Code
                                     Mobile = x.Mobile,
                                     ManagerID = x.ManagerID,
                                     ManagerName = entity.employees.Where(m => m.EmployeeID == x.ManagerID).Select(m => m.NameAr).FirstOrDefault(),
-                                    ManagementID = x.ManagementID,
-                                    ManagementName = entity.managements.Where(m => m.ManagementID == x.ManagementID).Select(m => m.Name).FirstOrDefault(),
                                     CreateUserID = x.CreateUserID,
                                     UpdateUserID = x.UpdateUserID,
                                     Notes = x.Notes,
@@ -321,8 +491,8 @@ namespace Human_Resource.App_Code
                         department = new departments()
                         {
                             Name = dept.Name,
-                            Mobile = dept.Mobile,
                             ManagerID = dept.ManagerID,
+                            Mobile = dept.Mobile,
                             ManagementID = dept.ManagementID,
                             IsActive = true,
                             CreateUserID = dept.CreateUserID,
@@ -337,8 +507,7 @@ namespace Human_Resource.App_Code
                         department = entity.departments.Find(dept.DepartmentID);
                         department.Name = dept.Name;
                         department.ManagerID = dept.ManagerID;
-                        department.ManagementID = dept.ManagementID;
-                         department.Mobile = dept.Mobile;
+                        department.Mobile = dept.Mobile;
                         department.Notes = dept.Notes;
                         department.IsActive = true;
                         department.UpdateUserID = dept.UpdateUserID;
@@ -376,4 +545,5 @@ namespace Human_Resource.App_Code
         }
         #endregion
     }
+
 }

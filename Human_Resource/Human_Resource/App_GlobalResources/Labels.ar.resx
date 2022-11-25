@@ -339,4 +339,16 @@
   <data name="WorkHours" xml:space="preserve">
     <value>ساعات العمل</value>
   </data>
+  <data name="AddManagement" xml:space="preserve">
+    <value>إضافة إدارة</value>
+  </data>
+  <data name="Management" xml:space="preserve">
+    <value>الإداراة</value>
+  </data>
+  <data name="ManagementManager" xml:space="preserve">
+    <value>مدير الادارة</value>
+  </data>
+  <data name="HeadOfDepartment" xml:space="preserve">
+    <value>رئيس القسم</value>
+  </data>
 </root>

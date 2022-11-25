@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Academic &amp; Professional Certificates.
+        /// </summary>
+        internal static string AcademicCertificates {
+            get {
+                return ResourceManager.GetString("AcademicCertificates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Academic Education.
         /// </summary>
         internal static string AcademicEducation {
@@ -88,6 +97,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Management.
+        /// </summary>
+        internal static string AddManagement {
+            get {
+                return ResourceManager.GetString("AddManagement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Address.
         /// </summary>
         internal static string Address {
@@ -111,6 +129,15 @@ namespace Resources {
         internal static string BasicInformation {
             get {
                 return ResourceManager.GetString("BasicInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date of Birth.
+        /// </summary>
+        internal static string bod {
+            get {
+                return ResourceManager.GetString("bod", resourceCulture);
             }
         }
         
@@ -147,6 +174,15 @@ namespace Resources {
         internal static string Cancle {
             get {
                 return ResourceManager.GetString("Cancle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Certificate.
+        /// </summary>
+        internal static string Certificate {
+            get {
+                return ResourceManager.GetString("Certificate", resourceCulture);
             }
         }
         
@@ -196,6 +232,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Current Salary.
+        /// </summary>
+        internal static string CurrentSalary {
+            get {
+                return ResourceManager.GetString("CurrentSalary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deleted Successfully.
         /// </summary>
         internal static string DeleteSuccessfully {
@@ -237,6 +282,15 @@ namespace Resources {
         internal static string DeptManagerAssestant {
             get {
                 return ResourceManager.GetString("DeptManagerAssestant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Direct Supervisor.
+        /// </summary>
+        internal static string DirectSupervisor {
+            get {
+                return ResourceManager.GetString("DirectSupervisor", resourceCulture);
             }
         }
         
@@ -340,7 +394,16 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hiring Date.
+        ///   Looks up a localized string similar to Head of Department.
+        /// </summary>
+        internal static string HeadOfDepartment {
+            get {
+                return ResourceManager.GetString("HeadOfDepartment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recruitment Date.
         /// </summary>
         internal static string HiringDate {
             get {
@@ -354,6 +417,15 @@ namespace Resources {
         internal static string Home {
             get {
                 return ResourceManager.GetString("Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Job Description.
+        /// </summary>
+        internal static string JobDescription {
+            get {
+                return ResourceManager.GetString("JobDescription", resourceCulture);
             }
         }
         
@@ -390,6 +462,24 @@ namespace Resources {
         internal static string Male {
             get {
                 return ResourceManager.GetString("Male", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Management.
+        /// </summary>
+        internal static string Management {
+            get {
+                return ResourceManager.GetString("Management", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Management Manager.
+        /// </summary>
+        internal static string ManagementManager {
+            get {
+                return ResourceManager.GetString("ManagementManager", resourceCulture);
             }
         }
         
@@ -538,6 +628,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Previous Employment.
+        /// </summary>
+        internal static string PreviousEmployment {
+            get {
+                return ResourceManager.GetString("PreviousEmployment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         internal static string Save {
@@ -642,6 +741,15 @@ namespace Resources {
         internal static string VaccationTypes {
             get {
                 return ResourceManager.GetString("VaccationTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Work Hours.
+        /// </summary>
+        internal static string WorkHours {
+            get {
+                return ResourceManager.GetString("WorkHours", resourceCulture);
             }
         }
         
