@@ -44,7 +44,7 @@ namespace Human_Resource.Views.Settings
 
             EmployeeModel employeeModel = new EmployeeModel();
             List<EmployeeModel> employees = new List<EmployeeModel>();
-            employees = employeeModel.GetHiredEmps(true);
+            employees = employeeModel.GetHiredEmployees(true);
             emp.DataSource = employees;
             emp.DataValueField = "EmployeeID";
             if (Session["CultureName"] != null && Session["CultureName"].ToString().ToLower() == "en-us")
