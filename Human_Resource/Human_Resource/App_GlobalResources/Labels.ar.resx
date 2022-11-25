@@ -351,4 +351,13 @@
   <data name="HeadOfDepartment" xml:space="preserve">
     <value>رئيس القسم</value>
   </data>
+  <data name="Certificate1" xml:space="preserve">
+    <value>شهادة 1</value>
+  </data>
+  <data name="Certificate2" xml:space="preserve">
+    <value>شهادة 2</value>
+  </data>
+  <data name="Certificate3" xml:space="preserve">
+    <value>شهادة 3</value>
+  </data>
 </root>

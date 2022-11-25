@@ -187,6 +187,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Certificate 1.
+        /// </summary>
+        internal static string Certificate1 {
+            get {
+                return ResourceManager.GetString("Certificate1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Certificate 2.
+        /// </summary>
+        internal static string Certificate2 {
+            get {
+                return ResourceManager.GetString("Certificate2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Certificate3.
+        /// </summary>
+        internal static string Certificate3 {
+            get {
+                return ResourceManager.GetString("Certificate3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Civil No.
         /// </summary>
         internal static string CivilNo {

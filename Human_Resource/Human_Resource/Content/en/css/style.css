@@ -990,3 +990,62 @@ input[type=checkbox], input[type=radio] {
     padding: 9px;
     border-top:0px;
 }
+
+.c-form-dynamic {
+    position: relative;
+    background-color: #FFF;
+    padding: 10px;
+    width: 100%;
+    float: left;
+}
+
+    .c-form-dynamic .form-group {
+        width: 100%;
+        height: 30px;
+    }
+
+    .c-form-dynamic .div1 {
+        float: left;
+    }
+
+    .c-form-dynamic .div2 {
+        float: right;
+    }
+
+    .c-form-dynamic span {
+        display: block;
+        width: 100%;
+        float: left;
+        text-align: left;
+    }
+
+    .c-form-dynamic a {
+        color: #6c6c6f;
+        font-weight: bold;
+        display: block;
+        width: 5%;
+        float: right;
+        margin: 5px;
+    }
+
+    .c-form-dynamic .form-group span {
+        display: block;
+        width: 100%;
+        float: left;
+        text-align: left;
+        padding-top: 5px;
+    }
+
+    .c-form-dynamic input, select {
+        font-weight: bold;
+        display: block;
+        width: 90%;
+        float: left;
+    }
+
+        .c-form-dynamic input[type=submit] {
+            font-weight: bold;
+            display: block;
+            width: 20%;
+            float: right;
+        }
