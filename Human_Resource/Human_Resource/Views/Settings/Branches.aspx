@@ -181,10 +181,9 @@
                                                      </asp:LinkButton>  
                                              </ItemTemplate>
                                         </asp:TemplateField>
-                                   <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-Edit">
+                                   <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-delete">
                                              <ItemTemplate>                     
                                                      <asp:ImageButton  CommandArgument='<%# Eval("BranchID")%>' OnCommand="deletedatafromgrid"
-                                                            OnClientClick="return confirm(<%= Resources.Labels.ConfirmDelete %>);return false;"
                                                             ID="Image1" runat="server" ImageUrl="~/Images/delete.ico" />
                                                              
                                              </ItemTemplate>

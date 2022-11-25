@@ -173,7 +173,7 @@
                                                      </asp:LinkButton>  
                                              </ItemTemplate>
                                         </asp:TemplateField>
-                                   <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-Edit">
+                                   <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-delete">
                                              <ItemTemplate>                     
                                                      <asp:ImageButton  CommandArgument='<%# Eval("DepartmentID")%>' OnCommand="deletedatafromgrid"
                                                             OnClientClick="return confirm(<%= Resources.Labels.ConfirmDelete %>);return false;"
