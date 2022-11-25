@@ -58,13 +58,13 @@ namespace Human_Resource.Views.Settings
             DataBind();
         }
         [WebMethod(EnableSession = true)]
-        public static string SaveBranch(string departmentId,string name, string mobile, string address, string managerId)
+        public static string SaveBranch(string branchId,string name, string mobile, string address, string managerId)
         {
             try
             {
                 BranchModel dept = new BranchModel();
-                if (departmentId != "")
-                    dept.BranchID = int.Parse(departmentId);
+                if (branchId != "")
+                    dept.BranchID = int.Parse(branchId);
                 else
                     dept.BranchID = 0;
                 dept.Name = name;
@@ -98,8 +98,8 @@ namespace Human_Resource.Views.Settings
             {
                 BranchModel dept = new BranchModel();
 
-                int departmentId = int.Parse(ID);
-                dept = dept.getBranch(departmentId);
+                int branchId = int.Parse(ID);
+                dept = dept.getBranch(branchId);
 
                 return dept;
             }

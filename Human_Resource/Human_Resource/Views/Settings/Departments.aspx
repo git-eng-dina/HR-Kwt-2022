@@ -1,5 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Departments.aspx.cs" Inherits="Human_Resource.Views.Settings.Departments1"  EnableEventValidation="true" %>
- <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Departments.aspx.cs" Inherits="Human_Resource.Views.Settings.Departments"  EnableEventValidation="true" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
  
 <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
@@ -37,10 +37,10 @@
         }
 
         function ShowDialog() {
-   
+
             $("#dialog").dialog("open");
             $(".ui-dialog-titlebar").hide();
-              var retval = "";
+            var retval = "";
         }
         function ShowDialogWithData(customID) {
             var parameter = {
@@ -48,7 +48,7 @@
             };
             $.ajax({
                 type: "POST",
-                url: "Branches.aspx/GetBranch",
+                url: "Departments.aspx/GetDepartment",
                 data: JSON.stringify(parameter),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -59,7 +59,6 @@
                         $('#MainContent_hid_departmentId').val(item.DepartmentID);
                         $('#MainContent_dept_name').val(item.Name);
                         $('#MainContent_txt_mobile').val(item.Mobile);
-                        $('#MainContent_txt_address').val(item.Address);
                         $('#MainContent_emp').val(item.ManagerID);
                     }
 
@@ -71,39 +70,36 @@
             });
         }
 
-        function saveBranch() {
+        function saveDepartment() {
             var id = $('#MainContent_hid_departmentId').val();
-
             var name = $("#MainContent_dept_name").val();
             var mobile = $("#MainContent_txt_mobile").val();
-            var address = $("#MainContent_txt_address").val();
             var emp = $("#MainContent_emp").find(":selected").val();
             var parameter = {
-                departmentId :id,
+                departmentId: id,
                 name: name,
                 mobile: mobile,
-                address: address,
                 managerId: emp
             };
             $.ajax({
                 type: "POST",
-                url: "Branches.aspx/SaveBranch",
+                url: "Departments.aspx/SaveDepartment",
                 data: JSON.stringify(parameter),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (data) {
-                    window.top.location = "branches.aspx";  
-                    
+                    window.top.location = "Departments.aspx";
+
                 },
                 failure: function (response) {
                     alert(response.d);
                 }
             });
- 
+
         }
 
 
-            
+
 
 
 
@@ -115,7 +111,7 @@
                         <div class="bcrumb-block">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a id="a_title" href="#"><asp:Literal  runat="server" Text="<%$ Resources:Labels,Branches%>" /></a></li>
+                                    <li class="breadcrumb-item"><a id="a_title" href="#"><asp:Literal  runat="server" Text="<%$ Resources:Labels,Departments%>" /></a></li>
                                 </ol>
                             </nav>
                         </div>
@@ -150,7 +146,7 @@
                                                  <%#Container.DataItemIndex+1 %>                            
                                          </ItemTemplate> 
                                        </asp:TemplateField>
-                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,Branch%>" ItemStyle-Width="15%">
+                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,Department%>" ItemStyle-Width="15%">
                                          <ItemTemplate>
                                                  <asp:Label ID="LblDname" runat="server" 
                                                  Text='<%# Eval("Name") %>' />                              
@@ -163,13 +159,8 @@
                                                  Text='<%# Eval("Mobile") %>' />                              
                                          </ItemTemplate>
                                         </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,Address%>" ItemStyle-Width="25%">
-                                         <ItemTemplate>
-                                                 <asp:Label ID="LblAddress" runat="server" 
-                                                 Text='<%# Eval("Address") %>' />                              
-                                         </ItemTemplate>
-                                   </asp:TemplateField>  
-                                        <asp:TemplateField HeaderText="<%$ Resources:Labels,BranchManager%>" ItemStyle-Width="20%">
+
+                                        <asp:TemplateField HeaderText="<%$ Resources:Labels,HeadOfDepartment%>" ItemStyle-Width="20%">
                                          <ItemTemplate>
                                                  <asp:Label ID="LblDmanager" runat="server" 
                                                  Text='<%# Eval("ManagerName") %>' />                              
@@ -211,7 +202,7 @@
         <div class="modal-header frame-panel-heading">
            
             <div ><span >
-                <asp:Literal runat="server" Text="<%$ Resources:Labels,AddBrannch%>"></asp:Literal>
+                <asp:Literal runat="server" Text="<%$ Resources:Labels,AddDepartment%>"></asp:Literal>
             </span>
                 </div>
             <div class="float2" style="width:10px">
@@ -233,15 +224,11 @@
                                 <input type="text" class="form-control input-lg" id="txt_mobile"  runat="server" value=""  />
                             </div>
                         </div> 
-                     <div class ="row">
-                    <div class="form-group" style="display:block">
-                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Address%>" /></span>
-                                <input type="text" class="form-control input-lg" id="txt_address"  runat="server" value=""  />
-                            </div>
-                         </div>
+                    
+
                     <div class="row">
                      <div class="form-group" style="display:block">
-                              <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,BranchManager%>" /></span>
+                              <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,HeadOfDepartment%>" /></span>
         
                                 <select runat="server" id="emp" name="emp" style="width:80%" class="form-control input-lg"></select>
                             </div>
@@ -249,7 +236,7 @@
                   </div>
                     
                 <div class="modal-footer">
-                    <button class="btn btn-new"  runat="server" onclick="saveBranch()" id="btn_ads" >
+                    <button class="btn btn-new"  runat="server" onclick="saveDepartment()" id="btn_ads" >
                         <asp:Literal  runat="server" Text=" <%$ Resources:Labels,Save%>" />
                     </button>
  
@@ -257,9 +244,7 @@
                     </div>
                 </div>
                  </div>
-                
             </div>
         </div>
-     
-
 </asp:Content>
+

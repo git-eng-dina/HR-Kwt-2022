@@ -56,7 +56,7 @@
                     ShowDialog();
                     for (var prop in data) {
                         var item = data[prop];
-                        $('#MainContent_hid_departmentId').val(item.BranchID);
+                        $('#MainContent_hid_branchId').val(item.BranchID);
                         $('#MainContent_dept_name').val(item.Name);
                         $('#MainContent_txt_mobile').val(item.Mobile);
                         $('#MainContent_txt_address').val(item.Address);
@@ -72,14 +72,13 @@
         }
 
         function saveBranch() {
-            var id = $('#MainContent_hid_departmentId').val();
-
+            var id = $('#MainContent_hid_branchId').val();
             var name = $("#MainContent_dept_name").val();
             var mobile = $("#MainContent_txt_mobile").val();
             var address = $("#MainContent_txt_address").val();
             var emp = $("#MainContent_emp").find(":selected").val();
             var parameter = {
-                departmentId :id,
+                branchId :id,
                 name: name,
                 mobile: mobile,
                 address: address,
@@ -223,7 +222,7 @@
                     <div class ="row">
                      <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,TheName%>" /></span>
-                                <input type="hidden"  id="hid_departmentId" name="hid_departmentId" runat="server" value=""  />
+                                <input type="hidden"  id="hid_branchId" name="hid_branchId" runat="server" value=""  />
                                 <input type="text" class="form-control input-lg" id="dept_name" name="dept_name" runat="server" value=""  />
                             </div>
                         </div>

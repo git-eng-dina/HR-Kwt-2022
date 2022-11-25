@@ -49,13 +49,13 @@ namespace Human_Resource.Views.Settings {
         protected global::System.Web.UI.WebControls.GridView gv_data;
         
         /// <summary>
-        /// hid_departmentId control.
+        /// hid_branchId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hid_departmentId;
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hid_branchId;
         
         /// <summary>
         /// dept_name control.

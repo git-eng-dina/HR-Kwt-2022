@@ -10,7 +10,7 @@
 namespace Human_Resource.Views.Settings {
     
     
-    public partial class Departments1 {
+    public partial class Departments {
         
         /// <summary>
         /// txt_search control.
@@ -74,15 +74,6 @@ namespace Human_Resource.Views.Settings {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText txt_mobile;
-        
-        /// <summary>
-        /// txt_address control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_address;
         
         /// <summary>
         /// emp control.

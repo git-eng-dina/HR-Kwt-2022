@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace Human_Resource.Views.Settings
 {
-    public partial class Departments1 : System.Web.UI.Page
+    public partial class Departments : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -31,9 +31,9 @@ namespace Human_Resource.Views.Settings
         }
         private void BindData(string textSearch = "")
         {
-            BranchModel dept = new BranchModel();
+            DepartmentModel dept = new DepartmentModel();
 
-            var depts = dept.getCompanyDeps();
+            var depts = dept.getActivity();
             if (textSearch != "")
                 depts = depts.Where(x => x.Name.ToLower().Contains(textSearch.ToLower())
                                 || x.Mobile.Contains(textSearch)
@@ -55,18 +55,17 @@ namespace Human_Resource.Views.Settings
             DataBind();
         }
         [WebMethod(EnableSession = true)]
-        public static string SaveBranch(string departmentId, string name, string mobile, string address, string managerId)
+        public static string SaveDepartment(string departmentId, string name, string mobile, string managerId)
         {
             try
             {
-                BranchModel dept = new BranchModel();
+                DepartmentModel dept = new DepartmentModel();
                 if (departmentId != "")
-                    dept.BranchID = int.Parse(departmentId);
+                    dept.DepartmentID = int.Parse(departmentId);
                 else
-                    dept.BranchID = 0;
+                    dept.DepartmentID = 0;
                 dept.Name = name;
                 dept.Mobile = mobile;
-                dept.Address = address;
                 dept.ManagerID = int.Parse(managerId);
 
                 if (HttpContext.Current.Session["user_id"] != null && HttpContext.Current.Session["user_id"].ToString() != "")
@@ -89,14 +88,14 @@ namespace Human_Resource.Views.Settings
         }
 
         [WebMethod]
-        public static BranchModel GetBranch(string ID)
+        public static DepartmentModel GetDepartment(string ID)
         {
             try
             {
-                BranchModel dept = new BranchModel();
+                DepartmentModel dept = new DepartmentModel();
 
                 int departmentId = int.Parse(ID);
-                dept = dept.getBranch(departmentId);
+                dept = dept.getDepartment(departmentId);
 
                 return dept;
             }
@@ -112,7 +111,7 @@ namespace Human_Resource.Views.Settings
 
             try
             {
-                BranchModel dept = new BranchModel();
+                DepartmentModel dept = new DepartmentModel();
                 int Ref = Convert.ToInt32(e.CommandArgument.ToString());
 
                 int? userId = null;
@@ -128,7 +127,7 @@ namespace Human_Resource.Views.Settings
                 else
                 {
 
-                    Response.Write("<script>alert('" + Resources.Labels.DeleteSuccessfully + "')</script>");
+                    Response.Write("<script>alert('" + Resources.Labels.ErrorOccured + "')</script>");
                 }
             }
             catch (Exception ex)
