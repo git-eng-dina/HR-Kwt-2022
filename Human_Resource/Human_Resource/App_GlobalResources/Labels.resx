@@ -226,7 +226,7 @@
     <value>Female</value>
   </data>
   <data name="HiringDate" xml:space="preserve">
-    <value>Hiring Date</value>
+    <value>Recruitment Date</value>
   </data>
   <data name="JobDetails" xml:space="preserve">
     <value>Job Details</value>
@@ -314,5 +314,29 @@
   </data>
   <data name="Position" xml:space="preserve">
     <value>Position</value>
+  </data>
+  <data name="AcademicCertificates" xml:space="preserve">
+    <value>Academic &amp; Professional Certificates</value>
+  </data>
+  <data name="bod" xml:space="preserve">
+    <value>Date of Birth</value>
+  </data>
+  <data name="Certificate" xml:space="preserve">
+    <value>Certificate</value>
+  </data>
+  <data name="CurrentSalary" xml:space="preserve">
+    <value>Current Salary</value>
+  </data>
+  <data name="DirectSupervisor" xml:space="preserve">
+    <value>Direct Supervisor</value>
+  </data>
+  <data name="JobDescription" xml:space="preserve">
+    <value>Job Description</value>
+  </data>
+  <data name="PreviousEmployment" xml:space="preserve">
+    <value>Previous Employment</value>
+  </data>
+  <data name="WorkHours" xml:space="preserve">
+    <value>Work Hours</value>
   </data>
 </root>

@@ -12,8 +12,15 @@ namespace Human_Resource.Views.Employees
         protected void Page_Load(object sender, EventArgs e)
         {
             EmployeeModel emp = new EmployeeModel();
+            JobModel job = new JobModel();
+
             nationality.DataSource = emp.Nationalities.OrderBy(x => x);
             nationality.DataBind();
+
+            //sel_position.DataSource = job.GetJobs();
+            //sel_position.DataTextField = "Name";
+            //sel_position.DataValueField = "JobID";
+            //sel_position.DataBind();
         }
     }
 }

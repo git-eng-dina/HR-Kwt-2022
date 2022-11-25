@@ -69,6 +69,12 @@ namespace Human_Resource
         public Nullable<decimal> BasicSalary { get; set; }
         public string TransportationCompensationType { get; set; }
         public string HousingCompensationType { get; set; }
+        public Nullable<System.DateTime> ResidenceDate { get; set; }
+        public Nullable<int> JobID { get; set; }
+        public Nullable<int> WorkHours { get; set; }
+        public string JobDescription { get; set; }
+
+
         #endregion
         #region extra info
         public int Age { get; set; }
@@ -96,7 +102,7 @@ namespace Human_Resource
         };
 
 
-        #region methods
+        #region employee methods
         public employees GetUser(string userName, string password)
         {
             using (HRSystemEntities entity = new HRSystemEntities())
@@ -145,5 +151,6 @@ namespace Human_Resource
         }
 
         #endregion
+
     }
 }

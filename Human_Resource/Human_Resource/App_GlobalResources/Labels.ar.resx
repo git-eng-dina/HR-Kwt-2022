@@ -315,4 +315,28 @@
   <data name="Position" xml:space="preserve">
     <value>الوظيفة</value>
   </data>
+  <data name="AcademicCertificates" xml:space="preserve">
+    <value>الشهادات الأكاديمية والمهنية</value>
+  </data>
+  <data name="bod" xml:space="preserve">
+    <value>تاريخ الولادة</value>
+  </data>
+  <data name="Certificate" xml:space="preserve">
+    <value>الشهادة</value>
+  </data>
+  <data name="CurrentSalary" xml:space="preserve">
+    <value>الراتب الحالي</value>
+  </data>
+  <data name="DirectSupervisor" xml:space="preserve">
+    <value>الرئيس المباشر</value>
+  </data>
+  <data name="JobDescription" xml:space="preserve">
+    <value>الوصف الوظيفي</value>
+  </data>
+  <data name="PreviousEmployment" xml:space="preserve">
+    <value>الخبرة السابقة</value>
+  </data>
+  <data name="WorkHours" xml:space="preserve">
+    <value>ساعات العمل</value>
+  </data>
 </root>

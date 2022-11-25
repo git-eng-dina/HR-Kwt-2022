@@ -490,6 +490,7 @@ nav .logo {
 }*/
 .panel-green {
     border-color: #12A4B8;
+    width:95%;
 }
 .panel {
     margin-bottom: 20px;
@@ -884,6 +885,7 @@ nav .logo {
 }
 .panel-yellow {
     border-color: #f0ad4e;
+    width: 95%;
 }
 .panel-yellow > .panel-heading {
     border-color: #f0ad4e;
@@ -950,7 +952,21 @@ nav .logo {
         float: right;
         text-align: right;
     }
-
+.c-form-box a {
+    color: #6c6c6f;
+    font-weight: bold;
+    display: block;
+    width: 5%;
+    float: right;
+    margin: 5px;
+}
+.c-form-box .form-group span {
+    display: block;
+    width: 100%;
+    float: right;
+    text-align: right;
+    padding-top: 5px;
+}
     .c-form-box input,select {
         font-weight: bold;
         display: block;

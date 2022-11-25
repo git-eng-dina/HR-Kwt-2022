@@ -73,6 +73,12 @@
                                                  <asp:Label ID="LblDname" runat="server" 
                                                  Text='<%# Eval("Age") %>' />                              
                                          </ItemTemplate>
+                                   </asp:TemplateField> 
+                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,CurrentSalary%>">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblDname" runat="server" 
+                                                 Text='<%# Eval("BasicSalary") %>' />                              
+                                         </ItemTemplate>
                                    </asp:TemplateField>
                                            <asp:TemplateField HeaderText="<%$ Resources:Labels,CivilNo%>">
                                          <ItemTemplate>
