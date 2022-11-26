@@ -325,6 +325,9 @@
     <Compile Include="scheduleVacations.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="tasks.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

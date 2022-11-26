@@ -23,7 +23,6 @@ namespace Human_Resource
     
         public int JobID { get; set; }
         public string Name { get; set; }
-        public Nullable<int> JobLevel { get; set; }
         public string Notes { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }

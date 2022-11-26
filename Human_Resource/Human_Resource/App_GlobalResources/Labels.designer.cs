@@ -97,6 +97,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Job.
+        /// </summary>
+        internal static string AddJob {
+            get {
+                return ResourceManager.GetString("AddJob", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Management.
         /// </summary>
         internal static string AddManagement {
@@ -448,6 +457,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Job.
+        /// </summary>
+        internal static string Job {
+            get {
+                return ResourceManager.GetString("Job", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Job Description.
         /// </summary>
         internal static string JobDescription {
@@ -462,6 +480,15 @@ namespace Resources {
         internal static string JobDetails {
             get {
                 return ResourceManager.GetString("JobDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jobs.
+        /// </summary>
+        internal static string Jobs {
+            get {
+                return ResourceManager.GetString("Jobs", resourceCulture);
             }
         }
         

@@ -360,4 +360,13 @@
   <data name="Certificate3" xml:space="preserve">
     <value>شهادة 3</value>
   </data>
+  <data name="AddJob" xml:space="preserve">
+    <value>إضافة وظيفة</value>
+  </data>
+  <data name="Job" xml:space="preserve">
+    <value>الوظيفة</value>
+  </data>
+  <data name="Jobs" xml:space="preserve">
+    <value>الوظائف</value>
+  </data>
 </root>

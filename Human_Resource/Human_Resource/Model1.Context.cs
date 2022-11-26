@@ -47,6 +47,7 @@ namespace Human_Resource
         public virtual DbSet<rewards> rewards { get; set; }
         public virtual DbSet<salaryIncrease> salaryIncrease { get; set; }
         public virtual DbSet<scheduleVacations> scheduleVacations { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<tasks> tasks { get; set; }
         public virtual DbSet<trainings> trainings { get; set; }
         public virtual DbSet<vacations> vacations { get; set; }
