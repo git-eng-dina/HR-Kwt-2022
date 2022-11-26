@@ -109,14 +109,43 @@
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,ExpiredPassports%>" />
                     </a>
                 </li> 
+            </ul> 
+            
+            
+            <a href="" class="" data-toggle="collapse" data-target="#demo_procedurs">
+                    <i class="fa fa-edit" aria-hidden="true"></i>
+                    <asp:Literal runat="server" Text="<%$ Resources:Labels,ExecutiveProcedures%>" />
+                    <i class="fa fa-fw fa-caret-down"></i>
+            </a>
+            <ul id="demo_procedurs" class="collapse in" aria-expanded="true">
+                <li>
+                    <a href="/Views/ExecutiveProc/Custodies.aspx"> 
+                        <asp:Literal runat="server" Text="<%$ Resources:Labels,Custody%>" />
+                    </a>
+                </li>
+                <li>
+                    <a href="/Views/ExecutiveProc/MaterialsConsumption.aspx"> 
+                        <asp:Literal runat="server" Text="<%$ Resources:Labels,MaterialsConsumption%>" />
+                    </a>
+                </li> 
+                <li>
+                    <a href="/Views/ExecutiveProc/Tasks.aspx"> 
+                        <asp:Literal runat="server" Text="<%$ Resources:Labels,Tasks%>" />
+                    </a>
+                </li>  
+                <li>
+                    <a href=""> 
+                        <asp:Literal runat="server" Text="<%$ Resources:Labels,Events%>" />
+                    </a>
+                </li> 
             </ul>
 
       
-                <a href="" class="">
+              <%--  <a href="" class="">
                     <i class="fa fa-calendar-check" aria-hidden="true"></i>
                     <asp:Literal runat="server" Text="<%$ Resources:Labels,Events%>" />
 
-                </a>
+                </a>--%>
  
            
             <a href="" class="">
@@ -124,10 +153,10 @@
                 <asp:Literal runat="server" Text="<%$ Resources:Labels,Trainings%>" />
             </a>
     
-            <a href="" class="">
+<%--            <a href="" class="">
                <i class="fa fa-edit" aria-hidden="true"></i>
                 <asp:Literal runat="server" Text="<%$ Resources:Labels,Tasks%>" />
-            </a>
+            </a>--%>
 
             <a href="" class="" data-toggle="collapse" data-target="#demo_Users3">
                     <i class="fa fa-gears" aria-hidden="true"></i>

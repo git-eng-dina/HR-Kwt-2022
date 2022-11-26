@@ -1,6 +1,50 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="NewEmployee.aspx.cs" Inherits="Human_Resource.Views.Employees.NewEmployee" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
      <script>
+         $(document).ready(function () {
+             $('#uploadTrigger_1').click(function (e) {
+                 e.preventDefault();
+                 $('#MainContent_file_certificate1').trigger('click');
+             });
+
+             $('#uploadTrigger_2').click(function (e) {
+                 e.preventDefault();
+                 $('#MainContent_file_certificate2').trigger('click');
+             });
+
+             $('#uploadTrigger_3').click(function (e) {
+                 e.preventDefault();
+                 $('#MainContent_file_certificate3').trigger('click');
+             });
+         });
+
+         $(function () {
+             $('#MainContent_file_certificate1').change(function () {
+                 var path = $(this).val();
+                 if (path != '' && path != null) {
+                     var q = path.substring(path.lastIndexOf('\\') + 1);
+                     $('#MainContent_lbl_certificate1').html(q);
+                 }
+             })
+         });
+         $(function () {
+             $('#MainContent_file_certificate2').change(function () {
+                 var path = $(this).val();
+                 if (path != '' && path != null) {
+                     var q = path.substring(path.lastIndexOf('\\') + 1);
+                     $('#MainContent_lbl_certificate2').html(q);
+                 }
+             })
+         });
+         $(function () {
+             $('#MainContent_file_certificate3').change(function () {
+                 var path = $(this).val();
+                 if (path != '' && path != null) {
+                     var q = path.substring(path.lastIndexOf('\\') + 1);
+                     $('#MainContent_lbl_certificate3').html(q);
+                 }
+             })
+         });
          function addCertificateRow() {
              if ($('#frm_certificate2').is(':visible')) {
                  $('#frm_certificate3').show();
@@ -11,12 +55,13 @@
                  $('#frm_certificate2').show();
 
              }
-             alert();
          }
 
          function deleteCertificateRow() {
              if ($('#frm_certificate3').is(':visible')) {
                  $('#txt_certificate3').val("");
+                 $('#file_certificate3').val("");
+                 $('#lbl_certificate3').val("");
                  $('#frm_certificate3').hide();
                  $('#frm-addCertificate').show();
                  $('#btn-deleteCertificate2').show();
@@ -24,10 +69,14 @@
              }
              else {
                  $('#txt_certificate2').val("");
+                 $('#file_certificate2').val("");
+                 $('#lbl_certificate2').val("");
 
                  $('#frm_certificate2').hide();
              }
          }
+
+        
      </script>
     <!-- text boxes -->
     <section class="statis">
@@ -116,42 +165,83 @@
                         <span> <asp:literal runat="server" text="<%$ Resources:Labels,AcademicCertificates%>"/></span>
                         </div>
                         <div class="c-form-dynamic">
+                            <div class="row">
                             <div class="form-group" style="display:block">
                                 <div class="col-md-4 col-sm-4 col-xs-4 div1">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Certificate1%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
                                 <input type="text" class="form-control input-lg" id="txt_certificate1"  runat="server" value=""  />
+                                   
+                                </div>
+                           </div>
+                                <div class="form-group">
+                                    <div class="col-md-4 col-sm-4 col-xs-4 div1">
+                                         <asp:Label ID="lbl_certificate1" runat="server" Text="<%$ Resources:Labels,UploadFile%>"></asp:Label>
+
+                                     </div>
+                                     <div class="col-md-8 col-sm-8 col-xs-8 div2" >
+                                         <asp:FileUpload ID="file_certificate1" runat="server" CssClass="hidden fileUpload" />
+                                   <a href=""  id="uploadTrigger_1"> <i class="fa fa-upload"></i></a>
+                                     </div>
                                 </div>
                             </div>
-                             <div class="form-group" style="display:none" id="frm_certificate2">
+                            
+                            <div class="row" style="display:none" id="frm_certificate2">
+                             <div class="form-group"  >
                                 <div class="col-md-4 col-sm-4 col-xs-4 div1">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Certificate2%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
                                         <input type="text" class="form-control input-lg" id="txt_certificate2"  runat="server" value=""  />
+                                   
                                     <a href="javascript:deleteCertificateRow();"  id="btn-deleteCertificate2"> <i class="fas fa-minus"></i></a>
                                 </div>
+                                
                             </div>
-                            <div class="form-group" style="display:none" id="frm_certificate3">
+                             <div class="form-group">
+                                    <div class="col-md-4 col-sm-4 col-xs-4 div1">
+                                         <asp:Label ID="lbl_certificate2" runat="server" Text=""></asp:Label>
+                                     </div>
+                                     <div class="col-md-8 col-sm-8 col-xs-8 div2" >
+                                        <asp:FileUpload ID="file_certificate2" runat="server" CssClass="hidden fileUpload" />
+                                   <a href=""  id="uploadTrigger_2"> <i class="fa fa-upload"></i></a>
+                                         
+                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="row" style="display:none" id="frm_certificate3">
+                            <div class="form-group" >
                                 <div class="col-md-4 col-sm-4 col-xs-4 div1">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Certificate3%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
                                      <input type="text" class="form-control input-lg" id="txt_certificate3"  runat="server" value=""  />
-                                     <a href="javascript:deleteCertificateRow();"  id="btn-deleteCertificate3"> <i class="fas fa-minus"></i></a>
+                                  
+                                    <a href="javascript:deleteCertificateRow();"  id="btn-deleteCertificate3"> <i class="fas fa-minus"></i></a>
                                 </div>
+                                
                             </div>
+
+                                 <div class="form-group">
+                                    <div class="col-md-4 col-sm-4 col-xs-4 div1">
+                                        <asp:Label ID="lbl_certificate3" runat="server" Text=""></asp:Label>
+
+                                     </div>
+                                     <div class="col-md-8 col-sm-8 col-xs-8 div2" >
+                                           <asp:FileUpload ID="file_certificate3" runat="server"  CssClass="hidden fileUpload" />
+                                     <a href=""  id="uploadTrigger_3"> <i class="fa fa-upload"></i></a>
+                                     </div>
+                                </div>
+                                </div>
+
                              <div class="form-group" style="display:block" id="frm-addCertificate">
                                 <div class="col-md-4 col-sm-4 col-xs-4 div1">
                                       <a href="javascript:addCertificateRow();" > <i class="fas fa-plus"></i></a>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
-<%--                                     <div class="c-form-box">
-                                         <div class="form-group" style="display:block">
-                                       
-                                         </div>
-                                     </div>--%>
+
                                 </div>
                             </div>
                         </div>

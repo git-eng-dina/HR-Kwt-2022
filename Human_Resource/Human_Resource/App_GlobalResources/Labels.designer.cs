@@ -286,6 +286,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Custody.
+        /// </summary>
+        internal static string Custody {
+            get {
+                return ResourceManager.GetString("Custody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deleted Successfully.
         /// </summary>
         internal static string DeleteSuccessfully {
@@ -408,6 +417,15 @@ namespace Resources {
         internal static string Events {
             get {
                 return ResourceManager.GetString("Events", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Executive Procedures.
+        /// </summary>
+        internal static string ExecutiveProcedures {
+            get {
+                return ResourceManager.GetString("ExecutiveProcedures", resourceCulture);
             }
         }
         
@@ -570,6 +588,15 @@ namespace Resources {
         internal static string ManagingDirectorEn {
             get {
                 return ResourceManager.GetString("ManagingDirectorEn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Materials Consumption.
+        /// </summary>
+        internal static string MaterialsConsumption {
+            get {
+                return ResourceManager.GetString("MaterialsConsumption", resourceCulture);
             }
         }
         
@@ -777,6 +804,15 @@ namespace Resources {
         internal static string Type {
             get {
                 return ResourceManager.GetString("Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload File.
+        /// </summary>
+        internal static string UploadFile {
+            get {
+                return ResourceManager.GetString("UploadFile", resourceCulture);
             }
         }
         

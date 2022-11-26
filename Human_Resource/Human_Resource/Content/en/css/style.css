@@ -448,6 +448,7 @@ padding-left: 5px;
 }
 .panel-green {
     border-color: #12A4B8;
+    width: 95%;
 }
 .panel {
     margin-bottom: 20px;
@@ -941,12 +942,12 @@ padding-left: 5px;
     text-align: left;
     padding-top: 5px;
 }
-    .c-form-box input, select {
-        font-weight: bold;
-        display: block;
-        width: 100%;
-        float: left;
-    }
+.c-form-box input:not([type=file]), select {
+    font-weight: bold;
+    display: block;
+    width: 100%;
+    float: left;
+}
 
         .c-form-box input[type=submit] {
             font-weight: bold;
@@ -1036,16 +1037,19 @@ input[type=checkbox], input[type=radio] {
         padding-top: 5px;
     }
 
-    .c-form-dynamic input, select {
+    .c-form-dynamic input:not([type=file]), select {
         font-weight: bold;
         display: block;
         width: 90%;
         float: left;
     }
 
-        .c-form-dynamic input[type=submit] {
-            font-weight: bold;
-            display: block;
-            width: 20%;
-            float: right;
-        }
+.c-form-dynamic input[type=submit] {
+    font-weight: bold;
+    display: block;
+    width: 20%;
+    float: right;
+}
+.hidden {
+    display: none;
+}

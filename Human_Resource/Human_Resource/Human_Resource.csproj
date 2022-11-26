@@ -217,6 +217,9 @@
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Views\Employees\Employees.aspx" />
     <Content Include="Views\Employees\NewEmployee.aspx" />
+    <Content Include="Views\ExecutiveProc\Custodies.aspx" />
+    <Content Include="Views\ExecutiveProc\MaterialsConsumption.aspx" />
+    <Content Include="Views\ExecutiveProc\Tasks.aspx" />
     <Content Include="Views\Home\HomePage.aspx" />
     <Content Include="Views\Settings\CompanyInfo.aspx" />
     <Content Include="Views\Settings\Branches.aspx" />
@@ -325,9 +328,6 @@
     <Compile Include="scheduleVacations.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagrams.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="tasks.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -353,6 +353,27 @@
     </Compile>
     <Compile Include="Views\Employees\NewEmployee.aspx.designer.cs">
       <DependentUpon>NewEmployee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExecutiveProc\Custodies.aspx.cs">
+      <DependentUpon>Custodies.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ExecutiveProc\Custodies.aspx.designer.cs">
+      <DependentUpon>Custodies.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExecutiveProc\MaterialsConsumption.aspx.cs">
+      <DependentUpon>MaterialsConsumption.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ExecutiveProc\MaterialsConsumption.aspx.designer.cs">
+      <DependentUpon>MaterialsConsumption.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExecutiveProc\Tasks.aspx.cs">
+      <DependentUpon>Tasks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ExecutiveProc\Tasks.aspx.designer.cs">
+      <DependentUpon>Tasks.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Home\HomePage.aspx.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>

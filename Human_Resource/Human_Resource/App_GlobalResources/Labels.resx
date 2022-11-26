@@ -378,4 +378,16 @@
   <data name="Vacations" xml:space="preserve">
     <value>Vacations</value>
   </data>
+  <data name="Custody" xml:space="preserve">
+    <value>Custody</value>
+  </data>
+  <data name="ExecutiveProcedures" xml:space="preserve">
+    <value>Executive Procedures</value>
+  </data>
+  <data name="MaterialsConsumption" xml:space="preserve">
+    <value>Materials Consumption</value>
+  </data>
+  <data name="UploadFile" xml:space="preserve">
+    <value>Upload File</value>
+  </data>
 </root>

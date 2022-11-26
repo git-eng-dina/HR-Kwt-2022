@@ -94,6 +94,24 @@ namespace Human_Resource.Views.Employees {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txt_certificate1;
         
         /// <summary>
+        /// lbl_certificate1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_certificate1;
+        
+        /// <summary>
+        /// file_certificate1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload file_certificate1;
+        
+        /// <summary>
         /// txt_certificate2 control.
         /// </summary>
         /// <remarks>
@@ -103,6 +121,24 @@ namespace Human_Resource.Views.Employees {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txt_certificate2;
         
         /// <summary>
+        /// lbl_certificate2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_certificate2;
+        
+        /// <summary>
+        /// file_certificate2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload file_certificate2;
+        
+        /// <summary>
         /// txt_certificate3 control.
         /// </summary>
         /// <remarks>
@@ -110,6 +146,24 @@ namespace Human_Resource.Views.Employees {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText txt_certificate3;
+        
+        /// <summary>
+        /// lbl_certificate3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_certificate3;
+        
+        /// <summary>
+        /// file_certificate3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload file_certificate3;
         
         /// <summary>
         /// Text2 control.

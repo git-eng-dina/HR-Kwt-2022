@@ -378,4 +378,16 @@
   <data name="Vacations" xml:space="preserve">
     <value>الإجازات</value>
   </data>
+  <data name="Custody" xml:space="preserve">
+    <value>العهدة</value>
+  </data>
+  <data name="ExecutiveProcedures" xml:space="preserve">
+    <value>إجراءات إدارية</value>
+  </data>
+  <data name="MaterialsConsumption" xml:space="preserve">
+    <value>استهلاك مواد</value>
+  </data>
+  <data name="UploadFile" xml:space="preserve">
+    <value>أرفق ملف</value>
+  </data>
 </root>
