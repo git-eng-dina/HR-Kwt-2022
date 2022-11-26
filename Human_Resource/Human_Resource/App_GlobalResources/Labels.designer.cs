@@ -124,6 +124,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Vacation.
+        /// </summary>
+        internal static string AddVacation {
+            get {
+                return ResourceManager.GetString("AddVacation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Age.
         /// </summary>
         internal static string Age {
@@ -777,6 +786,24 @@ namespace Resources {
         internal static string UsersInfo {
             get {
                 return ResourceManager.GetString("UsersInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vacation.
+        /// </summary>
+        internal static string Vacation {
+            get {
+                return ResourceManager.GetString("Vacation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vacations.
+        /// </summary>
+        internal static string Vacations {
+            get {
+                return ResourceManager.GetString("Vacations", resourceCulture);
             }
         }
         

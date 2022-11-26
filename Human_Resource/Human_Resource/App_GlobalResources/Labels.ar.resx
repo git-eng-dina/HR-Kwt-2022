@@ -369,4 +369,13 @@
   <data name="Jobs" xml:space="preserve">
     <value>الوظائف</value>
   </data>
+  <data name="AddVacation" xml:space="preserve">
+    <value>إضافة إجازة</value>
+  </data>
+  <data name="Vacation" xml:space="preserve">
+    <value>الإجازة</value>
+  </data>
+  <data name="Vacations" xml:space="preserve">
+    <value>الإجازات</value>
+  </data>
 </root>

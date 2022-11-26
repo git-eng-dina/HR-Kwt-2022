@@ -369,4 +369,13 @@
   <data name="Jobs" xml:space="preserve">
     <value>Jobs</value>
   </data>
+  <data name="AddVacation" xml:space="preserve">
+    <value>Add Vacation</value>
+  </data>
+  <data name="Vacation" xml:space="preserve">
+    <value>Vacation</value>
+  </data>
+  <data name="Vacations" xml:space="preserve">
+    <value>Vacations</value>
+  </data>
 </root>

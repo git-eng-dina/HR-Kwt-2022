@@ -546,4 +546,122 @@ namespace Human_Resource.App_Code
         #endregion
     }
 
+    public class VacationModel
+    {
+        #region attributes
+        public int VacationID { get; set; }
+        public string Name { get; set; }
+        public string Notes { get; set; }
+        public Nullable<System.DateTime> CreateDate { get; set; }
+        public Nullable<System.DateTime> UpdateDate { get; set; }
+        public Nullable<int> CreateUserID { get; set; }
+        public Nullable<int> UpdateUserID { get; set; }
+        public Nullable<bool> IsActive { get; set; }
+        #endregion
+
+        #region methods
+        public List<VacationModel> GetActivity()
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var vacations = entity.vacations.Where(x => x.IsActive == true)
+                            .Select(x => new VacationModel()
+                            {
+                                VacationID = x.VacationID,
+                                Name = x.Name,
+                                Notes = x.Notes,
+                                CreateDate = x.CreateDate,
+                                UpdateDate = x.UpdateDate,
+                                CreateUserID = x.CreateUserID,
+                                UpdateUserID = x.UpdateUserID,
+                            }).ToList();
+                return vacations;
+            }
+        }
+
+
+        public VacationModel getVacation(int vacationId)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var dept = entity.vacations.Where(x => x.VacationID == vacationId)
+                                .Select(x => new VacationModel()
+                                {
+                                    VacationID = x.VacationID,
+                                    Name = x.Name,
+                                    CreateUserID = x.CreateUserID,
+                                    UpdateUserID = x.UpdateUserID,
+                                    Notes = x.Notes,
+                                    CreateDate = x.CreateDate,
+                                    UpdateDate = x.UpdateDate,
+                                }).FirstOrDefault();
+                return dept;
+            }
+        }
+
+        public int SaveVacation(VacationModel dept)
+        {
+            try
+            {
+                vacations vacation;
+
+                using (HRSystemEntities entity = new HRSystemEntities())
+                {
+                    if (dept.VacationID.Equals(0))
+                    {
+                        vacation = new vacations()
+                        {
+                            Name = dept.Name,
+                            IsActive = true,
+                            CreateUserID = dept.CreateUserID,
+                            UpdateUserID = dept.UpdateUserID,
+                            CreateDate = DateTime.Now,
+                            UpdateDate = DateTime.Now,
+                        };
+                        vacation = entity.vacations.Add(vacation);
+                    }
+                    else
+                    {
+                        vacation = entity.vacations.Find(dept.VacationID);
+                        vacation.Name = dept.Name;
+                        vacation.Notes = dept.Notes;
+                        vacation.IsActive = true;
+                        vacation.UpdateUserID = dept.UpdateUserID;
+                        vacation.UpdateDate = DateTime.Now;
+                    }
+                    entity.SaveChanges();
+                }
+                return vacation.VacationID;
+            }
+
+            catch
+            {
+                return 0;
+            }
+        }
+        public bool DeleteVacation(int deptId, int? userId)
+        {
+            try
+            {
+                using (HRSystemEntities entity = new HRSystemEntities())
+                {
+                    var dept = entity.vacations.Find(deptId);
+                    dept.IsActive = false;
+                    dept.UpdateDate = DateTime.Now;
+                    dept.UpdateUserID = userId;
+                    entity.SaveChanges();
+                }
+                return true;
+            }
+
+            catch
+            {
+                return false;
+            }
+        }
+
+
+        #endregion
+    }
+
 }
