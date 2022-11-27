@@ -58,20 +58,22 @@
          }
 
          function deleteCertificateRow() {
+             var uploadFileText = "<%= Resources.Labels.UploadFile %>";
+
              if ($('#frm_certificate3').is(':visible')) {
-                 $('#txt_certificate3').val("");
-                 $('#file_certificate3').val("");
-                 $('#lbl_certificate3').val("");
+                 $('#MainContent_txt_certificate3').val("");
+                 $('#MainContent_file_certificate3').val("");
+                 $('#MainContent_lbl_certificate3').html(uploadFileText);
                  $('#frm_certificate3').hide();
                  $('#frm-addCertificate').show();
                  $('#btn-deleteCertificate2').show();
 
+
              }
              else {
-                 $('#txt_certificate2').val("");
-                 $('#file_certificate2').val("");
-                 $('#lbl_certificate2').val("");
-
+                 $('#MainContent_txt_certificate2').val("");
+                 $('#MainContent_file_certificate2').val("");
+                 $('#MainContent_lbl_certificate2').html(uploadFileText);
                  $('#frm_certificate2').hide();
              }
          }
@@ -176,11 +178,11 @@
                                 </div>
                            </div>
                                 <div class="form-group">
-                                    <div class="col-md-4 col-sm-4 col-xs-4 div1">
-                                         <asp:Label ID="lbl_certificate1" runat="server" Text="<%$ Resources:Labels,UploadFile%>"></asp:Label>
+                                    <div class="col-md-10 col-sm-4 col-xs-4 div1">
+                                         <asp:Label ID="lbl_certificate1" runat="server" Text="<%$ Resources:Labels,UploadFile%>" CssClass="span-uploadFile"></asp:Label>
 
                                      </div>
-                                     <div class="col-md-8 col-sm-8 col-xs-8 div2" >
+                                     <div class="col-md-2 col-sm-8 col-xs-8 div2" >
                                          <asp:FileUpload ID="file_certificate1" runat="server" CssClass="hidden fileUpload" />
                                    <a href=""  id="uploadTrigger_1"> <i class="fa fa-upload"></i></a>
                                      </div>
@@ -200,10 +202,10 @@
                                 
                             </div>
                              <div class="form-group">
-                                    <div class="col-md-4 col-sm-4 col-xs-4 div1">
-                                         <asp:Label ID="lbl_certificate2" runat="server" Text=""></asp:Label>
+                                    <div class="col-md-10 col-sm-4 col-xs-4 div1">
+                                         <asp:Label ID="lbl_certificate2" runat="server" Text="<%$ Resources:Labels,UploadFile%>" CssClass="span-uploadFile"></asp:Label>
                                      </div>
-                                     <div class="col-md-8 col-sm-8 col-xs-8 div2" >
+                                     <div class="col-md-2 col-sm-8 col-xs-8 div2" >
                                         <asp:FileUpload ID="file_certificate2" runat="server" CssClass="hidden fileUpload" />
                                    <a href=""  id="uploadTrigger_2"> <i class="fa fa-upload"></i></a>
                                          
@@ -225,11 +227,11 @@
                             </div>
 
                                  <div class="form-group">
-                                    <div class="col-md-4 col-sm-4 col-xs-4 div1">
-                                        <asp:Label ID="lbl_certificate3" runat="server" Text=""></asp:Label>
+                                    <div class="col-md-10 col-sm-4 col-xs-4 div1">
+                                        <asp:Label ID="lbl_certificate3" runat="server" Text="<%$ Resources:Labels,UploadFile%>" CssClass="span-uploadFile"></asp:Label>
 
                                      </div>
-                                     <div class="col-md-8 col-sm-8 col-xs-8 div2" >
+                                     <div class="col-md-2 col-sm-8 col-xs-8 div2" >
                                            <asp:FileUpload ID="file_certificate3" runat="server"  CssClass="hidden fileUpload" />
                                      <a href=""  id="uploadTrigger_3"> <i class="fa fa-upload"></i></a>
                                      </div>
