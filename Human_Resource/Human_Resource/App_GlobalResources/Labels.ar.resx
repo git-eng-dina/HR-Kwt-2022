@@ -402,6 +402,9 @@
   <data name="Guarantor" xml:space="preserve">
     <value>الكفيل</value>
   </data>
+  <data name="PassportInfo" xml:space="preserve">
+    <value>بيانات جواز السفر</value>
+  </data>
   <data name="PreviousExperience" xml:space="preserve">
     <value>الخبرات السابقة</value>
   </data>

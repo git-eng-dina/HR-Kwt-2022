@@ -709,6 +709,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Passport Information.
+        /// </summary>
+        internal static string PassportInfo {
+            get {
+                return ResourceManager.GetString("PassportInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Personal Information.
         /// </summary>
         internal static string PersonalInfo {
