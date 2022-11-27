@@ -404,6 +404,7 @@
                     </div>
                 </div>
             <div class="col-md-6 float2" style="display:inline">
+                <div class="row-section">
                   <div class="panel panel-yellow">
                         <div class="panel-heading">
                         <span> <asp:literal runat="server" text="<%$ Resources:Labels,JobDetails%>"/></span>
@@ -465,6 +466,72 @@
                            
                         </div>
                     </div>
+                </div>
+
+                <div class="row-section">
+                 <div class="panel panel-brown">
+                        <div class="panel-heading">
+                        <span> <asp:literal runat="server" text="<%$ Resources:Labels,PassportInfo%>"/></span>
+                        </div>
+                        <div class="c-form-box">
+                            <div class="form-group" style="display:block">
+                                <div class="col-md-4 col-sm-4 col-xs-4 div1">
+                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Position%>" /></span>
+                                </div>
+                                <div class="col-md-8 col-sm-8 col-xs-8 div2" >
+                                <select runat="server" id="Select1" class="form-control"></select>
+                            </div>
+
+                            </div>
+                             <div class="form-group" style="display:block">
+                                <div class="col-md-4 col-sm-4 col-xs-4 div1">
+                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Department%>" /></span>
+                                </div>
+                                <div class="col-md-8 col-sm-8 col-xs-8 div2" >
+                                <select runat="server" id="Select2" name="sel_department" class="form-control"></select>
+                            </div>
+
+                            </div>
+                              <div class="form-group" style="display:block">
+                                <div class="col-md-4 col-sm-4 col-xs-4 div1">
+                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,WorkHours%>" /></span>
+                                </div>
+                                <div class="col-md-8 col-sm-8 col-xs-8 div2">
+                                    <input type="text" class="form-control input-lg" id="Text1"  runat="server" value=""  />
+                            </div>
+                            </div>
+                            <div class="form-group" style="display:block">
+                                <div class="col-md-4 col-sm-4 col-xs-4 div1">
+                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,CurrentSalary%>" /></span>
+                                </div>
+                                <div class="col-md-8 col-sm-8 col-xs-8 div2">
+                                    <input type="text" class="form-control input-lg" id="Text2"  runat="server" value=""  />
+                            </div>
+                            </div>
+                                <div class="form-group" style="display:block">
+                                <div class="col-md-4 col-sm-4 col-xs-4 div1">
+                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Guarantor%>" /></span>
+                                </div>
+                                <div class="col-md-8 col-sm-8 col-xs-8 div2">
+                                    <input type="text" class="form-control input-lg" id="Text3"  runat="server" value=""  />
+                            </div>
+                            </div> 
+                          
+                            <div class="form-group" style="display:block">
+                                <div class="col-md-4 col-sm-4 col-xs-4 div1">
+                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,JobDescription%>" /></span>
+                                </div>
+                                    <div class="col-md-8 col-sm-8 col-xs-8 div2">
+                                        <asp:TextBox type="text" class="form-control input-lg" name="txt_jobDesc" TextMode="MultiLine" Rows="4" runat="server" value=""  />
+                                    </div> 
+                                </div>
+                            
+                          
+                           
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
             

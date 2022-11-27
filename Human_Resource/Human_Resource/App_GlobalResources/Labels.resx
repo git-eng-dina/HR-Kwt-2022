@@ -402,6 +402,9 @@
   <data name="Guarantor" xml:space="preserve">
     <value>Guarantor</value>
   </data>
+  <data name="PassportInfo" xml:space="preserve">
+    <value>Passport Information</value>
+  </data>
   <data name="PreviousExperience" xml:space="preserve">
     <value>Previous Experience</value>
   </data>

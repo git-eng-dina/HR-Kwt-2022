@@ -1136,3 +1136,15 @@ input[type=checkbox], input[type=radio] {
     .radiocontainer label {
         width: calc(100% - 20px);
     }
+
+.row-section {
+    display: flex;
+    flex-wrap: wrap;
+   margin-right: 0px;
+    margin-left: -15px;
+}
+
+.panel-brown {
+    border-color: #895206;
+    width: 95%;
+}
