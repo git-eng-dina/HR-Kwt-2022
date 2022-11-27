@@ -85,6 +85,15 @@ namespace Human_Resource.Views.Settings {
         protected global::System.Web.UI.HtmlControls.HtmlSelect emp;
         
         /// <summary>
+        /// management control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect management;
+        
+        /// <summary>
         /// btn_ads control.
         /// </summary>
         /// <remarks>

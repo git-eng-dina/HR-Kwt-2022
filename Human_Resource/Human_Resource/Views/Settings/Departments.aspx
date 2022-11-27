@@ -60,6 +60,7 @@
                         $('#MainContent_dept_name').val(item.Name);
                         $('#MainContent_txt_mobile').val(item.Mobile);
                         $('#MainContent_emp').val(item.ManagerID);
+                        $('#MainContent_management').val(item.ManagementID);
                     }
 
 
@@ -75,11 +76,13 @@
             var name = $("#MainContent_dept_name").val();
             var mobile = $("#MainContent_txt_mobile").val();
             var emp = $("#MainContent_emp").find(":selected").val();
+            var management = $("#MainContent_management").find(":selected").val();
             var parameter = {
                 departmentId: id,
                 name: name,
                 mobile: mobile,
-                managerId: emp
+                managerId: emp,
+                managementId: management
             };
             $.ajax({
                 type: "POST",
@@ -166,6 +169,14 @@
                                                  Text='<%# Eval("ManagerName") %>' />                              
                                          </ItemTemplate>
                                         </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,Management%>" ItemStyle-Width="20%">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblDmanagement" runat="server" 
+                                                 Text='<%# Eval("ManagementName") %>' />                              
+                                         </ItemTemplate>
+                                        </asp:TemplateField>
+
                                     <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-edit">
                                           <ItemTemplate>                     
                                                      <asp:LinkButton ID="LinkProducts" runat="server" myCustomID='<%# Eval("DepartmentID")%>'  CssClass="td-edit">
@@ -231,6 +242,14 @@
                               <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,HeadOfDepartment%>" /></span>
         
                                 <select runat="server" id="emp" name="emp" style="width:80%" class="form-control input-lg"></select>
+                            </div>
+                        </div>
+
+                  <div class="row">
+                     <div class="form-group" style="display:block">
+                              <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Management%>" /></span>
+        
+                                <select runat="server" id="management" name="management" style="width:80%" class="form-control input-lg"></select>
                             </div>
                         </div>
                   </div>

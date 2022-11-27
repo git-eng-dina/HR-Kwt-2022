@@ -38,7 +38,9 @@ namespace Human_Resource.Views.Settings
                 depts = depts.Where(x => x.Name.ToLower().Contains(textSearch.ToLower())
                                 || x.Mobile.Contains(textSearch)
                                 || x.Address.ToLower().Contains(textSearch.ToLower())
-                                || x.ManagerName.ToLower().Contains(textSearch.ToLower())).ToList();
+                                || x.ManagerName.ToLower().Contains(textSearch.ToLower())
+                                || x.ManagementName.ToLower().Contains(textSearch.ToLower())
+                                ).ToList();
             gv_data.DataSource = depts;
 
 
@@ -52,10 +54,18 @@ namespace Human_Resource.Views.Settings
             else
                 emp.DataTextField = "NameAr";
 
+
+            ManagementModel managementModel = new ManagementModel();
+            List<ManagementModel> managements = new List<ManagementModel>();
+            managements = managementModel.getActivity();
+            management.DataSource = managements;
+            management.DataValueField = "ManagementID";
+            management.DataTextField = "Name";
+
             DataBind();
         }
         [WebMethod(EnableSession = true)]
-        public static string SaveDepartment(string departmentId, string name, string mobile, string managerId)
+        public static string SaveDepartment(string departmentId, string name, string mobile, string managerId, string managementId)
         {
             try
             {
@@ -67,6 +77,7 @@ namespace Human_Resource.Views.Settings
                 dept.Name = name;
                 dept.Mobile = mobile;
                 dept.ManagerID = int.Parse(managerId);
+                dept.ManagementID = int.Parse(managementId);
 
                 if (HttpContext.Current.Session["user_id"] != null && HttpContext.Current.Session["user_id"].ToString() != "")
                     dept.CreateUserID = dept.UpdateUserID = int.Parse(HttpContext.Current.Session["user_id"].ToString());

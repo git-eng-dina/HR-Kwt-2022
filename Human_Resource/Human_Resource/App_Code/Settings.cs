@@ -247,6 +247,7 @@ namespace Human_Resource.App_Code
         public int ManagementID { get; set; }
         public string Name { get; set; }
         public Nullable<int> BranchID { get; set; }
+        public string BranchName { get; set; }
         public Nullable<int> ManagerID { get; set; }
         public string ManagerName { get; set; }
         public string Mobile { get; set; }
@@ -271,6 +272,8 @@ namespace Human_Resource.App_Code
                                     ManagementID = x.ManagementID,
                                     Name = x.Name,
                                     Mobile = x.Mobile,
+                                    BranchID = x.BranchID,
+                                    BranchName = entity.branches.Where(m => m.BranchID == x.BranchID).Select(m => m.Name).FirstOrDefault(),
                                     ManagerID = x.ManagerID,
                                     ManagerName = entity.employees.Where(m => m.EmployeeID == x.ManagerID).Select(m => m.NameAr).FirstOrDefault(),
                                     CreateUserID = x.CreateUserID,
@@ -292,6 +295,8 @@ namespace Human_Resource.App_Code
                                     ManagementID = x.ManagementID,
                                     Name = x.Name,
                                     Mobile = x.Mobile,
+                                    BranchID = x.BranchID,
+                                    BranchName = entity.branches.Where(m => m.BranchID == x.BranchID).Select(m => m.Name).FirstOrDefault(),
                                     ManagerID = x.ManagerID,
                                     ManagerName = entity.employees.Where(m => m.EmployeeID == x.ManagerID).Select(m => m.NameAr).FirstOrDefault(),
                                     CreateUserID = x.CreateUserID,
@@ -313,6 +318,8 @@ namespace Human_Resource.App_Code
                                     ManagementID = x.ManagementID,
                                     Name = x.Name,
                                     Mobile = x.Mobile,
+                                    BranchID = x.BranchID,
+                                    BranchName = entity.branches.Where(m => m.BranchID == x.BranchID).Select(m => m.Name).FirstOrDefault(),
                                     ManagerID = x.ManagerID,
                                     ManagerName = entity.employees.Where(m => m.EmployeeID == x.ManagerID).Select(m => m.NameAr).FirstOrDefault(),
                                     CreateUserID = x.CreateUserID,
@@ -338,9 +345,9 @@ namespace Human_Resource.App_Code
                         management = new managements()
                         {
                             Name = dept.Name,
+                            BranchID = dept.BranchID,
                             ManagerID = dept.ManagerID,
                             Mobile = dept.Mobile,
-                            BranchID = dept.BranchID,
                             IsActive = true,
                             CreateUserID = dept.CreateUserID,
                             UpdateUserID = dept.UpdateUserID,
@@ -353,6 +360,7 @@ namespace Human_Resource.App_Code
                     {
                         management = entity.managements.Find(dept.ManagementID);
                         management.Name = dept.Name;
+                        management.BranchID = dept.BranchID;
                         management.ManagerID = dept.ManagerID;
                         management.Mobile = dept.Mobile;
                         management.Notes = dept.Notes;
@@ -400,6 +408,7 @@ namespace Human_Resource.App_Code
         public int DepartmentID { get; set; }
         public string Name { get; set; }
         public Nullable<int> ManagementID { get; set; }
+        public string ManagementName { get; set; }
         public Nullable<int> ManagerID { get; set; }
         public string ManagerName { get; set; }
         public string Mobile { get; set; }
@@ -424,6 +433,8 @@ namespace Human_Resource.App_Code
                                     DepartmentID = x.DepartmentID,
                                     Name = x.Name,
                                     Mobile = x.Mobile,
+                                    ManagementID = x.ManagementID,
+                                    ManagementName = entity.managements.Where(m => m.ManagementID == x.ManagementID).Select(m => m.Name).FirstOrDefault(),
                                     ManagerID = x.ManagerID,
                                     ManagerName = entity.employees.Where(m => m.EmployeeID == x.ManagerID).Select(m => m.NameAr).FirstOrDefault(),
                                     CreateUserID = x.CreateUserID,
@@ -445,6 +456,8 @@ namespace Human_Resource.App_Code
                                     DepartmentID = x.DepartmentID,
                                     Name = x.Name,
                                     Mobile = x.Mobile,
+                                    ManagementID = x.ManagementID,
+                                    ManagementName = entity.managements.Where(m => m.ManagementID == x.ManagementID).Select(m => m.Name).FirstOrDefault(),
                                     ManagerID = x.ManagerID,
                                     ManagerName = entity.employees.Where(m => m.EmployeeID == x.ManagerID).Select(m => m.NameAr).FirstOrDefault(),
                                     CreateUserID = x.CreateUserID,
@@ -466,6 +479,8 @@ namespace Human_Resource.App_Code
                                     DepartmentID = x.DepartmentID,
                                     Name = x.Name,
                                     Mobile = x.Mobile,
+                                    ManagementID = x.ManagementID,
+                                    ManagementName = entity.managements.Where(m => m.ManagementID == x.ManagementID).Select(m => m.Name).FirstOrDefault(),
                                     ManagerID = x.ManagerID,
                                     ManagerName = entity.employees.Where(m => m.EmployeeID == x.ManagerID).Select(m => m.NameAr).FirstOrDefault(),
                                     CreateUserID = x.CreateUserID,
@@ -491,9 +506,9 @@ namespace Human_Resource.App_Code
                         department = new departments()
                         {
                             Name = dept.Name,
+                            ManagementID = dept.ManagementID,
                             ManagerID = dept.ManagerID,
                             Mobile = dept.Mobile,
-                            ManagementID = dept.ManagementID,
                             IsActive = true,
                             CreateUserID = dept.CreateUserID,
                             UpdateUserID = dept.UpdateUserID,
@@ -506,6 +521,7 @@ namespace Human_Resource.App_Code
                     {
                         department = entity.departments.Find(dept.DepartmentID);
                         department.Name = dept.Name;
+                        department.ManagementID = dept.ManagementID;
                         department.ManagerID = dept.ManagerID;
                         department.Mobile = dept.Mobile;
                         department.Notes = dept.Notes;
