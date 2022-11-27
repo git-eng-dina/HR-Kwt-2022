@@ -85,6 +85,24 @@ namespace Human_Resource.Views.Employees {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txt_identityNumber;
         
         /// <summary>
+        /// txt_sequenceNum control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_sequenceNum;
+        
+        /// <summary>
+        /// txt_unifiedNum control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_unifiedNum;
+        
+        /// <summary>
         /// txt_certificate1 control.
         /// </summary>
         /// <remarks>
@@ -166,49 +184,22 @@ namespace Human_Resource.Views.Employees {
         protected global::System.Web.UI.WebControls.FileUpload file_certificate3;
         
         /// <summary>
-        /// Text2 control.
+        /// txt_experience2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText Text2;
+        protected global::System.Web.UI.WebControls.TextBox txt_experience2;
         
         /// <summary>
-        /// Text4 control.
+        /// txt_experience3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText Text4;
-        
-        /// <summary>
-        /// Select4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect Select4;
-        
-        /// <summary>
-        /// RadioButton7 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RadioButton7;
-        
-        /// <summary>
-        /// RadioButton8 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RadioButton8;
+        protected global::System.Web.UI.WebControls.TextBox txt_experience3;
         
         /// <summary>
         /// Text7 control.
@@ -274,6 +265,15 @@ namespace Human_Resource.Views.Employees {
         protected global::System.Web.UI.HtmlControls.HtmlSelect sel_position;
         
         /// <summary>
+        /// sel_department control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect sel_department;
+        
+        /// <summary>
         /// txt_workHours control.
         /// </summary>
         /// <remarks>
@@ -292,30 +292,12 @@ namespace Human_Resource.Views.Employees {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txt_salary;
         
         /// <summary>
-        /// Select2 control.
+        /// txt_guarantor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect Select2;
-        
-        /// <summary>
-        /// RadioButton3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RadioButton3;
-        
-        /// <summary>
-        /// RadioButton4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RadioButton4;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_guarantor;
     }
 }

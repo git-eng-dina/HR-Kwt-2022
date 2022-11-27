@@ -430,6 +430,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Experience 1.
+        /// </summary>
+        internal static string Experience1 {
+            get {
+                return ResourceManager.GetString("Experience1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Experience 2.
+        /// </summary>
+        internal static string Experience2 {
+            get {
+                return ResourceManager.GetString("Experience2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Experience 3.
+        /// </summary>
+        internal static string Experience3 {
+            get {
+                return ResourceManager.GetString("Experience3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Expired Passports.
         /// </summary>
         internal static string ExpiredPassports {
@@ -453,6 +480,15 @@ namespace Resources {
         internal static string Female {
             get {
                 return ResourceManager.GetString("Female", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Guarantor.
+        /// </summary>
+        internal static string Guarantor {
+            get {
+                return ResourceManager.GetString("Guarantor", resourceCulture);
             }
         }
         
@@ -727,6 +763,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Previous Experience.
+        /// </summary>
+        internal static string PreviousExperience {
+            get {
+                return ResourceManager.GetString("PreviousExperience", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         internal static string Save {
@@ -759,6 +804,15 @@ namespace Resources {
         internal static string Sequence {
             get {
                 return ResourceManager.GetString("Sequence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sequence Num.
+        /// </summary>
+        internal static string SequenceNum {
+            get {
+                return ResourceManager.GetString("SequenceNum", resourceCulture);
             }
         }
         
@@ -804,6 +858,15 @@ namespace Resources {
         internal static string Type {
             get {
                 return ResourceManager.GetString("Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unified Number.
+        /// </summary>
+        internal static string UnifiedNumber {
+            get {
+                return ResourceManager.GetString("UnifiedNumber", resourceCulture);
             }
         }
         

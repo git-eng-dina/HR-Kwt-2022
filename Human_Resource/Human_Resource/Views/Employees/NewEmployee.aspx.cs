@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Human_Resource.App_Code;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,14 +15,20 @@ namespace Human_Resource.Views.Employees
         {
             EmployeeModel emp = new EmployeeModel();
             JobModel job = new JobModel();
+            DepartmentModel dept = new DepartmentModel();
 
             nationality.DataSource = emp.Nationalities.OrderBy(x => x);
             nationality.DataBind();
 
-            //sel_position.DataSource = job.GetJobs();
-            //sel_position.DataTextField = "Name";
-            //sel_position.DataValueField = "JobID";
-            //sel_position.DataBind();
+            sel_position.DataSource = job.GetActivity().OrderBy(x => x.Name);
+            sel_position.DataTextField = "Name";
+            sel_position.DataValueField = "JobID";
+            sel_position.DataBind();
+
+            sel_department.DataSource = dept.getActivity().OrderBy(x => x.Name);
+            sel_department.DataTextField = "Name";
+            sel_department.DataValueField = "DepartmentID";
+            sel_department.DataBind();
         }
 
 

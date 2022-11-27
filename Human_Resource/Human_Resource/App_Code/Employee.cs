@@ -74,6 +74,7 @@ namespace Human_Resource
         public Nullable<int> WorkHours { get; set; }
         public string JobDescription { get; set; }
 
+        public string Guarantor { get; set; }
 
         #endregion
         #region extra info

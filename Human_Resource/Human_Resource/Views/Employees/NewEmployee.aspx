@@ -77,7 +77,33 @@
                  $('#frm_certificate2').hide();
              }
          }
+         function addExperienceRow() {
+             if ($('#frm_experience2').is(':visible')) {
+                 $('#frm_experience3').show();
+                 $('#frm-addExperience').hide();
+                 $('#btn-deleteExperience2').hide();
+             }
+             else {
+                 $('#frm_experience2').show();
 
+             }
+         }
+
+         function deleteExperienceRow() {
+
+              if ($('#frm_experience3').is(':visible')) {
+                  $('#MainContent_txt_experience3').val("");
+                  $('#frm_experience3').hide();
+                  $('#frm-addExperience').show();
+                  $('#btn-deleteExperience2').show();
+
+
+              }
+              else {
+                  $('#MainContent_txt_experience2').val("");
+                  $('#frm_experience2').hide();
+              }
+          }
         
      </script>
     <!-- text boxes -->
@@ -138,6 +164,7 @@
                                     <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Type%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2">
+
                                     <table style="width:80%">
                                         <tr>
                                             <td>
@@ -157,6 +184,24 @@
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2">
                                    <input type="text" class="form-control input-lg" id="txt_identityNumber"  runat="server" value=""  />
+
+                                </div>
+                            </div>  
+                            <div class="form-group" style="display:block">
+                                <div class="col-md-4 col-sm-4 col-xs-4 div1">
+                                    <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,SequenceNum%>" /></span>
+                                </div>
+                                <div class="col-md-8 col-sm-8 col-xs-8 div2">
+                                   <input type="text" class="form-control input-lg" id="txt_sequenceNum"  runat="server" value=""  />
+
+                                </div>
+                            </div>
+                            <div class="form-group" style="display:block">
+                                <div class="col-md-4 col-sm-4 col-xs-4 div1">
+                                    <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,UnifiedNumber%>" /></span>
+                                </div>
+                                <div class="col-md-8 col-sm-8 col-xs-8 div2">
+                                   <input type="text" class="form-control input-lg" id="txt_unifiedNum"  runat="server" value=""  />
 
                                 </div>
                             </div>
@@ -183,7 +228,7 @@
 
                                      </div>
                                      <div class="col-md-2 col-sm-8 col-xs-8 div2" >
-                                         <asp:FileUpload ID="file_certificate1" runat="server" CssClass="hidden fileUpload" />
+                                         <asp:FileUpload ID="file_certificate1" runat="server" class="hidden" />
                                    <a href=""  id="uploadTrigger_1"> <i class="fa fa-upload"></i></a>
                                      </div>
                                 </div>
@@ -214,7 +259,7 @@
                             </div>
 
                             <div class="row" style="display:none" id="frm_certificate3">
-                            <div class="form-group" >
+                            <div class="form-group"  >
                                 <div class="col-md-4 col-sm-4 col-xs-4 div1">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Certificate3%>" /></span>
                                 </div>
@@ -248,69 +293,49 @@
                             </div>
                         </div>
                     </div>
-                                  </div>
+                    </div>
 
-                              <div class="row row-padding">
-                            <div class="panel panel-green">
+                    <div class="row row-padding">
+                      <div class="panel panel-green">
                         <div class="panel-heading">
-                        <span> <asp:literal runat="server" text="<%$ Resources:Labels,AcademicEducation%>"/></span>
+                        <span> <asp:literal runat="server" text="<%$ Resources:Labels,PreviousExperience%>"/></span>
                         </div>
-                        <div class="c-form-box">
-                            <div class="form-group" style="display:block">
-                                <div class="col-md-4 col-sm-4 col-xs-4 div1">
-                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,AcademicCertificates%>" /></span>
+                        <div class="c-form-dynamic">
+                            <div class="form-textarea" style="display:block">
+                                <div class="col-md-3 col-sm-4 col-xs-4 div1">
+                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Experience1%>" /></span>
                                 </div>
-                                <div class="col-md-8 col-sm-8 col-xs-8 div2" >
-                                     <div class="c-form-box">
-                                         <div class="form-group" style="display:block">
-                                            <input type="text" class="form-control input-lg" id="Text2"  runat="server" value=""  />
-                                         <a href="javascript:addRow();"  id="test"> <i class="fas fa-plus"></i></a>
-                                             <%-- <input type="button" class="fa fa-plus btn-plus" id="btn_plus" />--%>
-                                         </div>
-                                     </div>
+                                <div class="col-md-9 col-sm-8 col-xs-8 div2" >
+                                    <asp:TextBox type="text" class="form-control input-lg textarea" name="txt_experience1"  TextMode="MultiLine" Rows="3" runat="server" value=""  />
+
                                 </div>
                             </div>
-                            <div class="form-group" style="display:block">
-                                <div class="col-md-4 col-sm-4 col-xs-4 div1">
-                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,PreviousEmployment%>" /></span>
+                            <div class="form-textarea" style="display:none"  id="frm_experience2">
+                                <div class="col-md-3 col-sm-4 col-xs-4 div1">
+                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Experience2%>" /></span>
                                 </div>
-                                <div class="col-md-8 col-sm-8 col-xs-8 div2">
-                                    <asp:TextBox type="text" class="form-control input-lg" name="txt_workExperience" TextMode="MultiLine" Rows="4" runat="server" value=""  />
+                                <div class="col-md-9 col-sm-8 col-xs-8 div2">
+                                    <asp:TextBox type="text" class="form-control input-lg textarea" ID="txt_experience2" name="txt_experience2" TextMode="MultiLine" Rows="4" runat="server" value="" />
+                                    <a href="javascript:deleteExperienceRow();"  id="btn-deleteExperience2"> <i class="fas fa-minus"></i></a>
                             </div>
                                 </div>
-                            <div class="form-group" style="display:block">
-                                <div class="col-md-4 col-sm-4 col-xs-4 div1">
-                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Mobile%>" /></span>
+                            <div class="form-textarea" style="display:none" id="frm_experience3">
+                                <div class="col-md-3 col-sm-4 col-xs-4 div1">
+                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Experience3%>" /></span>
                                 </div>
-                                    <div class="col-md-8 col-sm-8 col-xs-8 div2">
-                                        <input type="text" class="form-control input-lg" id="Text4"  runat="server" value=""  />
+                                    <div class="col-md-9 col-sm-8 col-xs-8 div2">
+                                        <asp:TextBox type="text" class="form-control input-lg textarea" ID="txt_experience3" name="txt_experience3" TextMode="MultiLine" Rows="4"  runat="server" value=""  />
+                                        <a href="javascript:deleteExperienceRow();"  id="btn-deleteExperience3"> <i class="fas fa-minus"></i></a>
+
                                     </div> 
                                 </div>
-                            <div class="form-group" style="display:block">
+                              <div class="form-group" style="display:block" id="frm-addexperience">
                                 <div class="col-md-4 col-sm-4 col-xs-4 div1">
-                                    <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Nationality%>" /></span>
+                                      <a href="javascript:addExperienceRow();" > <i class="fas fa-plus"></i></a>
                                 </div>
-                                <div class="col-md-8 col-sm-8 col-xs-8 div2">
-                                <select runat="server" id="Select4" class="form-control"></select>
-                                    </div>
-                            </div>
-                            <div class="form-group" style="display:block">
-                                <div class="col-md-4 col-sm-4 col-xs-4 div1">
-                                    <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Type%>" /></span>
-                                </div>
-                                <div class="col-md-8 col-sm-8 col-xs-8 div2">
-                                    <table style="width:80%">
-                                        <tr>
-                                            <td>
-                                                <asp:RadioButton ID="RadioButton7" Checked="true" runat="server" value="1" Text="<%$ Resources:Labels,Male%>" GroupName="stemmingType" CssClass="rd-stemType" />  
-                                            </td>
-                                            <td>
-                                                <asp:RadioButton ID="RadioButton8" runat="server" value="2"  Text="<%$ Resources:Labels,Female%>" GroupName="stemmingType" CssClass="rd-stemType"/>  
+                                <div class="col-md-8 col-sm-8 col-xs-8 div2" >
 
-                                            </td>
-                                        </tr>
-                                    </table>
-                            </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -393,6 +418,15 @@
                             </div>
 
                             </div>
+                             <div class="form-group" style="display:block">
+                                <div class="col-md-4 col-sm-4 col-xs-4 div1">
+                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Department%>" /></span>
+                                </div>
+                                <div class="col-md-8 col-sm-8 col-xs-8 div2" >
+                                <select runat="server" id="sel_department" name="sel_department" class="form-control"></select>
+                            </div>
+
+                            </div>
                               <div class="form-group" style="display:block">
                                 <div class="col-md-4 col-sm-4 col-xs-4 div1">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,WorkHours%>" /></span>
@@ -408,6 +442,14 @@
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2">
                                     <input type="text" class="form-control input-lg" id="txt_salary"  runat="server" value=""  />
                             </div>
+                            </div>
+                                <div class="form-group" style="display:block">
+                                <div class="col-md-4 col-sm-4 col-xs-4 div1">
+                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Guarantor%>" /></span>
+                                </div>
+                                <div class="col-md-8 col-sm-8 col-xs-8 div2">
+                                    <input type="text" class="form-control input-lg" id="txt_guarantor"  runat="server" value=""  />
+                            </div>
                             </div> 
                           
                             <div class="form-group" style="display:block">
@@ -418,32 +460,8 @@
                                         <asp:TextBox type="text" class="form-control input-lg" name="txt_jobDesc" TextMode="MultiLine" Rows="4" runat="server" value=""  />
                                     </div> 
                                 </div>
-                            <div class="form-group" style="display:block">
-                                <div class="col-md-4 col-sm-4 col-xs-4 div1">
-                                    <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Nationality%>" /></span>
-                                </div>
-                                <div class="col-md-8 col-sm-8 col-xs-8 div2">
-                                <select runat="server" id="Select2" class="form-control"></select>
-                                    </div>
-                            </div>
-                            <div class="form-group" style="display:block">
-                                <div class="col-md-4 col-sm-4 col-xs-4 div1">
-                                    <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Type%>" /></span>
-                                </div>
-                                <div class="col-md-8 col-sm-8 col-xs-8 div2">
-                                    <table style="width:80%">
-                                        <tr>
-                                            <td>
-                                                <asp:RadioButton ID="RadioButton3" Checked="true" runat="server" value="1" Text="<%$ Resources:Labels,Male%>" GroupName="stemmingType" CssClass="rd-stemType" />  
-                                            </td>
-                                            <td>
-                                                <asp:RadioButton ID="RadioButton4" runat="server" value="2"  Text="<%$ Resources:Labels,Female%>" GroupName="stemmingType" CssClass="rd-stemType"/>  
-
-                                            </td>
-                                        </tr>
-                                    </table>
-                            </div>
-                            </div>
+                            
+                          
                            
                         </div>
                     </div>

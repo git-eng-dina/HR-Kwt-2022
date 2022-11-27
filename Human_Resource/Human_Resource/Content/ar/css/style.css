@@ -967,7 +967,7 @@ nav .logo {
     text-align: right;
     padding-top: 5px;
 }
-.c-form-box input:not([type=file]), select {
+.c-form-box input:not([type=file]):not([type=checkBox]):not([type=checkBox]), select {
     font-weight: bold;
     display: block;
     width: 100%;
@@ -1034,6 +1034,7 @@ input[type=checkbox], input[type=radio] {
         width: 100%;
         height: 30px;
     }
+   
 
     .c-form-dynamic .div1 {
         float: right;
@@ -1067,7 +1068,7 @@ input[type=checkbox], input[type=radio] {
         padding-top: 5px;
     }
 
-    .c-form-dynamic input:not([type=file]), select {
+    .c-form-dynamic input:not([type=file]), select,textarea {
         font-weight: bold;
         display: block;
         width: 90%;
@@ -1080,7 +1081,27 @@ input[type=checkbox], input[type=radio] {
             width: 20%;
             float: left;
         }
-
+    .c-form-dynamic .form-textarea {
+        width: 100%;
+        height: 90px;
+    }
+    .form-textarea input:not([type=file]), select, textarea {
+        font-weight: bold;
+        display: block;
+        width: 90%;
+        float: right;
+    }
+.form-textarea .textarea{
+    width:90%;
+    margin-bottom:5px;
+}
+.c-form-dynamic .form-textarea span {
+    display: block;
+    width: 100%;
+    float: right;
+    text-align: right;
+    padding-top: 5px;
+}
 .hidden {
      display: none; 
     /*position: absolute;
@@ -1095,3 +1116,23 @@ input[type=checkbox], input[type=radio] {
     color: #5587bd;
     font-size: 12px;
 }
+
+.radiocontainer {
+    display: inline-flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+    .radiocontainer input,
+    .radiocontainer label {
+        margin: 0;
+    }
+
+    .radiocontainer input {
+        width: 20px;
+    }
+
+    .radiocontainer label {
+        width: calc(100% - 20px);
+    }

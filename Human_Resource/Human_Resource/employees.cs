@@ -96,6 +96,7 @@ namespace Human_Resource
         public Nullable<int> JobID { get; set; }
         public Nullable<int> WorkHours { get; set; }
         public string JobDescription { get; set; }
+        public string Guarantor { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<confirms> confirms { get; set; }

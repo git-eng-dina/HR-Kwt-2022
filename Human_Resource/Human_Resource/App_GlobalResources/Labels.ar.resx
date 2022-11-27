@@ -390,4 +390,25 @@
   <data name="UploadFile" xml:space="preserve">
     <value>أرفق ملف</value>
   </data>
+  <data name="Experience1" xml:space="preserve">
+    <value>الخبرة 1</value>
+  </data>
+  <data name="Experience2" xml:space="preserve">
+    <value>الخبرة 2</value>
+  </data>
+  <data name="Experience3" xml:space="preserve">
+    <value>الخبرة 3</value>
+  </data>
+  <data name="Guarantor" xml:space="preserve">
+    <value>الكفيل</value>
+  </data>
+  <data name="PreviousExperience" xml:space="preserve">
+    <value>الخبرات السابقة</value>
+  </data>
+  <data name="SequenceNum" xml:space="preserve">
+    <value>الرقم المسلسل</value>
+  </data>
+  <data name="UnifiedNumber" xml:space="preserve">
+    <value>الرقم الموحد</value>
+  </data>
 </root>
