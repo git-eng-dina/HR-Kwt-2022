@@ -60,6 +60,7 @@
                         $('#MainContent_dept_name').val(item.Name);
                         $('#MainContent_txt_mobile').val(item.Mobile);
                          $('#MainContent_emp').val(item.ManagerID);
+                        $('#MainContent_branch').val(item.BranchID);
                     }
 
 
@@ -75,11 +76,13 @@
             var name = $("#MainContent_dept_name").val();
             var mobile = $("#MainContent_txt_mobile").val();
              var emp = $("#MainContent_emp").find(":selected").val();
+            var branch = $("#MainContent_branch").find(":selected").val();
             var parameter = {
                 managementId :id,
                 name: name,
                 mobile: mobile,
-                 managerId: emp
+                 managerId: emp,
+                branchId: branch
             };
             $.ajax({
                 type: "POST",
@@ -166,6 +169,14 @@
                                                  Text='<%# Eval("ManagerName") %>' />                              
                                          </ItemTemplate>
                                         </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,Branch%>" ItemStyle-Width="20%">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblDbranch" runat="server" 
+                                                 Text='<%# Eval("BranchName") %>' />                              
+                                         </ItemTemplate>
+                                        </asp:TemplateField>
+
                                     <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-edit">
                                           <ItemTemplate>                     
                                                      <asp:LinkButton ID="LinkProducts" runat="server" myCustomID='<%# Eval("ManagementID")%>'  CssClass="td-edit">
@@ -231,6 +242,13 @@
                               <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,ManagementManager%>" /></span>
         
                                 <select runat="server" id="emp" name="emp" style="width:80%" class="form-control input-lg"></select>
+                            </div>
+                        </div>
+                       <div class="row">
+                     <div class="form-group" style="display:block">
+                              <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Branch%>" /></span>
+        
+                                <select runat="server" id="branch" name="branch" style="width:80%" class="form-control input-lg"></select>
                             </div>
                         </div>
                   </div>
