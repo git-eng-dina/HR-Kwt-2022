@@ -417,4 +417,7 @@
   <data name="Details" xml:space="preserve">
     <value>Details</value>
   </data>
+  <data name="Employee" xml:space="preserve">
+    <value>Employee</value>
+  </data>
 </root>
