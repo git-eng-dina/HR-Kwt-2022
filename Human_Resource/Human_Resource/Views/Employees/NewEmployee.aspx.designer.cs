@@ -13,6 +13,15 @@ namespace Human_Resource.Views.Employees {
     public partial class NewEmployee {
         
         /// <summary>
+        /// emp_id control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden emp_id;
+        
+        /// <summary>
         /// txt_nameAR control.
         /// </summary>
         /// <remarks>
@@ -83,24 +92,6 @@ namespace Human_Resource.Views.Employees {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList1;
-        
-        /// <summary>
-        /// rd_male control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rd_male;
-        
-        /// <summary>
-        /// rd_female control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rd_female;
         
         /// <summary>
         /// txt_identityNumber control.
@@ -247,6 +238,15 @@ namespace Human_Resource.Views.Employees {
         protected global::System.Web.UI.WebControls.FileUpload file_certificate3;
         
         /// <summary>
+        /// txt_experience1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_experience1;
+        
+        /// <summary>
         /// txt_experience2 control.
         /// </summary>
         /// <remarks>
@@ -325,7 +325,7 @@ namespace Human_Resource.Views.Employees {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_vacationBalance;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txt_vacationBalance;
         
         /// <summary>
         /// txt_guarantor control.
@@ -337,13 +337,22 @@ namespace Human_Resource.Views.Employees {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txt_guarantor;
         
         /// <summary>
+        /// txt_jobDesc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_jobDesc;
+        
+        /// <summary>
         /// txt_passportNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect txt_passportNo;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_passportNo;
         
         /// <summary>
         /// dp_passportFromDate control.

@@ -453,7 +453,7 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,VacationsBalance%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2">
-                                    <input type="text" class="form-control input-lg" id="txt_vacationBalance" runat="server" value=""  />
+                                    <input type="number"  class="form-control input-lg" id="txt_vacationBalance" runat="server" value=""  />
                             </div>
                            </div>
                             
@@ -492,7 +492,8 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,passportNo%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
-                                <select runat="server" id="txt_passportNo" class="form-control"></select>
+                                    <input type="text" class="form-control" id="txt_passportNo" runat="server" value=""  />
+
                             </div>
 
                             </div>
