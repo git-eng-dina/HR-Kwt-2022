@@ -127,7 +127,7 @@ namespace Human_Resource.App_Code
         #endregion
 
         #region methods
-        public List<BranchModel> getCompanyDeps()
+        public List<BranchModel> getCompanyBranches()
         {
             using (HRSystemEntities entity = new HRSystemEntities())
             {

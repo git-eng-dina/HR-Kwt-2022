@@ -57,7 +57,7 @@ namespace Human_Resource.Views.Settings
 
             BranchModel branchModel = new BranchModel();
             List<BranchModel> branches = new List<BranchModel>();
-            branches = branchModel.getCompanyDeps();
+            branches = branchModel.getCompanyBranches();
             branch.DataSource = branches;
             branch.DataValueField = "BranchID";
             branch.DataTextField = "Name";

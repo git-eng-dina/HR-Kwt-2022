@@ -36,7 +36,7 @@ namespace Human_Resource.Views.Settings
         {
             BranchModel dept = new BranchModel();
 
-            var depts = dept.getCompanyDeps();
+            var depts = dept.getCompanyBranches();
             if (textSearch != "")
                 depts = depts.Where(x => x.Name.ToLower().Contains(textSearch.ToLower()) 
                                 || x.Mobile.Contains(textSearch)

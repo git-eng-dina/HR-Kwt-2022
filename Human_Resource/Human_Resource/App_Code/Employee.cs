@@ -9,7 +9,8 @@ namespace Human_Resource
     {
         #region Attributes
         public int EmployeeID { get; set; }
-        public int CompanyID { get; set; }
+        public Nullable<int> DepartmentID { get; set; }
+
         public string Username { get; set; }
         public string Password { get; set; }
         public Nullable<int> VacationsBalance { get; set; }
@@ -164,7 +165,122 @@ namespace Human_Resource
                 return user;
             }
         }
+        public int SaveEmployee(EmployeeModel employee)
+        {
+            try
+            {
+                employees emp;
 
+                using (HRSystemEntities entity = new HRSystemEntities())
+                {
+                    if (employee.EmployeeID.Equals(0))
+                    {
+                        emp = new employees()
+                        {
+                            NameAr = employee.NameAr,
+                            NameEn = employee.NameEn,
+                            DOB = employee.DOB,
+                            Mobile = employee.Mobile,
+                            MaritalStatus = employee.MaritalStatus,
+                            Nationality = employee.Nationality,
+                            BloodType = employee.BloodType,
+                            Gender = employee.Gender,
+                           IdentityNumber = employee.IdentityNumber ,
+                            #region certificates
+                            EducationCertificate1= employee.EducationCertificate1,
+                            EducationCertificateFromDate1 = employee.EducationCertificateFromDate1,
+                            EducationCertificateToDate1 = employee.EducationCertificateToDate1,
+
+                            EducationCertificate2= employee.EducationCertificate2,
+                            EducationCertificateFromDate2= employee.EducationCertificateFromDate2 ,
+                            EducationCertificateToDate2 = employee.EducationCertificateToDate2,
+
+
+                            EducationCertificate3 =employee.EducationCertificate3 ,
+                            EducationCertificateFromDate3 =employee.EducationCertificateFromDate3,
+                            EducationCertificateToDate3=employee.EducationCertificateToDate3 ,
+
+                            #endregion
+                            WorkExperience1 = employee.WorkExperience1 ,
+                            WorkExperience2= employee.WorkExperience2 ,
+                            WorkExperience3= employee.WorkExperience3,
+                            JobID = employee.JobID ,
+                            DepartmentID = employee.DepartmentID ,
+                            WorkHours = employee.WorkHours,
+                            BasicSalary = employee.BasicSalary ,
+                            Email = employee.Email,
+                            VacationsBalance = employee.VacationsBalance,
+                            Guarantor = employee.Guarantor,
+                            JobDescription= employee.JobDescription,
+                            PassportNumber = employee.PassportNumber ,
+                            PassportReleaseDate= employee.PassportReleaseDate,
+                            PassportExpiryDate=employee.PassportExpiryDate,
+                            Sequence= employee.Sequence ,
+                            UnifiedNumber = employee.UnifiedNumber ,
+
+                            CreateUserID =employee.CreateUserID ,
+                            UpdateUserID = employee.UpdateUserID,
+                            CreateDate = DateTime.Now,
+                            UpdateDate = DateTime.Now,
+                    };
+                        emp = entity.employees.Add(emp);
+                    }
+                    else
+                    {
+                        emp = entity.employees.Find(employee.EmployeeID);
+                        emp.NameAr = employee.NameAr;
+                        emp.NameEn = employee.NameEn;
+                        emp.DOB = employee.DOB;
+                        emp.Mobile = employee.Mobile;
+                        emp.MaritalStatus = employee.MaritalStatus;
+                        emp.Nationality = employee.Nationality;
+                        emp.BloodType = employee.BloodType;
+                        emp.Gender = employee.Gender;
+                        emp.IdentityNumber = employee.IdentityNumber;
+                        #region certificates
+                        emp.EducationCertificate1 = employee.EducationCertificate1;
+                        emp.EducationCertificateFromDate1 = employee.EducationCertificateFromDate1;
+                        emp.EducationCertificateToDate1 = employee.EducationCertificateToDate1;
+                        emp.EducationCertificate2 = employee.EducationCertificate2;
+                        emp.EducationCertificateFromDate2 = employee.EducationCertificateFromDate2;
+                        emp.EducationCertificateToDate2 = employee.EducationCertificateToDate2;
+
+
+                        emp.EducationCertificate3 = employee.EducationCertificate3;
+                        emp.EducationCertificateFromDate3 = employee.EducationCertificateFromDate3;
+                        emp.EducationCertificateToDate3 = employee.EducationCertificateToDate3;
+
+                        #endregion
+                        emp.WorkExperience1 = employee.WorkExperience1;
+                        emp.WorkExperience2 = employee.WorkExperience2;
+                        emp.WorkExperience3 = employee.WorkExperience3;
+                        emp.JobID = employee.JobID;
+                        emp.DepartmentID = employee.DepartmentID;
+                        emp.WorkHours = employee.WorkHours;
+                        emp.BasicSalary = employee.BasicSalary;
+                        emp.Email = employee.Email;
+                        emp.VacationsBalance = employee.VacationsBalance;
+                        emp.Guarantor = employee.Guarantor;
+                        emp.JobDescription = employee.JobDescription;
+                        emp.PassportNumber = employee.PassportNumber;
+                        emp.PassportReleaseDate = employee.PassportReleaseDate;
+                        emp.PassportExpiryDate = employee.PassportExpiryDate;
+                        emp.Sequence = employee.Sequence;
+                        emp.UnifiedNumber = employee.UnifiedNumber;
+
+                        emp.UpdateUserID = employee.UpdateUserID;
+                        emp.UpdateDate = DateTime.Now;
+                    }
+                    entity.SaveChanges();
+                }
+                return emp.EmployeeID;
+            }
+
+            catch
+            {
+                return 0;
+            }
+        }
         public bool DeleteEmp(int empId, int? userId)
         {
             try

@@ -112,8 +112,8 @@
         <div class="container" >
         <div class="row">
         <div class="col-md-12">    
-                
-                <div class="col-md-6 float1" style="display:inline">
+                <input type="hidden" runat="server" id="emp_id" value="" />
+                 <div class="col-md-6 float1" style="display:inline">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                         <span> <asp:literal runat="server" text="<%$ Resources:Labels,PersonalInfo%>"/></span>
@@ -157,7 +157,7 @@
                                     <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,MaritalStatus%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2">
-                                <select runat="server" id="maritalStatus" name="maritalStatus" class="form-control"></select>
+                                <select runat="server" id="sel_maritalStatus" name="sel_maritalStatus" class="form-control"></select>
                                     </div>
                             </div> 
                             <div class="form-group" style="display:block">
@@ -165,7 +165,7 @@
                                     <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Nationality%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2">
-                                <select runat="server" id="nationality" class="form-control"></select>
+                                <select runat="server" id="sel_nationality" class="form-control"></select>
                                     </div>
                             </div>
                             <div class="form-group" style="display:block">
@@ -181,18 +181,11 @@
                                     <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Type%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2">
-
-                                    <table style="width:80%">
-                                        <tr>
-                                            <td>
-                                                <asp:RadioButton ID="rd_male" Checked="true" runat="server" value="1" Text="<%$ Resources:Labels,Male%>" GroupName="stemmingType" CssClass="rd-stemType" />  
-                                            </td>
-                                            <td>
-                                                <asp:RadioButton ID="rd_female" runat="server" value="2"  Text="<%$ Resources:Labels,Female%>" GroupName="stemmingType" CssClass="rd-stemType"/>  
-
-                                            </td>
-                                        </tr>
-                                    </table>
+                                    <asp:RadioButtonList id="RadioButtonList1" RepeatDirection="Horizontal" runat="server" CssClass="rd-stemType">
+                                        <asp:ListItem value="male" Text="<%$ Resources:Labels,Male%>" Selected="True"></asp:ListItem>
+                                        <asp:ListItem value="female" Text="<%$ Resources:Labels,Female%>"></asp:ListItem>
+                                    </asp:RadioButtonList>
+                                  
                             </div>
                             </div>
                             <div class="form-group" style="display:block">
@@ -211,7 +204,7 @@
                         <div class="panel-heading">
                         <span> <asp:literal runat="server" text="<%$ Resources:Labels,AcademicCertificates%>"/></span>
                         </div>
-                        <div class="c-form-dynamic">
+                        <div class="c-form-dynamic" style="height:175px">
                             <div class="row">
                             <div class="form-group" style="display:block">
                                 <div class="col-md-4 col-sm-4 col-xs-4 div1">
@@ -353,13 +346,13 @@
                         <div class="panel-heading">
                         <span> <asp:literal runat="server" text="<%$ Resources:Labels,PreviousExperience%>"/></span>
                         </div>
-                        <div class="c-form-dynamic">
+                        <div class="c-form-dynamic" style="height:140px">
                             <div class="form-textarea" style="display:block">
                                 <div class="col-md-3 col-sm-4 col-xs-4 div1">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Experience1%>" /></span>
                                 </div>
                                 <div class="col-md-9 col-sm-8 col-xs-8 div2" >
-                                    <asp:TextBox type="text" class="form-control input-lg textarea" name="txt_experience1"  TextMode="MultiLine" Rows="3" runat="server" value=""  />
+                                    <asp:TextBox type="text" class="form-control input-lg textarea" ID="txt_experience1" name="txt_experience1"  TextMode="MultiLine" Rows="3" runat="server" value=""  />
 
                                 </div>
                             </div>
@@ -478,7 +471,7 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,JobDescription%>" /></span>
                                 </div>
                                     <div class="col-md-8 col-sm-8 col-xs-8 div2">
-                                        <asp:TextBox type="text" class="form-control input-lg" name="txt_jobDesc" TextMode="MultiLine" Rows="6" runat="server" value=""  />
+                                        <asp:TextBox type="text" class="form-control input-lg" ID="txt_jobDesc" name="txt_jobDesc" TextMode="MultiLine" Rows="6" runat="server" value=""  />
                                     </div> 
                                 </div>
                             
@@ -554,7 +547,14 @@
 
     <!-- buttons -->
     <div class="row">
+        <div class="col-md-11 modal-footer">
+            <asp:LinkButton ID="btnSave" runat="server" CssClass="btn btn-new" OnClick="btn_save_Click" Width="128px" Height="33px">
+                <asp:Literal Text=" <%$Resources:Labels,Save%>" runat="server"></asp:Literal>
+                <i class="fa fa-check"></i>
+            </asp:LinkButton>
 
+
+        </div>
 
     </div>
             </div>
