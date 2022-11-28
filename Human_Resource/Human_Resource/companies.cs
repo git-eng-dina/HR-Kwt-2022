@@ -37,6 +37,7 @@ namespace Human_Resource
         public Nullable<int> GeneralDirector { get; set; }
         public Nullable<int> FinancialManager { get; set; }
         public Nullable<int> HRManager { get; set; }
+        public Nullable<int> CEO { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<branches> branches { get; set; }

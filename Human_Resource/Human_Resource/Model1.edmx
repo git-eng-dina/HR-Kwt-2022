@@ -43,6 +43,7 @@
           <Property Name="GeneralDirector" Type="int" />
           <Property Name="FinancialManager" Type="int" />
           <Property Name="HRManager" Type="int" />
+          <Property Name="CEO" Type="int" />
         </EntityType>
         <EntityType Name="confirms">
           <Key>
@@ -64,6 +65,14 @@
           <Property Name="ConfirmType" Type="nvarchar" MaxLength="100" />
           <Property Name="EmployeeID" Type="int" />
         </EntityType>
+        <EntityType Name="countriesName">
+          <Key>
+            <PropertyRef Name="CountriesNameID" />
+          </Key>
+          <Property Name="CountriesNameID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameEn" Type="nvarchar" MaxLength="100" />
+          <Property Name="NameAr" Type="nvarchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="custodies">
           <Key>
             <PropertyRef Name="CustodyID" />
@@ -72,13 +81,14 @@
           <Property Name="Type" Type="nvarchar" MaxLength="100" />
           <Property Name="Details" Type="ntext" />
           <Property Name="Value" Type="nvarchar" MaxLength="100" />
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="IsRecovery" Type="bit" />
           <Property Name="Notes" Type="ntext" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" />
           <Property Name="UpdateDate" Type="datetime2" Precision="7" />
           <Property Name="CreateUserID" Type="int" />
           <Property Name="UpdateUserID" Type="int" />
           <Property Name="IsActive" Type="bit" />
-          <Property Name="EmployeeID" Type="int" />
         </EntityType>
         <EntityType Name="departments">
           <Key>
@@ -314,6 +324,7 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
           <Property Name="MaterialsConsumptionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Type" Type="nvarchar" MaxLength="100" />
           <Property Name="Details" Type="ntext" />
+          <Property Name="EmployeeID" Type="int" />
           <Property Name="Value" Type="nvarchar" MaxLength="100" />
           <Property Name="Notes" Type="ntext" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" />
@@ -321,7 +332,6 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
           <Property Name="CreateUserID" Type="int" />
           <Property Name="UpdateUserID" Type="int" />
           <Property Name="IsActive" Type="bit" />
-          <Property Name="EmployeeID" Type="int" />
         </EntityType>
         <EntityType Name="messages">
           <Key>
@@ -801,6 +811,7 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
           <EntitySet Name="branches" EntityType="Self.branches" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="companies" EntityType="Self.companies" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="confirms" EntityType="Self.confirms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="countriesName" EntityType="Self.countriesName" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="custodies" EntityType="Self.custodies" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="departments" EntityType="Self.departments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EemployeesEvents" EntityType="Self.EemployeesEvents" Schema="dbo" store:Type="Tables" />
@@ -999,6 +1010,7 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
           <Property Name="FinancialManager" Type="Int32" />
           <Property Name="HRManager" Type="Int32" />
           <NavigationProperty Name="branches" Relationship="Self.FK_branches_companies" FromRole="companies" ToRole="branches" />
+          <Property Name="CEO" Type="Int32" />
         </EntityType>
         <EntityType Name="confirms">
           <Key>
@@ -1043,6 +1055,7 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="EmployeeID" Type="Int32" />
           <NavigationProperty Name="employees" Relationship="Self.FK_custodies_employees" FromRole="custodies" ToRole="employees" />
+          <Property Name="IsRecovery" Type="Boolean" />
         </EntityType>
         <EntityType Name="departments">
           <Key>
@@ -1949,7 +1962,16 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
             <End Role="tasks" EntitySet="tasks" />
             <End Role="employeesTasks" EntitySet="employeesTasks" />
           </AssociationSet>
+          <EntitySet Name="countriesName" EntityType="HRSystemModel.countriesName" />
         </EntityContainer>
+        <EntityType Name="countriesName">
+          <Key>
+            <PropertyRef Name="CountriesNameID" />
+          </Key>
+          <Property Name="CountriesNameID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameEn" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NameAr" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1977,6 +1999,7 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
           <EntitySetMapping Name="companies">
             <EntityTypeMapping TypeName="HRSystemModel.companies">
               <MappingFragment StoreEntitySet="companies">
+                <ScalarProperty Name="CEO" ColumnName="CEO" />
                 <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
@@ -2021,6 +2044,7 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
           <EntitySetMapping Name="custodies">
             <EntityTypeMapping TypeName="HRSystemModel.custodies">
               <MappingFragment StoreEntitySet="custodies">
+                <ScalarProperty Name="IsRecovery" ColumnName="IsRecovery" />
                 <ScalarProperty Name="CustodyID" ColumnName="CustodyID" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Details" ColumnName="Details" />
@@ -2421,6 +2445,15 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="TaskID" ColumnName="TaskID" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="countriesName">
+            <EntityTypeMapping TypeName="HRSystemModel.countriesName">
+              <MappingFragment StoreEntitySet="countriesName">
+                <ScalarProperty Name="NameAr" ColumnName="NameAr" />
+                <ScalarProperty Name="NameEn" ColumnName="NameEn" />
+                <ScalarProperty Name="CountriesNameID" ColumnName="CountriesNameID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
