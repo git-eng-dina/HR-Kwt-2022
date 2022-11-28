@@ -444,4 +444,19 @@
   <data name="VacationsBalance" xml:space="preserve">
     <value>Vacations Balance</value>
   </data>
+  <data name="Absoluto" xml:space="preserve">
+    <value>Absoluto</value>
+  </data>
+  <data name="Casado" xml:space="preserve">
+    <value>Casado</value>
+  </data>
+  <data name="Soltero" xml:space="preserve">
+    <value>Soltero</value>
+  </data>
+  <data name="Viudo" xml:space="preserve">
+    <value>Viudo</value>
+  </data>
+  <data name="AddMaterialsConsumption" xml:space="preserve">
+    <value>Add MaterialsConsumption</value>
+  </data>
 </root>

@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Absoluto.
+        /// </summary>
+        internal static string Absoluto {
+            get {
+                return ResourceManager.GetString("Absoluto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Academic &amp; Professional Certificates.
         /// </summary>
         internal static string AcademicCertificates {
@@ -111,6 +120,15 @@ namespace Resources {
         internal static string AddManagement {
             get {
                 return ResourceManager.GetString("AddManagement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add MaterialsConsumption.
+        /// </summary>
+        internal static string AddMaterialsConsumption {
+            get {
+                return ResourceManager.GetString("AddMaterialsConsumption", resourceCulture);
             }
         }
         
@@ -201,6 +219,15 @@ namespace Resources {
         internal static string Cancle {
             get {
                 return ResourceManager.GetString("Cancle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Casado.
+        /// </summary>
+        internal static string Casado {
+            get {
+                return ResourceManager.GetString("Casado", resourceCulture);
             }
         }
         
@@ -907,6 +934,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Soltero.
+        /// </summary>
+        internal static string Soltero {
+            get {
+                return ResourceManager.GetString("Soltero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tasks.
         /// </summary>
         internal static string Tasks {
@@ -1020,6 +1056,15 @@ namespace Resources {
         internal static string VaccationTypes {
             get {
                 return ResourceManager.GetString("VaccationTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Viudo.
+        /// </summary>
+        internal static string Viudo {
+            get {
+                return ResourceManager.GetString("Viudo", resourceCulture);
             }
         }
         
