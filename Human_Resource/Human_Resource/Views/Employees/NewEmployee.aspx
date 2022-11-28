@@ -16,6 +16,7 @@
                  e.preventDefault();
                  $('#MainContent_file_certificate3').trigger('click');
              });
+
          });
 
          $(function () {
@@ -140,7 +141,7 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,bod%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2">
-                                    <input type="date" class="form-control input-lg hasdatepicker" id="dp_bod"  runat="server" value="9/23/2009"   />
+                                    <input type="date" class="form-control input-lg hasdatepicker" id="dp_bod"  runat="server" value="2000-11-01"   />
                             </div>
                                 </div>
                             <div class="form-group" style="display:block">
@@ -226,7 +227,7 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,DateFrom%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
-                                  <input type="date" class="form-control input-lg hasdatepicker" id="dp_fromCer1"  runat="server" value="9/23/2009"   />
+                                  <input type="date" class="form-control input-lg hasdatepicker" id="dp_fromCer1"  runat="server" value="2000-11-01"   />
                                    
                                 </div>
                            </div>
@@ -235,7 +236,7 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,DateTo%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
-                                  <input type="date" class="form-control input-lg hasdatepicker" id="dp_toCer1"  runat="server" value="9/23/2009"   />
+                                  <input type="date" class="form-control input-lg hasdatepicker" id="dp_toCer1"  runat="server" value="2000-11-01"   />
                                    
                                 </div>
                            </div>
@@ -268,7 +269,7 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,DateFrom%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
-                                  <input type="date" class="form-control input-lg hasdatepicker" id="dp_fromCer2"  runat="server" value="9/23/2009"   />
+                                  <input type="date" class="form-control input-lg hasdatepicker" id="dp_fromCer2"  runat="server" value="2000-11-01"   />
                                    
                                 </div>
                            </div>
@@ -277,7 +278,7 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,DateTo%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
-                                  <input type="date" class="form-control input-lg hasdatepicker" id="dp_toCer2"  runat="server" value="9/23/2009"   />
+                                  <input type="date" class="form-control input-lg hasdatepicker" id="dp_toCer2"  runat="server" value="2000-11-01"   />
                                    
                                 </div>
                            </div>
@@ -310,7 +311,7 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,DateFrom%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
-                                  <input type="date" class="form-control input-lg hasdatepicker" id="dp_fromCer3"  runat="server" value="9/23/2009"   />
+                                  <input type="date" class="form-control input-lg hasdatepicker" id="dp_fromCer3"  runat="server" value="2000-11-01"   />
                                    
                                 </div>
                            </div>
@@ -319,7 +320,7 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,DateTo%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
-                                  <input type="date" class="form-control input-lg hasdatepicker" id="dp_toCer3"  runat="server" value="9/23/2009"   />
+                                  <input type="date" class="form-control input-lg hasdatepicker" id="dp_toCer3"  runat="server" value="2000-11-01"   />
                                    
                                 </div>
                            </div>
@@ -507,7 +508,7 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,PassportStartdate%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
-                                    <input type="date" class="form-control input-lg hasdatepicker" id="dp_passportFromDate"  runat="server" value=""  />
+                                    <input type="date" class="form-control input-lg hasdatepicker" id="dp_passportFromDate"  runat="server" value="2000-11-01"  />
                             </div>
 
                             </div>
@@ -516,7 +517,7 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,PassportEnddate%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2">
-                                    <input type="date" class="form-control input-lg hasdatepicker" id="dp_passportEndDate"  runat="server" value=""  />
+                                    <input type="date" class="form-control input-lg hasdatepicker" id="dp_passportEndDate"  runat="server" value="2000-11-01"  />
                             </div>
                             </div>
                              <div class="form-group" style="display:block">

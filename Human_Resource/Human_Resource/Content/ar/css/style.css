@@ -492,6 +492,7 @@ nav .logo {
     border-color: #12A4B8;
  
 }*/
+
 .panel {
     margin-bottom: 20px;
     background-color: #fff;
@@ -932,7 +933,7 @@ nav .logo {
     float: right;
 }
 .row-padding {
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     padding-right: 10px;
 }
 .c-form-box .form-group {
