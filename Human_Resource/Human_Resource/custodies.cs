@@ -14,7 +14,7 @@ namespace Human_Resource
     
     public partial class custodies
     {
-        public int CustodyID { get; set; }
+        public int CustodieID { get; set; }
         public string Type { get; set; }
         public string Details { get; set; }
         public string Value { get; set; }

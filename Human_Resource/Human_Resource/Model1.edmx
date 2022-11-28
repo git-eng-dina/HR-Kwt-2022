@@ -1041,9 +1041,9 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
         </EntityType>
         <EntityType Name="custodies">
           <Key>
-            <PropertyRef Name="CustodyID" />
+            <PropertyRef Name="CustodieID" />
           </Key>
-          <Property Name="CustodyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustodieID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Value" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -2045,7 +2045,7 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
             <EntityTypeMapping TypeName="HRSystemModel.custodies">
               <MappingFragment StoreEntitySet="custodies">
                 <ScalarProperty Name="IsRecovery" ColumnName="IsRecovery" />
-                <ScalarProperty Name="CustodyID" ColumnName="CustodyID" />
+                <ScalarProperty Name="CustodieID" ColumnName="CustodyID" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Details" ColumnName="Details" />
                 <ScalarProperty Name="Value" ColumnName="Value" />
