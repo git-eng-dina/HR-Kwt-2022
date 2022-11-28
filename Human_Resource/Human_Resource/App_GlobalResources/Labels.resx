@@ -459,4 +459,7 @@
   <data name="AddMaterialsConsumption" xml:space="preserve">
     <value>Add MaterialsConsumption</value>
   </data>
+  <data name="AddCustody" xml:space="preserve">
+    <value>Add Custody</value>
+  </data>
 </root>

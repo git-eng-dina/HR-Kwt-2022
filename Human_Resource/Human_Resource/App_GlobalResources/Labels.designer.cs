@@ -97,6 +97,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Custody.
+        /// </summary>
+        internal static string AddCustody {
+            get {
+                return ResourceManager.GetString("AddCustody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Department.
         /// </summary>
         internal static string AddDepartment {
