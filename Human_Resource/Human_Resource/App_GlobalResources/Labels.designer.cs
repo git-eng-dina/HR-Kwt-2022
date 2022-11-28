@@ -151,6 +151,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Blood Type.
+        /// </summary>
+        internal static string Blood {
+            get {
+                return ResourceManager.GetString("Blood", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Date of Birth.
         /// </summary>
         internal static string bod {
@@ -291,6 +300,24 @@ namespace Resources {
         internal static string Custody {
             get {
                 return ResourceManager.GetString("Custody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From.
+        /// </summary>
+        internal static string DateFrom {
+            get {
+                return ResourceManager.GetString("DateFrom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To.
+        /// </summary>
+        internal static string DateTo {
+            get {
+                return ResourceManager.GetString("DateTo", resourceCulture);
             }
         }
         
@@ -646,6 +673,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Marital Status.
+        /// </summary>
+        internal static string MaritalStatus {
+            get {
+                return ResourceManager.GetString("MaritalStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Materials Consumption.
         /// </summary>
         internal static string MaterialsConsumption {
@@ -727,11 +763,38 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Passport Information.
+        ///   Looks up a localized string similar to Passport End Date.
+        /// </summary>
+        internal static string PassportEnddate {
+            get {
+                return ResourceManager.GetString("PassportEnddate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passport And residence .
         /// </summary>
         internal static string PassportInfo {
             get {
                 return ResourceManager.GetString("PassportInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to passport No.
+        /// </summary>
+        internal static string passportNo {
+            get {
+                return ResourceManager.GetString("passportNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passport Start Date.
+        /// </summary>
+        internal static string PassportStartdate {
+            get {
+                return ResourceManager.GetString("PassportStartdate", resourceCulture);
             }
         }
         
@@ -930,6 +993,15 @@ namespace Resources {
         internal static string Vacations {
             get {
                 return ResourceManager.GetString("Vacations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vacations Balance.
+        /// </summary>
+        internal static string VacationsBalance {
+            get {
+                return ResourceManager.GetString("VacationsBalance", resourceCulture);
             }
         }
         

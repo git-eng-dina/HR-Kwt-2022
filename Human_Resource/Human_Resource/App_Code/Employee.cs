@@ -80,7 +80,9 @@ namespace Human_Resource
         #region extra info
         public int Age { get; set; }
         #endregion
-        public List<string> Nationalities { get; } = new List<string>()
+
+        #region fixed lists
+        public List<string> ArabicNationalities { get; } = new List<string>()
         {
             "بحريني",
             "مصري",
@@ -101,8 +103,41 @@ namespace Human_Resource
             "اماراتي",
             "يمني",
         };
+        public List<string> EngNationalities { get; } = new List<string>()
+        {
+            "بحريني",
+            "مصري",
+            "عراقي",
+            "أردني",
+            "كويتي",
+            "لبناني",
+            "ليبي",
+            "موريتاني",
+            "مغربي",
+            "عماني",
+            "فلسطيني",
+            "قطري",
+            "سعودي",
+            "صومالي",
+            "سوداني",
+            "سوري",
+            "اماراتي",
+            "يمني",
+        };
+        public List<string> ArabicMaritalStatus { get; } = new List<string>()
+        {
+            "أعزب",
+            "متزوج",
 
+        };
+        public List<string> EngMaritalStatus { get; } = new List<string>()
+        {
+            "أعزب",
+            "متزوج",
 
+        };
+
+        #endregion
         #region employee methods
         public employees GetUser(string userName, string password)
         {

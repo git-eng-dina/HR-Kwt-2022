@@ -403,7 +403,7 @@
     <value>الكفيل</value>
   </data>
   <data name="PassportInfo" xml:space="preserve">
-    <value>بيانات جواز السفر</value>
+    <value>جواز السفر والإقامة</value>
   </data>
   <data name="PreviousExperience" xml:space="preserve">
     <value>الخبرات السابقة</value>
@@ -419,5 +419,29 @@
   </data>
   <data name="Employee" xml:space="preserve">
     <value>الموظف</value>
+  </data>
+  <data name="Blood" xml:space="preserve">
+    <value>زمرة الدم</value>
+  </data>
+  <data name="DateFrom" xml:space="preserve">
+    <value>من </value>
+  </data>
+  <data name="DateTo" xml:space="preserve">
+    <value>إلى</value>
+  </data>
+  <data name="MaritalStatus" xml:space="preserve">
+    <value>الحالة الاجتماعية</value>
+  </data>
+  <data name="PassportEnddate" xml:space="preserve">
+    <value>تاريخ الانتهاء</value>
+  </data>
+  <data name="passportNo" xml:space="preserve">
+    <value>رقم الجواز</value>
+  </data>
+  <data name="PassportStartdate" xml:space="preserve">
+    <value>تاريخ الاصدار</value>
+  </data>
+  <data name="VacationsBalance" xml:space="preserve">
+    <value>رصيد الإجازات</value>
   </data>
 </root>

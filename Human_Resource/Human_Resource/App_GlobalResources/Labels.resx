@@ -403,7 +403,7 @@
     <value>Guarantor</value>
   </data>
   <data name="PassportInfo" xml:space="preserve">
-    <value>Passport Information</value>
+    <value>Passport And residence </value>
   </data>
   <data name="PreviousExperience" xml:space="preserve">
     <value>Previous Experience</value>
@@ -419,5 +419,29 @@
   </data>
   <data name="Employee" xml:space="preserve">
     <value>Employee</value>
+  </data>
+  <data name="Blood" xml:space="preserve">
+    <value>Blood Type</value>
+  </data>
+  <data name="DateFrom" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="DateTo" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="MaritalStatus" xml:space="preserve">
+    <value>Marital Status</value>
+  </data>
+  <data name="PassportEnddate" xml:space="preserve">
+    <value>Passport End Date</value>
+  </data>
+  <data name="passportNo" xml:space="preserve">
+    <value>passport No</value>
+  </data>
+  <data name="PassportStartdate" xml:space="preserve">
+    <value>Passport Start Date</value>
+  </data>
+  <data name="VacationsBalance" xml:space="preserve">
+    <value>Vacations Balance</value>
   </data>
 </root>

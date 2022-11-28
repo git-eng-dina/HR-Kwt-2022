@@ -17,8 +17,19 @@ namespace Human_Resource.Views.Employees
             JobModel job = new JobModel();
             DepartmentModel dept = new DepartmentModel();
 
-            nationality.DataSource = emp.Nationalities.OrderBy(x => x);
+            if (Session["CultureName"] != null && Session["CultureName"].ToString().ToLower() == "en-us")
+            {
+                nationality.DataSource = emp.EngNationalities.OrderBy(x => x);
+                maritalStatus.DataSource = emp.EngMaritalStatus;
+            }
+            else
+            {
+                nationality.DataSource = emp.ArabicNationalities.OrderBy(x => x);
+                maritalStatus.DataSource = emp.ArabicMaritalStatus;
+            }
+
             nationality.DataBind();
+            maritalStatus.DataBind();
 
             sel_position.DataSource = job.GetActivity().OrderBy(x => x.Name);
             sel_position.DataTextField = "Name";
