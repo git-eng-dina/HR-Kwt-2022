@@ -77,7 +77,10 @@
             var emp = $("#MainContent_emp").find(":selected").val();
             var type = $("#MainContent_dept_type").find(":selected").val();
             var details = $("#MainContent_txt_details").val();
-            var isRecovery = $("#MainContent_chk_isRecovery").val();
+            var isRecovery = false;
+            if ($("#MainContent_chk_isRecovery").is(':checked'))
+                isRecovery = true;
+
              var parameter = {
                 custodieId: id,
                  employeeId: emp,
@@ -252,8 +255,7 @@
 
                     <div class="row">
                      <div class="form-group" style="display:block">
-                              <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Recovery%>" /></span>
-                                <asp:CheckBox runat="server" id="chk_isRecovery" name="chk_isRecovery"  class="form-control input-lg"></asp:CheckBox>
+                                <asp:CheckBox runat="server" id="chk_isRecovery" name="chk_isRecovery" Text="<%$ Resources:Labels,Recovery%>" class="form-control input-lg"></asp:CheckBox>
                             </div>
                         </div>
                     

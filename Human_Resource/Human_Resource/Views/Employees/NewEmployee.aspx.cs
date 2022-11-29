@@ -24,6 +24,8 @@ namespace Human_Resource.Views.Employees
                 emp_id.Value = Request.QueryString["uid"];
 
                 sel_maritalStatus.DataSource = GetData.maritalStatusList;
+                sel_maritalStatus.DataValueField = "Key";
+                sel_maritalStatus.DataTextField = "Value";
                 sel_maritalStatus.DataBind();
 
                 sel_nationality.DataSource = country.get();
@@ -35,7 +37,7 @@ namespace Human_Resource.Views.Employees
                 }
                 else
                 {
-                    sel_nationality.DataSource = "NameAR";
+                    sel_nationality.DataTextField = "NameAR";
                 }
 
                 sel_nationality.DataBind();

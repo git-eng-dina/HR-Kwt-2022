@@ -736,6 +736,7 @@ nav .logo {
         float: right;
         text-align: right;
         margin-top: 7px;
+        border:0px;
     }
     
    .c-form  input,select,option {
