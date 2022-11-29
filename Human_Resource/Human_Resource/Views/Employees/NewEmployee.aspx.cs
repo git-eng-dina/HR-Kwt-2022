@@ -18,22 +18,27 @@ namespace Human_Resource.Views.Employees
             {
                 EmployeeModel emp = new EmployeeModel();
                 JobModel job = new JobModel();
+                CountriesNameModel country = new CountriesNameModel();
                 DepartmentModel dept = new DepartmentModel();
 
                 emp_id.Value = Request.QueryString["uid"];
+
+                sel_maritalStatus.DataSource = GetData.maritalStatusList;
+                sel_maritalStatus.DataBind();
+
+                sel_nationality.DataSource = country.get();
+                sel_nationality.DataValueField = "CountriesNameID";
                 if (Session["CultureName"] != null && Session["CultureName"].ToString().ToLower() == "en-us")
                 {
-                    sel_nationality.DataSource = emp.EngNationalities.OrderBy(x => x);
-                    sel_maritalStatus.DataSource = emp.EngMaritalStatus;
+                    sel_nationality.DataTextField ="NameEN";
+    
                 }
                 else
                 {
-                    sel_nationality.DataSource = emp.ArabicNationalities.OrderBy(x => x);
-                    sel_maritalStatus.DataSource = emp.ArabicMaritalStatus;
+                    sel_nationality.DataSource = "NameAR";
                 }
 
                 sel_nationality.DataBind();
-                sel_maritalStatus.DataBind();
 
                 sel_position.DataSource = job.GetActivity().OrderBy(x => x.Name);
                 sel_position.DataTextField = "Name";
@@ -55,6 +60,8 @@ namespace Human_Resource.Views.Employees
         {
             //try
             {
+                CultureInfo cultures = new CultureInfo("en-US");
+
                 EmployeeModel employee = new EmployeeModel();
                 if (emp_id.Value == "")
                     employee.EmployeeID = 0;
@@ -64,36 +71,33 @@ namespace Human_Resource.Views.Employees
                 employee.NameAr = txt_nameAR.Value;
                 employee.NameEn = txt_nameEN.Value;
 
-                var dt = Request.Form["ctl00$MainContent$dp_bod"];
-                DateTime date= Convert.ToDateTime(dp_bod.Text);
-                //DateTime date = DateTime.Parse(dp_bod.Text);
-                //Convert.ToDateTime(dp_bod.Value.Trim());
-                employee.DOB = DateTime.Parse( dt);
-                //employee.DOB = DateTime.Parse( dp_bod.Value);
+                employee.DOB = DateTime.ParseExact(dp_bod.Text, "yyyy-MM-dd", cultures);
+            
                 employee.Mobile = txt_mobile.Value;
                 employee.MaritalStatus = sel_maritalStatus.Value;
-                employee.Nationality = sel_nationality.Value;
+                employee.Nationality = int.Parse(sel_nationality.Value);
                 employee.BloodType = txt_blood.Value;
                 employee.Gender = RadioButtonList1.SelectedValue;
                 employee.IdentityNumber = txt_identityNumber.Value;
 
                 #region certificates
                 employee.EducationCertificate1 = txt_certificate1.Value;
-                employee.EducationCertificateFromDate1 = DateTime.ParseExact(dp_fromCer1.Value, "dd/MM/yyyy", new CultureInfo(("en-US")));
-                employee.EducationCertificateToDate1 = DateTime.ParseExact(dp_toCer1.Value, "dd/MM/yyyy", new CultureInfo(("en-US")));
+                //employee.EducationCertificateFromDate1 = DateTime.ParseExact(dp_fromCer1.Value, "dd/MM/yyyy", new CultureInfo(("en-US")));
+                employee.EducationCertificateFromDate1 = DateTime.ParseExact(dp_fromCer1.Value, "yyyy-MM-dd", cultures);
+                employee.EducationCertificateToDate1 = DateTime.ParseExact(dp_toCer1.Value, "yyyy-MM-dd", cultures);
 
                 if (txt_certificate2.Value !="")
                 {
                     employee.EducationCertificate2 = txt_certificate2.Value;
-                    employee.EducationCertificateFromDate2 = DateTime.ParseExact(dp_fromCer2.Value, "dd/MM/yyyy", new CultureInfo(("en-US")));
-                    employee.EducationCertificateToDate2 = DateTime.ParseExact(dp_toCer2.Value, "dd/MM/yyyy", new CultureInfo(("en-US")));
+                    employee.EducationCertificateFromDate2 = DateTime.ParseExact(dp_fromCer2.Value, "yyyy-MM-dd", cultures);
+                    employee.EducationCertificateToDate2 = DateTime.ParseExact(dp_toCer2.Value, "yyyy-MM-dd", cultures);
 
                 }
                 if (txt_certificate3.Value !="")
                 {
                     employee.EducationCertificate3 = txt_certificate3.Value;
-                    employee.EducationCertificateFromDate3 = DateTime.ParseExact(dp_fromCer3.Value, "dd/MM/yyyy", new CultureInfo(("en-US")));
-                    employee.EducationCertificateToDate3 = DateTime.ParseExact(dp_toCer3.Value, "dd/MM/yyyy", new CultureInfo(("en-US")));
+                    employee.EducationCertificateFromDate3 = DateTime.ParseExact(dp_fromCer3.Value, "yyyy-MM-dd", cultures);
+                    employee.EducationCertificateToDate3 = DateTime.ParseExact(dp_toCer3.Value, "yyyy-MM-dd", cultures);
                 }
                 #endregion
                 employee.WorkExperience1 = txt_experience1.Text;
@@ -108,8 +112,8 @@ namespace Human_Resource.Views.Employees
                 employee.Guarantor = txt_guarantor.Value;
                 employee.JobDescription = txt_jobDesc.Text;
                 employee.PassportNumber = txt_passportNo.Value;
-                employee.PassportReleaseDate = DateTime.ParseExact( dp_passportFromDate.Value, "dd/MM/yyyy", new CultureInfo(("en-US")));
-                employee.PassportExpiryDate = DateTime.ParseExact( dp_passportEndDate.Value, "dd/MM/yyyy", new CultureInfo(("en-US")));
+                employee.PassportReleaseDate = DateTime.ParseExact( dp_passportFromDate.Value, "yyyy-MM-dd", cultures);
+                employee.PassportExpiryDate = DateTime.ParseExact( dp_passportEndDate.Value, "yyyy-MM-dd", cultures);
                 employee.Sequence = txt_sequenceNum.Value;
                 employee.UnifiedNumber = txt_unifiedNum.Value;
 
@@ -121,20 +125,20 @@ namespace Human_Resource.Views.Employees
 
                 #region upload cerificates
 
-                UploadFile(file_certificate1.FileName);
+                UploadFile(file_certificate1.FileName,empId,"cer1");
                 if (txt_certificate2.Value != "")
                 {
-                    UploadFile(file_certificate2.FileName);
+                    UploadFile(file_certificate2.FileName, empId, "cer2");
                 }
                 if (txt_certificate3.Value != "")
                 {
-                    UploadFile(file_certificate3.FileName);
+                    UploadFile(file_certificate3.FileName, empId, "cer3");
                 }
                 #endregion
             }
             //catch { }
         }
-        protected void UploadFile(string fileName)
+        protected void UploadFile(string fileName,int empId,string tag)
         {
             //folder path to save uploaded file
             string folderPath = Server.MapPath("~/Upload/");
@@ -147,6 +151,8 @@ namespace Human_Resource.Views.Employees
             }
 
             //save file in the specified folder and path
+            string extension = Path.GetExtension(fileName);
+            var newFileName = HelpClass.MD5Hash(empId.ToString()) + "-" +tag;
             file_certificate1.SaveAs(folderPath + Path.GetFileName(fileName));
 
         }

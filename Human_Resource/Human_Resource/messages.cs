@@ -22,6 +22,7 @@ namespace Human_Resource
         public Nullable<int> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public Nullable<int> EmployeeID { get; set; }
+        public Nullable<int> ToEmployeeID { get; set; }
     
         public virtual employees employees { get; set; }
     }

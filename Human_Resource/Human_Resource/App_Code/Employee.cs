@@ -21,7 +21,7 @@ namespace Human_Resource
         public Nullable<System.DateTime> DOB { get; set; }
         public string Gender { get; set; }
         public string MaritalStatus { get; set; }
-        public string Nationality { get; set; }
+        public Nullable<int>  Nationality { get; set; }
         public string Religion { get; set; }
         public string BloodType { get; set; }
         public string Image { get; set; }
@@ -82,63 +82,7 @@ namespace Human_Resource
         public int Age { get; set; }
         #endregion
 
-        #region fixed lists
-        public List<string> ArabicNationalities { get; } = new List<string>()
-        {
-            "بحريني",
-            "مصري",
-            "عراقي",
-            "أردني",
-            "كويتي",
-            "لبناني",
-            "ليبي",
-            "موريتاني",
-            "مغربي",
-            "عماني",
-            "فلسطيني",
-            "قطري",
-            "سعودي",
-            "صومالي",
-            "سوداني",
-            "سوري",
-            "اماراتي",
-            "يمني",
-        };
-        public List<string> EngNationalities { get; } = new List<string>()
-        {
-            "بحريني",
-            "مصري",
-            "عراقي",
-            "أردني",
-            "كويتي",
-            "لبناني",
-            "ليبي",
-            "موريتاني",
-            "مغربي",
-            "عماني",
-            "فلسطيني",
-            "قطري",
-            "سعودي",
-            "صومالي",
-            "سوداني",
-            "سوري",
-            "اماراتي",
-            "يمني",
-        };
-        public List<string> ArabicMaritalStatus { get; } = new List<string>()
-        {
-            "أعزب",
-            "متزوج",
 
-        };
-        public List<string> EngMaritalStatus { get; } = new List<string>()
-        {
-            "أعزب",
-            "متزوج",
-
-        };
-
-        #endregion
         #region employee methods
         public employees GetUser(string userName, string password)
         {
@@ -185,7 +129,7 @@ namespace Human_Resource
                             Nationality = employee.Nationality,
                             BloodType = employee.BloodType,
                             Gender = employee.Gender,
-                           IdentityNumber = employee.IdentityNumber ,
+                            IdentityNumber = employee.IdentityNumber ,
                             #region certificates
                             EducationCertificate1= employee.EducationCertificate1,
                             EducationCertificateFromDate1 = employee.EducationCertificateFromDate1,
@@ -281,6 +225,7 @@ namespace Human_Resource
                 return 0;
             }
         }
+
         public bool DeleteEmp(int empId, int? userId)
         {
             try

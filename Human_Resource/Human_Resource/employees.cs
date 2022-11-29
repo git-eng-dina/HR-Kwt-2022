@@ -43,7 +43,7 @@ namespace Human_Resource
         public Nullable<System.DateTime> DOB { get; set; }
         public string Gender { get; set; }
         public string MaritalStatus { get; set; }
-        public string Nationality { get; set; }
+        public Nullable<int> Nationality { get; set; }
         public string Religion { get; set; }
         public string BloodType { get; set; }
         public string Image { get; set; }
@@ -100,6 +100,7 @@ namespace Human_Resource
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<confirms> confirms { get; set; }
+        public virtual countriesName countriesName { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<custodies> custodies { get; set; }
         public virtual departments departments { get; set; }

@@ -14,8 +14,17 @@ namespace Human_Resource
     
     public partial class countriesName
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public countriesName()
+        {
+            this.employees = new HashSet<employees>();
+        }
+    
         public int CountriesNameID { get; set; }
         public string NameEn { get; set; }
         public string NameAr { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<employees> employees { get; set; }
     }
 }

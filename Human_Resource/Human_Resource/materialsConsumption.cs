@@ -17,6 +17,7 @@ namespace Human_Resource
         public int MaterialsConsumptionID { get; set; }
         public string Type { get; set; }
         public string Details { get; set; }
+        public Nullable<int> EmployeeID { get; set; }
         public string Value { get; set; }
         public string Notes { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
@@ -24,7 +25,6 @@ namespace Human_Resource
         public Nullable<int> CreateUserID { get; set; }
         public Nullable<int> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
-        public Nullable<int> EmployeeID { get; set; }
     
         public virtual employees employees { get; set; }
     }
