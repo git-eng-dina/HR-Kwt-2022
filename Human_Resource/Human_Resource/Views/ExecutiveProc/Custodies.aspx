@@ -75,7 +75,7 @@
         function saveCustodie() {
             var id = $('#MainContent_hid_custodieId').val();
             var emp = $("#MainContent_emp").find(":selected").val();
-            var type = $("#MainContent_dept_type").val();
+            var type = $("#MainContent_dept_type").find(":selected").val();
             var details = $("#MainContent_txt_details").val();
             var isRecovery = $("#MainContent_chk_isRecovery").val();
              var parameter = {
@@ -240,8 +240,8 @@
                      <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Type%>" /></span>
                                 <input type="hidden"  id="hid_custodieId" name="hid_custodieId" runat="server" value=""  />
-                                <input type="text" class="form-control input-lg" id="dept_type" name="dept_type" runat="server" value=""  />
-                            </div>
+                         <select runat="server" id="dept_type" name="dept_type" style="width:80%" class="form-control input-lg"/>
+                             </div>
                         </div>
                      <div class ="row">
                      <div class="form-group" style="display:block">

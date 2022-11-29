@@ -73,7 +73,7 @@ namespace Human_Resource.Views.ExecutiveProc {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText dept_type;
+        protected global::System.Web.UI.HtmlControls.HtmlSelect dept_type;
         
         /// <summary>
         /// txt_details control.

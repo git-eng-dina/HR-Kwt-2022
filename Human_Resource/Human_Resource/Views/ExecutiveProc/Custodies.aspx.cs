@@ -42,6 +42,12 @@ namespace Human_Resource.Views.ExecutiveProc
             gv_data.DataSource = depts;
 
 
+            dept_type.DataSource = GetData.custodiesTypeList;
+            dept_type.DataValueField = "key";
+            dept_type.DataTextField = "value";
+           
+
+
             EmployeeModel employeeModel = new EmployeeModel();
             List<EmployeeModel> employees = new List<EmployeeModel>();
             employees = employeeModel.GetHiredEmployees(true);
