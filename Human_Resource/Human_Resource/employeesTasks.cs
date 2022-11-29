@@ -24,6 +24,8 @@ namespace Human_Resource
         public Nullable<int> EmployeeID { get; set; }
         public Nullable<int> TaskID { get; set; }
         public string Status { get; set; }
+        public Nullable<bool> EmpDone { get; set; }
+        public Nullable<bool> BossDone { get; set; }
     
         public virtual employees employees { get; set; }
         public virtual tasks tasks { get; set; }

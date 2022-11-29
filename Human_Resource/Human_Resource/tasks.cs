@@ -22,6 +22,7 @@ namespace Human_Resource
         }
     
         public int TaskID { get; set; }
+        public Nullable<int> EmployeeID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string RepeatedEvery { get; set; }
