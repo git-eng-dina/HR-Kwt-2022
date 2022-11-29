@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="HRSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="HRSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="branches">
           <Key>
             <PropertyRef Name="BranchID" />
@@ -965,7 +965,8 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
             <End Role="rewards" EntitySet="rewards" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HRSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1009,8 +1010,8 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
           <Property Name="GeneralDirector" Type="Int32" />
           <Property Name="FinancialManager" Type="Int32" />
           <Property Name="HRManager" Type="Int32" />
-          <NavigationProperty Name="branches" Relationship="Self.FK_branches_companies" FromRole="companies" ToRole="branches" />
           <Property Name="CEO" Type="Int32" />
+          <NavigationProperty Name="branches" Relationship="Self.FK_branches_companies" FromRole="companies" ToRole="branches" />
         </EntityType>
         <EntityType Name="confirms">
           <Key>
@@ -1039,6 +1040,14 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
           <NavigationProperty Name="salaryIncrease" Relationship="Self.FK_confirms_salaryIncrease" FromRole="confirms" ToRole="salaryIncrease" />
           <NavigationProperty Name="tasks" Relationship="Self.FK_confirms_tasks" FromRole="confirms" ToRole="tasks" />
         </EntityType>
+        <EntityType Name="countriesName">
+          <Key>
+            <PropertyRef Name="CountriesNameID" />
+          </Key>
+          <Property Name="CountriesNameID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameEn" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NameAr" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="custodies">
           <Key>
             <PropertyRef Name="CustodieID" />
@@ -1047,15 +1056,15 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
           <Property Name="Type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Value" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="IsRecovery" Type="Boolean" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="7" />
           <Property Name="UpdateDate" Type="DateTime" Precision="7" />
           <Property Name="CreateUserID" Type="Int32" />
           <Property Name="UpdateUserID" Type="Int32" />
           <Property Name="IsActive" Type="Boolean" />
-          <Property Name="EmployeeID" Type="Int32" />
           <NavigationProperty Name="employees" Relationship="Self.FK_custodies_employees" FromRole="custodies" ToRole="employees" />
-          <Property Name="IsRecovery" Type="Boolean" />
         </EntityType>
         <EntityType Name="departments">
           <Key>
@@ -1160,6 +1169,7 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
           <Property Name="JobID" Type="Int32" />
           <Property Name="WorkHours" Type="Int32" />
           <Property Name="JobDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Guarantor" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="confirms" Relationship="Self.FK_confirms_employees" FromRole="employees" ToRole="confirms" />
           <NavigationProperty Name="custodies" Relationship="Self.FK_custodies_employees" FromRole="employees" ToRole="custodies" />
           <NavigationProperty Name="departments" Relationship="Self.FK_employees_departments" FromRole="employees" ToRole="departments" />
@@ -1175,7 +1185,6 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
           <NavigationProperty Name="messages" Relationship="Self.FK_messages_employees" FromRole="employees" ToRole="messages" />
           <NavigationProperty Name="periods" Relationship="Self.FK_periods_employees" FromRole="employees" ToRole="periods" />
           <NavigationProperty Name="rewards" Relationship="Self.FK_rewards_employees" FromRole="employees" ToRole="rewards" />
-          <Property Name="Guarantor" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="employeesScheduleVacations">
           <Key>
@@ -1308,6 +1317,7 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
           <Property Name="MaterialsConsumptionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeID" Type="Int32" />
           <Property Name="Value" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="7" />
@@ -1315,7 +1325,6 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
           <Property Name="CreateUserID" Type="Int32" />
           <Property Name="UpdateUserID" Type="Int32" />
           <Property Name="IsActive" Type="Boolean" />
-          <Property Name="EmployeeID" Type="Int32" />
           <NavigationProperty Name="employees" Relationship="Self.FK_materialsConsumption_employees" FromRole="materialsConsumption" ToRole="employees" />
         </EntityType>
         <EntityType Name="messages">
@@ -1823,6 +1832,7 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
           <EntitySet Name="branches" EntityType="Self.branches" />
           <EntitySet Name="companies" EntityType="Self.companies" />
           <EntitySet Name="confirms" EntityType="Self.confirms" />
+          <EntitySet Name="countriesName" EntityType="Self.countriesName" />
           <EntitySet Name="custodies" EntityType="Self.custodies" />
           <EntitySet Name="departments" EntityType="Self.departments" />
           <EntitySet Name="EemployeesEvents" EntityType="Self.EemployeesEvents" />
@@ -1962,16 +1972,7 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
             <End Role="tasks" EntitySet="tasks" />
             <End Role="employeesTasks" EntitySet="employeesTasks" />
           </AssociationSet>
-          <EntitySet Name="countriesName" EntityType="HRSystemModel.countriesName" />
         </EntityContainer>
-        <EntityType Name="countriesName">
-          <Key>
-            <PropertyRef Name="CountriesNameID" />
-          </Key>
-          <Property Name="CountriesNameID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NameEn" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="NameAr" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1999,7 +2000,6 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
           <EntitySetMapping Name="companies">
             <EntityTypeMapping TypeName="HRSystemModel.companies">
               <MappingFragment StoreEntitySet="companies">
-                <ScalarProperty Name="CEO" ColumnName="CEO" />
                 <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
@@ -2017,6 +2017,7 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
                 <ScalarProperty Name="GeneralDirector" ColumnName="GeneralDirector" />
                 <ScalarProperty Name="FinancialManager" ColumnName="FinancialManager" />
                 <ScalarProperty Name="HRManager" ColumnName="HRManager" />
+                <ScalarProperty Name="CEO" ColumnName="CEO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2041,21 +2042,30 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="countriesName">
+            <EntityTypeMapping TypeName="HRSystemModel.countriesName">
+              <MappingFragment StoreEntitySet="countriesName">
+                <ScalarProperty Name="CountriesNameID" ColumnName="CountriesNameID" />
+                <ScalarProperty Name="NameEn" ColumnName="NameEn" />
+                <ScalarProperty Name="NameAr" ColumnName="NameAr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="custodies">
             <EntityTypeMapping TypeName="HRSystemModel.custodies">
               <MappingFragment StoreEntitySet="custodies">
-                <ScalarProperty Name="IsRecovery" ColumnName="IsRecovery" />
                 <ScalarProperty Name="CustodieID" ColumnName="CustodieID" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Details" ColumnName="Details" />
                 <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="IsRecovery" ColumnName="IsRecovery" />
                 <ScalarProperty Name="Notes" ColumnName="Notes" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
                 <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
                 <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2094,7 +2104,6 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
           <EntitySetMapping Name="employees">
             <EntityTypeMapping TypeName="HRSystemModel.employees">
               <MappingFragment StoreEntitySet="employees">
-                <ScalarProperty Name="Guarantor" ColumnName="Guarantor" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
@@ -2159,6 +2168,7 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
                 <ScalarProperty Name="JobID" ColumnName="JobID" />
                 <ScalarProperty Name="WorkHours" ColumnName="WorkHours" />
                 <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+                <ScalarProperty Name="Guarantor" ColumnName="Guarantor" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2286,6 +2296,7 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
                 <ScalarProperty Name="MaterialsConsumptionID" ColumnName="MaterialsConsumptionID" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="Value" ColumnName="Value" />
                 <ScalarProperty Name="Notes" ColumnName="Notes" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
@@ -2293,7 +2304,6 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
                 <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
                 <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2445,15 +2455,6 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="TaskID" ColumnName="TaskID" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="countriesName">
-            <EntityTypeMapping TypeName="HRSystemModel.countriesName">
-              <MappingFragment StoreEntitySet="countriesName">
-                <ScalarProperty Name="NameAr" ColumnName="NameAr" />
-                <ScalarProperty Name="NameEn" ColumnName="NameEn" />
-                <ScalarProperty Name="CountriesNameID" ColumnName="CountriesNameID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

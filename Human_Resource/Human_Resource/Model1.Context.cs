@@ -28,6 +28,7 @@ namespace Human_Resource
         public virtual DbSet<branches> branches { get; set; }
         public virtual DbSet<companies> companies { get; set; }
         public virtual DbSet<confirms> confirms { get; set; }
+        public virtual DbSet<countriesName> countriesName { get; set; }
         public virtual DbSet<custodies> custodies { get; set; }
         public virtual DbSet<departments> departments { get; set; }
         public virtual DbSet<EemployeesEvents> EemployeesEvents { get; set; }
@@ -51,6 +52,5 @@ namespace Human_Resource
         public virtual DbSet<trainings> trainings { get; set; }
         public virtual DbSet<vacations> vacations { get; set; }
         public virtual DbSet<employeesTasks> employeesTasks { get; set; }
-        public virtual DbSet<countriesName> countriesName { get; set; }
     }
 }
