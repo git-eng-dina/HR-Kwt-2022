@@ -492,4 +492,13 @@
   <data name="AddedBy" xml:space="preserve">
     <value>أضيف بواسطة</value>
   </data>
+  <data name="AddTask" xml:space="preserve">
+    <value>إضافة مهمة</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>الوصف</value>
+  </data>
+  <data name="Task" xml:space="preserve">
+    <value>مهمة</value>
+  </data>
 </root>

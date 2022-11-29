@@ -160,6 +160,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AddTask.
+        /// </summary>
+        internal static string AddTask {
+            get {
+                return ResourceManager.GetString("AddTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Vacation.
         /// </summary>
         internal static string AddVacation {
@@ -444,6 +453,15 @@ namespace Resources {
         internal static string DeptManagerAssestant {
             get {
                 return ResourceManager.GetString("DeptManagerAssestant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        internal static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
             }
         }
         
@@ -1029,6 +1047,15 @@ namespace Resources {
         internal static string Soltero {
             get {
                 return ResourceManager.GetString("Soltero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Task.
+        /// </summary>
+        internal static string Task {
+            get {
+                return ResourceManager.GetString("Task", resourceCulture);
             }
         }
         
