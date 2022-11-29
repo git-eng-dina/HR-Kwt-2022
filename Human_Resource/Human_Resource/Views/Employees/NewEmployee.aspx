@@ -104,7 +104,9 @@
                   $('#MainContent_txt_experience2').val("");
                   $('#frm_experience2').hide();
               }
-          }
+         }
+
+
         
      </script>
     <!-- text boxes -->
@@ -141,7 +143,13 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,bod%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2">
-                                    <input type="date" class="form-control input-lg hasdatepicker" id="dp_bod"  runat="server" value="2000-11-01"   />
+                                   <%-- <asp:TextBox ID="from_date" runat="server"  />
+                                        <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" 
+                                            TargetControlID="from_date" PopupButtonID="from_date">
+                                        </ajaxToolkit:CalendarExtender>--%>
+                                    <asp:TextBox ID="dp_bod" runat="server" class="form-control input-lg hasdatepicker"  textMode="date" value="2000-11-01"></asp:TextBox>
+<%--                                  
+<%--                                    <input type="date" class="form-control input-lg hasdatepicker"  id="dp_bod" value="2017-06-01" pattern="\d{4}-\d{2}-\d{2}" runat="server" required="required"   />--%>
                             </div>
                                 </div>
                             <div class="form-group" style="display:block">
@@ -420,7 +428,7 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,WorkHours%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2">
-                                    <input type="text" class="form-control input-lg" id="txt_workHours"  runat="server" value=""  />
+                                    <input type="number" class="form-control" id="txt_workHours"  runat="server" value=""  />
                             </div>
                             </div>
                             <div class="form-group" style="display:block">
@@ -428,7 +436,7 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,CurrentSalary%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2">
-                                    <input type="text" class="form-control input-lg" id="txt_salary"  runat="server" value=""  />
+                                    <input type="number" class="form-control" id="txt_salary"  runat="server" value=""  />
                             </div>
                              </div>
                              <div class="form-group" style="display:block">

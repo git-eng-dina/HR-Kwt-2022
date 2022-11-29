@@ -46,7 +46,7 @@ namespace Human_Resource.Views.Employees {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl dp_bod;
+        protected global::System.Web.UI.WebControls.TextBox dp_bod;
         
         /// <summary>
         /// txt_mobile control.
@@ -289,7 +289,7 @@ namespace Human_Resource.Views.Employees {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_workHours;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txt_workHours;
         
         /// <summary>
         /// txt_salary control.
@@ -298,7 +298,7 @@ namespace Human_Resource.Views.Employees {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_salary;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txt_salary;
         
         /// <summary>
         /// txt_hiringDate control.

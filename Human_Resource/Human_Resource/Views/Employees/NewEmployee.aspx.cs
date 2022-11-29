@@ -1,6 +1,7 @@
 ﻿using Human_Resource.App_Code;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -13,39 +14,46 @@ namespace Human_Resource.Views.Employees
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            EmployeeModel emp = new EmployeeModel();
-            JobModel job = new JobModel();
-            DepartmentModel dept = new DepartmentModel();
-
-            emp_id.Value = Request.QueryString["uid"];
-            if (Session["CultureName"] != null && Session["CultureName"].ToString().ToLower() == "en-us")
+            if (!IsPostBack)
             {
-                sel_nationality.DataSource = emp.EngNationalities.OrderBy(x => x);
-                sel_maritalStatus.DataSource = emp.EngMaritalStatus;
+                EmployeeModel emp = new EmployeeModel();
+                JobModel job = new JobModel();
+                DepartmentModel dept = new DepartmentModel();
+
+                emp_id.Value = Request.QueryString["uid"];
+                if (Session["CultureName"] != null && Session["CultureName"].ToString().ToLower() == "en-us")
+                {
+                    sel_nationality.DataSource = emp.EngNationalities.OrderBy(x => x);
+                    sel_maritalStatus.DataSource = emp.EngMaritalStatus;
+                }
+                else
+                {
+                    sel_nationality.DataSource = emp.ArabicNationalities.OrderBy(x => x);
+                    sel_maritalStatus.DataSource = emp.ArabicMaritalStatus;
+                }
+
+                sel_nationality.DataBind();
+                sel_maritalStatus.DataBind();
+
+                sel_position.DataSource = job.GetActivity().OrderBy(x => x.Name);
+                sel_position.DataTextField = "Name";
+                sel_position.DataValueField = "JobID";
+                sel_position.DataBind();
+
+                sel_department.DataSource = dept.getActivity().OrderBy(x => x.Name);
+                sel_department.DataTextField = "Name";
+                sel_department.DataValueField = "DepartmentID";
+                sel_department.DataBind();
+
+                #region get employee info
+                #endregion
+
             }
-            else
-            {
-                sel_nationality.DataSource = emp.ArabicNationalities.OrderBy(x => x);
-                sel_maritalStatus.DataSource = emp.ArabicMaritalStatus;
-            }
-
-            sel_nationality.DataBind();
-            sel_maritalStatus.DataBind();
-
-            sel_position.DataSource = job.GetActivity().OrderBy(x => x.Name);
-            sel_position.DataTextField = "Name";
-            sel_position.DataValueField = "JobID";
-            sel_position.DataBind();
-
-            sel_department.DataSource = dept.getActivity().OrderBy(x => x.Name);
-            sel_department.DataTextField = "Name";
-            sel_department.DataValueField = "DepartmentID";
-            sel_department.DataBind();
         }
 
         protected void btn_save_Click(object sender, EventArgs e)
         {
-            try
+            //try
             {
                 EmployeeModel employee = new EmployeeModel();
                 if (emp_id.Value == "")
@@ -55,28 +63,37 @@ namespace Human_Resource.Views.Employees
 
                 employee.NameAr = txt_nameAR.Value;
                 employee.NameEn = txt_nameEN.Value;
-                employee.DOB = DateTime.Parse( dp_bod.Value);
+
+                var dt = Request.Form["ctl00$MainContent$dp_bod"];
+                DateTime date= Convert.ToDateTime(dp_bod.Text);
+                //DateTime date = DateTime.Parse(dp_bod.Text);
+                //Convert.ToDateTime(dp_bod.Value.Trim());
+                employee.DOB = DateTime.Parse( dt);
+                //employee.DOB = DateTime.Parse( dp_bod.Value);
                 employee.Mobile = txt_mobile.Value;
                 employee.MaritalStatus = sel_maritalStatus.Value;
                 employee.Nationality = sel_nationality.Value;
                 employee.BloodType = txt_blood.Value;
                 employee.Gender = RadioButtonList1.SelectedValue;
                 employee.IdentityNumber = txt_identityNumber.Value;
+
                 #region certificates
                 employee.EducationCertificate1 = txt_certificate1.Value;
-                employee.EducationCertificateFromDate1 = DateTime.Parse(dp_fromCer1.Value);
-                employee.EducationCertificateToDate1 = DateTime.Parse(dp_toCer1.Value);
-                if(txt_certificate2.Value !="")
+                employee.EducationCertificateFromDate1 = DateTime.ParseExact(dp_fromCer1.Value, "dd/MM/yyyy", new CultureInfo(("en-US")));
+                employee.EducationCertificateToDate1 = DateTime.ParseExact(dp_toCer1.Value, "dd/MM/yyyy", new CultureInfo(("en-US")));
+
+                if (txt_certificate2.Value !="")
                 {
                     employee.EducationCertificate2 = txt_certificate2.Value;
-                    employee.EducationCertificateFromDate2 = DateTime.Parse(dp_fromCer2.Value);
-                    employee.EducationCertificateToDate2 = DateTime.Parse(dp_toCer2.Value);
+                    employee.EducationCertificateFromDate2 = DateTime.ParseExact(dp_fromCer2.Value, "dd/MM/yyyy", new CultureInfo(("en-US")));
+                    employee.EducationCertificateToDate2 = DateTime.ParseExact(dp_toCer2.Value, "dd/MM/yyyy", new CultureInfo(("en-US")));
+
                 }
                 if (txt_certificate3.Value !="")
                 {
                     employee.EducationCertificate3 = txt_certificate3.Value;
-                    employee.EducationCertificateFromDate3 = DateTime.Parse(dp_fromCer3.Value);
-                    employee.EducationCertificateToDate3 = DateTime.Parse(dp_toCer3.Value);
+                    employee.EducationCertificateFromDate3 = DateTime.ParseExact(dp_fromCer3.Value, "dd/MM/yyyy", new CultureInfo(("en-US")));
+                    employee.EducationCertificateToDate3 = DateTime.ParseExact(dp_toCer3.Value, "dd/MM/yyyy", new CultureInfo(("en-US")));
                 }
                 #endregion
                 employee.WorkExperience1 = txt_experience1.Text;
@@ -91,8 +108,8 @@ namespace Human_Resource.Views.Employees
                 employee.Guarantor = txt_guarantor.Value;
                 employee.JobDescription = txt_jobDesc.Text;
                 employee.PassportNumber = txt_passportNo.Value;
-                employee.PassportReleaseDate = DateTime.Parse( dp_passportFromDate.Value);
-                employee.PassportExpiryDate = DateTime.Parse( dp_passportEndDate.Value);
+                employee.PassportReleaseDate = DateTime.ParseExact( dp_passportFromDate.Value, "dd/MM/yyyy", new CultureInfo(("en-US")));
+                employee.PassportExpiryDate = DateTime.ParseExact( dp_passportEndDate.Value, "dd/MM/yyyy", new CultureInfo(("en-US")));
                 employee.Sequence = txt_sequenceNum.Value;
                 employee.UnifiedNumber = txt_unifiedNum.Value;
 
@@ -101,11 +118,23 @@ namespace Human_Resource.Views.Employees
 
 
                 int empId = employee.SaveEmployee(employee);
-               
+
+                #region upload cerificates
+
+                UploadFile(file_certificate1.FileName);
+                if (txt_certificate2.Value != "")
+                {
+                    UploadFile(file_certificate2.FileName);
+                }
+                if (txt_certificate3.Value != "")
+                {
+                    UploadFile(file_certificate3.FileName);
+                }
+                #endregion
             }
-            catch { }
+            //catch { }
         }
-        protected void UploadFile(object sender, EventArgs e)
+        protected void UploadFile(string fileName)
         {
             //folder path to save uploaded file
             string folderPath = Server.MapPath("~/Upload/");
@@ -118,10 +147,8 @@ namespace Human_Resource.Views.Employees
             }
 
             //save file in the specified folder and path
-            file_certificate1.SaveAs(folderPath + Path.GetFileName(file_certificate1.FileName));
+            file_certificate1.SaveAs(folderPath + Path.GetFileName(fileName));
 
-            //once file is uploaded show message to user in label control
-            lbl_certificate1.Text = Path.GetFileName(file_certificate1.FileName) + " has been uploaded.";
         }
     }
 }

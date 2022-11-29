@@ -220,6 +220,7 @@
     <Content Include="Views\ExecutiveProc\Custodies.aspx" />
     <Content Include="Views\ExecutiveProc\MaterialsConsumption.aspx" />
     <Content Include="Views\ExecutiveProc\Tasks.aspx" />
+    <Content Include="Views\ExecutiveProc\Trainings.aspx" />
     <Content Include="Views\Home\HomePage.aspx" />
     <Content Include="Views\Settings\CompanyInfo.aspx" />
     <Content Include="Views\Settings\Branches.aspx" />
@@ -381,6 +382,13 @@
     </Compile>
     <Compile Include="Views\ExecutiveProc\Tasks.aspx.designer.cs">
       <DependentUpon>Tasks.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExecutiveProc\Trainings.aspx.cs">
+      <DependentUpon>Trainings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ExecutiveProc\Trainings.aspx.designer.cs">
+      <DependentUpon>Trainings.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Home\HomePage.aspx.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
