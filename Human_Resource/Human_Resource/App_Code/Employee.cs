@@ -72,7 +72,6 @@ namespace Human_Resource
         public string HousingCompensationType { get; set; }
         public Nullable<System.DateTime> ResidenceDate { get; set; }
         public Nullable<int> JobID { get; set; }
-        public string Position { get; set; }
         public Nullable<int> WorkHours { get; set; }
         public string JobDescription { get; set; }
 
@@ -81,6 +80,9 @@ namespace Human_Resource
         #endregion
         #region extra info
         public int Age { get; set; }
+        public string Position { get; set; }
+        public string AddedBy { get; set; }
+
         #endregion
 
 
@@ -108,6 +110,7 @@ namespace Human_Resource
                                 NameEn = x.NameEn,
                                 BasicSalary = x.BasicSalary,
                                 Position = x.jobs.Name,
+                                AddedBy = entity.employees.Where(m => m.EmployeeID == x.CreateUserID).Select(m => m.NameAr).FirstOrDefault(),
                             }).ToList();
                 return user;
             }
@@ -126,6 +129,7 @@ namespace Human_Resource
                                 NameEn = x.NameEn,
                                 BasicSalary = x.BasicSalary,
                                 Position = x.jobs.Name,
+                                AddedBy = entity.employees.Where(m => m.EmployeeID == x.CreateUserID).Select(m => m.NameAr).FirstOrDefault(),
                             }).ToList();
                 return user;
             }

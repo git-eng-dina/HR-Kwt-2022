@@ -88,10 +88,10 @@
                                                  Text='<%# Eval("BasicSalary") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>
-                                           <asp:TemplateField HeaderText="<%$ Resources:Labels,CivilNo%>">
+                                           <asp:TemplateField HeaderText="<%$ Resources:Labels,AddedBy%>">
                                          <ItemTemplate>
                                                  <asp:Label ID="LblLoc" runat="server" 
-                                                 Text='<%# Eval("IdentityNumber") %>' />                              
+                                                 Text='<%# Eval("AddedBy") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>                          
                                    <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-edit">
@@ -151,10 +151,10 @@
                                                  Text='<%# Eval("BasicSalary") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>
-                                           <asp:TemplateField HeaderText="<%$ Resources:Labels,CivilNo%>">
+                                           <asp:TemplateField HeaderText="<%$ Resources:Labels,AddedBy%>">
                                          <ItemTemplate>
                                                  <asp:Label ID="LblLoc" runat="server" 
-                                                 Text='<%# Eval("IdentityNumber") %>' />                              
+                                                 Text='<%# Eval("AddedBy") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>                          
                                    <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-edit">

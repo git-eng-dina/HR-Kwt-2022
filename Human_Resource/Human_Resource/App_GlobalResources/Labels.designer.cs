@@ -115,6 +115,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Added By.
+        /// </summary>
+        internal static string AddedBy {
+            get {
+                return ResourceManager.GetString("AddedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Job.
         /// </summary>
         internal static string AddJob {

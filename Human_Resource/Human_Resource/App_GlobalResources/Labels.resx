@@ -489,4 +489,7 @@
   <data name="Weekly" xml:space="preserve">
     <value>Weekly</value>
   </data>
+  <data name="AddedBy" xml:space="preserve">
+    <value>Added By</value>
+  </data>
 </root>

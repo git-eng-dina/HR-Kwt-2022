@@ -489,4 +489,7 @@
   <data name="Weekly" xml:space="preserve">
     <value>أسبوعي</value>
   </data>
+  <data name="AddedBy" xml:space="preserve">
+    <value>أضيف بواسطة</value>
+  </data>
 </root>
