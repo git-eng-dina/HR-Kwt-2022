@@ -72,6 +72,7 @@ namespace Human_Resource
         public string HousingCompensationType { get; set; }
         public Nullable<System.DateTime> ResidenceDate { get; set; }
         public Nullable<int> JobID { get; set; }
+        public string Position { get; set; }
         public Nullable<int> WorkHours { get; set; }
         public string JobDescription { get; set; }
 
@@ -105,6 +106,26 @@ namespace Human_Resource
                                 Username = x.Username,
                                 NameAr = x.NameAr,
                                 NameEn = x.NameEn,
+                                BasicSalary = x.BasicSalary,
+                                Position = x.jobs.Name,
+                            }).ToList();
+                return user;
+            }
+        }
+        public List<EmployeeModel> GetUnHiredEmployees(bool isActive)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var user = entity.employees.Where(x => x.IsActive == isActive && x.HiringDate == null)
+                            .Select(x => new EmployeeModel()
+                            {
+                                EmployeeID = x.EmployeeID,
+                                IsActive = x.IsActive,
+                                Username = x.Username,
+                                NameAr = x.NameAr,
+                                NameEn = x.NameEn,
+                                BasicSalary = x.BasicSalary,
+                                Position = x.jobs.Name,
                             }).ToList();
                 return user;
             }

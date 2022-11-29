@@ -30,6 +30,13 @@ namespace Human_Resource.Views.Employees
         private void BindData(string textSearch = "")
         {
             EmployeeModel emp = new EmployeeModel();
+            var unHiredEmployees = emp.GetUnHiredEmployees(true);
+            if (textSearch != "")
+                unHiredEmployees = unHiredEmployees.Where(x => x.NameAr.ToLower().Contains(textSearch.ToLower())
+                                || x.NameEn.ToLower().Contains(textSearch.ToLower())
+                                || x.IdentityNumber.ToLower().Contains(textSearch.ToLower())).ToList();
+            gv_unhiredEmp.DataSource = unHiredEmployees;
+
             var employees = emp.GetHiredEmployees(true);
             if (textSearch != "")
                 employees = employees.Where(x => x.NameAr.ToLower().Contains(textSearch.ToLower())

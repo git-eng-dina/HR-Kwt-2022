@@ -3,7 +3,15 @@
 
 
     <script>
+        $(document).ready(function () {
 
+            $('.td-edit').click(function () {
+                var customID = $(this).attr('myCustomID');
+                window.location = "NewEmployee.aspx?uid=" + customID;
+                return false;
+            });
+
+        });
 
         function NewEmployee() {
             window.location = "NewEmployee.aspx";
@@ -40,7 +48,70 @@
                         </div>
    
                         </div>
-
+                       <!------- unhired employees -->
+                        <asp:GridView ID="gv_unhiredEmp" runat="server" style="width:90%;" CssClass="gridView col-md-12"  
+                                AutoGenerateColumns="False"  Width="90%">
+                                <Columns>
+                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,Sequence%>" ItemStyle-Width="5%">
+                                         <ItemTemplate>
+                                                 <%#Container.DataItemIndex+1 %>                            
+                                         </ItemTemplate> 
+                                       </asp:TemplateField>
+                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,NameAR%>">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblDno" runat="server" 
+                                                 Text='<%# Eval("NameAr") %>' />                              
+                                         </ItemTemplate>
+                                   </asp:TemplateField> 
+                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,NameEN%>">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblDno" runat="server" 
+                                                 Text='<%# Eval("NameEn") %>' />                              
+                                         </ItemTemplate>
+                                   </asp:TemplateField> 
+                                      <asp:TemplateField HeaderText="<%$ Resources:Labels,Age%>">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblDname" runat="server" 
+                                                 Text='<%# Eval("Age") %>' />                              
+                                         </ItemTemplate>
+                                   </asp:TemplateField> 
+                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,Position%>">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblDno" runat="server" 
+                                                 Text='<%# Eval("Position") %>' />                              
+                                         </ItemTemplate>
+                                   </asp:TemplateField>             
+                                 
+                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,CurrentSalary%>">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblDname" runat="server" 
+                                                 Text='<%# Eval("BasicSalary") %>' />                              
+                                         </ItemTemplate>
+                                   </asp:TemplateField>
+                                           <asp:TemplateField HeaderText="<%$ Resources:Labels,CivilNo%>">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblLoc" runat="server" 
+                                                 Text='<%# Eval("IdentityNumber") %>' />                              
+                                         </ItemTemplate>
+                                   </asp:TemplateField>                          
+                                   <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-edit">
+                                           <ItemTemplate>                     
+                                                     <asp:LinkButton ID="LinkProducts" runat="server" myCustomID='<%# Eval("EmployeeID")%>'  CssClass="td-edit">
+                                                         <asp:Image ImageUrl="~/Images/edit.ico" runat="server" Width="20px" Height="20px" />
+                                                     </asp:LinkButton>  
+                                             </ItemTemplate>
+                                        </asp:TemplateField>
+                                   <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-delete">
+                                             <ItemTemplate>                     
+                                                     <asp:ImageButton  CommandArgument='<%# Eval("EmployeeID")%>' OnCommand="deletedatafromgrid"
+                                                            OnClientClick="return confirm(<%= Resources.Labels.ConfirmDelete %>);return false;"
+                                                            ID="Image1" runat="server" ImageUrl="~/Images/delete.ico" />
+                                                             
+                                             </ItemTemplate>
+                                    </asp:TemplateField> 
+                                </Columns>
+                                <EditRowStyle BackColor="#009999" VerticalAlign="Middle" />
+                            </asp:GridView>
                        <!---- table -->
                             <asp:GridView ID="gv_employees" runat="server" style="width:90%;" CssClass="gridView col-md-12"  
                                 AutoGenerateColumns="False"  Width="90%">
@@ -87,7 +158,7 @@
                                          </ItemTemplate>
                                    </asp:TemplateField>                          
                                    <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-edit">
-                                          <ItemTemplate>                     
+                                           <ItemTemplate>                     
                                                      <asp:LinkButton ID="LinkProducts" runat="server" myCustomID='<%# Eval("EmployeeID")%>'  CssClass="td-edit">
                                                          <asp:Image ImageUrl="~/Images/edit.ico" runat="server" Width="20px" Height="20px" />
                                                      </asp:LinkButton>  

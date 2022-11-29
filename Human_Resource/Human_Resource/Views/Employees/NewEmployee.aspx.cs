@@ -153,8 +153,16 @@ namespace Human_Resource.Views.Employees
             //save file in the specified folder and path
             string extension = Path.GetExtension(fileName);
             var newFileName = HelpClass.MD5Hash(empId.ToString()) + "-" +tag;
-            file_certificate1.SaveAs(folderPath + Path.GetFileName(fileName));
+            file_certificate1.SaveAs(folderPath + Path.GetFileName(newFileName));
 
+           var attach =new  Attachment ()
+            {
+                docnum = newFileName,
+                docName = Path.GetFileNameWithoutExtension( fileName),
+                EmployeeID = empId,
+            };
+            attach.SaveAttach(attach);
+            
         }
     }
 }
