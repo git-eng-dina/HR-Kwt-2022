@@ -898,6 +898,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Recovery.
+        /// </summary>
+        internal static string Recovery {
+            get {
+                return ResourceManager.GetString("Recovery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         internal static string Save {
