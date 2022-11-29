@@ -501,4 +501,10 @@
   <data name="Task" xml:space="preserve">
     <value>Task</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="RepeatedEvery" xml:space="preserve">
+    <value>Repeated Every</value>
+  </data>
 </root>

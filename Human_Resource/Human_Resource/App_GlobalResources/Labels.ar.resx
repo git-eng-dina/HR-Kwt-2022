@@ -499,6 +499,12 @@
     <value>الوصف</value>
   </data>
   <data name="Task" xml:space="preserve">
-    <value>مهمة</value>
+    <value>المهمة</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>الاسم</value>
+  </data>
+  <data name="RepeatedEvery" xml:space="preserve">
+    <value>تكرار كل</value>
   </data>
 </root>

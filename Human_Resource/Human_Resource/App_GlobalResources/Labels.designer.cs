@@ -808,6 +808,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name in Arabic.
         /// </summary>
         internal static string NameAR {
@@ -993,6 +1002,15 @@ namespace Resources {
         internal static string Recovery {
             get {
                 return ResourceManager.GetString("Recovery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Repeated Every.
+        /// </summary>
+        internal static string RepeatedEvery {
+            get {
+                return ResourceManager.GetString("RepeatedEvery", resourceCulture);
             }
         }
         
