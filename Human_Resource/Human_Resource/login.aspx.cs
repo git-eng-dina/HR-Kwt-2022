@@ -30,7 +30,7 @@ namespace Human_Resource
             else
             {
                 Session["user_id"] = loginUser.EmployeeID;
-
+                Session["urole"] = user.getUserRole(loginUser.EmployeeID);
                 //FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket
                 //              (
                 //              1,

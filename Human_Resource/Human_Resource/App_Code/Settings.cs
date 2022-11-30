@@ -110,6 +110,23 @@ namespace Human_Resource.App_Code
                         com.UpdateUserID = company.UpdateUserID;
                         com.UpdateDate = DateTime.Now;
                     }
+
+                    var generalDirector = entity.employees.Find(company.GeneralDirector);
+                    if (generalDirector.HiringDate == null)
+                        generalDirector.HiringDate = DateTime.Now;
+
+                    var CEO = entity.employees.Find(company.CEO);
+                    if (CEO.HiringDate == null)
+                        CEO.HiringDate = DateTime.Now;
+
+                    var financialManager = entity.employees.Find(company.FinancialManager);
+                    if (financialManager.HiringDate == null)
+                        financialManager.HiringDate = DateTime.Now;
+
+                    var hrManager = entity.employees.Find(company.HRManager);
+                    if (hrManager.HiringDate == null)
+                        hrManager.HiringDate = DateTime.Now;
+
                     entity.SaveChanges();
                 }
                 return com.CompanyID;

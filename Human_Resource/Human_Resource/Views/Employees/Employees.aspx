@@ -86,7 +86,12 @@
                                                  Text='<%# Eval("Position") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>             
-                                 
+                                  <asp:TemplateField HeaderText="<%$ Resources:Labels,Department%>">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblDno" runat="server" 
+                                                 Text='<%# Eval("DepartmentName") %>' />                              
+                                         </ItemTemplate>
+                                   </asp:TemplateField> 
                                     <asp:TemplateField HeaderText="<%$ Resources:Labels,CurrentSalary%>">
                                          <ItemTemplate>
                                                  <asp:Label ID="LblDname" runat="server" 
@@ -146,7 +151,13 @@
                                     <asp:TemplateField HeaderText="<%$ Resources:Labels,Position%>">
                                          <ItemTemplate>
                                                  <asp:Label ID="LblDno" runat="server" 
-                                                 Text='<%# Eval("NameEn") %>' />                              
+                                                 Text='<%# Eval("Position") %>' />                              
+                                         </ItemTemplate>
+                                   </asp:TemplateField>  
+                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,Department%>">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblDno" runat="server" 
+                                                 Text='<%# Eval("DepartmentName") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>             
                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,Age%>">

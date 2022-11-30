@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="HRSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="HRSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="branches">
           <Key>
             <PropertyRef Name="BranchID" />
@@ -64,6 +64,7 @@
           <Property Name="DepartmentID" Type="int" />
           <Property Name="ConfirmType" Type="nvarchar" MaxLength="100" />
           <Property Name="EmployeeID" Type="int" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="countriesName">
           <Key>
@@ -999,8 +1000,7 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
             <End Role="rewards" EntitySet="rewards" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HRSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1073,6 +1073,7 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
           <NavigationProperty Name="messagesTemplates" Relationship="Self.FK_confirms_messagesTemplates" FromRole="confirms" ToRole="messagesTemplates" />
           <NavigationProperty Name="salaryIncrease" Relationship="Self.FK_confirms_salaryIncrease" FromRole="confirms" ToRole="salaryIncrease" />
           <NavigationProperty Name="tasks" Relationship="Self.FK_confirms_tasks" FromRole="confirms" ToRole="tasks" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="countriesName">
           <Key>
@@ -2092,6 +2093,7 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
           <EntitySetMapping Name="confirms">
             <EntityTypeMapping TypeName="HRSystemModel.confirms">
               <MappingFragment StoreEntitySet="confirms">
+                <ScalarProperty Name="Role" ColumnName="Role" />
                 <ScalarProperty Name="ConfirmID" ColumnName="ConfirmID" />
                 <ScalarProperty Name="Notes" ColumnName="Notes" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />

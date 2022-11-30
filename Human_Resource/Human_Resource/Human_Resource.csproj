@@ -223,6 +223,7 @@
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Views\Employees\Employees.aspx" />
     <Content Include="Views\Employees\NewEmployee.aspx" />
+    <Content Include="Views\Employees\UserAccounts.aspx" />
     <Content Include="Views\ExecutiveProc\Custodies.aspx" />
     <Content Include="Views\ExecutiveProc\MaterialsConsumption.aspx" />
     <Content Include="Views\ExecutiveProc\Tasks.aspx" />
@@ -371,6 +372,13 @@
     </Compile>
     <Compile Include="Views\Employees\NewEmployee.aspx.designer.cs">
       <DependentUpon>NewEmployee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Employees\UserAccounts.aspx.cs">
+      <DependentUpon>UserAccounts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Employees\UserAccounts.aspx.designer.cs">
+      <DependentUpon>UserAccounts.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\ExecutiveProc\Custodies.aspx.cs">
       <DependentUpon>Custodies.aspx</DependentUpon>

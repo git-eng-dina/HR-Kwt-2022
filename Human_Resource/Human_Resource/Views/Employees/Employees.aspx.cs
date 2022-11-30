@@ -30,13 +30,26 @@ namespace Human_Resource.Views.Employees
         private void BindData(string textSearch = "")
         {
             EmployeeModel emp = new EmployeeModel();
-            var unHiredEmployees = emp.GetEmployees(true,false);
-            if (textSearch != "")
-                unHiredEmployees = unHiredEmployees.Where(x => x.NameAr.ToLower().Contains(textSearch.ToLower())
-                                || x.NameEn.ToLower().Contains(textSearch.ToLower())
-                                || x.IdentityNumber.ToLower().Contains(textSearch.ToLower())).ToList();
-            gv_unhiredEmp.DataSource = unHiredEmployees;
+            if (Session["urole"] != null)
+            {
+                List<EmployeeModel> unHiredEmployees = new List<EmployeeModel>();
+                int userId = int.Parse(Session["user_id"].ToString());
 
+                if (Session["urole"].ToString() == "GeneralDirector" || Session["urole"].ToString() == "CEO")
+                     unHiredEmployees = emp.GetEmployees(true, false);
+                else if(Session["urole"].ToString() == "DepartmentManager")
+                    unHiredEmployees = emp.GetDeptEmployees(true, false,userId);//not get any approval
+                 else if(Session["urole"].ToString() == "HRManager")
+                    unHiredEmployees = emp.GetEmployees(true, false);
+                 else if(Session["urole"].ToString() == "FinancialManager")
+                    unHiredEmployees = emp.GetEmployees(true, false);
+
+                if (textSearch != "")
+                    unHiredEmployees = unHiredEmployees.Where(x => x.NameAr.ToLower().Contains(textSearch.ToLower())
+                                    || x.NameEn.ToLower().Contains(textSearch.ToLower())
+                                    || x.IdentityNumber.ToLower().Contains(textSearch.ToLower())).ToList();
+                gv_unhiredEmp.DataSource = unHiredEmployees;
+            }
             var employees = emp.GetEmployees(true,true);
             if (textSearch != "")
                 employees = employees.Where(x => x.NameAr.ToLower().Contains(textSearch.ToLower())
