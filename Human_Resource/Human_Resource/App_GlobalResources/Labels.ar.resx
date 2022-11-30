@@ -522,4 +522,10 @@
   <data name="HRManager" xml:space="preserve">
     <value>مدير الموارد البشرية</value>
   </data>
+  <data name="AddTraining" xml:space="preserve">
+    <value>إضافة تدريب</value>
+  </data>
+  <data name="Training" xml:space="preserve">
+    <value>التدريب</value>
+  </data>
 </root>
