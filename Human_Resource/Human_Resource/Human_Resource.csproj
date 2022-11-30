@@ -247,6 +247,7 @@
     <Compile Include="App_Code\GetData.cs" />
     <Compile Include="App_Code\Job.cs" />
     <Compile Include="App_Code\MaterialsConsumption.cs" />
+    <Compile Include="App_Code\Task.cs" />
     <Compile Include="App_GlobalResources\Labels.ar.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
