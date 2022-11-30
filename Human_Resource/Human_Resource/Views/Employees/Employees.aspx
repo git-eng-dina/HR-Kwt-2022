@@ -115,7 +115,11 @@
                                 </Columns>
                                 <EditRowStyle BackColor="#009999" VerticalAlign="Middle" />
                             </asp:GridView>
-                       <!---- table -->
+
+                       <!---- table hired employees-->
+                         <div class="row gridView-title">                       
+                           <span><asp:Literal Text=" <%$ Resources:Labels,Employees%>" runat="server"></asp:Literal> </span>
+                        </div>
                             <asp:GridView ID="gv_employees" runat="server" style="width:90%;" CssClass="gridView col-md-12"  
                                 AutoGenerateColumns="False"  Width="90%">
                                 <Columns>

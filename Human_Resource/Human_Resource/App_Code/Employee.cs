@@ -1,4 +1,5 @@
 ﻿using Human_Resource.App_Code;
+using LinqKit;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -122,11 +123,19 @@ namespace Human_Resource
                 return user;
             }
         }
-        public List<EmployeeModel> GetUnHiredEmployees(bool isActive)
+        public List<EmployeeModel> GetEmployees(bool isActive,bool hired)
         {
             using (HRSystemEntities entity = new HRSystemEntities())
             {
-                var user = entity.employees.Where(x => x.IsActive == isActive && x.HiringDate == null)
+                var searchPredicate = PredicateBuilder.New<employees>();
+
+                searchPredicate = searchPredicate.And(x => x.IsActive == IsActive);
+                if(hired == true)
+                    searchPredicate = searchPredicate.And(x => x.HiringDate != null);
+                else
+                    searchPredicate = searchPredicate.And(x => x.HiringDate == null);
+
+                var user = entity.employees.Where(searchPredicate)
                             .Select(x => new EmployeeModel()
                             {
                                 EmployeeID = x.EmployeeID,
