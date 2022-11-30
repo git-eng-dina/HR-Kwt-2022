@@ -507,4 +507,7 @@
   <data name="RepeatedEvery" xml:space="preserve">
     <value>تكرار كل</value>
   </data>
+  <data name="WaitingEmployees" xml:space="preserve">
+    <value>الموظفون بانتظار الموافقة</value>
+  </data>
 </root>

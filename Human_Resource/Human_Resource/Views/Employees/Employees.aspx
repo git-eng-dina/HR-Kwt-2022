@@ -49,7 +49,10 @@
    
                         </div>
                        <!------- unhired employees -->
-                        <asp:GridView ID="gv_unhiredEmp" runat="server" style="width:90%;" CssClass="gridView col-md-12"  
+                       <div class="row gridView-title">                       
+                           <span><asp:Literal Text=" <%$ Resources:Labels,WaitingEmployees%>" runat="server"></asp:Literal> </span>
+                        </div>
+                        <asp:GridView ID="gv_unhiredEmp" runat="server" style="width:90%;margin-top:0px;" CssClass="gridView col-md-12"  
                                 AutoGenerateColumns="False"  Width="90%">
                                 <Columns>
                                     <asp:TemplateField HeaderText="<%$ Resources:Labels,Sequence%>" ItemStyle-Width="5%">

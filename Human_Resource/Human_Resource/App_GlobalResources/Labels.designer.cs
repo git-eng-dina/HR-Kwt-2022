@@ -1204,6 +1204,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Employees awaiting approval.
+        /// </summary>
+        internal static string WaitingEmployees {
+            get {
+                return ResourceManager.GetString("WaitingEmployees", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Weekly.
         /// </summary>
         internal static string Weekly {

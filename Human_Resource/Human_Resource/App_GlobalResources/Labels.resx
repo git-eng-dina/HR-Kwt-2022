@@ -507,4 +507,7 @@
   <data name="RepeatedEvery" xml:space="preserve">
     <value>Repeated Every</value>
   </data>
+  <data name="WaitingEmployees" xml:space="preserve">
+    <value>Employees awaiting approval</value>
+  </data>
 </root>

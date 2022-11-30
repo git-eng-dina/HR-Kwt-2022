@@ -31,7 +31,12 @@ namespace Human_Resource.App_Code
             return strBuilder.ToString();
         }
 
-
+        public static int get_age(DateTime dob)
+        {
+            int age = 0;
+            age = DateTime.Now.AddYears(-dob.Year).Year;
+            return age;
+        }
 
     }
 }

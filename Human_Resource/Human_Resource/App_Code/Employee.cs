@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Human_Resource.App_Code;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -112,6 +113,12 @@ namespace Human_Resource
                                 Position = x.jobs.Name,
                                 AddedBy = entity.employees.Where(m => m.EmployeeID == x.CreateUserID).Select(m => m.NameAr).FirstOrDefault(),
                             }).ToList();
+
+                foreach (var emp in user)
+                {
+                    if(emp.DOB != null)
+                        emp.Age = HelpClass.get_age((DateTime)emp.DOB);
+                }
                 return user;
             }
         }
@@ -131,6 +138,12 @@ namespace Human_Resource
                                 Position = x.jobs.Name,
                                 AddedBy = entity.employees.Where(m => m.EmployeeID == x.CreateUserID).Select(m => m.NameAr).FirstOrDefault(),
                             }).ToList();
+
+                foreach(var emp in user)
+                {
+                    if (emp.DOB != null)
+                        emp.Age = HelpClass.get_age((DateTime)emp.DOB);
+                }
                 return user;
             }
         }
@@ -191,6 +204,7 @@ namespace Human_Resource
                             UpdateUserID = employee.UpdateUserID,
                             CreateDate = DateTime.Now,
                             UpdateDate = DateTime.Now,
+                            IsActive = true,
                     };
                         emp = entity.employees.Add(emp);
                     }
