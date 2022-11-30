@@ -741,14 +741,17 @@ nav .logo {
         margin-top: 7px;
         border:0px;
     }
-    
-   .c-form  input,select,option {
+
+    .c-form input, select, option {
         font-weight: bold;
         display: block;
         width: 80%;
-        float:right;
-    } 
-    
+        float: right;
+    }
+    .c-form .select {
+        width: 80%;
+        font-weight: bold;
+    }
    .c-form input[type=submit] {
         font-weight: bold;
         display: block;
@@ -1178,7 +1181,7 @@ input[type=checkbox], input[type=radio] {
     /* margin: 0px; */
     background-color: burlywood;
     margin-right: 20px;
-    margin-top: 5px;
+    margin-top: 10px;
 }
     .gridView-title span {
 
