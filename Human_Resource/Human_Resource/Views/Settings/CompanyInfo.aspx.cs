@@ -20,6 +20,42 @@ namespace Human_Resource.Views.Settings
                     CompanyModel company = new CompanyModel();
                     company = company.GetCompanyInfo();
 
+                    #region fill drop down lists
+                    EmployeeModel emp = new EmployeeModel();
+                    var employees = emp.GetAllEmployees(true);
+
+                    sel_generalDirector.DataSource = employees;
+                    sel_generalDirector.DataValueField = "EmployeeID";
+
+                    sel_CEO.DataSource = employees;
+                    sel_CEO.DataValueField = "EmployeeID";
+
+                    sel_financialManager.DataSource = employees;
+                    sel_financialManager.DataValueField = "EmployeeID";
+
+                    sel_HRManager.DataSource = employees;
+                    sel_HRManager.DataValueField = "EmployeeID";
+
+                    if (Session["CultureName"] != null && Session["CultureName"].ToString().ToLower() == "en-us")
+                    {
+                        sel_generalDirector.DataTextField = "NameEN";
+                        sel_CEO.DataTextField = "NameEN";
+                        sel_financialManager.DataTextField = "NameEN";
+                        sel_HRManager.DataTextField = "NameEN";
+
+                    }
+                    else
+                    {
+                        sel_generalDirector.DataTextField = "NameAR";
+                        sel_CEO.DataTextField = "NameAR";
+                        sel_financialManager.DataTextField = "NameAR";
+                        sel_HRManager.DataTextField = "NameAR";
+                    }
+                    sel_generalDirector.DataBind();
+                    sel_CEO.DataBind();
+                    sel_financialManager.DataBind();
+                    sel_HRManager.DataBind();
+                    #endregion
                     #region fill text box
                     if (company != null)
                     {
@@ -30,6 +66,10 @@ namespace Human_Resource.Views.Settings
                         txt_phone.Text = company.Phone;
                         txt_fax.Text = company.Fax;
                         txt_notes.Text = company.Notes;
+                        sel_generalDirector.Value = company.GeneralDirector.ToString();
+                        sel_CEO.Value = company.CEO.ToString();
+                        sel_financialManager.Value = company.FinancialManager.ToString();
+                        sel_HRManager.Value = company.HRManager.ToString();
                         hid_companyID.Value = company.CompanyID.ToString();
                     }
                     #endregion
@@ -54,6 +94,10 @@ namespace Human_Resource.Views.Settings
                 company.Email = txt_email.Value;
                 company.Notes = txt_notes.Text;
                 company.OurCompany = true;
+                company.GeneralDirector = int.Parse( sel_generalDirector.Value);
+                company.CEO = int.Parse( sel_CEO.Value);
+                company.FinancialManager = int.Parse( sel_financialManager.Value);
+                company.HRManager = int.Parse( sel_HRManager.Value);
 
                 if(Session["user_id"] != null && Session["user_id"].ToString() != "")
                     company.CreateUserID = company.UpdateUserID = int.Parse(Session["user_id"].ToString());

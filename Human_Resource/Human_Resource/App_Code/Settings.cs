@@ -17,7 +17,10 @@ namespace Human_Resource.App_Code
         public string Fax { get; set; }
         public string Notes { get; set; }
         public Nullable<bool> OurCompany { get; set; }
-
+        public Nullable<int> GeneralDirector { get; set; }
+        public Nullable<int> FinancialManager { get; set; }
+        public Nullable<int> HRManager { get; set; }
+        public Nullable<int> CEO { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public Nullable<int> CreateUserID { get; set; }
@@ -43,6 +46,10 @@ namespace Human_Resource.App_Code
                             Phone = x.Phone,
                             Mobile = x.Mobile,
                             OurCompany=x.OurCompany,
+                            GeneralDirector = x.GeneralDirector,
+                            CEO=x.CEO,
+                            HRManager=x.HRManager,
+                            FinancialManager = x.FinancialManager,
                              IsActive = x.IsActive,
                              Notes = x.Notes,
                              CreateUserID = x.CreateUserID,
@@ -72,6 +79,10 @@ namespace Human_Resource.App_Code
                             Mobile = company.Mobile,
                             Notes = company.Notes,
                             OurCompany = company.OurCompany,
+                            GeneralDirector = company.GeneralDirector,
+                            CEO = company.CEO,
+                            HRManager = company.HRManager,
+                            FinancialManager = company.FinancialManager,
                             IsActive = true,
                             CreateUserID = company.CreateUserID,
                             UpdateUserID = company.UpdateUserID,
@@ -91,6 +102,10 @@ namespace Human_Resource.App_Code
                         com.Mobile = company.Mobile;
                         com.Notes = company.Notes;
                         com.OurCompany = company.OurCompany;
+                        com.GeneralDirector = company.GeneralDirector;
+                        com.CEO = company.CEO;
+                        com.HRManager = company.HRManager;
+                        com.FinancialManager = company.FinancialManager;
                         com.IsActive = true;
                         com.UpdateUserID = company.UpdateUserID;
                         com.UpdateDate = DateTime.Now;

@@ -56,7 +56,34 @@
                                 <asp:TextBox class="form-control input-lg" id="txt_fax" runat="server" />
                             </div>
                             </div>
-
+                            <div class="row">
+                            <div class="form-group" style="display:block">
+                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,GeneralDirector%>" /></span>
+                                <select runat="server" id="sel_generalDirector" name="sel_generalDirector" class="form-control input-lg"></select>
+      
+                            </div>
+                            </div>
+                             <div class="row">
+                            <div class="form-group" style="display:block">
+                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,CEO%>" /></span>
+                                <select runat="server" id="sel_CEO" name="sel_CEO" class="form-control"></select>
+      
+                            </div>
+                            </div>
+                             <div class="row">
+                            <div class="form-group" style="display:block">
+                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,FinancialManager%>" /></span>
+                                <select runat="server" id="sel_financialManager" name="sel_financialManager" class="form-control"></select>
+      
+                            </div>
+                            </div>
+                             <div class="row">
+                            <div class="form-group" style="display:block">
+                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,HRManager%>" /></span>
+                                <select runat="server" id="sel_HRManager" name="sel_HRManager" class="form-control"></select>
+      
+                            </div>
+                            </div>
                             <div class="row">
                             <div class="form-group" style="display:block">
                                <span> <asp:Literal  runat="server" Text="<%$ Resources:Labels,Notes%>" /></span>

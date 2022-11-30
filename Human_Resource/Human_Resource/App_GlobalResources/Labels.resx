@@ -510,4 +510,16 @@
   <data name="WaitingEmployees" xml:space="preserve">
     <value>Employees awaiting approval</value>
   </data>
+  <data name="CEO" xml:space="preserve">
+    <value>CEO</value>
+  </data>
+  <data name="FinancialManager" xml:space="preserve">
+    <value>Financial Manager</value>
+  </data>
+  <data name="GeneralDirector" xml:space="preserve">
+    <value>General Director</value>
+  </data>
+  <data name="HRManager" xml:space="preserve">
+    <value>HR Manager</value>
+  </data>
 </root>

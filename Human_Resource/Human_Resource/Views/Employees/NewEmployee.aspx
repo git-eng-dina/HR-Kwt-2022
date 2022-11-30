@@ -143,10 +143,6 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,bod%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2">
-                                   <%-- <asp:TextBox ID="from_date" runat="server"  />
-                                        <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" 
-                                            TargetControlID="from_date" PopupButtonID="from_date">
-                                        </ajaxToolkit:CalendarExtender>--%>
                                     <asp:TextBox ID="dp_bod" runat="server" class="form-control input-lg hasdatepicker"  textMode="date" value="2000-11-01"></asp:TextBox>
 <%--                                  
 <%--                                    <input type="date" class="form-control input-lg hasdatepicker"  id="dp_bod" value="2017-06-01" pattern="\d{4}-\d{2}-\d{2}" runat="server" required="required"   />--%>
@@ -189,7 +185,7 @@
                                     <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Type%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2">
-                                    <asp:RadioButtonList id="RadioButtonList1" RepeatDirection="Horizontal" runat="server" CssClass="rd-stemType">
+                                    <asp:RadioButtonList id="rd_gender" RepeatDirection="Horizontal" runat="server" CssClass="rd-stemType">
                                         <asp:ListItem value="male" Text="<%$ Resources:Labels,Male%>" Selected="True"></asp:ListItem>
                                         <asp:ListItem value="female" Text="<%$ Resources:Labels,Female%>"></asp:ListItem>
                                     </asp:RadioButtonList>

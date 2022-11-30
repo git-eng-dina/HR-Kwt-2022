@@ -76,6 +76,42 @@ namespace Human_Resource.Views.Settings {
         protected global::System.Web.UI.WebControls.TextBox txt_fax;
         
         /// <summary>
+        /// sel_generalDirector control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect sel_generalDirector;
+        
+        /// <summary>
+        /// sel_CEO control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect sel_CEO;
+        
+        /// <summary>
+        /// sel_financialManager control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect sel_financialManager;
+        
+        /// <summary>
+        /// sel_HRManager control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect sel_HRManager;
+        
+        /// <summary>
         /// txt_notes control.
         /// </summary>
         /// <remarks>

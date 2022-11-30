@@ -37,7 +37,7 @@ namespace Human_Resource.Views.Employees
                                 || x.IdentityNumber.ToLower().Contains(textSearch.ToLower())).ToList();
             gv_unhiredEmp.DataSource = unHiredEmployees;
 
-            var employees = emp.GetHiredEmployees(true);
+            var employees = emp.GetEmployees(true,true);
             if (textSearch != "")
                 employees = employees.Where(x => x.NameAr.ToLower().Contains(textSearch.ToLower())
                                 || x.NameEn.ToLower().Contains(textSearch.ToLower())

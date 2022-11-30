@@ -510,4 +510,16 @@
   <data name="WaitingEmployees" xml:space="preserve">
     <value>الموظفون بانتظار الموافقة</value>
   </data>
+  <data name="CEO" xml:space="preserve">
+    <value>المدير التنفيذي</value>
+  </data>
+  <data name="FinancialManager" xml:space="preserve">
+    <value>المدير المالي</value>
+  </data>
+  <data name="GeneralDirector" xml:space="preserve">
+    <value>المدير العام</value>
+  </data>
+  <data name="HRManager" xml:space="preserve">
+    <value>مدير الموارد البشرية</value>
+  </data>
 </root>

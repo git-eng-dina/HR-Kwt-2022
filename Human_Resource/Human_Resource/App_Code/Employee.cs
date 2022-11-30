@@ -84,6 +84,9 @@ namespace Human_Resource
         public int Age { get; set; }
         public string Position { get; set; }
         public string AddedBy { get; set; }
+        public Attachment Certificate1 { get; set; }
+        public Attachment Certificate2 { get; set; }
+        public Attachment Certificate3 { get; set; }
 
         #endregion
 
@@ -95,6 +98,74 @@ namespace Human_Resource
             {
                 var user = entity.employees.Where(x => x.Username == userName && x.Password == password && x.IsActive == true).FirstOrDefault();
                 return user;
+            }
+        }
+        public EmployeeModel GetByID(int empId)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var employee = entity.employees.Where(x => x.EmployeeID == empId )
+                    .Select(x => new EmployeeModel()
+                    {
+                        NameAr = x.NameAr,
+                        NameEn = x.NameEn,
+                        DOB = x.DOB,
+                        Mobile = x.Mobile,
+                        MaritalStatus = x.MaritalStatus,
+                        Nationality = x.Nationality,
+                        BloodType = x.BloodType,
+                        Gender = x.Gender,
+                        IdentityNumber = x.IdentityNumber,
+                        #region certificates
+                        EducationCertificate1 = x.EducationCertificate1,
+                        EducationCertificateFromDate1 = x.EducationCertificateFromDate1,
+                        EducationCertificateToDate1 = x.EducationCertificateToDate1,
+
+                        EducationCertificate2 = x.EducationCertificate2,
+                        EducationCertificateFromDate2 = x.EducationCertificateFromDate2,
+                        EducationCertificateToDate2 = x.EducationCertificateToDate2,
+
+
+                        EducationCertificate3 = x.EducationCertificate3,
+                        EducationCertificateFromDate3 = x.EducationCertificateFromDate3,
+                        EducationCertificateToDate3 = x.EducationCertificateToDate3,
+
+                        #endregion
+                        WorkExperience1 = x.WorkExperience1,
+                        WorkExperience2 = x.WorkExperience2,
+                        WorkExperience3 = x.WorkExperience3,
+                        JobID = x.JobID,
+                        DepartmentID = x.DepartmentID,
+                        WorkHours = x.WorkHours,
+                        BasicSalary = x.BasicSalary,
+                        Email = x.Email,
+                        VacationsBalance = x.VacationsBalance,
+                        Guarantor = x.Guarantor,
+                        JobDescription = x.JobDescription,
+                        PassportNumber = x.PassportNumber,
+                        PassportReleaseDate = x.PassportReleaseDate,
+                        PassportExpiryDate = x.PassportExpiryDate,
+                        Sequence = x.Sequence,
+                        UnifiedNumber = x.UnifiedNumber,
+
+                        CreateUserID = x.CreateUserID,
+                        UpdateUserID = x.UpdateUserID,
+                        CreateDate = x.CreateDate,
+                        UpdateDate = x.UpdateDate,
+                        IsActive = true,
+                    }).FirstOrDefault();
+
+                var certificates = entity.Images.Where(x => x.EmployeeID == empId)
+                    .Select(x => new Attachment() {
+                        docName = x.docName,
+                        docnum= x.docnum,                        
+                    }).ToList();
+
+                employee.Certificate1 = certificates.Where(x => x.docnum.Contains("cer1")).FirstOrDefault();
+                employee.Certificate2 = certificates.Where(x => x.docnum.Contains("cer2")).FirstOrDefault();
+                employee.Certificate3 = certificates.Where(x => x.docnum.Contains("cer3")).FirstOrDefault();
+
+                return employee;
             }
         }
 
@@ -129,7 +200,7 @@ namespace Human_Resource
             {
                 var searchPredicate = PredicateBuilder.New<employees>();
 
-                searchPredicate = searchPredicate.And(x => x.IsActive == IsActive);
+                searchPredicate = searchPredicate.And(x => x.IsActive == isActive);
                 if(hired == true)
                     searchPredicate = searchPredicate.And(x => x.HiringDate != null);
                 else
@@ -153,6 +224,31 @@ namespace Human_Resource
                     if (emp.DOB != null)
                         emp.Age = HelpClass.get_age((DateTime)emp.DOB);
                 }
+                return user;
+            }
+        }
+
+        public List<EmployeeModel> GetAllEmployees(bool isActive)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var searchPredicate = PredicateBuilder.New<employees>();
+
+                searchPredicate = searchPredicate.And(x => x.IsActive == isActive);
+
+                var user = entity.employees.Where(searchPredicate)
+                            .Select(x => new EmployeeModel()
+                            {
+                                EmployeeID = x.EmployeeID,
+                                IsActive = x.IsActive,
+                                Username = x.Username,
+                                NameAr = x.NameAr,
+                                NameEn = x.NameEn,
+                                BasicSalary = x.BasicSalary,
+                                Position = x.jobs.Name,
+                                AddedBy = entity.employees.Where(m => m.EmployeeID == x.CreateUserID).Select(m => m.NameAr).FirstOrDefault(),
+                            }).ToList();
+
                 return user;
             }
         }

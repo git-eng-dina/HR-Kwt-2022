@@ -49,11 +49,13 @@
    
                         </div>
                        <!------- unhired employees -->
+                       <div class="row">
                        <div class="row gridView-title">                       
                            <span><asp:Literal Text=" <%$ Resources:Labels,WaitingEmployees%>" runat="server"></asp:Literal> </span>
                         </div>
-                        <asp:GridView ID="gv_unhiredEmp" runat="server" style="width:90%;margin-top:0px;" CssClass="gridView col-md-12"  
-                                AutoGenerateColumns="False"  Width="90%">
+
+                        <asp:GridView ID="gv_unhiredEmp" runat="server" style="margin-top:0px;" CssClass="gridView col-md-12"  
+                                AutoGenerateColumns="False"  Width="100%">
                                 <Columns>
                                     <asp:TemplateField HeaderText="<%$ Resources:Labels,Sequence%>" ItemStyle-Width="5%">
                                          <ItemTemplate>
@@ -115,13 +117,14 @@
                                 </Columns>
                                 <EditRowStyle BackColor="#009999" VerticalAlign="Middle" />
                             </asp:GridView>
-
+                       </div>
                        <!---- table hired employees-->
+                    <div class="row">
                          <div class="row gridView-title">                       
                            <span><asp:Literal Text=" <%$ Resources:Labels,Employees%>" runat="server"></asp:Literal> </span>
                         </div>
-                            <asp:GridView ID="gv_employees" runat="server" style="width:90%;" CssClass="gridView col-md-12"  
-                                AutoGenerateColumns="False"  Width="90%">
+                            <asp:GridView ID="gv_employees" runat="server" style="margin-top:0px;" CssClass="gridView col-md-12"  
+                                AutoGenerateColumns="False"  Width="100%">
                                 <Columns>
                                     <asp:TemplateField HeaderText="<%$ Resources:Labels,Sequence%>" ItemStyle-Width="5%">
                                          <ItemTemplate>
@@ -182,7 +185,7 @@
                                 </Columns>
                                 <EditRowStyle BackColor="#009999" VerticalAlign="Middle" />
                             </asp:GridView>
-
+                        </div>
    
                     </div>
 

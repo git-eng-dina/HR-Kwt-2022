@@ -286,6 +286,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CEO.
+        /// </summary>
+        internal static string CEO {
+            get {
+                return ResourceManager.GetString("CEO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Certificate.
         /// </summary>
         internal static string Certificate {
@@ -628,6 +637,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Financial Manager.
+        /// </summary>
+        internal static string FinancialManager {
+            get {
+                return ResourceManager.GetString("FinancialManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to General Director.
+        /// </summary>
+        internal static string GeneralDirector {
+            get {
+                return ResourceManager.GetString("GeneralDirector", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Guarantor.
         /// </summary>
         internal static string Guarantor {
@@ -660,6 +687,15 @@ namespace Resources {
         internal static string Home {
             get {
                 return ResourceManager.GetString("Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HR Manager.
+        /// </summary>
+        internal static string HRManager {
+            get {
+                return ResourceManager.GetString("HRManager", resourceCulture);
             }
         }
         

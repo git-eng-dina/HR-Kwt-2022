@@ -53,6 +53,90 @@ namespace Human_Resource.Views.Employees
                 sel_department.DataBind();
 
                 #region get employee info
+                if(Request.QueryString["uid"] != null && Request.QueryString["uid"] != "")
+                {
+                    int empId = int.Parse(Request.QueryString["uid"]);
+                    emp = emp.GetByID(empId);
+                    #region fill inputs
+                    txt_nameAR.Value = emp.NameAr;
+                    txt_nameEN.Value = emp.NameEn;
+                    dp_bod.Text = emp.DOB.ToString();
+                    txt_mobile.Value = emp.Mobile;
+                   
+                    sel_maritalStatus.Value = emp.MaritalStatus;
+                    sel_nationality.Value = emp.Nationality.ToString();
+                    txt_blood.Value = emp.BloodType;
+                    rd_gender.SelectedValue = emp.Gender;
+                    txt_identityNumber.Value = emp.IdentityNumber;
+
+                    
+                    #region fill certificates
+                    //certificate 1
+                    txt_certificate1.Value = emp.EducationCertificate1;
+                    dp_fromCer1.Value = emp.EducationCertificateFromDate1.ToString();
+                    dp_toCer1.Value = emp.EducationCertificateToDate1.ToString();
+                    if (emp.Certificate1 != null)
+                    {
+                        lbl_certificate1.Text = emp.Certificate1.docName;
+                    }
+                    //certificate 2
+                    if(emp.EducationCertificate2 != "")
+                    {
+                        txt_certificate2.Value = emp.EducationCertificate2;
+                        dp_fromCer2.Value = emp.EducationCertificateFromDate2.ToString();
+                        dp_toCer2.Value = emp.EducationCertificateToDate2.ToString();
+                        if (emp.Certificate2 != null)
+                        {
+                            lbl_certificate2.Text = emp.Certificate2.docName;
+                        }
+                    }
+                    //certificate 3
+                    if(emp.EducationCertificate3 != "")
+                    {
+                        txt_certificate3.Value = emp.EducationCertificate3;
+                        dp_fromCer3.Value = emp.EducationCertificateFromDate3.ToString();
+                        dp_toCer3.Value = emp.EducationCertificateToDate3.ToString();
+                        if (emp.Certificate3 != null)
+                        {
+                            lbl_certificate3.Text = emp.Certificate3.docName;
+                        }
+                    }
+                    #endregion
+
+                    #region fill experiences
+                    txt_experience1.Text = emp.WorkExperience1;
+                    if(emp.WorkExperience2 !="")
+                    {
+                        txt_experience2.Text = emp.WorkExperience2;
+                    }
+                    if (emp.WorkExperience3 !="")
+                    {
+                        txt_experience3.Text = emp.WorkExperience3;
+                    }
+                    #endregion
+
+                    #region fill job details
+                    sel_position.Value = emp.JobID.ToString();
+                    sel_department.Value = emp.DepartmentID.ToString();
+                    txt_workHours.Value = emp.WorkHours.ToString();
+                    txt_salary.Value = emp.BasicSalary.ToString();
+                    if (emp.HiringDate != null)
+                        txt_hiringDate.Value = emp.HiringDate.ToString();
+                    txt_email.Value = emp.Email;
+                    txt_vacationBalance.Value = emp.VacationsBalance.ToString();
+                    txt_guarantor.Value = emp.Guarantor;
+                    txt_jobDesc.Text = emp.JobDescription;
+                    #endregion
+
+                    #region fill passport info
+                    txt_passportNo.Value = emp.PassportNumber;
+                    dp_passportFromDate.Value = emp.PassportReleaseDate.ToString();
+                    dp_passportEndDate.Value = emp.PassportExpiryDate.ToString();
+                    txt_sequenceNum.Value = emp.Sequence;
+                    txt_unifiedNum.Value = emp.UnifiedNumber;
+                    #endregion
+                    #endregion
+                }
                 #endregion
 
             }
@@ -79,7 +163,7 @@ namespace Human_Resource.Views.Employees
                 employee.MaritalStatus = sel_maritalStatus.Value;
                 employee.Nationality = int.Parse(sel_nationality.Value);
                 employee.BloodType = txt_blood.Value;
-                employee.Gender = RadioButtonList1.SelectedValue;
+                employee.Gender = rd_gender.SelectedValue;
                 employee.IdentityNumber = txt_identityNumber.Value;
 
                 #region certificates
