@@ -83,6 +83,7 @@ namespace Human_Resource
         #region extra info
         public int Age { get; set; }
         public string Position { get; set; }
+        public string DepartmentName { get; set; }
         public string AddedBy { get; set; }
         public Attachment Certificate1 { get; set; }
         public Attachment Certificate2 { get; set; }
@@ -216,6 +217,42 @@ namespace Human_Resource
                                 NameEn = x.NameEn,
                                 BasicSalary = x.BasicSalary,
                                 Position = x.jobs.Name,
+                                DepartmentName = x.departments.Name,
+                                AddedBy = entity.employees.Where(m => m.EmployeeID == x.CreateUserID).Select(m => m.NameAr).FirstOrDefault(),
+                            }).ToList();
+
+                foreach(var emp in user)
+                {
+                    if (emp.DOB != null)
+                        emp.Age = HelpClass.get_age((DateTime)emp.DOB);
+                }
+                return user;
+            }
+        }
+        public List<EmployeeModel> GetDeptEmployees(bool isActive,bool hired,int deptManagerId)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var searchPredicate = PredicateBuilder.New<employees>();
+
+                searchPredicate = searchPredicate.And(x => x.IsActive == isActive);
+                searchPredicate = searchPredicate.And(x => x.DepartmentID == entity.departments.Where(m => m.ManagerID == deptManagerId).Select(m => m.DepartmentID).FirstOrDefault());
+                if(hired == true)
+                    searchPredicate = searchPredicate.And(x => x.HiringDate != null);
+                else
+                    searchPredicate = searchPredicate.And(x => x.HiringDate == null);
+
+                var user = entity.employees.Where(searchPredicate)
+                            .Select(x => new EmployeeModel()
+                            {
+                                EmployeeID = x.EmployeeID,
+                                IsActive = x.IsActive,
+                                Username = x.Username,
+                                NameAr = x.NameAr,
+                                NameEn = x.NameEn,
+                                BasicSalary = x.BasicSalary,
+                                Position = x.jobs.Name,
+                                DepartmentName = x.departments.Name,
                                 AddedBy = entity.employees.Where(m => m.EmployeeID == x.CreateUserID).Select(m => m.NameAr).FirstOrDefault(),
                             }).ToList();
 
@@ -389,6 +426,33 @@ namespace Human_Resource
             {
                 return false;
             }
+        }
+
+        public string getUserRole(int empId)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var emp = entity.companies.Where(x => x.GeneralDirector == empId).FirstOrDefault();
+                if (emp != null)
+                    return "GeneralDirector";
+                
+                emp = entity.companies.Where(x => x.CEO == empId).FirstOrDefault();
+                if (emp != null)
+                    return "CEO";
+
+                emp = entity.companies.Where(x => x.FinancialManager == empId).FirstOrDefault();
+                if (emp != null)
+                    return "FinancialManager";
+
+                emp = entity.companies.Where(x => x.HRManager == empId).FirstOrDefault();
+                if (emp != null)
+                    return "HRManager";
+
+                var dept = entity.departments.Where(x => x.ManagerID == empId).FirstOrDefault();
+                if (dept != null)
+                    return "DepartmentManager";
+            }
+            return "Employee";
         }
 
         #endregion

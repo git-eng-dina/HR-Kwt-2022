@@ -29,6 +29,7 @@ namespace Human_Resource
         public Nullable<int> DepartmentID { get; set; }
         public string ConfirmType { get; set; }
         public Nullable<int> EmployeeID { get; set; }
+        public string Role { get; set; }
     
         public virtual departments departments { get; set; }
         public virtual employees employees { get; set; }
