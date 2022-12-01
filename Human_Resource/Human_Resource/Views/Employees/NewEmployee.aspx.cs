@@ -84,6 +84,7 @@ namespace Human_Resource.Views.Employees
                     //certificate 2
                     if(emp.EducationCertificate2 != "")
                     {
+                        frm_certificate2.Style.Add("visibility", "visible");
                         txt_certificate2.Value = emp.EducationCertificate2;
                         dp_fromCer2.Value = emp.EducationCertificateFromDate2.ToString();
                         dp_toCer2.Value = emp.EducationCertificateToDate2.ToString();
@@ -94,9 +95,14 @@ namespace Human_Resource.Views.Employees
                             hr_cer2.HRef = "~/Upload/" + emp.Certificate2.docnum;
                         }
                     }
+                    else
+                        frm_certificate2.Style.Add("visibility", "hidden");
+
                     //certificate 3
-                    if(emp.EducationCertificate3 != "")
+                    if (emp.EducationCertificate3 != "")
                     {
+                        frm_certificate3.Style.Add("visibility", "visible");
+
                         txt_certificate3.Value = emp.EducationCertificate3;
                         dp_fromCer3.Value = emp.EducationCertificateFromDate3.ToString();
                         dp_toCer3.Value = emp.EducationCertificateToDate3.ToString();
@@ -109,6 +115,9 @@ namespace Human_Resource.Views.Employees
                         lbl_certificate3.Text = emp.Certificate3.docName;
                         }
                     }
+                    else
+                        frm_certificate3.Style.Add("visibility", "hidden");
+
                     #endregion
 
                     #region fill experiences
@@ -145,6 +154,13 @@ namespace Human_Resource.Views.Employees
                     #endregion
 
                     #endregion
+                }
+                else
+                {
+                    frm_certificate2.Style.Add("visibility", "hidden");
+                    frm_certificate3.Style.Add("visibility", "hidden");
+                    //frm_certificate2.Visible = false;
+                    //frm_certificate3.Visible = false;
                 }
                 #endregion
 
@@ -236,6 +252,8 @@ namespace Human_Resource.Views.Employees
                     UploadFile(file_certificate3.FileName, empId, "cer3");
                 }
                 #endregion
+
+                Response.Redirect("NewEmployee.aspx?uid="+ hid_emp_id.Value);
             }
             //catch { }
         }

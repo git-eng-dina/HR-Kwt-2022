@@ -57,6 +57,7 @@
                  $('#btn-deleteCertificate2').hide();
              }
              else {
+                 alert();
                  $('#frm_certificate2').show();
 
              }
@@ -253,7 +254,7 @@
                                 </div>
                             </div>
                             
-                            <div class="row" style="display:none" id="frm_certificate2">
+                            <div class="row"  id="frm_certificate2" runat="server">
                              <div class="form-group"  >
                                 <div class="col-md-4 col-sm-4 col-xs-4 div1">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Certificate2%>" /></span>
@@ -296,7 +297,7 @@
                                 </div>
                             </div>
 
-                            <div class="row" style="display:none" id="frm_certificate3">
+                            <div class="row" id="frm_certificate3" runat="server">
                             <div class="form-group"  >
                                 <div class="col-md-4 col-sm-4 col-xs-4 div1">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Certificate3%>" /></span>

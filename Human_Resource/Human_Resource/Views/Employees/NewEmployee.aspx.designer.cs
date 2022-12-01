@@ -157,6 +157,15 @@ namespace Human_Resource.Views.Employees {
         protected global::System.Web.UI.WebControls.FileUpload file_certificate1;
         
         /// <summary>
+        /// frm_certificate2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl frm_certificate2;
+        
+        /// <summary>
         /// txt_certificate2 control.
         /// </summary>
         /// <remarks>
@@ -209,6 +218,15 @@ namespace Human_Resource.Views.Employees {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload file_certificate2;
+        
+        /// <summary>
+        /// frm_certificate3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl frm_certificate3;
         
         /// <summary>
         /// txt_certificate3 control.
