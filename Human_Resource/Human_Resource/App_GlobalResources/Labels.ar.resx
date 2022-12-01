@@ -528,4 +528,10 @@
   <data name="Training" xml:space="preserve">
     <value>التدريب</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>كلمة المرور</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>اسم المستخدم</value>
+  </data>
 </root>
