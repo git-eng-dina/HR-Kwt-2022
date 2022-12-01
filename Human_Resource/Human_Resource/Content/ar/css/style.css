@@ -1206,3 +1206,16 @@ input[type=checkbox], input[type=radio] {
     color: #5587bd;
     font-size: 12px;
 }
+
+.label-error {
+    width: 80%;
+    float: right;
+    border: 0px;
+    color: #c30505;
+}
+.label-success {
+    width: 80%;
+    float: right;
+    border: 0px;
+    color: #2e9d2e;
+}

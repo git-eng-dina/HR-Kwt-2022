@@ -51,12 +51,13 @@ namespace Human_Resource.Views.Employees
                          emp.UpdateUserID = int.Parse(Session["user_id"].ToString());
 
                     emp.SaveAccount(emp);
-                   
+                    lbl_msg.Attributes.Add("class", "label-success");
+                    lbl_msg.InnerHtml = Resources.Labels.SaveSuccessfully;
                 }
                 else
                 {
-                    lbl_msg.Visible = true;
-                    lbl_msg.InnerHtml = "اسم المستخدم موجود مسبقا";
+                    lbl_msg.Attributes.Add("class", "label-error");
+                    lbl_msg.InnerHtml = Resources.Labels.UserNameExist;
                 }
 
             }

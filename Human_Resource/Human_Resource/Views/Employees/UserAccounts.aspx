@@ -38,11 +38,11 @@
                              <div class="row">
                             <div class="form-group" style="display:block">
                             
-                                <label class="form-control input-lg" id="lbl_msg" runat="server" hidden="hidden"/>
+                                <label class="form-control input-lg" id="lbl_msg1" runat="server" />
                             </div>
                             </div> 
                             
-
+                             <label class="form-control label-error" id="lbl_msg" name="lbl_msg" runat="server" />
                             <asp:Button runat="server" Text = "<%$ Resources:Labels,Save%>" class="btn btn-secondary btn-block" id="btn_save" OnClick="btn_save_Click" CausesValidation="false" >
                             </asp:Button>
   
