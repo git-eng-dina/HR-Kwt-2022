@@ -16,7 +16,7 @@
                         <div class="c-form mini-form">
                             <div class="row">
                             <div class="form-group" style="display:block">
-                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,TheName%>" /></span>
+                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Employee%>" /></span>
                                 <select runat="server" id="sel_employee" name="sel_employee" class="form-control" style="width:80%"></select>
               
                             </div>
@@ -24,14 +24,14 @@
 
                              <div class="row">
                             <div class="form-group" style="display:block">
-                               <span> <asp:Literal  runat="server" Text="<%$ Resources:Labels,Address%>" /></span>
+                               <span> <asp:Literal  runat="server" Text="<%$ Resources:Labels,UserName%>" /></span>
                                 <asp:TextBox class="form-control input-lg" id="txt_userName" runat="server" />
                             </div>
                             </div>
 
                             <div class="row">
                             <div class="form-group" style="display:block">
-                               <span> <asp:Literal  runat="server" Text="<%$ Resources:Labels,Address%>" /></span>
+                               <span> <asp:Literal  runat="server" Text="<%$ Resources:Labels,Password%>" /></span>
                                 <input type="password" class="form-control input-lg" id="txt_password" runat="server" />
                             </div>
                             </div> 

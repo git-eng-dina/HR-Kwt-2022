@@ -528,4 +528,10 @@
   <data name="Training" xml:space="preserve">
     <value>Training</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>User Name</value>
+  </data>
 </root>
