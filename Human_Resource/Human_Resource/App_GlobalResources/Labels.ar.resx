@@ -531,6 +531,9 @@
   <data name="Password" xml:space="preserve">
     <value>كلمة المرور</value>
   </data>
+  <data name="RewardsAndPenalties" xml:space="preserve">
+    <value>المكافآت والعقوبات</value>
+  </data>
   <data name="SalaryIncrease" xml:space="preserve">
     <value>زيادة الرواتب</value>
   </data>

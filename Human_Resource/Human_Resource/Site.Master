@@ -150,6 +150,12 @@
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,SalaryIncrease%>" />
 
                     </a>
+                </li>  
+                <li>
+                    <a href="/Views/ExecutiveProc/RewardsAndPenalties.aspx"> 
+                        <asp:Literal runat="server" Text="<%$ Resources:Labels,RewardsAndPenalties%>" />
+
+                    </a>
                 </li> 
                 <li>
                     <a href="/Views/ExecutiveProc/StaffEvaluation.aspx"> 

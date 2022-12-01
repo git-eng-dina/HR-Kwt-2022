@@ -226,6 +226,7 @@
     <Content Include="Views\Employees\UserAccounts.aspx" />
     <Content Include="Views\ExecutiveProc\Custodies.aspx" />
     <Content Include="Views\ExecutiveProc\MaterialsConsumption.aspx" />
+    <Content Include="Views\ExecutiveProc\RewardsAndPenalties.aspx" />
     <Content Include="Views\ExecutiveProc\SalaryIncrease.aspx" />
     <Content Include="Views\ExecutiveProc\StaffEvaluation.aspx" />
     <Content Include="Views\ExecutiveProc\Tasks.aspx" />
@@ -398,6 +399,13 @@
     </Compile>
     <Compile Include="Views\ExecutiveProc\MaterialsConsumption.aspx.designer.cs">
       <DependentUpon>MaterialsConsumption.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExecutiveProc\RewardsAndPenalties.aspx.cs">
+      <DependentUpon>RewardsAndPenalties.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ExecutiveProc\RewardsAndPenalties.aspx.designer.cs">
+      <DependentUpon>RewardsAndPenalties.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\ExecutiveProc\SalaryIncrease.aspx.cs">
       <DependentUpon>SalaryIncrease.aspx</DependentUpon>

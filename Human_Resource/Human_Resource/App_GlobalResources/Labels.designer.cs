@@ -1069,6 +1069,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rewards and Penalties.
+        /// </summary>
+        internal static string RewardsAndPenalties {
+            get {
+                return ResourceManager.GetString("RewardsAndPenalties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Salary Increase.
         /// </summary>
         internal static string SalaryIncrease {
