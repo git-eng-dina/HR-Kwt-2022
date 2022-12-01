@@ -196,6 +196,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Amount.
+        /// </summary>
+        internal static string Amount {
+            get {
+                return ResourceManager.GetString("Amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Annual.
         /// </summary>
         internal static string Annual {
@@ -273,6 +282,15 @@ namespace Resources {
         internal static string Car {
             get {
                 return ResourceManager.GetString("Car", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Car Number.
+        /// </summary>
+        internal static string CarNumber {
+            get {
+                return ResourceManager.GetString("CarNumber", resourceCulture);
             }
         }
         

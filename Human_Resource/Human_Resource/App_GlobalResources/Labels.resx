@@ -546,4 +546,10 @@
   <data name="UserNameExist" xml:space="preserve">
     <value>User name already exist</value>
   </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="CarNumber" xml:space="preserve">
+    <value>Car Number</value>
+  </data>
 </root>
