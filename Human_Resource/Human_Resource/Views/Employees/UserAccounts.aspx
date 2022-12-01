@@ -1,5 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UserAccounts.aspx.cs" Inherits="Human_Resource.Views.Employees.UserAccounts" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <script>
+        function clearValues() {
+ 
+            $("#MainContent_lbl_msg").html('');
+            $("#MainContent_txt_userName").val("");
+            $("#MainContent_txt_password").val("");
+        }
+    </script>
      <section class="statis">
          <div class="container" >
               <div class="row">
@@ -17,7 +25,7 @@
                             <div class="row">
                             <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Employee%>" /></span>
-                                <select runat="server" id="sel_employee" name="sel_employee" class="form-control" style="width:80%"></select>
+                                <select runat="server" id="sel_employee" name="sel_employee" class="form-control" style="width:80%" onchange="clearValues()"></select>
               
                             </div>
                             </div>
@@ -35,12 +43,7 @@
                                 <input type="password" class="form-control input-lg" id="txt_password" runat="server" />
                             </div>
                             </div> 
-                             <div class="row">
-                            <div class="form-group" style="display:block">
-                            
-                                <label class="form-control input-lg" id="lbl_msg1" runat="server" />
-                            </div>
-                            </div> 
+
                             
                              <label class="form-control label-error" id="lbl_msg" name="lbl_msg" runat="server" />
                             <asp:Button runat="server" Text = "<%$ Resources:Labels,Save%>" class="btn btn-secondary btn-block" id="btn_save" OnClick="btn_save_Click" CausesValidation="false" >

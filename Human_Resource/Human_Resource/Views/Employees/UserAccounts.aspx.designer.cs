@@ -40,15 +40,6 @@ namespace Human_Resource.Views.Employees {
         protected global::System.Web.UI.HtmlControls.HtmlInputPassword txt_password;
         
         /// <summary>
-        /// lbl_msg1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_msg1;
-        
-        /// <summary>
         /// lbl_msg control.
         /// </summary>
         /// <remarks>
