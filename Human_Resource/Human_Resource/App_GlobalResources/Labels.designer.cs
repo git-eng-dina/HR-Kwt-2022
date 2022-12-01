@@ -1069,6 +1069,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Salary Increase.
+        /// </summary>
+        internal static string SalaryIncrease {
+            get {
+                return ResourceManager.GetString("SalaryIncrease", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         internal static string Save {
