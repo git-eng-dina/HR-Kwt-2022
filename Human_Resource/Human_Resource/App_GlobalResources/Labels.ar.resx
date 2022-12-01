@@ -531,6 +531,9 @@
   <data name="Password" xml:space="preserve">
     <value>كلمة المرور</value>
   </data>
+  <data name="StaffEvaluation" xml:space="preserve">
+    <value>تقييم الموظفين</value>
+  </data>
   <data name="UserName" xml:space="preserve">
     <value>اسم المستخدم</value>
   </data>

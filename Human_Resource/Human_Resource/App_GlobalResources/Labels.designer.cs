@@ -1123,6 +1123,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Staff Evaluation.
+        /// </summary>
+        internal static string StaffEvaluation {
+            get {
+                return ResourceManager.GetString("StaffEvaluation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Task.
         /// </summary>
         internal static string Task {

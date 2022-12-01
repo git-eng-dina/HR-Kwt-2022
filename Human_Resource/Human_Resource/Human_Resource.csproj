@@ -226,6 +226,7 @@
     <Content Include="Views\Employees\UserAccounts.aspx" />
     <Content Include="Views\ExecutiveProc\Custodies.aspx" />
     <Content Include="Views\ExecutiveProc\MaterialsConsumption.aspx" />
+    <Content Include="Views\ExecutiveProc\StaffEvaluation.aspx" />
     <Content Include="Views\ExecutiveProc\Tasks.aspx" />
     <Content Include="Views\ExecutiveProc\Trainings.aspx" />
     <Content Include="Views\Home\HomePage.aspx" />
@@ -242,7 +243,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\Attachment.cs" />
-    <Content Include="App_Code\Confirm.cs" />
+    <Compile Include="App_Code\Confirm.cs" />
     <Compile Include="App_Code\CountriesName.cs" />
     <Compile Include="App_Code\Custodie.cs" />
     <Compile Include="App_Code\GetData.cs" />
@@ -396,6 +397,13 @@
     </Compile>
     <Compile Include="Views\ExecutiveProc\MaterialsConsumption.aspx.designer.cs">
       <DependentUpon>MaterialsConsumption.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExecutiveProc\StaffEvaluation.aspx.cs">
+      <DependentUpon>StaffEvaluation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ExecutiveProc\StaffEvaluation.aspx.designer.cs">
+      <DependentUpon>StaffEvaluation.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\ExecutiveProc\Tasks.aspx.cs">
       <DependentUpon>Tasks.aspx</DependentUpon>

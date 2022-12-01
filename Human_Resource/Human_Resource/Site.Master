@@ -144,6 +144,12 @@
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,Trainings%>" />
 
                     </a>
+                </li>  
+                <li>
+                    <a href="/Views/ExecutiveProc/StaffEvaluation.aspx"> 
+                        <asp:Literal runat="server" Text="<%$ Resources:Labels,StaffEvaluation%>" />
+
+                    </a>
                 </li> 
             </ul>
 

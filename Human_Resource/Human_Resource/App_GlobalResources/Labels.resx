@@ -531,6 +531,9 @@
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="StaffEvaluation" xml:space="preserve">
+    <value>Staff Evaluation</value>
+  </data>
   <data name="UserName" xml:space="preserve">
     <value>User Name</value>
   </data>
