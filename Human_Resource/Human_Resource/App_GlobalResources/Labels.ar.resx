@@ -543,4 +543,7 @@
   <data name="UserName" xml:space="preserve">
     <value>اسم المستخدم</value>
   </data>
+  <data name="UserNameExist" xml:space="preserve">
+    <value>اسم المستخدم موجود مسبقا</value>
+  </data>
 </root>

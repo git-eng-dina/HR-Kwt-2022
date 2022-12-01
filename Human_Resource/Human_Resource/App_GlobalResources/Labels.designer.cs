@@ -1240,6 +1240,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User name already exist.
+        /// </summary>
+        internal static string UserNameExist {
+            get {
+                return ResourceManager.GetString("UserNameExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Users Information.
         /// </summary>
         internal static string UsersInfo {
