@@ -76,6 +76,15 @@ namespace Human_Resource.Views.ExecutiveProc {
         protected global::System.Web.UI.HtmlControls.HtmlSelect dept_type;
         
         /// <summary>
+        /// txt_detailsTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal txt_detailsTitle;
+        
+        /// <summary>
         /// txt_details control.
         /// </summary>
         /// <remarks>

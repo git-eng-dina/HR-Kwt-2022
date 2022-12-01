@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 namespace Human_Resource.Views.ExecutiveProc
 {
     public partial class Custodies : System.Web.UI.Page
-     {
+    {
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -45,7 +45,7 @@ namespace Human_Resource.Views.ExecutiveProc
             dept_type.DataSource = GetData.custodiesTypeList;
             dept_type.DataValueField = "key";
             dept_type.DataTextField = "value";
-           
+
 
 
             EmployeeModel employeeModel = new EmployeeModel();
@@ -58,11 +58,11 @@ namespace Human_Resource.Views.ExecutiveProc
             else
                 emp.DataTextField = "NameAr";
 
-
+            
             DataBind();
         }
         [WebMethod(EnableSession = true)]
-        public static string SaveCustodie(string custodieId, string employeeId, string type, string details, string isRecovery )
+        public static string SaveCustodie(string custodieId, string employeeId, string type, string details, string isRecovery)
         {
             try
             {
@@ -74,7 +74,7 @@ namespace Human_Resource.Views.ExecutiveProc
                 dept.EmployeeID = int.Parse(employeeId);
                 dept.Type = type;
                 dept.Details = details;
-                dept.IsRecovery =bool.Parse( isRecovery);
+                dept.IsRecovery = bool.Parse(isRecovery);
 
                 if (HttpContext.Current.Session["user_id"] != null && HttpContext.Current.Session["user_id"].ToString() != "")
                     dept.CreateUserID = dept.UpdateUserID = int.Parse(HttpContext.Current.Session["user_id"].ToString());
@@ -94,7 +94,17 @@ namespace Human_Resource.Views.ExecutiveProc
             }
 
         }
-
+        [WebMethod]
+        public static void TypeChanged(string type)
+        {
+            //if (type == "Physical" || type == "Other")
+            //    txt_detailsTitle.Text = Resources.Labels.Details; 
+            //else if (type == "Cash")
+            //    txt_detailsTitle.Text = Resources.Labels.Amount; 
+            //else if (type == "Car")
+            //    txt_detailsTitle.Text = Resources.Labels.CarNumber; 
+        }
+        
         [WebMethod]
         public static CustodieModel GetCustodie(string ID)
         {

@@ -60,8 +60,7 @@
                         $('#MainContent_emp').val(item.EmployeeID);
                         $('#MainContent_dept_type').val(item.Type);
                         $('#MainContent_txt_details').val(item.Details);
-                        //$('#MainContent_chk_isRecovery').val(item.IsRecovery);
-                        $('#MainContent_chk_isRecovery').prop('checked', item.IsRecovery);
+                         $('#MainContent_chk_isRecovery').prop('checked', item.IsRecovery);
                      }
 
 
@@ -106,7 +105,25 @@
         }
 
         function typeChanged() {
-            alert('type changed');
+           
+            var type = $("#MainContent_dept_type").find(":selected").val();
+            var parameter = {
+                type: type,
+            };
+            $.ajax({
+                type: "POST",
+                url: "Custodies.aspx/TypeChanged",
+                data: JSON.stringify(parameter),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    window.top.location = "Custodies.aspx";
+                },
+                failure: function (response) {
+                    alert(response.d);
+                }
+            });
+
         }
 
 
@@ -247,12 +264,12 @@
                      <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Type%>" /></span>
                                 <input type="hidden"  id="hid_custodieId" name="hid_custodieId" runat="server" value=""  />
-                         <select runat="server" id="dept_type" name="dept_type" style="width:80%" class="form-control input-lg"  onchange="typeChanged()"/>
+                         <select runat="server" id="dept_type" name="dept_type" style="width:80%" class="form-control input-lg"    onchange="typeChanged()"/>
                              </div>
                         </div>
                      <div class ="row">
                      <div class="form-group" style="display:block">
-                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Details%>" /></span>
+                                <span><asp:Literal  runat="server" id="txt_detailsTitle"  Text="<%$ Resources:Labels,Details%>" /></span>
                                 <input type="text" class="form-control input-lg" id="txt_details"  runat="server" value=""  />
                             </div>
                         </div> 
