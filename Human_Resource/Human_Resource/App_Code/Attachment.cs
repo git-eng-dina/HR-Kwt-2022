@@ -8,7 +8,7 @@ namespace Human_Resource.App_Code
     public class Attachment
     {
         #region Attributes
-        public int ImageId { get; set; }
+        public long ImageId { get; set; }
         public string docName { get; set; }
         public string docnum { get; set; }
         public string image { get; set; }

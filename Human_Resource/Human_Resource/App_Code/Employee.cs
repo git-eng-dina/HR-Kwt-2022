@@ -2,6 +2,7 @@
 using LinqKit;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 
@@ -372,6 +373,7 @@ namespace Human_Resource
                 return user;
             }
         }
+
         public int SaveEmployee(EmployeeModel employee)
         {
             try

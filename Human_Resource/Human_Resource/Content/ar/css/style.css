@@ -364,11 +364,11 @@ footer .copyright {
   fill: #fff;
 }
 
-    .main-menu .nlist  > ul > li > a {
+    .main-menu .nlist > ul > li > a {
         display: block;
         padding: 10px 15px 10px 38px;
         text-decoration: none;
-        color: #999;
+        color: #ada9a9;
     }
 .main-menu .avatar {
   width: 90px;
@@ -1195,3 +1195,14 @@ input[type=checkbox], input[type=radio] {
     margin-right: 15%;
 
     }
+
+.c-form-dynamic .href-file {
+    display: block;
+    width: 100%;
+    float: right;
+    text-align: right;
+    padding-top: 5px;
+    padding-right: 5px;
+    color: #5587bd;
+    font-size: 12px;
+}
