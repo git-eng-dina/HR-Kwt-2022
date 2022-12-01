@@ -77,30 +77,47 @@ namespace Human_Resource.Views.Employees
                     dp_toCer1.Value = emp.EducationCertificateToDate1.ToString();
                     if (emp.Certificate1 != null)
                     {
-                        lbl_certificate1.Text = emp.Certificate1.docName;
+                        lbl_certificate1.Text = "";
+                        hr_cer1.InnerHtml= emp.Certificate1.docName;
+                        hr_cer1.HRef = "~/Upload/"+emp.Certificate1.docnum;
                     }
                     //certificate 2
                     if(emp.EducationCertificate2 != "")
                     {
+                        frm_certificate2.Style.Add("visibility", "visible");
                         txt_certificate2.Value = emp.EducationCertificate2;
                         dp_fromCer2.Value = emp.EducationCertificateFromDate2.ToString();
                         dp_toCer2.Value = emp.EducationCertificateToDate2.ToString();
                         if (emp.Certificate2 != null)
                         {
-                            lbl_certificate2.Text = emp.Certificate2.docName;
+                            lbl_certificate2.Text = "";
+                            hr_cer2.InnerHtml = emp.Certificate2.docName;
+                            hr_cer2.HRef = "~/Upload/" + emp.Certificate2.docnum;
                         }
                     }
+                    else
+                        frm_certificate2.Style.Add("visibility", "hidden");
+
                     //certificate 3
-                    if(emp.EducationCertificate3 != "")
+                    if (emp.EducationCertificate3 != "")
                     {
+                        frm_certificate3.Style.Add("visibility", "visible");
+
                         txt_certificate3.Value = emp.EducationCertificate3;
                         dp_fromCer3.Value = emp.EducationCertificateFromDate3.ToString();
                         dp_toCer3.Value = emp.EducationCertificateToDate3.ToString();
                         if (emp.Certificate3 != null)
                         {
-                            lbl_certificate3.Text = emp.Certificate3.docName;
+                            lbl_certificate3.Visible = false;
+                            hr_cer3.InnerHtml = emp.Certificate3.docName;
+                            hr_cer3.HRef = "~/Upload/" + emp.Certificate3.docnum;
+
+                        lbl_certificate3.Text = emp.Certificate3.docName;
                         }
                     }
+                    else
+                        frm_certificate3.Style.Add("visibility", "hidden");
+
                     #endregion
 
                     #region fill experiences
@@ -138,6 +155,13 @@ namespace Human_Resource.Views.Employees
 
                     #endregion
                 }
+                else
+                {
+                    frm_certificate2.Style.Add("visibility", "hidden");
+                    frm_certificate3.Style.Add("visibility", "hidden");
+                    //frm_certificate2.Visible = false;
+                    //frm_certificate3.Visible = false;
+                }
                 #endregion
 
             }
@@ -148,6 +172,7 @@ namespace Human_Resource.Views.Employees
             //try
             {
                 CultureInfo cultures = new CultureInfo("en-US");
+                Attachment attachment = new Attachment();
 
                 EmployeeModel employee = new EmployeeModel();
                 if (hid_emp_id.Value == "")
@@ -207,9 +232,14 @@ namespace Human_Resource.Views.Employees
                 if (Session["user_id"] != null && Session["user_id"].ToString() != "")
                     employee.CreateUserID = employee.UpdateUserID = int.Parse(Session["user_id"].ToString());
 
+                #region delete previous certificates
+                if (employee.EmployeeID != 0)
+                    attachment.DeleteCertificateAttach(employee.EmployeeID);
+                #endregion
 
                 int empId = employee.SaveEmployee(employee);
                 hid_emp_id.Value = empId.ToString();
+               
                 #region upload cerificates
 
                 UploadFile(file_certificate1.FileName,empId,"cer1");
@@ -222,6 +252,8 @@ namespace Human_Resource.Views.Employees
                     UploadFile(file_certificate3.FileName, empId, "cer3");
                 }
                 #endregion
+
+                Response.Redirect("NewEmployee.aspx?uid="+ hid_emp_id.Value);
             }
             //catch { }
         }
@@ -239,7 +271,7 @@ namespace Human_Resource.Views.Employees
 
             //save file in the specified folder and path
             string extension = Path.GetExtension(fileName);
-            var newFileName = HelpClass.MD5Hash(empId.ToString()) + "-" +tag;
+            var newFileName = HelpClass.MD5Hash(empId.ToString()) + "-" +tag+extension;
             file_certificate1.SaveAs(folderPath + Path.GetFileName(newFileName));
 
            var attach =new  Attachment ()

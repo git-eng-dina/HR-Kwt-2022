@@ -17,7 +17,7 @@ namespace Human_Resource.App_Code
         #endregion
 
         #region Methods
-        public int SaveAttach(Attachment attach)
+        public long SaveAttach(Attachment attach)
         {
             try
             {
@@ -52,6 +52,16 @@ namespace Human_Resource.App_Code
             catch
             {
                 return 0;
+            }
+        }
+
+        public void DeleteCertificateAttach(int empID)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var attach = entity.Images.Where(x => x.EmployeeID == empID && x.MessageID == null).ToList();
+                entity.Images.RemoveRange(attach);
+                entity.SaveChanges();
             }
         }
         #endregion
