@@ -242,6 +242,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\Attachment.cs" />
+    <Content Include="App_Code\Confirm.cs" />
     <Compile Include="App_Code\CountriesName.cs" />
     <Compile Include="App_Code\Custodie.cs" />
     <Compile Include="App_Code\GetData.cs" />
