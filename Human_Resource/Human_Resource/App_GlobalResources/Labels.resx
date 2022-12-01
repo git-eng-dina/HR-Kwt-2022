@@ -552,4 +552,10 @@
   <data name="CarNumber" xml:space="preserve">
     <value>Car Number</value>
   </data>
+  <data name="Penalty" xml:space="preserve">
+    <value>Penalty</value>
+  </data>
+  <data name="Reward" xml:space="preserve">
+    <value>Reward</value>
+  </data>
 </root>

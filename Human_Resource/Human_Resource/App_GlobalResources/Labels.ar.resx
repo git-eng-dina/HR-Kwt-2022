@@ -552,4 +552,10 @@
   <data name="CarNumber" xml:space="preserve">
     <value>رقم السياره</value>
   </data>
+  <data name="Penalty" xml:space="preserve">
+    <value>عقوبة</value>
+  </data>
+  <data name="Reward" xml:space="preserve">
+    <value>مكافأة</value>
+  </data>
 </root>

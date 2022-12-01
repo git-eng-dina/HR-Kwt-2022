@@ -997,6 +997,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Penalty.
+        /// </summary>
+        internal static string Penalty {
+            get {
+                return ResourceManager.GetString("Penalty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Personal Information.
         /// </summary>
         internal static string PersonalInfo {
@@ -1083,6 +1092,15 @@ namespace Resources {
         internal static string RepeatedEvery {
             get {
                 return ResourceManager.GetString("RepeatedEvery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reward.
+        /// </summary>
+        internal static string Reward {
+            get {
+                return ResourceManager.GetString("Reward", resourceCulture);
             }
         }
         
