@@ -167,26 +167,32 @@
                         </div>
                     <div class="row">
                        
-                            <asp:GridView ID="gv_employees" runat="server" style="margin-top:0px;" CssClass="gridView col-md-12"  
+                            <asp:GridView ID="gv_employees" runat="server" style="width:100%; margin-top:0px;" CssClass="gridView col-md-12"  
                                 AutoGenerateColumns="False"  Width="100%">
                                 <Columns>
-                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,Sequence%>" ItemStyle-Width="5%">
+                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,Sequence%>">
                                          <ItemTemplate>
                                                  <%#Container.DataItemIndex+1 %>                            
                                          </ItemTemplate> 
                                        </asp:TemplateField>
-                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,NameAR%>">
+                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,NameAR%>" >
                                          <ItemTemplate>
                                                  <asp:Label ID="LblDno" runat="server" 
                                                  Text='<%# Eval("NameAr") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField> 
-                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,NameEN%>">
+                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,NameEN%>" >
                                          <ItemTemplate>
                                                  <asp:Label ID="LblDno" runat="server" 
                                                  Text='<%# Eval("NameEn") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField> 
+                                     <asp:TemplateField HeaderText="<%$ Resources:Labels,Age%>">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblDname" runat="server" 
+                                                 Text='<%# Eval("Age") %>' />                              
+                                         </ItemTemplate>
+                                   </asp:TemplateField>
                                     <asp:TemplateField HeaderText="<%$ Resources:Labels,Position%>">
                                          <ItemTemplate>
                                                  <asp:Label ID="LblDno" runat="server" 
@@ -199,12 +205,7 @@
                                                  Text='<%# Eval("DepartmentName") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>             
-                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,Age%>">
-                                         <ItemTemplate>
-                                                 <asp:Label ID="LblDname" runat="server" 
-                                                 Text='<%# Eval("Age") %>' />                              
-                                         </ItemTemplate>
-                                   </asp:TemplateField> 
+                                   
                                     <asp:TemplateField HeaderText="<%$ Resources:Labels,CurrentSalary%>">
                                          <ItemTemplate>
                                                  <asp:Label ID="LblDname" runat="server" 

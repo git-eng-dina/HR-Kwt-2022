@@ -24,6 +24,8 @@
                  var path = $(this).val();
                  if (path != '' && path != null) {
                      var q = path.substring(path.lastIndexOf('\\') + 1);
+                    // $('#MainContent_lbl_certificate1').style.display= "inline";
+                     $('#MainContent_hr_cer1').hide();
                      $('#MainContent_lbl_certificate1').html(q);
                  }
              })
@@ -33,6 +35,7 @@
                  var path = $(this).val();
                  if (path != '' && path != null) {
                      var q = path.substring(path.lastIndexOf('\\') + 1);
+                     $('#MainContent_hr_cer2').hide();
                      $('#MainContent_lbl_certificate2').html(q);
                  }
              })
@@ -42,6 +45,7 @@
                  var path = $(this).val();
                  if (path != '' && path != null) {
                      var q = path.substring(path.lastIndexOf('\\') + 1);
+                     $('#MainContent_hr_cer3').hide();
                      $('#MainContent_lbl_certificate3').html(q);
                  }
              })
@@ -240,7 +244,7 @@
                                 <div class="form-group">
                                     <div class="col-md-10 col-sm-4 col-xs-4 div1">
                                          <asp:Label ID="lbl_certificate1" runat="server" Text="<%$ Resources:Labels,UploadFile%>" CssClass="span-uploadFile"></asp:Label>
-
+                                        <a href="" id="hr_cer1" runat="server" target="_blank" class="href-file"></a>
                                      </div>
                                      <div class="col-md-2 col-sm-8 col-xs-8 div2" >
                                          <asp:FileUpload ID="file_certificate1" runat="server" class="hidden" />
@@ -282,6 +286,7 @@
                              <div class="form-group">
                                     <div class="col-md-10 col-sm-4 col-xs-4 div1">
                                          <asp:Label ID="lbl_certificate2" runat="server" Text="<%$ Resources:Labels,UploadFile%>" CssClass="span-uploadFile"></asp:Label>
+                                          <a href="" id="hr_cer2" runat="server" target="_blank" class="href-file"></a>
                                      </div>
                                      <div class="col-md-2 col-sm-8 col-xs-8 div2" >
                                         <asp:FileUpload ID="file_certificate2" runat="server" CssClass="hidden fileUpload" />
@@ -324,7 +329,7 @@
                                  <div class="form-group">
                                     <div class="col-md-10 col-sm-4 col-xs-4 div1">
                                         <asp:Label ID="lbl_certificate3" runat="server" Text="<%$ Resources:Labels,UploadFile%>" CssClass="span-uploadFile"></asp:Label>
-
+                                          <a href="" id="hr_cer3" runat="server" target="_blank" class="href-file"></a>
                                      </div>
                                      <div class="col-md-2 col-sm-8 col-xs-8 div2" >
                                            <asp:FileUpload ID="file_certificate3" runat="server"  CssClass="hidden fileUpload" />
