@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Human_Resource.App_Code;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -34,15 +36,14 @@ namespace Human_Resource.Views.Employees
             {
                 List<EmployeeModel> unHiredEmployees = new List<EmployeeModel>();
                 int userId = int.Parse(Session["user_id"].ToString());
-
-                if (Session["urole"].ToString() == "GeneralDirector" || Session["urole"].ToString() == "CEO")
+                string role = Session["urole"].ToString();
+                if (role == "GeneralDirector" || role == "CEO")
                      unHiredEmployees = emp.GetEmployees(true, false);
-                else if(Session["urole"].ToString() == "DepartmentManager")
-                    unHiredEmployees = emp.GetDeptEmployees(true, false,userId);//not get any approval
-                 else if(Session["urole"].ToString() == "HRManager")
-                    unHiredEmployees = emp.GetEmployees(true, false);
-                 else if(Session["urole"].ToString() == "FinancialManager")
-                    unHiredEmployees = emp.GetEmployees(true, false);
+                else if(role == "DepartmentManager")
+                    unHiredEmployees = emp.GetNotHiredEmployees(userId);//not get any approval
+                 else if(role == "HRManager" || role.ToString() == "FinancialManager")
+                    unHiredEmployees = emp.GetNotHiredEmployees(role);
+
 
                 if (textSearch != "")
                     unHiredEmployees = unHiredEmployees.Where(x => x.NameAr.ToLower().Contains(textSearch.ToLower())
@@ -85,6 +86,38 @@ namespace Human_Resource.Views.Employees
             catch (Exception ex)
             {
             }
+        }
+
+        [WebMethod(EnableSession = true)]
+        public static string ApproveEmployee(string employeeID)
+        {
+            try
+            {
+                ConfirmModel confirm = new ConfirmModel();
+                EmployeeModel emp = new EmployeeModel();
+
+                confirm.EmployeeID = int.Parse(employeeID);
+                confirm.Role = HttpContext.Current.Session["urole"].ToString();
+                confirm.ConfirmType = "emp_hiring";
+
+                if (HttpContext.Current.Session["user_id"] != null && HttpContext.Current.Session["user_id"].ToString() != "")
+                    confirm.CreateUserID = confirm.UpdateUserID = int.Parse(HttpContext.Current.Session["user_id"].ToString());
+
+
+                long confirmId = confirm.AddConfirm(confirm);
+                if (confirmId != 0)
+                {
+                    emp.SetHireDate(int.Parse(employeeID));
+                    return "1";
+                }
+                return "0";
+            }
+            catch
+            {
+                return "0";
+
+            }
+
         }
     }
 }

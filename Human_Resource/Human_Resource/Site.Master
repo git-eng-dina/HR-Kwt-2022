@@ -212,7 +212,7 @@
                 <asp:Literal runat="server" Text="<%$ Resources:Labels,EmployeesAttendance%>" />
                 </a>
 
-                <a href="@Url.Action("Logout", "Account")" class="">
+                <a href="/Views/Employees/UserAccounts.aspx" class="">
                    <i class="fa fa-users" aria-hidden="true"></i>
                     <asp:Literal runat="server" Text="<%$ Resources:Labels,UsersInfo%>" />
 

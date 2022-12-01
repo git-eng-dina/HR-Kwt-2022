@@ -21,7 +21,7 @@ namespace Human_Resource.Views.Employees
                 CountriesNameModel country = new CountriesNameModel();
                 DepartmentModel dept = new DepartmentModel();
 
-                emp_id.Value = Request.QueryString["uid"];
+                hid_emp_id.Value = Request.QueryString["uid"];
 
                 sel_maritalStatus.DataSource = GetData.maritalStatusList;
                 sel_maritalStatus.DataValueField = "Key";
@@ -135,6 +135,7 @@ namespace Human_Resource.Views.Employees
                     txt_sequenceNum.Value = emp.Sequence;
                     txt_unifiedNum.Value = emp.UnifiedNumber;
                     #endregion
+
                     #endregion
                 }
                 #endregion
@@ -149,10 +150,10 @@ namespace Human_Resource.Views.Employees
                 CultureInfo cultures = new CultureInfo("en-US");
 
                 EmployeeModel employee = new EmployeeModel();
-                if (emp_id.Value == "")
+                if (hid_emp_id.Value == "")
                     employee.EmployeeID = 0;
                 else
-                    employee.EmployeeID = int.Parse(emp_id.Value);
+                    employee.EmployeeID = int.Parse(hid_emp_id.Value);
 
                 employee.NameAr = txt_nameAR.Value;
                 employee.NameEn = txt_nameEN.Value;
@@ -208,7 +209,7 @@ namespace Human_Resource.Views.Employees
 
 
                 int empId = employee.SaveEmployee(employee);
-
+                hid_emp_id.Value = empId.ToString();
                 #region upload cerificates
 
                 UploadFile(file_certificate1.FileName,empId,"cer1");

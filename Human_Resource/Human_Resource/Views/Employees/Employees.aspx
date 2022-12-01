@@ -11,6 +11,35 @@
                 return false;
             });
 
+            $('.td-approve').click(function () {
+                var customID = $(this).attr('myCustomID');
+                if (confirm("are you sure?")) {
+
+                    var parameter = {
+                        employeeID: customID,
+
+                    };
+
+                    $.ajax({
+                        type: "POST",
+                        url: "Employees.aspx/ApproveEmployee",
+                        data: JSON.stringify(parameter),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (data) {
+                            window.location = "Employees.aspx";
+                           
+                        },
+                        failure: function (response) {
+                            alert(response.d);
+                        }
+                    });
+                   
+                }
+               
+                return false;
+            });
+
         });
 
         function NewEmployee() {
@@ -49,11 +78,12 @@
    
                         </div>
                        <!------- unhired employees -->
-                       <div class="row">
-                       <div class="row gridView-title">                       
+                        <div class="row gridView-title">                       
                            <span><asp:Literal Text=" <%$ Resources:Labels,WaitingEmployees%>" runat="server"></asp:Literal> </span>
                         </div>
-
+                       <div class="row">
+                      
+      
                         <asp:GridView ID="gv_unhiredEmp" runat="server" style="margin-top:0px;" CssClass="gridView col-md-12"  
                                 AutoGenerateColumns="False"  Width="100%">
                                 <Columns>
@@ -104,6 +134,13 @@
                                                  Text='<%# Eval("AddedBy") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>                          
+                                   <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-approve">
+                                           <ItemTemplate>                     
+                                                <asp:LinkButton ID="LinkProducts" runat="server" myCustomID='<%# Eval("EmployeeID")%>'  CssClass="td-approve">
+                                                    <asp:Image ImageUrl="~/Images/edit.ico" runat="server" ToolTip="<%$ Resources:Labels,Department%>" Width="20px" Height="20px" />
+                                                </asp:LinkButton>  
+                                             </ItemTemplate>
+                                        </asp:TemplateField>
                                    <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-edit">
                                            <ItemTemplate>                     
                                                      <asp:LinkButton ID="LinkProducts" runat="server" myCustomID='<%# Eval("EmployeeID")%>'  CssClass="td-edit">
@@ -122,12 +159,14 @@
                                 </Columns>
                                 <EditRowStyle BackColor="#009999" VerticalAlign="Middle" />
                             </asp:GridView>
+                    
                        </div>
                        <!---- table hired employees-->
-                    <div class="row">
                          <div class="row gridView-title">                       
                            <span><asp:Literal Text=" <%$ Resources:Labels,Employees%>" runat="server"></asp:Literal> </span>
                         </div>
+                    <div class="row">
+                       
                             <asp:GridView ID="gv_employees" runat="server" style="margin-top:0px;" CssClass="gridView col-md-12"  
                                 AutoGenerateColumns="False"  Width="100%">
                                 <Columns>

@@ -93,6 +93,8 @@ namespace Human_Resource
 
 
         #region employee methods
+
+        #region account methods
         public employees GetUser(string userName, string password)
         {
             using (HRSystemEntities entity = new HRSystemEntities())
@@ -101,6 +103,57 @@ namespace Human_Resource
                 return user;
             }
         }
+
+        public bool ValidateUserName(int empID, string userName)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var found = entity.employees.Where(x => x.Username == userName && x.EmployeeID != empID).FirstOrDefault();
+                if (found != null)
+                    return false;
+            }
+            return true;
+        }
+        public void SaveAccount(EmployeeModel employee)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var emp = entity.employees.Find(employee.EmployeeID);
+                emp.Username = employee.Username;
+                emp.Password = employee.Password;
+                emp.UpdateDate = DateTime.Now;
+                emp.UpdateUserID = employee.UpdateUserID;
+
+                entity.SaveChanges();
+            }
+        }
+        public string getUserRole(int empId)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var emp = entity.companies.Where(x => x.GeneralDirector == empId).FirstOrDefault();
+                if (emp != null)
+                    return "GeneralDirector";
+
+                emp = entity.companies.Where(x => x.CEO == empId).FirstOrDefault();
+                if (emp != null)
+                    return "CEO";
+
+                emp = entity.companies.Where(x => x.FinancialManager == empId).FirstOrDefault();
+                if (emp != null)
+                    return "FinancialManager";
+
+                emp = entity.companies.Where(x => x.HRManager == empId).FirstOrDefault();
+                if (emp != null)
+                    return "HRManager";
+
+                var dept = entity.departments.Where(x => x.ManagerID == empId).FirstOrDefault();
+                if (dept != null)
+                    return "DepartmentManager";
+            }
+            return "Employee";
+        }
+        #endregion
         public EmployeeModel GetByID(int empId)
         {
             using (HRSystemEntities entity = new HRSystemEntities())
@@ -229,19 +282,49 @@ namespace Human_Resource
                 return user;
             }
         }
-        public List<EmployeeModel> GetDeptEmployees(bool isActive,bool hired,int deptManagerId)
+
+        //for department manager
+        public List<EmployeeModel> GetNotHiredEmployees(int deptManagerId)
         {
             using (HRSystemEntities entity = new HRSystemEntities())
             {
                 var searchPredicate = PredicateBuilder.New<employees>();
 
-                searchPredicate = searchPredicate.And(x => x.IsActive == isActive);
                 searchPredicate = searchPredicate.And(x => x.DepartmentID == entity.departments.Where(m => m.ManagerID == deptManagerId).Select(m => m.DepartmentID).FirstOrDefault());
-                if(hired == true)
-                    searchPredicate = searchPredicate.And(x => x.HiringDate != null);
-                else
-                    searchPredicate = searchPredicate.And(x => x.HiringDate == null);
+                searchPredicate = searchPredicate.And(x => x.HiringDate == null);
+                searchPredicate = searchPredicate.And(x => !entity.confirms.Any(y => y.EmployeeID == x.EmployeeID && y.Role == "DepartmentManager" && y.ConfirmType== "emp_hiring"));
+                var user = entity.employees.Where(searchPredicate)
+                            .Select(x => new EmployeeModel()
+                            {
+                                EmployeeID = x.EmployeeID,
+                                IsActive = x.IsActive,
+                                Username = x.Username,
+                                NameAr = x.NameAr,
+                                NameEn = x.NameEn,
+                                BasicSalary = x.BasicSalary,
+                                Position = x.jobs.Name,
+                                DepartmentName = x.departments.Name,
+                                AddedBy = entity.employees.Where(m => m.EmployeeID == x.CreateUserID).Select(m => m.NameAr).FirstOrDefault(),
+                            }).ToList();
 
+                foreach(var emp in user)
+                {
+                    if (emp.DOB != null)
+                        emp.Age = HelpClass.get_age((DateTime)emp.DOB);
+                }
+                return user;
+            }
+        }
+
+        //for HR
+        public List<EmployeeModel> GetNotHiredEmployees(string role)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var searchPredicate = PredicateBuilder.New<employees>();
+
+                searchPredicate = searchPredicate.And(x => x.HiringDate == null);
+                searchPredicate = searchPredicate.And(x => !entity.confirms.Any(y => y.EmployeeID == x.EmployeeID && y.Role == role && y.ConfirmType == "emp_hiring"));
                 var user = entity.employees.Where(searchPredicate)
                             .Select(x => new EmployeeModel()
                             {
@@ -428,32 +511,16 @@ namespace Human_Resource
             }
         }
 
-        public string getUserRole(int empId)
+        public void SetHireDate(int empID)
         {
             using (HRSystemEntities entity = new HRSystemEntities())
             {
-                var emp = entity.companies.Where(x => x.GeneralDirector == empId).FirstOrDefault();
-                if (emp != null)
-                    return "GeneralDirector";
-                
-                emp = entity.companies.Where(x => x.CEO == empId).FirstOrDefault();
-                if (emp != null)
-                    return "CEO";
-
-                emp = entity.companies.Where(x => x.FinancialManager == empId).FirstOrDefault();
-                if (emp != null)
-                    return "FinancialManager";
-
-                emp = entity.companies.Where(x => x.HRManager == empId).FirstOrDefault();
-                if (emp != null)
-                    return "HRManager";
-
-                var dept = entity.departments.Where(x => x.ManagerID == empId).FirstOrDefault();
-                if (dept != null)
-                    return "DepartmentManager";
+                var emp = entity.employees.Find(empID);
+                emp.HiringDate = DateTime.Now;
+                entity.SaveChanges();
             }
-            return "Employee";
         }
+      
 
         #endregion
 

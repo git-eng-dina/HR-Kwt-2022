@@ -114,7 +114,7 @@
         <div class="container" >
         <div class="row">
         <div class="col-md-12">    
-                <input type="hidden" runat="server" id="emp_id" value="" />
+                <input type="hidden" runat="server" id="hid_emp_id" value="" />
                  <div class="col-md-6 float1" style="display:inline">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
@@ -475,7 +475,7 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,JobDescription%>" /></span>
                                 </div>
                                     <div class="col-md-8 col-sm-8 col-xs-8 div2">
-                                        <asp:TextBox type="text" class="form-control input-lg" ID="txt_jobDesc" name="txt_jobDesc" TextMode="MultiLine" Rows="6" runat="server" value=""  />
+                                        <asp:TextBox type="text" class="form-control input-lg" ID="txt_jobDesc" name="txt_jobDesc" TextMode="MultiLine" Rows="5" runat="server" value=""  />
                                     </div> 
                                 </div>
                             

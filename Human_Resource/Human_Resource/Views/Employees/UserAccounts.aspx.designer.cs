@@ -13,111 +13,48 @@ namespace Human_Resource.Views.Employees {
     public partial class UserAccounts {
         
         /// <summary>
-        /// txt_name control.
+        /// sel_employee control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_name;
+        protected global::System.Web.UI.HtmlControls.HtmlSelect sel_employee;
         
         /// <summary>
-        /// txt_address control.
+        /// txt_userName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_address;
+        protected global::System.Web.UI.WebControls.TextBox txt_userName;
         
         /// <summary>
-        /// txt_email control.
+        /// txt_password control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txt_email;
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword txt_password;
         
         /// <summary>
-        /// txt_mobile control.
+        /// lbl_msg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_mobile;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_msg;
         
         /// <summary>
-        /// txt_phone control.
+        /// btn_save control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_phone;
-        
-        /// <summary>
-        /// txt_fax control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_fax;
-        
-        /// <summary>
-        /// sel_generalDirector control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect sel_generalDirector;
-        
-        /// <summary>
-        /// sel_CEO control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect sel_CEO;
-        
-        /// <summary>
-        /// sel_financialManager control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect sel_financialManager;
-        
-        /// <summary>
-        /// sel_HRManager control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect sel_HRManager;
-        
-        /// <summary>
-        /// txt_notes control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_notes;
-        
-        /// <summary>
-        /// btn_edit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_edit;
+        protected global::System.Web.UI.WebControls.Button btn_save;
     }
 }

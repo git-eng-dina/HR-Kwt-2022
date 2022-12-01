@@ -13,13 +13,13 @@ namespace Human_Resource.Views.Employees {
     public partial class NewEmployee {
         
         /// <summary>
-        /// emp_id control.
+        /// hid_emp_id control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden emp_id;
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hid_emp_id;
         
         /// <summary>
         /// txt_nameAR control.
