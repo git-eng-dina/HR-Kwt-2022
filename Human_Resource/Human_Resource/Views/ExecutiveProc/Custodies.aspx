@@ -60,8 +60,8 @@
                         $('#MainContent_emp').val(item.EmployeeID);
                         $('#MainContent_dept_type').val(item.Type);
                         $('#MainContent_txt_details').val(item.Details);
-                        $('#MainContent_chk_isRecovery').val(item.IsRecovery);
-
+                        //$('#MainContent_chk_isRecovery').val(item.IsRecovery);
+                        $('#MainContent_chk_isRecovery').prop('checked', item.IsRecovery);
                      }
 
 
@@ -103,6 +103,10 @@
                 }
             });
 
+        }
+
+        function typeChanged() {
+            alert('type changed');
         }
 
 
@@ -243,7 +247,7 @@
                      <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Type%>" /></span>
                                 <input type="hidden"  id="hid_custodieId" name="hid_custodieId" runat="server" value=""  />
-                         <select runat="server" id="dept_type" name="dept_type" style="width:80%" class="form-control input-lg"/>
+                         <select runat="server" id="dept_type" name="dept_type" style="width:80%" class="form-control input-lg"  onchange="typeChanged()"/>
                              </div>
                         </div>
                      <div class ="row">
@@ -278,6 +282,7 @@
                 </div>
                  </div>
             </div>
+        </div>
         </div>
 </asp:Content>
 
