@@ -96,6 +96,37 @@
 
         }
 
+        function addEmp() {
+            var empId = $('#MainContent_sel_employee').val();
+
+            var gridView = $("[id*=gv_employees]");
+            var row = gridView.find("tr").eq(1);
+
+            //Check if row is dummy, if yes then remove.
+            if ($.trim(row.find("td").eq(0).html()) == "") {
+                row.remove();
+            }
+
+            //Clone the reference first row.
+            row = row.clone(true);
+
+            //Add the Name value to first cell.
+            var txtName = $("[id*=NameAr]");
+            SetValue(row, 0, "name", txtName);
+
+            //Add the Country value to second cell.
+            var txtCountry = $("[id*=txtCountry]");
+            SetValue(row, 1, "country", txtCountry);
+
+            //Add the row to the GridView.
+            gridView.append(row);
+
+            return false;
+            alert(empId);
+          
+
+        }
+
 
 
 
@@ -230,8 +261,70 @@
                                 <input type="text" class="form-control input-lg" id="txt_description"  runat="server" value=""  />
                             </div>
                         </div> 
+                    
+                    <div class ="row">
+                     <div class="form-group" style="display:block">
+                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Employees%>" /></span>
+                                 <select runat="server" id="sel_employee" name="sel_employee" style="width:70%" class="form-control input-lg" ></select>
+                                  <button class="add-arrow-btn"  runat="server" onclick="addEmp()" id="Button1" >
+                                   <i class="fas fa-arrow-alt-circle-down"></i>
+                                </button>
+                            </div>
+                        </div> 
                   
+                     <asp:GridView ID="gv_employees" runat="server"  CssClass="gridView col-md-12"  
+                                AutoGenerateColumns="False"  Width="90%" 
+                                class="table table-bordered table-condensed table-responsive table-hover ">
+                                <Columns>
 
+                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,Sequence%>" ItemStyle-Width="5%">
+                                         <ItemTemplate>
+                                                 <%#Container.DataItemIndex+1 %>                            
+                                         </ItemTemplate> 
+                                       </asp:TemplateField>
+
+                                    
+                                  
+
+                                
+                                              
+                                          
+                                <asp:TemplateField HeaderText="<%$ Resources:Labels,NameAr%>" ItemStyle-Width="25%">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblName" runat="server" 
+                                                 Text='<%# Eval("NameAr") %>' />                              
+                                         </ItemTemplate>
+                                        </asp:TemplateField>
+                                
+                                        <asp:TemplateField HeaderText="<%$ Resources:Labels,NameEn%>" ItemStyle-Width="25%">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblDescription" runat="server" 
+                                                 Text='<%# Eval("NameEn") %>' />                              
+                                         </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                 
+
+
+                                    <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-edit">
+                                          <ItemTemplate>                     
+                                                     <asp:LinkButton ID="LinkProducts" runat="server" myCustomID='<%# Eval("EmployeeID")%>'  CssClass="td-edit">
+                                                         <asp:Image ImageUrl="~/Images/edit.ico" runat="server" Width="20px" Height="20px" />
+                                                     </asp:LinkButton>  
+                                             </ItemTemplate>
+                                        </asp:TemplateField>
+                                   <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-delete">
+                                             <ItemTemplate>                     
+                                                     <asp:ImageButton  CommandArgument='<%# Eval("EmployeeID")%>' OnCommand="deletedatafromgrid"
+                                                            OnClientClick="return confirm(<%= Resources.Labels.ConfirmDelete %>);return false;"
+                                                            ID="Image1" runat="server" ImageUrl="~/Images/delete.ico" />
+                                                             
+                                             </ItemTemplate>
+                                    </asp:TemplateField> 
+                                   
+                                </Columns>
+                                <EditRowStyle BackColor="#009999" VerticalAlign="Middle" />
+                            </asp:GridView>
                   
                     
                 <div class="modal-footer">

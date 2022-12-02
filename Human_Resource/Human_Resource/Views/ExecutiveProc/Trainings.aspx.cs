@@ -40,6 +40,21 @@ namespace Human_Resource.Views.ExecutiveProc
                                  ).ToList();
             gv_data.DataSource = depts;
 
+
+            EmployeeModel emp = new EmployeeModel();
+            var employees = emp.GetEmployees(true, true);
+            sel_employee.DataSource = employees;
+            sel_employee.DataValueField = "EmployeeID";
+            if (Session["CultureName"] != null && Session["CultureName"].ToString().ToLower() == "en-us")
+            {
+                sel_employee.DataTextField = "NameEn";
+
+            }
+            else
+            {
+                sel_employee.DataTextField = "NameAr";
+            }
+
             DataBind();
         }
         [WebMethod(EnableSession = true)]

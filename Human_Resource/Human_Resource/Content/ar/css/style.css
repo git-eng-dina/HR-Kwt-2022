@@ -1219,3 +1219,22 @@ input[type=checkbox], input[type=radio] {
     border: 0px;
     color: #2e9d2e;
 }
+
+.add-arrow-btn {
+    margin-top: 10px;
+    background-color: #3db759;
+    border: none;
+    width: 30px;
+    height: 20px;
+    font-size: 10px;
+    color: #FFFFFF;
+    border-radius: 0.5vw;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px;
+}
+
+    .add-arrow-btn i {
+        
+        font-size:15px;
+    }
