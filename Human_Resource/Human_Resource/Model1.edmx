@@ -395,7 +395,7 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
           <Property Name="IsActive" Type="bit" />
           <Property Name="EmployeeID" Type="int" />
         </EntityType>
-        <EntityType Name="salaryIncrease">
+        <EntityType Name="salaryIncreases">
           <Key>
             <PropertyRef Name="SalaryIncreaseID" />
           </Key>
@@ -547,11 +547,11 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_confirms_salaryIncrease">
-          <End Role="salaryIncrease" Type="Self.salaryIncrease" Multiplicity="0..1" />
+        <Association Name="FK_confirms_salaryIncreases">
+          <End Role="salaryIncreases" Type="Self.salaryIncreases" Multiplicity="0..1" />
           <End Role="confirms" Type="Self.confirms" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="salaryIncrease">
+            <Principal Role="salaryIncreases">
               <PropertyRef Name="SalaryIncreaseID" />
             </Principal>
             <Dependent Role="confirms">
@@ -835,37 +835,6 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
-        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="HRSystemModelStoreContainer">
           <EntitySet Name="branches" EntityType="Self.branches" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="companies" EntityType="Self.companies" Schema="dbo" store:Type="Tables" />
@@ -888,7 +857,7 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
           <EntitySet Name="messagesTemplates" EntityType="Self.messagesTemplates" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="periods" EntityType="Self.periods" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="rewards" EntityType="Self.rewards" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="salaryIncrease" EntityType="Self.salaryIncrease" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="salaryIncreases" EntityType="Self.salaryIncreases" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="scheduleVacations" EntityType="Self.scheduleVacations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tasks" EntityType="Self.tasks" Schema="dbo" store:Type="Tables" />
@@ -934,8 +903,8 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
             <End Role="messagesTemplates" EntitySet="messagesTemplates" />
             <End Role="confirms" EntitySet="confirms" />
           </AssociationSet>
-          <AssociationSet Name="FK_confirms_salaryIncrease" Association="Self.FK_confirms_salaryIncrease">
-            <End Role="salaryIncrease" EntitySet="salaryIncrease" />
+          <AssociationSet Name="FK_confirms_salaryIncreases" Association="Self.FK_confirms_salaryIncreases">
+            <End Role="salaryIncreases" EntitySet="salaryIncreases" />
             <End Role="confirms" EntitySet="confirms" />
           </AssociationSet>
           <AssociationSet Name="FK_confirms_tasks" Association="Self.FK_confirms_tasks">
@@ -1104,7 +1073,7 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
           <NavigationProperty Name="hourlyPermissions" Relationship="Self.FK_confirms_hourlyPermissions" FromRole="confirms" ToRole="hourlyPermissions" />
           <NavigationProperty Name="jobs" Relationship="Self.FK_confirms_jobs" FromRole="confirms" ToRole="jobs" />
           <NavigationProperty Name="messagesTemplates" Relationship="Self.FK_confirms_messagesTemplates" FromRole="confirms" ToRole="messagesTemplates" />
-          <NavigationProperty Name="salaryIncrease" Relationship="Self.FK_confirms_salaryIncrease" FromRole="confirms" ToRole="salaryIncrease" />
+          <NavigationProperty Name="salaryIncreases" Relationship="Self.FK_confirms_salaryIncreases" FromRole="confirms" ToRole="salaryIncreases" />
           <NavigationProperty Name="tasks" Relationship="Self.FK_confirms_tasks" FromRole="confirms" ToRole="tasks" />
         </EntityType>
         <EntityType Name="countriesName">
@@ -1459,7 +1428,7 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
           <Property Name="EmployeeID" Type="Int32" />
           <NavigationProperty Name="employees" Relationship="Self.FK_rewards_employees" FromRole="rewards" ToRole="employees" />
         </EntityType>
-        <EntityType Name="salaryIncrease">
+        <EntityType Name="salaryIncreases">
           <Key>
             <PropertyRef Name="SalaryIncreaseID" />
           </Key>
@@ -1473,7 +1442,7 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
           <Property Name="CreateUserID" Type="Int32" />
           <Property Name="UpdateUserID" Type="Int32" />
           <Property Name="IsActive" Type="Boolean" />
-          <NavigationProperty Name="confirms" Relationship="Self.FK_confirms_salaryIncrease" FromRole="salaryIncrease" ToRole="confirms" />
+          <NavigationProperty Name="confirms" Relationship="Self.FK_confirms_salaryIncreases" FromRole="salaryIncreases" ToRole="confirms" />
         </EntityType>
         <EntityType Name="scheduleVacations">
           <Key>
@@ -1648,11 +1617,11 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_confirms_salaryIncrease">
-          <End Role="salaryIncrease" Type="Self.salaryIncrease" Multiplicity="0..1" />
+        <Association Name="FK_confirms_salaryIncreases">
+          <End Role="salaryIncreases" Type="Self.salaryIncreases" Multiplicity="0..1" />
           <End Role="confirms" Type="Self.confirms" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="salaryIncrease">
+            <Principal Role="salaryIncreases">
               <PropertyRef Name="SalaryIncreaseID" />
             </Principal>
             <Dependent Role="confirms">
@@ -1946,7 +1915,7 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
           <EntitySet Name="messagesTemplates" EntityType="Self.messagesTemplates" />
           <EntitySet Name="periods" EntityType="Self.periods" />
           <EntitySet Name="rewards" EntityType="Self.rewards" />
-          <EntitySet Name="salaryIncrease" EntityType="Self.salaryIncrease" />
+          <EntitySet Name="salaryIncreases" EntityType="Self.salaryIncreases" />
           <EntitySet Name="scheduleVacations" EntityType="Self.scheduleVacations" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="tasks" EntityType="Self.tasks" />
@@ -1981,8 +1950,8 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
             <End Role="messagesTemplates" EntitySet="messagesTemplates" />
             <End Role="confirms" EntitySet="confirms" />
           </AssociationSet>
-          <AssociationSet Name="FK_confirms_salaryIncrease" Association="Self.FK_confirms_salaryIncrease">
-            <End Role="salaryIncrease" EntitySet="salaryIncrease" />
+          <AssociationSet Name="FK_confirms_salaryIncreases" Association="Self.FK_confirms_salaryIncreases">
+            <End Role="salaryIncreases" EntitySet="salaryIncreases" />
             <End Role="confirms" EntitySet="confirms" />
           </AssociationSet>
           <AssociationSet Name="FK_confirms_tasks" Association="Self.FK_confirms_tasks">
@@ -2073,48 +2042,7 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
             <End Role="tasks" EntitySet="tasks" />
             <End Role="employeesTasks" EntitySet="employeesTasks" />
           </AssociationSet>
-          <FunctionImport Name="sp_alterdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_creatediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_dropdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(HRSystemModel.sp_helpdiagramdefinition_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(HRSystemModel.sp_helpdiagrams_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_renamediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="new_diagramname" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
-        <ComplexType Name="sp_helpdiagramdefinition_Result">
-          <Property Type="Int32" Name="version" Nullable="true" />
-          <Property Type="Binary" Name="definition" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="sp_helpdiagrams_Result">
-          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-          <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-          <Property Type="Int32" Name="OwnerID" Nullable="false" />
-        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2513,9 +2441,9 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="salaryIncrease">
-            <EntityTypeMapping TypeName="HRSystemModel.salaryIncrease">
-              <MappingFragment StoreEntitySet="salaryIncrease">
+          <EntitySetMapping Name="salaryIncreases">
+            <EntityTypeMapping TypeName="HRSystemModel.salaryIncreases">
+              <MappingFragment StoreEntitySet="salaryIncreases">
                 <ScalarProperty Name="SalaryIncreaseID" ColumnName="SalaryIncreaseID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="IncreaseType" ColumnName="IncreaseType" />
@@ -2617,30 +2545,6 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="HRSystemModel.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="HRSystemModel.Store.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="HRSystemModel.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="HRSystemModel.Store.sp_helpdiagramdefinition">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="HRSystemModel.sp_helpdiagramdefinition_Result">
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="HRSystemModel.Store.sp_helpdiagrams">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="HRSystemModel.sp_helpdiagrams_Result">
-                <ScalarProperty Name="Database" ColumnName="Database" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Owner" ColumnName="Owner" />
-                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="HRSystemModel.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="HRSystemModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

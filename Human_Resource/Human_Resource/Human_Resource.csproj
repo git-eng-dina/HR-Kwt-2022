@@ -251,6 +251,8 @@
     <Compile Include="App_Code\GetData.cs" />
     <Compile Include="App_Code\Job.cs" />
     <Compile Include="App_Code\MaterialsConsumption.cs" />
+    <Compile Include="App_Code\Reward.cs" />
+    <Compile Include="App_Code\SalaryIncrease.cs" />
     <Compile Include="App_Code\Task.cs" />
     <Compile Include="App_Code\Training.cs" />
     <Compile Include="App_GlobalResources\Labels.ar.designer.cs">
@@ -344,16 +346,10 @@
     <Compile Include="rewards.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="salaryIncrease.cs">
+    <Compile Include="salaryIncreases.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="scheduleVacations.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_helpdiagrams_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="sysdiagrams.cs">

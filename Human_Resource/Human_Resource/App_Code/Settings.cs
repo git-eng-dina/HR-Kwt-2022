@@ -712,4 +712,132 @@ namespace Human_Resource.App_Code
         #endregion
     }
 
+
+    public class SalaryIncreaseModel
+    {
+        #region Attributes
+        public int SalaryIncreaseID { get; set; }
+        public string IncreaseType { get; set; }
+        public string IncreaseValue { get; set; }
+        public string Description { get; set; }
+        public string Name { get; set; }
+        public Nullable<int> EmployeeID { get; set; }
+        public string EmployeeName { get; set; }
+        public string Notes { get; set; }
+        public Nullable<System.DateTime> CreateDate { get; set; }
+        public Nullable<System.DateTime> UpdateDate { get; set; }
+        public Nullable<int> CreateUserID { get; set; }
+        public Nullable<int> UpdateUserID { get; set; }
+        public Nullable<bool> IsActive { get; set; }
+        #endregion
+
+        #region methods
+        public List<SalaryIncreaseModel> getActivity()
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var depts = entity.salaryIncreases.Where(x => x.IsActive == true)
+                                .Select(x => new SalaryIncreaseModel()
+                                {
+                                    SalaryIncreaseID = x.SalaryIncreaseID,
+                                    IncreaseType = x.IncreaseType,
+                                    IncreaseValue = x.IncreaseValue.ToString(),
+                                     Name = x.Name,
+                                     CreateUserID = x.CreateUserID,
+                                    UpdateUserID = x.UpdateUserID,
+                                    Notes = x.Notes,
+                                    CreateDate = x.CreateDate,
+                                    UpdateDate = x.UpdateDate,
+                                }).ToList();
+                return depts;
+            }
+        }
+        public SalaryIncreaseModel getSalaryIncrease(int salaryIncreaseId)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var dept = entity.salaryIncreases.Where(x => x.SalaryIncreaseID == salaryIncreaseId)
+                                .Select(x => new SalaryIncreaseModel()
+                                {
+                                    SalaryIncreaseID = x.SalaryIncreaseID,
+                                    IncreaseType = x.IncreaseType,
+                                    IncreaseValue = x.IncreaseValue.ToString(),
+                                     Name = x.Name,
+                                    CreateUserID = x.CreateUserID,
+                                    UpdateUserID = x.UpdateUserID,
+                                    Notes = x.Notes,
+                                    CreateDate = x.CreateDate,
+                                    UpdateDate = x.UpdateDate,
+                                }).FirstOrDefault();
+                return dept;
+            }
+        }
+
+        public int SaveDept(SalaryIncreaseModel dept)
+        {
+            try
+            {
+                salaryIncreases salaryIncrease;
+
+                using (HRSystemEntities entity = new HRSystemEntities())
+                {
+                    if (dept.SalaryIncreaseID.Equals(0))
+                    {
+                        salaryIncrease = new salaryIncreases()
+                        {
+                            IncreaseType = dept.IncreaseType,
+                            IncreaseValue =   decimal.Parse(dept.IncreaseValue),
+                            Name = dept.Name,
+                            IsActive = true,
+                            CreateUserID = dept.CreateUserID,
+                            UpdateUserID = dept.UpdateUserID,
+                            CreateDate = DateTime.Now,
+                            UpdateDate = DateTime.Now,
+                        };
+                        salaryIncrease = entity.salaryIncreases.Add(salaryIncrease);
+                    }
+                    else
+                    {
+                        salaryIncrease = entity.salaryIncreases.Find(dept.SalaryIncreaseID);
+                        salaryIncrease.IncreaseType = dept.IncreaseType;
+                        salaryIncrease.IncreaseValue =decimal.Parse(dept.IncreaseValue);
+                        salaryIncrease.Name = dept.Name;
+                        salaryIncrease.Notes = dept.Notes;
+                        salaryIncrease.IsActive = true;
+                        salaryIncrease.UpdateUserID = dept.UpdateUserID;
+                        salaryIncrease.UpdateDate = DateTime.Now;
+                    }
+                    entity.SaveChanges();
+                }
+                return salaryIncrease.SalaryIncreaseID;
+            }
+
+            catch
+            {
+                return 0;
+            }
+        }
+        public bool DeleteDept(int deptId, int? userId)
+        {
+            try
+            {
+                using (HRSystemEntities entity = new HRSystemEntities())
+                {
+                    var dept = entity.salaryIncreases.Find(deptId);
+                    dept.IsActive = false;
+                    dept.UpdateDate = DateTime.Now;
+                    dept.UpdateUserID = userId;
+                    entity.SaveChanges();
+                }
+                return true;
+            }
+
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+    }
+
 }

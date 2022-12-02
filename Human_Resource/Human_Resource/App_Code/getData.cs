@@ -58,6 +58,28 @@ namespace Human_Resource.App_Code
             return repeatTypeList;
         }
         #endregion
+        #region rewardsType
+        static public List<KeyValueString> rewardsTypeList = getRewardsTypeList().ToList();
+        static IEnumerable<KeyValueString> getRewardsTypeList()
+        {
+            rewardsTypeList = new List<KeyValueString> {
+                   new KeyValueString { key = "Reward"       , value = Resources.Labels.Reward  },
+                   new KeyValueString { key = "Penalty", value = Resources.Labels.Penalty },
+                     };
+            return rewardsTypeList;
+        }
+        #endregion
+        #region increaseType
+        static public List<KeyValueString> increaseTypeList = getIncreaseTypeList().ToList();
+        static IEnumerable<KeyValueString> getIncreaseTypeList()
+        {
+            increaseTypeList = new List<KeyValueString> {
+                   new KeyValueString { key = "Ratio"       , value = Resources.Labels.Ratio  },
+                   new KeyValueString { key = "Value", value = Resources.Labels.Value },
+                     };
+            return increaseTypeList;
+        }
+        #endregion
 
     }
 }

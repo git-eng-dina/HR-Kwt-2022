@@ -12,10 +12,10 @@ namespace Human_Resource
     using System;
     using System.Collections.Generic;
     
-    public partial class salaryIncrease
+    public partial class salaryIncreases
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public salaryIncrease()
+        public salaryIncreases()
         {
             this.confirms = new HashSet<confirms>();
         }

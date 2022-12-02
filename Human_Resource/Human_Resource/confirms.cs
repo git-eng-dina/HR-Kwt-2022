@@ -36,7 +36,7 @@ namespace Human_Resource
         public virtual hourlyPermissions hourlyPermissions { get; set; }
         public virtual jobs jobs { get; set; }
         public virtual messagesTemplates messagesTemplates { get; set; }
-        public virtual salaryIncrease salaryIncrease { get; set; }
+        public virtual salaryIncreases salaryIncreases { get; set; }
         public virtual tasks tasks { get; set; }
     }
 }
