@@ -81,5 +81,20 @@ namespace Human_Resource.App_Code
         }
         #endregion
 
+        #region evaluationType
+        static public List<KeyValueString> evaluationTypeList = getEvaluationTypeList().ToList();
+        static IEnumerable<KeyValueString> getEvaluationTypeList()
+        {
+            evaluationTypeList = new List<KeyValueString> {
+                   new KeyValueString { key = "Low"       , value = Resources.Labels.Low  },
+                   new KeyValueString { key = "Fair", value = Resources.Labels.Fair },
+                   new KeyValueString { key = "Good", value = Resources.Labels.Good },
+                   new KeyValueString { key = "Excellent", value = Resources.Labels.Excellent },
+                   new KeyValueString { key = "VeryExcellent", value = Resources.Labels.veryExcellent },
+                     };
+            return evaluationTypeList;
+        }
+        #endregion
+
     }
 }
