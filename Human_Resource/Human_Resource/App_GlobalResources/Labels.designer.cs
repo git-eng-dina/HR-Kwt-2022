@@ -160,6 +160,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Rewards or Penalties.
+        /// </summary>
+        internal static string AddRewardsOrPenalties {
+            get {
+                return ResourceManager.GetString("AddRewardsOrPenalties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Salary Increase.
+        /// </summary>
+        internal static string AddSalaryIncrease {
+            get {
+                return ResourceManager.GetString("AddSalaryIncrease", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AddTask.
         /// </summary>
         internal static string AddTask {
@@ -1078,6 +1096,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ratio.
+        /// </summary>
+        internal static string Ratio {
+            get {
+                return ResourceManager.GetString("Ratio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Recovery.
         /// </summary>
         internal static string Recovery {
@@ -1222,6 +1249,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        internal static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Training.
         /// </summary>
         internal static string Training {
@@ -1335,6 +1371,15 @@ namespace Resources {
         internal static string VaccationTypes {
             get {
                 return ResourceManager.GetString("VaccationTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value.
+        /// </summary>
+        internal static string Value {
+            get {
+                return ResourceManager.GetString("Value", resourceCulture);
             }
         }
         
