@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="HRSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="HRSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="branches">
           <Key>
             <PropertyRef Name="BranchID" />
@@ -245,6 +245,44 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
           <Property Name="EmployeesVacationsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="VacationID" Type="int" />
           <Property Name="EmployeeID" Type="int" />
+          <Property Name="Notes" Type="ntext" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="CreateUserID" Type="int" />
+          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'HRSystem.dbo.evaluations' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="evaluations">
+          <Key>
+            <PropertyRef Name="EvaluationID" />
+          </Key>
+          <Property Name="EvaluationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="Behavior" Type="nvarchar" MaxLength="100" />
+          <Property Name="Attendance" Type="nvarchar" MaxLength="100" />
+          <Property Name="Punctuality" Type="nvarchar" MaxLength="100" />
+          <Property Name="Productivity" Type="nvarchar" MaxLength="100" />
+          <Property Name="Creativity" Type="nvarchar" MaxLength="100" />
+          <Property Name="ClientRelation" Type="nvarchar" MaxLength="100" />
+          <Property Name="Initiative" Type="nvarchar" MaxLength="100" />
+          <Property Name="Communication" Type="nvarchar" MaxLength="100" />
+          <Property Name="Cooperation" Type="nvarchar" MaxLength="100" />
+          <Property Name="StrategicThinking" Type="nvarchar" MaxLength="100" />
+          <Property Name="HandleStressful" Type="nvarchar" MaxLength="100" />
+          <Property Name="ListeningSkills" Type="nvarchar" MaxLength="100" />
+          <Property Name="MeetingDeadlines" Type="nvarchar" MaxLength="100" />
+          <Property Name="Performance" Type="nvarchar" MaxLength="100" />
+          <Property Name="JobKnowledge" Type="nvarchar" MaxLength="100" />
+          <Property Name="OrganizeIdea" Type="nvarchar" MaxLength="100" />
+          <Property Name="RespondResourcefully" Type="nvarchar" MaxLength="100" />
+          <Property Name="ConfrontsProblems" Type="nvarchar" MaxLength="100" />
+          <Property Name="CustomerNeeds" Type="nvarchar" MaxLength="100" />
+          <Property Name="OrganizationVision" Type="nvarchar" MaxLength="100" />
+          <Property Name="StayFocused" Type="nvarchar" MaxLength="100" />
+          <Property Name="OverAllProgress" Type="nvarchar" MaxLength="100" />
+          <Property Name="Comment" Type="ntext" />
           <Property Name="Notes" Type="ntext" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" />
           <Property Name="UpdateDate" Type="datetime2" Precision="7" />
@@ -879,6 +917,41 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
     [employeesTasks].[BossDone] AS [BossDone]
     FROM [dbo].[employeesTasks] AS [employeesTasks]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="evaluations" EntityType="Self.evaluations" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [evaluations].[EvaluationID] AS [EvaluationID], 
+    [evaluations].[EmployeeID] AS [EmployeeID], 
+    [evaluations].[Behavior] AS [Behavior], 
+    [evaluations].[Attendance] AS [Attendance], 
+    [evaluations].[Punctuality] AS [Punctuality], 
+    [evaluations].[Productivity] AS [Productivity], 
+    [evaluations].[Creativity] AS [Creativity], 
+    [evaluations].[ClientRelation] AS [ClientRelation], 
+    [evaluations].[Initiative] AS [Initiative], 
+    [evaluations].[Communication] AS [Communication], 
+    [evaluations].[Cooperation] AS [Cooperation], 
+    [evaluations].[StrategicThinking] AS [StrategicThinking], 
+    [evaluations].[HandleStressful] AS [HandleStressful], 
+    [evaluations].[ListeningSkills] AS [ListeningSkills], 
+    [evaluations].[MeetingDeadlines] AS [MeetingDeadlines], 
+    [evaluations].[Performance] AS [Performance], 
+    [evaluations].[JobKnowledge] AS [JobKnowledge], 
+    [evaluations].[OrganizeIdea] AS [OrganizeIdea], 
+    [evaluations].[RespondResourcefully] AS [RespondResourcefully], 
+    [evaluations].[ConfrontsProblems] AS [ConfrontsProblems], 
+    [evaluations].[CustomerNeeds] AS [CustomerNeeds], 
+    [evaluations].[OrganizationVision] AS [OrganizationVision], 
+    [evaluations].[StayFocused] AS [StayFocused], 
+    [evaluations].[OverAllProgress] AS [OverAllProgress], 
+    [evaluations].[Comment] AS [Comment], 
+    [evaluations].[Notes] AS [Notes], 
+    [evaluations].[CreateDate] AS [CreateDate], 
+    [evaluations].[UpdateDate] AS [UpdateDate], 
+    [evaluations].[CreateUserID] AS [CreateUserID], 
+    [evaluations].[UpdateUserID] AS [UpdateUserID], 
+    [evaluations].[IsActive] AS [IsActive]
+    FROM [dbo].[evaluations] AS [evaluations]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_branches_companies" Association="Self.FK_branches_companies">
             <End Role="companies" EntitySet="companies" />
             <End Role="branches" EntitySet="branches" />
@@ -1000,8 +1073,7 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
             <End Role="rewards" EntitySet="rewards" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HRSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -2042,7 +2114,44 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
             <End Role="tasks" EntitySet="tasks" />
             <End Role="employeesTasks" EntitySet="employeesTasks" />
           </AssociationSet>
+          <EntitySet Name="evaluations" EntityType="HRSystemModel.evaluations" />
         </EntityContainer>
+        <EntityType Name="evaluations">
+          <Key>
+            <PropertyRef Name="EvaluationID" />
+          </Key>
+          <Property Name="EvaluationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="Behavior" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Attendance" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Punctuality" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Productivity" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Creativity" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ClientRelation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Initiative" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Communication" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Cooperation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StrategicThinking" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HandleStressful" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ListeningSkills" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MeetingDeadlines" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Performance" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="JobKnowledge" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="OrganizeIdea" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RespondResourcefully" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ConfrontsProblems" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerNeeds" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="OrganizationVision" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StayFocused" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="OverAllProgress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="CreateUserID" Type="Int32" />
+          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2542,6 +2651,43 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="EmpDone" ColumnName="EmpDone" />
                 <ScalarProperty Name="BossDone" ColumnName="BossDone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="evaluations">
+            <EntityTypeMapping TypeName="HRSystemModel.evaluations">
+              <MappingFragment StoreEntitySet="evaluations">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="OverAllProgress" ColumnName="OverAllProgress" />
+                <ScalarProperty Name="StayFocused" ColumnName="StayFocused" />
+                <ScalarProperty Name="OrganizationVision" ColumnName="OrganizationVision" />
+                <ScalarProperty Name="CustomerNeeds" ColumnName="CustomerNeeds" />
+                <ScalarProperty Name="ConfrontsProblems" ColumnName="ConfrontsProblems" />
+                <ScalarProperty Name="RespondResourcefully" ColumnName="RespondResourcefully" />
+                <ScalarProperty Name="OrganizeIdea" ColumnName="OrganizeIdea" />
+                <ScalarProperty Name="JobKnowledge" ColumnName="JobKnowledge" />
+                <ScalarProperty Name="Performance" ColumnName="Performance" />
+                <ScalarProperty Name="MeetingDeadlines" ColumnName="MeetingDeadlines" />
+                <ScalarProperty Name="ListeningSkills" ColumnName="ListeningSkills" />
+                <ScalarProperty Name="HandleStressful" ColumnName="HandleStressful" />
+                <ScalarProperty Name="StrategicThinking" ColumnName="StrategicThinking" />
+                <ScalarProperty Name="Cooperation" ColumnName="Cooperation" />
+                <ScalarProperty Name="Communication" ColumnName="Communication" />
+                <ScalarProperty Name="Initiative" ColumnName="Initiative" />
+                <ScalarProperty Name="ClientRelation" ColumnName="ClientRelation" />
+                <ScalarProperty Name="Creativity" ColumnName="Creativity" />
+                <ScalarProperty Name="Productivity" ColumnName="Productivity" />
+                <ScalarProperty Name="Punctuality" ColumnName="Punctuality" />
+                <ScalarProperty Name="Attendance" ColumnName="Attendance" />
+                <ScalarProperty Name="Behavior" ColumnName="Behavior" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="EvaluationID" ColumnName="EvaluationID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

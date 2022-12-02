@@ -63,6 +63,7 @@
         <AssociationConnector Association="HRSystemModel.FK_employeesTrainings_trainings1" ManuallyRouted="false" />
         <AssociationConnector Association="HRSystemModel.FK_employeesVacations_vacations" ManuallyRouted="false" />
         <AssociationConnector Association="HRSystemModel.FK_employeesTasks_tasks" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="HRSystemModel.evaluations" Width="1.5" PointX="4.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

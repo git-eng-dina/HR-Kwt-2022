@@ -301,6 +301,9 @@
     <Compile Include="employeesVacations.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="evaluations.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="events.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
