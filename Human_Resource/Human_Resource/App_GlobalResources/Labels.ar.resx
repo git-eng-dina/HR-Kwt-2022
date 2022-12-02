@@ -573,4 +573,91 @@
   <data name="AddRewardsOrPenalties" xml:space="preserve">
     <value>إضافة مكافأة أو عقوبة</value>
   </data>
+  <data name="Behavior" xml:space="preserve">
+    <value>السلوك</value>
+  </data>
+  <data name="ClientRelation" xml:space="preserve">
+    <value>علاقة العميل</value>
+  </data>
+  <data name="Communication" xml:space="preserve">
+    <value>التواصل</value>
+  </data>
+  <data name="ConfrontsProblems" xml:space="preserve">
+    <value>مواجهة المشاكل بشكل مباشر</value>
+  </data>
+  <data name="Cooperation" xml:space="preserve">
+    <value>التعاون / بناء العلاقات</value>
+  </data>
+  <data name="Creativity" xml:space="preserve">
+    <value>الإبداع</value>
+  </data>
+  <data name="CustomerNeeds" xml:space="preserve">
+    <value>تحديد احتياجات العملاء</value>
+  </data>
+  <data name="EmployeeMannerism" xml:space="preserve">
+    <value>سلوك الموظف</value>
+  </data>
+  <data name="Excellent" xml:space="preserve">
+    <value>فوق التوقعات (ممتاز)</value>
+  </data>
+  <data name="Fair" xml:space="preserve">
+    <value>دون التوقعات (عادل)</value>
+  </data>
+  <data name="Good" xml:space="preserve">
+    <value>يلبي التوقعات (جيد)</value>
+  </data>
+  <data name="HandleStressful" xml:space="preserve">
+    <value>التعامل مع المواقف الصعبة</value>
+  </data>
+  <data name="Initiative" xml:space="preserve">
+    <value>المبادرة</value>
+  </data>
+  <data name="JobKnowledge" xml:space="preserve">
+    <value>المعرفة الوظيفية</value>
+  </data>
+  <data name="ListeningSkills" xml:space="preserve">
+    <value>مهارات الاصغاء</value>
+  </data>
+  <data name="Low" xml:space="preserve">
+    <value>أقل بكثير من التوقعات (منخفض)</value>
+  </data>
+  <data name="MeetingDeadlines" xml:space="preserve">
+    <value>Meeting Deadlines</value>
+  </data>
+  <data name="OrganizationVision" xml:space="preserve">
+    <value>الالتزام برسالة ورؤية وأهداف المنظمة</value>
+  </data>
+  <data name="OrganizeIdea" xml:space="preserve">
+    <value>تنظيم الفكرة</value>
+  </data>
+  <data name="OverAllProgress" xml:space="preserve">
+    <value>التقدم العام</value>
+  </data>
+  <data name="Performance" xml:space="preserve">
+    <value>الأداء (جودة العمل)</value>
+  </data>
+  <data name="PerformanceIndicator" xml:space="preserve">
+    <value>مؤشر الأداء</value>
+  </data>
+  <data name="Productivity" xml:space="preserve">
+    <value>الإنتاجية</value>
+  </data>
+  <data name="Punctuality" xml:space="preserve">
+    <value>الالتزام بالمواعيد</value>
+  </data>
+  <data name="RespondResourcefully" xml:space="preserve">
+    <value>الاستجابة بحيلة ومرونة وايجابية</value>
+  </data>
+  <data name="Skills" xml:space="preserve">
+    <value>المهارات</value>
+  </data>
+  <data name="StayFocused" xml:space="preserve">
+    <value>الاستمرار في التركيز على مساعدة العملاء</value>
+  </data>
+  <data name="StrategicThinking" xml:space="preserve">
+    <value>التفكير الاستراتيجي</value>
+  </data>
+  <data name="veryExcellent" xml:space="preserve">
+    <value>يفوق التوقعات بشكل كبير</value>
+  </data>
 </root>

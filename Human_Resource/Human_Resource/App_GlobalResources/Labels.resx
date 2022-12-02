@@ -573,4 +573,91 @@
   <data name="AddRewardsOrPenalties" xml:space="preserve">
     <value>Add Rewards or Penalties</value>
   </data>
+  <data name="Behavior" xml:space="preserve">
+    <value>Behavior</value>
+  </data>
+  <data name="ClientRelation" xml:space="preserve">
+    <value>ClientRelation</value>
+  </data>
+  <data name="Communication" xml:space="preserve">
+    <value>Communication</value>
+  </data>
+  <data name="ConfrontsProblems" xml:space="preserve">
+    <value>Confronts problems Directly</value>
+  </data>
+  <data name="Cooperation" xml:space="preserve">
+    <value>Cooperation / Relationship Building</value>
+  </data>
+  <data name="Creativity" xml:space="preserve">
+    <value>Creativity</value>
+  </data>
+  <data name="CustomerNeeds" xml:space="preserve">
+    <value>Identifies Customer Needs</value>
+  </data>
+  <data name="EmployeeMannerism" xml:space="preserve">
+    <value>Employee Mannerism</value>
+  </data>
+  <data name="Excellent" xml:space="preserve">
+    <value>Above Expectations (Excellent)</value>
+  </data>
+  <data name="Fair" xml:space="preserve">
+    <value>Below Expectations (Fair)</value>
+  </data>
+  <data name="Good" xml:space="preserve">
+    <value>Meets Expectations (Good)</value>
+  </data>
+  <data name="HandleStressful" xml:space="preserve">
+    <value>Handle strssful situations</value>
+  </data>
+  <data name="Initiative" xml:space="preserve">
+    <value>Initiative</value>
+  </data>
+  <data name="JobKnowledge" xml:space="preserve">
+    <value>Job Knowledge</value>
+  </data>
+  <data name="ListeningSkills" xml:space="preserve">
+    <value>Listening Skills</value>
+  </data>
+  <data name="Low" xml:space="preserve">
+    <value>Significantly Below Expectation (Low)</value>
+  </data>
+  <data name="MeetingDeadlines" xml:space="preserve">
+    <value>Meeting Deadlines</value>
+  </data>
+  <data name="OrganizationVision" xml:space="preserve">
+    <value>Commits to the mission, vision and objectives of the organization.</value>
+  </data>
+  <data name="OrganizeIdea" xml:space="preserve">
+    <value>Organize Idea</value>
+  </data>
+  <data name="OverAllProgress" xml:space="preserve">
+    <value>Over All Progress</value>
+  </data>
+  <data name="Performance" xml:space="preserve">
+    <value>Performance(Quality of work )</value>
+  </data>
+  <data name="PerformanceIndicator" xml:space="preserve">
+    <value>Performance Indicator</value>
+  </data>
+  <data name="Productivity" xml:space="preserve">
+    <value>Productivity</value>
+  </data>
+  <data name="Punctuality" xml:space="preserve">
+    <value>Punctuality</value>
+  </data>
+  <data name="RespondResourcefully" xml:space="preserve">
+    <value>Respond resourcefully, flexibly, and positively</value>
+  </data>
+  <data name="Skills" xml:space="preserve">
+    <value>Skills</value>
+  </data>
+  <data name="StayFocused" xml:space="preserve">
+    <value>Stay focused on helping customer</value>
+  </data>
+  <data name="StrategicThinking" xml:space="preserve">
+    <value>Strategic Thinking</value>
+  </data>
+  <data name="veryExcellent" xml:space="preserve">
+    <value>Significantly Exceeds Expectations</value>
+  </data>
 </root>
