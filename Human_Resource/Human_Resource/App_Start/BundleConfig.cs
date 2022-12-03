@@ -41,7 +41,8 @@ namespace Human_Resource
                      "~/Content/bootstrap.css",
                      "~/Content/font-awesome.css",
                      "~/Content/style.css",
-                     "~/Content/site.css"));
+                     "~/Content/site.css",
+                     "~/Content/themes/base/all.css"));
 
             ScriptManager.ScriptResourceMapping.AddDefinition(
                 "respond",
