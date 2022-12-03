@@ -58,7 +58,7 @@ namespace Human_Resource.Views.ExecutiveProc
             DataBind();
         }
         [WebMethod(EnableSession = true)]
-        public static string SaveTraining(string trainingId, string name, string description)
+        public static string SaveTraining(string trainingId, string name, string description,string empIds)
         {
             try
             {

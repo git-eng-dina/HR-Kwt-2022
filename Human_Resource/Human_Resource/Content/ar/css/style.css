@@ -1231,10 +1231,36 @@ input[type=checkbox], input[type=radio] {
     border-radius: 0.5vw;
     font-weight: bold;
     cursor: pointer;
-    padding: 10px;
+    /*padding: 10px;*/
 }
 
     .add-arrow-btn i {
         
         font-size:15px;
     }
+
+    .employee-list{
+        width:100%;
+        padding-right:5px;
+    }
+.employee-list  ul > li {
+    display: flex;
+    padding: 10px 15px 5px 38px;
+    text-decoration: none;
+    text-align:right;
+    height:25px;
+}
+
+.c-form .delete-row-span {
+    cursor:pointer;
+    width:10px;
+}
+.c-form .value-list{
+    width:70%;
+    padding-right:10px;
+}
+.delete-row-list {
+    font-size: 14px;
+    color: #c30505;
+    float:right;
+}

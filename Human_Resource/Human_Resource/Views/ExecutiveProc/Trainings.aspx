@@ -29,6 +29,9 @@
                 return false;
             });
 
+
+           
+
         });
 
         //function to close dialog, probably called by a button in the dialog
@@ -74,10 +77,27 @@
             var id = $('#MainContent_hid_trainingId').val();
             var name = $("#MainContent_txt_name").val();
             var description = $("#MainContent_txt_description").val();
+
+
+
+            var empIdsStr = "";
+            var inputs = $('ul li input');
+            inputs.each(function (e) {
+                empIdsStr = empIdsStr + $(this).val() + ',';
+            });
+
+            //$('#MainContent_lst_employee').each(function () {// id of ul
+            //    var li = $(this).find('li');
+            //    var input = li.find('input');
+            //    empIdsStr = empIdsStr + '"' + input.val() + ',"';
+            //});
+            
+
             var parameter = {
                 trainingId: id,
                 name: name,
                 description: description,
+                empIds: empIdsStr,
             };
             $.ajax({
                 type: "POST",
@@ -97,33 +117,42 @@
         }
 
         function addEmp() {
+            
             var empId = $('#MainContent_sel_employee').val();
+            var empName = $("#MainContent_sel_employee option:selected").text();
 
-            var gridView = $("[id*=gv_employees]");
-            var row = gridView.find("tr").eq(1);
+            var lstView = $("[id*=lst_employee]");
 
-            //Check if row is dummy, if yes then remove.
-            if ($.trim(row.find("td").eq(0).html()) == "") {
-                row.remove();
+            if (!$("#MainContent_lst_employee #" + empId).length) {
+
+
+
+                var row = '<li id="' + empId + '"> <input type="hidden"  runat="server" />' + "</li>";
+
+                //Add the row to the employee list
+                lstView.append(row);
+
+                var li = $('#MainContent_lst_employee li:last-child');
+
+                var span = document.createElement('SPAN');
+                span.innerHTML = "<i class='fa fa-close delete-row-list'></i>";
+                span.className = "delete-row-span";
+                span.onclick = function () {
+                    $(this).closest("li").remove();
+                };
+
+                li.append(span);
+
+                var spanName = document.createElement('SPAN');
+                spanName.innerHTML = empName;
+                spanName.className = "value-list";
+                li.append(spanName);
+                var hid_input = li.find("input");
+                hid_input.attr("id", "hid_emp_" + empId);
+                hid_input.val(empId);
+
+                return false;
             }
-
-            //Clone the reference first row.
-            row = row.clone(true);
-
-            //Add the Name value to first cell.
-            var txtName = $("[id*=NameAr]");
-            SetValue(row, 0, "name", txtName);
-
-            //Add the Country value to second cell.
-            var txtCountry = $("[id*=txtCountry]");
-            SetValue(row, 1, "country", txtCountry);
-
-            //Add the row to the GridView.
-            gridView.append(row);
-
-            return false;
-            alert(empId);
-          
 
         }
 
@@ -271,62 +300,10 @@
                                 </button>
                             </div>
                         </div> 
-                  
-                     <asp:GridView ID="gv_employees" runat="server"  CssClass="gridView col-md-12"  
-                                AutoGenerateColumns="False"  Width="90%" 
-                                class="table table-bordered table-condensed table-responsive table-hover ">
-                                <Columns>
+                    <div class ="row employee-list">
+                        <ul id="lst_employee" class="employee-list" runat="server"></ul>
+                    </div>
 
-                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,Sequence%>" ItemStyle-Width="5%">
-                                         <ItemTemplate>
-                                                 <%#Container.DataItemIndex+1 %>                            
-                                         </ItemTemplate> 
-                                       </asp:TemplateField>
-
-                                    
-                                  
-
-                                
-                                              
-                                          
-                                <asp:TemplateField HeaderText="<%$ Resources:Labels,NameAr%>" ItemStyle-Width="25%">
-                                         <ItemTemplate>
-                                                 <asp:Label ID="LblName" runat="server" 
-                                                 Text='<%# Eval("NameAr") %>' />                              
-                                         </ItemTemplate>
-                                        </asp:TemplateField>
-                                
-                                        <asp:TemplateField HeaderText="<%$ Resources:Labels,NameEn%>" ItemStyle-Width="25%">
-                                         <ItemTemplate>
-                                                 <asp:Label ID="LblDescription" runat="server" 
-                                                 Text='<%# Eval("NameEn") %>' />                              
-                                         </ItemTemplate>
-                                        </asp:TemplateField>
-
-                                 
-
-
-                                    <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-edit">
-                                          <ItemTemplate>                     
-                                                     <asp:LinkButton ID="LinkProducts" runat="server" myCustomID='<%# Eval("EmployeeID")%>'  CssClass="td-edit">
-                                                         <asp:Image ImageUrl="~/Images/edit.ico" runat="server" Width="20px" Height="20px" />
-                                                     </asp:LinkButton>  
-                                             </ItemTemplate>
-                                        </asp:TemplateField>
-                                   <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-delete">
-                                             <ItemTemplate>                     
-                                                     <asp:ImageButton  CommandArgument='<%# Eval("EmployeeID")%>' OnCommand="deletedatafromgrid"
-                                                            OnClientClick="return confirm(<%= Resources.Labels.ConfirmDelete %>);return false;"
-                                                            ID="Image1" runat="server" ImageUrl="~/Images/delete.ico" />
-                                                             
-                                             </ItemTemplate>
-                                    </asp:TemplateField> 
-                                   
-                                </Columns>
-                                <EditRowStyle BackColor="#009999" VerticalAlign="Middle" />
-                            </asp:GridView>
-                  
-                    
                 <div class="modal-footer">
                     <button class="btn btn-new"  runat="server" onclick="saveTraining()" id="btn_ads" >
                         <asp:Literal  runat="server" Text=" <%$ Resources:Labels,Save%>" />
