@@ -8,19 +8,34 @@ namespace Human_Resource.App_Code
     public class EventModel
     {
         #region Attributes
-        public int EventID { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string Notes { get; set; }
-        public Nullable<System.DateTime> CreateDate { get; set; }
-        public Nullable<System.DateTime> UpdateDate { get; set; }
-        public Nullable<int> CreateUserID { get; set; }
-        public Nullable<int> UpdateUserID { get; set; }
-        public Nullable<bool> IsActive { get; set; }
+        public int id { get; set; }
+        public string title { get; set; }
+        public string description { get; set; }
+        public DateTime start { get; set; }
+        public DateTime end { get; set; }
         #endregion
 
 
         #region Methods
+
+        public List<EventModel> getEvents(DateTime start, DateTime end)
+        {
+            using ( HRSystemEntities entity = new HRSystemEntities())
+                {
+                var events = entity.events.Where(x => x.IsActive == true)
+                            //    && x.StartDate >= start && x.EndDate <= end)
+                    .Select(x => new EventModel()
+                    {
+                       id = x.EventID,
+                       title  = x.Name,
+                       description = x.Description,
+                       start=(DateTime)x.StartDate,
+                       end=(DateTime)x.EndDate,
+                       
+                    }).ToList();
+                return events;
+            }
+        }
         #endregion
     }
 }

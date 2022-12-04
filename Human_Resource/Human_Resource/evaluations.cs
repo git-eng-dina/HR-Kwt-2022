@@ -16,6 +16,8 @@ namespace Human_Resource
     {
         public int EvaluationID { get; set; }
         public Nullable<int> EmployeeID { get; set; }
+        public Nullable<int> ReviewerID { get; set; }
+        public Nullable<System.DateTime> EvaluationDate { get; set; }
         public string Behavior { get; set; }
         public string Attendance { get; set; }
         public string Punctuality { get; set; }
@@ -45,5 +47,8 @@ namespace Human_Resource
         public Nullable<int> CreateUserID { get; set; }
         public Nullable<int> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
+    
+        public virtual employees employees { get; set; }
+        public virtual employees employees1 { get; set; }
     }
 }

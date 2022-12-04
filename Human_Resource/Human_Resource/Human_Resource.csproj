@@ -145,9 +145,6 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="fullcalendar\fullcalendar.css" />
-    <Content Include="fullcalendar\fullcalendar.min.js" />
-    <Content Include="fullcalendar\jquery-ui-1.7.3.custom.css" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -178,10 +175,6 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="jquery\jquery-1.3.2.min.js" />
-    <Content Include="jquery\jquery-ui-1.7.3.custom.min.js" />
-    <Content Include="jquery\jquery-ui-timepicker-addon-0.6.2.min.js" />
-    <Content Include="jquery\jquery.qtip-1.0.0-rc3.min.js" />
     <Content Include="Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
@@ -197,13 +190,18 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\bootstrap-modal.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\calendarscript.js" />
+    <Content Include="Scripts\calendarScript.js" />
+    <Content Include="Scripts\fullcalendar.js" />
+    <Content Include="Scripts\fullcalendar.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\moment-with-locales.js" />
     <Content Include="Scripts\moment-with-locales.min.js" />
@@ -236,6 +234,7 @@
     <Content Include="Views\Employees\Employees.aspx" />
     <Content Include="Views\Employees\NewEmployee.aspx" />
     <Content Include="Views\Employees\UserAccounts.aspx" />
+    <Content Include="Views\ExecutiveProc\AddEvaluation.aspx" />
     <Content Include="Views\ExecutiveProc\Custodies.aspx" />
     <Content Include="Views\ExecutiveProc\Events.aspx" />
     <Content Include="Views\ExecutiveProc\MaterialsConsumption.aspx" />
@@ -261,6 +260,7 @@
     <Compile Include="App_Code\Confirm.cs" />
     <Compile Include="App_Code\CountriesName.cs" />
     <Compile Include="App_Code\Custodie.cs" />
+    <Compile Include="App_Code\Event.cs" />
     <Compile Include="App_Code\GetData.cs" />
     <Compile Include="App_Code\Job.cs" />
     <Compile Include="App_Code\MaterialsConsumption.cs" />
@@ -368,9 +368,6 @@
     <Compile Include="scheduleVacations.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagrams.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="tasks.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -403,6 +400,13 @@
     </Compile>
     <Compile Include="Views\Employees\UserAccounts.aspx.designer.cs">
       <DependentUpon>UserAccounts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExecutiveProc\AddEvaluation.aspx.cs">
+      <DependentUpon>AddEvaluation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ExecutiveProc\AddEvaluation.aspx.designer.cs">
+      <DependentUpon>AddEvaluation.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\ExecutiveProc\Custodies.aspx.cs">
       <DependentUpon>Custodies.aspx</DependentUpon>
@@ -452,6 +456,12 @@
     </Compile>
     <Compile Include="Views\ExecutiveProc\Tasks.aspx.designer.cs">
       <DependentUpon>Tasks.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExecutiveProc\TasksRespons.ashx.cs">
+      <DependentUpon>TasksRespons.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExecutiveProc\TasksRespons.ashx.designer.cs">
+      <DependentUpon>TasksRespons.ashx.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\ExecutiveProc\Trainings.aspx.cs">
       <DependentUpon>Trainings.aspx</DependentUpon>
@@ -584,6 +594,7 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <Content Include="Views\ExecutiveProc\TasksRespons.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

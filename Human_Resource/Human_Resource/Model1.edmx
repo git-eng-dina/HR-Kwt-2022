@@ -260,6 +260,8 @@ warning 6002: The table/view 'HRSystem.dbo.evaluations' does not have a primary 
           </Key>
           <Property Name="EvaluationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EmployeeID" Type="int" />
+          <Property Name="ReviewerID" Type="int" />
+          <Property Name="EvaluationDate" Type="datetime2" Precision="7" />
           <Property Name="Behavior" Type="nvarchar" MaxLength="100" />
           <Property Name="Attendance" Type="nvarchar" MaxLength="100" />
           <Property Name="Punctuality" Type="nvarchar" MaxLength="100" />
@@ -303,6 +305,9 @@ warning 6002: The table/view 'HRSystem.dbo.evaluations' does not have a primary 
           <Property Name="CreateUserID" Type="int" />
           <Property Name="UpdateUserID" Type="int" />
           <Property Name="IsActive" Type="bit" />
+          <Property Name="StartDate" Type="datetime2" Precision="7" />
+          <Property Name="EndDate" Type="datetime2" Precision="7" />
+          <Property Name="EventDate" Type="datetime2" Precision="7" />
         </EntityType>
         <EntityType Name="hourlyPermissions">
           <Key>
@@ -459,16 +464,6 @@ warning 6002: The table/view 'HRSystem.dbo.evaluations' does not have a primary 
           <Property Name="CreateUserID" Type="int" />
           <Property Name="UpdateUserID" Type="int" />
           <Property Name="IsActive" Type="bit" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="tasks">
           <Key>
@@ -789,6 +784,30 @@ warning 6002: The table/view 'HRSystem.dbo.evaluations' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_evaluations_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="evaluations" Type="Self.evaluations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="evaluations">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_evaluations_employees1">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="evaluations" Type="Self.evaluations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="evaluations">
+              <PropertyRef Name="ReviewerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_hourlyPermissions_employees">
           <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
           <End Role="hourlyPermissions" Type="Self.hourlyPermissions" Multiplicity="*" />
@@ -897,7 +916,6 @@ warning 6002: The table/view 'HRSystem.dbo.evaluations' does not have a primary 
           <EntitySet Name="rewards" EntityType="Self.rewards" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="salaryIncreases" EntityType="Self.salaryIncreases" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="scheduleVacations" EntityType="Self.scheduleVacations" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tasks" EntityType="Self.tasks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="trainings" EntityType="Self.trainings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="vacations" EntityType="Self.vacations" Schema="dbo" store:Type="Tables" />
@@ -921,6 +939,8 @@ warning 6002: The table/view 'HRSystem.dbo.evaluations' does not have a primary 
             <DefiningQuery>SELECT 
     [evaluations].[EvaluationID] AS [EvaluationID], 
     [evaluations].[EmployeeID] AS [EmployeeID], 
+    [evaluations].[ReviewerID] AS [ReviewerID], 
+    [evaluations].[EvaluationDate] AS [EvaluationDate], 
     [evaluations].[Behavior] AS [Behavior], 
     [evaluations].[Attendance] AS [Attendance], 
     [evaluations].[Punctuality] AS [Punctuality], 
@@ -1043,6 +1063,14 @@ warning 6002: The table/view 'HRSystem.dbo.evaluations' does not have a primary 
           <AssociationSet Name="FK_employeesVacations_vacations" Association="Self.FK_employeesVacations_vacations">
             <End Role="vacations" EntitySet="vacations" />
             <End Role="employeesVacations" EntitySet="employeesVacations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_evaluations_employees" Association="Self.FK_evaluations_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="evaluations" EntitySet="evaluations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_evaluations_employees1" Association="Self.FK_evaluations_employees1">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="evaluations" EntitySet="evaluations" />
           </AssociationSet>
           <AssociationSet Name="FK_hourlyPermissions_employees" Association="Self.FK_hourlyPermissions_employees">
             <End Role="employees" EntitySet="employees" />
@@ -1289,6 +1317,8 @@ warning 6002: The table/view 'HRSystem.dbo.evaluations' does not have a primary 
           <NavigationProperty Name="employeesTasks" Relationship="Self.FK_employeesTasks_employees" FromRole="employees" ToRole="employeesTasks" />
           <NavigationProperty Name="employeesTrainings" Relationship="Self.FK_employeesTrainings_employees1" FromRole="employees" ToRole="employeesTrainings" />
           <NavigationProperty Name="employeesVacations" Relationship="Self.FK_employeesVacations_employees" FromRole="employees" ToRole="employeesVacations" />
+          <NavigationProperty Name="evaluations" Relationship="Self.FK_evaluations_employees" FromRole="employees" ToRole="evaluations" />
+          <NavigationProperty Name="evaluations1" Relationship="Self.FK_evaluations_employees1" FromRole="employees" ToRole="evaluations" />
           <NavigationProperty Name="hourlyPermissions" Relationship="Self.FK_hourlyPermissions_employees" FromRole="employees" ToRole="hourlyPermissions" />
           <NavigationProperty Name="Images" Relationship="Self.FK_Images_employees" FromRole="employees" ToRole="Images" />
           <NavigationProperty Name="materialsConsumption" Relationship="Self.FK_materialsConsumption_employees" FromRole="employees" ToRole="materialsConsumption" />
@@ -1358,6 +1388,9 @@ warning 6002: The table/view 'HRSystem.dbo.evaluations' does not have a primary 
           <Property Name="UpdateUserID" Type="Int32" />
           <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="EemployeesEvents" Relationship="Self.FK_EemployeesEvents_events" FromRole="events" ToRole="EemployeesEvents" />
+          <Property Name="StartDate" Type="DateTime" Precision="7" />
+          <Property Name="EndDate" Type="DateTime" Precision="7" />
+          <Property Name="EventDate" Type="DateTime" Precision="7" />
         </EntityType>
         <EntityType Name="hourlyPermissions">
           <Key>
@@ -1529,16 +1562,6 @@ warning 6002: The table/view 'HRSystem.dbo.evaluations' does not have a primary 
           <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="employeesScheduleVacations" Relationship="Self.FK_employeesScheduleVacations_scheduleVacations" FromRole="scheduleVacations" ToRole="employeesScheduleVacations" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
         <EntityType Name="tasks">
           <Key>
             <PropertyRef Name="TaskID" />
@@ -1604,6 +1627,46 @@ warning 6002: The table/view 'HRSystem.dbo.evaluations' does not have a primary 
           <Property Name="BossDone" Type="Boolean" />
           <NavigationProperty Name="employees" Relationship="Self.FK_employeesTasks_employees" FromRole="employeesTasks" ToRole="employees" />
           <NavigationProperty Name="tasks" Relationship="Self.FK_employeesTasks_tasks" FromRole="employeesTasks" ToRole="tasks" />
+        </EntityType>
+        <EntityType Name="evaluations">
+          <Key>
+            <PropertyRef Name="EvaluationID" />
+          </Key>
+          <Property Name="EvaluationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="ReviewerID" Type="Int32" />
+          <Property Name="EvaluationDate" Type="DateTime" Precision="7" />
+          <Property Name="Behavior" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Attendance" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Punctuality" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Productivity" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Creativity" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ClientRelation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Initiative" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Communication" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Cooperation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StrategicThinking" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HandleStressful" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ListeningSkills" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MeetingDeadlines" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Performance" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="JobKnowledge" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="OrganizeIdea" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RespondResourcefully" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ConfrontsProblems" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerNeeds" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="OrganizationVision" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StayFocused" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="OverAllProgress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="CreateUserID" Type="Int32" />
+          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="employees" Relationship="Self.FK_evaluations_employees" FromRole="evaluations" ToRole="employees" />
+          <NavigationProperty Name="employees1" Relationship="Self.FK_evaluations_employees1" FromRole="evaluations" ToRole="employees" />
         </EntityType>
         <Association Name="FK_branches_companies">
           <End Role="companies" Type="Self.companies" Multiplicity="0..1" />
@@ -1845,6 +1908,30 @@ warning 6002: The table/view 'HRSystem.dbo.evaluations' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_evaluations_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="evaluations" Type="Self.evaluations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="evaluations">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_evaluations_employees1">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="evaluations" Type="Self.evaluations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="evaluations">
+              <PropertyRef Name="ReviewerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_hourlyPermissions_employees">
           <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
           <End Role="hourlyPermissions" Type="Self.hourlyPermissions" Multiplicity="*" />
@@ -1989,11 +2076,11 @@ warning 6002: The table/view 'HRSystem.dbo.evaluations' does not have a primary 
           <EntitySet Name="rewards" EntityType="Self.rewards" />
           <EntitySet Name="salaryIncreases" EntityType="Self.salaryIncreases" />
           <EntitySet Name="scheduleVacations" EntityType="Self.scheduleVacations" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="tasks" EntityType="Self.tasks" />
           <EntitySet Name="trainings" EntityType="Self.trainings" />
           <EntitySet Name="vacations" EntityType="Self.vacations" />
           <EntitySet Name="employeesTasks" EntityType="Self.employeesTasks" />
+          <EntitySet Name="evaluations" EntityType="Self.evaluations" />
           <AssociationSet Name="FK_branches_companies" Association="Self.FK_branches_companies">
             <End Role="companies" EntitySet="companies" />
             <End Role="branches" EntitySet="branches" />
@@ -2074,6 +2161,14 @@ warning 6002: The table/view 'HRSystem.dbo.evaluations' does not have a primary 
             <End Role="employees" EntitySet="employees" />
             <End Role="employeesVacations" EntitySet="employeesVacations" />
           </AssociationSet>
+          <AssociationSet Name="FK_evaluations_employees" Association="Self.FK_evaluations_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="evaluations" EntitySet="evaluations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_evaluations_employees1" Association="Self.FK_evaluations_employees1">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="evaluations" EntitySet="evaluations" />
+          </AssociationSet>
           <AssociationSet Name="FK_hourlyPermissions_employees" Association="Self.FK_hourlyPermissions_employees">
             <End Role="employees" EntitySet="employees" />
             <End Role="hourlyPermissions" EntitySet="hourlyPermissions" />
@@ -2114,44 +2209,7 @@ warning 6002: The table/view 'HRSystem.dbo.evaluations' does not have a primary 
             <End Role="tasks" EntitySet="tasks" />
             <End Role="employeesTasks" EntitySet="employeesTasks" />
           </AssociationSet>
-          <EntitySet Name="evaluations" EntityType="HRSystemModel.evaluations" />
         </EntityContainer>
-        <EntityType Name="evaluations">
-          <Key>
-            <PropertyRef Name="EvaluationID" />
-          </Key>
-          <Property Name="EvaluationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EmployeeID" Type="Int32" />
-          <Property Name="Behavior" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Attendance" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Punctuality" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Productivity" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Creativity" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ClientRelation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Initiative" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Communication" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Cooperation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="StrategicThinking" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="HandleStressful" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ListeningSkills" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="MeetingDeadlines" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Performance" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="JobKnowledge" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="OrganizeIdea" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="RespondResourcefully" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ConfrontsProblems" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="CustomerNeeds" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="OrganizationVision" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="StayFocused" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="OverAllProgress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CreateDate" Type="DateTime" Precision="7" />
-          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
-          <Property Name="CreateUserID" Type="Int32" />
-          <Property Name="UpdateUserID" Type="Int32" />
-          <Property Name="IsActive" Type="Boolean" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2400,6 +2458,9 @@ warning 6002: The table/view 'HRSystem.dbo.evaluations' does not have a primary 
           <EntitySetMapping Name="events">
             <EntityTypeMapping TypeName="HRSystemModel.events">
               <MappingFragment StoreEntitySet="events">
+                <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
                 <ScalarProperty Name="EventID" ColumnName="EventID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -2579,17 +2640,6 @@ warning 6002: The table/view 'HRSystem.dbo.evaluations' does not have a primary 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="HRSystemModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tasks">
             <EntityTypeMapping TypeName="HRSystemModel.tasks">
               <MappingFragment StoreEntitySet="tasks">
@@ -2657,37 +2707,39 @@ warning 6002: The table/view 'HRSystem.dbo.evaluations' does not have a primary 
           <EntitySetMapping Name="evaluations">
             <EntityTypeMapping TypeName="HRSystemModel.evaluations">
               <MappingFragment StoreEntitySet="evaluations">
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
-                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
-                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="Notes" ColumnName="Notes" />
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
-                <ScalarProperty Name="OverAllProgress" ColumnName="OverAllProgress" />
-                <ScalarProperty Name="StayFocused" ColumnName="StayFocused" />
-                <ScalarProperty Name="OrganizationVision" ColumnName="OrganizationVision" />
-                <ScalarProperty Name="CustomerNeeds" ColumnName="CustomerNeeds" />
-                <ScalarProperty Name="ConfrontsProblems" ColumnName="ConfrontsProblems" />
-                <ScalarProperty Name="RespondResourcefully" ColumnName="RespondResourcefully" />
-                <ScalarProperty Name="OrganizeIdea" ColumnName="OrganizeIdea" />
-                <ScalarProperty Name="JobKnowledge" ColumnName="JobKnowledge" />
-                <ScalarProperty Name="Performance" ColumnName="Performance" />
-                <ScalarProperty Name="MeetingDeadlines" ColumnName="MeetingDeadlines" />
-                <ScalarProperty Name="ListeningSkills" ColumnName="ListeningSkills" />
-                <ScalarProperty Name="HandleStressful" ColumnName="HandleStressful" />
-                <ScalarProperty Name="StrategicThinking" ColumnName="StrategicThinking" />
-                <ScalarProperty Name="Cooperation" ColumnName="Cooperation" />
-                <ScalarProperty Name="Communication" ColumnName="Communication" />
-                <ScalarProperty Name="Initiative" ColumnName="Initiative" />
-                <ScalarProperty Name="ClientRelation" ColumnName="ClientRelation" />
-                <ScalarProperty Name="Creativity" ColumnName="Creativity" />
-                <ScalarProperty Name="Productivity" ColumnName="Productivity" />
-                <ScalarProperty Name="Punctuality" ColumnName="Punctuality" />
-                <ScalarProperty Name="Attendance" ColumnName="Attendance" />
-                <ScalarProperty Name="Behavior" ColumnName="Behavior" />
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="EvaluationID" ColumnName="EvaluationID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="ReviewerID" ColumnName="ReviewerID" />
+                <ScalarProperty Name="EvaluationDate" ColumnName="EvaluationDate" />
+                <ScalarProperty Name="Behavior" ColumnName="Behavior" />
+                <ScalarProperty Name="Attendance" ColumnName="Attendance" />
+                <ScalarProperty Name="Punctuality" ColumnName="Punctuality" />
+                <ScalarProperty Name="Productivity" ColumnName="Productivity" />
+                <ScalarProperty Name="Creativity" ColumnName="Creativity" />
+                <ScalarProperty Name="ClientRelation" ColumnName="ClientRelation" />
+                <ScalarProperty Name="Initiative" ColumnName="Initiative" />
+                <ScalarProperty Name="Communication" ColumnName="Communication" />
+                <ScalarProperty Name="Cooperation" ColumnName="Cooperation" />
+                <ScalarProperty Name="StrategicThinking" ColumnName="StrategicThinking" />
+                <ScalarProperty Name="HandleStressful" ColumnName="HandleStressful" />
+                <ScalarProperty Name="ListeningSkills" ColumnName="ListeningSkills" />
+                <ScalarProperty Name="MeetingDeadlines" ColumnName="MeetingDeadlines" />
+                <ScalarProperty Name="Performance" ColumnName="Performance" />
+                <ScalarProperty Name="JobKnowledge" ColumnName="JobKnowledge" />
+                <ScalarProperty Name="OrganizeIdea" ColumnName="OrganizeIdea" />
+                <ScalarProperty Name="RespondResourcefully" ColumnName="RespondResourcefully" />
+                <ScalarProperty Name="ConfrontsProblems" ColumnName="ConfrontsProblems" />
+                <ScalarProperty Name="CustomerNeeds" ColumnName="CustomerNeeds" />
+                <ScalarProperty Name="OrganizationVision" ColumnName="OrganizationVision" />
+                <ScalarProperty Name="StayFocused" ColumnName="StayFocused" />
+                <ScalarProperty Name="OverAllProgress" ColumnName="OverAllProgress" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

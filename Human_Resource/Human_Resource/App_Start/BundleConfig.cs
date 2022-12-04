@@ -20,7 +20,10 @@ namespace Human_Resource
                             "~/Scripts/WebForms/GridView.js",
                             "~/Scripts/WebForms/DetailsView.js",
                             "~/Scripts/WebForms/TreeView.js",
-                            "~/Scripts/WebForms/WebParts.js"));
+                            "~/Scripts/WebForms/WebParts.js",
+                            "~/Scripts/bootstrap-modal.js",
+                            "~/Scripts/jquery-ui.js"));
+                            //"~/Scripts/jquery-ui.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                   "~/en/js/bootstrap.js"));
