@@ -1096,6 +1096,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New Event.
+        /// </summary>
+        internal static string NewEvent {
+            get {
+                return ResourceManager.GetString("NewEvent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Notes.
         /// </summary>
         internal static string Notes {
