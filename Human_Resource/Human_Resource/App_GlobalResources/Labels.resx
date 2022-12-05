@@ -678,4 +678,7 @@
   <data name="Reviewer" xml:space="preserve">
     <value>Reviewer</value>
   </data>
+  <data name="Attendance" xml:space="preserve">
+    <value>Attendance</value>
+  </data>
 </root>

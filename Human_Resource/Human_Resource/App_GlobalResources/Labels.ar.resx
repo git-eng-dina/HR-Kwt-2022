@@ -678,4 +678,7 @@
   <data name="Reviewer" xml:space="preserve">
     <value>المقيم</value>
   </data>
+  <data name="Attendance" xml:space="preserve">
+    <value>الحضور</value>
+  </data>
 </root>
