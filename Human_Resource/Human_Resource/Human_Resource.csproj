@@ -260,6 +260,7 @@
     <Compile Include="App_Code\Confirm.cs" />
     <Compile Include="App_Code\CountriesName.cs" />
     <Compile Include="App_Code\Custodie.cs" />
+    <Compile Include="App_Code\Evaluation.cs" />
     <Compile Include="App_Code\Event.cs" />
     <Compile Include="App_Code\GetData.cs" />
     <Compile Include="App_Code\Job.cs" />
