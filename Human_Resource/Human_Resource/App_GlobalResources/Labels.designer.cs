@@ -403,6 +403,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Comment.
+        /// </summary>
+        internal static string Comment {
+            get {
+                return ResourceManager.GetString("Comment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Communication.
         /// </summary>
         internal static string Communication {
@@ -687,6 +696,15 @@ namespace Resources {
         internal static string ErrorOccured {
             get {
                 return ResourceManager.GetString("ErrorOccured", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Evaluation Date.
+        /// </summary>
+        internal static string EvaluationDate {
+            get {
+                return ResourceManager.GetString("EvaluationDate", resourceCulture);
             }
         }
         
@@ -1362,6 +1380,15 @@ namespace Resources {
         internal static string RespondResourcefully {
             get {
                 return ResourceManager.GetString("RespondResourcefully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reviewer.
+        /// </summary>
+        internal static string Reviewer {
+            get {
+                return ResourceManager.GetString("Reviewer", resourceCulture);
             }
         }
         

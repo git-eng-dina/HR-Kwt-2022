@@ -669,4 +669,13 @@
   <data name="Start" xml:space="preserve">
     <value>البداية</value>
   </data>
+  <data name="Comment" xml:space="preserve">
+    <value>التعليق</value>
+  </data>
+  <data name="EvaluationDate" xml:space="preserve">
+    <value>تاريخ التقييم</value>
+  </data>
+  <data name="Reviewer" xml:space="preserve">
+    <value>المقيم</value>
+  </data>
 </root>
