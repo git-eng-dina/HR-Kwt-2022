@@ -660,7 +660,13 @@
   <data name="veryExcellent" xml:space="preserve">
     <value>Significantly Exceeds Expectations</value>
   </data>
+  <data name="End" xml:space="preserve">
+    <value>End</value>
+  </data>
   <data name="NewEvent" xml:space="preserve">
     <value>New Event</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
   </data>
 </root>

@@ -660,7 +660,13 @@
   <data name="veryExcellent" xml:space="preserve">
     <value>يفوق التوقعات بشكل كبير</value>
   </data>
+  <data name="End" xml:space="preserve">
+    <value>النهاية</value>
+  </data>
   <data name="NewEvent" xml:space="preserve">
     <value>فعالية جديدة</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>البداية</value>
   </data>
 </root>
