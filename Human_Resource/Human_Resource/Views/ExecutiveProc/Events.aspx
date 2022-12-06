@@ -75,10 +75,10 @@
                     <div class="row">
                      <div class="form-group" style="display:block">
                               <span class="time-span"><asp:Literal  runat="server" Text="<%$ Resources:Labels,Start%>" /></span>
-                            <input type="datetime-local" class="form-control calendar" style="width:40%" id="start" runat="server">
+                            <input type="datetime-local" class="form-control calendar" style="width:200px" id="start" runat="server">
  
                             <span class="time-span"><asp:Literal  runat="server" Text="<%$ Resources:Labels,End%>" /></span>
-                            <input type="datetime-local" class="form-control input-lg calendar" id="end" style="width:40%"  runat="server" value="2000-11-01"   />                            
+                            <input type="datetime-local" class="form-control input-lg calendar" id="end" style="width:200px"  runat="server" value="2000-11-01"   />                            
                     </div>
                     </div>
                         </div>

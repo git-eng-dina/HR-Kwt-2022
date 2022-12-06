@@ -258,7 +258,7 @@ $(document).ready(function () {
         closeOnEscape: true,
         position: { my: 'top', at: 'top+75' },
         autoOpen: false,
-        draggable: true,
+        draggable: false,
         overlay: { opacity: 0.5, background: 'black' },
 
     });
