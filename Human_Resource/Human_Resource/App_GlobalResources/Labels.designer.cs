@@ -232,6 +232,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Attendance.
+        /// </summary>
+        internal static string Attendance {
+            get {
+                return ResourceManager.GetString("Attendance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Basic Information.
         /// </summary>
         internal static string BasicInformation {
@@ -399,6 +408,15 @@ namespace Resources {
         internal static string ClientRelation {
             get {
                 return ResourceManager.GetString("ClientRelation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comment.
+        /// </summary>
+        internal static string Comment {
+            get {
+                return ResourceManager.GetString("Comment", resourceCulture);
             }
         }
         
@@ -687,6 +705,15 @@ namespace Resources {
         internal static string ErrorOccured {
             get {
                 return ResourceManager.GetString("ErrorOccured", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Evaluation Date.
+        /// </summary>
+        internal static string EvaluationDate {
+            get {
+                return ResourceManager.GetString("EvaluationDate", resourceCulture);
             }
         }
         
@@ -1362,6 +1389,15 @@ namespace Resources {
         internal static string RespondResourcefully {
             get {
                 return ResourceManager.GetString("RespondResourcefully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reviewer.
+        /// </summary>
+        internal static string Reviewer {
+            get {
+                return ResourceManager.GetString("Reviewer", resourceCulture);
             }
         }
         
