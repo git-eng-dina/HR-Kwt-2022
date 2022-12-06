@@ -8,11 +8,12 @@ namespace Human_Resource.App_Code
     public class EventModel
     {
         #region Attributes
-        public int id { get; set; }
+        public long id { get; set; }
         public string title { get; set; }
         public string description { get; set; }
         public DateTime start { get; set; }
         public DateTime end { get; set; }
+        public Nullable<int> EmployeeID { get; set; }
         #endregion
 
 
@@ -34,6 +35,75 @@ namespace Human_Resource.App_Code
                        
                     }).ToList();
                 return events;
+            }
+        }
+
+        public int Save(EventModel eventModel,int[] empIds)
+        {
+            try
+            {
+                events events;
+
+                using (HRSystemEntities entity = new HRSystemEntities())
+                {
+                    if (eventModel.id.Equals(0))
+                    {
+                        events = new events()
+                        {
+                            Name = eventModel.title,
+                            Description = eventModel.description,
+                            EmployeeID = eventModel.EmployeeID,
+                            StartDate = eventModel.start,
+                            EndDate = eventModel.end,
+                            
+                            IsActive = true,
+                            CreateUserID = eventModel.EmployeeID,
+                            UpdateUserID = eventModel.EmployeeID,
+                            CreateDate = DateTime.Now,
+                            UpdateDate = DateTime.Now,
+                        };
+                        events = entity.events.Add(events);
+                    }
+                    else
+                    {
+                        //delete event tags
+                        var tags = entity.EemployeesEvents.Where(x => x.EventID == eventModel.id).ToList();
+                        entity.EemployeesEvents.RemoveRange(tags);
+
+                        events = entity.events.Find(eventModel.id);
+                        events.Name = eventModel.title;
+                        events.Description = eventModel.description;
+                        events.StartDate = eventModel.start;
+                        events.EndDate = eventModel.end;
+                        events.UpdateUserID = eventModel.EmployeeID;
+                        events.UpdateDate = DateTime.Now;
+                    }
+                  
+                    entity.SaveChanges();
+
+                    //add event tags
+                    foreach(var id in empIds)
+                    {
+                        var empTag = new EemployeesEvents()
+                        {
+                            EventID = events.EventID,
+                            EmployeeID = id,
+                            IsActive = true,
+                            CreateDate = DateTime.Now,
+                            UpdateDate = DateTime.Now,
+                            CreateUserID = eventModel.EmployeeID,
+                            UpdateUserID = eventModel.EmployeeID,
+                        };
+                        entity.EemployeesEvents.Add(empTag);
+                    }
+                    entity.SaveChanges();
+                }
+                return events.EventID;
+            }
+
+            catch
+            {
+                return 0;
             }
         }
         #endregion

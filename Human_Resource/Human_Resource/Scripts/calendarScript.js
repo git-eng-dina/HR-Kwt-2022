@@ -2,6 +2,7 @@
 var addStartDate;
 var addEndDate;
 var globalAllDay;
+var CustomButtonText;
 
 function updateEvent(event, element) {
     alert(event.description);
@@ -163,7 +164,13 @@ function get_eventsdata(start, end) {
     });
 }
 
-function initFullcalendar(events) {
+function ShowDialog() {
+
+    $("#dialog").dialog("open");
+    $(".ui-dialog-titlebar").hide();
+    var retval = "";
+}
+function initFullcalendar(events, AddBtnText) {
     $('#MainContent_calendar').fullCalendar({
         theme: true,
         header: {
@@ -173,9 +180,9 @@ function initFullcalendar(events) {
         },
         customButtons: {
             customBtn: {
-                text: 'Custom Button',
+                text: CustomButtonText,
                 click: function () {
-                    alert('This custom button is hot! 🔥\nNow go have fun!');
+                    ShowDialog();
                 }
             }
         },
@@ -205,8 +212,58 @@ function initFullcalendar(events) {
     });
 }
 
+function closeDialog() {
+    $("#dialog").dialog("close");
+}
+
+function saveEvent(eventId) {
+    var title = $("#MainContent_title").val();
+    var description = $("#MainContent_description").val();
+    var start = $("#MainContent_start").val();
+    var end = $("#MainContent_end").val();
+    alert(start);
+    var parameter = {
+        title: title,
+        description: description,
+        start: start,
+        end: end,
+        eventId: '0'
+    };
+    $.ajax({
+        type: "POST",
+        url: "Events.aspx/SaveEvent",
+        data: JSON.stringify(parameter),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            window.top.location = "branches.aspx";
+
+        },
+        failure: function (response) {
+            alert(response.d);
+        }
+    });
+
+}
 $(document).ready(function () {
-    get_eventsdata('2017-10-10', '2017-11-10');
+   // get_eventsdata('2017-10-10', '2017-11-10');
+    // add dialog
+    $myWindow = $('#dialog');
+
+    //instantiate the dialog
+    $myWindow.dialog({
+        height: 500,
+        width: 600,
+        modal: true,
+        closeOnEscape: true,
+        position: { my: 'top', at: 'top+75' },
+        autoOpen: false,
+        draggable: true,
+        overlay: { opacity: 0.5, background: 'black' },
+
+    });
+
+
     // update Dialog
     $('#updatedialog').dialog({
         autoOpen: false,

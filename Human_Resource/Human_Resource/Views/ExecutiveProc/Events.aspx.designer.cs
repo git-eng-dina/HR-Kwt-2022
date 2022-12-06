@@ -58,22 +58,22 @@ namespace Human_Resource.Views.ExecutiveProc {
         protected global::System.Web.UI.WebControls.TextBox description;
         
         /// <summary>
-        /// txt_address control.
+        /// start control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_address;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl start;
         
         /// <summary>
-        /// emp control.
+        /// end control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect emp;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl end;
         
         /// <summary>
         /// btn_ads control.

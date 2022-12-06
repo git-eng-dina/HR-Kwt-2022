@@ -45,7 +45,7 @@ namespace Human_Resource.Views.ExecutiveProc
 
             result += "[";
 
-            List<int> idList = new List<int>();
+            List<long> idList = new List<long>();
             EventModel eventModel = new EventModel();
             foreach (EventModel cevent in eventModel.getEvents(start, end))
             {
@@ -107,6 +107,50 @@ namespace Human_Resource.Views.ExecutiveProc
 
             long epoch = (value.ToUniversalTime().Ticks - 621355968000000000) / 10000000;
             return epoch;
+
+        }
+
+        [WebMethod(EnableSession = true)]
+        public static string SaveEvent(string title, string description, string start, string end,string eventId, string empIds)
+        {
+            try
+            {
+                EventModel eventModel = new EventModel();
+                if (eventId != "")
+                    eventModel.id = long.Parse(eventId);
+                else
+                    eventModel.id = 0;
+                eventModel.title = title;
+                eventModel.description = description;
+                eventModel.start = DateTime.Parse(start);
+                eventModel.end = DateTime.Parse(end);
+
+                if (HttpContext.Current.Session["user_id"] != null && HttpContext.Current.Session["user_id"].ToString() != "")
+                    eventModel.EmployeeID = int.Parse(HttpContext.Current.Session["user_id"].ToString());
+
+                if (empIds.EndsWith(","))
+                    empIds = empIds.Substring(0, empIds.Length - 1);
+                var Ids = empIds.Split(',');
+
+               int[] IdsArray =  new int[Ids.Length];
+                for (int i = 0; i < Ids.Length; i++)
+                {
+
+                    IdsArray[i] = int.Parse(Ids[i]);
+                }
+
+                int eventIdRes = eventModel.Save(eventModel, IdsArray);
+                if (eventIdRes != 0)
+                {
+                    return "1";
+                }
+                return "0";
+            }
+            catch
+            {
+                return "0";
+
+            }
 
         }
     }
