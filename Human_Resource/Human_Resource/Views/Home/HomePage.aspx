@@ -89,6 +89,22 @@
                     </div>
                 </div>
             </div>
+                <div class="col-md-6">
+                <div class="info-block">
+                    <span class="flag purble"></span>
+                    <div class="row">
+                        <div class="col-4 text-center mt-2 br-3 vacations">
+                              <i class="fa fa-calendar-check" style="font-size:40px;color:#bc80ef"></i>
+                        </div>
+                        <div class="col-8 text-center">
+                            <label> <asp:Literal  runat="server" Text="<%$ Resources:Labels,Vacations%>" /></label>
+                          <p id="lbl_vacations"  runat="server" >
+                                <%--<a class="a-enter" href="@Url.Action("SalesInvoices", "Agent", new { agentId= "xxx"})" title="">@AppResource.Enter</a>--%>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>         

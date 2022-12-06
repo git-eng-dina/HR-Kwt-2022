@@ -889,6 +889,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Human Resource.
+        /// </summary>
+        internal static string HumanResource {
+            get {
+                return ResourceManager.GetString("HumanResource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Initiative.
         /// </summary>
         internal static string Initiative {

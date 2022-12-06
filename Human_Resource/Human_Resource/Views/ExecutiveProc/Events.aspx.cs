@@ -15,11 +15,29 @@ namespace Human_Resource.Views.ExecutiveProc
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                EmployeeModel emp = new EmployeeModel();
+                var employees = emp.GetEmployees(true, true);
+                employees = employees.Where(x => x.EmployeeID != int.Parse(HttpContext.Current.Session["user_id"].ToString())).ToList();
+                sel_employee.DataSource = employees;
+                sel_employee.DataValueField = "EmployeeID";
+                if (Session["CultureName"] != null && Session["CultureName"].ToString().ToLower() == "en-us")
+                {
+                    sel_employee.DataTextField = "NameEn";
 
+                }
+                else
+                {
+                    sel_employee.DataTextField = "NameAr";
+                }
+
+                DataBind();
+            }
         }
 
         [WebMethod(EnableSession = true)]
-        public void ProcessRequest(string startDate,string endDate)
+        public static List<EventModel> ProcessRequest(string startDate,string endDate)
         {
            // context.Response.ContentType = "application/json";
 
@@ -37,8 +55,8 @@ namespace Human_Resource.Views.ExecutiveProc
             //}
             //start = start.AddSeconds(double.Parse(context.Request.QueryString["start"]));
             //end = end.AddSeconds(double.Parse(context.Request.QueryString["end"]));
-            start = start.AddSeconds(double.Parse(startDate));
-            end = end.AddSeconds(double.Parse(endDate));
+            //start = start.AddSeconds(double.Parse(startDate));
+            //end = end.AddSeconds(double.Parse(endDate));
 
 
             String result = String.Empty;
@@ -60,11 +78,12 @@ namespace Human_Resource.Views.ExecutiveProc
 
             result += "]";
             //store list of event ids in Session, so that it can be accessed in web methods
-            Context.Session["idList"] = idList;
+           // Context.Session["idList"] = idList;
 
-           Context.Response.Write(result);
+            //Context.Response.Write(result);
+            return eventModel.getEvents(start, end);
         }
-        private String convertCalendarEventIntoString(EventModel cevent)
+        private static String convertCalendarEventIntoString(EventModel cevent)
         {
             String allDay = "true";
             if (ConvertToTimestamp(cevent.start).ToString().Equals(ConvertToTimestamp(cevent.end).ToString()))
@@ -101,7 +120,7 @@ namespace Human_Resource.Views.ExecutiveProc
                       "},";
         }
 
-        private long ConvertToTimestamp(DateTime value)
+        private static long ConvertToTimestamp(DateTime value)
         {
 
 
@@ -111,7 +130,7 @@ namespace Human_Resource.Views.ExecutiveProc
         }
 
         [WebMethod(EnableSession = true)]
-        public static string SaveEvent(string title, string description, string start, string end,string eventId, string empIds)
+        public static string SaveEvent(string title, string description, string start, string end, string empIds, string eventId)
         {
             try
             {
@@ -139,7 +158,7 @@ namespace Human_Resource.Views.ExecutiveProc
                     IdsArray[i] = int.Parse(Ids[i]);
                 }
 
-                int eventIdRes = eventModel.Save(eventModel, IdsArray);
+                long eventIdRes = eventModel.Save(eventModel, IdsArray);
                 if (eventIdRes != 0)
                 {
                     return "1";

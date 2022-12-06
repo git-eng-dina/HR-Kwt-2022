@@ -16,12 +16,14 @@ namespace Human_Resource.Views.Home
             var eventsCount = 15;
             var tasksCount = 15;
             var trainingsCount = 15;
+            var vacations = 20;
 
             lbl_employees.InnerText = employeesCount.ToString();
             lbl_expiredPassports.InnerText = expiredPassCount.ToString();
             lbl_events.InnerText = eventsCount.ToString();
             lbl_tasks.InnerText = tasksCount.ToString();
             lbl_trainings.InnerText = trainingsCount.ToString();
+            lbl_vacations.InnerText = vacations.ToString();
         }
     }
 }

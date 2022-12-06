@@ -17,7 +17,7 @@
   <script>
       $(document).ready(function () {
           CustomButtonText = "<%= Resources.Labels.NewEvent%>";
-          get_eventsdata('2017-10-10', '2017-11-10');
+         // get_eventsdata('2017-10-10', '2017-11-10');
       });
   </script>
 
@@ -42,7 +42,7 @@
          </div>
     </section>
 
-      <div id="dialog"  class="Modal-BackGround .Modal-Indx-form" style="overflow:hidden;padding:0px">
+      <div id="dialog"  class="Modal-BackGround " style="overflow:hidden;padding:0px">
 
         <div class="modal-dialog body">
         <div class ="modal-content panel panel-default">
@@ -81,7 +81,19 @@
                             <input type="datetime-local" class="form-control input-lg calendar" id="end" style="width:200px"  runat="server" value="2000-11-01"   />                            
                     </div>
                     </div>
-                        </div>
+                     <div class ="row">
+                     <div class="form-group" style="display:block">
+                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Employees%>" /></span>
+                                 <select runat="server" id="sel_employee" name="sel_employee" style="width:70%" class="form-control input-lg" ></select>
+                                  <button class="add-arrow-btn"  runat="server" onclick="addEmp()" id="Button1" >
+                                   <i class="fas fa-arrow-alt-circle-down"></i>
+                                </button>
+                            </div>
+                        </div> 
+                 <div class ="row employee-list">
+                        <ul id="lst_employee" class="employee-list" runat="server"></ul>
+                    </div>
+                 </div>
                   </div>
                     
                 <div class="modal-footer">

@@ -10,7 +10,7 @@
 <head runat="server">
     <meta charset="utf-8" />
      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Terrorism Detection</title>
+    <title><asp:Literal runat="server" Text="<%$ Resources:Labels,HumanResource%>" /></title>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>

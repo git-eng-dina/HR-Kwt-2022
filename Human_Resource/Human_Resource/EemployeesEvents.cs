@@ -15,7 +15,7 @@ namespace Human_Resource
     public partial class EemployeesEvents
     {
         public int EmployeesEventsID { get; set; }
-        public Nullable<int> EventID { get; set; }
+        public Nullable<long> EventID { get; set; }
         public int EmployeeID { get; set; }
         public string Notes { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }

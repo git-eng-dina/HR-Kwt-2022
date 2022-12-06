@@ -207,6 +207,12 @@ body a:hover{text-decoration: none !important;}
   border-left: 1px solid #ffb36b;
   height: 40px;
 }
+.statis .info-block div.vacations {
+    fill: #bc80ef;
+    width: 100%;
+    border-left: 1px solid #bc80ef;
+    height: 40px;
+}
 
 .statis .info-block div.users, .statis .info-block svg.delivery {
   fill: #00cc9e;
@@ -743,7 +749,7 @@ nav .logo {
     }
 
     .c-form input, select, option {
-        font-weight: bold;
+        /*font-weight: bold;*/
         display: block;
         width: 80%;
         float: right;
@@ -841,6 +847,7 @@ nav .logo {
     width: 100%;
     min-height: calc(75% - 20px);
     margin-top: 0px;
+    max-width:unset;
 }
 .modal-content {
     position: relative;
@@ -1263,4 +1270,15 @@ input[type=checkbox], input[type=radio] {
     font-size: 14px;
     color: #c30505;
     float:right;
+}
+
+.c-form .time-span {
+    display: block;
+    width: 10%;
+    float: right;
+    text-align: right;
+    margin-top: 7px;
+    border: 0px;
+    padding-right: 10px;
+    margin-right:10px;
 }

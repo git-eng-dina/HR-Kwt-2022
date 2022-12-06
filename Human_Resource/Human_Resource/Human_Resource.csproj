@@ -131,6 +131,7 @@
     <Content Include="Content\ar\js\main.js" />
     <Content Include="Content\ar\js\popper.min.js" />
     <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\css\calendar-blue.css" />
     <Content Include="Content\css\font-awesome.css" />
     <Content Include="Content\css\site.css" />
     <Content Include="Content\css\style.css" />
@@ -369,6 +370,15 @@
     <Compile Include="scheduleVacations.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="tasks.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -457,12 +467,6 @@
     </Compile>
     <Compile Include="Views\ExecutiveProc\Tasks.aspx.designer.cs">
       <DependentUpon>Tasks.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ExecutiveProc\TasksRespons.ashx.cs">
-      <DependentUpon>TasksRespons.ashx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ExecutiveProc\TasksRespons.ashx.designer.cs">
-      <DependentUpon>TasksRespons.ashx.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\ExecutiveProc\Trainings.aspx.cs">
       <DependentUpon>Trainings.aspx</DependentUpon>
@@ -595,7 +599,6 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
-    <Content Include="Views\ExecutiveProc\TasksRespons.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

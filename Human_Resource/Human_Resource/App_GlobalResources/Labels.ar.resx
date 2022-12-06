@@ -681,4 +681,7 @@
   <data name="Attendance" xml:space="preserve">
     <value>الحضور</value>
   </data>
+  <data name="HumanResource" xml:space="preserve">
+    <value>إدارة الموارد البشرية</value>
+  </data>
 </root>
