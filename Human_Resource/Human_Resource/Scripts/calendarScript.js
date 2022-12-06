@@ -150,16 +150,40 @@ function qTipText(start, end, description) {
     return text;
 }
 function get_eventsdata(start, end) {
+    alert('getEvents');
+    var parameter = {
+        startDate: start,
+        endDate: end
+    };
+
     $.ajax({
         type: "POST",
+        dataType: "text json",
+        contentType: "application/json",
         url: 'Events.aspx/ProcessRequest',
-        data: {
-            start: start,
-            end: end
-        },
+        data: JSON.stringify(parameter),
         success: function (resp) {
+            if (resp) alert("ok");
+            else alert("else");
+            alert('success');
+            //$.each(resp, function (i, v) {
+            //    event_array.push({
+            //        userid: v.EmployeeID,
+            //        start: moment(v.start),
+            //        //end: moment(v.LogoutTime)
+
+            //        //start: moment(v.start),
+            //        end: v.end != null ? moment(v.end) : null
+            //        //color: v.themecolor,
+            //        //allday: v.isfullday
+            //    });
+            //});
+            alert(resp);
             // Now you have your event data, you can fire up Fullcalendar
-            initFullcalendar(resp);
+            // initFullcalendar(resp);
+        },
+        error: function (response) {
+            alert(response);
         }
     });
 }
@@ -170,7 +194,7 @@ function ShowDialog() {
     $(".ui-dialog-titlebar").hide();
     var retval = "";
 }
-function initFullcalendar(events, AddBtnText) {
+function initFullcalendar(events) {
     $('#MainContent_calendar').fullCalendar({
         theme: true,
         header: {
@@ -192,7 +216,8 @@ function initFullcalendar(events, AddBtnText) {
         selectHelper: true,
         select: selectDate,
         editable: true,
-        events: events,
+        //events: events,
+        events: "EventResponse.ashx",
         eventDrop: eventDropped,
         eventResize: eventResized,
         eventRender: function (event, element) {
@@ -221,12 +246,19 @@ function saveEvent(eventId) {
     var description = $("#MainContent_description").val();
     var start = $("#MainContent_start").val();
     var end = $("#MainContent_end").val();
-    alert(start);
+
+    var empIdsStr = "";
+    var inputs = $('ul li input');
+    inputs.each(function (e) {
+        empIdsStr = empIdsStr + $(this).val() + ',';
+    });
+
     var parameter = {
         title: title,
         description: description,
         start: start,
         end: end,
+        empIds: empIdsStr,
         eventId: '0'
     };
     $.ajax({
@@ -245,14 +277,56 @@ function saveEvent(eventId) {
     });
 
 }
+
+function addEmp() {
+
+    var empId = $('#MainContent_sel_employee').val();
+    var empName = $("#MainContent_sel_employee option:selected").text();
+
+    var lstView = $("[id*=lst_employee]");
+
+    if (!$("#MainContent_lst_employee #" + empId).length) {
+
+
+
+        var row = '<li id="' + empId + '"> <input type="hidden"  runat="server" />' + "</li>";
+
+        //Add the row to the employee list
+        lstView.append(row);
+
+        var li = $('#MainContent_lst_employee li:last-child');
+
+        var span = document.createElement('SPAN');
+        span.innerHTML = "<i class='fa fa-close delete-row-list'></i>";
+        span.className = "delete-row-span";
+        span.onclick = function () {
+            $(this).closest("li").remove();
+        };
+
+        li.append(span);
+
+        var spanName = document.createElement('SPAN');
+        spanName.innerHTML = empName;
+        spanName.className = "value-list";
+        li.append(spanName);
+        var hid_input = li.find("input");
+        hid_input.attr("id", "hid_emp_" + empId);
+        hid_input.val(empId);
+
+        return false;
+    }
+
+}
+
 $(document).ready(function () {
-   // get_eventsdata('2017-10-10', '2017-11-10');
+    //get_eventsdata('2017-10-10', '2017-11-10');
+    initFullcalendar();
     // add dialog
     $myWindow = $('#dialog');
 
     //instantiate the dialog
     $myWindow.dialog({
-        height: 500,
+        height: 550,
         width: 600,
         modal: true,
         closeOnEscape: true,

@@ -17,7 +17,7 @@
   <script>
       $(document).ready(function () {
           CustomButtonText = "<%= Resources.Labels.NewEvent%>";
-         // get_eventsdata('2017-10-10', '2017-11-10');
+          //get_eventsdata('2017-10-10', '2017-11-10');
       });
   </script>
 

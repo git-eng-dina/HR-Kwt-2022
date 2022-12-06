@@ -426,6 +426,9 @@
     <Compile Include="Views\ExecutiveProc\Custodies.aspx.designer.cs">
       <DependentUpon>Custodies.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\ExecutiveProc\EventResponse.ashx.cs">
+      <DependentUpon>EventResponse.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Views\ExecutiveProc\Events.aspx.cs">
       <DependentUpon>Events.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -599,6 +602,7 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <Content Include="Views\ExecutiveProc\EventResponse.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

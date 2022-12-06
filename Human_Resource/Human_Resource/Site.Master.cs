@@ -64,7 +64,6 @@ namespace Human_Resource
                 LinkCss.AddCss("/Content/ar/css/bootstrap-rtl.min.css", this.Page);
                 LinkCss.AddCss("/Content/ar/css/font-awesome.css", this.Page);
                 LinkCss.AddCss("/Content/ar/css/style.css", this.Page);
-                LinkCss.AddCss("/Content/ar/css/calendar-blue.css", this.Page);
 
 
                 Page.ClientScript.RegisterClientScriptInclude("jquery-2.1.3.min", ResolveUrl("~/Content/ar/js/jquery-2.1.3.min.js"));
