@@ -20,7 +20,7 @@ namespace Human_Resource
             this.EemployeesEvents = new HashSet<EemployeesEvents>();
         }
     
-        public int EventID { get; set; }
+        public long EventID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Notes { get; set; }
@@ -32,8 +32,10 @@ namespace Human_Resource
         public Nullable<System.DateTime> StartDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
         public Nullable<System.DateTime> EventDate { get; set; }
+        public Nullable<int> EmployeeID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EemployeesEvents> EemployeesEvents { get; set; }
+        public virtual employees employees { get; set; }
     }
 }

@@ -26,6 +26,7 @@ namespace Human_Resource
             this.employeesVacations = new HashSet<employeesVacations>();
             this.evaluations = new HashSet<evaluations>();
             this.evaluations1 = new HashSet<evaluations>();
+            this.events = new HashSet<events>();
             this.hourlyPermissions = new HashSet<hourlyPermissions>();
             this.Images = new HashSet<Images>();
             this.materialsConsumption = new HashSet<materialsConsumption>();
@@ -121,6 +122,8 @@ namespace Human_Resource
         public virtual ICollection<evaluations> evaluations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<evaluations> evaluations1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<events> events { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<hourlyPermissions> hourlyPermissions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
