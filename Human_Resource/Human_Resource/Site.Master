@@ -166,9 +166,9 @@
             </ul>
 
        <a href="" class="" data-toggle="collapse" data-target="#demo_attendance">
-                   <i class="fa fa-calendar" aria-hidden="true"></i>
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
                     <asp:Literal runat="server" Text="<%$ Resources:Labels,AttendanceAndVacations%>" />
-                    
+                    <i class="fa fa-fw fa-caret-down"></i>
             </a>
             <ul id="demo_attendance" class="collapse in" aria-expanded="true">
                 <li>
@@ -178,6 +178,7 @@
                 </li>
                
             </ul>
+
 
             <a href="" class="" data-toggle="collapse" data-target="#demo_Users3">
                     <i class="fa fa-gears" aria-hidden="true"></i>
