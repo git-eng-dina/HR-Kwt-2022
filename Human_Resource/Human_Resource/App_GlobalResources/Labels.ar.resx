@@ -684,4 +684,10 @@
   <data name="HumanResource" xml:space="preserve">
     <value>إدارة الموارد البشرية</value>
   </data>
+  <data name="AttendanceAndVacations" xml:space="preserve">
+    <value>الحضور والاجازات</value>
+  </data>
+  <data name="HourlyBills" xml:space="preserve">
+    <value>أذونات ساعية</value>
+  </data>
 </root>
