@@ -14,7 +14,7 @@ namespace Human_Resource.Views.ExecutiveProc
     {
         public void ProcessRequest(HttpContext context)
         {
-            // context.Response.ContentType = "application/json";
+            context.Response.ContentType = "application/json";
 
             DateTime start = new DateTime(1970, 1, 1);
             DateTime end = new DateTime(1970, 1, 1);
