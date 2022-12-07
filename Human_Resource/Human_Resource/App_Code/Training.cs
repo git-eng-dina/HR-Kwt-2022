@@ -60,7 +60,7 @@ namespace Human_Resource.App_Code
             }
         }
 
-        public int SaveDept(TrainingModel dept)
+        public int SaveDept(TrainingModel dept, string empIds)
         {
             try
             {
@@ -94,6 +94,38 @@ namespace Human_Resource.App_Code
                     }
                     entity.SaveChanges();
                 }
+
+                if(training.TrainingID > 0)
+                {
+                    using (HRSystemEntities entity = new HRSystemEntities())
+                    {
+                        var employeesTrainingss = entity.employeesTrainings.Where(x => x.TrainingID == training.TrainingID);
+                        entity.employeesTrainings.RemoveRange(
+                            employeesTrainingss
+                            );
+                        entity.SaveChanges();
+
+                        //"1,2,"
+                        //empIds
+                        var empIdsList = empIds.Split(',').Where(x => !string.IsNullOrWhiteSpace(x)).ToList();
+                        foreach (var item in empIdsList)
+                        {
+                            employeesTrainings employeesTrainings = new employeesTrainings();
+                            employeesTrainings.TrainingID = training.TrainingID;
+                            employeesTrainings.EmployeeID = int.Parse(item);
+                            employeesTrainings.IsActive = true;
+                            employeesTrainings.CreateUserID = dept.CreateUserID;
+                            employeesTrainings.UpdateUserID = dept.UpdateUserID;
+                            employeesTrainings.CreateDate = DateTime.Now;
+                            employeesTrainings.UpdateDate = DateTime.Now;
+
+                            entity.employeesTrainings.Add(employeesTrainings);
+
+                        }
+                        entity.SaveChanges();
+                    }
+                }
+
                 return training.TrainingID;
             }
 
