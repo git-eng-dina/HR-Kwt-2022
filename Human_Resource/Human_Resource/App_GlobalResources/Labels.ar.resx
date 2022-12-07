@@ -690,4 +690,7 @@
   <data name="HourlyBills" xml:space="preserve">
     <value>أذونات ساعية</value>
   </data>
+  <data name="AddWorkingPermission" xml:space="preserve">
+    <value>إضافة أذن عمل</value>
+  </data>
 </root>

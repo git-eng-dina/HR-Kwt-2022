@@ -690,4 +690,10 @@
   <data name="HourlyBills" xml:space="preserve">
     <value>Hourly Bills</value>
   </data>
+  <data name="AddWorkingPermission" xml:space="preserve">
+    <value>Add Working Permission</value>
+  </data>
+  <data name="HourlyPermission" xml:space="preserve">
+    <value>Hourly Permission</value>
+  </data>
 </root>

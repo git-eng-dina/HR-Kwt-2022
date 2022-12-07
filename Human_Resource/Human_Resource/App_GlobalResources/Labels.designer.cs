@@ -205,6 +205,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Working Permission.
+        /// </summary>
+        internal static string AddWorkingPermission {
+            get {
+                return ResourceManager.GetString("AddWorkingPermission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Age.
         /// </summary>
         internal static string Age {
@@ -894,6 +903,15 @@ namespace Resources {
         internal static string HourlyBills {
             get {
                 return ResourceManager.GetString("HourlyBills", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hourly Permission.
+        /// </summary>
+        internal static string HourlyPermission {
+            get {
+                return ResourceManager.GetString("HourlyPermission", resourceCulture);
             }
         }
         
