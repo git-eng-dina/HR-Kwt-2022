@@ -5,6 +5,7 @@
     <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css" rel="stylesheet" />
     <link href="//cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.css" rel="stylesheet" />
     <link href="../../Content/css/calendar-blue.css" rel="stylesheet" />
+    <link href="../../Content/css/custom-calendar.css" rel="stylesheet" />
 
 
      <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>

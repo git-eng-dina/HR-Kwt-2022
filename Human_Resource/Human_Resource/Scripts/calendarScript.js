@@ -150,7 +150,7 @@ function qTipText(start, end, description) {
     return text;
 }
 function get_eventsdata(start, end) {
-    alert('getEvents');
+
     var parameter = {
         startDate: start,
         endDate: end
@@ -163,9 +163,8 @@ function get_eventsdata(start, end) {
         url: 'Events.aspx/ProcessRequest',
         data: JSON.stringify(parameter),
         success: function (resp) {
-            if (resp) alert("ok");
-            else alert("else");
-            alert('success');
+            return resp;
+
             //$.each(resp, function (i, v) {
             //    event_array.push({
             //        userid: v.EmployeeID,
@@ -178,7 +177,7 @@ function get_eventsdata(start, end) {
             //        //allday: v.isfullday
             //    });
             //});
-            alert(resp);
+
             // Now you have your event data, you can fire up Fullcalendar
             // initFullcalendar(resp);
         },
@@ -194,7 +193,8 @@ function ShowDialog() {
     $(".ui-dialog-titlebar").hide();
     var retval = "";
 }
-function initFullcalendar(events) {
+function initFullcalendar() {
+
     $('#MainContent_calendar').fullCalendar({
         theme: true,
         header: {
@@ -204,7 +204,7 @@ function initFullcalendar(events) {
         },
         customButtons: {
             customBtn: {
-                text: CustomButtonText,
+                text: 'add event',
                 click: function () {
                     ShowDialog();
                 }
@@ -216,8 +216,10 @@ function initFullcalendar(events) {
         selectHelper: true,
         select: selectDate,
         editable: true,
-        //events: events,
+
         events: "EventResponse.ashx",
+        //events: [{'id': 2,'title': 'sd','start': '2022-12-05T23:03:00','end': '2022-12-05T00:03:00','allDay':false,'description': 'faf'}],
+        //events: [{ "id": 64, "title": "TestUser", "start": "2022-12-08T02:00:00.0000000", "end": "2022-12-08T04:00:00.0000000", "allDay": false }, { "id": 65, "title": "TestUser", "start": "2022-12-07T10:00:00.0000000", "end": "2022-12-07T12:00:00.0000000", "allDay": false }],
         eventDrop: eventDropped,
         eventResize: eventResized,
         eventRender: function (event, element) {
@@ -235,6 +237,7 @@ function initFullcalendar(events) {
             });
         }
     });
+
 }
 
 function closeDialog() {
@@ -319,7 +322,8 @@ function addEmp() {
 }
 
 $(document).ready(function () {
-    //get_eventsdata('2017-10-10', '2017-11-10');
+    //var events = get_eventsdata('2017-10-10', '2017-11-10');
+
     initFullcalendar();
     // add dialog
     $myWindow = $('#dialog');

@@ -126,6 +126,7 @@
     <Content Include="Content\ar\js\popper.min.js" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\calendar-blue.css" />
+    <Content Include="Content\css\custom-calendar.css" />
     <Content Include="Content\css\font-awesome.css" />
     <Content Include="Content\css\site.css" />
     <Content Include="Content\css\style.css" />

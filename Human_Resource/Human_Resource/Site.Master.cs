@@ -26,7 +26,7 @@ namespace Human_Resource
                 Page.ClientScript.RegisterClientScriptInclude("jquery-2.1.3.min", ResolveUrl("~/Content/en/js/jquery-2.1.3.min.js"));
 
                 LinkCss.AddCss("https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css", this.Page);
-                
+
                 #region link css and js files
 
                 if (Session["CultureName"].ToString().ToLower() == "en-us")
