@@ -165,20 +165,19 @@
                 </li> 
             </ul>
 
-      
-              <%--  <a href="" class="">
-                    <i class="fa fa-calendar-check" aria-hidden="true"></i>
-                    <asp:Literal runat="server" Text="<%$ Resources:Labels,Events%>" />
-
-                </a>--%>
- 
-           
-           
-    
-<%--            <a href="" class="">
-               <i class="fa fa-edit" aria-hidden="true"></i>
-                <asp:Literal runat="server" Text="<%$ Resources:Labels,Tasks%>" />
-            </a>--%>
+       <a href="" class="" data-toggle="collapse" data-target="#demo_attendance">
+                    <i class="fa fa-edit" aria-hidden="true"></i>
+                    <asp:Literal runat="server" Text="<%$ Resources:Labels,AttendanceAndVacations%>" />
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+            </a>
+            <ul id="demo_attendance" class="collapse in" aria-expanded="true">
+                <li>
+                    <a href="/Views/Attendance/HourlyBills.aspx"> 
+                        <asp:Literal runat="server" Text="<%$ Resources:Labels,HourlyBills%>" />
+                    </a>
+                </li>
+               
+            </ul>
 
             <a href="" class="" data-toggle="collapse" data-target="#demo_Users3">
                     <i class="fa fa-gears" aria-hidden="true"></i>
@@ -225,10 +224,7 @@
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,VaccaitionApproval%>" />
                  </a>
 
-                 <a href="@Url.Action("Logout", "Account")" class="">
-                 <i class="fa fa-calendar" aria-hidden="true"></i>
-                <asp:Literal runat="server" Text="<%$ Resources:Labels,EmployeesAttendance%>" />
-                </a>
+
 
                 <a href="/Views/Employees/UserAccounts.aspx" class="">
                    <i class="fa fa-users" aria-hidden="true"></i>

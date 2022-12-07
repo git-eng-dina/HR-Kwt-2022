@@ -684,4 +684,10 @@
   <data name="HumanResource" xml:space="preserve">
     <value>Human Resource</value>
   </data>
+  <data name="AttendanceAndVacations" xml:space="preserve">
+    <value>Attendance and Vacations</value>
+  </data>
+  <data name="HourlyBills" xml:space="preserve">
+    <value>Hourly Bills</value>
+  </data>
 </root>

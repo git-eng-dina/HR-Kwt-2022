@@ -241,6 +241,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Attendance and Vacations.
+        /// </summary>
+        internal static string AttendanceAndVacations {
+            get {
+                return ResourceManager.GetString("AttendanceAndVacations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Basic Information.
         /// </summary>
         internal static string BasicInformation {
@@ -876,6 +885,15 @@ namespace Resources {
         internal static string Home {
             get {
                 return ResourceManager.GetString("Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hourly Bills.
+        /// </summary>
+        internal static string HourlyBills {
+            get {
+                return ResourceManager.GetString("HourlyBills", resourceCulture);
             }
         }
         
