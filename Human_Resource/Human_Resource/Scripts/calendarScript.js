@@ -39,16 +39,15 @@ function deleteSuccess(deleteResult) {
 
 function addSuccess(addResult) {
     // if addresult is -1, means event was not added
-    //    alert("added key: " + addResult);
 
     if (addResult != -1) {
         $('#MainContent_calendar').fullCalendar('renderEvent',
             {
-                title: $("#addEventName").val(),
+                title: $("#MainContent_title").val(),
                 start: addStartDate,
                 end: addEndDate,
                 id: addResult,
-                description: $("#addEventDesc").val(),
+                description: $("#MainContent_description").val(),
                 allDay: globalAllDay
             },
             true // make the event "stick"
@@ -165,21 +164,6 @@ function get_eventsdata(start, end) {
         success: function (resp) {
             return resp;
 
-            //$.each(resp, function (i, v) {
-            //    event_array.push({
-            //        userid: v.EmployeeID,
-            //        start: moment(v.start),
-            //        //end: moment(v.LogoutTime)
-
-            //        //start: moment(v.start),
-            //        end: v.end != null ? moment(v.end) : null
-            //        //color: v.themecolor,
-            //        //allday: v.isfullday
-            //    });
-            //});
-
-            // Now you have your event data, you can fire up Fullcalendar
-            // initFullcalendar(resp);
         },
         error: function (response) {
             alert(response);
@@ -271,7 +255,9 @@ function saveEvent(eventId) {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
-            window.top.location = "branches.aspx";
+            closeDialog();
+            alert(data.d);
+            addSuccess(data.d);
 
         },
         failure: function (response) {
@@ -351,21 +337,17 @@ $(document).ready(function () {
                 alert(currentUpdateEvent.title);
                 var eventToUpdate = {
                     id: currentUpdateEvent.id,
-                    name: $("#eventName").val(),
-                    description: $("#eventDesc").val()
+                    name: $("#MainContent_title").val(),
+                    description: $("#MainContent_description").val()
                 };
 
                 PageMethods.UpdateEvent(eventToUpdate, updateSuccess);
                 $(this).dialog("close");
 
-                currentUpdateEvent.title = $("#eventName").val();
-                currentUpdateEvent.description = $("#eventDesc").val();
+                currentUpdateEvent.title = $("#MainContent_title").val();
+                currentUpdateEvent.description = $("#MainContent_description").val();
 
                 $('#MainContent_calendar').fullCalendar('updateEvent', currentUpdateEvent);
-
-
-
-
 
             },
             "delete": function () {

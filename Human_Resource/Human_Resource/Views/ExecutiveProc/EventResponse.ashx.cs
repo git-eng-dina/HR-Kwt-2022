@@ -24,9 +24,9 @@ namespace Human_Resource.Views.ExecutiveProc
 
 
 
-            String result = String.Empty;
+            //String result = String.Empty;
 
-            result += "[";
+            //result += "[";
 
             List<long> idList = new List<long>();
             EventModel eventModel = new EventModel();

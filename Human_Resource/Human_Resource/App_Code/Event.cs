@@ -38,7 +38,7 @@ namespace Human_Resource.App_Code
             }
         }
 
-        public long Save(EventModel eventModel,int[] empIds)
+        public long Save(EventModel eventModel,List<int> empIds)
         {
             try
             {

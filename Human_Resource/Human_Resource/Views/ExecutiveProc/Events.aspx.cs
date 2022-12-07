@@ -151,19 +151,23 @@ namespace Human_Resource.Views.ExecutiveProc
 
                 if (empIds.EndsWith(","))
                     empIds = empIds.Substring(0, empIds.Length - 1);
-                var Ids = empIds.Split(',');
 
-               int[] IdsArray =  new int[Ids.Length];
-                for (int i = 0; i < Ids.Length; i++)
+                List<int> idsList = new List<int>();
+                if (empIds != "")
                 {
+                    var Ids = empIds.Split(',');
 
-                    IdsArray[i] = int.Parse(Ids[i]);
+                    for (int i = 0; i < Ids.Length; i++)
+                    {
+
+                        idsList.Add( int.Parse(Ids[i]));
+                    }
                 }
 
-                long eventIdRes = eventModel.Save(eventModel, IdsArray);
+                long eventIdRes = eventModel.Save(eventModel, idsList);
                 if (eventIdRes != 0)
                 {
-                    return "1";
+                    return eventIdRes.ToString();
                 }
                 return "0";
             }
