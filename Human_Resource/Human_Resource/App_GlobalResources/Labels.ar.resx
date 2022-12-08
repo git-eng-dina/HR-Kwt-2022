@@ -693,4 +693,7 @@
   <data name="AddWorkingPermission" xml:space="preserve">
     <value>إضافة أذن عمل</value>
   </data>
+  <data name="Legal" xml:space="preserve">
+    <value>القانوني</value>
+  </data>
 </root>

@@ -21,20 +21,22 @@ namespace Human_Resource.App_Code
 
         #region Methods
 
-        public List<EventModel> getEvents(DateTime start, DateTime end)
+        public List<EventModel> getEvents(DateTime start, DateTime end,int employeeID)
         {
             using ( HRSystemEntities entity = new HRSystemEntities())
                 {
-                var events = entity.events.Where(x => x.IsActive == true)
-                            //    && x.StartDate >= start && x.EndDate <= end)
+                var events = entity.events.Where(x => x.IsActive == true
+                               //&& x.StartDate >= start && x.EndDate <= end
+                               && (x.EmployeeID ==employeeID || entity.EemployeesEvents.Where(e => e.EventID == x.EventID).Select(e => e.EmployeeID).Contains(employeeID) ))
                     .Select(x => new EventModel()
                     {
                        id = x.EventID,
                        title  = x.Name,
                        description = x.Description,
-                       start=(DateTime)x.StartDate,
-                       end=(DateTime)x.EndDate,
-                       
+                       start=(DateTime)x.StartDate.Value,
+                       end=(DateTime)x.EndDate.Value,
+                       EmployeeID = x.EmployeeID,
+                       Employees = entity.EemployeesEvents.Where(e => e.EventID == x.EventID).Select(e => new EmployeeModel() { EmployeeID = e.EmployeeID}).ToList(),
                     }).ToList();
                 return events;
             }
@@ -50,8 +52,8 @@ namespace Human_Resource.App_Code
                                     id= x.EventID,
                                     title = x.Name,
                                     description = x.Description,
-                                    start =(DateTime) x.StartDate,
-                                    end = (DateTime)x.EndDate,
+                                    start =(DateTime) x.StartDate.Value,
+                                    end = (DateTime)x.EndDate.Value,
                                  
                                     Employees = entity.EemployeesEvents.Where(m => m.EventID == x.EventID && m.IsActive == true)
                                                 .Select(m => new EmployeeModel()
