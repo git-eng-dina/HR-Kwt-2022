@@ -758,11 +758,11 @@ nav .logo {
         width: 80%;
         font-weight: bold;
     }
-   .c-form input[type=submit] {
+    .c-form input[type=submit], .c-form .save {
         font-weight: bold;
         display: block;
         width: 20%;
-     float:left;
+        float: left;
     }
 
 .ui-widget input{

@@ -112,6 +112,51 @@ namespace Human_Resource.Views.Settings {
         protected global::System.Web.UI.HtmlControls.HtmlSelect sel_HRManager;
         
         /// <summary>
+        /// sel_legal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect sel_legal;
+        
+        /// <summary>
+        /// sel_advisor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect sel_advisor;
+        
+        /// <summary>
+        /// Button1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton Button1;
+        
+        /// <summary>
+        /// advisorsIds control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden advisorsIds;
+        
+        /// <summary>
+        /// lst_employee control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lst_employee;
+        
+        /// <summary>
         /// txt_notes control.
         /// </summary>
         /// <remarks>
@@ -121,12 +166,12 @@ namespace Human_Resource.Views.Settings {
         protected global::System.Web.UI.WebControls.TextBox txt_notes;
         
         /// <summary>
-        /// btn_edit control.
+        /// btn_save control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_edit;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btn_save;
     }
 }

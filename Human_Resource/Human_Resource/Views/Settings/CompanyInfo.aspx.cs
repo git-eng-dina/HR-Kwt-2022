@@ -36,12 +36,20 @@ namespace Human_Resource.Views.Settings
                     sel_HRManager.DataSource = employees;
                     sel_HRManager.DataValueField = "EmployeeID";
 
+                    sel_legal.DataSource = employees;
+                    sel_legal.DataValueField = "EmployeeID";
+
+                    sel_advisor.DataSource = employees;
+                    sel_advisor.DataValueField = "EmployeeID";
+
                     if (Session["CultureName"] != null && Session["CultureName"].ToString().ToLower() == "en-us")
                     {
                         sel_generalDirector.DataTextField = "NameEN";
                         sel_CEO.DataTextField = "NameEN";
                         sel_financialManager.DataTextField = "NameEN";
                         sel_HRManager.DataTextField = "NameEN";
+                        sel_legal.DataTextField = "NameEN";
+                        sel_advisor.DataTextField = "NameEN";
 
                     }
                     else
@@ -50,11 +58,15 @@ namespace Human_Resource.Views.Settings
                         sel_CEO.DataTextField = "NameAR";
                         sel_financialManager.DataTextField = "NameAR";
                         sel_HRManager.DataTextField = "NameAR";
+                        sel_legal.DataTextField = "NameAR";
+                        sel_advisor.DataTextField = "NameAR";
                     }
                     sel_generalDirector.DataBind();
                     sel_CEO.DataBind();
                     sel_financialManager.DataBind();
                     sel_HRManager.DataBind();
+                    sel_legal.DataBind();
+                    sel_advisor.DataBind();
                     #endregion
                     #region fill text box
                     if (company != null)
@@ -98,7 +110,9 @@ namespace Human_Resource.Views.Settings
                 company.CEO = int.Parse( sel_CEO.Value);
                 company.FinancialManager = int.Parse( sel_financialManager.Value);
                 company.HRManager = int.Parse( sel_HRManager.Value);
+                company.LegalManager = int.Parse(sel_legal.Value);
 
+              
                 if(Session["user_id"] != null && Session["user_id"].ToString() != "")
                     company.CreateUserID = company.UpdateUserID = int.Parse(Session["user_id"].ToString());
 

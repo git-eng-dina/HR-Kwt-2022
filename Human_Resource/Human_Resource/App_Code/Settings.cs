@@ -5,6 +5,18 @@ using System.Web;
 
 namespace Human_Resource.App_Code
 {
+    public class AdvisorModel
+    {
+        public int ID { get; set; }
+        public Nullable<int> EmployeeID { get; set; }
+        public string Role { get; set; }
+        public string Notes { get; set; }
+        public Nullable<System.DateTime> CreateDate { get; set; }
+        public Nullable<System.DateTime> UpdateDate { get; set; }
+        public Nullable<int> CreateUserID { get; set; }
+        public Nullable<int> UpdateUserID { get; set; }
+        public Nullable<bool> IsActive { get; set; }
+    }
     public class CompanyModel
     {
         #region Attributes
@@ -21,11 +33,14 @@ namespace Human_Resource.App_Code
         public Nullable<int> FinancialManager { get; set; }
         public Nullable<int> HRManager { get; set; }
         public Nullable<int> CEO { get; set; }
+        public Nullable<int> LegalManager { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public Nullable<int> CreateUserID { get; set; }
         public Nullable<int> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
+
+        public List<AdvisorModel> Advisors { get; set; }
 
         #endregion
 

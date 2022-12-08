@@ -322,6 +322,9 @@
     <Compile Include="events.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="highrManagment.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="hourlyPermissions.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
