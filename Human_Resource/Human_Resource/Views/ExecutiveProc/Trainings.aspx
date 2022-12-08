@@ -46,6 +46,11 @@
             var retval = "";
         }
         function ShowDialogWithData(customID) {
+            var lang = "ar-AS";
+            if ('<%= Session["CultureName"] %>' != null)
+                lang = '<%= Session["CultureName"].ToString() %>';
+
+
             var parameter = {
                 ID: customID
             };
@@ -84,7 +89,10 @@
                             li.append(span);
 
                             var spanName = document.createElement('SPAN');
-                            spanName.innerHTML = employee.NameAr;
+                            if (lang == "ar-AS")
+                                spanName.innerHTML = employee.NameAr;
+                            else 
+                                spanName.innerHTML = employee.NameEn;
                             spanName.className = "value-list";
                             li.append(spanName);
                             var hid_input = li.find("input");
@@ -337,4 +345,5 @@
                  </div>
             </div>
         </div>
+    </div>
 </asp:Content>

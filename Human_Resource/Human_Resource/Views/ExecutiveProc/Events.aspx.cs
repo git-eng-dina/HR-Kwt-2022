@@ -178,5 +178,25 @@ namespace Human_Resource.Views.ExecutiveProc
             }
 
         }
+
+        [WebMethod]
+        public static EventModel GetEvent(string ID)
+        {
+            try
+            {
+                EventModel eventModel = new EventModel();
+
+                int eventId = int.Parse(ID);
+                eventModel = eventModel.getEvent(eventId);
+
+                return eventModel;
+            }
+            catch
+            {
+                return null;
+
+            }
+
+        }
     }
 }

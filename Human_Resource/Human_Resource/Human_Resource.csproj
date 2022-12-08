@@ -166,7 +166,6 @@
     <Content Include="images\edit.ico" />
     <Content Include="images\edit.png" />
     <Content Include="images\en.png" />
-    <Content Include="images\hrm.jpg" />
     <Content Include="images\hr_logo.png" />
     <Content Include="images\search.png" />
     <EntityDeploy Include="Model1.edmx">

@@ -14,6 +14,8 @@ namespace Human_Resource.App_Code
         public DateTime start { get; set; }
         public DateTime end { get; set; }
         public Nullable<int> EmployeeID { get; set; }
+
+        public List<EmployeeModel> Employees { get; set; }
         #endregion
 
 
@@ -38,6 +40,30 @@ namespace Human_Resource.App_Code
             }
         }
 
+        public EventModel getEvent(int eventId)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var eventObj = entity.events.Where(x => x.EventID == eventId)
+                                .Select(x => new EventModel()
+                                {
+                                    id= x.EventID,
+                                    title = x.Name,
+                                    description = x.Description,
+                                    start =(DateTime) x.StartDate,
+                                    end = (DateTime)x.EndDate,
+                                 
+                                    Employees = entity.EemployeesEvents.Where(m => m.EventID == x.EventID && m.IsActive == true)
+                                                .Select(m => new EmployeeModel()
+                                                {
+                                                    EmployeeID = m.EmployeeID,
+                                                    NameAr = m.employees.NameAr,
+                                                    NameEn = m.employees.NameEn,
+                                                }).ToList(),
+                                }).FirstOrDefault();
+                return eventObj;
+            }
+        }
         public long Save(EventModel eventModel,List<int> empIds)
         {
             try

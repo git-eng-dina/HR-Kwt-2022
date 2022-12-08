@@ -177,6 +177,70 @@ function ShowDialog() {
     $(".ui-dialog-titlebar").hide();
     var retval = "";
 }
+function ShowDialogWithData(customID) {
+    var lang = "ar-AS";
+    if ('<%= Session["CultureName"] %>' != null)
+        lang = '<%= Session["CultureName"].ToString() %>';
+
+    var parameter = {
+        ID: customID
+    };
+    $.ajax({
+        type: "POST",
+        url: "Events.aspx/GetEvent",
+        data: JSON.stringify(parameter),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            ShowDialog();
+            for (var prop in data) {
+                var item = data[prop];
+                $('#MainContent_title').val(item.title);
+                $('#MainContent_description').val(item.description);
+                $('#MainContent_start').val(item.start);
+                $('#MainContent_end').val(item.end);
+
+                var lstView = $("[id*=lst_employee]");
+                for (var emp in item.Employees) {
+                    var employee = item.Employees[emp];
+
+                    var row = '<li id="' + employee.EmployeeID + '"> <input type="hidden"  runat="server" />' + "</li>";
+
+                    //Add the row to the employee list
+                    lstView.append(row);
+
+                    var li = $('#MainContent_lst_employee li:last-child');
+
+                    var span = document.createElement('SPAN');
+                    span.innerHTML = "<i class='fa fa-close delete-row-list'></i>";
+                    span.className = "delete-row-span";
+                    span.onclick = function () {
+                        $(this).closest("li").remove();
+                    };
+
+                    li.append(span);
+
+                    var spanName = document.createElement('SPAN');
+                    if (lang == "ar-AS")
+                        spanName.innerHTML = employee.NameAr;
+                    else
+                        spanName.innerHTML = employee.NameEn;
+     
+                    spanName.className = "value-list";
+                    li.append(spanName);
+                    var hid_input = li.find("input");
+                    hid_input.attr("id", "hid_emp_" + employee.EmployeeID);
+                    hid_input.val(employee.EmployeeID);
+                }
+            }
+
+
+        },
+        failure: function (response) {
+            alert(response.d);
+        }
+    });
+}
 function initFullcalendar() {
 
     $('#MainContent_calendar').fullCalendar({
