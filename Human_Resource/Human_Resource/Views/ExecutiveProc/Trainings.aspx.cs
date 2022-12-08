@@ -99,12 +99,12 @@ namespace Human_Resource.Views.ExecutiveProc
         {
             try
             {
-                TrainingModel dept = new TrainingModel();
+                TrainingModel training = new TrainingModel();
 
                 int trainingId = int.Parse(ID);
-                dept = dept.getTraining(trainingId);
+                training = training.getTraining(trainingId);
 
-                return dept;
+                return training;
             }
             catch
             {

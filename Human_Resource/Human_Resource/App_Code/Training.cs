@@ -18,6 +18,8 @@ namespace Human_Resource.App_Code
         public Nullable<int> CreateUserID { get; set; }
         public Nullable<int> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
+
+        public List<EmployeeModel> Employees { get; set; }
         #endregion
 
         #region methods
@@ -55,6 +57,12 @@ namespace Human_Resource.App_Code
                                     Notes = x.Notes,
                                     CreateDate = x.CreateDate,
                                     UpdateDate = x.UpdateDate,
+                                    Employees = entity.employeesTrainings.Where(m => m.TrainingID == x.TrainingID && m.IsActive == true)
+                                                .Select(m => new EmployeeModel() {
+                                                EmployeeID = m.EmployeeID,
+                                                NameAr = m.employees.NameAr,
+                                                NameEn = m.employees.NameEn,
+                                                }).ToList(),
                                 }).FirstOrDefault();
                 return dept;
             }

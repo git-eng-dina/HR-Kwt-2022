@@ -62,7 +62,35 @@
                         $('#MainContent_hid_trainingId').val(item.TrainingID);
                         $('#MainContent_txt_name').val(item.Name);
                         $('#MainContent_txt_description').val(item.Description);
- 
+
+                        var lstView = $("[id*=lst_employee]");
+                        for (var emp in item.Employees) {
+                            var employee = item.Employees[emp];
+
+                            var row = '<li id="' + employee.EmployeeID + '"> <input type="hidden"  runat="server" />' + "</li>";
+
+                            //Add the row to the employee list
+                            lstView.append(row);
+
+                            var li = $('#MainContent_lst_employee li:last-child');
+
+                            var span = document.createElement('SPAN');
+                            span.innerHTML = "<i class='fa fa-close delete-row-list'></i>";
+                            span.className = "delete-row-span";
+                            span.onclick = function () {
+                                $(this).closest("li").remove();
+                            };
+
+                            li.append(span);
+
+                            var spanName = document.createElement('SPAN');
+                            spanName.innerHTML = employee.NameAr;
+                            spanName.className = "value-list";
+                            li.append(spanName);
+                            var hid_input = li.find("input");
+                            hid_input.attr("id", "hid_emp_" + employee.EmployeeID );
+                            hid_input.val(employee.EmployeeID );
+                        }
                      }
 
 
@@ -85,12 +113,6 @@
             inputs.each(function (e) {
                 empIdsStr = empIdsStr + $(this).val() + ',';
             });
-
-            //$('#MainContent_lst_employee').each(function () {// id of ul
-            //    var li = $(this).find('li');
-            //    var input = li.find('input');
-            //    empIdsStr = empIdsStr + '"' + input.val() + ',"';
-            //});
             
 
             var parameter = {
