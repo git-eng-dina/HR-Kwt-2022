@@ -11,17 +11,17 @@ function updateEvent(event, element) {
 
     currentUpdateEvent = event;
 
-    $('#updatedialog').dialog('open');
-    $("#eventName").val(event.title);
-    $("#eventDesc").val(event.description);
-    $("#eventId").val(event.id);
-    $("#eventStart").text("" + event.start.toLocaleString());
+    ShowDialog();
+    $("#MainContent_title").val(event.title);
+    $("#MainContent_description").val(event.description);
+    $("#MainContent_eventId").val(event.id);
+    $("#MainContent_start").text("" + event.start.toLocaleString());
 
     if (event.end === null) {
-        $("#eventEnd").text("");
+        $("#MainContent_end").text("");
     }
     else {
-        $("#eventEnd").text("" + event.end.toLocaleString());
+        $("#MainContent_end").text("" + event.end.toLocaleString());
     }
     return false;
 }

@@ -62,7 +62,7 @@
                     <div class ="row">
                      <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Title%>" /></span>
-                                <input type="hidden"  id="hid_branchId" name="hid_branchId" runat="server" value=""  />
+                                <input type="hidden"  id="eventId" name="eventId" runat="server" value=""  />
                                 <input type="text" class="form-control input-lg" id="title" name="title" runat="server" value=""  />
                             </div>
                         </div>

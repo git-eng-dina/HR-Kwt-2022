@@ -310,6 +310,13 @@ warning 6002: The table/view 'HRSystem.dbo.evaluations' does not have a primary 
           <Property Name="EventDate" Type="datetime2" Precision="7" />
           <Property Name="EmployeeID" Type="int" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="EventTags">
+          <Property Name="ID" Type="bigint" />
+          <Property Name="EventID" Type="bigint" />
+          <Property Name="EmployeeID" Type="int" />
+        </EntityType>-->
         <EntityType Name="hourlyPermissions">
           <Key>
             <PropertyRef Name="HourlyPermissionID" />
@@ -323,7 +330,7 @@ warning 6002: The table/view 'HRSystem.dbo.evaluations' does not have a primary 
           <Property Name="CreateUserID" Type="int" />
           <Property Name="UpdateUserID" Type="int" />
           <Property Name="IsActive" Type="bit" />
-          <Property Name="employeeID" Type="int" />
+          <Property Name="EmployeeID" Type="int" />
         </EntityType>
         <EntityType Name="Images">
           <Key>
@@ -831,6 +838,12 @@ warning 6002: The table/view 'HRSystem.dbo.evaluations' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <!--Errors Found During Generation:
+error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, but cannot be found.
+        <Association Name="FK_EventTags_employees" />-->
+        <!--Errors Found During Generation:
+error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, but cannot be found.
+        <Association Name="FK_EventTags_events" />-->
         <Association Name="FK_hourlyPermissions_employees">
           <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
           <End Role="hourlyPermissions" Type="Self.hourlyPermissions" Multiplicity="*" />
@@ -839,7 +852,7 @@ warning 6002: The table/view 'HRSystem.dbo.evaluations' does not have a primary 
               <PropertyRef Name="EmployeeID" />
             </Principal>
             <Dependent Role="hourlyPermissions">
-              <PropertyRef Name="employeeID" />
+              <PropertyRef Name="EmployeeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1468,7 +1481,7 @@ warning 6002: The table/view 'HRSystem.dbo.evaluations' does not have a primary 
           <Property Name="CreateUserID" Type="Int32" />
           <Property Name="UpdateUserID" Type="Int32" />
           <Property Name="IsActive" Type="Boolean" />
-          <Property Name="employeeID" Type="Int32" />
+          <Property Name="EmployeeID" Type="Int32" />
           <NavigationProperty Name="confirms" Relationship="Self.FK_confirms_hourlyPermissions" FromRole="hourlyPermissions" ToRole="confirms" />
           <NavigationProperty Name="employees" Relationship="Self.FK_hourlyPermissions_employees" FromRole="hourlyPermissions" ToRole="employees" />
         </EntityType>
@@ -2025,7 +2038,7 @@ warning 6002: The table/view 'HRSystem.dbo.evaluations' does not have a primary 
               <PropertyRef Name="EmployeeID" />
             </Principal>
             <Dependent Role="hourlyPermissions">
-              <PropertyRef Name="employeeID" />
+              <PropertyRef Name="EmployeeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2617,7 +2630,7 @@ warning 6002: The table/view 'HRSystem.dbo.evaluations' does not have a primary 
                 <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
                 <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="employeeID" ColumnName="employeeID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
