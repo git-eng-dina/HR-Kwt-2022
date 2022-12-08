@@ -169,6 +169,16 @@
                     <a href="/Views/Attendance/HourlyBills.aspx"> 
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,HourlyBills%>" />
                     </a>
+                </li> 
+                <li>
+                    <a href="/Views/Attendance/HourlyBills.aspx"> 
+                        <asp:Literal runat="server" Text="<%$ Resources:Labels,Vacations%>" />
+                    </a>
+                </li>
+                <li>
+                    <a href="/Views/Attendance/VaccaitionApproval.aspx" class="">
+                        <asp:Literal runat="server" Text="<%$ Resources:Labels,VaccaitionApproval%>" />
+                    </a>
                 </li>
                
             </ul>
@@ -214,10 +224,7 @@
                     </a>
                 </li>
             </ul>
-                 <a href="" class="">
-                        <i class="fa fa-check-square-o" aria-hidden="true"></i>
-                        <asp:Literal runat="server" Text="<%$ Resources:Labels,VaccaitionApproval%>" />
-                 </a>
+                 
 
 
 

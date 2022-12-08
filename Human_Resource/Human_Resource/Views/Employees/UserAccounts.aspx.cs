@@ -45,7 +45,7 @@ namespace Human_Resource.Views.Employees
                 {
                     emp.EmployeeID = empID;
                     emp.Username = txt_userName.Text;
-                    emp.Password =  HelpClass.MD5Hash( txt_password.Value);
+                    emp.Password =  HelpClass.MD5Hash("Inc-m" + txt_password.Value.Trim());
 
                     if (Session["user_id"] != null && Session["user_id"].ToString() != "")
                          emp.UpdateUserID = int.Parse(Session["user_id"].ToString());

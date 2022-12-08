@@ -19,8 +19,8 @@ namespace Human_Resource
         {
 
             EmployeeModel user = new EmployeeModel();
-            string passwordStr = HelpClass.MD5Hash("Inc-m" + password.Value);
-            var loginUser = user.GetUser(username.Value, password.Value);
+            string passwordStr = HelpClass.MD5Hash("Inc-m" + password.Value.Trim());
+            var loginUser = user.GetUser(username.Value, passwordStr);
 
             if (loginUser == null)
             {

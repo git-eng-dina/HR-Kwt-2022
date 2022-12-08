@@ -42,7 +42,7 @@
             <hr />
             <div class="row">
                 <div class="col-12 copyright">
-                    <p>2022@All Right Reserved for Increase</p>
+                    <p>2022@All Right Reserved</p>
                 </div>
             </div>
         </div>

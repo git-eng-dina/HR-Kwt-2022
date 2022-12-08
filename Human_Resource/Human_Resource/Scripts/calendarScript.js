@@ -5,24 +5,23 @@ var globalAllDay;
 var CustomButtonText;
 
 function updateEvent(event, element) {
-    alert(event.description);
 
     if ($(this).data("qtip")) $(this).qtip("destroy");
 
     currentUpdateEvent = event;
 
-    ShowDialog();
-    $("#MainContent_title").val(event.title);
-    $("#MainContent_description").val(event.description);
-    $("#MainContent_eventId").val(event.id);
-    $("#MainContent_start").text("" + event.start.toLocaleString());
+    ShowDialogWithData(event.id);
+    //$("#MainContent_title").val(event.title);
+    //$("#MainContent_description").val(event.description);
+    //$("#MainContent_eventId").val(event.id);
+    //$("#MainContent_start").text("" + event.start.toLocaleString());
 
-    if (event.end === null) {
-        $("#MainContent_end").text("");
-    }
-    else {
-        $("#MainContent_end").text("" + event.end.toLocaleString());
-    }
+    //if (event.end === null) {
+    //    $("#MainContent_end").text("");
+    //}
+    //else {
+    //    $("#MainContent_end").text("" + event.end.toLocaleString());
+    //}
     return false;
 }
 
@@ -52,8 +51,6 @@ function addSuccess(addResult) {
             },
             true // make the event "stick"
         );
-
-
         $('#MainContent_calendar').fullCalendar('unselect');
     }
 }
@@ -177,6 +174,28 @@ function ShowDialog() {
     $(".ui-dialog-titlebar").hide();
     var retval = "";
 }
+
+function zeroPadded(val) {
+    if (val >= 10)
+        return val;
+    else
+        return '0' + val;
+}
+function convertToJavaScriptDate(value) {
+    var pattern = /Date\(([^)]+)\)/;
+    var results = pattern.exec(value);
+    var dt = new Date(parseFloat(results[1]));
+    var localDateTime = [dt.getFullYear(),
+        zeroPadded(dt.getDate()),
+        zeroPadded(dt.getMonth() + 1)].join('-') + 'T' +
+        [zeroPadded(dt.getHours()),
+        zeroPadded(dt.getMinutes())].join(':');
+    return localDateTime;
+   // return dt.getFullYear() + "-" + (dt.getMonth() + 1) + "-" + dt.getDate()  + "T" + dt.getHours() + ":" + dt.getMinutes() ;
+   // return (zeroPadded(dt.getMonth() + 1)) + "-" + zeroPadded(dt.getDate()) + "-" + dt.getFullYear() + "T" + zeroPadded(dt.getHours()) + ":" + zeroPadded(dt.getMinutes()) + ":" + zeroPadded(dt.getSeconds());
+    //return (dt.getMonth() + 1) + "-" + dt.getDate() + "-" + dt.getFullYear() + " " + dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+}
+
 function ShowDialogWithData(customID) {
     var lang = "ar-AS";
     if ('<%= Session["CultureName"] %>' != null)
@@ -195,10 +214,16 @@ function ShowDialogWithData(customID) {
             ShowDialog();
             for (var prop in data) {
                 var item = data[prop];
+                $('#MainContent_eventId').val(item.id);
                 $('#MainContent_title').val(item.title);
                 $('#MainContent_description').val(item.description);
-                $('#MainContent_start').val(item.start);
-                $('#MainContent_end').val(item.end);
+
+
+                var s = convertToJavaScriptDate(item.start);               
+                $('#MainContent_start').val(s);
+
+                s = convertToJavaScriptDate(item.end);
+                $('#MainContent_end').val(s);
 
                 var lstView = $("[id*=lst_employee]");
                 for (var emp in item.Employees) {
@@ -265,9 +290,32 @@ function initFullcalendar() {
         select: selectDate,
         editable: true,
 
-        events: "EventResponse.ashx",
-        //events: [{'id': 2,'title': 'sd','start': '2022-12-05T23:03:00','end': '2022-12-05T00:03:00','allDay':false,'description': 'faf'}],
-        //events: [{ "id": 64, "title": "TestUser", "start": "2022-12-08T02:00:00.0000000", "end": "2022-12-08T04:00:00.0000000", "allDay": false }, { "id": 65, "title": "TestUser", "start": "2022-12-07T10:00:00.0000000", "end": "2022-12-07T12:00:00.0000000", "allDay": false }],
+       // events: "EventResponse.ashx",
+        events: function (start, end, timezone, callback) {
+            $.ajax({
+                url: 'EventResponse.ashx',
+                dataType: 'json',
+                data: {
+ 
+                },
+                success: function (data) {
+                    var events = [];
+
+                    for (var i = 0; i < data.length; i++) {
+                        events.push({
+                            id: data[i]['id'],
+                            title: data[i]['title'],
+                            description: data[i]['description'],
+                            start: convertToJavaScriptDate(data[i]['start']),
+                            end: convertToJavaScriptDate(data[i]['end']),
+                        });
+                    }
+
+                    //adding the callback
+                    callback(events);
+                }
+            });
+        },
         eventDrop: eventDropped,
         eventResize: eventResized,
         eventRender: function (event, element) {
@@ -293,6 +341,7 @@ function closeDialog() {
 }
 
 function saveEvent(eventId) {
+    var eventId = $("#MainContent_eventId").val();
     var title = $("#MainContent_title").val();
     var description = $("#MainContent_description").val();
     var start = $("#MainContent_start").val();
@@ -310,7 +359,7 @@ function saveEvent(eventId) {
         start: start,
         end: end,
         empIds: empIdsStr,
-        eventId: '0'
+        eventId: eventId
     };
     $.ajax({
         type: "POST",
@@ -320,7 +369,6 @@ function saveEvent(eventId) {
         dataType: "json",
         success: function (data) {
             closeDialog();
-            alert(data.d);
             addSuccess(data.d);
 
         },

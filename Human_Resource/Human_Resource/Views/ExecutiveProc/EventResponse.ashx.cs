@@ -31,25 +31,28 @@ namespace Human_Resource.Views.ExecutiveProc
             List<long> idList = new List<long>();
             EventModel eventModel = new EventModel();
 
-            var listCalender = eventModel.getEvents(start, end);
+            var listCalender = eventModel.getEvents(start, end,int.Parse(context.Session["user_id"].ToString()));
             System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+
             context.Response.Write(js.Serialize(listCalender));
-           // foreach (EventModel cevent in eventModel.getEvents(start, end))
-           // {
-           //     result += convertCalendarEventIntoString(cevent);
-           //     idList.Add(cevent.id);
-           // }
 
-           // if (result.EndsWith(","))
-           // {
-           //     result = result.Substring(0, result.Length - 1);
-           // }
+            //var result = "";
+            //foreach (EventModel cevent in listCalender)
+            //{
+            //    result += convertCalendarEventIntoString(cevent);
+            //    idList.Add(cevent.id);
+            //}
 
-           // result += "]";
-           // //store list of event ids in Session, so that it can be accessed in web methods
-           //  context.Session["idList"] = idList;
+            //if (result.EndsWith(","))
+            //{
+            //    result = result.Substring(0, result.Length - 1);
+            //}
 
-           //context.Response.Write(result);
+            //result += "]";
+            //// //store list of event ids in Session, so that it can be accessed in web methods
+            ////  context.Session["idList"] = idList;
+
+            //context.Response.Write(result);
 
 
         }

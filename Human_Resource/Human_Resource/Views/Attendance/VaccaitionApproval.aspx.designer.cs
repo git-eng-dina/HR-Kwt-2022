@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Human_Resource
+namespace Human_Resource.Views.Attendance
 {
 
 
-    public partial class _Default
+    public partial class VaccaitionApproval
     {
     }
 }
