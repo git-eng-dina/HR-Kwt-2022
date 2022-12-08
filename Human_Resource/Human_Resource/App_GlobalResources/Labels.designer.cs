@@ -214,6 +214,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Advisors.
+        /// </summary>
+        internal static string Advisors {
+            get {
+                return ResourceManager.GetString("Advisors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Age.
         /// </summary>
         internal static string Age {

@@ -696,6 +696,9 @@
   <data name="HourlyPermission" xml:space="preserve">
     <value>Hourly Permission</value>
   </data>
+  <data name="Advisors" xml:space="preserve">
+    <value>Advisors</value>
+  </data>
   <data name="Legal" xml:space="preserve">
     <value>Legal</value>
   </data>
