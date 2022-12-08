@@ -229,6 +229,8 @@
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Views\Attendance\HourlyBills.aspx" />
+    <Content Include="Views\Attendance\Vacations.aspx" />
+    <Content Include="Views\Attendance\VaccaitionApproval.aspx" />
     <Content Include="Views\Employees\Employees.aspx" />
     <Content Include="Views\Employees\NewEmployee.aspx" />
     <Content Include="Views\Employees\UserAccounts.aspx" />
@@ -392,6 +394,20 @@
     </Compile>
     <Compile Include="Views\Attendance\HourlyBills.aspx.designer.cs">
       <DependentUpon>HourlyBills.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Attendance\Vacations.aspx.cs">
+      <DependentUpon>Vacations.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Attendance\Vacations.aspx.designer.cs">
+      <DependentUpon>Vacations.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Attendance\VaccaitionApproval.aspx.cs">
+      <DependentUpon>VaccaitionApproval.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Attendance\VaccaitionApproval.aspx.designer.cs">
+      <DependentUpon>VaccaitionApproval.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\BasePage.cs">
       <SubType>ASPXCodeBehind</SubType>

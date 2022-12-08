@@ -171,7 +171,7 @@
                     </a>
                 </li> 
                 <li>
-                    <a href="/Views/Attendance/HourlyBills.aspx"> 
+                    <a href="/Views/Attendance/Vacations.aspx"> 
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,Vacations%>" />
                     </a>
                 </li>
