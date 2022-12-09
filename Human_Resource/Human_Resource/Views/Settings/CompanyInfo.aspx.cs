@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Serialization;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -93,42 +95,84 @@ namespace Human_Resource.Views.Settings
             }
         }
 
-        protected void btn_edit_Click(object sender, EventArgs e)
+        [WebMethod(EnableSession = true)]
+        public static string SaveInfo(string Name,string Address,string Mobile,string Phone,string Fax,
+            string Email,string Notes,string GeneralDirector,string CEO,string FinancialManager,
+            string HRManager,string LegalManager,string userId,string companyId,string advisorsIds)
         {
-            try
-            {
-                CompanyModel company = new CompanyModel();
-                company.Name = txt_name.Text;
-                company.Address = txt_address.Text;
-                company.Mobile = txt_mobile.Text;
-                company.Phone = txt_phone.Text;
-                company.Fax = txt_fax.Text;
-                company.Email = txt_email.Value;
-                company.Notes = txt_notes.Text;
-                company.OurCompany = true;
-                company.GeneralDirector = int.Parse( sel_generalDirector.Value);
-                company.CEO = int.Parse( sel_CEO.Value);
-                company.FinancialManager = int.Parse( sel_financialManager.Value);
-                company.HRManager = int.Parse( sel_HRManager.Value);
-                company.LegalManager = int.Parse(sel_legal.Value);
+
+
+            CompanyModel company = new CompanyModel();
+            if (companyId == "")
+                company.CompanyID = 0;
+            else
+                company.CompanyID = int.Parse(companyId);
+            company.Name = Name;
+            company.Address = Address;
+            company.Mobile = Mobile;
+            company.Phone = Phone;
+            company.Fax = Fax;
+            company.Email = Email;
+            company.Notes = Notes;
+            company.OurCompany = true;
+            company.GeneralDirector = int.Parse(GeneralDirector);
+            company.CEO = int.Parse(CEO);
+            company.FinancialManager = int.Parse(FinancialManager);
+            company.HRManager = int.Parse(HRManager);
+            company.LegalManager = int.Parse(LegalManager);
+            company.CreateUserID = company.UpdateUserID = int.Parse(userId);
+
+            #region advisors
+            if (advisorsIds.EndsWith(","))
+                advisorsIds = advisorsIds.Substring(0, advisorsIds.Length - 1);
+            List<string> advisorsStr = new List<string>();
+            List<int> advisors = new List<int>();
+            if (advisorsIds != "")
+                advisorsStr = advisorsIds.Split(',').ToList();
+            foreach (var sdv in advisorsStr)
+                advisors.Add(int.Parse(sdv));
+            #endregion
+            companyId = company.SaveCompanyInfo(company, advisors).ToString();
+
+            return companyId.ToString();
+
+        }
+        //protected void btn_edit_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        CompanyModel company = new CompanyModel();
+        //        company.Name = txt_name.Text;
+        //        company.Address = txt_address.Text;
+        //        company.Mobile = txt_mobile.Text;
+        //        company.Phone = txt_phone.Text;
+        //        company.Fax = txt_fax.Text;
+        //        company.Email = txt_email.Value;
+        //        company.Notes = txt_notes.Text;
+        //        company.OurCompany = true;
+        //        company.GeneralDirector = int.Parse( sel_generalDirector.Value);
+        //        company.CEO = int.Parse( sel_CEO.Value);
+        //        company.FinancialManager = int.Parse( sel_financialManager.Value);
+        //        company.HRManager = int.Parse( sel_HRManager.Value);
+        //        company.LegalManager = int.Parse(sel_legal.Value);
 
               
-                if(Session["user_id"] != null && Session["user_id"].ToString() != "")
-                    company.CreateUserID = company.UpdateUserID = int.Parse(Session["user_id"].ToString());
+        //        if(Session["user_id"] != null && Session["user_id"].ToString() != "")
+        //            company.CreateUserID = company.UpdateUserID = int.Parse(Session["user_id"].ToString());
 
-                if (!hid_companyID.Value.Equals(""))
-                    company.CompanyID = int.Parse(hid_companyID.Value);
-                else
-                    company.CompanyID = 0;
+        //        if (!hid_companyID.Value.Equals(""))
+        //            company.CompanyID = int.Parse(hid_companyID.Value);
+        //        else
+        //            company.CompanyID = 0;
 
-                int companyId = company.SaveCompanyInfo(company);
-                if (companyId != 0)
-                {
-                    hid_companyID.Value = companyId.ToString();
-                    Response.Write("<script>alert('"+ Resources.Labels.SaveSuccessfully+"')</script>");
-                }
-            }
-            catch { }
-        }
+        //        int companyId = company.SaveCompanyInfo(company);
+        //        if (companyId != 0)
+        //        {
+        //            hid_companyID.Value = companyId.ToString();
+        //            Response.Write("<script>alert('"+ Resources.Labels.SaveSuccessfully+"')</script>");
+        //        }
+        //    }
+        //    catch { }
+        //}
     }
 }

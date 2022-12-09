@@ -40,7 +40,7 @@ namespace Human_Resource.App_Code
         public Nullable<int> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
 
-        public List<AdvisorModel> Advisors { get; set; }
+        public List<EmployeeModel> Advisors { get; set; }
 
         #endregion
 
@@ -69,12 +69,20 @@ namespace Human_Resource.App_Code
                              Notes = x.Notes,
                              CreateUserID = x.CreateUserID,
                              UpdateUserID = x.UpdateUserID,
+                             Advisors = entity.highrManagment.Where(a => a.IsActive == true && a.Role =="Advisor")
+                                        .Select(a => new EmployeeModel()
+                                        {
+                                            EmployeeID = (int)a.EmployeeID,
+                                            NameAr = a.employees.NameAr,
+                                            NameEn = a.employees.NameEn,
+
+                                        }).ToList(),
                         }).FirstOrDefault();
             }
             return com;
         }
 
-        public int SaveCompanyInfo(CompanyModel company)
+        public int SaveCompanyInfo(CompanyModel company,List<int> advisorsIds)
         {
             try
             {
@@ -98,6 +106,7 @@ namespace Human_Resource.App_Code
                             CEO = company.CEO,
                             HRManager = company.HRManager,
                             FinancialManager = company.FinancialManager,
+                            LegalManager = company.LegalManager,
                             IsActive = true,
                             CreateUserID = company.CreateUserID,
                             UpdateUserID = company.UpdateUserID,
@@ -108,6 +117,7 @@ namespace Human_Resource.App_Code
                     }
                     else
                     {
+                        
                         com = entity.companies.Find(company.CompanyID);
                         com.Name = company.Name;
                         com.Address = company.Address;
@@ -121,6 +131,7 @@ namespace Human_Resource.App_Code
                         com.CEO = company.CEO;
                         com.HRManager = company.HRManager;
                         com.FinancialManager = company.FinancialManager;
+                        com.LegalManager = company.LegalManager;
                         com.IsActive = true;
                         com.UpdateUserID = company.UpdateUserID;
                         com.UpdateDate = DateTime.Now;
@@ -142,6 +153,37 @@ namespace Human_Resource.App_Code
                     if (hrManager.HiringDate == null)
                         hrManager.HiringDate = DateTime.Now;
 
+                    #region edit advisors
+                    var advisors = entity.highrManagment.Where(x => x.IsActive == true && x.Role =="Advisor").ToList();
+                    foreach(var adv in advisors)
+                    {
+                        if(!advisorsIds.Contains((int)adv.EmployeeID))
+                        {
+                            adv.IsActive = false;
+                        }
+                    }
+                    foreach(var adv in advisorsIds)
+                    {
+                        highrManagment found = null;
+                        if (advisors != null)
+                            found = advisors.Where(x => x.EmployeeID == adv).FirstOrDefault();
+                        if(found == null)// add new advisor
+                        {
+                            var advisor = new highrManagment()
+                            {
+                                EmployeeID = adv,
+                                CreateDate = DateTime.Now,
+                                UpdateDate = DateTime.Now,
+                                IsActive = true,
+                                CreateUserID = company.UpdateUserID,
+                                UpdateUserID = company.UpdateUserID,
+                                Role = "Advisor",
+
+                            };
+                            entity.highrManagment.Add(advisor);
+                        }
+                    }
+                    #endregion
                     entity.SaveChanges();
                 }
                 return com.CompanyID;
