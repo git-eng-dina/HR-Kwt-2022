@@ -699,4 +699,10 @@
   <data name="Legal" xml:space="preserve">
     <value>القانوني</value>
   </data>
+  <data name="AddPenalties" xml:space="preserve">
+    <value>إضافة عقوبة</value>
+  </data>
+  <data name="Penalties" xml:space="preserve">
+    <value>العقوبات</value>
+  </data>
 </root>

@@ -151,6 +151,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Penalties.
+        /// </summary>
+        internal static string AddPenalties {
+            get {
+                return ResourceManager.GetString("AddPenalties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Address.
         /// </summary>
         internal static string Address {
@@ -1299,6 +1308,15 @@ namespace Resources {
         internal static string Password {
             get {
                 return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Penalties.
+        /// </summary>
+        internal static string Penalties {
+            get {
+                return ResourceManager.GetString("Penalties", resourceCulture);
             }
         }
         

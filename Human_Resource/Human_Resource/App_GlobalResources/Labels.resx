@@ -702,4 +702,10 @@
   <data name="Legal" xml:space="preserve">
     <value>Legal</value>
   </data>
+  <data name="AddPenalties" xml:space="preserve">
+    <value>Add Penalties</value>
+  </data>
+  <data name="Penalties" xml:space="preserve">
+    <value>Penalties</value>
+  </data>
 </root>
