@@ -19,6 +19,7 @@ namespace Human_Resource
         {
             this.confirms = new HashSet<confirms>();
             this.custodies = new HashSet<custodies>();
+            this.dailyTasks = new HashSet<dailyTasks>();
             this.EemployeesEvents = new HashSet<EemployeesEvents>();
             this.employeesScheduleVacations = new HashSet<employeesScheduleVacations>();
             this.employeesTasks = new HashSet<employeesTasks>();
@@ -27,6 +28,7 @@ namespace Human_Resource
             this.evaluations = new HashSet<evaluations>();
             this.evaluations1 = new HashSet<evaluations>();
             this.events = new HashSet<events>();
+            this.highrManagment = new HashSet<highrManagment>();
             this.hourlyPermissions = new HashSet<hourlyPermissions>();
             this.Images = new HashSet<Images>();
             this.materialsConsumption = new HashSet<materialsConsumption>();
@@ -106,6 +108,8 @@ namespace Human_Resource
         public virtual countriesName countriesName { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<custodies> custodies { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<dailyTasks> dailyTasks { get; set; }
         public virtual departments departments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EemployeesEvents> EemployeesEvents { get; set; }
@@ -124,6 +128,8 @@ namespace Human_Resource
         public virtual ICollection<evaluations> evaluations1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<events> events { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<highrManagment> highrManagment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<hourlyPermissions> hourlyPermissions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

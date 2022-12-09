@@ -12,33 +12,21 @@ namespace Human_Resource
     using System;
     using System.Collections.Generic;
     
-    public partial class confirms
+    public partial class dailyTasks
     {
-        public long ConfirmID { get; set; }
+        public int DailyTasksID { get; set; }
         public string Notes { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public Nullable<int> CreateUserID { get; set; }
         public Nullable<int> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
-        public Nullable<int> TaskID { get; set; }
-        public Nullable<int> SalaryIncreaseID { get; set; }
-        public Nullable<int> MessagesTemplateID { get; set; }
-        public Nullable<int> HourlyPermissionID { get; set; }
-        public Nullable<int> JobID { get; set; }
-        public Nullable<int> DepartmentID { get; set; }
-        public string ConfirmType { get; set; }
         public Nullable<int> EmployeeID { get; set; }
-        public string Role { get; set; }
-        public Nullable<long> EventID { get; set; }
+        public Nullable<int> TaskID { get; set; }
+        public Nullable<bool> EmpDone { get; set; }
+        public Nullable<bool> BossDone { get; set; }
     
-        public virtual departments departments { get; set; }
         public virtual employees employees { get; set; }
-        public virtual events events { get; set; }
-        public virtual hourlyPermissions hourlyPermissions { get; set; }
-        public virtual jobs jobs { get; set; }
-        public virtual messagesTemplates messagesTemplates { get; set; }
-        public virtual salaryIncreases salaryIncreases { get; set; }
         public virtual tasks tasks { get; set; }
     }
 }

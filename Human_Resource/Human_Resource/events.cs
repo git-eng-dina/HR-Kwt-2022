@@ -17,6 +17,7 @@ namespace Human_Resource
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public events()
         {
+            this.confirms = new HashSet<confirms>();
             this.EemployeesEvents = new HashSet<EemployeesEvents>();
         }
     
@@ -34,6 +35,8 @@ namespace Human_Resource
         public Nullable<System.DateTime> EventDate { get; set; }
         public Nullable<int> EmployeeID { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<confirms> confirms { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EemployeesEvents> EemployeesEvents { get; set; }
         public virtual employees employees { get; set; }

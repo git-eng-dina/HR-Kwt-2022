@@ -18,6 +18,7 @@ namespace Human_Resource
         public tasks()
         {
             this.confirms = new HashSet<confirms>();
+            this.dailyTasks = new HashSet<dailyTasks>();
             this.employeesTasks = new HashSet<employeesTasks>();
         }
     
@@ -32,9 +33,13 @@ namespace Human_Resource
         public Nullable<int> CreateUserID { get; set; }
         public Nullable<int> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
+        public Nullable<System.DateTime> StartDate { get; set; }
+        public Nullable<System.DateTime> EndDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<confirms> confirms { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<dailyTasks> dailyTasks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<employeesTasks> employeesTasks { get; set; }
     }

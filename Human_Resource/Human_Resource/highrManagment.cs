@@ -12,11 +12,11 @@ namespace Human_Resource
     using System;
     using System.Collections.Generic;
     
-    public partial class employeesTasks
+    public partial class highrManagment
     {
-        public int DailyTasksID { get; set; }
+        public int ID { get; set; }
         public Nullable<int> EmployeeID { get; set; }
-        public Nullable<int> TaskID { get; set; }
+        public string Role { get; set; }
         public string Notes { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
@@ -25,6 +25,5 @@ namespace Human_Resource
         public Nullable<bool> IsActive { get; set; }
     
         public virtual employees employees { get; set; }
-        public virtual tasks tasks { get; set; }
     }
 }
