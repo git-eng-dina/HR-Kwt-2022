@@ -34,17 +34,18 @@ namespace Human_Resource.Views.ExecutiveProc
 
             var depts = dept.getActivity();
             if (textSearch != "")
-                depts = depts.Where(x => x.Type.ToLower().Contains(textSearch.ToLower())
-                                || x.Title.Contains(textSearch)
+                depts = depts.Where(x => 
+                //x.Type.ToLower().Contains(textSearch.ToLower())
+                                  x.Title.Contains(textSearch)
                                 || x.Description.Contains(textSearch)
                                  || x.EmployeeName.ToLower().Contains(textSearch.ToLower())
                                  ).ToList();
             gv_data.DataSource = depts;
 
 
-            dept_type.DataSource = GetData.rewardsTypeList;
-            dept_type.DataValueField = "key";
-            dept_type.DataTextField = "value";
+            //dept_type.DataSource = GetData.rewardsTypeList;
+            //dept_type.DataValueField = "key";
+            //dept_type.DataTextField = "value";
 
 
 
@@ -62,7 +63,8 @@ namespace Human_Resource.Views.ExecutiveProc
             DataBind();
         }
         [WebMethod(EnableSession = true)]
-        public static string SaveReward(string rewardId, string employeeId, string type, string title, string description,string value)
+        //public static string SaveReward(string rewardId, string employeeId, string type, string title, string description,string value)
+        public static string SaveReward(string rewardId, string employeeId,  string title, string description,string value)
         {
             try
             {
@@ -72,7 +74,7 @@ namespace Human_Resource.Views.ExecutiveProc
                 else
                     dept.RewardID = 0;
                 dept.EmployeeID = int.Parse(employeeId);
-                dept.Type = type;
+                //dept.Type = type;
                 dept.Title = title;
                 dept.Description = description;
                 dept.Value = value;

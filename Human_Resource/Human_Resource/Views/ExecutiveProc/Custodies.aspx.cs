@@ -104,7 +104,16 @@ namespace Human_Resource.Views.ExecutiveProc
             //else if (type == "Car")
             //    txt_detailsTitle.Text = Resources.Labels.CarNumber; 
         }
-        
+        protected void TypeChanged(object sender, EventArgs e)
+        {
+            //if (type == "Physical" || type == "Other")
+            //    txt_detailsTitle.Text = Resources.Labels.Details; 
+            //else if (type == "Cash")
+            //    txt_detailsTitle.Text = Resources.Labels.Amount; 
+            //else if (type == "Car")
+            //    txt_detailsTitle.Text = Resources.Labels.CarNumber; 
+        }
+
         [WebMethod]
         public static CustodieModel GetCustodie(string ID)
         {

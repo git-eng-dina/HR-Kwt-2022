@@ -58,7 +58,7 @@
                         var item = data[prop];
                         $('#MainContent_hid_rewardId').val(item.RewardID);
                         $('#MainContent_emp').val(item.EmployeeID);
-                        $('#MainContent_dept_type').val(item.Type);
+                        //$('#MainContent_dept_type').val(item.Type);
                         $('#MainContent_txt_title').val(item.Title);
                         $('#MainContent_txt_description').val(item.Description);
                         $('#MainContent_txt_value').val(item.Value);
@@ -75,7 +75,7 @@
         function saveReward() {
             var id = $('#MainContent_hid_rewardId').val();
             var emp = $("#MainContent_emp").find(":selected").val();
-            var type = $("#MainContent_dept_type").find(":selected").val();
+            //var type = $("#MainContent_dept_type").find(":selected").val();
             var title = $("#MainContent_txt_title").val();
             var description = $("#MainContent_txt_description").val();
             var value = $("#MainContent_txt_value").val();
@@ -83,7 +83,7 @@
              var parameter = {
                 rewardId: id,
                  employeeId: emp,
-                type: type,
+                //type: type,
                  title: title,
                 description: description,
                  value: value,
@@ -114,7 +114,7 @@
                         <div class="bcrumb-block">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a id="a_title" href="#"><asp:Literal  runat="server" Text="<%$ Resources:Labels,RewardsAndPenalties%>" /></a></li>
+                                    <li class="breadcrumb-item"><a id="a_title" href="#"><asp:Literal  runat="server" Text="<%$ Resources:Labels,Penalties%>" /></a></li>
                                 </ol>
                             </nav>
                         </div>
@@ -157,12 +157,12 @@
                                                  Text='<%# Eval("EmployeeName") %>' />                              
                                          </ItemTemplate>
                                         </asp:TemplateField>
-                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,Type%>" ItemStyle-Width="15%">
+                                  <%-- <asp:TemplateField HeaderText="<%$ Resources:Labels,Type%>" ItemStyle-Width="15%">
                                          <ItemTemplate>
                                                  <asp:Label ID="LblDtype" runat="server" 
                                                  Text='<%# Eval("Type") %>' />                              
                                          </ItemTemplate>
-                                   </asp:TemplateField>             
+                                   </asp:TemplateField>   --%>          
                                           
                                 <asp:TemplateField HeaderText="<%$ Resources:Labels,Title%>" ItemStyle-Width="25%">
                                          <ItemTemplate>
@@ -224,7 +224,7 @@
         <div class="modal-header frame-panel-heading">
            
             <div ><span >
-                <asp:Literal runat="server" Text="<%$ Resources:Labels,AddRewardsOrPenalties%>"></asp:Literal>
+                <asp:Literal runat="server" Text="<%$ Resources:Labels,AddPenalties%>"></asp:Literal>
             </span>
                 </div>
             <div class="float2" style="width:10px">
@@ -242,16 +242,16 @@
                             </div>
                         </div>
 
-                    <div class ="row">
+                   <%-- <div class ="row">
                      <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Type%>" /></span>
-                                <input type="hidden"  id="hid_rewardId" name="hid_rewardId" runat="server" value=""  />
                                 <select runat="server" id="dept_type" name="dept_type" style="width:80%" class="form-control input-lg"    onchange="typeChanged()"/>
                              </div>
-                        </div>
+                        </div>--%>
                      <div class ="row">
                      <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server"   Text="<%$ Resources:Labels,Title%>" /></span>
+                                <input type="hidden"  id="hid_rewardId" name="hid_rewardId" runat="server" value=""  />
                                 <input type="text" class="form-control input-lg" id="txt_title"  runat="server" value=""  />
                             </div>
                         </div> 

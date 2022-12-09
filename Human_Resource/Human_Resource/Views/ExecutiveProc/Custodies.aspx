@@ -105,24 +105,9 @@
         }
 
         function typeChanged() {
-           
+
             var type = $("#MainContent_dept_type").find(":selected").val();
-            var parameter = {
-                type: type,
-            };
-            $.ajax({
-                type: "POST",
-                url: "Custodies.aspx/TypeChanged",
-                data: JSON.stringify(parameter),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (data) {
-                    window.top.location = "Custodies.aspx";
-                },
-                failure: function (response) {
-                    alert(response.d);
-                }
-            });
+            $("#MainContent_txt_detailsTitle").text("test");
 
         }
 

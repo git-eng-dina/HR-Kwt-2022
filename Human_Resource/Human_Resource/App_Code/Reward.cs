@@ -9,11 +9,11 @@ namespace Human_Resource.App_Code
      {
         #region Attributes
         public int RewardID { get; set; }
-        public string Type { get; set; }
+        //public string Type { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string Value { get; set; }
-         public Nullable<int> EmployeeID { get; set; }
+        public Nullable<int> EmployeeID { get; set; }
         public string EmployeeName { get; set; }
         public string Notes { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
@@ -32,11 +32,11 @@ namespace Human_Resource.App_Code
                                 .Select(x => new RewardModel()
                                 {
                                     RewardID = x.RewardID,
-                                    Type = x.Type,
+                                    //Type = x.Type,
                                     Title = x.Title,
                                     Description = x.Description,
                                     Value = x.Value,
-                                     EmployeeID = x.EmployeeID,
+                                    EmployeeID = x.EmployeeID,
                                     EmployeeName = entity.employees.Where(m => m.EmployeeID == x.EmployeeID).Select(m => m.NameAr).FirstOrDefault(),
                                     CreateUserID = x.CreateUserID,
                                     UpdateUserID = x.UpdateUserID,
@@ -55,7 +55,7 @@ namespace Human_Resource.App_Code
                                 .Select(x => new RewardModel()
                                 {
                                     RewardID = x.RewardID,
-                                    Type = x.Type,
+                                    //Type = x.Type,
                                     Title = x.Title,
                                     Description = x.Description,
                                     Value = x.Value,
@@ -83,7 +83,7 @@ namespace Human_Resource.App_Code
                     {
                         reward = new rewards()
                         {
-                            Type = dept.Type,
+                            //Type = dept.Type,
                             EmployeeID = dept.EmployeeID,
                             Title = dept.Title,
                             Description = dept.Description,
@@ -99,7 +99,7 @@ namespace Human_Resource.App_Code
                     else
                     {
                         reward = entity.rewards.Find(dept.RewardID);
-                        reward.Type = dept.Type;
+                        //reward.Type = dept.Type;
                         reward.EmployeeID = dept.EmployeeID;
                         reward.Title = dept.Title;
                         reward.Description = dept.Description;

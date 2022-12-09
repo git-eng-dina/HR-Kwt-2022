@@ -67,15 +67,6 @@ namespace Human_Resource.Views.ExecutiveProc {
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden hid_rewardId;
         
         /// <summary>
-        /// dept_type control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect dept_type;
-        
-        /// <summary>
         /// txt_title control.
         /// </summary>
         /// <remarks>
