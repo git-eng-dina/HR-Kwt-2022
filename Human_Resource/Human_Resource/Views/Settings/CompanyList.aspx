@@ -23,6 +23,7 @@
             if (valid) {
                 var parameter = {
                     CompanyList: $('#MainContent_companyList').val(),
+                    companyId: $('#MainContent_hid_companyID').val(),
                 };
                 $.ajax({
                     type: "POST",

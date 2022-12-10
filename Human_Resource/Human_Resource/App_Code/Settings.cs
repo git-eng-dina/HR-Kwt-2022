@@ -28,6 +28,7 @@ namespace Human_Resource.App_Code
         public string Phone { get; set; }
         public string Fax { get; set; }
         public string Notes { get; set; }
+        public string CompanyList { get; set; }
         public Nullable<bool> OurCompany { get; set; }
         public Nullable<int> GeneralDirector { get; set; }
         public Nullable<int> FinancialManager { get; set; }
@@ -80,6 +81,16 @@ namespace Human_Resource.App_Code
                         }).FirstOrDefault();
             }
             return com;
+        }
+         public string GetCompanyList()
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                 var companyList = entity.companies.Where(x =>x.IsActive == true)
+                        .Select(x => x.CompanyList).FirstOrDefault();
+
+                return companyList;
+            }
         }
 
         public int SaveCompanyInfo(CompanyModel company,List<int> advisorsIds)
@@ -184,6 +195,46 @@ namespace Human_Resource.App_Code
                         }
                     }
                     #endregion
+                    entity.SaveChanges();
+                }
+                return com.CompanyID;
+            }
+
+            catch {
+                return 0;
+            }
+        }
+        public int SaveCompanyList(CompanyModel company)
+        {
+            try
+            {
+                companies com;
+
+                using (HRSystemEntities entity = new HRSystemEntities())
+                {
+                    if (company.CompanyID.Equals(0))
+                    {
+                        com = new companies()
+                        {
+                            CompanyList = company.CompanyList,
+                            IsActive = true,
+                            CreateUserID = company.CreateUserID,
+                            UpdateUserID = company.UpdateUserID,
+                            CreateDate = DateTime.Now,
+                            UpdateDate = DateTime.Now,
+                        };
+                       com = entity.companies.Add(com);
+                    }
+                    else
+                    {
+                        
+                        com = entity.companies.Find(company.CompanyID);
+                        com.CompanyList = company.CompanyList;                     
+                        com.UpdateUserID = company.UpdateUserID;
+                        com.UpdateDate = DateTime.Now;
+                    }
+
+
                     entity.SaveChanges();
                 }
                 return com.CompanyID;
