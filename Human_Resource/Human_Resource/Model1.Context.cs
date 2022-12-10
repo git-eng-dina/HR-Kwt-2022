@@ -35,8 +35,10 @@ namespace Human_Resource
         public virtual DbSet<EemployeesEvents> EemployeesEvents { get; set; }
         public virtual DbSet<employees> employees { get; set; }
         public virtual DbSet<employeesScheduleVacations> employeesScheduleVacations { get; set; }
+        public virtual DbSet<employeesTasks> employeesTasks { get; set; }
         public virtual DbSet<employeesTrainings> employeesTrainings { get; set; }
         public virtual DbSet<employeesVacations> employeesVacations { get; set; }
+        public virtual DbSet<evaluations> evaluations { get; set; }
         public virtual DbSet<events> events { get; set; }
         public virtual DbSet<highrManagment> highrManagment { get; set; }
         public virtual DbSet<hourlyPermissions> hourlyPermissions { get; set; }
@@ -50,11 +52,9 @@ namespace Human_Resource
         public virtual DbSet<rewards> rewards { get; set; }
         public virtual DbSet<salaryIncreases> salaryIncreases { get; set; }
         public virtual DbSet<scheduleVacations> scheduleVacations { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        //public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<tasks> tasks { get; set; }
         public virtual DbSet<trainings> trainings { get; set; }
         public virtual DbSet<vacations> vacations { get; set; }
-        public virtual DbSet<employeesTasks> employeesTasks { get; set; }
-        public virtual DbSet<evaluations> evaluations { get; set; }
     }
 }

@@ -95,9 +95,9 @@
         </EntityType>
         <EntityType Name="dailyTasks">
           <Key>
-            <PropertyRef Name="DailyTasksID" />
+            <PropertyRef Name="DailyTaskID" />
           </Key>
-          <Property Name="DailyTasksID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DailyTaskID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Notes" Type="ntext" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" />
           <Property Name="UpdateDate" Type="datetime2" Precision="7" />
@@ -223,13 +223,11 @@
           <Property Name="UpdateUserID" Type="int" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="employeesTasks">
           <Key>
-            <PropertyRef Name="DailyTasksID" />
+            <PropertyRef Name="EmployeesTaskID" />
           </Key>
-          <Property Name="DailyTasksID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeesTaskID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EmployeeID" Type="int" />
           <Property Name="TaskID" Type="int" />
           <Property Name="Notes" Type="ntext" />
@@ -267,8 +265,6 @@ warning 6002: The table/view 'HRSystem.dbo.employeesTasks' does not have a prima
           <Property Name="UpdateUserID" Type="int" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'HRSystem.dbo.evaluations' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="evaluations">
           <Key>
             <PropertyRef Name="EvaluationID" />
@@ -1018,8 +1014,10 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
           <EntitySet Name="EemployeesEvents" EntityType="Self.EemployeesEvents" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="employees" EntityType="Self.employees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="employeesScheduleVacations" EntityType="Self.employeesScheduleVacations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employeesTasks" EntityType="Self.employeesTasks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="employeesTrainings" EntityType="Self.employeesTrainings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="employeesVacations" EntityType="Self.employeesVacations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="evaluations" EntityType="Self.evaluations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="events" EntityType="Self.events" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="highrManagment" EntityType="Self.highrManagment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="hourlyPermissions" EntityType="Self.hourlyPermissions" Schema="dbo" store:Type="Tables" />
@@ -1037,56 +1035,6 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
           <EntitySet Name="tasks" EntityType="Self.tasks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="trainings" EntityType="Self.trainings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="vacations" EntityType="Self.vacations" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="employeesTasks" EntityType="Self.employeesTasks" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [employeesTasks].[DailyTasksID] AS [DailyTasksID], 
-    [employeesTasks].[EmployeeID] AS [EmployeeID], 
-    [employeesTasks].[TaskID] AS [TaskID], 
-    [employeesTasks].[Notes] AS [Notes], 
-    [employeesTasks].[CreateDate] AS [CreateDate], 
-    [employeesTasks].[UpdateDate] AS [UpdateDate], 
-    [employeesTasks].[CreateUserID] AS [CreateUserID], 
-    [employeesTasks].[UpdateUserID] AS [UpdateUserID], 
-    [employeesTasks].[IsActive] AS [IsActive]
-    FROM [dbo].[employeesTasks] AS [employeesTasks]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="evaluations" EntityType="Self.evaluations" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [evaluations].[EvaluationID] AS [EvaluationID], 
-    [evaluations].[EmployeeID] AS [EmployeeID], 
-    [evaluations].[ReviewerID] AS [ReviewerID], 
-    [evaluations].[EvaluationDate] AS [EvaluationDate], 
-    [evaluations].[Behavior] AS [Behavior], 
-    [evaluations].[Attendance] AS [Attendance], 
-    [evaluations].[Punctuality] AS [Punctuality], 
-    [evaluations].[Productivity] AS [Productivity], 
-    [evaluations].[Creativity] AS [Creativity], 
-    [evaluations].[ClientRelation] AS [ClientRelation], 
-    [evaluations].[Initiative] AS [Initiative], 
-    [evaluations].[Communication] AS [Communication], 
-    [evaluations].[Cooperation] AS [Cooperation], 
-    [evaluations].[StrategicThinking] AS [StrategicThinking], 
-    [evaluations].[HandleStressful] AS [HandleStressful], 
-    [evaluations].[ListeningSkills] AS [ListeningSkills], 
-    [evaluations].[MeetingDeadlines] AS [MeetingDeadlines], 
-    [evaluations].[Performance] AS [Performance], 
-    [evaluations].[JobKnowledge] AS [JobKnowledge], 
-    [evaluations].[OrganizeIdea] AS [OrganizeIdea], 
-    [evaluations].[RespondResourcefully] AS [RespondResourcefully], 
-    [evaluations].[ConfrontsProblems] AS [ConfrontsProblems], 
-    [evaluations].[CustomerNeeds] AS [CustomerNeeds], 
-    [evaluations].[OrganizationVision] AS [OrganizationVision], 
-    [evaluations].[StayFocused] AS [StayFocused], 
-    [evaluations].[OverAllProgress] AS [OverAllProgress], 
-    [evaluations].[Comment] AS [Comment], 
-    [evaluations].[Notes] AS [Notes], 
-    [evaluations].[CreateDate] AS [CreateDate], 
-    [evaluations].[UpdateDate] AS [UpdateDate], 
-    [evaluations].[CreateUserID] AS [CreateUserID], 
-    [evaluations].[UpdateUserID] AS [UpdateUserID], 
-    [evaluations].[IsActive] AS [IsActive]
-    FROM [dbo].[evaluations] AS [evaluations]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_branches_companies" Association="Self.FK_branches_companies">
             <End Role="companies" EntitySet="companies" />
             <End Role="branches" EntitySet="branches" />
@@ -1344,9 +1292,9 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
         </EntityType>
         <EntityType Name="dailyTasks">
           <Key>
-            <PropertyRef Name="DailyTasksID" />
+            <PropertyRef Name="DailyTaskID" />
           </Key>
-          <Property Name="DailyTasksID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DailyTaskID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="7" />
           <Property Name="UpdateDate" Type="DateTime" Precision="7" />
@@ -1502,6 +1450,22 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
           <NavigationProperty Name="employees" Relationship="Self.FK_employeesScheduleVacations_employees" FromRole="employeesScheduleVacations" ToRole="employees" />
           <NavigationProperty Name="scheduleVacations" Relationship="Self.FK_employeesScheduleVacations_scheduleVacations" FromRole="employeesScheduleVacations" ToRole="scheduleVacations" />
         </EntityType>
+        <EntityType Name="employeesTasks">
+          <Key>
+            <PropertyRef Name="EmployeesTaskID" />
+          </Key>
+          <Property Name="EmployeesTaskID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="TaskID" Type="Int32" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="CreateUserID" Type="Int32" />
+          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="employees" Relationship="Self.FK_employeesTasks_employees" FromRole="employeesTasks" ToRole="employees" />
+          <NavigationProperty Name="tasks" Relationship="Self.FK_employeesTasks_tasks" FromRole="employeesTasks" ToRole="tasks" />
+        </EntityType>
         <EntityType Name="employeesTrainings">
           <Key>
             <PropertyRef Name="EmployeesTrainingsID" />
@@ -1533,6 +1497,46 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
           <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="employees" Relationship="Self.FK_employeesVacations_employees" FromRole="employeesVacations" ToRole="employees" />
           <NavigationProperty Name="vacations" Relationship="Self.FK_employeesVacations_vacations" FromRole="employeesVacations" ToRole="vacations" />
+        </EntityType>
+        <EntityType Name="evaluations">
+          <Key>
+            <PropertyRef Name="EvaluationID" />
+          </Key>
+          <Property Name="EvaluationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="ReviewerID" Type="Int32" />
+          <Property Name="EvaluationDate" Type="DateTime" Precision="7" />
+          <Property Name="Behavior" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Attendance" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Punctuality" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Productivity" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Creativity" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ClientRelation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Initiative" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Communication" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Cooperation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StrategicThinking" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HandleStressful" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ListeningSkills" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MeetingDeadlines" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Performance" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="JobKnowledge" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="OrganizeIdea" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RespondResourcefully" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ConfrontsProblems" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerNeeds" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="OrganizationVision" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StayFocused" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="OverAllProgress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="CreateUserID" Type="Int32" />
+          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="employees" Relationship="Self.FK_evaluations_employees" FromRole="evaluations" ToRole="employees" />
+          <NavigationProperty Name="employees1" Relationship="Self.FK_evaluations_employees1" FromRole="evaluations" ToRole="employees" />
         </EntityType>
         <EntityType Name="events">
           <Key>
@@ -1799,62 +1803,6 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
           <Property Name="UpdateUserID" Type="Int32" />
           <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="employeesVacations" Relationship="Self.FK_employeesVacations_vacations" FromRole="vacations" ToRole="employeesVacations" />
-        </EntityType>
-        <EntityType Name="employeesTasks">
-          <Key>
-            <PropertyRef Name="DailyTasksID" />
-          </Key>
-          <Property Name="DailyTasksID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EmployeeID" Type="Int32" />
-          <Property Name="TaskID" Type="Int32" />
-          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CreateDate" Type="DateTime" Precision="7" />
-          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
-          <Property Name="CreateUserID" Type="Int32" />
-          <Property Name="UpdateUserID" Type="Int32" />
-          <Property Name="IsActive" Type="Boolean" />
-          <NavigationProperty Name="employees" Relationship="Self.FK_employeesTasks_employees" FromRole="employeesTasks" ToRole="employees" />
-          <NavigationProperty Name="tasks" Relationship="Self.FK_employeesTasks_tasks" FromRole="employeesTasks" ToRole="tasks" />
-        </EntityType>
-        <EntityType Name="evaluations">
-          <Key>
-            <PropertyRef Name="EvaluationID" />
-          </Key>
-          <Property Name="EvaluationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EmployeeID" Type="Int32" />
-          <Property Name="ReviewerID" Type="Int32" />
-          <Property Name="EvaluationDate" Type="DateTime" Precision="7" />
-          <Property Name="Behavior" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Attendance" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Punctuality" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Productivity" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Creativity" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ClientRelation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Initiative" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Communication" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Cooperation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="StrategicThinking" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="HandleStressful" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ListeningSkills" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="MeetingDeadlines" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Performance" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="JobKnowledge" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="OrganizeIdea" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="RespondResourcefully" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ConfrontsProblems" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="CustomerNeeds" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="OrganizationVision" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="StayFocused" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="OverAllProgress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CreateDate" Type="DateTime" Precision="7" />
-          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
-          <Property Name="CreateUserID" Type="Int32" />
-          <Property Name="UpdateUserID" Type="Int32" />
-          <Property Name="IsActive" Type="Boolean" />
-          <NavigationProperty Name="employees" Relationship="Self.FK_evaluations_employees" FromRole="evaluations" ToRole="employees" />
-          <NavigationProperty Name="employees1" Relationship="Self.FK_evaluations_employees1" FromRole="evaluations" ToRole="employees" />
         </EntityType>
         <Association Name="FK_branches_companies">
           <End Role="companies" Type="Self.companies" Multiplicity="0..1" />
@@ -2264,6 +2212,18 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_employeesTasks_tasks">
+          <End Role="tasks" Type="Self.tasks" Multiplicity="0..1" />
+          <End Role="employeesTasks" Type="Self.employeesTasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tasks">
+              <PropertyRef Name="TaskID" />
+            </Principal>
+            <Dependent Role="employeesTasks">
+              <PropertyRef Name="TaskID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_employeesTrainings_trainings1">
           <End Role="trainings" Type="Self.trainings" Multiplicity="0..1" />
           <End Role="employeesTrainings" Type="Self.employeesTrainings" Multiplicity="*" />
@@ -2288,18 +2248,6 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_employeesTasks_tasks">
-          <End Role="tasks" Type="Self.tasks" Multiplicity="0..1" />
-          <End Role="employeesTasks" Type="Self.employeesTasks" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tasks">
-              <PropertyRef Name="TaskID" />
-            </Principal>
-            <Dependent Role="employeesTasks">
-              <PropertyRef Name="TaskID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="HRSystemEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="branches" EntityType="Self.branches" />
           <EntitySet Name="companies" EntityType="Self.companies" />
@@ -2311,8 +2259,10 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
           <EntitySet Name="EemployeesEvents" EntityType="Self.EemployeesEvents" />
           <EntitySet Name="employees" EntityType="Self.employees" />
           <EntitySet Name="employeesScheduleVacations" EntityType="Self.employeesScheduleVacations" />
+          <EntitySet Name="employeesTasks" EntityType="Self.employeesTasks" />
           <EntitySet Name="employeesTrainings" EntityType="Self.employeesTrainings" />
           <EntitySet Name="employeesVacations" EntityType="Self.employeesVacations" />
+          <EntitySet Name="evaluations" EntityType="Self.evaluations" />
           <EntitySet Name="events" EntityType="Self.events" />
           <EntitySet Name="highrManagment" EntityType="Self.highrManagment" />
           <EntitySet Name="hourlyPermissions" EntityType="Self.hourlyPermissions" />
@@ -2330,8 +2280,6 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
           <EntitySet Name="tasks" EntityType="Self.tasks" />
           <EntitySet Name="trainings" EntityType="Self.trainings" />
           <EntitySet Name="vacations" EntityType="Self.vacations" />
-          <EntitySet Name="employeesTasks" EntityType="Self.employeesTasks" />
-          <EntitySet Name="evaluations" EntityType="Self.evaluations" />
           <AssociationSet Name="FK_branches_companies" Association="Self.FK_branches_companies">
             <End Role="companies" EntitySet="companies" />
             <End Role="branches" EntitySet="branches" />
@@ -2468,6 +2416,10 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
             <End Role="scheduleVacations" EntitySet="scheduleVacations" />
             <End Role="employeesScheduleVacations" EntitySet="employeesScheduleVacations" />
           </AssociationSet>
+          <AssociationSet Name="FK_employeesTasks_tasks" Association="Self.FK_employeesTasks_tasks">
+            <End Role="tasks" EntitySet="tasks" />
+            <End Role="employeesTasks" EntitySet="employeesTasks" />
+          </AssociationSet>
           <AssociationSet Name="FK_employeesTrainings_trainings1" Association="Self.FK_employeesTrainings_trainings1">
             <End Role="trainings" EntitySet="trainings" />
             <End Role="employeesTrainings" EntitySet="employeesTrainings" />
@@ -2475,10 +2427,6 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
           <AssociationSet Name="FK_employeesVacations_vacations" Association="Self.FK_employeesVacations_vacations">
             <End Role="vacations" EntitySet="vacations" />
             <End Role="employeesVacations" EntitySet="employeesVacations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_employeesTasks_tasks" Association="Self.FK_employeesTasks_tasks">
-            <End Role="tasks" EntitySet="tasks" />
-            <End Role="employeesTasks" EntitySet="employeesTasks" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -2583,7 +2531,7 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
           <EntitySetMapping Name="dailyTasks">
             <EntityTypeMapping TypeName="HRSystemModel.dailyTasks">
               <MappingFragment StoreEntitySet="dailyTasks">
-                <ScalarProperty Name="DailyTasksID" ColumnName="DailyTasksID" />
+                <ScalarProperty Name="DailyTaskID" ColumnName="DailyTaskID" />
                 <ScalarProperty Name="Notes" ColumnName="Notes" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
@@ -2715,6 +2663,21 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="employeesTasks">
+            <EntityTypeMapping TypeName="HRSystemModel.employeesTasks">
+              <MappingFragment StoreEntitySet="employeesTasks">
+                <ScalarProperty Name="EmployeesTaskID" ColumnName="EmployeesTaskID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="employeesTrainings">
             <EntityTypeMapping TypeName="HRSystemModel.employeesTrainings">
               <MappingFragment StoreEntitySet="employeesTrainings">
@@ -2736,6 +2699,45 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
                 <ScalarProperty Name="EmployeesVacationsID" ColumnName="EmployeesVacationsID" />
                 <ScalarProperty Name="VacationID" ColumnName="VacationID" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="evaluations">
+            <EntityTypeMapping TypeName="HRSystemModel.evaluations">
+              <MappingFragment StoreEntitySet="evaluations">
+                <ScalarProperty Name="EvaluationID" ColumnName="EvaluationID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="ReviewerID" ColumnName="ReviewerID" />
+                <ScalarProperty Name="EvaluationDate" ColumnName="EvaluationDate" />
+                <ScalarProperty Name="Behavior" ColumnName="Behavior" />
+                <ScalarProperty Name="Attendance" ColumnName="Attendance" />
+                <ScalarProperty Name="Punctuality" ColumnName="Punctuality" />
+                <ScalarProperty Name="Productivity" ColumnName="Productivity" />
+                <ScalarProperty Name="Creativity" ColumnName="Creativity" />
+                <ScalarProperty Name="ClientRelation" ColumnName="ClientRelation" />
+                <ScalarProperty Name="Initiative" ColumnName="Initiative" />
+                <ScalarProperty Name="Communication" ColumnName="Communication" />
+                <ScalarProperty Name="Cooperation" ColumnName="Cooperation" />
+                <ScalarProperty Name="StrategicThinking" ColumnName="StrategicThinking" />
+                <ScalarProperty Name="HandleStressful" ColumnName="HandleStressful" />
+                <ScalarProperty Name="ListeningSkills" ColumnName="ListeningSkills" />
+                <ScalarProperty Name="MeetingDeadlines" ColumnName="MeetingDeadlines" />
+                <ScalarProperty Name="Performance" ColumnName="Performance" />
+                <ScalarProperty Name="JobKnowledge" ColumnName="JobKnowledge" />
+                <ScalarProperty Name="OrganizeIdea" ColumnName="OrganizeIdea" />
+                <ScalarProperty Name="RespondResourcefully" ColumnName="RespondResourcefully" />
+                <ScalarProperty Name="ConfrontsProblems" ColumnName="ConfrontsProblems" />
+                <ScalarProperty Name="CustomerNeeds" ColumnName="CustomerNeeds" />
+                <ScalarProperty Name="OrganizationVision" ColumnName="OrganizationVision" />
+                <ScalarProperty Name="StayFocused" ColumnName="StayFocused" />
+                <ScalarProperty Name="OverAllProgress" ColumnName="OverAllProgress" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
                 <ScalarProperty Name="Notes" ColumnName="Notes" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
@@ -2996,60 +2998,6 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
               <MappingFragment StoreEntitySet="vacations">
                 <ScalarProperty Name="VacationID" ColumnName="VacationID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Notes" ColumnName="Notes" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
-                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
-                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="employeesTasks">
-            <EntityTypeMapping TypeName="HRSystemModel.employeesTasks">
-              <MappingFragment StoreEntitySet="employeesTasks">
-                <ScalarProperty Name="DailyTasksID" ColumnName="DailyTasksID" />
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="TaskID" ColumnName="TaskID" />
-                <ScalarProperty Name="Notes" ColumnName="Notes" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
-                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
-                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="evaluations">
-            <EntityTypeMapping TypeName="HRSystemModel.evaluations">
-              <MappingFragment StoreEntitySet="evaluations">
-                <ScalarProperty Name="EvaluationID" ColumnName="EvaluationID" />
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="ReviewerID" ColumnName="ReviewerID" />
-                <ScalarProperty Name="EvaluationDate" ColumnName="EvaluationDate" />
-                <ScalarProperty Name="Behavior" ColumnName="Behavior" />
-                <ScalarProperty Name="Attendance" ColumnName="Attendance" />
-                <ScalarProperty Name="Punctuality" ColumnName="Punctuality" />
-                <ScalarProperty Name="Productivity" ColumnName="Productivity" />
-                <ScalarProperty Name="Creativity" ColumnName="Creativity" />
-                <ScalarProperty Name="ClientRelation" ColumnName="ClientRelation" />
-                <ScalarProperty Name="Initiative" ColumnName="Initiative" />
-                <ScalarProperty Name="Communication" ColumnName="Communication" />
-                <ScalarProperty Name="Cooperation" ColumnName="Cooperation" />
-                <ScalarProperty Name="StrategicThinking" ColumnName="StrategicThinking" />
-                <ScalarProperty Name="HandleStressful" ColumnName="HandleStressful" />
-                <ScalarProperty Name="ListeningSkills" ColumnName="ListeningSkills" />
-                <ScalarProperty Name="MeetingDeadlines" ColumnName="MeetingDeadlines" />
-                <ScalarProperty Name="Performance" ColumnName="Performance" />
-                <ScalarProperty Name="JobKnowledge" ColumnName="JobKnowledge" />
-                <ScalarProperty Name="OrganizeIdea" ColumnName="OrganizeIdea" />
-                <ScalarProperty Name="RespondResourcefully" ColumnName="RespondResourcefully" />
-                <ScalarProperty Name="ConfrontsProblems" ColumnName="ConfrontsProblems" />
-                <ScalarProperty Name="CustomerNeeds" ColumnName="CustomerNeeds" />
-                <ScalarProperty Name="OrganizationVision" ColumnName="OrganizationVision" />
-                <ScalarProperty Name="StayFocused" ColumnName="StayFocused" />
-                <ScalarProperty Name="OverAllProgress" ColumnName="OverAllProgress" />
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
                 <ScalarProperty Name="Notes" ColumnName="Notes" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
