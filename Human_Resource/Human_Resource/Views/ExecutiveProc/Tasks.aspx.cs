@@ -46,24 +46,29 @@ namespace Human_Resource.Views.ExecutiveProc
             dept_repeatedEvery.DataSource = GetData.repeatTypeList;
             dept_repeatedEvery.DataValueField = "key";
             dept_repeatedEvery.DataTextField = "value";
-           
 
 
-            EmployeeModel employeeModel = new EmployeeModel();
-            List<EmployeeModel> employees = new List<EmployeeModel>();
-            employees = employeeModel.GetHiredEmployees(true);
-            emp.DataSource = employees;
-            emp.DataValueField = "EmployeeID";
+
+            EmployeeModel emp = new EmployeeModel();
+            var employees = emp.GetEmployees(true, true);
+            sel_employee.DataSource = employees;
+            sel_employee.DataValueField = "EmployeeID";
             if (Session["CultureName"] != null && Session["CultureName"].ToString().ToLower() == "en-us")
-                emp.DataTextField = "NameEn";
+            {
+                sel_employee.DataTextField = "NameEn";
+
+            }
             else
-                emp.DataTextField = "NameAr";
+            {
+                sel_employee.DataTextField = "NameAr";
+            }
 
 
             DataBind();
         }
         [WebMethod(EnableSession = true)]
-        public static string SaveTask(string taskId, string employeeId, string name, string description, string repeatedEvery)
+        //public static string SaveTask(string taskId, string employeeId, string name, string description, string repeatedEvery)
+        public static string SaveTask(string taskId,  string name, string description, string repeatedEvery, string empIds)
         {
             try
             {
@@ -72,7 +77,7 @@ namespace Human_Resource.Views.ExecutiveProc
                     dept.TaskID = int.Parse(taskId);
                 else
                     dept.TaskID = 0;
-                dept.EmployeeID = int.Parse(employeeId);
+                //dept.EmployeeID = int.Parse(employeeId);
                 dept.RepeatedEvery = repeatedEvery;
                 dept.Name = name;
                 dept.Description = description;
@@ -81,7 +86,7 @@ namespace Human_Resource.Views.ExecutiveProc
                     dept.CreateUserID = dept.UpdateUserID = int.Parse(HttpContext.Current.Session["user_id"].ToString());
 
 
-                int deptId = dept.SaveDept(dept);
+                int deptId = dept.SaveDept(dept, empIds);
                 if (deptId != 0)
                 {
                     return "1";

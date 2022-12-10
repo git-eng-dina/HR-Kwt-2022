@@ -21,6 +21,7 @@ namespace Human_Resource.App_Code
         public Nullable<int> CreateUserID { get; set; }
         public Nullable<int> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
+        public List<EmployeeModel> Employees { get; set; }
         #endregion
 
         #region methods
@@ -64,12 +65,19 @@ namespace Human_Resource.App_Code
                                     Notes = x.Notes,
                                     CreateDate = x.CreateDate,
                                     UpdateDate = x.UpdateDate,
+                                    Employees = entity.employeesTasks.Where(m => m.TaskID == x.TaskID && m.IsActive == true)
+                                                .Select(m => new EmployeeModel()
+                                                {
+                                                    EmployeeID = m.EmployeeID.Value,
+                                                    NameAr = m.employees.NameAr,
+                                                    NameEn = m.employees.NameEn,
+                                                }).ToList(),
                                 }).FirstOrDefault();
                 return dept;
             }
         }
 
-        public int SaveDept(TaskModel dept)
+        public int SaveDept(TaskModel dept, string empIds)
         {
             try
             {
@@ -106,6 +114,38 @@ namespace Human_Resource.App_Code
                         task.UpdateDate = DateTime.Now;
                     }
                     entity.SaveChanges();
+                }
+
+
+                if (task.TaskID > 0)
+                {
+                    using (HRSystemEntities entity = new HRSystemEntities())
+                    {
+                        var employeesTaskss = entity.employeesTasks.Where(x => x.TaskID == task.TaskID);
+                        entity.employeesTasks.RemoveRange(
+                            employeesTaskss
+                            );
+                        entity.SaveChanges();
+
+                        //"1,2,"
+                        //empIds
+                        var empIdsList = empIds.Split(',').Where(x => !string.IsNullOrWhiteSpace(x)).ToList();
+                        foreach (var item in empIdsList)
+                        {
+                            employeesTasks employeesTasks = new employeesTasks();
+                            employeesTasks.TaskID = task.TaskID;
+                            employeesTasks.EmployeeID = int.Parse(item);
+                            employeesTasks.IsActive = true;
+                            employeesTasks.CreateUserID = dept.CreateUserID;
+                            employeesTasks.UpdateUserID = dept.UpdateUserID;
+                            employeesTasks.CreateDate = DateTime.Now;
+                            employeesTasks.UpdateDate = DateTime.Now;
+
+                            entity.employeesTasks.Add(employeesTasks);
+
+                        }
+                        entity.SaveChanges();
+                    }
                 }
                 return task.TaskID;
             }

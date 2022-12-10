@@ -14,7 +14,7 @@ namespace Human_Resource
     
     public partial class employeesTasks
     {
-        public int DailyTasksID { get; set; }
+        public int EmployeesTaskID { get; set; }
         public Nullable<int> EmployeeID { get; set; }
         public Nullable<int> TaskID { get; set; }
         public string Notes { get; set; }

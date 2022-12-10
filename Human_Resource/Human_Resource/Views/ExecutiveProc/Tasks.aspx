@@ -43,6 +43,10 @@
             var retval = "";
         }
         function ShowDialogWithData(customID) {
+            var lang = "ar-AS";
+            if ('<%= Session["CultureName"] %>' != null)
+                lang = '<%= Session["CultureName"].ToString() %>';
+
             var parameter = {
                 ID: customID
             };
@@ -57,11 +61,44 @@
                     for (var prop in data) {
                         var item = data[prop];
                         $('#MainContent_hid_taskId').val(item.TaskID);
-                        $('#MainContent_emp').val(item.EmployeeID);
+                        //$('#MainContent_emp').val(item.EmployeeID);
                         $('#MainContent_dept_repeatedEvery').val(item.RepeatedEvery);
                         $('#MainContent_txt_name').val(item.Name);
                         $('#MainContent_txt_description').val(item.Description);
- 
+
+
+                        var lstView = $("[id*=lst_employee]");
+                        for (var emp in item.Employees) {
+                            var employee = item.Employees[emp];
+
+                            var row = '<li id="' + employee.EmployeeID + '"> <input type="hidden"  runat="server" />' + "</li>";
+
+                            //Add the row to the employee list
+                            lstView.append(row);
+
+                            var li = $('#MainContent_lst_employee li:last-child');
+
+                            var span = document.createElement('SPAN');
+                            span.innerHTML = "<i class='fa fa-close delete-row-list'></i>";
+                            span.className = "delete-row-span";
+                            span.onclick = function () {
+                                $(this).closest("li").remove();
+                            };
+
+                            li.append(span);
+
+                            var spanName = document.createElement('SPAN');
+                            if (lang == "ar-AS")
+                                spanName.innerHTML = employee.NameAr;
+                            else
+                                spanName.innerHTML = employee.NameEn;
+                            spanName.className = "value-list";
+                            li.append(spanName);
+                            var hid_input = li.find("input");
+                            hid_input.attr("id", "hid_emp_" + employee.EmployeeID);
+                            hid_input.val(employee.EmployeeID);
+                        }
+
                      }
 
 
@@ -74,16 +111,26 @@
 
         function saveTask() {
             var id = $('#MainContent_hid_taskId').val();
-            var emp = $("#MainContent_emp").find(":selected").val();
+            //var emp = $("#MainContent_emp").find(":selected").val();
             var name = $("#MainContent_txt_name").val();
             var description = $("#MainContent_txt_description").val();
             var repeatedEvery = $("#MainContent_dept_repeatedEvery").find(":selected").val();
+
+            var empIdsStr = "";
+            var inputs = $('ul li input');
+            inputs.each(function (e) {
+                empIdsStr = empIdsStr + $(this).val() + ',';
+            });
+
+
               var parameter = {
                 taskId: id,
-                 employeeId: emp,
+                 //employeeId: emp,
                   name: name,
-                description: description,
+                    description: description,
                   repeatedEvery: repeatedEvery,
+                  empIds: empIdsStr,
+
               };
             $.ajax({
                 type: "POST",
@@ -103,7 +150,45 @@
         }
 
 
+        function addEmp() {
 
+            var empId = $('#MainContent_sel_employee').val();
+            var empName = $("#MainContent_sel_employee option:selected").text();
+
+            var lstView = $("[id*=lst_employee]");
+
+            if (!$("#MainContent_lst_employee #" + empId).length) {
+
+
+
+                var row = '<li id="' + empId + '"> <input type="hidden"  runat="server" />' + "</li>";
+
+                //Add the row to the employee list
+                lstView.append(row);
+
+                var li = $('#MainContent_lst_employee li:last-child');
+
+                var span = document.createElement('SPAN');
+                span.innerHTML = "<i class='fa fa-close delete-row-list'></i>";
+                span.className = "delete-row-span";
+                span.onclick = function () {
+                    $(this).closest("li").remove();
+                };
+
+                li.append(span);
+
+                var spanName = document.createElement('SPAN');
+                spanName.innerHTML = empName;
+                spanName.className = "value-list";
+                li.append(spanName);
+                var hid_input = li.find("input");
+                hid_input.attr("id", "hid_emp_" + empId);
+                hid_input.val(empId);
+
+                return false;
+            }
+
+        }
 
 
 
@@ -152,12 +237,12 @@
                                        </asp:TemplateField>
 
                                     
-                                        <asp:TemplateField HeaderText="<%$ Resources:Labels,employee%>" ItemStyle-Width="20%">
+                                       <%-- <asp:TemplateField HeaderText="<%$ Resources:Labels,employee%>" ItemStyle-Width="20%">
                                          <ItemTemplate>
                                                  <asp:Label ID="LblDemployee" runat="server" 
                                                  Text='<%# Eval("EmployeeName") %>' />                              
                                          </ItemTemplate>
-                                        </asp:TemplateField>
+                                        </asp:TemplateField>--%>
                                 
                                               
                                           
@@ -231,13 +316,13 @@
             <div class="modal-body panel-body model-b">
                 <div class="c-form">
 
-                        <div class="row">
+                <%--        <div class="row">
                      <div class="form-group" style="display:block">
                               <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Employee%>" /></span>
         
                                 <select runat="server" id="emp" name="emp" style="width:80%" class="form-control input-lg"></select>
                             </div>
-                        </div>
+                        </div>--%>
                    
                      <div class ="row">
                      <div class="form-group" style="display:block">
@@ -260,6 +345,19 @@
                              </div>
                         </div>
                   
+
+                        <div class ="row">
+                     <div class="form-group" style="display:block">
+                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Employees%>" /></span>
+                                 <select runat="server" id="sel_employee" name="sel_employee" style="width:70%" class="form-control input-lg" ></select>
+                                  <button class="add-arrow-btn"  runat="server" onclick="addEmp()" id="Button1" >
+                                   <i class="fas fa-arrow-alt-circle-down"></i>
+                                </button>
+                            </div>
+                        </div> 
+                    <div class ="row employee-list">
+                        <ul id="lst_employee" class="employee-list" runat="server"></ul>
+                    </div>
                     
                 <div class="modal-footer">
                     <button class="btn btn-new"  runat="server" onclick="saveTask()" id="btn_ads" >

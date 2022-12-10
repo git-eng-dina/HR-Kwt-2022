@@ -14,7 +14,7 @@ namespace Human_Resource
     
     public partial class dailyTasks
     {
-        public int DailyTasksID { get; set; }
+        public int DailyTaskID { get; set; }
         public string Notes { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
