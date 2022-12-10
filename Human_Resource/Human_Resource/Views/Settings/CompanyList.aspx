@@ -22,7 +22,8 @@
             var valid = checkValidation();
             if (valid) {
                 var parameter = {
-                    CompanyList: $('#MainContent_companyList').val(),
+                    CompanyListAr: $('#MainContent_companyListAr').val(),
+                    CompanyListEn: $('#MainContent_companyListEn').val(),
                     companyId: $('#MainContent_hid_companyID').val(),
                 };
                 $.ajax({
@@ -59,7 +60,7 @@
                             <div class="row">
                             <div class="form-group" style="display:block">
                                 <input type="hidden" runat="server" id="hid_companyID" />
-                                <asp:TextBox class="form-control single-input" id="companyList" runat="server" TextMode="MultiLine" Rows="16" onchange="removeValidation($(this));" />
+                                <asp:TextBox class="form-control single-input" id="companyListAr" runat="server" TextMode="MultiLine" Rows="16" onchange="removeValidation($(this));" />
                                <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
 
                             </div>

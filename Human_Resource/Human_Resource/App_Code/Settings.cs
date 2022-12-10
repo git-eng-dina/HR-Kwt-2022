@@ -28,7 +28,8 @@ namespace Human_Resource.App_Code
         public string Phone { get; set; }
         public string Fax { get; set; }
         public string Notes { get; set; }
-        public string CompanyList { get; set; }
+        public string CompanyListAr { get; set; }
+        public string CompanyListEn { get; set; }
         public Nullable<bool> OurCompany { get; set; }
         public Nullable<int> GeneralDirector { get; set; }
         public Nullable<int> FinancialManager { get; set; }
@@ -82,12 +83,14 @@ namespace Human_Resource.App_Code
             }
             return com;
         }
-         public string GetCompanyList()
+         public CompanyModel GetCompanyList()
         {
             using (HRSystemEntities entity = new HRSystemEntities())
             {
                  var companyList = entity.companies.Where(x =>x.IsActive == true)
-                        .Select(x => x.CompanyList).FirstOrDefault();
+                        .Select(x => new CompanyModel() {
+                            CompanyListAr = x.CompanyListAr,
+                        CompanyListEn = x.CompanyListEn}).FirstOrDefault();
 
                 return companyList;
             }
@@ -216,7 +219,8 @@ namespace Human_Resource.App_Code
                     {
                         com = new companies()
                         {
-                            CompanyList = company.CompanyList,
+                            CompanyListAr = company.CompanyListAr,
+                            CompanyListEn = company.CompanyListEn,
                             IsActive = true,
                             CreateUserID = company.CreateUserID,
                             UpdateUserID = company.UpdateUserID,
@@ -229,7 +233,8 @@ namespace Human_Resource.App_Code
                     {
                         
                         com = entity.companies.Find(company.CompanyID);
-                        com.CompanyList = company.CompanyList;                     
+                        com.CompanyListAr = company.CompanyListAr;                     
+                        com.CompanyListEn = company.CompanyListEn;                     
                         com.UpdateUserID = company.UpdateUserID;
                         com.UpdateDate = DateTime.Now;
                     }

@@ -20,14 +20,14 @@ namespace Human_Resource.Views.Settings
                     CompanyModel company = new CompanyModel();
                     var list = company.GetCompanyList();
 
-                    companyList.Text = list;
+                    companyList.Text = list.CompanyListAr;
                 }
                 catch { }
             }
         }
 
         [WebMethod(EnableSession = true)]
-        public static string SaveList(string companyList, string companyId)
+        public static string SaveList(string companyListAr,string companyListEn, string companyId)
         {
             CompanyModel company = new CompanyModel();
             if (companyId == "")
@@ -35,7 +35,8 @@ namespace Human_Resource.Views.Settings
             else
                 company.CompanyID = int.Parse(companyId);
 
-            company.CompanyList = companyList;
+            company.CompanyListAr = companyListAr;
+            company.CompanyListEn = companyListEn;
 
             companyId = company.SaveCompanyList(company).ToString();
             return companyId.ToString();
