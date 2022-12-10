@@ -1780,6 +1780,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to * Value is required.
+        /// </summary>
+        internal static string ValueIsRequired {
+            get {
+                return ResourceManager.GetString("ValueIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Significantly Exceeds Expectations.
         /// </summary>
         internal static string veryExcellent {

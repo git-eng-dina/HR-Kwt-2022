@@ -705,4 +705,7 @@
   <data name="Penalties" xml:space="preserve">
     <value>العقوبات</value>
   </data>
+  <data name="ValueIsRequired" xml:space="preserve">
+    <value>* القيمة مطلوبة</value>
+  </data>
 </root>

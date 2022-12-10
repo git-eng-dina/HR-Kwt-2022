@@ -708,4 +708,7 @@
   <data name="Penalties" xml:space="preserve">
     <value>Penalties</value>
   </data>
+  <data name="ValueIsRequired" xml:space="preserve">
+    <value>* Value is required</value>
+  </data>
 </root>
