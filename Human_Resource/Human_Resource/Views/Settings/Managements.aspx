@@ -71,34 +71,62 @@
             });
         }
 
+        function removeValidation(input) {
+            if ($(input).attr("class") == "form-control is-invalid") {
+
+                $(input).attr("class", "form-control");
+
+            }
+        }
+        function checkValidation() {
+            var valid = true;
+            if ($('#MainContent_dept_name').val() == "" || $('#MainContent_dept_name').val() == null) {
+                $('#MainContent_dept_name').attr("class", "form-control is-invalid");
+                valid = false;
+            }
+            if ($('#MainContent_txt_mobile').val() == "" || $('#MainContent_txt_mobile').val() == null) {
+                $('#MainContent_txt_mobile').attr("class", "form-control is-invalid");
+                valid = false;
+            }
+            if ($("#MainContent_branch").find(":selected").val() == "" || $("#MainContent_branch").find(":selected").val() == null) {
+                $('#MainContent_branch').attr("class", "form-control is-invalid");
+                valid = false;
+            }
+
+            return valid;
+        }
+
         function saveManagement() {
-            var id = $('#MainContent_hid_managementId').val();
-            var name = $("#MainContent_dept_name").val();
-            var mobile = $("#MainContent_txt_mobile").val();
-             var emp = $("#MainContent_emp").find(":selected").val();
-            var branch = $("#MainContent_branch").find(":selected").val();
-            var parameter = {
-                managementId :id,
-                name: name,
-                mobile: mobile,
-                 managerId: emp,
-                branchId: branch
-            };
-            $.ajax({
-                type: "POST",
-                url: "Managements.aspx/SaveManagement",
-                data: JSON.stringify(parameter),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (data) {
-                    window.top.location = "Managements.aspx";  
-                    
-                },
-                failure: function (response) {
-                    alert(response.d);
-                }
-            });
- 
+            var valid = checkValidation();
+
+            if (valid) {
+                var id = $('#MainContent_hid_managementId').val();
+                var name = $("#MainContent_dept_name").val();
+                var mobile = $("#MainContent_txt_mobile").val();
+                var emp = $("#MainContent_emp").find(":selected").val();
+                var branch = $("#MainContent_branch").find(":selected").val();
+                var parameter = {
+                    managementId: id,
+                    name: name,
+                    mobile: mobile,
+                    managerId: emp,
+                    branchId: branch
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "Managements.aspx/SaveManagement",
+                    data: JSON.stringify(parameter),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        window.top.location = "Managements.aspx";
+
+                    },
+                    failure: function (response) {
+                        alert(response.d);
+                    }
+                });
+            }
         }
 
 
@@ -226,13 +254,16 @@
                      <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,TheName%>" /></span>
                                 <input type="hidden"  id="hid_managementId" name="hid_managementId" runat="server" value=""  />
-                                <input type="text" class="form-control input-lg" id="dept_name" name="dept_name" runat="server" value=""  />
-                            </div>
+                                <input type="text" class="form-control input-lg" id="dept_name" name="dept_name" runat="server" value=""  onchange="removeValidation($(this));" />
+                                <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
+                    </div>
                         </div>
                      <div class ="row">
                      <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Mobile%>" /></span>
-                                <input type="text" class="form-control input-lg" id="txt_mobile"  runat="server" value=""  />
+                                <input type="text" class="form-control input-lg" id="txt_mobile"  runat="server" value="" onchange="removeValidation($(this));"  />
+                                <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
+
                             </div>
                         </div> 
                     
@@ -241,14 +272,16 @@
                      <div class="form-group" style="display:block">
                               <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,ManagementManager%>" /></span>
         
-                                <select runat="server" id="emp" name="emp" style="width:80%" class="form-control input-lg"></select>
+                                <select runat="server" id="emp" name="emp" style="width:80%" class="form-control input-lg" ></select>
                             </div>
                         </div>
                        <div class="row">
                      <div class="form-group" style="display:block">
                               <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Branch%>" /></span>
         
-                                <select runat="server" id="branch" name="branch" style="width:80%" class="form-control input-lg"></select>
+                                <select runat="server" id="branch" name="branch" style="width:80%" class="form-control input-lg" onchange="removeValidation($(this));" ></select>
+                                 <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
+
                             </div>
                         </div>
                   </div>
