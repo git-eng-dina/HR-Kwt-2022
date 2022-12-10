@@ -65,20 +65,20 @@
                                  
                                     <asp:TemplateField HeaderText="<%$ Resources:Labels,Employee%>" >
                                          <ItemTemplate>
-                                                 <asp:Label ID="LblDno" runat="server" 
+                                                 <asp:Label ID="LblEmployeeName" runat="server" 
                                                  Text='<%# Eval("EmployeeName") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField> 
                                      <asp:TemplateField HeaderText="<%$ Resources:Labels,Reviewer%>">
                                          <ItemTemplate>
-                                                 <asp:Label ID="LblDname" runat="server" 
+                                                 <asp:Label ID="LblReviewerName" runat="server" 
                                                  Text='<%# Eval("ReviewerName") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>
                                      
                                     <asp:TemplateField HeaderText="<%$ Resources:Labels,EvaluationDate%>">
                                          <ItemTemplate>
-                                                 <asp:Label ID="LblDno" runat="server" 
+                                                 <asp:Label ID="LblEvaluationDate" runat="server" 
                                                  Text='<%# Eval("EvaluationDate") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>             
@@ -86,7 +86,7 @@
                                      
                                            <asp:TemplateField HeaderText="<%$ Resources:Labels,Comment%>">
                                          <ItemTemplate>
-                                                 <asp:Label ID="LblLoc" runat="server" 
+                                                 <asp:Label ID="LblComment" runat="server" 
                                                  Text='<%# Eval("Comment") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>      
