@@ -43,6 +43,7 @@
             var retval = "";
         }
         function ShowDialogWithData(customID) {
+            
             var parameter = {
                 ID: customID
             };
@@ -57,7 +58,7 @@
                     for (var prop in data) {
                         var item = data[prop];
                         $('#MainContent_hid_jobId').val(item.JobID);
-                        $('#MainContent_dept_name').val(item.Name);
+                        $('#MainContent_job_name').val(item.Name);
                         $('#MainContent_txt_mobile').val(item.Mobile);
                         $('#MainContent_emp').val(item.ManagerID);
                     }
@@ -70,28 +71,48 @@
             });
         }
 
+        function removeValidation(input) {
+            if ($(input).attr("class") == "form-control is-invalid") {
+
+                $(input).attr("class", "form-control");
+
+            }
+        }
+        function checkValidation() {
+            var valid = true;
+            if ($('#MainContent_job_name').val() == "" || $('#MainContent_job_name').val() == null) {
+                $('#MainContent_job_name').attr("class", "form-control is-invalid");
+                valid = false;
+            }
+         
+
+            return valid;
+        }
+
         function saveJob() {
-            var id = $('#MainContent_hid_jobId').val();
-            var name = $("#MainContent_dept_name").val();
-             var parameter = {
-                jobId: id,
-                name: name,
-             };
-            $.ajax({
-                type: "POST",
-                url: "Jobs.aspx/SaveJob",
-                data: JSON.stringify(parameter),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (data) {
-                    window.top.location = "Jobs.aspx";
+            var valid = checkValidation();
+            if (valid) {
+                var id = $('#MainContent_hid_jobId').val();
+                var name = $("#MainContent_job_name").val();
+                var parameter = {
+                    jobId: id,
+                    name: name,
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "Jobs.aspx/SaveJob",
+                    data: JSON.stringify(parameter),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        window.top.location = "Jobs.aspx";
 
-                },
-                failure: function (response) {
-                    alert(response.d);
-                }
-            });
-
+                    },
+                    failure: function (response) {
+                        alert(response.d);
+                    }
+                });
+            }
         }
 
 
@@ -199,7 +220,8 @@
                      <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,TheName%>" /></span>
                                 <input type="hidden"  id="hid_jobId" name="hid_jobId" runat="server" value=""  />
-                                <input type="text" class="form-control input-lg" id="dept_name" name="dept_name" runat="server" value=""  />
+                                <input type="text" class="form-control input-lg" id="job_name" name="job_name" runat="server" value="" onchange="removeValidation($(this));" />
+                          <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
                             </div>
                         </div>
                   

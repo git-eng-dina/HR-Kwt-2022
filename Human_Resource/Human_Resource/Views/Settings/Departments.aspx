@@ -71,34 +71,61 @@
             });
         }
 
+        function removeValidation(input) {
+            if ($(input).attr("class") == "form-control is-invalid") {
+
+                $(input).attr("class", "form-control");
+
+            }
+        }
+        function checkValidation() {
+            var valid = true;
+            if ($('#MainContent_dept_name').val() == "" || $('#MainContent_dept_name').val() == null) {
+                $('#MainContent_dept_name').attr("class", "form-control is-invalid");
+                valid = false;
+            }
+            if ($('#MainContent_txt_mobile').val() == "" || $('#MainContent_txt_mobile').val() == null) {
+                $('#MainContent_txt_mobile').attr("class", "form-control is-invalid");
+                valid = false;
+            }
+            if ($("#MainContent_management").find(":selected").val() == "" || $("#MainContent_management").find(":selected").val() == null) {
+                $('#MainContent_management').attr("class", "form-control is-invalid");
+                valid = false;
+            }
+            return valid;
+        }
+
         function saveDepartment() {
-            var id = $('#MainContent_hid_departmentId').val();
-            var name = $("#MainContent_dept_name").val();
-            var mobile = $("#MainContent_txt_mobile").val();
-            var emp = $("#MainContent_emp").find(":selected").val();
-            var management = $("#MainContent_management").find(":selected").val();
-            var parameter = {
-                departmentId: id,
-                name: name,
-                mobile: mobile,
-                managerId: emp,
-                managementId: management
-            };
-            $.ajax({
-                type: "POST",
-                url: "Departments.aspx/SaveDepartment",
-                data: JSON.stringify(parameter),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (data) {
-                    window.top.location = "Departments.aspx";
+            var valid = checkValidation();
 
-                },
-                failure: function (response) {
-                    alert(response.d);
-                }
-            });
+            if (valid) {
+                var id = $('#MainContent_hid_departmentId').val();
+                var name = $("#MainContent_dept_name").val();
+                var mobile = $("#MainContent_txt_mobile").val();
+                var emp = $("#MainContent_emp").find(":selected").val();
+                var management = $("#MainContent_management").find(":selected").val();
+                var parameter = {
+                    departmentId: id,
+                    name: name,
+                    mobile: mobile,
+                    managerId: emp,
+                    managementId: management
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "Departments.aspx/SaveDepartment",
+                    data: JSON.stringify(parameter),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        window.top.location = "Departments.aspx";
 
+                    },
+                    failure: function (response) {
+                        alert(response.d);
+                    }
+                });
+            }
         }
 
 
@@ -226,13 +253,15 @@
                      <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,TheName%>" /></span>
                                 <input type="hidden"  id="hid_departmentId" name="hid_departmentId" runat="server" value=""  />
-                                <input type="text" class="form-control input-lg" id="dept_name" name="dept_name" runat="server" value=""  />
+                                <input type="text" class="form-control input-lg" id="dept_name" name="dept_name" runat="server" value="" onchange="removeValidation($(this));"  />
+                         <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
                             </div>
                         </div>
                      <div class ="row">
                      <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Mobile%>" /></span>
-                                <input type="text" class="form-control input-lg" id="txt_mobile"  runat="server" value=""  />
+                                <input type="text" class="form-control input-lg" id="txt_mobile"  runat="server" value=""  onchange="removeValidation($(this));"/>
+                         <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
                             </div>
                         </div> 
                     
@@ -250,6 +279,7 @@
                               <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Management%>" /></span>
         
                                 <select runat="server" id="management" name="management" style="width:80%" class="form-control input-lg"></select>
+                         <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
                             </div>
                         </div>
                   </div>

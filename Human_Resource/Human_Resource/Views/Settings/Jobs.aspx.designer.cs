@@ -58,13 +58,13 @@ namespace Human_Resource.Views.Settings {
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden hid_jobId;
         
         /// <summary>
-        /// dept_name control.
+        /// job_name control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText dept_name;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText job_name;
         
         /// <summary>
         /// btn_ads control.

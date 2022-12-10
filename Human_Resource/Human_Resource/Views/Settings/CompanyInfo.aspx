@@ -41,47 +41,73 @@
 
         }
 
+        function removeValidation(input) {
+            if ($(input).attr("class") == "form-control is-invalid") {
+
+                $(input).attr("class", "form-control");
+
+            }
+        }
+        function checkValidation() {
+            var valid = true;
+            if ($('#MainContent_txt_name').val() == "" || $('#MainContent_txt_name').val() == null) {
+                $('#MainContent_txt_name').attr("class", "form-control is-invalid");
+                valid = false;
+            }
+            if ($('#MainContent_txt_email').val() == "" || $('#MainContent_txt_email').val() == null) {
+                $('#MainContent_txt_email').attr("class", "form-control is-invalid");
+                valid = false;
+            }
+            if ($('#MainContent_txt_mobile').val() == "" || $('#MainContent_txt_mobile').val() == null) {
+                $('#MainContent_txt_mobile').attr("class", "form-control is-invalid");
+                valid = false;
+            }
+
+            return valid;
+        }
         function setAdvisorsIds() {
+            var valid = checkValidation();
+            if (valid == true) {
+                var advisorsIds = "";
+                $('#MainContent_lst_employee li').each(function (i) {
+                    var inp = $(this).find('input');
+                    advisorsIds += inp.val() + ",";
+                });
 
-            var advisorsIds = "";
-            $('#MainContent_lst_employee li').each(function (i) {
-                var inp = $(this).find('input');
-                advisorsIds += inp.val() + ",";
-            });
 
+                var parameter = {
+                    Name: $('#MainContent_txt_name').val(),
+                    Address: $('#MainContent_txt_address').val(),
+                    Mobile: $('#MainContent_txt_mobile').val(),
+                    Phone: $('#MainContent_txt_phone').val(),
+                    Fax: $('#MainContent_txt_fax').val(),
+                    Email: $('#MainContent_txt_email').val(),
+                    Notes: $('#MainContent_txt_notes').val(),
+                    GeneralDirector: $('#MainContent_sel_generalDirector').val(),
+                    CEO: $('#MainContent_sel_CEO').val(),
+                    FinancialManager: $('#MainContent_sel_financialManager').val(),
+                    HRManager: $('#MainContent_sel_HRManager').val(),
+                    LegalManager: $('#MainContent_sel_legal').val(),
+                    userId: <%=Session["user_id"].ToString() %>,
+                    companyId: $('#MainContent_hid_companyID').val(),
+                    advisorsIds: advisorsIds,
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "CompanyInfo.aspx/SaveInfo",
+                    data: JSON.stringify(parameter),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        $('#MainContent_hid_companyID').val(data.d);
+                        alert('<%= Resources.Labels.SaveSuccessfully %>');
 
-            var parameter = {
-                Name :$('#MainContent_txt_name').val(),
-                Address : $('#MainContent_txt_address').val(),
-                Mobile : $('#MainContent_txt_mobile').val(),
-                Phone : $('#MainContent_txt_phone').val(),
-                Fax :$('#MainContent_txt_fax').val(),
-                Email :$('#MainContent_txt_email').val(),
-                Notes : $('#MainContent_txt_notes').val(),
-                GeneralDirector: $('#MainContent_sel_generalDirector').val(),
-                CEO : $('#MainContent_sel_CEO').val(),
-                FinancialManager:$('#MainContent_sel_financialManager').val(),
-                HRManager : $('#MainContent_sel_HRManager').val(),
-                LegalManager : $('#MainContent_sel_legal').val(),
-                userId : <%=Session["user_id"].ToString() %>,
-                companyId: $('#MainContent_hid_companyID').val(),
-                advisorsIds: advisorsIds,
-            };
-            $.ajax({
-                type: "POST",
-                url: "CompanyInfo.aspx/SaveInfo",
-                data: JSON.stringify(parameter),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (data) {
-                    $('#MainContent_hid_companyID').val(data.d);
-                    alert('<%= Resources.Labels.SaveSuccessfully %>');
-
-                },
-                failure: function (response) {
-                    alert(response.d);
-                }
-            });
+                    },
+                    failure: function (response) {
+                        alert(response.d);
+                    }
+                });
+            }
         }
     </script>
     
@@ -101,9 +127,11 @@
                         <div class="c-form">
                             <div class="row">
                             <div class="form-group" style="display:block">
+                                 <input type="hidden" runat="server" id="hid_companyID" />
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,TheName%>" /></span>
-                                <asp:TextBox id="txt_name"  runat="server" class="form-control input-lg" ></asp:TextBox>
-                                <input type="hidden" runat="server" id="hid_companyID" />
+                                <asp:TextBox id="txt_name"  runat="server" class="form-control input-lg" onchange="removeValidation($(this));"></asp:TextBox>
+                                <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
+                               
                             </div>
                             </div>
 
@@ -117,14 +145,16 @@
                             <div class="row">
                             <div class="form-group" style="display:block">
                                <span> <asp:Literal  runat="server" Text="<%$ Resources:Labels,Email%>" /></span>
-                                <input type="email" class="form-control input-lg" id="txt_email" runat="server" />
+                                <input type="email" class="form-control input-lg" id="txt_email" runat="server" onchange="removeValidation($(this));" />
+                                <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
                             </div>
                             </div> 
                             
                             <div class="row">
                             <div class="form-group" style="display:block">
                                <span> <asp:Literal  runat="server" Text="<%$ Resources:Labels,Mobile%>" /></span>
-                                <asp:TextBox class="form-control input-lg" id="txt_mobile" runat="server" />
+                                <asp:TextBox class="form-control input-lg" id="txt_mobile" runat="server" onchange="removeValidation($(this));"/>
+                                <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
                             </div>
                             </div>
 
@@ -145,7 +175,7 @@
                             <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,GeneralDirector%>" /></span>
                                 <select runat="server" id="sel_generalDirector" name="sel_generalDirector" class="form-control select"></select>
-      
+                                <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
                             </div>
                             </div>
                              <div class="row">
@@ -185,9 +215,9 @@
                                 </button>
                             </div>
                             </div>
-                             <div class ="row employee-list">
+                             <div class ="row advisor-list">
                                  <input type="hidden" runat="server" id="advisorsIds" name="advisorsIds" />
-                                 <ul id="lst_employee" class="employee-list" runat="server"></ul>
+                                 <ul id="lst_employee"  runat="server"></ul>
                             </div>
                             <div class="row">
                             <div class="form-group" style="display:block">

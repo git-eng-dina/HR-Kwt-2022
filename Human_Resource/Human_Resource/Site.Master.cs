@@ -59,6 +59,8 @@ namespace Human_Resource
             }
             else
             {
+                Session["CultureName"] = "ar-as";
+                Session["CultureImage"] = path;
                 cultureImage.ImageUrl = path;
 
                 LinkCss.AddCss("/Content/ar/css/bootstrap-rtl.min.css", this.Page);

@@ -13,15 +13,6 @@ namespace Human_Resource.Views.Settings {
     public partial class CompanyInfo {
         
         /// <summary>
-        /// txt_name control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_name;
-        
-        /// <summary>
         /// hid_companyID control.
         /// </summary>
         /// <remarks>
@@ -29,6 +20,15 @@ namespace Human_Resource.Views.Settings {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden hid_companyID;
+        
+        /// <summary>
+        /// txt_name control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_name;
         
         /// <summary>
         /// txt_address control.

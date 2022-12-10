@@ -71,34 +71,60 @@
             });
         }
 
+        function removeValidation(input) {
+            if ($(input).attr("class") == "form-control is-invalid") {
+
+                $(input).attr("class", "form-control");
+
+            }
+        }
+        function checkValidation() {
+            var valid = true;
+            if ($('#MainContent_dept_name').val() == "" || $('#MainContent_dept_name').val() == null) {
+                $('#MainContent_dept_name').attr("class", "form-control is-invalid");
+                valid = false;
+            }
+            if ($('#MainContent_txt_mobile').val() == "" || $('#MainContent_txt_mobile').val() == null) {
+                $('#MainContent_txt_mobile').attr("class", "form-control is-invalid");
+                valid = false;
+            }
+            if ($('#MainContent_txt_address').val() == "" || $('#MainContent_txt_address').val() == null) {
+                $('#MainContent_txt_address').attr("class", "form-control is-invalid");
+                valid = false;
+            }
+
+            return valid;
+        }
         function saveBranch() {
-            var id = $('#MainContent_hid_branchId').val();
-            var name = $("#MainContent_dept_name").val();
-            var mobile = $("#MainContent_txt_mobile").val();
-            var address = $("#MainContent_txt_address").val();
-            var emp = $("#MainContent_emp").find(":selected").val();
-            var parameter = {
-                branchId :id,
-                name: name,
-                mobile: mobile,
-                address: address,
-                managerId: emp
-            };
-            $.ajax({
-                type: "POST",
-                url: "Branches.aspx/SaveBranch",
-                data: JSON.stringify(parameter),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (data) {
-                    window.top.location = "branches.aspx";  
-                    
-                },
-                failure: function (response) {
-                    alert(response.d);
-                }
-            });
- 
+            var valid = checkValidation();
+            if (valid) {
+                var id = $('#MainContent_hid_branchId').val();
+                var name = $("#MainContent_dept_name").val();
+                var mobile = $("#MainContent_txt_mobile").val();
+                var address = $("#MainContent_txt_address").val();
+                var emp = $("#MainContent_emp").find(":selected").val();
+                var parameter = {
+                    branchId: id,
+                    name: name,
+                    mobile: mobile,
+                    address: address,
+                    managerId: emp
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "Branches.aspx/SaveBranch",
+                    data: JSON.stringify(parameter),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        window.top.location = "branches.aspx";
+
+                    },
+                    failure: function (response) {
+                        alert(response.d);
+                    }
+                });
+            }
         }
 
 
@@ -222,19 +248,22 @@
                      <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,TheName%>" /></span>
                                 <input type="hidden"  id="hid_branchId" name="hid_branchId" runat="server" value=""  />
-                                <input type="text" class="form-control input-lg" id="dept_name" name="dept_name" runat="server" value=""  />
+                                <input type="text" class="form-control input-lg" id="dept_name" name="dept_name" runat="server" value="" onchange="removeValidation($(this));" />
+                         <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
                             </div>
                         </div>
                      <div class ="row">
                      <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Mobile%>" /></span>
-                                <input type="text" class="form-control input-lg" id="txt_mobile"  runat="server" value=""  />
+                                <input type="text" class="form-control input-lg" id="txt_mobile"  runat="server" value="" onchange="removeValidation($(this));" />
+                         <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
                             </div>
                         </div> 
                      <div class ="row">
                     <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Address%>" /></span>
-                                <input type="text" class="form-control input-lg" id="txt_address"  runat="server" value=""  />
+                                <input type="text" class="form-control input-lg" id="txt_address"  runat="server" value=""  onchange="removeValidation($(this));"/>
+                                <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
                             </div>
                          </div>
                     <div class="row">

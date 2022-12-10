@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.Services;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace Human_Resource.Views.Settings
@@ -85,6 +86,36 @@ namespace Human_Resource.Views.Settings
                         sel_financialManager.Value = company.FinancialManager.ToString();
                         sel_HRManager.Value = company.HRManager.ToString();
                         hid_companyID.Value = company.CompanyID.ToString();
+
+                        #region fill Advisors
+                        if (company.Advisors != null)
+                        {
+                            foreach (var adv in company.Advisors)
+                            {
+                                HtmlGenericControl li = new HtmlGenericControl("li");
+                                li.Attributes.Add("id", adv.EmployeeID.ToString());
+                                lst_employee.Controls.Add(li);
+
+                                HtmlGenericControl span = new HtmlGenericControl("span");
+                                span.Attributes.Add("class", "delete-row-span");
+                                span.Attributes.Add("onClick", "delete-row-span");
+                                li.Controls.Add(span);
+
+                                HtmlGenericControl i = new HtmlGenericControl("i");
+                                i.Attributes.Add("class", "fa fa-close delete-row-list");
+                                span.Controls.Add(i);
+
+                                HtmlGenericControl spanName = new HtmlGenericControl("span");
+                                spanName.Attributes.Add("class", "value-list");
+                                if (Session["CultureName"] != null && Session["CultureName"].ToString().ToLower() == "en-us")
+                                    spanName.InnerText = adv.NameEn;
+                                else
+                                    spanName.InnerText = adv.NameAr;
+
+                                li.Controls.Add(spanName);
+                            }
+                        }
+                        #endregion
                     }
                     #endregion
                 }
