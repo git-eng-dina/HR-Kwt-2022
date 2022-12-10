@@ -147,7 +147,7 @@
                 </li>  
                 <li>
                     <a href="/Views/ExecutiveProc/RewardsAndPenalties.aspx"> 
-                        <asp:Literal runat="server" Text="<%$ Resources:Labels,RewardsAndPenalties%>" />
+                        <asp:Literal runat="server" Text="<%$ Resources:Labels,Penalties%>" />
 
                     </a>
                 </li> 
@@ -157,6 +157,26 @@
 
                     </a>
                 </li> 
+            </ul> 
+            
+            
+            <a href="" class="" data-toggle="collapse" data-target="#demo_penalities">
+                    <i class="fa fa-edit" aria-hidden="true"></i>
+                    <asp:Literal runat="server" Text="<%$ Resources:Labels,PenalitiesAndCompanyList%>" />
+                    <i class="fa fa-fw fa-caret-down"></i>
+            </a>
+            <ul id="demo_penalities" class="collapse in" aria-expanded="true">
+                <li>
+                    <a href="/Views/Employees/EmpPenalities.aspx"> 
+                        <asp:Literal runat="server" Text="<%$ Resources:Labels,Penalties%>" />
+                    </a>
+                </li>
+                <li>
+                    <a href="/Views/Settings/CompanyListView.aspx"> 
+                        <asp:Literal runat="server" Text="<%$ Resources:Labels,CompanyList%>" />
+                    </a>
+                </li> 
+           
             </ul>
 
        <a href="" class="" data-toggle="collapse" data-target="#demo_attendance">
@@ -195,6 +215,11 @@
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,CompanyInfo%>" />
                     </a>
                 </li>
+                  <li>
+                    <a href="/Views/Settings/CompanyList.aspx"> 
+                        <asp:Literal runat="server" Text="<%$ Resources:Labels,CompanyList%>" />
+                    </a>
+                </li> 
                 <li>
                     <a href="/Views/Settings/Branches.aspx"> 
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,Branches%>" />

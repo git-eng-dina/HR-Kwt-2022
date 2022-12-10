@@ -765,7 +765,12 @@ nav .logo {
         width: 20%;
         float: left;
     }
-
+    .c-form .single-input {
+        /*font-weight: bold;*/
+        display: block;
+        width: 90%;
+       margin-right:5%;
+    }
 .ui-widget input{
     font-size:14px;
 }

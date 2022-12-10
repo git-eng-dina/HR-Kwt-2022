@@ -475,6 +475,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Company List.
+        /// </summary>
+        internal static string CompanyList {
+            get {
+                return ResourceManager.GetString("CompanyList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Company Owner in arabic.
         /// </summary>
         internal static string CompanyOwnerAr {
@@ -1308,6 +1317,15 @@ namespace Resources {
         internal static string Password {
             get {
                 return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Penalties and Company List.
+        /// </summary>
+        internal static string PenalitiesAndCompanyList {
+            get {
+                return ResourceManager.GetString("PenalitiesAndCompanyList", resourceCulture);
             }
         }
         

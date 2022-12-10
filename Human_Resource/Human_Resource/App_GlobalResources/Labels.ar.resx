@@ -708,4 +708,10 @@
   <data name="ValueIsRequired" xml:space="preserve">
     <value>* القيمة مطلوبة</value>
   </data>
+  <data name="CompanyList" xml:space="preserve">
+    <value>لائحة الشركة</value>
+  </data>
+  <data name="PenalitiesAndCompanyList" xml:space="preserve">
+    <value>العقوبات ولائحة الشركة</value>
+  </data>
 </root>

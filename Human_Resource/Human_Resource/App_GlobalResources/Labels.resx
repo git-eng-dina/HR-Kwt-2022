@@ -711,4 +711,10 @@
   <data name="ValueIsRequired" xml:space="preserve">
     <value>* Value is required</value>
   </data>
+  <data name="CompanyList" xml:space="preserve">
+    <value>Company List</value>
+  </data>
+  <data name="PenalitiesAndCompanyList" xml:space="preserve">
+    <value>Penalties and Company List</value>
+  </data>
 </root>

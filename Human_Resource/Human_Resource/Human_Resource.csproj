@@ -232,6 +232,7 @@
     <Content Include="Views\Attendance\Vacations.aspx" />
     <Content Include="Views\Attendance\VaccaitionApproval.aspx" />
     <Content Include="Views\Employees\Employees.aspx" />
+    <Content Include="Views\Employees\EmpPenalities.aspx" />
     <Content Include="Views\Employees\NewEmployee.aspx" />
     <Content Include="Views\Employees\UserAccounts.aspx" />
     <Content Include="Views\ExecutiveProc\AddEvaluation.aspx" />
@@ -246,6 +247,7 @@
     <Content Include="Views\Home\HomePage.aspx" />
     <Content Include="Views\Settings\CompanyInfo.aspx" />
     <Content Include="Views\Settings\Branches.aspx" />
+    <Content Include="Views\Settings\CompanyList.aspx" />
     <Content Include="Views\Settings\Departments.aspx" />
     <Content Include="Views\Settings\Jobs.aspx" />
     <Content Include="Views\Settings\Managements.aspx" />
@@ -376,9 +378,6 @@
     <Compile Include="scheduleVacations.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagrams.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="tasks.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -418,6 +417,13 @@
     </Compile>
     <Compile Include="Views\Employees\Employees.aspx.designer.cs">
       <DependentUpon>Employees.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Employees\EmpPenalities.aspx.cs">
+      <DependentUpon>EmpPenalities.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Employees\EmpPenalities.aspx.designer.cs">
+      <DependentUpon>EmpPenalities.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Employees\NewEmployee.aspx.cs">
       <DependentUpon>NewEmployee.aspx</DependentUpon>
@@ -519,6 +525,13 @@
     </Compile>
     <Compile Include="Views\Settings\Branches.aspx.designer.cs">
       <DependentUpon>Branches.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\CompanyList.aspx.cs">
+      <DependentUpon>CompanyList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Settings\CompanyList.aspx.designer.cs">
+      <DependentUpon>CompanyList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Settings\Departments.aspx.cs">
       <DependentUpon>Departments.aspx</DependentUpon>
