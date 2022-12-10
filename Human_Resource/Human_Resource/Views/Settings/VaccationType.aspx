@@ -40,15 +40,16 @@
 
             $("#dialog").dialog("open");
             $(".ui-dialog-titlebar").hide();
-            var retval = "";
+
         }
         function ShowDialogWithData(customID) {
+
             var parameter = {
                 ID: customID
             };
             $.ajax({
                 type: "POST",
-                url: "VaccationType/GetVacation",
+                url: "VaccationType.aspx/GetVacation",
                 data: JSON.stringify(parameter),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -67,7 +68,6 @@
                 }
             });
         }
-
         function saveVacation() {
             var id = $('#MainContent_hid_vacationId').val();
             var name = $("#MainContent_dept_name").val();
