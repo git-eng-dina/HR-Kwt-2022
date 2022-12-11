@@ -714,4 +714,10 @@
   <data name="PenalitiesAndCompanyList" xml:space="preserve">
     <value>العقوبات ولائحة الشركة</value>
   </data>
+  <data name="CompanyListAr" xml:space="preserve">
+    <value>باللغة العربية</value>
+  </data>
+  <data name="CompanyListEn" xml:space="preserve">
+    <value>باللغة الانجليزية</value>
+  </data>
 </root>

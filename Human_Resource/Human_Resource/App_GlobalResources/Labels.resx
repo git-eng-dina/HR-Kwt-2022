@@ -717,4 +717,10 @@
   <data name="PenalitiesAndCompanyList" xml:space="preserve">
     <value>Penalties and Company List</value>
   </data>
+  <data name="CompanyListAr" xml:space="preserve">
+    <value>in Arabic</value>
+  </data>
+  <data name="CompanyListEn" xml:space="preserve">
+    <value>in English</value>
+  </data>
 </root>

@@ -484,6 +484,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to in Arabic.
+        /// </summary>
+        internal static string CompanyListAr {
+            get {
+                return ResourceManager.GetString("CompanyListAr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to in English.
+        /// </summary>
+        internal static string CompanyListEn {
+            get {
+                return ResourceManager.GetString("CompanyListEn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Company Owner in arabic.
         /// </summary>
         internal static string CompanyOwnerAr {

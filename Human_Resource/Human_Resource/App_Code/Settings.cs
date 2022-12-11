@@ -89,6 +89,7 @@ namespace Human_Resource.App_Code
             {
                  var companyList = entity.companies.Where(x =>x.IsActive == true)
                         .Select(x => new CompanyModel() {
+                            CompanyID=x.CompanyID,
                             CompanyListAr = x.CompanyListAr,
                         CompanyListEn = x.CompanyListEn}).FirstOrDefault();
 
