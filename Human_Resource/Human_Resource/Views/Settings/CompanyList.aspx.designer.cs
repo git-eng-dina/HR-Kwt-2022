@@ -31,6 +31,15 @@ namespace Human_Resource.Views.Settings {
         protected global::System.Web.UI.WebControls.TextBox companyListAr;
         
         /// <summary>
+        /// companyListEn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox companyListEn;
+        
+        /// <summary>
         /// btn_save control.
         /// </summary>
         /// <remarks>

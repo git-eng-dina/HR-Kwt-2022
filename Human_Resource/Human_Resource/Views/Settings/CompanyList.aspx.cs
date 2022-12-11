@@ -20,7 +20,9 @@ namespace Human_Resource.Views.Settings
                     CompanyModel company = new CompanyModel();
                     var list = company.GetCompanyList();
 
-                    companyList.Text = list.CompanyListAr;
+                    hid_companyID.Value = list.CompanyID.ToString();
+                    companyListAr.Text = list.CompanyListAr;
+                    companyListEn.Text = list.CompanyListEn;
                 }
                 catch { }
             }
