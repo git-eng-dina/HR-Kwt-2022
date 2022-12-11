@@ -1301,4 +1301,10 @@ input[type=checkbox], input[type=radio] {
     padding-right: 10px;
     margin-right:10px;
 }
-
+.c-form .textarea span{
+    width:80%;
+    float:left;
+}
+.mce-path {
+    display: none;
+}
