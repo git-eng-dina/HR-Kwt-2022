@@ -160,12 +160,12 @@
             </ul> 
             
             
-            <a href="" class="" data-toggle="collapse" data-target="#demo_penalities">
+            <a href="" class="" data-toggle="collapse" data-target="#demo_emp_penalities">
                     <i class="fa fa-edit" aria-hidden="true"></i>
                     <asp:Literal runat="server" Text="<%$ Resources:Labels,PenalitiesAndCompanyList%>" />
                     <i class="fa fa-fw fa-caret-down"></i>
             </a>
-            <ul id="demo_penalities" class="collapse in" aria-expanded="true">
+            <ul id="demo_emp_penalities" class="collapse in" aria-expanded="true">
                 <li>
                     <a href="/Views/Employees/EmpPenalities.aspx"> 
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,Penalties%>" />
