@@ -67,13 +67,13 @@ namespace Human_Resource.Views.Attendance {
         protected global::System.Web.UI.HtmlControls.HtmlSelect emp;
         
         /// <summary>
-        /// txt_name control.
+        /// txt_date control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_name;
+        protected global::System.Web.UI.WebControls.TextBox txt_date;
         
         /// <summary>
         /// txt_description control.

@@ -58,7 +58,8 @@
                         var item = data[prop];
                         $('#MainContent_hid_hourlyPermissionId').val(item.HourlyPermissionID);
                         $('#MainContent_emp').val(item.EmployeeID);
-                        $('#MainContent_txt_name').val(item.Name);
+                        $('#MainContent_txt_date').val(item.Date);
+                        //$('#MainContent_txt_name').val(item.Name);
                         $('#MainContent_txt_description').val(item.Description);
  
                      }
@@ -74,12 +75,14 @@
         function saveHourlyPermission() {
             var id = $('#MainContent_hid_hourlyPermissionId').val();
             var emp = $("#MainContent_emp").find(":selected").val();
-            var name = $("#MainContent_txt_name").val();
+            var date = $("#MainContent_txt_date").val();
+            //var name = $("#MainContent_txt_name").val();
             var description = $("#MainContent_txt_description").val();
               var parameter = {
                 hourlyPermissionId: id,
                  employeeId: emp,
-                  name: name,
+                  date: date,
+                  //name: name,
                 description: description,
               };
             $.ajax({
@@ -112,7 +115,7 @@
                         <div class="bcrumb-block">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a id="a_title" href="#"><asp:Literal  runat="server" Text="<%$ Resources:Labels,WorkingPermission%>" /></a></li>
+                                    <li class="breadcrumb-item"><a id="a_title" href="#"><asp:Literal  runat="server" Text="<%$ Resources:Labels,PersonalPermissions%>" /></a></li>
                                 </ol>
                             </nav>
                         </div>
@@ -156,14 +159,19 @@
                                          </ItemTemplate>
                                         </asp:TemplateField>
                                 
-                                              
+                                                  <asp:TemplateField HeaderText="<%$ Resources:Labels,Date%>" ItemStyle-Width="25%">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblDate" runat="server" 
+                                                 Text='<%# Eval("Date") %>' />                              
+                                         </ItemTemplate>
+                                        </asp:TemplateField>
                                           
-                                <asp:TemplateField HeaderText="<%$ Resources:Labels,WorkingPermission%>" ItemStyle-Width="25%">
+                                <%--<asp:TemplateField HeaderText="<%$ Resources:Labels,Name%>" ItemStyle-Width="25%">
                                          <ItemTemplate>
                                                  <asp:Label ID="LblName" runat="server" 
                                                  Text='<%# Eval("Name") %>' />                              
                                          </ItemTemplate>
-                                        </asp:TemplateField>
+                                        </asp:TemplateField>--%>
                                 
                                         <asp:TemplateField HeaderText="<%$ Resources:Labels,Description%>" ItemStyle-Width="25%">
                                          <ItemTemplate>
@@ -171,6 +179,7 @@
                                                  Text='<%# Eval("Description") %>' />                              
                                          </ItemTemplate>
                                         </asp:TemplateField>
+                                 
 
                                
                                  
@@ -211,7 +220,7 @@
         <div class="modal-header frame-panel-heading">
            
             <div ><span >
-                <asp:Literal runat="server" Text="<%$ Resources:Labels,AddWorkingPermission%>"></asp:Literal>
+                <asp:Literal runat="server" Text="<%$ Resources:Labels,AddPersonalPermission%>"></asp:Literal>
             </span>
                 </div>
             <div class="float2" style="width:10px">
@@ -228,13 +237,18 @@
                                 <select runat="server" id="emp" name="emp" style="width:80%" class="form-control input-lg"></select>
                             </div>
                         </div>
-                   
-                     <div class ="row">
+                    <div class ="row">
+                     <div class="form-group" style="display:block">
+                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Date%>" /></span>
+                           <asp:TextBox ID="txt_date" runat="server" class="form-control input-lg hasdatepicker"  textMode="date" value="2000-11-01"></asp:TextBox>
+                         </div>
+                        </div> 
+                     <%--<div class ="row">
                      <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Name%>" /></span>
                                 <input type="text" class="form-control input-lg" id="txt_name"  runat="server" value=""  />
                             </div>
-                        </div> 
+                        </div> --%>
   
                    <div class ="row">
                      <div class="form-group" style="display:block">
@@ -242,6 +256,7 @@
                                 <input type="text" class="form-control input-lg" id="txt_description"  runat="server" value=""  />
                             </div>
                         </div> 
+                     
                    
                   
                     

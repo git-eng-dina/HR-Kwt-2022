@@ -12,6 +12,7 @@ namespace Human_Resource.App_Code
         public int HourlyPermissionID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
         public Nullable<int> EmployeeID { get; set; }
         public string EmployeeName { get; set; }
         public string Notes { get; set; }
@@ -31,7 +32,8 @@ namespace Human_Resource.App_Code
                                 .Select(x => new HourlyPermissionModel()
                                 {
                                     HourlyPermissionID = x.HourlyPermissionID,
-                                    Name = x.Name,
+                                    //Name = x.Name,
+                                    Date = x.Date,
                                     Description = x.Description,
                                     EmployeeID = x.EmployeeID,
                                     EmployeeName = entity.employees.Where(m => m.EmployeeID == x.EmployeeID).Select(m => m.NameAr).FirstOrDefault(),
@@ -52,7 +54,8 @@ namespace Human_Resource.App_Code
                                 .Select(x => new HourlyPermissionModel()
                                 {
                                     HourlyPermissionID = x.HourlyPermissionID,
-                                    Name = x.Name,
+                                    Date = x.Date,
+                                    //Name = x.Name,
                                     Description = x.Description,
                                     EmployeeID = x.EmployeeID,
                                     EmployeeName = entity.employees.Where(m => m.EmployeeID == x.EmployeeID).Select(m => m.NameAr).FirstOrDefault(),
@@ -79,7 +82,8 @@ namespace Human_Resource.App_Code
                         hourlyPermission = new hourlyPermissions()
                         {
                              EmployeeID = dept.EmployeeID,
-                            Name = dept.Name,
+                            Date = dept.Date,
+                            //Name = dept.Name,
                             Description = dept.Description,
                             IsActive = true,
                             CreateUserID = dept.CreateUserID,
@@ -93,8 +97,9 @@ namespace Human_Resource.App_Code
                     {
                         hourlyPermission = entity.hourlyPermissions.Find(dept.HourlyPermissionID);
                         hourlyPermission.EmployeeID = dept.EmployeeID;
-                        hourlyPermission.Name = dept.Name;
                         hourlyPermission.Description = dept.Description;
+                        //hourlyPermission.Name = dept.Name;
+                        hourlyPermission.Date = dept.Date;
                         hourlyPermission.Notes = dept.Notes;
                         hourlyPermission.IsActive = true;
                         hourlyPermission.UpdateUserID = dept.UpdateUserID;

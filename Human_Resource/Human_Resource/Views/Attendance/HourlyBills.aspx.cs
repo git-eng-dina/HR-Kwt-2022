@@ -1,6 +1,7 @@
 ﻿using Human_Resource.App_Code;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
@@ -35,9 +36,10 @@ namespace Human_Resource.Views.Attendance
 
             var depts = dept.getActivity();
             if (textSearch != "")
-                depts = depts.Where(x => x.Name.Contains(textSearch)
-                                || x.Description.Contains(textSearch)
-                                 || x.EmployeeName.ToLower().Contains(textSearch.ToLower())
+                depts = depts.Where(x => 
+                //x.Name.Contains(textSearch)
+                                 x.Description.Contains(textSearch)
+                                  || x.EmployeeName.ToLower().Contains(textSearch.ToLower())
                                  ).ToList();
             gv_data.DataSource = depts;
 
@@ -60,18 +62,21 @@ namespace Human_Resource.Views.Attendance
             DataBind();
         }
         [WebMethod(EnableSession = true)]
-        public static string SaveHourlyPermission(string hourlyPermissionId, string employeeId, string name, string description)
+        //public static string SaveHourlyPermission(string hourlyPermissionId, string employeeId, string name, string description, string date)
+        public static string SaveHourlyPermission(string hourlyPermissionId, string employeeId, string date,  string description)
         {
             try
             {
-                
+                CultureInfo cultures = new CultureInfo("en-US");
+
                 HourlyPermissionModel dept = new HourlyPermissionModel();
                 if (hourlyPermissionId != "")
                     dept.HourlyPermissionID = int.Parse(hourlyPermissionId);
                 else
                     dept.HourlyPermissionID = 0;
                 dept.EmployeeID = int.Parse(employeeId);
-                dept.Name = name;
+                dept.Date = DateTime.ParseExact(date, "yyyy-MM-dd", cultures); ;
+                //dept.Name = name;
                 dept.Description = description;
 
                 if (HttpContext.Current.Session["user_id"] != null && HttpContext.Current.Session["user_id"].ToString() != "")
