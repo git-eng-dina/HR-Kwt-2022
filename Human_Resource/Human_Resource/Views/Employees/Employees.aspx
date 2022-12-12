@@ -81,7 +81,7 @@
                         <div class="row gridView-title">                       
                            <span><asp:Literal Text=" <%$ Resources:Labels,WaitingEmployees%>" runat="server"></asp:Literal> </span>
                         </div>
-                       <div class="row">
+                      <%-- <div class="row">--%>
                       
       
                         <asp:GridView ID="gv_unhiredEmp" runat="server" style="margin-top:0px;" CssClass="gridView col-md-12"  
@@ -166,12 +166,14 @@
                                 <EditRowStyle BackColor="#009999" VerticalAlign="Middle" />
                             </asp:GridView>
                     
-                       </div>
+                      <%-- </div>--%>
                        <!---- table hired employees-->
+                        <div class="row">&nbsp;</div>
                          <div class="row gridView-title">                       
                            <span><asp:Literal Text=" <%$ Resources:Labels,Employees%>" runat="server"></asp:Literal> </span>
                         </div>
-                    <div class="row">
+                      
+                <%--    <div class="row">--%>
                        
                             <asp:GridView ID="gv_employees" runat="server" style="width:100%; margin-top:0px;" CssClass="gridView col-md-12"  
                                 AutoGenerateColumns="False"  Width="100%">
@@ -248,7 +250,7 @@
                                 </Columns>
                                 <EditRowStyle BackColor="#009999" VerticalAlign="Middle" />
                             </asp:GridView>
-                        </div>
+                      <%--  </div>--%>
    
                     </div>
 

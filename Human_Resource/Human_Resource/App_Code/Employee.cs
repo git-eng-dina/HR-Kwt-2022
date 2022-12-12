@@ -150,9 +150,25 @@ namespace Human_Resource
                 if (emp != null)
                     return "HRManager";
 
+                var branch = entity.branches.Where(x => x.ManagerID == empId).FirstOrDefault();
+                if (branch != null)
+                    return "Supervisor";
+
+                var management = entity.managements.Where(x => x.ManagerID == empId).FirstOrDefault();
+                if (management != null)
+                    return "ManagementManager";
+
+                
+
                 var dept = entity.departments.Where(x => x.ManagerID == empId).FirstOrDefault();
                 if (dept != null)
                     return "DepartmentManager";
+
+                var higherMnager = entity.highrManagment.Where(x => x.EmployeeID == empId).FirstOrDefault();
+                if (higherMnager != null)
+                    return "Advisor";
+
+
             }
             return "Employee";
         }

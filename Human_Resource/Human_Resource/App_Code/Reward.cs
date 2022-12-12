@@ -47,6 +47,77 @@ namespace Human_Resource.App_Code
                 return depts;
             }
         }
+        public List<RewardModel> getBranchEmpPenalties(int managerId)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var depts = entity.rewards.Where(x => x.IsActive == true
+                            && x.employees.managements.branches.ManagerID == managerId)
+                                .Select(x => new RewardModel()
+                                {
+                                    RewardID = x.RewardID,
+                                    //Type = x.Type,
+                                    Title = x.Title,
+                                    Description = x.Description,
+                                    Value = x.Value,
+                                    EmployeeID = x.EmployeeID,
+                                    EmployeeName = entity.employees.Where(m => m.EmployeeID == x.EmployeeID).Select(m => m.NameAr).FirstOrDefault(),
+                                    CreateUserID = x.CreateUserID,
+                                    UpdateUserID = x.UpdateUserID,
+                                    Notes = x.Notes,
+                                    CreateDate = x.CreateDate,
+                                    UpdateDate = x.UpdateDate,
+                                }).ToList();
+                return depts;
+            }
+        }
+        public List<RewardModel> getManagementEmpPenalties(int managerId)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var depts = entity.rewards.Where(x => x.IsActive == true
+                            && x.employees.managements.ManagerID == managerId)
+                                .Select(x => new RewardModel()
+                                {
+                                    RewardID = x.RewardID,
+                                    //Type = x.Type,
+                                    Title = x.Title,
+                                    Description = x.Description,
+                                    Value = x.Value,
+                                    EmployeeID = x.EmployeeID,
+                                    EmployeeName = entity.employees.Where(m => m.EmployeeID == x.EmployeeID).Select(m => m.NameAr).FirstOrDefault(),
+                                    CreateUserID = x.CreateUserID,
+                                    UpdateUserID = x.UpdateUserID,
+                                    Notes = x.Notes,
+                                    CreateDate = x.CreateDate,
+                                    UpdateDate = x.UpdateDate,
+                                }).ToList();
+                return depts;
+            }
+        }
+        public List<RewardModel> getEmpPenalties(int empId)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var depts = entity.rewards.Where(x => x.IsActive == true && x.EmployeeID==empId)
+                                .Select(x => new RewardModel()
+                                {
+                                    RewardID = x.RewardID,
+                                    //Type = x.Type,
+                                    Title = x.Title,
+                                    Description = x.Description,
+                                    Value = x.Value,
+                                    EmployeeID = x.EmployeeID,
+                                    EmployeeName = entity.employees.Where(m => m.EmployeeID == x.EmployeeID).Select(m => m.NameAr).FirstOrDefault(),
+                                    CreateUserID = x.CreateUserID,
+                                    UpdateUserID = x.UpdateUserID,
+                                    Notes = x.Notes,
+                                    CreateDate = x.CreateDate,
+                                    UpdateDate = x.UpdateDate,
+                                }).ToList();
+                return depts;
+            }
+        }
         public RewardModel getReward(int rewardId)
         {
             using (HRSystemEntities entity = new HRSystemEntities())

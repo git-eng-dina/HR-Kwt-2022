@@ -723,7 +723,13 @@
   <data name="Supervisor" xml:space="preserve">
     <value>المشرف</value>
   </data>
+  <data name="EmpPenalties" xml:space="preserve">
+    <value>عقوباتي</value>
+  </data>
   <data name="SelectHere" xml:space="preserve">
     <value>اختار هنا...</value>
+  </data>
+  <data name="EmployeesPenalties" xml:space="preserve">
+    <value>عقوبات الموظفين</value>
   </data>
 </root>

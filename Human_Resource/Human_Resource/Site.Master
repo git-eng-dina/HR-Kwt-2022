@@ -139,12 +139,12 @@
 
                     </a>
                 </li>  
-                <li>
+           <%--     <li>
                     <a href="/Views/ExecutiveProc/SalaryIncrease.aspx"> 
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,SalaryIncrease%>" />
 
                     </a>
-                </li>  
+                </li> --%> 
                 <li>
                     <a href="/Views/ExecutiveProc/RewardsAndPenalties.aspx"> 
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,Penalties%>" />
@@ -167,8 +167,8 @@
             </a>
             <ul id="demo_emp_penalities" class="collapse in" aria-expanded="true">
                 <li>
-                    <a href="/Views/Employees/EmpPenalities.aspx"> 
-                        <asp:Literal runat="server" Text="<%$ Resources:Labels,Penalties%>" />
+                    <a href="/Views/ExecutiveProc/RewardsAndPenalties.aspx?my=1"> 
+                        <asp:Literal runat="server" Text="<%$ Resources:Labels,EmpPenalties%>" />
                     </a>
                 </li>
                 <li>

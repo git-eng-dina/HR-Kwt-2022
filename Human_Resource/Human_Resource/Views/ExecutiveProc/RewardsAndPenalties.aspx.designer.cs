@@ -13,6 +13,15 @@ namespace Human_Resource.Views.ExecutiveProc {
     public partial class RewardsAndPenalties {
         
         /// <summary>
+        /// myPenalties control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden myPenalties;
+        
+        /// <summary>
         /// txt_search control.
         /// </summary>
         /// <remarks>
@@ -40,6 +49,15 @@ namespace Human_Resource.Views.ExecutiveProc {
         protected global::System.Web.UI.HtmlControls.HtmlButton btn_new;
         
         /// <summary>
+        /// gv_data_title control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl gv_data_title;
+        
+        /// <summary>
         /// gv_data control.
         /// </summary>
         /// <remarks>
@@ -47,6 +65,24 @@ namespace Human_Resource.Views.ExecutiveProc {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gv_data;
+        
+        /// <summary>
+        /// gv_myPenalties_title control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl gv_myPenalties_title;
+        
+        /// <summary>
+        /// gv_myPenalties control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gv_myPenalties;
         
         /// <summary>
         /// emp control.

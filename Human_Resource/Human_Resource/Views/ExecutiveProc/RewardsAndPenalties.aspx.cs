@@ -14,7 +14,7 @@ namespace Human_Resource.Views.ExecutiveProc
         {
             if (!IsPostBack)
             {
-                BindData();
+                BindData(Request.QueryString["my"]);
                 btn_new.Attributes.Add("OnClick", "ShowDialog('');");
             }
         }
@@ -24,46 +24,66 @@ namespace Human_Resource.Views.ExecutiveProc
             try
             {
                 string textSearch = txt_search.Value;
-                BindData(textSearch);
+                string my = myPenalties.Value;
+                BindData(my,textSearch);
             }
             catch { }
         }
-        private void BindData(string textSearch = "")
+        private void BindData(string my,string textSearch = "")
         {
             RewardModel dept = new RewardModel();
+            if (my != "1")
+            {
+                var penalties = new List<RewardModel>();
+                if (Session["urole"].ToString() == "GeneralDirector" || Session["urole"].ToString() == "CEO")
+                    penalties = dept.getActivity();
+                else if (Session["urole"].ToString() == "Supervisor")
+                    penalties = dept.getBranchEmpPenalties(int.Parse(Session["user_id"].ToString()));
+                else if (Session["urole"].ToString() == "ManagementManager")
+                    penalties = dept.getManagementEmpPenalties(int.Parse(Session["user_id"].ToString()));
+                
+                if (textSearch != "")
+                    penalties = penalties.Where(x =>
+                                      x.Title.Contains(textSearch)
+                                    || x.Description.Contains(textSearch)
+                                     || x.EmployeeName.ToLower().Contains(textSearch.ToLower())
+                                     ).ToList();
+                gv_data.DataSource = penalties;
 
-            var depts = dept.getActivity();
-            if (textSearch != "")
-                depts = depts.Where(x => 
-                //x.Type.ToLower().Contains(textSearch.ToLower())
-                                  x.Title.Contains(textSearch)
-                                || x.Description.Contains(textSearch)
-                                 || x.EmployeeName.ToLower().Contains(textSearch.ToLower())
-                                 ).ToList();
-            gv_data.DataSource = depts;
 
+                EmployeeModel employeeModel = new EmployeeModel();
+                List<EmployeeModel> employees = new List<EmployeeModel>();
+                employees = employeeModel.GetHiredEmployees(true);
+                emp.DataSource = employees;
+                emp.DataValueField = "EmployeeID";
+                if (Session["CultureName"] != null && Session["CultureName"].ToString().ToLower() == "en-us")
+                    emp.DataTextField = "NameEn";
+                else
+                    emp.DataTextField = "NameAr";
 
-            //dept_type.DataSource = GetData.rewardsTypeList;
-            //dept_type.DataValueField = "key";
-            //dept_type.DataTextField = "value";
+                gv_myPenalties.Visible = false;
+                gv_myPenalties_title.Visible = false;
 
-
-
-            EmployeeModel employeeModel = new EmployeeModel();
-            List<EmployeeModel> employees = new List<EmployeeModel>();
-            employees = employeeModel.GetHiredEmployees(true);
-            emp.DataSource = employees;
-            emp.DataValueField = "EmployeeID";
-            if (Session["CultureName"] != null && Session["CultureName"].ToString().ToLower() == "en-us")
-                emp.DataTextField = "NameEn";
+            }
             else
-                emp.DataTextField = "NameAr";
+            {
+                gv_data.Visible = false;
+                gv_data_title.Visible = false;
+                btn_new.Visible = false;
 
+                var myPenalities = dept.getEmpPenalties(int.Parse(Session["user_id"].ToString()));
+                if (textSearch != "")
+                    myPenalities = myPenalities.Where(x =>
+                                      x.Title.Contains(textSearch)
+                                    || x.Description.Contains(textSearch)
+                                     || x.EmployeeName.ToLower().Contains(textSearch.ToLower())
+                                     ).ToList();
+                gv_myPenalties.DataSource = myPenalities;
+            }
 
             DataBind();
         }
         [WebMethod(EnableSession = true)]
-        //public static string SaveReward(string rewardId, string employeeId, string type, string title, string description,string value)
         public static string SaveReward(string rewardId, string employeeId,  string title, string description,string value)
         {
             try
@@ -74,7 +94,7 @@ namespace Human_Resource.Views.ExecutiveProc
                 else
                     dept.RewardID = 0;
                 dept.EmployeeID = int.Parse(employeeId);
-                //dept.Type = type;
+
                 dept.Title = title;
                 dept.Description = description;
                 dept.Value = value;
@@ -133,7 +153,7 @@ namespace Human_Resource.Views.ExecutiveProc
                 {
 
                     Response.Write("<script>alert('" + Resources.Labels.DeleteSuccessfully + "')</script>");
-                    BindData();
+                    BindData(Request.QueryString["my"]);
                 }
                 else
                 {

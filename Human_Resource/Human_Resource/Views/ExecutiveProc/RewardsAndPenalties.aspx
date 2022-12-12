@@ -123,6 +123,7 @@
 
                         <div class="input-group">
                             <div class="col-4">
+                                <input type="hidden" id="myPenalties" runat="server" />
                                 <input type="text" runat="server" id="txt_search" placeholder="<%$ Resources:Labels,Search%>"  />
                             </div>
                             <div style="width:90px">
@@ -138,8 +139,11 @@
    
                         </div>
 
-                       <!---- table -->
-                            <asp:GridView ID="gv_data" runat="server"  CssClass="gridView col-md-12"  
+                       <!---- table penalities -->
+                          <div class="row gridView-title" id="gv_data_title" runat="server">                       
+                           <span><asp:Literal Text=" <%$ Resources:Labels,EmployeesPenalties%>" runat="server"></asp:Literal> </span>
+                        </div>
+                            <asp:GridView ID="gv_data" runat="server" style="width:100%; margin-top:0px;" CssClass="gridView col-md-12"  
                                 AutoGenerateColumns="False"  Width="90%" 
                                 class="table table-bordered table-condensed table-responsive table-hover ">
                                 <Columns>
@@ -203,6 +207,67 @@
                                                              
                                              </ItemTemplate>
                                     </asp:TemplateField> 
+                                   
+                                </Columns>
+                                <EditRowStyle BackColor="#009999" VerticalAlign="Middle" />
+                            </asp:GridView>
+                     <!---- table my penalities -->
+                         <div class="row">&nbsp;</div>
+                          <div class="row gridView-title" id="gv_myPenalties_title" runat="server">                       
+                           <span><asp:Literal Text=" <%$ Resources:Labels,EmpPenalties%>" runat="server"></asp:Literal> </span>
+                        </div>
+                            <asp:GridView ID="gv_myPenalties" runat="server" style="width:100%; margin-top:0px;" CssClass="gridView col-md-12"  
+                                AutoGenerateColumns="False"  Width="90%" 
+                                class="table table-bordered table-condensed table-responsive table-hover ">
+                                <Columns>
+
+                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,Sequence%>" ItemStyle-Width="5%">
+                                         <ItemTemplate>
+                                                 <%#Container.DataItemIndex+1 %>                            
+                                         </ItemTemplate> 
+                                       </asp:TemplateField>
+
+                                    
+                                        <asp:TemplateField HeaderText="<%$ Resources:Labels,employee%>" ItemStyle-Width="20%">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblDemployee" runat="server" 
+                                                 Text='<%# Eval("EmployeeName") %>' />                              
+                                         </ItemTemplate>
+                                        </asp:TemplateField>
+                                         
+                                          
+                                <asp:TemplateField HeaderText="<%$ Resources:Labels,Title%>" ItemStyle-Width="25%">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblTitle" runat="server" 
+                                                 Text='<%# Eval("Title") %>' />                              
+                                         </ItemTemplate>
+                                        </asp:TemplateField> 
+                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,Description%>" ItemStyle-Width="25%">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblDescription" runat="server" 
+                                                 Text='<%# Eval("Description") %>' />                              
+                                         </ItemTemplate>
+                                        </asp:TemplateField>
+                                     <asp:TemplateField HeaderText="<%$ Resources:Labels,Value%>" ItemStyle-Width="25%">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblValue" runat="server" 
+                                                 Text='<%# Eval("Value") %>' />                              
+                                         </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                   
+
+
+                                 
+
+                                    <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-edit">
+                                          <ItemTemplate>                     
+                                                     <asp:LinkButton ID="LinkProducts" runat="server" myCustomID='<%# Eval("RewardID")%>'  CssClass="td-edit">
+                                                         <asp:Image ImageUrl="~/Images/edit.ico" runat="server" Width="20px" Height="20px" />
+                                                     </asp:LinkButton>  
+                                             </ItemTemplate>
+                                        </asp:TemplateField>
+                                  
                                    
                                 </Columns>
                                 <EditRowStyle BackColor="#009999" VerticalAlign="Middle" />

@@ -226,7 +226,7 @@ namespace Human_Resource.Views.Employees
                 employee.JobID =int.Parse( sel_position.Value);
                 if(sel_management.Value != "")
                     employee.ManagementID = int.Parse(sel_management.Value);
-                if(sel_department.Value != "")
+                if(sel_department.Value != "" && sel_department.Value != "0")
                     employee.DepartmentID = int.Parse(sel_department.Value);
                 employee.WorkHours = int.Parse(txt_workHours.Value);
                 employee.BasicSalary = decimal.Parse(txt_salary.Value);

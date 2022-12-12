@@ -726,7 +726,13 @@
   <data name="Supervisor" xml:space="preserve">
     <value>Supervisor</value>
   </data>
+  <data name="EmpPenalties" xml:space="preserve">
+    <value>My Penalties</value>
+  </data>
   <data name="SelectHere" xml:space="preserve">
     <value>Select Here...</value>
+  </data>
+  <data name="EmployeesPenalties" xml:space="preserve">
+    <value>Employees Penalties</value>
   </data>
 </root>
