@@ -1308,3 +1308,13 @@ input[type=checkbox], input[type=radio] {
 .mce-path {
     display: none;
 }
+.view-form {
+    position: relative;
+    background-color: #FFF;
+    padding: 20px;
+    border: 1px solid #6c6c6f;
+    border-radius: 10px;
+    margin-top: 20px;
+    width: 100%;
+    float: right;
+}

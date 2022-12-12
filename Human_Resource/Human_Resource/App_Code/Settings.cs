@@ -592,6 +592,30 @@ namespace Human_Resource.App_Code
                 return depts;
             }
         }
+
+        public List<DepartmentModel> getManagementDept(int managementId)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var depts = entity.departments.Where(x => x.IsActive == true && x.ManagementID == managementId)
+                                .Select(x => new DepartmentModel()
+                                {
+                                    DepartmentID = x.DepartmentID,
+                                    Name = x.Name,
+                                    Mobile = x.Mobile,
+                                    ManagementID = x.ManagementID,
+                                    ManagementName = entity.managements.Where(m => m.ManagementID == x.ManagementID).Select(m => m.Name).FirstOrDefault(),
+                                    ManagerID = x.ManagerID,
+                                    ManagerName = entity.employees.Where(m => m.EmployeeID == x.ManagerID).Select(m => m.NameAr).FirstOrDefault(),
+                                    CreateUserID = x.CreateUserID,
+                                    UpdateUserID = x.UpdateUserID,
+                                    Notes = x.Notes,
+                                    CreateDate = x.CreateDate,
+                                    UpdateDate = x.UpdateDate,
+                                }).ToList();
+                return depts;
+            }
+        }
         public List<DepartmentModel> getDepartmentByManagement(int ManagementID)
         {
             using (HRSystemEntities entity = new HRSystemEntities())

@@ -111,6 +111,39 @@
               }
          }
 
+         function fillDepartment(managementId) {
+             if (managementId == 0) {
+                 $('#MainContent_sel_department option').each(function () {
+                     $(this).remove();
+                 });
+             }
+             else {
+                 var parameter = {
+                     ID: managementId,
+                 };
+                 $.ajax({
+                     type: "POST",
+                     url: "NewEmployee.aspx/GetDepartments",
+                     data: JSON.stringify(parameter),
+                     contentType: "application/json; charset=utf-8",
+                     dataType: "json",
+                     success: function (data) {
+
+                         var colours = jQuery.parseJSON(data.d);
+
+                         for (var i = 0; i < colours.length; i++) {
+                             var val = colours[i].DepartmentID;
+                             var text = colours[i].Name;
+                             $("#MainContent_sel_department").append($('<option></option>').attr('value', val).text(text));
+                         }
+
+                     },
+                     failure: function (response) {
+                         alert(response.d);
+                     }
+                 });
+             }
+         }
 
         
      </script>
@@ -418,6 +451,14 @@
                             </div>
                              <div class="form-group" style="display:block">
                                 <div class="col-md-4 col-sm-4 col-xs-4 div1">
+                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Management%>" /></span>
+                                </div>
+                                <div class="col-md-8 col-sm-8 col-xs-8 div2" >
+                                <select runat="server" id="sel_management" name="sel_management" class="form-control" onchange="fillDepartment(this.value)"></select>
+                            </div>
+                                 </div>
+                            <div class="form-group" style="display:block">
+                                <div class="col-md-4 col-sm-4 col-xs-4 div1">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Department%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
@@ -569,6 +610,7 @@
 
     </div>
             </div>
+      
         </section>
 
 </asp:Content>

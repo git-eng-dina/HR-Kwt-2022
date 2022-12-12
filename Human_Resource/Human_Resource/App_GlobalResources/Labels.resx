@@ -723,4 +723,10 @@
   <data name="CompanyListEn" xml:space="preserve">
     <value>in English</value>
   </data>
+  <data name="Supervisor" xml:space="preserve">
+    <value>Supervisor</value>
+  </data>
+  <data name="SelectHere" xml:space="preserve">
+    <value>Select Here...</value>
+  </data>
 </root>

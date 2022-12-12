@@ -13,6 +13,7 @@ namespace Human_Resource
         #region Attributes
         public int EmployeeID { get; set; }
         public Nullable<int> DepartmentID { get; set; }
+        public Nullable<int> ManagementID { get; set; }
 
         public string Username { get; set; }
         public string Password { get; set; }
@@ -85,6 +86,7 @@ namespace Human_Resource
         public int Age { get; set; }
         public string Position { get; set; }
         public string DepartmentName { get; set; }
+        public string ManagementName { get; set; }
         public string AddedBy { get; set; }
         public Attachment Certificate1 { get; set; }
         public Attachment Certificate2 { get; set; }
@@ -272,6 +274,7 @@ namespace Human_Resource
                                 BasicSalary = x.BasicSalary,
                                 Position = x.jobs.Name,
                                 DepartmentName = x.departments.Name,
+                                ManagementName = x.managements.Name,
                                 AddedBy = entity.employees.Where(m => m.EmployeeID == x.CreateUserID).Select(m => m.NameAr).FirstOrDefault(),
                             }).ToList();
 
@@ -305,6 +308,7 @@ namespace Human_Resource
                                 BasicSalary = x.BasicSalary,
                                 Position = x.jobs.Name,
                                 DepartmentName = x.departments.Name,
+                                ManagementName= x.managements.Name,
                                 AddedBy = entity.employees.Where(m => m.EmployeeID == x.CreateUserID).Select(m => m.NameAr).FirstOrDefault(),
                             }).ToList();
 
@@ -337,6 +341,7 @@ namespace Human_Resource
                                 BasicSalary = x.BasicSalary,
                                 Position = x.jobs.Name,
                                 DepartmentName = x.departments.Name,
+                                ManagementName=x.managements.Name,
                                 AddedBy = entity.employees.Where(m => m.EmployeeID == x.CreateUserID).Select(m => m.NameAr).FirstOrDefault(),
                             }).ToList();
 
@@ -415,6 +420,7 @@ namespace Human_Resource
                             WorkExperience3= employee.WorkExperience3,
                             JobID = employee.JobID ,
                             DepartmentID = employee.DepartmentID ,
+                            ManagementID = employee.ManagementID,
                             WorkHours = employee.WorkHours,
                             BasicSalary = employee.BasicSalary ,
                             Email = employee.Email,
@@ -466,6 +472,7 @@ namespace Human_Resource
                         emp.WorkExperience3 = employee.WorkExperience3;
                         emp.JobID = employee.JobID;
                         emp.DepartmentID = employee.DepartmentID;
+                        emp.ManagementID = employee.ManagementID;
                         emp.WorkHours = employee.WorkHours;
                         emp.BasicSalary = employee.BasicSalary;
                         emp.Email = employee.Email;

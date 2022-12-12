@@ -194,7 +194,7 @@
                                                  Text='<%# Eval("Address") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>  
-                                        <asp:TemplateField HeaderText="<%$ Resources:Labels,BranchManager%>" ItemStyle-Width="20%">
+                                        <asp:TemplateField HeaderText="<%$ Resources:Labels,Supervisor%>" ItemStyle-Width="20%">
                                          <ItemTemplate>
                                                  <asp:Label ID="LblDmanager" runat="server" 
                                                  Text='<%# Eval("ManagerName") %>' />                              
@@ -268,7 +268,7 @@
                          </div>
                     <div class="row">
                      <div class="form-group" style="display:block">
-                              <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,BranchManager%>" /></span>
+                              <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Supervisor%>" /></span>
         
                                 <select runat="server" id="emp" name="emp" style="width:80%" class="form-control input-lg"></select>
                             </div>

@@ -319,6 +319,15 @@ namespace Human_Resource.Views.Employees {
         protected global::System.Web.UI.HtmlControls.HtmlSelect sel_position;
         
         /// <summary>
+        /// sel_management control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect sel_management;
+        
+        /// <summary>
         /// sel_department control.
         /// </summary>
         /// <remarks>

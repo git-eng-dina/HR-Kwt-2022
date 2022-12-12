@@ -116,7 +116,13 @@
                                                  Text='<%# Eval("Position") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>             
-                                  <asp:TemplateField HeaderText="<%$ Resources:Labels,Department%>">
+                                  <asp:TemplateField HeaderText="<%$ Resources:Labels,Management%>">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblDno" runat="server" 
+                                                 Text='<%# Eval("ManagementName") %>' />                              
+                                         </ItemTemplate>
+                                   </asp:TemplateField> 
+                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,Department%>">
                                          <ItemTemplate>
                                                  <asp:Label ID="LblDno" runat="server" 
                                                  Text='<%# Eval("DepartmentName") %>' />                              
@@ -199,7 +205,13 @@
                                                  Text='<%# Eval("Position") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>  
-                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,Department%>">
+                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,Management%>">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblDno" runat="server" 
+                                                 Text='<%# Eval("ManagementName") %>' />                              
+                                         </ItemTemplate>
+                                   </asp:TemplateField>             
+                                     <asp:TemplateField HeaderText="<%$ Resources:Labels,Department%>">
                                          <ItemTemplate>
                                                  <asp:Label ID="LblDno" runat="server" 
                                                  Text='<%# Eval("DepartmentName") %>' />                              

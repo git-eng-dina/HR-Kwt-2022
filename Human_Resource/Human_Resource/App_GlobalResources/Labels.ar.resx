@@ -720,4 +720,10 @@
   <data name="CompanyListEn" xml:space="preserve">
     <value>باللغة الانجليزية</value>
   </data>
+  <data name="Supervisor" xml:space="preserve">
+    <value>المشرف</value>
+  </data>
+  <data name="SelectHere" xml:space="preserve">
+    <value>اختار هنا...</value>
+  </data>
 </root>

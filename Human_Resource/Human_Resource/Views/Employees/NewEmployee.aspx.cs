@@ -5,6 +5,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -19,7 +20,7 @@ namespace Human_Resource.Views.Employees
                 EmployeeModel emp = new EmployeeModel();
                 JobModel job = new JobModel();
                 CountriesNameModel country = new CountriesNameModel();
-                DepartmentModel dept = new DepartmentModel();
+                ManagementModel management = new ManagementModel();
 
                 hid_emp_id.Value = Request.QueryString["uid"];
 
@@ -47,13 +48,20 @@ namespace Human_Resource.Views.Employees
                 sel_position.DataValueField = "JobID";
                 sel_position.DataBind();
 
-                sel_department.DataSource = dept.getActivity().OrderBy(x => x.Name);
+                var managements = management.getActivity().OrderBy(x => x.Name).ToList();
+                var newManag = new ManagementModel() { Name = Resources.Labels.SelectHere, ManagementID = 0 };
+                managements.Insert(0,newManag);
+                sel_management.DataSource = managements;
+                sel_management.DataTextField = "Name";
+                sel_management.DataValueField = "ManagementID";
+                sel_management.DataBind();
+
                 sel_department.DataTextField = "Name";
                 sel_department.DataValueField = "DepartmentID";
-                sel_department.DataBind();
+
 
                 #region get employee info
-                if(Request.QueryString["uid"] != null && Request.QueryString["uid"] != "")
+                if (Request.QueryString["uid"] != null && Request.QueryString["uid"] != "")
                 {
                     int empId = int.Parse(Request.QueryString["uid"]);
                     emp = emp.GetByID(empId);
@@ -282,6 +290,29 @@ namespace Human_Resource.Views.Employees
             };
             attach.SaveAttach(attach);
             
+        }
+
+        [WebMethod(EnableSession = true)]
+        public static string GetDepartments(string ID)
+        {
+            try
+            {
+                DepartmentModel dept = new DepartmentModel();
+
+               var depts = dept.getManagementDept(int.Parse(ID)).OrderBy(x => x.Name).ToList();
+                var newDept = new DepartmentModel() { Name = Resources.Labels.SelectHere, DepartmentID = 0 };
+                depts.Insert(0, newDept);
+                System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+                var json = js.Serialize(depts.ToList());
+                return json;
+               
+            }
+            catch
+            {
+                return "";
+
+            }
+
         }
     }
 }

@@ -1573,6 +1573,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select Here....
+        /// </summary>
+        internal static string SelectHere {
+            get {
+                return ResourceManager.GetString("SelectHere", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to #.
         /// </summary>
         internal static string Sequence {
@@ -1641,6 +1650,15 @@ namespace Resources {
         internal static string StrategicThinking {
             get {
                 return ResourceManager.GetString("StrategicThinking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supervisor.
+        /// </summary>
+        internal static string Supervisor {
+            get {
+                return ResourceManager.GetString("Supervisor", resourceCulture);
             }
         }
         
