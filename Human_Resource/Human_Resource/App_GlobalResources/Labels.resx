@@ -741,4 +741,16 @@
   <data name="WorkShifts" xml:space="preserve">
     <value>Work Shifts</value>
   </data>
+  <data name="AddPersonalPermission" xml:space="preserve">
+    <value>Add Personal Permission</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="PersonalPermission" xml:space="preserve">
+    <value>Personal Permission</value>
+  </data>
+  <data name="PersonalPermissions" xml:space="preserve">
+    <value>Personal Permissions</value>
+  </data>
 </root>

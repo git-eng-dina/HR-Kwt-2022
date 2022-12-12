@@ -738,4 +738,16 @@
   <data name="WorkShifts" xml:space="preserve">
     <value>فترات الدوام</value>
   </data>
+  <data name="AddPersonalPermission" xml:space="preserve">
+    <value>إضافة إذن شخصي</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
+  <data name="PersonalPermission" xml:space="preserve">
+    <value>إذن شخصي</value>
+  </data>
+  <data name="PersonalPermissions" xml:space="preserve">
+    <value>الاذونات الشخصية</value>
+  </data>
 </root>

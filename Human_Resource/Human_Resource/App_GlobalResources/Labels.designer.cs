@@ -160,6 +160,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Personal Permission.
+        /// </summary>
+        internal static string AddPersonalPermission {
+            get {
+                return ResourceManager.GetString("AddPersonalPermission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Address.
         /// </summary>
         internal static string Address {
@@ -588,6 +597,15 @@ namespace Resources {
         internal static string Daily {
             get {
                 return ResourceManager.GetString("Daily", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        internal static string Date {
+            get {
+                return ResourceManager.GetString("Date", resourceCulture);
             }
         }
         
@@ -1407,6 +1425,24 @@ namespace Resources {
         internal static string PersonalInfo {
             get {
                 return ResourceManager.GetString("PersonalInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Personal Permission.
+        /// </summary>
+        internal static string PersonalPermission {
+            get {
+                return ResourceManager.GetString("PersonalPermission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Personal Permissions.
+        /// </summary>
+        internal static string PersonalPermissions {
+            get {
+                return ResourceManager.GetString("PersonalPermissions", resourceCulture);
             }
         }
         
