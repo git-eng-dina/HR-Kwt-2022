@@ -732,4 +732,10 @@
   <data name="EmployeesPenalties" xml:space="preserve">
     <value>عقوبات الموظفين</value>
   </data>
+  <data name="VacationReport" xml:space="preserve">
+    <value>تقرير الاجازات</value>
+  </data>
+  <data name="WorkShifts" xml:space="preserve">
+    <value>فترات الدوام</value>
+  </data>
 </root>

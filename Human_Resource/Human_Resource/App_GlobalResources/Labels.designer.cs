@@ -1807,6 +1807,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Vacation Report.
+        /// </summary>
+        internal static string VacationReport {
+            get {
+                return ResourceManager.GetString("VacationReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Vacations.
         /// </summary>
         internal static string Vacations {
@@ -1911,6 +1920,15 @@ namespace Resources {
         internal static string WorkingPermission {
             get {
                 return ResourceManager.GetString("WorkingPermission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Work Shifts.
+        /// </summary>
+        internal static string WorkShifts {
+            get {
+                return ResourceManager.GetString("WorkShifts", resourceCulture);
             }
         }
     }

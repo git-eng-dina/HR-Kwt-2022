@@ -735,4 +735,10 @@
   <data name="EmployeesPenalties" xml:space="preserve">
     <value>Employees Penalties</value>
   </data>
+  <data name="VacationReport" xml:space="preserve">
+    <value>Vacation Report</value>
+  </data>
+  <data name="WorkShifts" xml:space="preserve">
+    <value>Work Shifts</value>
+  </data>
 </root>

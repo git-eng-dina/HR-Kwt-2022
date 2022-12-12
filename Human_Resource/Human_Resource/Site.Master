@@ -199,6 +199,16 @@
                     <a href="/Views/Attendance/VaccaitionApproval.aspx" class="">
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,VaccaitionApproval%>" />
                     </a>
+                </li> 
+                <li>
+                    <a href="/Views/Attendance/VacationReport.aspx" class="">
+                        <asp:Literal runat="server" Text="<%$ Resources:Labels,VacationReport%>" />
+                    </a>
+                </li>
+                <li>
+                    <a href="/Views/Attendance/WorkShifts.aspx" class="">
+                        <asp:Literal runat="server" Text="<%$ Resources:Labels,WorkShifts%>" />
+                    </a>
                 </li>
                
             </ul>

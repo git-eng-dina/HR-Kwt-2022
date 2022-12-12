@@ -486,8 +486,10 @@
     <Content Include="tiny_mce\utils\validate.js" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Views\Attendance\HourlyBills.aspx" />
+    <Content Include="Views\Attendance\VacationReport.aspx" />
     <Content Include="Views\Attendance\Vacations.aspx" />
     <Content Include="Views\Attendance\VaccaitionApproval.aspx" />
+    <Content Include="Views\Attendance\WorkShifts.aspx" />
     <Content Include="Views\Employees\Employees.aspx" />
     <Content Include="Views\Employees\EmpPenalities.aspx" />
     <Content Include="Views\Employees\NewEmployee.aspx" />
@@ -505,6 +507,7 @@
     <Content Include="Views\Settings\CompanyInfo.aspx" />
     <Content Include="Views\Settings\Branches.aspx" />
     <Content Include="Views\Settings\CompanyList.aspx" />
+    <Content Include="Views\Settings\CompanyListView.aspx" />
     <Content Include="Views\Settings\Departments.aspx" />
     <Content Include="Views\Settings\Jobs.aspx" />
     <Content Include="Views\Settings\Managements.aspx" />
@@ -637,6 +640,15 @@
     <Compile Include="scheduleVacations.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="statuses.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -656,6 +668,13 @@
     <Compile Include="Views\Attendance\HourlyBills.aspx.designer.cs">
       <DependentUpon>HourlyBills.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Attendance\VacationReport.aspx.cs">
+      <DependentUpon>VacationReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Attendance\VacationReport.aspx.designer.cs">
+      <DependentUpon>VacationReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Attendance\Vacations.aspx.cs">
       <DependentUpon>Vacations.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -669,6 +688,13 @@
     </Compile>
     <Compile Include="Views\Attendance\VaccaitionApproval.aspx.designer.cs">
       <DependentUpon>VaccaitionApproval.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Attendance\WorkShifts.aspx.cs">
+      <DependentUpon>WorkShifts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Attendance\WorkShifts.aspx.designer.cs">
+      <DependentUpon>WorkShifts.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\BasePage.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -794,6 +820,13 @@
     </Compile>
     <Compile Include="Views\Settings\CompanyList.aspx.designer.cs">
       <DependentUpon>CompanyList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\CompanyListView.aspx.cs">
+      <DependentUpon>CompanyListView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Settings\CompanyListView.aspx.designer.cs">
+      <DependentUpon>CompanyListView.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Settings\Departments.aspx.cs">
       <DependentUpon>Departments.aspx</DependentUpon>
