@@ -224,7 +224,10 @@ namespace Human_Resource.Views.Employees
                 employee.WorkExperience2 = txt_experience2.Text;
                 employee.WorkExperience3 = txt_experience3.Text;
                 employee.JobID =int.Parse( sel_position.Value);
-                employee.DepartmentID = int.Parse(sel_department.Value);
+                if(sel_management.Value != "")
+                    employee.ManagementID = int.Parse(sel_management.Value);
+                if(sel_department.Value != "")
+                    employee.DepartmentID = int.Parse(sel_department.Value);
                 employee.WorkHours = int.Parse(txt_workHours.Value);
                 employee.BasicSalary = decimal.Parse(txt_salary.Value);
                 employee.Email = txt_email.Value;
