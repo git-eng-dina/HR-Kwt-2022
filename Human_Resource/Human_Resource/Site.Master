@@ -66,6 +66,9 @@
     </nav>
     <div class="main-menu open">
         <div class="nlist">
+            <ul class="ul-noList">
+
+                <li class="dropdown">
                 <a href="/Views/Home/HomePage.aspx" class="active">
                      <%--<img src="images/home.svg" width="30" height="30" />--%>
                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -76,8 +79,10 @@
 
 				</svg><asp:Literal runat="server" Text="<%$ Resources:Labels,Home%>" />
                  </a>
+                </li>
 
-             <a href="" class="" data-toggle="collapse" data-target="#demo_emp">
+                <li class="dropdown">
+             <a href="" data-toggle="collapse" data-target="#demo_emp">
                     <i class="fa fa-users" aria-hidden="true"></i>
                     <asp:Literal runat="server" Text="<%$ Resources:Labels,Employees%>" />
                     <i class="fa fa-fw fa-caret-down"></i>
@@ -104,9 +109,11 @@
                     </a>
                 </li> 
             </ul> 
+            </li>
             
-            
-            <a href="" class="" data-toggle="collapse" data-target="#demo_procedurs">
+
+                  <li class="dropdown">
+            <a href="" class="dropdown" data-toggle="collapse" data-target="#demo_procedurs">
                     <i class="fa fa-edit" aria-hidden="true"></i>
                     <asp:Literal runat="server" Text="<%$ Resources:Labels,ExecutiveProcedures%>" />
                     <i class="fa fa-fw fa-caret-down"></i>
@@ -158,8 +165,9 @@
                     </a>
                 </li> 
             </ul> 
+            </li>
             
-            
+            <li class="dropdown">
             <a href="" class="" data-toggle="collapse" data-target="#demo_emp_penalities">
                     <i class="fa fa-edit" aria-hidden="true"></i>
                     <asp:Literal runat="server" Text="<%$ Resources:Labels,PenalitiesAndCompanyList%>" />
@@ -178,7 +186,9 @@
                 </li> 
            
             </ul>
+                </li>
 
+                 <li class="dropdown">
        <a href="" class="" data-toggle="collapse" data-target="#demo_attendance">
                     <i class="fa fa-calendar" aria-hidden="true"></i>
                     <asp:Literal runat="server" Text="<%$ Resources:Labels,AttendanceAndVacations%>" />
@@ -212,8 +222,10 @@
                 </li>
                
             </ul>
+            </li>
 
 
+          <li class="dropdown">
             <a href="" class="" data-toggle="collapse" data-target="#demo_Users3">
                     <i class="fa fa-gears" aria-hidden="true"></i>
                     <asp:Literal runat="server" Text="<%$ Resources:Labels,BasicInformation%>" />
@@ -259,19 +271,24 @@
                     </a>
                 </li>
             </ul>
-                 
+            </li>
 
 
-
+            <li class="dropdown">
                 <a href="/Views/Employees/UserAccounts.aspx" class="">
                    <i class="fa fa-users" aria-hidden="true"></i>
                     <asp:Literal runat="server" Text="<%$ Resources:Labels,UsersInfo%>" />
 
             </a>
+             </li>
+                <li class="dropdown">
                  <a href="@Url.Action("Logout", "Account")" class="">
                  <i class="fa fa-sign-out" aria-hidden="true"></i>
                 <asp:Literal runat="server" Text="<%$ Resources:Labels,Logout%>" />
                 </a>
+                </li>
+                </ul>
+         
         </div>
     </div>
 

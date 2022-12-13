@@ -335,9 +335,9 @@ footer .copyright {
     position: fixed;
     display: block;
     height: 100%;
-    width: 200px;
+    width: 250px;
     top: 50px;
-    right: -230px;
+    right: -250px;
     z-index: 1000;
     background-color: #343131;
     padding-top: 20px;
@@ -372,7 +372,8 @@ footer .copyright {
 
     .main-menu .nlist > ul > li > a {
         display: block;
-        padding: 10px 15px 10px 38px;
+        /*padding: 10px 15px 10px 38px;*/
+        padding: 10px 15px 10px 5px;
         text-decoration: none;
         color: #ada9a9;
     }
@@ -1319,4 +1320,8 @@ input[type=checkbox], input[type=radio] {
     margin-top: 20px;
     width: 100%;
     float: right;
+}
+.ul-noList {
+    list-style-type: none;
+    padding-right: 0px;
 }
