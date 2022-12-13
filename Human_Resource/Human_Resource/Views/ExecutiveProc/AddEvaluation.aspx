@@ -62,7 +62,7 @@
                           
                             <div class="form-group" style="display:block">
                                 <div class="col-md-4 col-sm-4 col-xs-4 div1">
-                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,JobKnowledge %>" /></span>
+                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Performance %>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
                                 <select runat="server" id="slc_performance" name="slc_performance" style="width:80%" class="form-control input-lg"></select>
