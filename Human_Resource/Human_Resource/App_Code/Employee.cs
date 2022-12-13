@@ -310,7 +310,8 @@ namespace Human_Resource
             {
                 var searchPredicate = PredicateBuilder.New<employees>();
 
-                searchPredicate = searchPredicate.And(x => x.DepartmentID == entity.departments.Where(m => m.ManagerID == deptManagerId).Select(m => m.DepartmentID).FirstOrDefault());
+                //searchPredicate = searchPredicate.And(x => x.DepartmentID == entity.departments.Where(m => m.ManagerID == deptManagerId).Select(m => m.DepartmentID).FirstOrDefault());
+                searchPredicate = searchPredicate.And(x => x.ManagementID == entity.managements.Where(m => m.ManagerID == deptManagerId).Select(m => m.ManagementID).FirstOrDefault());
                 searchPredicate = searchPredicate.And(x => x.HiringDate == null);
                 searchPredicate = searchPredicate.And(x => !entity.confirms.Any(y => y.EmployeeID == x.EmployeeID && y.Role == "DepartmentManager" && y.ConfirmType== "emp_hiring"));
                 var user = entity.employees.Where(searchPredicate)

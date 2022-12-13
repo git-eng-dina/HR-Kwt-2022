@@ -78,10 +78,9 @@
    
                         </div>
                        <!------- unhired employees -->
-                        <div class="row gridView-title">                       
+                        <div class="row gridView-title" id="gv_unhiredEmp_title" runat="server">                       
                            <span><asp:Literal Text=" <%$ Resources:Labels,WaitingEmployees%>" runat="server"></asp:Literal> </span>
                         </div>
-                      <%-- <div class="row">--%>
                       
       
                         <asp:GridView ID="gv_unhiredEmp" runat="server" style="margin-top:0px;" CssClass="gridView col-md-12"  
@@ -169,7 +168,7 @@
                       <%-- </div>--%>
                        <!---- table hired employees-->
                         <div class="row">&nbsp;</div>
-                         <div class="row gridView-title">                       
+                         <div class="row gridView-title" id="gv_employees_title" runat="server">                       
                            <span><asp:Literal Text=" <%$ Resources:Labels,Employees%>" runat="server"></asp:Literal> </span>
                         </div>
                       

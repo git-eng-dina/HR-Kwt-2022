@@ -40,6 +40,15 @@ namespace Human_Resource.Views.Employees {
         protected global::System.Web.UI.HtmlControls.HtmlButton btn_new;
         
         /// <summary>
+        /// gv_unhiredEmp_title control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl gv_unhiredEmp_title;
+        
+        /// <summary>
         /// gv_unhiredEmp control.
         /// </summary>
         /// <remarks>
@@ -47,6 +56,15 @@ namespace Human_Resource.Views.Employees {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gv_unhiredEmp;
+        
+        /// <summary>
+        /// gv_employees_title control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl gv_employees_title;
         
         /// <summary>
         /// gv_employees control.

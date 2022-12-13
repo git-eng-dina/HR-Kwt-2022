@@ -40,6 +40,33 @@ namespace Human_Resource.Views.ExecutiveProc {
         protected global::System.Web.UI.WebControls.TextBox evaluationDate;
         
         /// <summary>
+        /// slc_performance control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect slc_performance;
+        
+        /// <summary>
+        /// slc_jobKnowledge control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect slc_jobKnowledge;
+        
+        /// <summary>
+        /// slc_organizeIdea control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect slc_organizeIdea;
+        
+        /// <summary>
         /// hid_eval_id control.
         /// </summary>
         /// <remarks>
@@ -112,51 +139,6 @@ namespace Human_Resource.Views.ExecutiveProc {
         protected global::System.Web.UI.HtmlControls.HtmlSelect slc_initiative;
         
         /// <summary>
-        /// slc_respondResourcefully control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect slc_respondResourcefully;
-        
-        /// <summary>
-        /// slc_confrontsProblems control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect slc_confrontsProblems;
-        
-        /// <summary>
-        /// slc_customerNeeds control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect slc_customerNeeds;
-        
-        /// <summary>
-        /// slc_organizationVision control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect slc_organizationVision;
-        
-        /// <summary>
-        /// slc_stayFocused control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect slc_stayFocused;
-        
-        /// <summary>
         /// slc_communication control.
         /// </summary>
         /// <remarks>
@@ -211,31 +193,49 @@ namespace Human_Resource.Views.ExecutiveProc {
         protected global::System.Web.UI.HtmlControls.HtmlSelect slc_meetingDeadlines;
         
         /// <summary>
-        /// slc_performance control.
+        /// slc_respondResourcefully control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect slc_performance;
+        protected global::System.Web.UI.HtmlControls.HtmlSelect slc_respondResourcefully;
         
         /// <summary>
-        /// slc_jobKnowledge control.
+        /// slc_confrontsProblems control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect slc_jobKnowledge;
+        protected global::System.Web.UI.HtmlControls.HtmlSelect slc_confrontsProblems;
         
         /// <summary>
-        /// slc_organizeIdea control.
+        /// slc_customerNeeds control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect slc_organizeIdea;
+        protected global::System.Web.UI.HtmlControls.HtmlSelect slc_customerNeeds;
+        
+        /// <summary>
+        /// slc_organizationVision control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect slc_organizationVision;
+        
+        /// <summary>
+        /// slc_stayFocused control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect slc_stayFocused;
         
         /// <summary>
         /// slc_overAllProgress control.

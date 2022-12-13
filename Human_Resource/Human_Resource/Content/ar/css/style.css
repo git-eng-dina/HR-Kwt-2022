@@ -340,7 +340,7 @@ footer .copyright {
     right: -250px;
     z-index: 1000;
     background-color: #343131;
-    padding-top: 20px;
+    padding-top: 10px;
     padding-bottom: 20px;
 }
 
@@ -348,13 +348,13 @@ footer .copyright {
   padding-right: 0 !important
 }
 
-.main-menu .nlist a {
-  display: block;
-  padding: 10px;
-  color: #9fd7f8;
-  fill: #9fd7f8;
-  text-align: right;
-}
+    .main-menu .nlist a {
+        display: block;
+        padding: 10px;
+        color: #cb7a0b;
+        fill: #cb7a0b;
+        text-align: right;
+    }
 
 .main-menu .nlist a i {
   padding-left: 20px;
