@@ -160,6 +160,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Period.
+        /// </summary>
+        internal static string AddPeriod {
+            get {
+                return ResourceManager.GetString("AddPeriod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Personal Permission.
         /// </summary>
         internal static string AddPersonalPermission {
@@ -1416,6 +1425,24 @@ namespace Resources {
         internal static string PerformanceIndicator {
             get {
                 return ResourceManager.GetString("PerformanceIndicator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Period.
+        /// </summary>
+        internal static string Period {
+            get {
+                return ResourceManager.GetString("Period", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Periods.
+        /// </summary>
+        internal static string Periods {
+            get {
+                return ResourceManager.GetString("Periods", resourceCulture);
             }
         }
         

@@ -750,4 +750,13 @@
   <data name="PersonalPermissions" xml:space="preserve">
     <value>الاذونات الشخصية</value>
   </data>
+  <data name="AddPeriod" xml:space="preserve">
+    <value>إضافة فترة</value>
+  </data>
+  <data name="Period" xml:space="preserve">
+    <value>الفترة</value>
+  </data>
+  <data name="Periods" xml:space="preserve">
+    <value>الفترات</value>
+  </data>
 </root>

@@ -753,4 +753,13 @@
   <data name="PersonalPermissions" xml:space="preserve">
     <value>Personal Permissions</value>
   </data>
+  <data name="AddPeriod" xml:space="preserve">
+    <value>Add Period</value>
+  </data>
+  <data name="Period" xml:space="preserve">
+    <value>Period</value>
+  </data>
+  <data name="Periods" xml:space="preserve">
+    <value>Periods</value>
+  </data>
 </root>
