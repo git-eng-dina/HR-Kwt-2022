@@ -56,7 +56,7 @@
                  <div class="col-md-6 float2" style="display:inline">
                        <div class="panel panel-brown" style="width:100%">
                         <div class="panel-heading">
-                        <span> <asp:literal runat="server" text="<%$ Resources:Labels,PassportInfo%>"/></span>
+                        <span> <asp:literal runat="server" text="<%$ Resources:Labels,JobKnowledge%>"/></span>
                         </div>
                         <div class="c-form-box">
                           
@@ -306,7 +306,7 @@
                  <div class="col-md-6 float2" style="display:inline">
                  <div class="panel panel-primary">
                         <div class="panel-heading">
-                        <span> <asp:literal runat="server" text="<%$ Resources:Labels,PersonalInfo%>"/></span>
+                        <span> <asp:literal runat="server" text=""/></span>
                         </div>
                         <div class="c-form-box">
 
