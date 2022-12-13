@@ -534,6 +534,7 @@
     <Compile Include="App_Code\SalaryIncrease.cs" />
     <Compile Include="App_Code\Task.cs" />
     <Compile Include="App_Code\Training.cs" />
+    <Compile Include="App_Code\Period.cs" />
     <Compile Include="App_GlobalResources\Labels.ar.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

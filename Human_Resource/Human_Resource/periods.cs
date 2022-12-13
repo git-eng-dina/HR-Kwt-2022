@@ -24,6 +24,7 @@ namespace Human_Resource
         public Nullable<int> EmployeeID { get; set; }
         public Nullable<System.DateTime> StartTime { get; set; }
         public Nullable<System.DateTime> EndTime { get; set; }
+        public string Name { get; set; }
     
         public virtual employees employees { get; set; }
     }
