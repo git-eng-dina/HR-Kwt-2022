@@ -232,6 +232,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Vacations.
+        /// </summary>
+        internal static string AddVacations {
+            get {
+                return ResourceManager.GetString("AddVacations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Vacation Type.
         /// </summary>
         internal static string AddVacationType {
@@ -939,6 +948,15 @@ namespace Resources {
         internal static string FinancialManager {
             get {
                 return ResourceManager.GetString("FinancialManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From Date.
+        /// </summary>
+        internal static string FromDate {
+            get {
+                return ResourceManager.GetString("FromDate", resourceCulture);
             }
         }
         
@@ -1672,6 +1690,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Schedule Vacation.
+        /// </summary>
+        internal static string ScheduleVacation {
+            get {
+                return ResourceManager.GetString("ScheduleVacation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search.
         /// </summary>
         internal static string Search {
@@ -1812,6 +1839,15 @@ namespace Resources {
         internal static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To Date.
+        /// </summary>
+        internal static string ToDate {
+            get {
+                return ResourceManager.GetString("ToDate", resourceCulture);
             }
         }
         

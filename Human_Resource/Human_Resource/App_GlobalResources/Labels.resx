@@ -774,4 +774,16 @@
   <data name="WaitingTasks" xml:space="preserve">
     <value>Tasks awaiting approval</value>
   </data>
+  <data name="AddVacations" xml:space="preserve">
+    <value>Add Vacations</value>
+  </data>
+  <data name="FromDate" xml:space="preserve">
+    <value>From Date</value>
+  </data>
+  <data name="ScheduleVacation" xml:space="preserve">
+    <value>Schedule Vacation</value>
+  </data>
+  <data name="ToDate" xml:space="preserve">
+    <value>To Date</value>
+  </data>
 </root>

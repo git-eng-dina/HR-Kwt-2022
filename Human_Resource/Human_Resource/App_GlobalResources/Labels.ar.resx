@@ -771,4 +771,16 @@
   <data name="WaitingTasks" xml:space="preserve">
     <value>المهام بانتظار الموافقة</value>
   </data>
+  <data name="AddVacations" xml:space="preserve">
+    <value>إضافة إجازات</value>
+  </data>
+  <data name="FromDate" xml:space="preserve">
+    <value>من تاريخ</value>
+  </data>
+  <data name="ScheduleVacation" xml:space="preserve">
+    <value>جدولة الإجازات</value>
+  </data>
+  <data name="ToDate" xml:space="preserve">
+    <value>إلى تاريخ</value>
+  </data>
 </root>
