@@ -523,6 +523,7 @@
     <Compile Include="App_Code\Custodie.cs" />
     <Content Include="App_Code\DailyTask.cs" />
     <Content Include="App_Code\EmployeesTask.cs" />
+    <Compile Include="App_Code\EmployeesVacation.cs" />
     <Compile Include="App_Code\Evaluation.cs" />
     <Compile Include="App_Code\Event.cs" />
     <Compile Include="App_Code\GetData.cs" />
