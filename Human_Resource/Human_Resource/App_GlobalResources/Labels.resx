@@ -762,4 +762,10 @@
   <data name="Periods" xml:space="preserve">
     <value>Periods</value>
   </data>
+  <data name="AddVacationType" xml:space="preserve">
+    <value>Vacation Type</value>
+  </data>
+  <data name="Approve" xml:space="preserve">
+    <value>Approve</value>
+  </data>
 </root>

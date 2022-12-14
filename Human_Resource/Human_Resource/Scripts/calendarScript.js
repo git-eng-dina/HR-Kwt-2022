@@ -266,75 +266,6 @@ function ShowDialogWithData(customID) {
         }
     });
 }
-function initFullcalendar() {
-
-    $('#MainContent_calendar').fullCalendar({
-        theme: true,
-        header: {
-            left: 'prev,next today customBtn',
-            center: 'title',
-            right: 'month,agendaWeek,agendaDay'
-        },
-        customButtons: {
-            customBtn: {
-                text: 'add event',
-                click: function () {
-                    ShowDialog();
-                }
-            }
-        },
-        defaultView: 'agendaWeek',
-        eventClick: updateEvent,
-        selectable: true,
-        selectHelper: true,
-        select: selectDate,
-        editable: true,
-
-       // events: "EventResponse.ashx",
-        events: function (start, end, timezone, callback) {
-            $.ajax({
-                url: 'EventResponse.ashx',
-                dataType: 'json',
-                data: {
- 
-                },
-                success: function (data) {
-                    var events = [];
-
-                    for (var i = 0; i < data.length; i++) {
-                        events.push({
-                            id: data[i]['id'],
-                            title: data[i]['title'],
-                            description: data[i]['description'],
-                            start: convertToJavaScriptDate(data[i]['start']),
-                            end: convertToJavaScriptDate(data[i]['end']),
-                        });
-                    }
-
-                    //adding the callback
-                    callback(events);
-                }
-            });
-        },
-        eventDrop: eventDropped,
-        eventResize: eventResized,
-        eventRender: function (event, element) {
-            //alert(event.title);
-            element.qtip({
-                content: {
-                    text: qTipText(event.start, event.end, event.description),
-                    title: '<strong>' + event.title + '</strong>'
-                },
-                position: {
-                    my: 'bottom left',
-                    at: 'top right'
-                },
-                style: { classes: 'qtip-shadow qtip-rounded' }
-            });
-        }
-    });
-
-}
 
 function closeDialog() {
     $("#dialog").dialog("close");
@@ -419,10 +350,191 @@ function addEmp() {
 
 }
 
-$(document).ready(function () {
-    //var events = get_eventsdata('2017-10-10', '2017-11-10');
+function initFullcalendar(events) {
+    $('#MainContent_calendar').fullCalendar({
+        theme: true,
+        header: {
+            left: 'prev,next today customBtn',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
+        },
+        customButtons: {
+            customBtn: {
+                text: 'add event',
+                click: function () {
+                    ShowDialog();
+                }
+            }
+        },
+        defaultView: 'agendaWeek',
+        eventClick: updateEvent,
+        selectable: true,
+        selectHelper: true,
+        select: selectDate,
+        editable: true,
+        events: events,
+        //eventSources: [
+        //    // Load Standard Events For Employee
+        //    function (start, end, callback) {
+        //        $.ajax({
+        //            type: "POST",
+        //            url: "EventResponse.ashx",
+        //            //data: '{startDate: "' + $.fullCalendar.formatDate(start, 'M/d/yyyy') + '",' + 'endDate: "' + $.fullCalendar.formatDate(end, 'M/d/yyyy') + '  "   , employeeID: "' + $('#lstEmployeesMaster').val() + '"       }',
+        //            contentType: "application/json; charset=utf-8",
+        //            dataType: "json",
 
-    initFullcalendar();
+        //            success: function (eventstring) {
+        //                alert(eventstring);
+        //                alert(success);
+        //                //var buildingEvents = $.map(eventstring.d, function (item) {
+        //                //    return {
+        //                //        id: item.EventID,
+        //                //        title: item.Title,
+        //                //        start: '2022-11-18',
+        //                //        end: '2022-11-18',
+        //                //        allDay: false,
+        //                //        //...(More Fields)
+        //                //    };
+        //                //});
+
+        //                //callback(buildingEvents);
+        //            },
+        //            error: function (data) {
+        //                alert(data.d);
+        //            }
+        //        });
+        //    },
+        //    //...(Additional Functions for other events)
+        //],
+        // events: "EventResponse.ashx",
+        //    events: [{
+        //        title: 'Front-End Conference',
+        //        start: '2022-11-16',
+        //        end: '2022-11-18',
+        //        textColor: 'rgba(255,255,255,.5)',
+        //        backgroundColor: 'rgba(241,155,55.5)'
+        //    },
+        //        {
+        //            title: 'Hair stylist with Mike',
+        //            start: '2022-11-20',
+        //            allDay: true,
+        //            textColor: 'rgba(0,0,255,.5)',
+        //            backgroundColor: 'rgba(0,0,0,.5)'
+        //        },
+        //        {
+        //            title: 'Car mechanic',
+        //            start: '2022-11-14T09:00:00',
+        //            end: '2022-11-14T11:00:00',
+        //            textColor: 'red',
+        //            backgroundColor: 'rgba(0,0,0,.8)'
+        //        },
+        //        {
+        //            title: 'Dinner with Mike',
+        //            start: '2022-11-21T19:00:00',
+        //            end: '2022-11-21T22:00:00',
+        //            textColor: 'blue',
+        //            backgroundColor: 'rgba(0,255,0,.6)'
+        //        },
+        //        {
+        //            title: 'Chillout',
+        //            start: '2022-11-15',
+        //            allDay: true,
+        //            textColor: 'brown',
+        //            backgroundColor: 'green'
+        //        },
+        //        {
+        //            title: 'Vacation',
+        //            start: '2022-11-23',
+        //            end: '2022-11-29',
+        //            textColor: 'yellow',
+        //            backgroundColor: 'rgba(0,0,0,.4)'
+        //        },
+        //],
+        // events: 
+        //     function(start, end, timezone, callback) {
+        //         $.ajax({
+        //             url: 'EventResponse.ashx',
+        //             dataType: 'json',
+        //             success: function (data) {
+        //                 var events = [];
+        //                 alert(data.d);
+        //                 var res = data.d;
+        //                 alert(res);
+        //                 for (var i = 0; i < res.length; i++) {
+        //                     alert(res[i].id);
+        //                     events.push({
+        //                         id: data[i]['id'],
+        //                         title: data[i]['title'],
+        //                         description: data[i]['description'],
+        //                         start: convertToJavaScriptDate(data[i]['start']),
+        //                         end: convertToJavaScriptDate(data[i]['end']),
+        //                     });
+        //                 }
+
+        //                 //adding the callback
+        //                // callback(events);
+        //             }
+        //             ,
+        //             failure: function (response) {
+        //                 alert(response.d);
+        //             }
+        //         });
+        //     }
+        //,
+        eventDrop: eventDropped,
+        eventResize: eventResized,
+        eventRender: function (event, element) {
+            alert(event.start);
+            element.qtip({
+                content: {
+                    text: qTipText(event.start, event.end),
+                    title: '<strong>' + event.title + '</strong>' + "<br/>" + event.description
+                },
+                position: {
+                    my: 'bottom left',
+                    at: 'top right'
+                },
+                style: { classes: 'qtip-shadow qtip-rounded' }
+            });
+        }
+    });
+
+}
+
+$(document).ready(function () {
+    var events = [];
+    $.ajax({
+        type: "POST",
+       // dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        url: "EventResponse.ashx",
+        success: function (data) {
+
+            $.each(data, function (i, v) {
+
+                events.push({
+                    title: v.title,
+                    description: v.description,
+                    start: v.start,
+                    end: v.end != null ? v.end : null,
+                  //  color: v.ThemeColor,
+                    allDay: v.allDay
+                });
+            })
+
+            initFullcalendar(events);
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("Status: " + textStatus); alert("Error: " + XMLHttpRequest.responseText);
+        }
+        //error: function (error) {
+        //    alert('failed');
+        //}
+    })
+
+  
+
+   // initFullcalendar();
     // add dialog
     $myWindow = $('#dialog');
 

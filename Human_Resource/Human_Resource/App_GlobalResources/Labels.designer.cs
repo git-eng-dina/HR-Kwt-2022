@@ -232,6 +232,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Vacation Type.
+        /// </summary>
+        internal static string AddVacationType {
+            get {
+                return ResourceManager.GetString("AddVacationType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Working Permission.
         /// </summary>
         internal static string AddWorkingPermission {
@@ -273,6 +282,15 @@ namespace Resources {
         internal static string Annual {
             get {
                 return ResourceManager.GetString("Annual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Approve.
+        /// </summary>
+        internal static string Approve {
+            get {
+                return ResourceManager.GetString("Approve", resourceCulture);
             }
         }
         

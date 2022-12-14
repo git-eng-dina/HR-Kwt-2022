@@ -511,7 +511,6 @@
     <Content Include="Views\Settings\Departments.aspx" />
     <Content Include="Views\Settings\Jobs.aspx" />
     <Content Include="Views\Settings\Managements.aspx" />
-    <Content Include="Views\Settings\Offices.aspx" />
     <Content Include="Views\Settings\VaccationType.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -843,13 +842,6 @@
     </Compile>
     <Compile Include="Views\Settings\Managements.aspx.designer.cs">
       <DependentUpon>Managements.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Settings\Offices.aspx.cs">
-      <DependentUpon>Offices.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Settings\Offices.aspx.designer.cs">
-      <DependentUpon>Offices.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Code\Employee.cs" />
     <Compile Include="App_Code\HelpClass.cs" />

@@ -124,11 +124,11 @@
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,Custody%>" />
                     </a>
                 </li>
-                <li>
+                <%--<li>
                     <a href="/Views/ExecutiveProc/MaterialsConsumption.aspx"> 
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,MaterialsConsumption%>" />
                     </a>
-                </li> 
+                </li> --%>
                 <li>
                     <a href="/Views/ExecutiveProc/Tasks.aspx"> 
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,Tasks%>" />

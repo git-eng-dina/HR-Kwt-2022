@@ -184,7 +184,7 @@
         <div class="modal-header frame-panel-heading">
            
             <div ><span >
-                <asp:Literal runat="server" Text="<%$ Resources:Labels,AddVacation%>"></asp:Literal>
+                <asp:Literal runat="server" Text="<%$ Resources:Labels,AddVacationType%>"></asp:Literal>
             </span>
                 </div>
             <div class="float2" style="width:10px">
