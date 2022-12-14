@@ -1591,6 +1591,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reject.
+        /// </summary>
+        internal static string Reject {
+            get {
+                return ResourceManager.GetString("Reject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Repeated Every.
         /// </summary>
         internal static string RepeatedEvery {
@@ -1974,6 +1983,15 @@ namespace Resources {
         internal static string WaitingEmployees {
             get {
                 return ResourceManager.GetString("WaitingEmployees", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tasks awaiting approval.
+        /// </summary>
+        internal static string WaitingTasks {
+            get {
+                return ResourceManager.GetString("WaitingTasks", resourceCulture);
             }
         }
         

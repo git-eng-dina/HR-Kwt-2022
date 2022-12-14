@@ -765,4 +765,10 @@
   <data name="Approve" xml:space="preserve">
     <value>موافقة</value>
   </data>
+  <data name="Reject" xml:space="preserve">
+    <value>رفض</value>
+  </data>
+  <data name="WaitingTasks" xml:space="preserve">
+    <value>المهام بانتظار الموافقة</value>
+  </data>
 </root>

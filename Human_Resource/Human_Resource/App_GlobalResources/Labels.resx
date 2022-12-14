@@ -768,4 +768,10 @@
   <data name="Approve" xml:space="preserve">
     <value>Approve</value>
   </data>
+  <data name="Reject" xml:space="preserve">
+    <value>Reject</value>
+  </data>
+  <data name="WaitingTasks" xml:space="preserve">
+    <value>Tasks awaiting approval</value>
+  </data>
 </root>
