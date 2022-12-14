@@ -35,11 +35,17 @@ namespace Human_Resource
         public Nullable<bool> IsActive { get; set; }
         public Nullable<System.DateTime> StartDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
+        public Nullable<bool> Approved { get; set; }
+        public Nullable<int> BranchManagerID { get; set; }
+        public Nullable<int> ManagementManagerID { get; set; }
+        public string Attachment { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<confirms> confirms { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<dailyTasks> dailyTasks { get; set; }
+        public virtual employees employees { get; set; }
+        public virtual employees employees1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<employeesTasks> employeesTasks { get; set; }
     }

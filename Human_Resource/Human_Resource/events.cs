@@ -19,6 +19,7 @@ namespace Human_Resource
         {
             this.confirms = new HashSet<confirms>();
             this.EemployeesEvents = new HashSet<EemployeesEvents>();
+            this.Images = new HashSet<Images>();
         }
     
         public long EventID { get; set; }
@@ -34,11 +35,19 @@ namespace Human_Resource
         public Nullable<System.DateTime> EndDate { get; set; }
         public Nullable<System.DateTime> EventDate { get; set; }
         public Nullable<int> EmployeeID { get; set; }
+        public string Attachment { get; set; }
+        public Nullable<int> BranchManagerID { get; set; }
+        public Nullable<int> ManagementManagerID { get; set; }
+        public Nullable<bool> Approved { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<confirms> confirms { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EemployeesEvents> EemployeesEvents { get; set; }
         public virtual employees employees { get; set; }
+        public virtual employees employees1 { get; set; }
+        public virtual employees employees2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Images> Images { get; set; }
     }
 }

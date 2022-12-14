@@ -21,6 +21,10 @@ namespace Human_Resource.App_Code
         public Nullable<int> CreateUserID { get; set; }
         public Nullable<int> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
+        public Nullable<bool> Approved { get; set; }
+        public Nullable<int> BranchManagerID { get; set; }
+        public Nullable<int> ManagementManagerID { get; set; }
+        public string Attachment { get; set; }
         public List<EmployeeModel> Employees { get; set; }
         #endregion
 

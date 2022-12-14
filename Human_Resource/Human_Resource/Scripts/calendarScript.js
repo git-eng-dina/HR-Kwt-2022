@@ -9,19 +9,8 @@ function updateEvent(event, element) {
     if ($(this).data("qtip")) $(this).qtip("destroy");
 
     currentUpdateEvent = event;
-
     ShowDialogWithData(event.id);
-    //$("#MainContent_title").val(event.title);
-    //$("#MainContent_description").val(event.description);
-    //$("#MainContent_eventId").val(event.id);
-    //$("#MainContent_start").text("" + event.start.toLocaleString());
 
-    //if (event.end === null) {
-    //    $("#MainContent_end").text("");
-    //}
-    //else {
-    //    $("#MainContent_end").text("" + event.end.toLocaleString());
-    //}
     return false;
 }
 
@@ -145,28 +134,28 @@ function qTipText(start, end, description) {
 
     return text;
 }
-function get_eventsdata(start, end) {
+//function get_eventsdata(start, end) {
 
-    var parameter = {
-        startDate: start,
-        endDate: end
-    };
+//    var parameter = {
+//        startDate: start,
+//        endDate: end
+//    };
 
-    $.ajax({
-        type: "POST",
-        dataType: "text json",
-        contentType: "application/json",
-        url: 'Events.aspx/ProcessRequest',
-        data: JSON.stringify(parameter),
-        success: function (resp) {
-            return resp;
+//    $.ajax({
+//        type: "POST",
+//        dataType: "text json",
+//        contentType: "application/json",
+//        url: 'Events.aspx/ProcessRequest',
+//        data: JSON.stringify(parameter),
+//        success: function (resp) {
+//            return resp;
 
-        },
-        error: function (response) {
-            alert(response);
-        }
-    });
-}
+//        },
+//        error: function (response) {
+//            alert(response);
+//        }
+//    });
+//}
 
 function ShowDialog() {
 
@@ -185,18 +174,16 @@ function convertToJavaScriptDate(value) {
     var pattern = /Date\(([^)]+)\)/;
     var results = pattern.exec(value);
     var dt = new Date(parseFloat(results[1]));
-    var localDateTime = [dt.getFullYear(),
-        zeroPadded(dt.getDate()),
-        zeroPadded(dt.getMonth() + 1)].join('-') + 'T' +
+    var localDateTime = [dt.getFullYear() ,zeroPadded(dt.getMonth() + 1),
+        zeroPadded(dt.getDate())].join('-') + 'T' +
         [zeroPadded(dt.getHours()),
         zeroPadded(dt.getMinutes())].join(':');
     return localDateTime;
-   // return dt.getFullYear() + "-" + (dt.getMonth() + 1) + "-" + dt.getDate()  + "T" + dt.getHours() + ":" + dt.getMinutes() ;
-   // return (zeroPadded(dt.getMonth() + 1)) + "-" + zeroPadded(dt.getDate()) + "-" + dt.getFullYear() + "T" + zeroPadded(dt.getHours()) + ":" + zeroPadded(dt.getMinutes()) + ":" + zeroPadded(dt.getSeconds());
-    //return (dt.getMonth() + 1) + "-" + dt.getDate() + "-" + dt.getFullYear() + " " + dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+ 
 }
 
 function ShowDialogWithData(customID) {
+
     var lang = "ar-AS";
     if ('<%= Session["CultureName"] %>' != null)
         lang = '<%= Session["CultureName"].ToString() %>';
@@ -219,7 +206,7 @@ function ShowDialogWithData(customID) {
                 $('#MainContent_description').val(item.description);
 
 
-                var s = convertToJavaScriptDate(item.start);               
+                var s = convertToJavaScriptDate(item.start);  
                 $('#MainContent_start').val(s);
 
                 s = convertToJavaScriptDate(item.end);
@@ -406,50 +393,7 @@ function initFullcalendar(events) {
         //    },
         //    //...(Additional Functions for other events)
         //],
-        // events: "EventResponse.ashx",
-        //    events: [{
-        //        title: 'Front-End Conference',
-        //        start: '2022-11-16',
-        //        end: '2022-11-18',
-        //        textColor: 'rgba(255,255,255,.5)',
-        //        backgroundColor: 'rgba(241,155,55.5)'
-        //    },
-        //        {
-        //            title: 'Hair stylist with Mike',
-        //            start: '2022-11-20',
-        //            allDay: true,
-        //            textColor: 'rgba(0,0,255,.5)',
-        //            backgroundColor: 'rgba(0,0,0,.5)'
-        //        },
-        //        {
-        //            title: 'Car mechanic',
-        //            start: '2022-11-14T09:00:00',
-        //            end: '2022-11-14T11:00:00',
-        //            textColor: 'red',
-        //            backgroundColor: 'rgba(0,0,0,.8)'
-        //        },
-        //        {
-        //            title: 'Dinner with Mike',
-        //            start: '2022-11-21T19:00:00',
-        //            end: '2022-11-21T22:00:00',
-        //            textColor: 'blue',
-        //            backgroundColor: 'rgba(0,255,0,.6)'
-        //        },
-        //        {
-        //            title: 'Chillout',
-        //            start: '2022-11-15',
-        //            allDay: true,
-        //            textColor: 'brown',
-        //            backgroundColor: 'green'
-        //        },
-        //        {
-        //            title: 'Vacation',
-        //            start: '2022-11-23',
-        //            end: '2022-11-29',
-        //            textColor: 'yellow',
-        //            backgroundColor: 'rgba(0,0,0,.4)'
-        //        },
-        //],
+
         // events: 
         //     function(start, end, timezone, callback) {
         //         $.ajax({
@@ -484,11 +428,10 @@ function initFullcalendar(events) {
         eventDrop: eventDropped,
         eventResize: eventResized,
         eventRender: function (event, element) {
-            alert(event.start);
             element.qtip({
                 content: {
-                    text: qTipText(event.start, event.end),
-                    title: '<strong>' + event.title + '</strong>' + "<br/>" + event.description
+                    text: qTipText(event.start, event.end, event.description),
+                    title: '<strong>' + event.title + '</strong>' 
                 },
                 position: {
                     my: 'bottom left',
@@ -513,6 +456,7 @@ $(document).ready(function () {
             $.each(data, function (i, v) {
 
                 events.push({
+                    id: v.id,
                     title: v.title,
                     description: v.description,
                     start: v.start,
@@ -527,9 +471,7 @@ $(document).ready(function () {
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert("Status: " + textStatus); alert("Error: " + XMLHttpRequest.responseText);
         }
-        //error: function (error) {
-        //    alert('failed');
-        //}
+
     })
 
   

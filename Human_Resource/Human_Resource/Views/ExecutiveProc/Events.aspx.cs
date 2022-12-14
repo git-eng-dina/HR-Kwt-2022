@@ -143,7 +143,7 @@ namespace Human_Resource.Views.ExecutiveProc
                     eventModel.id = 0;
                 eventModel.title = title;
                 eventModel.description = description;
-                eventModel.eventStart = DateTime.Parse(start);
+                eventModel.start = DateTime.Parse(start);
                 eventModel.end = DateTime.Parse(end);
 
                 if (HttpContext.Current.Session["user_id"] != null && HttpContext.Current.Session["user_id"].ToString() != "")

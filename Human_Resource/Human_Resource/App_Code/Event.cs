@@ -11,11 +11,13 @@ namespace Human_Resource.App_Code
         public long id { get; set; }
         public string title { get; set; }
         public string description { get; set; }
-        public DateTime eventStart { get; set; }
-        public string start { get; set; }
+        public DateTime start { get; set; }
         public DateTime end { get; set; }
         public Nullable<int> EmployeeID { get; set; }
-
+        public string Attachment { get; set; }
+        public Nullable<int> BranchManagerID { get; set; }
+        public Nullable<int> ManagementManagerID { get; set; }
+        public Nullable<bool> Approved { get; set; }
         public List<EmployeeModel> Employees { get; set; }
         #endregion
 
@@ -34,7 +36,7 @@ namespace Human_Resource.App_Code
                        id = x.EventID,
                        title  = x.Name,
                        description = x.Description,
-                        eventStart = (DateTime)x.StartDate.Value,
+                        start = (DateTime)x.StartDate.Value,
                        end=(DateTime)x.EndDate.Value,
                        EmployeeID = x.EmployeeID,
                        Employees = entity.EemployeesEvents.Where(e => e.EventID == x.EventID).Select(e => new EmployeeModel() { EmployeeID = e.EmployeeID}).ToList(),
@@ -53,7 +55,7 @@ namespace Human_Resource.App_Code
                                     id= x.EventID,
                                     title = x.Name,
                                     description = x.Description,
-                                    eventStart = (DateTime) x.StartDate.Value,
+                                    start = (DateTime) x.StartDate.Value,
                                     end = (DateTime)x.EndDate.Value,
                                  
                                     Employees = entity.EemployeesEvents.Where(m => m.EventID == x.EventID && m.IsActive == true)
@@ -82,7 +84,7 @@ namespace Human_Resource.App_Code
                             Name = eventModel.title,
                             Description = eventModel.description,
                             EmployeeID = eventModel.EmployeeID,
-                            StartDate = eventModel.eventStart,
+                            StartDate = eventModel.start,
                             EndDate = eventModel.end,
                             
                             IsActive = true,
@@ -102,7 +104,7 @@ namespace Human_Resource.App_Code
                         events = entity.events.Find(eventModel.id);
                         events.Name = eventModel.title;
                         events.Description = eventModel.description;
-                        events.StartDate = eventModel.eventStart;
+                        events.StartDate = eventModel.start;
                         events.EndDate = eventModel.end;
                         events.UpdateUserID = eventModel.EmployeeID;
                         events.UpdateDate = DateTime.Now;
