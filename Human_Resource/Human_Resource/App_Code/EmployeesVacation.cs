@@ -103,9 +103,9 @@ namespace Human_Resource.App_Code
                             int dayCount = (int)(employeesVacation.ToDate - employeesVacation.FromDate).Value.TotalDays+1;
                             employees emp = entity.employees.Find(employeesVacation.EmployeeID);
                             if (emp.VacationsBalance != null)
-                                emp.VacationsBalance += dayCount;
+                                emp.VacationsBalance -= dayCount;
                             else
-                                emp.VacationsBalance = dayCount;
+                                emp.VacationsBalance = 0;
                             entity.SaveChanges();
                         }
                         #endregion
@@ -120,9 +120,9 @@ namespace Human_Resource.App_Code
                             int dayCount = (int)(employeesVacation.ToDate - employeesVacation.FromDate).Value.TotalDays + 1;
                             employees emp = entity.employees.Find(employeesVacation.EmployeeID);
                             if (emp.VacationsBalance != null)
-                                emp.VacationsBalance -= dayCount;
+                                emp.VacationsBalance += dayCount;
                             else
-                                emp.VacationsBalance = 0;
+                                emp.VacationsBalance = dayCount;
                             entity.SaveChanges();
                         }
                         #endregion
@@ -143,9 +143,9 @@ namespace Human_Resource.App_Code
                             int dayCount = (int)(employeesVacation.ToDate - employeesVacation.FromDate).Value.TotalDays + 1;
                             employees emp = entity.employees.Find(employeesVacation.EmployeeID);
                             if (emp.VacationsBalance != null)
-                                emp.VacationsBalance += dayCount;
+                                emp.VacationsBalance -= dayCount;
                             else
-                                emp.VacationsBalance = dayCount;
+                                emp.VacationsBalance = 0;
                             entity.SaveChanges();
                         }
                         #endregion
@@ -176,9 +176,9 @@ namespace Human_Resource.App_Code
                         int dayCount = (int)(employeesVacation.ToDate - employeesVacation.FromDate).Value.TotalDays + 1;
                         employees emp = entity.employees.Find(employeesVacation.EmployeeID);
                         if (emp.VacationsBalance != null)
-                            emp.VacationsBalance -= dayCount;
+                            emp.VacationsBalance += dayCount;
                         else
-                            emp.VacationsBalance = 0;
+                            emp.VacationsBalance = dayCount;
                         entity.SaveChanges();
                     }
                     #endregion
