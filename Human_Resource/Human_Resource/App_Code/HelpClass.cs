@@ -38,5 +38,15 @@ namespace Human_Resource.App_Code
             return age;
         }
 
+        public static string setDateFormat(DateTime date)
+        {
+            var day = date.Day;
+            var month = date.Month;
+            var year = date.Year;
+            var dt = month + "/" + day + "/" + year;
+
+           
+            return dt;
+        }
     }
 }

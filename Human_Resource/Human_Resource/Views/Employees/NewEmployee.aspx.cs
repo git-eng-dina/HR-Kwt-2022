@@ -68,7 +68,9 @@ namespace Human_Resource.Views.Employees
                     #region fill inputs
                     txt_nameAR.Value = emp.NameAr;
                     txt_nameEN.Value = emp.NameEn;
-                    dp_bod.Text = emp.DOB.ToString();
+
+                    dp_bod.Text = HelpClass.setDateFormat(emp.DOB.Value); ;
+
                     txt_mobile.Value = emp.Mobile;
                    
                     sel_maritalStatus.Value = emp.MaritalStatus;
@@ -81,8 +83,11 @@ namespace Human_Resource.Views.Employees
                     #region fill certificates
                     //certificate 1
                     txt_certificate1.Value = emp.EducationCertificate1;
-                    dp_fromCer1.Value = emp.EducationCertificateFromDate1.ToString();
-                    dp_toCer1.Value = emp.EducationCertificateToDate1.ToString();
+                   // dt = emp.EducationCertificateFromDate1.Value.ToString().Split(' ');
+                    dp_fromCer1.Text = HelpClass.setDateFormat(emp.EducationCertificateFromDate1.Value); 
+
+                    //dt = emp.EducationCertificateToDate1.Value.ToString().Split(' ');
+                    dp_toCer1.Text = HelpClass.setDateFormat(emp.EducationCertificateToDate1.Value);
                     if (emp.Certificate1 != null)
                     {
                         lbl_certificate1.Text = "";
@@ -90,12 +95,15 @@ namespace Human_Resource.Views.Employees
                         hr_cer1.HRef = "~/Upload/"+emp.Certificate1.docnum;
                     }
                     //certificate 2
-                    if(emp.EducationCertificate2 != "")
+                    if(emp.EducationCertificate2 != null)
                     {
                         frm_certificate2.Style.Add("visibility", "visible");
                         txt_certificate2.Value = emp.EducationCertificate2;
-                        dp_fromCer2.Value = emp.EducationCertificateFromDate2.ToString();
-                        dp_toCer2.Value = emp.EducationCertificateToDate2.ToString();
+                    //dt = emp.EducationCertificateFromDate2.Value.ToString().Split(' ');
+                        dp_fromCer2.Text = HelpClass.setDateFormat(emp.EducationCertificateFromDate2.Value);
+
+                        //dt = emp.EducationCertificateToDate2.Value.ToString().Split(' ');
+                        dp_toCer2.Text = HelpClass.setDateFormat(emp.EducationCertificateToDate2.Value);
                         if (emp.Certificate2 != null)
                         {
                             lbl_certificate2.Text = "";
@@ -107,13 +115,15 @@ namespace Human_Resource.Views.Employees
                         frm_certificate2.Style.Add("visibility", "hidden");
 
                     //certificate 3
-                    if (emp.EducationCertificate3 != "")
+                    if (emp.EducationCertificate3 != null)
                     {
                         frm_certificate3.Style.Add("visibility", "visible");
 
                         txt_certificate3.Value = emp.EducationCertificate3;
-                        dp_fromCer3.Value = emp.EducationCertificateFromDate3.ToString();
-                        dp_toCer3.Value = emp.EducationCertificateToDate3.ToString();
+                        //dt = emp.EducationCertificateFromDate3.Value.ToString().Split(' ');
+                        dp_fromCer3.Text = HelpClass.setDateFormat(emp.EducationCertificateFromDate3.Value);
+                        //dt = emp.EducationCertificateToDate3.Value.ToString().Split(' ');
+                        dp_toCer3.Text = HelpClass.setDateFormat(emp.EducationCertificateToDate3.Value);
                         if (emp.Certificate3 != null)
                         {
                             lbl_certificate3.Visible = false;
@@ -142,11 +152,16 @@ namespace Human_Resource.Views.Employees
 
                     #region fill job details
                     sel_position.Value = emp.JobID.ToString();
+                    sel_management.Value = emp.ManagementID.ToString();
                     sel_department.Value = emp.DepartmentID.ToString();
                     txt_workHours.Value = emp.WorkHours.ToString();
                     txt_salary.Value = emp.BasicSalary.ToString();
                     if (emp.HiringDate != null)
-                        txt_hiringDate.Value = emp.HiringDate.ToString();
+                    {
+                       // dt = emp.HiringDate.Value.ToString().Split(' ');
+
+                        txt_hiringDate.Value = HelpClass.setDateFormat(emp.HiringDate.Value);
+                    }
                     txt_email.Value = emp.Email;
                     txt_vacationBalance.Value = emp.VacationsBalance.ToString();
                     txt_guarantor.Value = emp.Guarantor;
@@ -155,8 +170,17 @@ namespace Human_Resource.Views.Employees
 
                     #region fill passport info
                     txt_passportNo.Value = emp.PassportNumber;
-                    dp_passportFromDate.Value = emp.PassportReleaseDate.ToString();
-                    dp_passportEndDate.Value = emp.PassportExpiryDate.ToString();
+
+                    if (emp.PassportReleaseDate != null)
+                    {
+                        //dt = emp.PassportReleaseDate.Value.ToString().Split(' ');
+                        dp_passportFromDate.Text = HelpClass.setDateFormat(emp.PassportReleaseDate.Value);
+                    }
+                    if (emp.PassportExpiryDate != null)
+                    {
+                        //dt = emp.PassportExpiryDate.Value.ToString().Split(' ');
+                        dp_passportEndDate.Text = HelpClass.setDateFormat(emp.PassportExpiryDate.Value);
+                    }
                     txt_sequenceNum.Value = emp.Sequence;
                     txt_unifiedNum.Value = emp.UnifiedNumber;
                     #endregion
@@ -190,9 +214,13 @@ namespace Human_Resource.Views.Employees
 
                 employee.NameAr = txt_nameAR.Value;
                 employee.NameEn = txt_nameEN.Value;
+                //DateTime myEurpeonDate = DateTime.ParseExact(dp_bod.Text, "dd/MM/yyyy", null);
+                DateTime datetime = DateTime.ParseExact(dp_bod.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                //datetime = Convert.ToDateTime(datetime, System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat);
+                employee.DOB = datetime;
+                //employee.DOB = Convert.ToDateTime(dp_bod.Text,"MM/dd/yyyy");
+              //  employee.DOB =Convert.ToDateTime DateTime.Parse(dp_bod.Text);
 
-                employee.DOB = DateTime.ParseExact(dp_bod.Text, "yyyy-MM-dd", cultures);
-            
                 employee.Mobile = txt_mobile.Value;
                 employee.MaritalStatus = sel_maritalStatus.Value;
                 employee.Nationality = int.Parse(sel_nationality.Value);
@@ -202,22 +230,23 @@ namespace Human_Resource.Views.Employees
 
                 #region certificates
                 employee.EducationCertificate1 = txt_certificate1.Value;
-                //employee.EducationCertificateFromDate1 = DateTime.ParseExact(dp_fromCer1.Value, "dd/MM/yyyy", new CultureInfo(("en-US")));
-                employee.EducationCertificateFromDate1 = DateTime.ParseExact(dp_fromCer1.Value, "yyyy-MM-dd", cultures);
-                employee.EducationCertificateToDate1 = DateTime.ParseExact(dp_toCer1.Value, "yyyy-MM-dd", cultures);
+                //employee.EducationCertificateFromDate1 = DateTime.Parse(dp_fromCer1.Text);
+                employee.EducationCertificateFromDate1 = DateTime.ParseExact(dp_fromCer1.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                employee.EducationCertificateToDate1 = DateTime.ParseExact(dp_toCer1.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                //employee.EducationCertificateToDate1 = DateTime.ParseExact(dp_toCer1.Value, "yyyy-MM-dd", cultures);
 
                 if (txt_certificate2.Value !="")
                 {
                     employee.EducationCertificate2 = txt_certificate2.Value;
-                    employee.EducationCertificateFromDate2 = DateTime.ParseExact(dp_fromCer2.Value, "yyyy-MM-dd", cultures);
-                    employee.EducationCertificateToDate2 = DateTime.ParseExact(dp_toCer2.Value, "yyyy-MM-dd", cultures);
+                    employee.EducationCertificateFromDate2 = DateTime.ParseExact(dp_fromCer2.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture); 
+                    employee.EducationCertificateToDate2 = DateTime.ParseExact(dp_toCer2.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture); 
 
                 }
                 if (txt_certificate3.Value !="")
                 {
                     employee.EducationCertificate3 = txt_certificate3.Value;
-                    employee.EducationCertificateFromDate3 = DateTime.ParseExact(dp_fromCer3.Value, "yyyy-MM-dd", cultures);
-                    employee.EducationCertificateToDate3 = DateTime.ParseExact(dp_toCer3.Value, "yyyy-MM-dd", cultures);
+                    employee.EducationCertificateFromDate3 = DateTime.ParseExact(dp_fromCer3.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                    employee.EducationCertificateToDate3 = DateTime.ParseExact(dp_toCer3.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture); 
                 }
                 #endregion
                 employee.WorkExperience1 = txt_experience1.Text;
@@ -235,8 +264,8 @@ namespace Human_Resource.Views.Employees
                 employee.Guarantor = txt_guarantor.Value;
                 employee.JobDescription = txt_jobDesc.Text;
                 employee.PassportNumber = txt_passportNo.Value;
-                employee.PassportReleaseDate = DateTime.ParseExact( dp_passportFromDate.Value, "yyyy-MM-dd", cultures);
-                employee.PassportExpiryDate = DateTime.ParseExact( dp_passportEndDate.Value, "yyyy-MM-dd", cultures);
+                employee.PassportReleaseDate = DateTime.ParseExact(dp_passportFromDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture); 
+                employee.PassportExpiryDate = DateTime.ParseExact(dp_passportEndDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
                 employee.Sequence = txt_sequenceNum.Value;
                 employee.UnifiedNumber = txt_unifiedNum.Value;
 

@@ -1,7 +1,21 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="NewEmployee.aspx.cs" Inherits="Human_Resource.Views.Employees.NewEmployee" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <script src="https://cdn.syncfusion.com/14.1.0.41/js/common/ej.webform.min.js"></script>
      <script>
          $(document).ready(function () {
+             $(".hasdatepicker").datepicker({
+                 changeMonth: true,
+                 changeYear: true,
+                 format:"dd/MM/yyyy",
+             });
+             //$(".hasdatepicker").datepicker("option", "dateFormat", "mm/dd/yy");
+             //dtString = $("#MainContent_hdnDateBOD").val();
+             //dtString = dtString.split(',');
+             //alert(dtString[0]);
+             //var defaultDate = new Date(dtString[0], dtString[1], dtString[2]);
+             //alert(defaultDate.toISOString());
+            // $(".hasdatepicker").datepicker("setDate", defaultDate);
+
              $('#uploadTrigger_1').click(function (e) {
                  e.preventDefault();
                  $('#MainContent_file_certificate1').trigger('click');
@@ -181,9 +195,9 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,bod%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2">
-                                    <asp:TextBox ID="dp_bod" runat="server" class="form-control input-lg hasdatepicker"  textMode="date" value="2000-11-01"></asp:TextBox>
-<%--                                  
-<%--                                    <input type="date" class="form-control input-lg hasdatepicker"  id="dp_bod" value="2017-06-01" pattern="\d{4}-\d{2}-\d{2}" runat="server" required="required"   />--%>
+                     
+                                    <asp:TextBox ID="dp_bod" runat="server" class="form-control input-lg hasdatepicker"  value="2000-11-01" ></asp:TextBox>
+
                             </div>
                                 </div>
                             <div class="form-group" style="display:block">
@@ -253,6 +267,7 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Certificate1%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
+
                                 <input type="text" class="form-control input-lg" id="txt_certificate1"  runat="server" value=""  />
                                    
                                 </div>
@@ -262,7 +277,8 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,DateFrom%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
-                                  <input type="date" class="form-control input-lg hasdatepicker" id="dp_fromCer1"  runat="server" value="2000-11-01"   />
+                                      <asp:TextBox ID="dp_fromCer1" runat="server" class="form-control input-lg hasdatepicker"  value="2000-11-01" ></asp:TextBox>
+<%--                                  <input type="text" class="form-control input-lg hasdatepicker" id="dp_fromCer1"  runat="server" value="2000-11-01"   />--%>
                                    
                                 </div>
                            </div>
@@ -271,7 +287,9 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,DateTo%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
-                                  <input type="date" class="form-control input-lg hasdatepicker" id="dp_toCer1"  runat="server" value="2000-11-01"   />
+                                      <asp:TextBox ID="dp_toCer1" runat="server" class="form-control input-lg hasdatepicker"  value="2000-11-01" ></asp:TextBox>
+
+<%--                                  <input type="text" class="form-control input-lg hasdatepicker" id="dp_toCer1"  runat="server" value="2000-11-01"   />--%>
                                    
                                 </div>
                            </div>
@@ -304,7 +322,9 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,DateFrom%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
-                                  <input type="date" class="form-control input-lg hasdatepicker" id="dp_fromCer2"  runat="server" value="2000-11-01"   />
+                                  <asp:TextBox ID="dp_fromCer2" runat="server" class="form-control input-lg hasdatepicker"  value="2000-11-01" ></asp:TextBox>
+
+<%--                                  <input type="text" class="form-control input-lg hasdatepicker" id="dp_fromCer2"  runat="server" value="2000-11-01"   />--%>
                                    
                                 </div>
                            </div>
@@ -313,7 +333,8 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,DateTo%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
-                                  <input type="date" class="form-control input-lg hasdatepicker" id="dp_toCer2"  runat="server" value="2000-11-01"   />
+                                   <asp:TextBox ID="dp_toCer2" runat="server" class="form-control input-lg hasdatepicker"  value="2000-11-01" ></asp:TextBox>
+<%--                    <input type="text" class="form-control input-lg hasdatepicker" id="dp_toCer2"  runat="server" value="2000-11-01"   />--%>
                                    
                                 </div>
                            </div>
@@ -347,7 +368,9 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,DateFrom%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
-                                  <input type="date" class="form-control input-lg hasdatepicker" id="dp_fromCer3"  runat="server" value="2000-11-01"   />
+                                 <asp:TextBox ID="dp_fromCer3" runat="server" class="form-control input-lg hasdatepicker"  value="2000-11-01" ></asp:TextBox>
+
+<%--                                  <input type="text" class="form-control input-lg hasdatepicker" id="dp_fromCer3"  runat="server" value="2000-11-01"   />--%>
                                    
                                 </div>
                            </div>
@@ -356,7 +379,9 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,DateTo%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
-                                  <input type="date" class="form-control input-lg hasdatepicker" id="dp_toCer3"  runat="server" value="2000-11-01"   />
+                                    <asp:TextBox ID="dp_toCer3" runat="server" class="form-control input-lg hasdatepicker"  value="2000-11-01" ></asp:TextBox>
+
+<%--                                  <input type="text" class="form-control input-lg hasdatepicker" id="dp_toCer3"  runat="server" value="2000-11-01"   />--%>
                                    
                                 </div>
                            </div>
@@ -553,7 +578,9 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,PassportStartdate%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
-                                    <input type="date" class="form-control input-lg hasdatepicker" id="dp_passportFromDate"  runat="server" value="2000-11-01"  />
+                                    <asp:TextBox ID="dp_passportFromDate" runat="server" class="form-control input-lg hasdatepicker"  value="2000-11-01" ></asp:TextBox>
+
+<%--                                    <input type="text" class="form-control input-lg hasdatepicker" id="dp_passportFromDate"  runat="server" value="2000-11-01"  />--%>
                             </div>
 
                             </div>
@@ -562,7 +589,9 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,PassportEnddate%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2">
-                                    <input type="date" class="form-control input-lg hasdatepicker" id="dp_passportEndDate"  runat="server" value="2000-11-01"  />
+                                   <asp:TextBox ID="dp_passportEndDate" runat="server" class="form-control input-lg hasdatepicker"  value="2000-11-01" ></asp:TextBox>
+
+<%--                                    <input type="text" class="form-control input-lg hasdatepicker" id="dp_passportEndDate"  runat="server" value="2000-11-01"  />--%>
                             </div>
                             </div>
                              <div class="form-group" style="display:block">

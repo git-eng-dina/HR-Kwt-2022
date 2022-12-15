@@ -118,7 +118,7 @@ namespace Human_Resource.Views.Employees {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl dp_fromCer1;
+        protected global::System.Web.UI.WebControls.TextBox dp_fromCer1;
         
         /// <summary>
         /// dp_toCer1 control.
@@ -127,7 +127,7 @@ namespace Human_Resource.Views.Employees {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl dp_toCer1;
+        protected global::System.Web.UI.WebControls.TextBox dp_toCer1;
         
         /// <summary>
         /// lbl_certificate1 control.
@@ -181,7 +181,7 @@ namespace Human_Resource.Views.Employees {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl dp_fromCer2;
+        protected global::System.Web.UI.WebControls.TextBox dp_fromCer2;
         
         /// <summary>
         /// dp_toCer2 control.
@@ -190,7 +190,7 @@ namespace Human_Resource.Views.Employees {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl dp_toCer2;
+        protected global::System.Web.UI.WebControls.TextBox dp_toCer2;
         
         /// <summary>
         /// lbl_certificate2 control.
@@ -244,7 +244,7 @@ namespace Human_Resource.Views.Employees {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl dp_fromCer3;
+        protected global::System.Web.UI.WebControls.TextBox dp_fromCer3;
         
         /// <summary>
         /// dp_toCer3 control.
@@ -253,7 +253,7 @@ namespace Human_Resource.Views.Employees {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl dp_toCer3;
+        protected global::System.Web.UI.WebControls.TextBox dp_toCer3;
         
         /// <summary>
         /// lbl_certificate3 control.
@@ -415,7 +415,7 @@ namespace Human_Resource.Views.Employees {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl dp_passportFromDate;
+        protected global::System.Web.UI.WebControls.TextBox dp_passportFromDate;
         
         /// <summary>
         /// dp_passportEndDate control.
@@ -424,7 +424,7 @@ namespace Human_Resource.Views.Employees {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl dp_passportEndDate;
+        protected global::System.Web.UI.WebControls.TextBox dp_passportEndDate;
         
         /// <summary>
         /// txt_sequenceNum control.

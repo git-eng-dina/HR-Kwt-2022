@@ -208,6 +208,7 @@ namespace Human_Resource
                         WorkExperience2 = x.WorkExperience2,
                         WorkExperience3 = x.WorkExperience3,
                         JobID = x.JobID,
+                        ManagementID = x.ManagementID,
                         DepartmentID = x.DepartmentID,
                         WorkHours = x.WorkHours,
                         BasicSalary = x.BasicSalary,
