@@ -786,4 +786,7 @@
   <data name="ToDate" xml:space="preserve">
     <value>To Date</value>
   </data>
+  <data name="AreYouSure" xml:space="preserve">
+    <value>Are you sure?</value>
+  </data>
 </root>

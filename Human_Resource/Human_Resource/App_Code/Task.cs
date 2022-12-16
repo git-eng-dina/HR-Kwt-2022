@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Web;
 
@@ -22,9 +24,12 @@ namespace Human_Resource.App_Code
         public Nullable<int> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public Nullable<bool> Approved { get; set; }
+        public Nullable<bool> EmpDone { get; set; }
+        public Nullable<bool> PossDone { get; set; }
         public Nullable<int> BranchManagerID { get; set; }
         public Nullable<int> ManagementManagerID { get; set; }
         public string Attachment { get; set; }
+        public string AddedBy { get; set; }
         public List<EmployeeModel> Employees { get; set; }
         #endregion
 
@@ -47,6 +52,64 @@ namespace Human_Resource.App_Code
                                     Notes = x.Notes,
                                     CreateDate = x.CreateDate,
                                     UpdateDate = x.UpdateDate,
+                                    Approved = x.Approved,
+                                    AddedBy = entity.employees.Where(e => e.EmployeeID == x.EmployeeID).Select(e => e.NameAr).FirstOrDefault(),
+                                }).ToList();
+                return depts;
+            }
+        }
+        public List<TaskModel> getNeedApproveForSupervisor(int managerId,DateTime date)
+        {
+
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var depts = entity.tasks.Where(x => x.IsActive == true &&
+               ( (x.StartDate >= date && entity.employees.Where(e => e.managements.branches.ManagerID == managerId).Select(e => e.EmployeeID).ToList().Contains((int)x.EmployeeID))
+                || x.EmployeeID== managerId))
+                                .Select(x => new TaskModel()
+                                {
+                                    TaskID = x.TaskID,
+                                    RepeatedEvery = x.RepeatedEvery,
+                                    Name = x.Name,
+                                    Description = x.Description,
+                                     EmployeeID = x.EmployeeID,
+                                    EmployeeName = entity.employees.Where(m => m.EmployeeID == x.EmployeeID).Select(m => m.NameAr).FirstOrDefault(),
+                                    CreateUserID = x.CreateUserID,
+                                    UpdateUserID = x.UpdateUserID,
+                                    Notes = x.Notes,
+                                    CreateDate = x.CreateDate,
+                                    UpdateDate = x.UpdateDate,
+                                    Approved = x.Approved,
+                                    AddedBy = entity.employees.Where(e => e.EmployeeID == x.EmployeeID).Select(e => e.NameAr).FirstOrDefault(),
+ 
+                                }).ToList();
+                return depts;
+            }
+        }
+        public List<TaskModel> getNeedApproveForManagement(int managerId)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                //  var now = DateTime.Today;
+                var now = DateTime.Now.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                var depts = entity.tasks.Where(x => x.IsActive == true &&
+                ((DbFunctions.TruncateTime(x.StartDate) >= DateTime.Parse(now) && x.EmployeeID == entity.employees.Where(e => e.managements.ManagerID == managerId && e.EmployeeID == x.EmployeeID).Select(e => e.EmployeeID).FirstOrDefault())
+                || x.EmployeeID == managerId))
+                                .Select(x => new TaskModel()
+                                {
+                                    TaskID = x.TaskID,
+                                    RepeatedEvery = x.RepeatedEvery,
+                                    Name = x.Name,
+                                    Description = x.Description,
+                                     EmployeeID = x.EmployeeID,
+                                    EmployeeName = entity.employees.Where(m => m.EmployeeID == x.EmployeeID).Select(m => m.NameAr).FirstOrDefault(),
+                                    CreateUserID = x.CreateUserID,
+                                    UpdateUserID = x.UpdateUserID,
+                                    Notes = x.Notes,
+                                    CreateDate = x.CreateDate,
+                                    UpdateDate = x.UpdateDate,
+                                    Approved = x.Approved,
+                                    AddedBy = entity.employees.Where(e => e.EmployeeID == x.EmployeeID).Select(e => e.NameAr).FirstOrDefault(),
                                 }).ToList();
                 return depts;
             }

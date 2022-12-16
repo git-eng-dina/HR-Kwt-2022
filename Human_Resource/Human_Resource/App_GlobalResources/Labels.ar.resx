@@ -783,4 +783,7 @@
   <data name="ToDate" xml:space="preserve">
     <value>إلى تاريخ</value>
   </data>
+  <data name="AreYouSure" xml:space="preserve">
+    <value>هل أنت متأكد؟</value>
+  </data>
 </root>
