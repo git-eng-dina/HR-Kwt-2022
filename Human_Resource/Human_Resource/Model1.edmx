@@ -45,6 +45,8 @@
           <Property Name="HRManager" Type="int" />
           <Property Name="CEO" Type="int" />
           <Property Name="LegalManager" Type="int" />
+          <Property Name="CompanyListAr" Type="ntext" />
+          <Property Name="CompanyListEn" Type="ntext" />
         </EntityType>
         <EntityType Name="confirms">
           <Key>
@@ -208,6 +210,7 @@
           <Property Name="WorkHours" Type="int" />
           <Property Name="JobDescription" Type="ntext" />
           <Property Name="Guarantor" Type="nvarchar" MaxLength="100" />
+          <Property Name="ManagementID" Type="int" />
         </EntityType>
         <EntityType Name="employeesScheduleVacations">
           <Key>
@@ -253,9 +256,9 @@
         </EntityType>
         <EntityType Name="employeesVacations">
           <Key>
-            <PropertyRef Name="EmployeesVacationsID" />
+            <PropertyRef Name="EmployeesVacationID" />
           </Key>
-          <Property Name="EmployeesVacationsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeesVacationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="VacationID" Type="int" />
           <Property Name="EmployeeID" Type="int" />
           <Property Name="Notes" Type="ntext" />
@@ -264,6 +267,8 @@
           <Property Name="CreateUserID" Type="int" />
           <Property Name="UpdateUserID" Type="int" />
           <Property Name="IsActive" Type="bit" />
+          <Property Name="FromDate" Type="datetime2" Precision="7" />
+          <Property Name="ToDate" Type="datetime2" Precision="7" />
         </EntityType>
         <EntityType Name="evaluations">
           <Key>
@@ -320,6 +325,10 @@
           <Property Name="EndDate" Type="datetime2" Precision="7" />
           <Property Name="EventDate" Type="datetime2" Precision="7" />
           <Property Name="EmployeeID" Type="int" />
+          <Property Name="Attachment" Type="nvarchar" MaxLength="100" />
+          <Property Name="BranchManagerID" Type="int" />
+          <Property Name="ManagementManagerID" Type="int" />
+          <Property Name="Approved" Type="bit" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
@@ -356,6 +365,7 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <Property Name="UpdateUserID" Type="int" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="EmployeeID" Type="int" />
+          <Property Name="Date" Type="datetime2" Precision="7" />
         </EntityType>
         <EntityType Name="Images">
           <Key>
@@ -367,6 +377,8 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <Property Name="image" Type="ntext" />
           <Property Name="EmployeeID" Type="int" />
           <Property Name="MessageID" Type="int" />
+          <Property Name="EventID" Type="bigint" />
+          <Property Name="TaskID" Type="bigint" />
         </EntityType>
         <EntityType Name="jobs">
           <Key>
@@ -444,15 +456,16 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
             <PropertyRef Name="PeriodID" />
           </Key>
           <Property Name="PeriodID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="StartTime" Type="datetime2" Precision="7" />
+          <Property Name="EndTime" Type="datetime2" Precision="7" />
           <Property Name="Notes" Type="ntext" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" />
           <Property Name="UpdateDate" Type="datetime2" Precision="7" />
           <Property Name="CreateUserID" Type="int" />
           <Property Name="UpdateUserID" Type="int" />
           <Property Name="IsActive" Type="bit" />
-          <Property Name="EmployeeID" Type="int" />
-          <Property Name="StartTime" Type="datetime2" Precision="7" />
-          <Property Name="EndTime" Type="datetime2" Precision="7" />
         </EntityType>
         <EntityType Name="rewards">
           <Key>
@@ -498,6 +511,19 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <Property Name="UpdateUserID" Type="int" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
+        <EntityType Name="statuses">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Notes" Type="ntext" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="CreateUserID" Type="int" />
+          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -525,6 +551,10 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <Property Name="IsActive" Type="bit" />
           <Property Name="StartDate" Type="datetime2" Precision="7" />
           <Property Name="EndDate" Type="datetime2" Precision="7" />
+          <Property Name="Approved" Type="bit" />
+          <Property Name="BranchManagerID" Type="int" />
+          <Property Name="ManagementManagerID" Type="int" />
+          <Property Name="Attachment" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="trainings">
           <Key>
@@ -769,6 +799,18 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_employees_managements">
+          <End Role="managements" Type="Self.managements" Multiplicity="0..1" />
+          <End Role="employees" Type="Self.employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="managements">
+              <PropertyRef Name="ManagementID" />
+            </Principal>
+            <Dependent Role="employees">
+              <PropertyRef Name="ManagementID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_employeesScheduleVacations_employees">
           <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
           <End Role="employeesScheduleVacations" Type="Self.employeesScheduleVacations" Multiplicity="*" />
@@ -901,12 +943,30 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, but cannot be found.
-        <Association Name="FK_EventTags_employees" />-->
-        <!--Errors Found During Generation:
-error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, but cannot be found.
-        <Association Name="FK_EventTags_events" />-->
+        <Association Name="FK_events_employees1">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="events" Type="Self.events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="events">
+              <PropertyRef Name="BranchManagerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_events_employees2">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="events" Type="Self.events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="events">
+              <PropertyRef Name="ManagementManagerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_highrManagment_employees">
           <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
           <End Role="highrManagment" Type="Self.highrManagment" Multiplicity="*" />
@@ -940,6 +1000,18 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
             </Principal>
             <Dependent Role="Images">
               <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Images_events">
+          <End Role="events" Type="Self.events" Multiplicity="0..1" />
+          <End Role="Images" Type="Self.Images" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="events">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="Images">
+              <PropertyRef Name="EventID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1003,6 +1075,61 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tasks_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="tasks" Type="Self.tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="tasks">
+              <PropertyRef Name="BranchManagerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tasks_employees1">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="tasks" Type="Self.tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="tasks">
+              <PropertyRef Name="ManagementManagerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="HRSystemModelStoreContainer">
           <EntitySet Name="branches" EntityType="Self.branches" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="companies" EntityType="Self.companies" Schema="dbo" store:Type="Tables" />
@@ -1031,6 +1158,7 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
           <EntitySet Name="rewards" EntityType="Self.rewards" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="salaryIncreases" EntityType="Self.salaryIncreases" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="scheduleVacations" EntityType="Self.scheduleVacations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="statuses" EntityType="Self.statuses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tasks" EntityType="Self.tasks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="trainings" EntityType="Self.trainings" Schema="dbo" store:Type="Tables" />
@@ -1107,6 +1235,10 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
             <End Role="jobs" EntitySet="jobs" />
             <End Role="employees" EntitySet="employees" />
           </AssociationSet>
+          <AssociationSet Name="FK_employees_managements" Association="Self.FK_employees_managements">
+            <End Role="managements" EntitySet="managements" />
+            <End Role="employees" EntitySet="employees" />
+          </AssociationSet>
           <AssociationSet Name="FK_employeesScheduleVacations_employees" Association="Self.FK_employeesScheduleVacations_employees">
             <End Role="employees" EntitySet="employees" />
             <End Role="employeesScheduleVacations" EntitySet="employeesScheduleVacations" />
@@ -1151,6 +1283,14 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
             <End Role="employees" EntitySet="employees" />
             <End Role="events" EntitySet="events" />
           </AssociationSet>
+          <AssociationSet Name="FK_events_employees1" Association="Self.FK_events_employees1">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="events" EntitySet="events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_events_employees2" Association="Self.FK_events_employees2">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="events" EntitySet="events" />
+          </AssociationSet>
           <AssociationSet Name="FK_highrManagment_employees" Association="Self.FK_highrManagment_employees">
             <End Role="employees" EntitySet="employees" />
             <End Role="highrManagment" EntitySet="highrManagment" />
@@ -1161,6 +1301,10 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
           </AssociationSet>
           <AssociationSet Name="FK_Images_employees" Association="Self.FK_Images_employees">
             <End Role="employees" EntitySet="employees" />
+            <End Role="Images" EntitySet="Images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Images_events" Association="Self.FK_Images_events">
+            <End Role="events" EntitySet="events" />
             <End Role="Images" EntitySet="Images" />
           </AssociationSet>
           <AssociationSet Name="FK_managements_branches" Association="Self.FK_managements_branches">
@@ -1182,6 +1326,14 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
           <AssociationSet Name="FK_rewards_employees" Association="Self.FK_rewards_employees">
             <End Role="employees" EntitySet="employees" />
             <End Role="rewards" EntitySet="rewards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tasks_employees" Association="Self.FK_tasks_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="tasks" EntitySet="tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tasks_employees1" Association="Self.FK_tasks_employees1">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="tasks" EntitySet="tasks" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -1231,6 +1383,8 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
           <Property Name="HRManager" Type="Int32" />
           <Property Name="CEO" Type="Int32" />
           <Property Name="LegalManager" Type="Int32" />
+          <Property Name="CompanyListAr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyListEn" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="branches" Relationship="Self.FK_branches_companies" FromRole="companies" ToRole="branches" />
         </EntityType>
         <EntityType Name="confirms">
@@ -1412,6 +1566,7 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
           <Property Name="WorkHours" Type="Int32" />
           <Property Name="JobDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Guarantor" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ManagementID" Type="Int32" />
           <NavigationProperty Name="confirms" Relationship="Self.FK_confirms_employees" FromRole="employees" ToRole="confirms" />
           <NavigationProperty Name="countriesName" Relationship="Self.FK_employees_countriesName" FromRole="employees" ToRole="countriesName" />
           <NavigationProperty Name="custodies" Relationship="Self.FK_custodies_employees" FromRole="employees" ToRole="custodies" />
@@ -1419,6 +1574,7 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
           <NavigationProperty Name="departments" Relationship="Self.FK_employees_departments" FromRole="employees" ToRole="departments" />
           <NavigationProperty Name="EemployeesEvents" Relationship="Self.FK_EemployeesEvents_employees" FromRole="employees" ToRole="EemployeesEvents" />
           <NavigationProperty Name="jobs" Relationship="Self.FK_employees_jobs" FromRole="employees" ToRole="jobs" />
+          <NavigationProperty Name="managements" Relationship="Self.FK_employees_managements" FromRole="employees" ToRole="managements" />
           <NavigationProperty Name="employeesScheduleVacations" Relationship="Self.FK_employeesScheduleVacations_employees" FromRole="employees" ToRole="employeesScheduleVacations" />
           <NavigationProperty Name="employeesTasks" Relationship="Self.FK_employeesTasks_employees" FromRole="employees" ToRole="employeesTasks" />
           <NavigationProperty Name="employeesTrainings" Relationship="Self.FK_employeesTrainings_employees1" FromRole="employees" ToRole="employeesTrainings" />
@@ -1426,6 +1582,8 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
           <NavigationProperty Name="evaluations" Relationship="Self.FK_evaluations_employees" FromRole="employees" ToRole="evaluations" />
           <NavigationProperty Name="evaluations1" Relationship="Self.FK_evaluations_employees1" FromRole="employees" ToRole="evaluations" />
           <NavigationProperty Name="events" Relationship="Self.FK_events_employees" FromRole="employees" ToRole="events" />
+          <NavigationProperty Name="events1" Relationship="Self.FK_events_employees1" FromRole="employees" ToRole="events" />
+          <NavigationProperty Name="events2" Relationship="Self.FK_events_employees2" FromRole="employees" ToRole="events" />
           <NavigationProperty Name="highrManagment" Relationship="Self.FK_highrManagment_employees" FromRole="employees" ToRole="highrManagment" />
           <NavigationProperty Name="hourlyPermissions" Relationship="Self.FK_hourlyPermissions_employees" FromRole="employees" ToRole="hourlyPermissions" />
           <NavigationProperty Name="Images" Relationship="Self.FK_Images_employees" FromRole="employees" ToRole="Images" />
@@ -1433,6 +1591,8 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
           <NavigationProperty Name="messages" Relationship="Self.FK_messages_employees" FromRole="employees" ToRole="messages" />
           <NavigationProperty Name="periods" Relationship="Self.FK_periods_employees" FromRole="employees" ToRole="periods" />
           <NavigationProperty Name="rewards" Relationship="Self.FK_rewards_employees" FromRole="employees" ToRole="rewards" />
+          <NavigationProperty Name="tasks" Relationship="Self.FK_tasks_employees" FromRole="employees" ToRole="tasks" />
+          <NavigationProperty Name="tasks1" Relationship="Self.FK_tasks_employees1" FromRole="employees" ToRole="tasks" />
         </EntityType>
         <EntityType Name="employeesScheduleVacations">
           <Key>
@@ -1484,9 +1644,9 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
         </EntityType>
         <EntityType Name="employeesVacations">
           <Key>
-            <PropertyRef Name="EmployeesVacationsID" />
+            <PropertyRef Name="EmployeesVacationID" />
           </Key>
-          <Property Name="EmployeesVacationsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeesVacationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="VacationID" Type="Int32" />
           <Property Name="EmployeeID" Type="Int32" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -1495,6 +1655,8 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
           <Property Name="CreateUserID" Type="Int32" />
           <Property Name="UpdateUserID" Type="Int32" />
           <Property Name="IsActive" Type="Boolean" />
+          <Property Name="FromDate" Type="DateTime" Precision="7" />
+          <Property Name="ToDate" Type="DateTime" Precision="7" />
           <NavigationProperty Name="employees" Relationship="Self.FK_employeesVacations_employees" FromRole="employeesVacations" ToRole="employees" />
           <NavigationProperty Name="vacations" Relationship="Self.FK_employeesVacations_vacations" FromRole="employeesVacations" ToRole="vacations" />
         </EntityType>
@@ -1555,9 +1717,16 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
           <Property Name="EndDate" Type="DateTime" Precision="7" />
           <Property Name="EventDate" Type="DateTime" Precision="7" />
           <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="Attachment" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BranchManagerID" Type="Int32" />
+          <Property Name="ManagementManagerID" Type="Int32" />
+          <Property Name="Approved" Type="Boolean" />
           <NavigationProperty Name="confirms" Relationship="Self.FK_confirms_events" FromRole="events" ToRole="confirms" />
           <NavigationProperty Name="EemployeesEvents" Relationship="Self.FK_EemployeesEvents_events" FromRole="events" ToRole="EemployeesEvents" />
           <NavigationProperty Name="employees" Relationship="Self.FK_events_employees" FromRole="events" ToRole="employees" />
+          <NavigationProperty Name="employees1" Relationship="Self.FK_events_employees1" FromRole="events" ToRole="employees" />
+          <NavigationProperty Name="employees2" Relationship="Self.FK_events_employees2" FromRole="events" ToRole="employees" />
+          <NavigationProperty Name="Images" Relationship="Self.FK_Images_events" FromRole="events" ToRole="Images" />
         </EntityType>
         <EntityType Name="highrManagment">
           <Key>
@@ -1588,6 +1757,7 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
           <Property Name="UpdateUserID" Type="Int32" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="7" />
           <NavigationProperty Name="confirms" Relationship="Self.FK_confirms_hourlyPermissions" FromRole="hourlyPermissions" ToRole="confirms" />
           <NavigationProperty Name="employees" Relationship="Self.FK_hourlyPermissions_employees" FromRole="hourlyPermissions" ToRole="employees" />
         </EntityType>
@@ -1601,7 +1771,10 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
           <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="EmployeeID" Type="Int32" />
           <Property Name="MessageID" Type="Int32" />
+          <Property Name="EventID" Type="Int64" />
+          <Property Name="TaskID" Type="Int64" />
           <NavigationProperty Name="employees" Relationship="Self.FK_Images_employees" FromRole="Images" ToRole="employees" />
+          <NavigationProperty Name="events" Relationship="Self.FK_Images_events" FromRole="Images" ToRole="events" />
         </EntityType>
         <EntityType Name="jobs">
           <Key>
@@ -1635,6 +1808,7 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
           <Property Name="Mobile" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="branches" Relationship="Self.FK_managements_branches" FromRole="managements" ToRole="branches" />
           <NavigationProperty Name="departments" Relationship="Self.FK_departments_managements" FromRole="managements" ToRole="departments" />
+          <NavigationProperty Name="employees" Relationship="Self.FK_employees_managements" FromRole="managements" ToRole="employees" />
         </EntityType>
         <EntityType Name="materialsConsumption">
           <Key>
@@ -1686,15 +1860,16 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
             <PropertyRef Name="PeriodID" />
           </Key>
           <Property Name="PeriodID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StartTime" Type="DateTime" Precision="7" />
+          <Property Name="EndTime" Type="DateTime" Precision="7" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="7" />
           <Property Name="UpdateDate" Type="DateTime" Precision="7" />
           <Property Name="CreateUserID" Type="Int32" />
           <Property Name="UpdateUserID" Type="Int32" />
           <Property Name="IsActive" Type="Boolean" />
-          <Property Name="EmployeeID" Type="Int32" />
-          <Property Name="StartTime" Type="DateTime" Precision="7" />
-          <Property Name="EndTime" Type="DateTime" Precision="7" />
           <NavigationProperty Name="employees" Relationship="Self.FK_periods_employees" FromRole="periods" ToRole="employees" />
         </EntityType>
         <EntityType Name="rewards">
@@ -1744,6 +1919,19 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
           <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="employeesScheduleVacations" Relationship="Self.FK_employeesScheduleVacations_scheduleVacations" FromRole="scheduleVacations" ToRole="employeesScheduleVacations" />
         </EntityType>
+        <EntityType Name="statuses">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="CreateUserID" Type="Int32" />
+          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -1771,8 +1959,14 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="StartDate" Type="DateTime" Precision="7" />
           <Property Name="EndDate" Type="DateTime" Precision="7" />
+          <Property Name="Approved" Type="Boolean" />
+          <Property Name="BranchManagerID" Type="Int32" />
+          <Property Name="ManagementManagerID" Type="Int32" />
+          <Property Name="Attachment" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="confirms" Relationship="Self.FK_confirms_tasks" FromRole="tasks" ToRole="confirms" />
           <NavigationProperty Name="dailyTasks" Relationship="Self.FK_dailyTasks_tasks" FromRole="tasks" ToRole="dailyTasks" />
+          <NavigationProperty Name="employees" Relationship="Self.FK_tasks_employees" FromRole="tasks" ToRole="employees" />
+          <NavigationProperty Name="employees1" Relationship="Self.FK_tasks_employees1" FromRole="tasks" ToRole="employees" />
           <NavigationProperty Name="employeesTasks" Relationship="Self.FK_employeesTasks_tasks" FromRole="tasks" ToRole="employeesTasks" />
         </EntityType>
         <EntityType Name="trainings">
@@ -2032,6 +2226,18 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_employees_managements">
+          <End Role="managements" Type="Self.managements" Multiplicity="0..1" />
+          <End Role="employees" Type="Self.employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="managements">
+              <PropertyRef Name="ManagementID" />
+            </Principal>
+            <Dependent Role="employees">
+              <PropertyRef Name="ManagementID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_employeesScheduleVacations_employees">
           <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
           <End Role="employeesScheduleVacations" Type="Self.employeesScheduleVacations" Multiplicity="*" />
@@ -2113,6 +2319,30 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
             </Principal>
             <Dependent Role="events">
               <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_events_employees1">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="events" Type="Self.events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="events">
+              <PropertyRef Name="BranchManagerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_events_employees2">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="events" Type="Self.events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="events">
+              <PropertyRef Name="ManagementManagerID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2200,6 +2430,30 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tasks_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="tasks" Type="Self.tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="tasks">
+              <PropertyRef Name="BranchManagerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tasks_employees1">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="tasks" Type="Self.tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="tasks">
+              <PropertyRef Name="ManagementManagerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_employeesScheduleVacations_scheduleVacations">
           <End Role="scheduleVacations" Type="Self.scheduleVacations" Multiplicity="0..1" />
           <End Role="employeesScheduleVacations" Type="Self.employeesScheduleVacations" Multiplicity="*" />
@@ -2248,6 +2502,18 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Images_events">
+          <End Role="events" Type="Self.events" Multiplicity="0..1" />
+          <End Role="Images" Type="Self.Images" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="events">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="Images">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="HRSystemEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="branches" EntityType="Self.branches" />
           <EntitySet Name="companies" EntityType="Self.companies" />
@@ -2276,6 +2542,7 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
           <EntitySet Name="rewards" EntityType="Self.rewards" />
           <EntitySet Name="salaryIncreases" EntityType="Self.salaryIncreases" />
           <EntitySet Name="scheduleVacations" EntityType="Self.scheduleVacations" />
+          <EntitySet Name="statuses" EntityType="Self.statuses" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="tasks" EntityType="Self.tasks" />
           <EntitySet Name="trainings" EntityType="Self.trainings" />
@@ -2356,6 +2623,10 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
             <End Role="jobs" EntitySet="jobs" />
             <End Role="employees" EntitySet="employees" />
           </AssociationSet>
+          <AssociationSet Name="FK_employees_managements" Association="Self.FK_employees_managements">
+            <End Role="managements" EntitySet="managements" />
+            <End Role="employees" EntitySet="employees" />
+          </AssociationSet>
           <AssociationSet Name="FK_employeesScheduleVacations_employees" Association="Self.FK_employeesScheduleVacations_employees">
             <End Role="employees" EntitySet="employees" />
             <End Role="employeesScheduleVacations" EntitySet="employeesScheduleVacations" />
@@ -2381,6 +2652,14 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
             <End Role="evaluations" EntitySet="evaluations" />
           </AssociationSet>
           <AssociationSet Name="FK_events_employees" Association="Self.FK_events_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="events" EntitySet="events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_events_employees1" Association="Self.FK_events_employees1">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="events" EntitySet="events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_events_employees2" Association="Self.FK_events_employees2">
             <End Role="employees" EntitySet="employees" />
             <End Role="events" EntitySet="events" />
           </AssociationSet>
@@ -2412,6 +2691,14 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
             <End Role="employees" EntitySet="employees" />
             <End Role="rewards" EntitySet="rewards" />
           </AssociationSet>
+          <AssociationSet Name="FK_tasks_employees" Association="Self.FK_tasks_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="tasks" EntitySet="tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tasks_employees1" Association="Self.FK_tasks_employees1">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="tasks" EntitySet="tasks" />
+          </AssociationSet>
           <AssociationSet Name="FK_employeesScheduleVacations_scheduleVacations" Association="Self.FK_employeesScheduleVacations_scheduleVacations">
             <End Role="scheduleVacations" EntitySet="scheduleVacations" />
             <End Role="employeesScheduleVacations" EntitySet="employeesScheduleVacations" />
@@ -2428,7 +2715,52 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
             <End Role="vacations" EntitySet="vacations" />
             <End Role="employeesVacations" EntitySet="employeesVacations" />
           </AssociationSet>
+          <AssociationSet Name="FK_Images_events" Association="Self.FK_Images_events">
+            <End Role="events" EntitySet="events" />
+            <End Role="Images" EntitySet="Images" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(HRSystemModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(HRSystemModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2475,6 +2807,8 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
                 <ScalarProperty Name="HRManager" ColumnName="HRManager" />
                 <ScalarProperty Name="CEO" ColumnName="CEO" />
                 <ScalarProperty Name="LegalManager" ColumnName="LegalManager" />
+                <ScalarProperty Name="CompanyListAr" ColumnName="CompanyListAr" />
+                <ScalarProperty Name="CompanyListEn" ColumnName="CompanyListEn" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2645,6 +2979,7 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
                 <ScalarProperty Name="WorkHours" ColumnName="WorkHours" />
                 <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
                 <ScalarProperty Name="Guarantor" ColumnName="Guarantor" />
+                <ScalarProperty Name="ManagementID" ColumnName="ManagementID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2696,7 +3031,7 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
           <EntitySetMapping Name="employeesVacations">
             <EntityTypeMapping TypeName="HRSystemModel.employeesVacations">
               <MappingFragment StoreEntitySet="employeesVacations">
-                <ScalarProperty Name="EmployeesVacationsID" ColumnName="EmployeesVacationsID" />
+                <ScalarProperty Name="EmployeesVacationID" ColumnName="EmployeesVacationID" />
                 <ScalarProperty Name="VacationID" ColumnName="VacationID" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="Notes" ColumnName="Notes" />
@@ -2705,6 +3040,8 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
                 <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
                 <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+                <ScalarProperty Name="ToDate" ColumnName="ToDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2763,6 +3100,10 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
                 <ScalarProperty Name="EndDate" ColumnName="EndDate" />
                 <ScalarProperty Name="EventDate" ColumnName="EventDate" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Attachment" ColumnName="Attachment" />
+                <ScalarProperty Name="BranchManagerID" ColumnName="BranchManagerID" />
+                <ScalarProperty Name="ManagementManagerID" ColumnName="ManagementManagerID" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2794,6 +3135,7 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
                 <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2806,6 +3148,8 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
                 <ScalarProperty Name="image" ColumnName="image" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="TaskID" ColumnName="TaskID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2889,15 +3233,16 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
             <EntityTypeMapping TypeName="HRSystemModel.periods">
               <MappingFragment StoreEntitySet="periods">
                 <ScalarProperty Name="PeriodID" ColumnName="PeriodID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
                 <ScalarProperty Name="Notes" ColumnName="Notes" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
                 <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
                 <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
-                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2948,6 +3293,20 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="statuses">
+            <EntityTypeMapping TypeName="HRSystemModel.statuses">
+              <MappingFragment StoreEntitySet="statuses">
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="HRSystemModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -2975,6 +3334,10 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
                 <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="BranchManagerID" ColumnName="BranchManagerID" />
+                <ScalarProperty Name="ManagementManagerID" ColumnName="ManagementManagerID" />
+                <ScalarProperty Name="Attachment" ColumnName="Attachment" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3007,6 +3370,30 @@ error 6004: The table 'HRSystem.dbo.EventTags' is referenced by a relationship, 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="HRSystemModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="HRSystemModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="HRSystemModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="HRSystemModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HRSystemModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="HRSystemModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HRSystemModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="HRSystemModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="HRSystemModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -18,6 +18,7 @@ namespace Human_Resource
         public managements()
         {
             this.departments = new HashSet<departments>();
+            this.employees = new HashSet<employees>();
         }
     
         public int ManagementID { get; set; }
@@ -35,5 +36,7 @@ namespace Human_Resource
         public virtual branches branches { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<departments> departments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<employees> employees { get; set; }
     }
 }
