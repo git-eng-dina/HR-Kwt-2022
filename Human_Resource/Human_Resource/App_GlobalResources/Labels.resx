@@ -789,4 +789,7 @@
   <data name="AreYouSure" xml:space="preserve">
     <value>Are you sure?</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
 </root>

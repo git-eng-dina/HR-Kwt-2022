@@ -786,4 +786,7 @@
   <data name="AreYouSure" xml:space="preserve">
     <value>هل أنت متأكد؟</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>حذف</value>
+  </data>
 </root>
