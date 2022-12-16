@@ -209,6 +209,30 @@ namespace Human_Resource.Views.ExecutiveProc
             }
 
         }
+        [WebMethod(EnableSession = true)]
+        public static string FinishTask(string DailyTaskID, string userID,string role,string taskID)
+        {
+            try
+            {
+                long? DailyTaskIDInt = null;
+                long? TaskIDInt = null;
+                if (DailyTaskID != "")
+                    DailyTaskIDInt = long.Parse(DailyTaskID);
+                if (taskID != "")
+                    TaskIDInt = long.Parse(taskID);
+
+                TaskModel confirm = new TaskModel();
+                confirm.FinishTask(DailyTaskIDInt,int.Parse(userID), role,TaskIDInt);
+
+                return "1";
+            }
+            catch
+            {
+                return "0";
+
+            }
+
+        }
 
         protected void gv_approve_RowDataBound(object sender, GridViewRowEventArgs e)
         {

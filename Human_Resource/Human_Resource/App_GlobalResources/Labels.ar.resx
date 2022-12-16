@@ -798,4 +798,7 @@
   <data name="MyTasks" xml:space="preserve">
     <value>مهامي</value>
   </data>
+  <data name="TaskExecutor" xml:space="preserve">
+    <value>منفذ المهمة</value>
+  </data>
 </root>

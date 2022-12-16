@@ -1852,6 +1852,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Task Executor.
+        /// </summary>
+        internal static string TaskExecutor {
+            get {
+                return ResourceManager.GetString("TaskExecutor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tasks.
         /// </summary>
         internal static string Tasks {

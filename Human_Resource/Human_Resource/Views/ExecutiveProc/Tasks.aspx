@@ -85,6 +85,36 @@
 
                 return false;
             });
+            $('.td-finish').click(function () {
+                var customID = $(this).attr('myCustomID');
+                if (confirm("<%= Resources.Labels.AreYouSure%>")) {
+   
+                    var parameter = {
+                        DailyTaskID: customID,
+                        userID:<%= Session["user_id"].ToString() %>,
+                        role:<%= Session["urole"].ToString() %>,
+                        taskID :'0'
+                    };
+ 
+                    $.ajax({
+                        type: "POST",
+                        url: "Tasks.aspx/FinishTask",
+                        data: JSON.stringify(parameter),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (data) {
+                           // window.location = "tasks.aspx";
+
+                        },
+                        failure: function (response) {
+                            alert(response.d);
+                        }
+                    });
+
+                }
+
+                return false;
+            });
 
         });
 
@@ -400,7 +430,13 @@
                                                  Text='<%# Eval("RepeatedEvery") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>   
-                                      <asp:TemplateField HeaderText="<%$ Resources:Labels,AddedBy%>">
+                                      <asp:TemplateField HeaderText="<%$ Resources:Labels,TaskExecutor%>">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblAssign" runat="server" 
+                                                 Text='<%# Eval("AssignedEmployeeName") %>' />                              
+                                         </ItemTemplate>
+                                   </asp:TemplateField> 
+                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,AddedBy%>">
                                          <ItemTemplate>
                                                  <asp:Label ID="LblLoc" runat="server" 
                                                  Text='<%# Eval("AddedBy") %>' />                              
@@ -408,7 +444,7 @@
                                    </asp:TemplateField>   
                                   <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-finish">
                                            <ItemTemplate>                     
-                                                <asp:LinkButton ID="approveTask" runat="server" myCustomID='<%# Eval("TaskID")%>'  CssClass="td-approve">
+                                                <asp:LinkButton ID="finishTask" runat="server" myCustomID='<%# Eval("DailyTaskID")%>'  CssClass="td-approve">
                                                     <asp:Image ImageUrl="~/images/accept_document.png" runat="server" ToolTip="<%$ Resources:Labels,Finish%>" Width="20px" Height="20px" />
                                                 </asp:LinkButton>  
                                              </ItemTemplate>
@@ -466,7 +502,7 @@
                                    </asp:TemplateField>   
                                   <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-finishMyTask">
                                            <ItemTemplate>                     
-                                                <asp:LinkButton ID="approveTask" runat="server" myCustomID='<%# Eval("TaskID")%>'  CssClass="td-approve">
+                                                <asp:LinkButton ID="finishMyTask" runat="server" myCustomID='<%# Eval("TaskID")%>'  CssClass="td-approve">
                                                     <asp:Image ImageUrl="~/images/accept_document.png" runat="server" ToolTip="<%$ Resources:Labels,Finish%>" Width="20px" Height="20px" />
                                                 </asp:LinkButton>  
                                              </ItemTemplate>

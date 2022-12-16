@@ -801,4 +801,7 @@
   <data name="MyTasks" xml:space="preserve">
     <value>My tasks</value>
   </data>
+  <data name="TaskExecutor" xml:space="preserve">
+    <value>Task Executor</value>
+  </data>
 </root>
