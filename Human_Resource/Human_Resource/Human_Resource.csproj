@@ -159,13 +159,16 @@
     <Content Include="Content\en\fonts\FontAwesome.otf" />
     <Content Include="Content\en\fonts\Montserrat-Bold.ttf" />
     <Content Include="Content\en\fonts\Montserrat-Regular.ttf" />
+    <Content Include="images\accept_document.png" />
     <Content Include="images\ar.png" />
+    <Content Include="images\check.ico" />
     <Content Include="images\Delete.ico" />
     <Content Include="images\download %281%29.png" />
     <Content Include="images\edit.ico" />
     <Content Include="images\edit.png" />
     <Content Include="images\en.png" />
     <Content Include="images\hr_logo.png" />
+    <Content Include="images\reject_document.png" />
     <Content Include="images\search.png" />
     <EntityDeploy Include="Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -205,6 +208,7 @@
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\tasks.js" />
     <Content Include="Scripts\WebForms\DetailsView.js" />
     <Content Include="Scripts\WebForms\Focus.js" />
     <Content Include="Scripts\WebForms\GridView.js" />
@@ -639,6 +643,12 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="scheduleVacations.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="statuses.cs">

@@ -789,4 +789,10 @@
   <data name="Delete" xml:space="preserve">
     <value>حذف</value>
   </data>
+  <data name="ExecutedTasks" xml:space="preserve">
+    <value>المهام المنفذة</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>إنهاء</value>
+  </data>
 </root>

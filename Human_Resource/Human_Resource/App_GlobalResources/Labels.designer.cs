@@ -889,6 +889,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Executed Tasks.
+        /// </summary>
+        internal static string ExecutedTasks {
+            get {
+                return ResourceManager.GetString("ExecutedTasks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Executive Procedures.
         /// </summary>
         internal static string ExecutiveProcedures {
@@ -966,6 +975,15 @@ namespace Resources {
         internal static string FinancialManager {
             get {
                 return ResourceManager.GetString("FinancialManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finish.
+        /// </summary>
+        internal static string Finish {
+            get {
+                return ResourceManager.GetString("Finish", resourceCulture);
             }
         }
         

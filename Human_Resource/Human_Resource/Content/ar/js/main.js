@@ -102,4 +102,29 @@ $(document).ready(function(){
     });  
 });
 
+//function zeroPadded(val) {
+//    if (val >= 10)
+//        return val;
+//    else
+//        return '0' + val;
+//}
 
+//function getDateTime() {
+//    var localTime = new Date();
+    
+//    var year = localTime.getYear();
+//    var month = localTime.getMonth() + 1;
+//    var date = localTime.getDate();
+//    var localDateTime = [localTime.getFullYear(), zeroPadded(localTime.getMonth() + 1),
+//        zeroPadded(localTime.getDate())].join('-')
+
+//  //  $('#hdnCurrentDate').val(localDateTime); 
+//    //var localTime = new Date();
+//    //var year = localTime.getYear();
+//    //var month = localTime.getMonth() + 1;
+//    //var date = localTime.getDate();
+//    //var hours = localTime.getHours();
+//    //var minutes = localTime.getMinutes();
+//    //var seconds = localTime.getSeconds();
+//    //at this point you can do with your results whatever you please
+//}

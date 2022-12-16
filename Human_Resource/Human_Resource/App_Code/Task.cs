@@ -58,13 +58,41 @@ namespace Human_Resource.App_Code
                 return depts;
             }
         }
-        public List<TaskModel> getNeedApproveForSupervisor(int managerId,DateTime date)
+        public List<TaskModel> getNeedApproveForSupervisor(int managerId)
         {
 
             using (HRSystemEntities entity = new HRSystemEntities())
             {
                 var depts = entity.tasks.Where(x => x.IsActive == true &&
-               ( (x.StartDate >= date && entity.employees.Where(e => e.managements.branches.ManagerID == managerId).Select(e => e.EmployeeID).ToList().Contains((int)x.EmployeeID))
+               ( (x.StartDate >= DateTime.Now && entity.employees.Where(e => e.managements.branches.ManagerID == managerId).Select(e => e.EmployeeID).ToList().Contains((int)x.EmployeeID))
+                || x.EmployeeID== managerId))
+                                .Select(x => new TaskModel()
+                                {
+                                    TaskID = x.TaskID,
+                                    RepeatedEvery = x.RepeatedEvery,
+                                    Name = x.Name,
+                                    Description = x.Description,
+                                     EmployeeID = x.EmployeeID,
+                                    EmployeeName = entity.employees.Where(m => m.EmployeeID == x.EmployeeID).Select(m => m.NameAr).FirstOrDefault(),
+                                    CreateUserID = x.CreateUserID,
+                                    UpdateUserID = x.UpdateUserID,
+                                    Notes = x.Notes,
+                                    CreateDate = x.CreateDate,
+                                    UpdateDate = x.UpdateDate,
+                                    Approved = x.Approved,
+                                    AddedBy = entity.employees.Where(e => e.EmployeeID == x.EmployeeID).Select(e => e.NameAr).FirstOrDefault(),
+ 
+                                }).ToList();
+                return depts;
+            }
+        }
+        public List<TaskModel> getExcutedForSupervisor(int managerId)
+        {
+
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var depts = entity.tasks.Where(x => x.IsActive == true &&
+               ( (x.StartDate >= DateTime.Now && entity.employees.Where(e => e.managements.branches.ManagerID == managerId).Select(e => e.EmployeeID).ToList().Contains((int)x.EmployeeID))
                 || x.EmployeeID== managerId))
                                 .Select(x => new TaskModel()
                                 {
@@ -232,6 +260,26 @@ namespace Human_Resource.App_Code
                     dept.IsActive = false;
                     dept.UpdateDate = DateTime.Now;
                     dept.UpdateUserID = userId;
+                    entity.SaveChanges();
+                }
+                return true;
+            }
+
+            catch
+            {
+                return false;
+            }
+        }
+        public bool EditApprove(int taskId,bool approve, int? userId)
+        {
+            try
+            {
+                using (HRSystemEntities entity = new HRSystemEntities())
+                {
+                    var taskObj = entity.tasks.Find(taskId);
+                    taskObj.Approved = approve;
+                    taskObj.UpdateDate = DateTime.Now;
+                    taskObj.UpdateUserID = userId;
                     entity.SaveChanges();
                 }
                 return true;
