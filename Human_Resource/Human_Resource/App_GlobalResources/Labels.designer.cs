@@ -1294,6 +1294,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to My tasks.
+        /// </summary>
+        internal static string MyTasks {
+            get {
+                return ResourceManager.GetString("MyTasks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         internal static string Name {

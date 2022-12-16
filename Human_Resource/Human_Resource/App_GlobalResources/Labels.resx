@@ -798,4 +798,7 @@
   <data name="Finish" xml:space="preserve">
     <value>Finish</value>
   </data>
+  <data name="MyTasks" xml:space="preserve">
+    <value>My tasks</value>
+  </data>
 </root>

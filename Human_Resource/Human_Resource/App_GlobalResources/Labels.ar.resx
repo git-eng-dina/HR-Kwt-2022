@@ -795,4 +795,7 @@
   <data name="Finish" xml:space="preserve">
     <value>إنهاء</value>
   </data>
+  <data name="MyTasks" xml:space="preserve">
+    <value>مهامي</value>
+  </data>
 </root>

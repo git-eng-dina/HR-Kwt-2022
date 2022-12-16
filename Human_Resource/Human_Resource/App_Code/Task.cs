@@ -30,6 +30,9 @@ namespace Human_Resource.App_Code
         public Nullable<int> ManagementManagerID { get; set; }
         public string Attachment { get; set; }
         public string AddedBy { get; set; }
+        public Nullable<int> AssignedEmployeeID { get; set; }
+        public string AssignedEmployeeName { get; set; }
+
         public List<EmployeeModel> Employees { get; set; }
         #endregion
 
@@ -64,7 +67,8 @@ namespace Human_Resource.App_Code
             using (HRSystemEntities entity = new HRSystemEntities())
             {
                 var depts = entity.tasks.Where(x => x.IsActive == true &&
-               ( (x.StartDate >= DateTime.Now && entity.employees.Where(e => e.managements.branches.ManagerID == managerId).Select(e => e.EmployeeID).ToList().Contains((int)x.EmployeeID))
+              // ( (x.StartDate >= DateTime.Now && entity.employees.Where(e => e.managements.branches.ManagerID == managerId).Select(e => e.EmployeeID).ToList().Contains((int)x.EmployeeID))
+               ( (entity.employees.Where(e => e.managements.branches.ManagerID == managerId).Select(e => e.EmployeeID).ToList().Contains((int)x.EmployeeID))
                 || x.EmployeeID== managerId))
                                 .Select(x => new TaskModel()
                                 {
@@ -88,13 +92,14 @@ namespace Human_Resource.App_Code
         }
         public List<TaskModel> getExcutedForSupervisor(int managerId)
         {
-
+            var result = new List<TaskModel>();
             using (HRSystemEntities entity = new HRSystemEntities())
             {
-                var depts = entity.tasks.Where(x => x.IsActive == true &&
-               ( (x.StartDate >= DateTime.Now && entity.employees.Where(e => e.managements.branches.ManagerID == managerId).Select(e => e.EmployeeID).ToList().Contains((int)x.EmployeeID))
-                || x.EmployeeID== managerId))
-                                .Select(x => new TaskModel()
+                var tasks =(from x in entity.tasks.Where(ex => ex.IsActive == true && ex.Approved== true
+               && entity.employees.Where(ee => ee.managements.branches.ManagerID == managerId).Select(ee => ee.EmployeeID).ToList().Contains((int)ex.EmployeeID))
+                            join e in entity.employeesTasks.Where(em => em.IsActive == true) on x.TaskID equals e.TaskID
+                            
+                                select new TaskModel()
                                 {
                                     TaskID = x.TaskID,
                                     RepeatedEvery = x.RepeatedEvery,
@@ -108,10 +113,19 @@ namespace Human_Resource.App_Code
                                     CreateDate = x.CreateDate,
                                     UpdateDate = x.UpdateDate,
                                     Approved = x.Approved,
-                                    AddedBy = entity.employees.Where(e => e.EmployeeID == x.EmployeeID).Select(e => e.NameAr).FirstOrDefault(),
- 
+                                    AddedBy = entity.employees.Where(ex => ex.EmployeeID == x.EmployeeID).Select(ex => ex.NameAr).FirstOrDefault(),
+                                    AssignedEmployeeID=e.EmployeeID,
                                 }).ToList();
-                return depts;
+
+                foreach(var t in tasks)
+                {
+                    var done = entity.dailyTasks.Where(x => x.TaskID == t.TaskID && x.EmployeeID == t.AssignedEmployeeID && x.EmpDone == true).FirstOrDefault();
+                    if(done != null && done.BossDone == null)
+                    {
+                        result.Add(t);
+                    }
+                }
+                return result;
             }
         }
         public List<TaskModel> getNeedApproveForManagement(int managerId)

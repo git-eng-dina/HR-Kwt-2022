@@ -29,6 +29,63 @@
                 return false;
             });
 
+            $('.td-approve').click(function () {
+                var customID = $(this).attr('myCustomID');
+                if (confirm("<%= Resources.Labels.AreYouSure%>")) {
+
+                    var parameter = {
+                        TaskID: customID,
+                        userID:<%= Session["user_id"].ToString() %>,
+                    };
+
+                    $.ajax({
+                        type: "POST",
+                        url: "Tasks.aspx/ApproveTask",
+                        data: JSON.stringify(parameter),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (data) {
+                            window.location = "tasks.aspx";
+
+                        },
+                        failure: function (response) {
+                            alert(response.d);
+                        }
+                    });
+
+                }
+
+                return false;
+            });
+             $('.td-reject').click(function () {
+                var customID = $(this).attr('myCustomID');
+                if (confirm("<%= Resources.Labels.AreYouSure%>")) {
+
+                    var parameter = {
+                        TaskID: customID,
+                        userID:<%= Session["user_id"].ToString() %>,
+                    };
+
+                    $.ajax({
+                        type: "POST",
+                        url: "Tasks.aspx/RejectTask",
+                        data: JSON.stringify(parameter),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (data) {
+                            window.location = "tasks.aspx";
+
+                        },
+                        failure: function (response) {
+                            alert(response.d);
+                        }
+                    });
+
+                }
+
+                return false;
+            });
+
         });
 
         //function to close dialog, probably called by a button in the dialog
@@ -224,9 +281,14 @@
    
                         </div>
 
-                       <!---- table -->
-                            <asp:GridView ID="gv_data" runat="server"  CssClass="gridView col-md-12"  
+                       <!---- tasks to approve and his tasks -->
+                        <div class="row gridView-title" id="gv_approve_title" runat="server">                       
+                           <span><asp:Literal Text=" <%$ Resources:Labels,WaitingTasks%>" runat="server"></asp:Literal> </span>
+                        </div>
+                            <asp:GridView ID="gv_approve" runat="server"  CssClass="specialist-gridview col-md-12"  
                                 AutoGenerateColumns="False"  Width="90%" 
+                               OnRowDataBound="gv_approve_RowDataBound" 
+                             style="margin-top:0px;"
                                 class="table table-bordered table-condensed table-responsive table-hover ">
                                 <Columns>
 
@@ -236,15 +298,6 @@
                                          </ItemTemplate> 
                                        </asp:TemplateField>
 
-                                    
-                                       <%-- <asp:TemplateField HeaderText="<%$ Resources:Labels,employee%>" ItemStyle-Width="20%">
-                                         <ItemTemplate>
-                                                 <asp:Label ID="LblDemployee" runat="server" 
-                                                 Text='<%# Eval("EmployeeName") %>' />                              
-                                         </ItemTemplate>
-                                        </asp:TemplateField>--%>
-                                
-                                              
                                           
                                 <asp:TemplateField HeaderText="<%$ Resources:Labels,Task%>" ItemStyle-Width="25%">
                                          <ItemTemplate>
@@ -267,24 +320,158 @@
                                                  Text='<%# Eval("RepeatedEvery") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>   
-
-                                 
-
-                                    <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-edit">
-                                          <ItemTemplate>                     
-                                                     <asp:LinkButton ID="LinkProducts" runat="server" myCustomID='<%# Eval("TaskID")%>'  CssClass="td-edit">
-                                                         <asp:Image ImageUrl="~/Images/edit.ico" runat="server" Width="20px" Height="20px" />
-                                                     </asp:LinkButton>  
+                                      <asp:TemplateField HeaderText="<%$ Resources:Labels,AddedBy%>">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblLoc" runat="server" 
+                                                 Text='<%# Eval("AddedBy") %>' />                              
+                                         </ItemTemplate>
+                                   </asp:TemplateField>   
+                                  <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-approve">
+                                           <ItemTemplate>                     
+                                                <asp:LinkButton ID="approveTask" runat="server" myCustomID='<%# Eval("TaskID")%>'  CssClass="td-approve">
+                                                    <asp:Image ImageUrl="~/images/accept_document.png" runat="server" ToolTip="<%$ Resources:Labels,Approve%>" Width="20px" Height="20px" />
+                                                </asp:LinkButton>  
                                              </ItemTemplate>
                                         </asp:TemplateField>
+                                     <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-reject">
+                                          <ItemTemplate>                     
+                                                <asp:LinkButton ID="rejectTask" runat="server" myCustomID='<%# Eval("TaskID")%>'  CssClass="td-edit">
+                                                    <asp:Image ImageUrl="~/images/reject_document.png" runat="server" ToolTip="<%$ Resources:Labels,Reject%>" Width="20px" Height="20px" />
+                                                </asp:LinkButton>  
+                                             </ItemTemplate>
+                                        </asp:TemplateField>
+                                    <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-edit">
+                                          <ItemTemplate>                     
+                                                <asp:LinkButton ID="editTask" runat="server" myCustomID='<%# Eval("TaskID")%>'  CssClass="td-edit">
+                                                    <asp:Image ImageUrl="~/Images/edit.ico" runat="server" ToolTip="<%$ Resources:Labels,Edit%>" Width="20px" Height="20px" />
+                                                </asp:LinkButton>  
+                                             </ItemTemplate>
+                                        </asp:TemplateField>
+                                   
                                    <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-delete">
                                              <ItemTemplate>                     
-                                                     <asp:ImageButton  CommandArgument='<%# Eval("TaskID")%>' OnCommand="deletedatafromgrid"
-                                                            OnClientClick="return confirm(<%= Resources.Labels.ConfirmDelete %>);return false;"
-                                                            ID="Image1" runat="server" ImageUrl="~/Images/delete.ico" />
+                                                <asp:ImageButton  CommandArgument='<%# Eval("TaskID")%>' OnCommand="deletedatafromgrid"
+                                                    OnClientClick="return confirm(<%= Resources.Labels.ConfirmDelete %>);return false;"
+                                                    ID="Image1" runat="server" ImageUrl="~/Images/delete.ico" ToolTip="<%$ Resources:Labels,Delete%>"/>
                                                              
                                              </ItemTemplate>
                                     </asp:TemplateField> 
+                                   
+                                </Columns>
+                                <EditRowStyle BackColor="#009999" VerticalAlign="Middle" />
+                            </asp:GridView>
+                            <!---- executed tasks -->
+                        <div class="row">&nbsp;</div>
+                        <div class="row gridView-title" id="gv_executed_title" runat="server">                       
+                           <span><asp:Literal Text=" <%$ Resources:Labels,ExecutedTasks%>" runat="server"></asp:Literal> </span>
+                        </div>
+                            <asp:GridView ID="gv_executed" runat="server"  CssClass="gridView col-md-12"  
+                                AutoGenerateColumns="False"  Width="90%" 
+
+                             style="margin-top:0px;"
+                                class="table table-bordered table-condensed table-responsive table-hover ">
+                                <Columns>
+
+                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,Sequence%>" ItemStyle-Width="5%">
+                                         <ItemTemplate>
+                                                 <%#Container.DataItemIndex+1 %>                            
+                                         </ItemTemplate> 
+                                       </asp:TemplateField>
+
+                                          
+                                <asp:TemplateField HeaderText="<%$ Resources:Labels,Task%>" ItemStyle-Width="25%">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblName" runat="server" 
+                                                 Text='<%# Eval("Name") %>' />                              
+                                         </ItemTemplate>
+                                        </asp:TemplateField>
+                                
+                                        <asp:TemplateField HeaderText="<%$ Resources:Labels,Description%>" ItemStyle-Width="25%">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblDescription" runat="server" 
+                                                 Text='<%# Eval("Description") %>' />                              
+                                         </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                  
+                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,RepeatedEvery%>" ItemStyle-Width="15%">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblDrepeatedEvery" runat="server" 
+                                                 Text='<%# Eval("RepeatedEvery") %>' />                              
+                                         </ItemTemplate>
+                                   </asp:TemplateField>   
+                                      <asp:TemplateField HeaderText="<%$ Resources:Labels,AddedBy%>">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblLoc" runat="server" 
+                                                 Text='<%# Eval("AddedBy") %>' />                              
+                                         </ItemTemplate>
+                                   </asp:TemplateField>   
+                                  <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-finish">
+                                           <ItemTemplate>                     
+                                                <asp:LinkButton ID="approveTask" runat="server" myCustomID='<%# Eval("TaskID")%>'  CssClass="td-approve">
+                                                    <asp:Image ImageUrl="~/images/accept_document.png" runat="server" ToolTip="<%$ Resources:Labels,Finish%>" Width="20px" Height="20px" />
+                                                </asp:LinkButton>  
+                                             </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                   
+                                </Columns>
+                                <EditRowStyle BackColor="#009999" VerticalAlign="Middle" />
+                            </asp:GridView>
+                        <!---- my tasks -->
+                        <div class="row">&nbsp;</div>
+                        <div class="row gridView-title" id="gv_myTasks_title" runat="server">                       
+                           <span><asp:Literal Text=" <%$ Resources:Labels,MyTasks%>" runat="server"></asp:Literal> </span>
+                        </div>
+                            <asp:GridView ID="gv_myTasks" runat="server"  CssClass="gridView col-md-12"  
+                                AutoGenerateColumns="False"  Width="90%" 
+
+                             style="margin-top:0px;"
+                                class="table table-bordered table-condensed table-responsive table-hover ">
+                                <Columns>
+
+                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,Sequence%>" ItemStyle-Width="5%">
+                                         <ItemTemplate>
+                                                 <%#Container.DataItemIndex+1 %>                            
+                                         </ItemTemplate> 
+                                       </asp:TemplateField>
+
+                                          
+                                <asp:TemplateField HeaderText="<%$ Resources:Labels,Task%>" ItemStyle-Width="25%">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblName" runat="server" 
+                                                 Text='<%# Eval("Name") %>' />                              
+                                         </ItemTemplate>
+                                        </asp:TemplateField>
+                                
+                                        <asp:TemplateField HeaderText="<%$ Resources:Labels,Description%>" ItemStyle-Width="25%">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblDescription" runat="server" 
+                                                 Text='<%# Eval("Description") %>' />                              
+                                         </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                  
+                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,RepeatedEvery%>" ItemStyle-Width="15%">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblDrepeatedEvery" runat="server" 
+                                                 Text='<%# Eval("RepeatedEvery") %>' />                              
+                                         </ItemTemplate>
+                                   </asp:TemplateField>   
+                                      <asp:TemplateField HeaderText="<%$ Resources:Labels,AddedBy%>">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblLoc" runat="server" 
+                                                 Text='<%# Eval("AddedBy") %>' />                              
+                                         </ItemTemplate>
+                                   </asp:TemplateField>   
+                                  <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-finishMyTask">
+                                           <ItemTemplate>                     
+                                                <asp:LinkButton ID="approveTask" runat="server" myCustomID='<%# Eval("TaskID")%>'  CssClass="td-approve">
+                                                    <asp:Image ImageUrl="~/images/accept_document.png" runat="server" ToolTip="<%$ Resources:Labels,Finish%>" Width="20px" Height="20px" />
+                                                </asp:LinkButton>  
+                                             </ItemTemplate>
+                                        </asp:TemplateField>
+
                                    
                                 </Columns>
                                 <EditRowStyle BackColor="#009999" VerticalAlign="Middle" />

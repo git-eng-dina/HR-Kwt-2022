@@ -13,7 +13,7 @@
 
             $('.td-approve').click(function () {
                 var customID = $(this).attr('myCustomID');
-                if (confirm("are you sure?")) {
+                if (confirm("<%= Resources.Labels.AreYouSure%>")) {
 
                     var parameter = {
                         employeeID: customID,

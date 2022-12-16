@@ -1,6 +1,8 @@
 ﻿using Human_Resource.App_Code;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
@@ -31,16 +33,39 @@ namespace Human_Resource.Views.ExecutiveProc
         }
         private void BindData(string textSearch = "")
         {
-            TaskModel dept = new TaskModel();
+            TaskModel taskModel = new TaskModel();
+            int userId = int.Parse(Session["user_id"].ToString());
+            List<TaskModel> needApprove = new List<TaskModel>();
+            List<TaskModel> executedTasks = new List<TaskModel>();
+            if (Session["urole"] != null )
+            {
+                string role = Session["urole"].ToString();
+                if (role == "GeneralDirector" || role == "CEO")
+                {
 
-            var depts = dept.getActivity();
+                }
+                else if (role == "Supervisor" )
+                {
+                    needApprove = taskModel.getNeedApproveForSupervisor(userId);
+                    gv_approve.DataSource = needApprove;
+
+                    executedTasks = taskModel.getExcutedForSupervisor(userId);
+                    gv_executed.DataSource = executedTasks;
+                }
+                else if (role == "ManagementManager"  )
+                {
+                    needApprove = taskModel.getNeedApproveForManagement(userId);
+                    gv_approve.DataSource = needApprove;
+                }
+            }
+                var depts = taskModel.getActivity();
             if (textSearch != "")
                 depts = depts.Where(x => x.RepeatedEvery.ToLower().Contains(textSearch.ToLower())
                                 || x.Name.Contains(textSearch)
                                 || x.Description.Contains(textSearch)
                                  || x.EmployeeName.ToLower().Contains(textSearch.ToLower())
                                  ).ToList();
-            gv_data.DataSource = depts;
+           // gv_data.DataSource = depts;
 
 
             dept_repeatedEvery.DataSource = GetData.repeatTypeList;
@@ -146,6 +171,73 @@ namespace Human_Resource.Views.ExecutiveProc
             }
             catch (Exception ex)
             {
+            }
+        }
+
+        [WebMethod(EnableSession = true)]
+        public static string ApproveTask(string TaskID , string userID)
+        {
+            try
+            {
+                TaskModel confirm = new TaskModel();
+                confirm.EditApprove(int.Parse(TaskID),true,int.Parse(userID));
+
+                return "1";
+            }
+            catch
+            {
+                return "0";
+
+            }
+
+        }
+
+        [WebMethod(EnableSession = true)]
+        public static string RejectTask(string TaskID , string userID)
+        {
+            try
+            {
+                TaskModel confirm = new TaskModel();
+                confirm.EditApprove(int.Parse(TaskID),false,int.Parse(userID));
+
+                return "1";
+            }
+            catch
+            {
+                return "0";
+
+            }
+
+        }
+
+        protected void gv_approve_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                var rowView =(TaskModel) e.Row.DataItem;
+                if (rowView != null)
+                {
+                    var approved = rowView.Approved;
+                    if (approved == true)
+                    {
+                        LinkButton imgBtn = (LinkButton)e.Row.FindControl("approveTask");
+                        imgBtn.Visible = false;
+
+                        e.Row.CssClass = "acceptedRow";
+                        //e.Row.BackColor = System.Drawing.ColorTranslator.FromHtml("#5fbf00");
+                    }
+                    else if(approved == false)
+                    {
+                        LinkButton imgBtn = (LinkButton)e.Row.FindControl("rejectTask");
+                        imgBtn.Visible = false;
+                        e.Row.CssClass = "rejectedRow";
+                        //e.Row.BackColor = System.Drawing.ColorTranslator.FromHtml("#5fbf00");
+
+                    }
+                    else
+                        e.Row.CssClass = "normalRow";
+                }
             }
         }
     }
