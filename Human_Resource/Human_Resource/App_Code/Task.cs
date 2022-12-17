@@ -69,6 +69,7 @@ namespace Human_Resource.App_Code
             using (HRSystemEntities entity = new HRSystemEntities())
             {
                 var tasks = entity.tasks.Where(x => x.IsActive == true &&
+                (x.EndDate == null || x.EndDate >= DateTime.Now) &&
             ( ( x.StartDate >= DateTime.Now && entity.employees.Where(e => e.managements.branches.ManagerID == managerId).Select(e => e.EmployeeID).ToList().Contains((int)x.EmployeeID))
               // ((entity.employees.Where(e => e.managements.branches.ManagerID == managerId).Select(e => e.EmployeeID).ToList().Contains((int)x.EmployeeID))
                 || x.EmployeeID == managerId))
@@ -101,6 +102,7 @@ namespace Human_Resource.App_Code
             using (HRSystemEntities entity = new HRSystemEntities())
             {
                 var tasks =(from x in entity.tasks.Where(ex => ex.IsActive == true && ex.Approved== true
+                            && ex.StartDate >= DateTime.Now
                && entity.employees.Where(ee => ee.managements.branches.ManagerID == managerId).Select(ee => ee.EmployeeID).ToList().Contains((int)ex.EmployeeID))
                             join e in entity.employeesTasks.Where(em => em.IsActive == true) on x.TaskID equals e.TaskID
                         
@@ -126,14 +128,31 @@ namespace Human_Resource.App_Code
 
                 foreach(var t in tasks)
                 {
-                    var done = entity.dailyTasks.Where(x => x.TaskID == t.TaskID && x.EmployeeID == t.AssignedEmployeeID && x.EmpDone == true).FirstOrDefault();
-                    if(done != null && done.BossDone == null)
+                    dailyTasks done = new dailyTasks();
+                    switch (t.RepeatedEvery)
+                    {
+                        case "Daily":
+                            done = entity.dailyTasks.Where(x => x.TaskID == t.TaskID && x.CreateDate == DateTime.Now &&
+                                              x.EmployeeID == t.AssignedEmployeeID && x.EmpDone == true).FirstOrDefault();
+                            break;
+                        case "Weekly":
+                            done = entity.dailyTasks.Where(x => x.TaskID == t.TaskID && x.CreateDate == DateTime.Now &&
+                                             x.EmployeeID == t.AssignedEmployeeID && x.EmpDone == true).FirstOrDefault();
+                            break;
+                        case "Monthly":
+                            break;
+                        case "Annual":
+                            break;
+                    };
+                  
+                    if(done != null )
                     {
                         t.DailyTaskID = done.DailyTaskID;
-                        result.Add(t);
+                        t.EmpDone = done.EmpDone;
+                        t.PossDone = done.BossDone;
                     }
                 }
-                return result;
+                return tasks;
             }
         }
         public List<TaskModel> getNeedApproveForManagement(int managerId)
@@ -194,7 +213,7 @@ namespace Human_Resource.App_Code
             }
         }
 
-        public int SaveDept(TaskModel dept, string empIds)
+        public int SaveTask(TaskModel tsk, string empIds)
         {
             try
             {
@@ -202,17 +221,19 @@ namespace Human_Resource.App_Code
 
                 using (HRSystemEntities entity = new HRSystemEntities())
                 {
-                    if (dept.TaskID.Equals(0))
+                    if (tsk.TaskID.Equals(0))
                     {
                         task = new tasks()
                         {
-                            RepeatedEvery = dept.RepeatedEvery,
-                            EmployeeID = dept.EmployeeID,
-                            Name = dept.Name,
-                            Description = dept.Description,
+                            RepeatedEvery = tsk.RepeatedEvery,
+                            EmployeeID = tsk.EmployeeID,
+                            Name = tsk.Name,
+                            Description = tsk.Description,
+                            StartDate = tsk.StartDate,
+                            EndDate = tsk.EndDate,
                              IsActive = true,
-                            CreateUserID = dept.CreateUserID,
-                            UpdateUserID = dept.UpdateUserID,
+                            CreateUserID = tsk.CreateUserID,
+                            UpdateUserID = tsk.UpdateUserID,
                             CreateDate = DateTime.Now,
                             UpdateDate = DateTime.Now,
                         };
@@ -220,14 +241,14 @@ namespace Human_Resource.App_Code
                     }
                     else
                     {
-                        task = entity.tasks.Find(dept.TaskID);
-                        task.RepeatedEvery = dept.RepeatedEvery;
-                        task.EmployeeID = dept.EmployeeID;
-                        task.Name = dept.Name;
-                        task.Description = dept.Description;
-                         task.Notes = dept.Notes;
+                        task = entity.tasks.Find(tsk.TaskID);
+                        task.RepeatedEvery = tsk.RepeatedEvery;
+                        task.EmployeeID = tsk.EmployeeID;
+                        task.Name = tsk.Name;
+                        task.Description = tsk.Description;
+                         task.Notes = tsk.Notes;
                         task.IsActive = true;
-                        task.UpdateUserID = dept.UpdateUserID;
+                        task.UpdateUserID = tsk.UpdateUserID;
                         task.UpdateDate = DateTime.Now;
                     }
                     entity.SaveChanges();
@@ -253,8 +274,8 @@ namespace Human_Resource.App_Code
                             employeesTasks.TaskID = task.TaskID;
                             employeesTasks.EmployeeID = int.Parse(item);
                             employeesTasks.IsActive = true;
-                            employeesTasks.CreateUserID = dept.CreateUserID;
-                            employeesTasks.UpdateUserID = dept.UpdateUserID;
+                            employeesTasks.CreateUserID = tsk.CreateUserID;
+                            employeesTasks.UpdateUserID = tsk.UpdateUserID;
                             employeesTasks.CreateDate = DateTime.Now;
                             employeesTasks.UpdateDate = DateTime.Now;
 

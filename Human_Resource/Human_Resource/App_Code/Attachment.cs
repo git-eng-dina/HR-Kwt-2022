@@ -13,6 +13,7 @@ namespace Human_Resource.App_Code
         public string docnum { get; set; }
         public string image { get; set; }
         public Nullable<int> EmployeeID { get; set; }
+        public Nullable<int> TaskID { get; set; }
         public Nullable<int> MessageID { get; set; }
         #endregion
 
@@ -32,6 +33,7 @@ namespace Human_Resource.App_Code
                             docName = attach.docName,
                             docnum = attach.docnum,
                             EmployeeID = attach.EmployeeID,
+                            TaskID = attach.TaskID,
                             MessageID = attach.MessageID,
                             
                         };
@@ -60,6 +62,16 @@ namespace Human_Resource.App_Code
             using (HRSystemEntities entity = new HRSystemEntities())
             {
                 var attach = entity.Images.Where(x => x.EmployeeID == empID && x.MessageID == null).ToList();
+                entity.Images.RemoveRange(attach);
+                entity.SaveChanges();
+            }
+        }
+
+        public void DeleteTaskAttach(int taskId)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var attach = entity.Images.Where(x => x.TaskID == taskId && x.MessageID == null).ToList();
                 entity.Images.RemoveRange(attach);
                 entity.SaveChanges();
             }
