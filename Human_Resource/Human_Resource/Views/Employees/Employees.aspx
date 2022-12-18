@@ -12,6 +12,7 @@
             });
 
             $('.td-approve').click(function () {
+
                 var customID = $(this).attr('myCustomID');
                 if (confirm("<%= Resources.Labels.AreYouSure%>")) {
 
@@ -40,6 +41,11 @@
                 return false;
             });
 
+            $('.td-attendance').click(function () {
+                var customID = $(this).attr('myCustomID');
+                window.location = "../Attendance/WorkShifts.aspx?empID=" + customID;
+                return false;
+            });
         });
 
         function NewEmployee() {
@@ -93,49 +99,49 @@
                                        </asp:TemplateField>
                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,NameAR%>">
                                          <ItemTemplate>
-                                                 <asp:Label ID="LblDno" runat="server" 
+                                                 <asp:Label ID="NameAr1" runat="server" 
                                                  Text='<%# Eval("NameAr") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField> 
                                     <asp:TemplateField HeaderText="<%$ Resources:Labels,NameEN%>">
                                          <ItemTemplate>
-                                                 <asp:Label ID="LblDno" runat="server" 
+                                                 <asp:Label ID="NameEn1" runat="server" 
                                                  Text='<%# Eval("NameEn") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField> 
                                       <asp:TemplateField HeaderText="<%$ Resources:Labels,Age%>">
                                          <ItemTemplate>
-                                                 <asp:Label ID="LblDname" runat="server" 
+                                                 <asp:Label ID="Age1" runat="server" 
                                                  Text='<%# Eval("Age") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField> 
                                     <asp:TemplateField HeaderText="<%$ Resources:Labels,Position%>">
                                          <ItemTemplate>
-                                                 <asp:Label ID="LblDno" runat="server" 
+                                                 <asp:Label ID="Position1" runat="server" 
                                                  Text='<%# Eval("Position") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>             
                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,Management%>">
                                          <ItemTemplate>
-                                                 <asp:Label ID="LblDno" runat="server" 
+                                                 <asp:Label ID="ManagementName1" runat="server" 
                                                  Text='<%# Eval("ManagementName") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField> 
                                     <asp:TemplateField HeaderText="<%$ Resources:Labels,Department%>">
                                          <ItemTemplate>
-                                                 <asp:Label ID="LblDno" runat="server" 
+                                                 <asp:Label ID="DepartmentName1" runat="server" 
                                                  Text='<%# Eval("DepartmentName") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField> 
                                     <asp:TemplateField HeaderText="<%$ Resources:Labels,CurrentSalary%>">
                                          <ItemTemplate>
-                                                 <asp:Label ID="LblDname" runat="server" 
+                                                 <asp:Label ID="BasicSalary1" runat="server" 
                                                  Text='<%# Eval("BasicSalary") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>
                                            <asp:TemplateField HeaderText="<%$ Resources:Labels,AddedBy%>">
                                          <ItemTemplate>
-                                                 <asp:Label ID="LblLoc" runat="server" 
+                                                 <asp:Label ID="AddedBy1" runat="server" 
                                                  Text='<%# Eval("AddedBy") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>                          
@@ -184,54 +190,61 @@
                                        </asp:TemplateField>
                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,NameAR%>" >
                                          <ItemTemplate>
-                                                 <asp:Label ID="LblDno" runat="server" 
+                                                 <asp:Label ID="NameAr2" runat="server" 
                                                  Text='<%# Eval("NameAr") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField> 
                                     <asp:TemplateField HeaderText="<%$ Resources:Labels,NameEN%>" >
                                          <ItemTemplate>
-                                                 <asp:Label ID="LblDno" runat="server" 
+                                                 <asp:Label ID="NameEn2" runat="server" 
                                                  Text='<%# Eval("NameEn") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField> 
                                      <asp:TemplateField HeaderText="<%$ Resources:Labels,Age%>">
                                          <ItemTemplate>
-                                                 <asp:Label ID="LblDname" runat="server" 
+                                                 <asp:Label ID="Age2" runat="server" 
                                                  Text='<%# Eval("Age") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>
                                     <asp:TemplateField HeaderText="<%$ Resources:Labels,Position%>">
                                          <ItemTemplate>
-                                                 <asp:Label ID="LblDno" runat="server" 
+                                                 <asp:Label ID="Position2" runat="server" 
                                                  Text='<%# Eval("Position") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>  
                                     <asp:TemplateField HeaderText="<%$ Resources:Labels,Management%>">
                                          <ItemTemplate>
-                                                 <asp:Label ID="LblDno" runat="server" 
+                                                 <asp:Label ID="ManagementName2" runat="server" 
                                                  Text='<%# Eval("ManagementName") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>             
                                      <asp:TemplateField HeaderText="<%$ Resources:Labels,Department%>">
                                          <ItemTemplate>
-                                                 <asp:Label ID="LblDno" runat="server" 
+                                                 <asp:Label ID="DepartmentName2" runat="server" 
                                                  Text='<%# Eval("DepartmentName") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>             
                                    
                                     <asp:TemplateField HeaderText="<%$ Resources:Labels,CurrentSalary%>">
                                          <ItemTemplate>
-                                                 <asp:Label ID="LblDname" runat="server" 
+                                                 <asp:Label ID="BasicSalary2" runat="server" 
                                                  Text='<%# Eval("BasicSalary") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>
                                            <asp:TemplateField HeaderText="<%$ Resources:Labels,AddedBy%>">
                                          <ItemTemplate>
-                                                 <asp:Label ID="LblLoc" runat="server" 
+                                                 <asp:Label ID="AddedBy2" runat="server" 
                                                  Text='<%# Eval("AddedBy") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>                          
-                                   <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-edit">
+                                   <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-attendance">
+                                           <ItemTemplate>                     
+                                                     <asp:LinkButton ID="LinkAttendance" runat="server" myCustomID='<%# Eval("EmployeeID")%>'  CssClass="td-attendance">
+                                                         <asp:Image ImageUrl="~/images/attendance-icon.png" runat="server" Width="20px" Height="20px" ToolTip="<%$ Resources:Labels,WorkShifts%>"/>
+                                                     </asp:LinkButton>  
+                                             </ItemTemplate>
+                                        </asp:TemplateField>   
+                                    <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-edit">
                                            <ItemTemplate>                     
                                                      <asp:LinkButton ID="LinkProducts" runat="server" myCustomID='<%# Eval("EmployeeID")%>'  CssClass="td-edit">
                                                          <asp:Image ImageUrl="~/Images/edit.ico" runat="server" Width="20px" Height="20px" />

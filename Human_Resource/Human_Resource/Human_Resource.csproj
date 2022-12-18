@@ -161,6 +161,7 @@
     <Content Include="Content\en\fonts\Montserrat-Regular.ttf" />
     <Content Include="images\accept_document.png" />
     <Content Include="images\ar.png" />
+    <Content Include="images\attendance-icon.png" />
     <Content Include="images\check.ico" />
     <Content Include="images\Delete.ico" />
     <Content Include="images\download %281%29.png" />
