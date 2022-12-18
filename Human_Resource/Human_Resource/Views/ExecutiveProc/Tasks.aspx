@@ -1,12 +1,28 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Tasks.aspx.cs" Inherits="Human_Resource.Views.ExecutiveProc.Tasks" EnableEventValidation="true"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
  
 <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
 
+   <style>
+       #ui-datepicker-div{
+           z-index:10000 !important;
+       }
+   </style>
     <script>
 
         $(document).ready(function () {
+            $(".hasdatepicker").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                format: "dd/MM/yyyy",
+            });
+
+            $('#uploadTrigger_1').click(function (e) {
+                e.preventDefault();
+                $('#MainContent_file').trigger('click');
+            });
 
             $myWindow = $('#dialog');
 
@@ -20,7 +36,7 @@
                 autoOpen: false,
                 draggable: true,
                 overlay: { opacity: 0.5, background: 'black' },
-
+               
             });
 
             $('.td-edit').click(function () {
@@ -118,6 +134,12 @@
 
         });
 
+        function displayTimeInput(RepeatedEvery) {
+            if (RepeatedEvery != "") {
+                $("#MainContent_dp_end").prop('disabled', true);
+            }
+            else { $("#MainContent_dp_end").prop('disabled', false); }
+        }
         //function to close dialog, probably called by a button in the dialog
         function closeDialog() {
             $("#dialog").dialog("close");
@@ -196,44 +218,86 @@
             });
         }
 
-        function saveTask() {
-            var id = $('#MainContent_hid_taskId').val();
-            //var emp = $("#MainContent_emp").find(":selected").val();
-            var name = $("#MainContent_txt_name").val();
-            var description = $("#MainContent_txt_description").val();
-            var repeatedEvery = $("#MainContent_dept_repeatedEvery").find(":selected").val();
+        function removeValidation(input) {
+            if ($(input).attr("class") == "form-control is-invalid") {
 
+                $(input).attr("class", "form-control");
+
+            }
+        }
+        function checkValidation() {
+            var valid = true;
+            if ($('#MainContent_txt_name').val() == "" || $('#MainContent_txt_name').val() == null) {
+                $('#MainContent_txt_name').attr("class", "form-control is-invalid");
+                valid = false;
+            }
+            if ($('#MainContent_txt_description').val() == "" || $('#MainContent_txt_description').val() == null) {
+                $('#MainContent_txt_description').attr("class", "form-control is-invalid");
+                valid = false;
+            }
+            if ($('#MainContent_dp_start').val() == "" || $('#MainContent_dp_start').val() == null) {
+                $('#MainContent_dp_start').attr("class", "form-control is-invalid");
+                valid = false;
+            }
             var empIdsStr = "";
             var inputs = $('ul li input');
             inputs.each(function (e) {
                 empIdsStr = empIdsStr + $(this).val() + ',';
             });
+            if (empIdsStr == "") {
+                $('#MainContent_sel_employee').attr("class", "form-control is-invalid");
+                valid = false;
+            }
+
+            return valid;
+        }
+
+        function saveTask() {
+            var tmppath = document.getElementById("MainContent_file").files[0].name; 
+            alert(tmppath);
+            var valid = checkValidation();
+            if (valid) {
+                
+                var id = $('#MainContent_hid_taskId').val();
+                var name = $("#MainContent_txt_name").val();
+                var description = $("#MainContent_txt_description").val();
+                var repeatedEvery = $("#MainContent_dept_repeatedEvery").find(":selected").val();
+                var start = $("#MainContent_dp_start").val();
+                var end = $("#MainContent_dp_end").val();
+                var attachment = $("#MainContent_file").val();
+                var empIdsStr = "";
+                var inputs = $('ul li input');
+                inputs.each(function (e) {
+                    empIdsStr = empIdsStr + $(this).val() + ',';
+                });
 
 
-              var parameter = {
-                taskId: id,
-                 //employeeId: emp,
-                  name: name,
+                var parameter = {
+                    taskId: id,
+                    name: name,
                     description: description,
-                  repeatedEvery: repeatedEvery,
-                  empIds: empIdsStr,
+                    repeatedEvery: repeatedEvery,
+                    start: start,
+                    end: end,
+                    attachment: attachment ,
+                    empIds: empIdsStr,
 
-              };
-            $.ajax({
-                type: "POST",
-                url: "Tasks.aspx/SaveTask",
-                data: JSON.stringify(parameter),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (data) {
-                    window.top.location = "Tasks.aspx";
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "Tasks.aspx/SaveTask",
+                    data: JSON.stringify(parameter),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        window.top.location = "Tasks.aspx";
 
-                },
-                failure: function (response) {
-                    alert(response.d);
-                }
-            });
-
+                    },
+                    failure: function (response) {
+                        alert(response.d);
+                    }
+                });
+            }
         }
 
 
@@ -272,6 +336,7 @@
                 hid_input.attr("id", "hid_emp_" + empId);
                 hid_input.val(empId);
 
+                removeValidation($('#MainContent_sel_employee'));
                 return false;
             }
 
@@ -550,29 +615,50 @@
                      <div class ="row">
                      <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Task%>" /></span>
-                                <input type="text" class="form-control input-lg" id="txt_name"  runat="server" value=""  />
+                                <input type="text" class="form-control input-lg" id="txt_name"  runat="server" value="" onchange="removeValidation($(this));" />
+                          <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
+                          <a href=""  id="uploadTrigger_1"> <i class="fa fa-upload"></i></a>
                             </div>
                         </div> 
   
                    <div class ="row">
                      <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Description%>" /></span>
-                                <input type="text" class="form-control input-lg" id="txt_description"  runat="server" value=""  />
+                          <asp:FileUpload ID="file" runat="server" class="hidden" />
+                                <input type="text" class="form-control input-lg" id="txt_description"  runat="server" value="" onchange="removeValidation($(this));" />
+                          <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
                             </div>
                         </div> 
                     <div class ="row">
                      <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,RepeatedEvery%>" /></span>
                                 <input type="hidden"  id="hid_taskId" name="hid_taskId" runat="server" value=""  />
-                         <select runat="server" id="dept_repeatedEvery" name="dept_repeatedEvery" style="width:80%" class="form-control input-lg"/>
+                         <select runat="server" id="dept_repeatedEvery" name="dept_repeatedEvery" style="width:80%" class="form-control input-lg" onchange="displayTimeInput(this.value)"/>
                              </div>
                         </div>
+                       <div class ="row">
+                   <div class="form-group" style="display:block">
+                              <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Start%>" /></span>
+                            <asp:TextBox  ID="dp_start" runat="server" class="form-control input-lg hasdatepicker" onchange="removeValidation($(this));" ></asp:TextBox>
+                        <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
+                             </div>
+                        </div>
+                  
+                    <div class ="row">
+                   <div class="form-group" style="display:block">
+                              <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,End%>" /></span>
+                            <asp:TextBox  ID="dp_end" runat="server" class="form-control input-lg hasdatepicker" ></asp:TextBox>
+                              <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
+
+                   </div>
+                 </div>
                   
 
                         <div class ="row">
                      <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Employees%>" /></span>
                                  <select runat="server" id="sel_employee" name="sel_employee" style="width:70%" class="form-control input-lg" ></select>
+                          <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
                                   <button class="add-arrow-btn"  runat="server" onclick="addEmp()" id="Button1" >
                                    <i class="fas fa-arrow-alt-circle-down"></i>
                                 </button>

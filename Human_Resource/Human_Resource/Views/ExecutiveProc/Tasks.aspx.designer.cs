@@ -103,6 +103,15 @@ namespace Human_Resource.Views.ExecutiveProc {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txt_name;
         
         /// <summary>
+        /// file control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload file;
+        
+        /// <summary>
         /// txt_description control.
         /// </summary>
         /// <remarks>
@@ -128,6 +137,24 @@ namespace Human_Resource.Views.ExecutiveProc {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlSelect dept_repeatedEvery;
+        
+        /// <summary>
+        /// dp_start control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox dp_start;
+        
+        /// <summary>
+        /// dp_end control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox dp_end;
         
         /// <summary>
         /// sel_employee control.

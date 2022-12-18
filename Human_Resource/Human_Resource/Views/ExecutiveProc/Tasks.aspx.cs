@@ -3,11 +3,15 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using static Human_Resource.App_Code.GetData;
 
 namespace Human_Resource.Views.ExecutiveProc
 {
@@ -65,10 +69,12 @@ namespace Human_Resource.Views.ExecutiveProc
                                 || x.Description.Contains(textSearch)
                                  || x.EmployeeName.ToLower().Contains(textSearch.ToLower())
                                  ).ToList();
-           // gv_data.DataSource = depts;
+            // gv_data.DataSource = depts;
 
 
-            dept_repeatedEvery.DataSource = GetData.repeatTypeList;
+            var repeatedTypes = GetData.repeatTypeList.ToList();
+            repeatedTypes.Insert(0, new KeyValueString { key = "", value = "------" });
+            dept_repeatedEvery.DataSource = repeatedTypes;
             dept_repeatedEvery.DataValueField = "key";
             dept_repeatedEvery.DataTextField = "value";
 
@@ -92,40 +98,85 @@ namespace Human_Resource.Views.ExecutiveProc
             DataBind();
         }
         [WebMethod(EnableSession = true)]
-        //public static string SaveTask(string taskId, string employeeId, string name, string description, string repeatedEvery)
-        public static string SaveTask(string taskId,  string name, string description, string repeatedEvery, string empIds)
+        public static string SaveTask(string taskId,  string name, string description, string repeatedEvery,
+                                string start,string end,string attachment,string empIds)
         {
-            try
+            //try
             {
-                TaskModel dept = new TaskModel();
+                TaskModel taskObj = new TaskModel();
+                Attachment attach = new Attachment();
                 if (taskId != "")
-                    dept.TaskID = int.Parse(taskId);
-                else
-                    dept.TaskID = 0;
-                //dept.EmployeeID = int.Parse(employeeId);
-                dept.RepeatedEvery = repeatedEvery;
-                dept.Name = name;
-                dept.Description = description;
- 
-                if (HttpContext.Current.Session["user_id"] != null && HttpContext.Current.Session["user_id"].ToString() != "")
-                    dept.CreateUserID = dept.UpdateUserID = int.Parse(HttpContext.Current.Session["user_id"].ToString());
-
-
-                int deptId = dept.SaveTask(dept, empIds);
-                if (deptId != 0)
                 {
+                    attach.DeleteTaskAttach(int.Parse(taskId));
+                    taskObj.TaskID = int.Parse(taskId);
+                }
+                else
+                    taskObj.TaskID = 0;
+
+                taskObj.RepeatedEvery = repeatedEvery;
+                taskObj.Name = name;
+                taskObj.Description = description;
+                // taskObj.Attachment =
+
+                taskObj.StartDate = DateTime.ParseExact(start, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                if(end !="")
+                    taskObj.EndDate = DateTime.ParseExact(end, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                if (HttpContext.Current.Session["user_id"] != null && HttpContext.Current.Session["user_id"].ToString() != "")
+                    taskObj.CreateUserID = taskObj.UpdateUserID = taskObj.EmployeeID = int.Parse(HttpContext.Current.Session["user_id"].ToString());
+
+
+               int taskIdInt = taskObj.SaveTask(taskObj, empIds);
+                if (taskIdInt != 0)
+                {
+                    if(attachment != "")
+                        UploadFile(attachment, taskIdInt, "task");
                     return "1";
                 }
                 return "0";
             }
-            catch
-            {
-                return "0";
+            //catch
+            //{
+            //    return "0";
 
-            }
+            //}
 
         }
 
+
+        public static void UploadFile(string fileName, int taskId, string tag)
+        {
+            //save file in the specified folder and path
+            string extension = Path.GetExtension(fileName);
+            var newFileName = HelpClass.MD5Hash(taskId.ToString()) + "-" + tag + extension;
+            string FilePath = Path.Combine(HostingEnvironment.MapPath("~/Upload"), newFileName);
+
+            MemoryStream ms = new MemoryStream();
+            using (FileStream file = new FileStream(fileName, FileMode.Open, FileAccess.Read))
+                file.CopyTo(ms);
+
+            int length = 0;
+            using (FileStream writer = new FileStream(FilePath, FileMode.Create))
+            {
+                int readCount;
+                var buffer = new byte[8192];
+                while ((readCount = ms.Read(buffer, 0, buffer.Length)) != 0)
+                {
+                    writer.Write(buffer, 0, readCount);
+                    length += readCount;
+                }
+            }
+
+          
+
+            var attach = new Attachment()
+            {
+                docnum = newFileName,
+                docName = Path.GetFileNameWithoutExtension(fileName),
+                TaskID = taskId,
+            };
+            attach.SaveAttach(attach);
+
+        }
         [WebMethod]
         public static TaskModel GetTask(string ID)
         {
