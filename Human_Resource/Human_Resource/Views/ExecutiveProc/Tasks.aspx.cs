@@ -111,7 +111,7 @@ namespace Human_Resource.Views.ExecutiveProc
                     dept.CreateUserID = dept.UpdateUserID = int.Parse(HttpContext.Current.Session["user_id"].ToString());
 
 
-                int deptId = dept.SaveDept(dept, empIds);
+                int deptId = dept.SaveTask(dept, empIds);
                 if (deptId != 0)
                 {
                     return "1";
