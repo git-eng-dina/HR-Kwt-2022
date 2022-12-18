@@ -19,11 +19,12 @@ namespace Human_Resource.Views.ExecutiveProc
       {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (hid_opr.Value=="save")
             {
-                BindData();
-                btn_new.Attributes.Add("OnClick", "ShowDialog('');");
+                saveTask();
             }
+            BindData();
+            btn_new.Attributes.Add("OnClick", "ShowDialog('');");
         }
 
         protected void btn_Search_Click(object sender, EventArgs e)
@@ -74,9 +75,9 @@ namespace Human_Resource.Views.ExecutiveProc
 
             var repeatedTypes = GetData.repeatTypeList.ToList();
             repeatedTypes.Insert(0, new KeyValueString { key = "", value = "------" });
-            dept_repeatedEvery.DataSource = repeatedTypes;
-            dept_repeatedEvery.DataValueField = "key";
-            dept_repeatedEvery.DataTextField = "value";
+            sel_repeatedEvery.DataSource = repeatedTypes;
+            sel_repeatedEvery.DataValueField = "key";
+            sel_repeatedEvery.DataTextField = "value";
 
 
 
@@ -97,9 +98,53 @@ namespace Human_Resource.Views.ExecutiveProc
 
             DataBind();
         }
+        protected void saveTask()
+        {
+            //try
+            {
+                TaskModel taskObj = new TaskModel();
+                Attachment attach = new Attachment();
+                int taskId = 0;
+                if(hid_taskId.Value != "")
+                    taskId = int.Parse(hid_taskId.Value);
+                if (taskId != 0)
+                {
+                    attach.DeleteTaskAttach(taskId);
+                    taskObj.TaskID = taskId;
+                }
+                else
+                    taskObj.TaskID = 0;
+
+                taskObj.RepeatedEvery = sel_repeatedEvery.Value;
+                taskObj.Name = txt_name.Value;
+                taskObj.Description = txt_description.Value;
+                // taskObj.Attachment =
+
+                taskObj.StartDate = DateTime.ParseExact(dp_start.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                if (dp_end.Text != "")
+                    taskObj.EndDate = DateTime.ParseExact(dp_end.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                if (HttpContext.Current.Session["user_id"] != null && HttpContext.Current.Session["user_id"].ToString() != "")
+                    taskObj.CreateUserID = taskObj.UpdateUserID = taskObj.EmployeeID = int.Parse(HttpContext.Current.Session["user_id"].ToString());
+
+
+                int taskIdInt = taskObj.SaveTask(taskObj, hdn_empIds.Value);
+                if (taskIdInt != 0)
+                {
+                   if(file.FileName != "")
+                      UploadFile(file.FileName, taskIdInt, "task");
+                   // return "1";
+                }
+                //return "0";
+            }
+            //catch
+            //{
+            //    return "0";
+
+            //}
+        }
         [WebMethod(EnableSession = true)]
         public static string SaveTask(string taskId,  string name, string description, string repeatedEvery,
-                                string start,string end,string attachment,string empIds)
+                                string start,string end,string empIds, string postedFile1)
         {
             //try
             {
@@ -128,8 +173,8 @@ namespace Human_Resource.Views.ExecutiveProc
                int taskIdInt = taskObj.SaveTask(taskObj, empIds);
                 if (taskIdInt != 0)
                 {
-                    if(attachment != "")
-                        UploadFile(attachment, taskIdInt, "task");
+                  //  if(attachment != "")
+                     //   UploadFile(attachment, taskIdInt, "task");
                     return "1";
                 }
                 return "0";

@@ -130,13 +130,22 @@ namespace Human_Resource.Views.ExecutiveProc {
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden hid_taskId;
         
         /// <summary>
-        /// dept_repeatedEvery control.
+        /// hid_opr control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect dept_repeatedEvery;
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hid_opr;
+        
+        /// <summary>
+        /// sel_repeatedEvery control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect sel_repeatedEvery;
         
         /// <summary>
         /// dp_start control.
@@ -155,6 +164,15 @@ namespace Human_Resource.Views.ExecutiveProc {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox dp_end;
+        
+        /// <summary>
+        /// hdn_empIds control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdn_empIds;
         
         /// <summary>
         /// sel_employee control.
