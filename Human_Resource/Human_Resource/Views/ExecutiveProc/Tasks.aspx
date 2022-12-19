@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Tasks.aspx.cs" Inherits="Human_Resource.Views.ExecutiveProc.Tasks" EnableEventValidation="true"%>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Tasks.aspx.cs" Inherits="Human_Resource.Views.ExecutiveProc.Tasks" EnableEventValidation="false"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -18,6 +18,7 @@
                 changeYear: true,
                 format: "dd/MM/yyyy",
             });
+
 
             $('#uploadTrigger_1').click(function (e) {
                 e.preventDefault();
@@ -134,12 +135,6 @@
 
         });
 
-        function displayTimeInput(RepeatedEvery) {
-            if (RepeatedEvery != "") {
-                $("#MainContent_dp_end").prop('disabled', true);
-            }
-            else { $("#MainContent_dp_end").prop('disabled', false); }
-        }
         //function to close dialog, probably called by a button in the dialog
         function closeDialog() {
             $("MainContent_hid_taskId").val("");
@@ -149,7 +144,6 @@
             $('#MainContent_dp_start').val("");
             $('#MainContent_dp_end').val("");
             $("#MainContent_hdn_empIds").val("");
-            $("#MainContent_hid_opr").val("");
             $('#MainContent_lst_employee').empty();
             $("#dialog").dialog("close");
         }
@@ -253,6 +247,7 @@
             inputs.each(function (e) {
                 empIdsStr = empIdsStr + $(this).val() + ',';
             });
+            $("#MainContent_hdn_empIds").val(empIdsStr);
             if (empIdsStr == "") {
                 $('#MainContent_sel_employee').attr("class", "form-control is-invalid");
                 valid = false;
@@ -272,10 +267,11 @@
                 });
 
                 $("#MainContent_hdn_empIds").val(empIdsStr);
-                $("#MainContent_hid_opr").val("save");
                 alert();
-                $("#base_form").submit();
+                return true;
+                //$("#base_form").submit();
             }
+            return false;
                 //var formData = new FormData();
                 //formData.append("taskId", $("#MainContent_hid_taskId").val());
                 //formData.append("name", $("#MainContent_txt_name").val());
@@ -482,11 +478,11 @@
                             <!---- executed tasks -->
                         <div class="row">&nbsp;</div>
                         <div class="row gridView-title" id="gv_executed_title" runat="server">                       
-                           <span><asp:Literal Text=" <%$ Resources:Labels,ExecutedTasks%>" runat="server"></asp:Literal> </span>
+                           <span><asp:Literal Text=" <%$ Resources:Labels,CompletedTask%>" runat="server"></asp:Literal> </span>
                         </div>
                             <asp:GridView ID="gv_executed" runat="server"  CssClass="gridView col-md-12"  
                                 AutoGenerateColumns="False"  Width="90%" 
-
+                                  OnRowDataBound="gv_executed_RowDataBound" 
                              style="margin-top:0px;"
                                 class="table table-bordered table-condensed table-responsive table-hover ">
                                 <Columns>
@@ -513,10 +509,16 @@
                                         </asp:TemplateField>
 
                                   
-                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,RepeatedEvery%>" ItemStyle-Width="15%">
+                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,Start%>" ItemStyle-Width="15%">
                                          <ItemTemplate>
-                                                 <asp:Label ID="LblDrepeatedEvery" runat="server" 
-                                                 Text='<%# Eval("RepeatedEvery") %>' />                              
+                                                 <asp:Label ID="LblStart" runat="server" 
+                                                 Text='<%# Eval("StartDate") %>' />                              
+                                         </ItemTemplate>
+                                   </asp:TemplateField>    
+                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,End%>" ItemStyle-Width="15%">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblEnd" runat="server" 
+                                                 Text='<%# Eval("EndDate") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>   
                                       <asp:TemplateField HeaderText="<%$ Resources:Labels,TaskExecutor%>">
@@ -657,8 +659,7 @@
                      <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,RepeatedEvery%>" /></span>
                                 <input type="hidden"  id="hid_taskId" name="hid_taskId" runat="server" value=""  />
-                                <input type="hidden"  id="hid_opr" name="hid_opr" runat="server" value=""  />
-                         <select runat="server" id="sel_repeatedEvery" name="sel_repeatedEvery" style="width:80%" class="form-control input-lg" onchange="displayTimeInput(this.value)"/>
+                         <select runat="server" id="sel_repeatedEvery" name="sel_repeatedEvery" style="width:80%" class="form-control input-lg" />
                              </div>
                         </div>
                        <div class ="row">
@@ -695,9 +696,10 @@
                     </div>
                     
                 <div class="modal-footer">
-                    <button class="btn btn-new"  runat="server" onclick="saveTask()" id="btn_ads" >
-                        <asp:Literal  runat="server" Text=" <%$ Resources:Labels,Save%>" />
-                    </button>
+                    <asp:button class="btn btn-new"  runat="server" Text=" <%$ Resources:Labels,Save%>"
+                        UseSubmitBehavior="false" CausesValidation="False" OnClientClick="alert(checkValidation());if (!checkValidation()) return false;" OnClick="btn_ads_Click" id="btn_ads" >
+                     <%--   <asp:Literal  runat="server" Text=" <%$ Resources:Labels,Save%>" />--%>
+                    </asp:button>
  
 
                     </div>

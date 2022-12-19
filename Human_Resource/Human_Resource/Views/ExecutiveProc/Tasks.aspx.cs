@@ -19,10 +19,7 @@ namespace Human_Resource.Views.ExecutiveProc
       {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (hid_opr.Value=="save")
-            {
-                saveTask();
-            }
+
             BindData();
             btn_new.Attributes.Add("OnClick", "ShowDialog('');");
         }
@@ -98,50 +95,7 @@ namespace Human_Resource.Views.ExecutiveProc
 
             DataBind();
         }
-        protected void saveTask()
-        {
-            //try
-            {
-                TaskModel taskObj = new TaskModel();
-                Attachment attach = new Attachment();
-                int taskId = 0;
-                if(hid_taskId.Value != "")
-                    taskId = int.Parse(hid_taskId.Value);
-                if (taskId != 0)
-                {
-                    attach.DeleteTaskAttach(taskId);
-                    taskObj.TaskID = taskId;
-                }
-                else
-                    taskObj.TaskID = 0;
 
-                taskObj.RepeatedEvery = sel_repeatedEvery.Value;
-                taskObj.Name = txt_name.Value;
-                taskObj.Description = txt_description.Value;
-                // taskObj.Attachment =
-
-                taskObj.StartDate = DateTime.ParseExact(dp_start.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-                if (dp_end.Text != "")
-                    taskObj.EndDate = DateTime.ParseExact(dp_end.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-                if (HttpContext.Current.Session["user_id"] != null && HttpContext.Current.Session["user_id"].ToString() != "")
-                    taskObj.CreateUserID = taskObj.UpdateUserID = taskObj.EmployeeID = int.Parse(HttpContext.Current.Session["user_id"].ToString());
-
-
-                int taskIdInt = taskObj.SaveTask(taskObj, hdn_empIds.Value);
-                if (taskIdInt != 0)
-                {
-                   if(file.FileName != "")
-                      UploadFile(file.FileName, taskIdInt, "task");
-                   // return "1";
-                }
-                //return "0";
-            }
-            //catch
-            //{
-            //    return "0";
-
-            //}
-        }
         [WebMethod(EnableSession = true)]
         public static string SaveTask(string taskId,  string name, string description, string repeatedEvery,
                                 string start,string end,string empIds, string postedFile1)
@@ -253,7 +207,7 @@ namespace Human_Resource.Views.ExecutiveProc
                 if (Session["user_id"] != null && Session["user_id"].ToString() != "")
                     userId = dept.UpdateUserID = int.Parse(Session["user_id"].ToString());
 
-                if (dept.DeleteDept(Ref, userId))
+                if (dept.DeleteTask(Ref, userId))
                 {
 
                     Response.Write("<script>alert('" + Resources.Labels.DeleteSuccessfully + "')</script>");
@@ -359,6 +313,78 @@ namespace Human_Resource.Views.ExecutiveProc
                         e.Row.CssClass = "normalRow";
                 }
             }
+        }
+
+        protected void gv_executed_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                var rowView =(TaskModel) e.Row.DataItem;
+                if (rowView != null)
+                {
+                    var status = rowView.Status;
+                    if (status == "Doing")
+                    {
+                        LinkButton imgBtn = (LinkButton)e.Row.FindControl("finishTask");
+                        imgBtn.Visible = false;
+
+                        e.Row.CssClass = "acceptedRow";
+                    }
+                    else if(status == "Complete")
+                    {
+                        e.Row.CssClass = "rejectedRow";
+
+                    }
+                    else
+                        e.Row.CssClass = "normalRow";
+                }
+            }
+        }
+
+        protected void btn_ads_Click(object sender, EventArgs e)
+        {
+            //try
+            {
+                TaskModel taskObj = new TaskModel();
+                Attachment attach = new Attachment();
+                int taskId = 0;
+                if (hid_taskId.Value != "")
+                    taskId = int.Parse(hid_taskId.Value);
+                if (taskId != 0)
+                {
+                    attach.DeleteTaskAttach(taskId);
+                    taskObj.TaskID = taskId;
+                }
+                else
+                    taskObj.TaskID = 0;
+
+                taskObj.RepeatedEvery = sel_repeatedEvery.Value;
+                taskObj.Name = txt_name.Value;
+                taskObj.Description = txt_description.Value;
+                // taskObj.Attachment =
+
+                taskObj.StartDate = DateTime.ParseExact(dp_start.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                if (dp_end.Text != "")
+                    taskObj.EndDate = DateTime.ParseExact(dp_end.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                if (HttpContext.Current.Session["user_id"] != null && HttpContext.Current.Session["user_id"].ToString() != "")
+                    taskObj.CreateUserID = taskObj.UpdateUserID = taskObj.EmployeeID = int.Parse(HttpContext.Current.Session["user_id"].ToString());
+
+
+                int taskIdInt = taskObj.SaveTask(taskObj, hdn_empIds.Value);
+                if (taskIdInt != 0)
+                {
+                    if (file.FileName != "")
+                        UploadFile(file.FileName, taskIdInt, "task");
+                    // return "1";
+                }
+                //return "0";
+            }
+            //catch
+            //{
+            //    return "0";
+
+            //}
         }
     }
 }

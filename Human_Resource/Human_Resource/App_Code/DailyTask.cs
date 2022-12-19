@@ -13,8 +13,8 @@ namespace Human_Resource.App_Code
         public string EmployeeName { get; set; }
         public Nullable<int> TaskID { get; set; }
         public string TaskName { get; set; }
-        public bool EmpDone { get; set; }
-        public bool BossDone { get; set; }
+        public string Status { get; set; }
+
         public string Notes { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
@@ -32,8 +32,6 @@ namespace Human_Resource.App_Code
                                 .Select(x => new DailyTaskModel()
                                 {
                                     DailyTaskID = x.DailyTaskID,
-                                    EmpDone = x.EmpDone.Value,
-                                    BossDone = x.BossDone.Value,
                                     EmployeeID = x.EmployeeID,
                                     EmployeeName = entity.employees.Where(m => m.EmployeeID == x.EmployeeID).Select(m => m.NameAr).FirstOrDefault(),
                                     TaskID = x.TaskID,
@@ -55,8 +53,8 @@ namespace Human_Resource.App_Code
                                 .Select(x => new DailyTaskModel()
                                 {
                                     DailyTaskID = x.DailyTaskID,
-                                    EmpDone = x.EmpDone.Value,
-                                    BossDone = x.BossDone.Value,
+                                   // EmpDone = x.EmpDone.Value,
+                                   // BossDone = x.BossDone.Value,
                                     EmployeeID = x.EmployeeID,
                                     EmployeeName = entity.employees.Where(m => m.EmployeeID == x.EmployeeID).Select(m => m.NameAr).FirstOrDefault(),
                                     TaskID = x.TaskID,
@@ -86,8 +84,8 @@ namespace Human_Resource.App_Code
                             //Type = dept.Type,
                             EmployeeID = dept.EmployeeID,
                             TaskID = dept.TaskID,
-                            EmpDone = dept.EmpDone,
-                            BossDone = dept.BossDone,
+                            //EmpDone = dept.EmpDone,
+                           // BossDone = dept.BossDone,
                             IsActive = true,
                             CreateUserID = dept.CreateUserID,
                             UpdateUserID = dept.UpdateUserID,
@@ -102,8 +100,8 @@ namespace Human_Resource.App_Code
                         //dailyTask.Type = dept.Type;
                         dailyTask.EmployeeID = dept.EmployeeID;
                         dailyTask.TaskID = dept.TaskID;
-                        dailyTask.EmpDone = dept.EmpDone;
-                        dailyTask.BossDone = dept.BossDone;
+                       // dailyTask.EmpDone = dept.EmpDone;
+                       // dailyTask.BossDone = dept.BossDone;
                         dailyTask.Notes = dept.Notes;
                         dailyTask.IsActive = true;
                         dailyTask.UpdateUserID = dept.UpdateUserID;

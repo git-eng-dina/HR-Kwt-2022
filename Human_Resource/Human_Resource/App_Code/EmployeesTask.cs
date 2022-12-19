@@ -14,6 +14,7 @@ namespace Human_Resource.App_Code
         public Nullable<int> TaskID { get; set; }
         public string TaskName { get; set; }
         public string Notes { get; set; }
+        public bool BossDone { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public Nullable<int> CreateUserID { get; set; }

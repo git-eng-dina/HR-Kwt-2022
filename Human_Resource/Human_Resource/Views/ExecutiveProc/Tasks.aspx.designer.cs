@@ -130,15 +130,6 @@ namespace Human_Resource.Views.ExecutiveProc {
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden hid_taskId;
         
         /// <summary>
-        /// hid_opr control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hid_opr;
-        
-        /// <summary>
         /// sel_repeatedEvery control.
         /// </summary>
         /// <remarks>
@@ -208,6 +199,6 @@ namespace Human_Resource.Views.ExecutiveProc {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btn_ads;
+        protected global::System.Web.UI.WebControls.Button btn_ads;
     }
 }
