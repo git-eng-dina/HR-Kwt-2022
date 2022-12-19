@@ -33,6 +33,10 @@
 
         //function to close dialog, probably called by a button in the dialog
         function closeDialog() {
+            $('#MainContent_hid_salaryIncreaseId').val("");
+            $('#MainContent_dept_increaseType').val("");
+            $('#MainContent_txt_increaseValue').val("");
+            $('#MainContent_txt_name').val("");
             $("#dialog").dialog("close");
         }
 
@@ -57,7 +61,7 @@
                     for (var prop in data) {
                         var item = data[prop];
                         $('#MainContent_hid_salaryIncreaseId').val(item.SalaryIncreaseID);
-                         $('#MainContent_dept_increaseType').val(item.IncreaseType);
+                        $('#MainContent_dept_increaseType').val(item.IncreaseType);
                         $('#MainContent_txt_increaseValue').val(item.IncreaseValue);
                         $('#MainContent_txt_name').val(item.Name);
                      } 

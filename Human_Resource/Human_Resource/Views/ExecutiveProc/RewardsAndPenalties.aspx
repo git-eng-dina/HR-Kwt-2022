@@ -28,11 +28,16 @@
                 ShowDialogWithData(customID);
                 return false;
             });
-
+             
         });
 
         //function to close dialog, probably called by a button in the dialog
         function closeDialog() {
+            $('#MainContent_hid_rewardId').val("");
+            $('#MainContent_emp').val("");
+            $('#MainContent_txt_title').val("");
+            $('#MainContent_txt_description').val("");
+            $('#MainContent_txt_value').val("");
             $("#dialog").dialog("close");
         }
 

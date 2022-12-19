@@ -33,6 +33,10 @@
 
         //function to close dialog, probably called by a button in the dialog
         function closeDialog() {
+            $('#MainContent_hid_materialsConsumptionId').val("");
+            $('#MainContent_dept_type').val("");
+            $('#MainContent_txt_details').val("");
+            $('#MainContent_emp').val("");
             $("#dialog").dialog("close");
         }
 

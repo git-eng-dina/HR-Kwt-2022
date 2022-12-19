@@ -33,6 +33,10 @@
 
         //function to close dialog, probably called by a button in the dialog
         function closeDialog() {
+            $('#MainContent_hid_periodId').val("");
+            $('#MainContent_txt_name').val("");
+            $('#MainContent_startTime').val("");
+            $('#MainContent_endTime').val("");
             $("#dialog").dialog("close");
         }
 

@@ -30,9 +30,13 @@
             });
 
         });
-
+         
         //function to close dialog, probably called by a button in the dialog
         function closeDialog() {
+            $('#MainContent_hid_jobId').val("");
+            $('#MainContent_job_name').val("");
+            $('#MainContent_txt_mobile').val("");
+            $('#MainContent_emp').val("");
             $("#dialog").dialog("close");
         }
 

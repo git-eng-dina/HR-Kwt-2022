@@ -33,6 +33,11 @@
 
         //function to close dialog, probably called by a button in the dialog
         function closeDialog() {
+            $('#MainContent_hid_custodieId').val("");
+            $('#MainContent_emp').val("");
+            $('#MainContent_dept_type').val("");
+            $('#MainContent_txt_details').val("");
+            $('#MainContent_chk_isRecovery').prop('checked', false);
             $("#dialog").dialog("close");
         }
 

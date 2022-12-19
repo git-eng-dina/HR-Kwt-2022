@@ -27,8 +27,13 @@
 
         //function to close dialog, probably called by a button in the dialog
         function closeDialog() {
+            $('#MainContent_hid_rewardId').val("");
+            $('#MainContent_emp').val("");
+            $('#MainContent_txt_title').val("");
+            $('#MainContent_txt_description').val("");
+            $('#MainContent_txt_value').val("");
             $("#dialog").dialog("close");
-        }
+        } 
 
         function ShowDialog() {
 
@@ -52,7 +57,6 @@
                         var item = data[prop];
                         $('#MainContent_hid_rewardId').val(item.RewardID);
                         $('#MainContent_emp').val(item.EmployeeID);
-                        //$('#MainContent_dept_type').val(item.Type);
                         $('#MainContent_txt_title').val(item.Title);
                         $('#MainContent_txt_description').val(item.Description);
                         $('#MainContent_txt_value').val(item.Value);
