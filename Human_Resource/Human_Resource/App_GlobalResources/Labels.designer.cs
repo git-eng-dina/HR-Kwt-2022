@@ -574,6 +574,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Completed Task.
+        /// </summary>
+        internal static string CompletedTask {
+            get {
+                return ResourceManager.GetString("CompletedTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure to delete?.
         /// </summary>
         internal static string ConfirmDelete {

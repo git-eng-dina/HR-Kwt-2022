@@ -801,4 +801,7 @@
   <data name="TaskExecutor" xml:space="preserve">
     <value>منفذ المهمة</value>
   </data>
+  <data name="CompletedTask" xml:space="preserve">
+    <value>المهام المكتملة</value>
+  </data>
 </root>
