@@ -480,7 +480,7 @@
                         <div class="row gridView-title" id="gv_executed_title" runat="server">                       
                            <span><asp:Literal Text=" <%$ Resources:Labels,CompletedTask%>" runat="server"></asp:Literal> </span>
                         </div>
-                            <asp:GridView ID="gv_executed" runat="server"  CssClass="gridView col-md-12"  
+                            <asp:GridView ID="gv_executed" runat="server"  CssClass="specialist-gridview col-md-12"  
                                 AutoGenerateColumns="False"  Width="90%" 
                                   OnRowDataBound="gv_executed_RowDataBound" 
                              style="margin-top:0px;"
@@ -512,13 +512,12 @@
                                     <asp:TemplateField HeaderText="<%$ Resources:Labels,Start%>" ItemStyle-Width="15%">
                                          <ItemTemplate>
                                                  <asp:Label ID="LblStart" runat="server" 
-                                                 Text='<%# Eval("StartDate") %>' />                              
+                                                Text='<%# Bind("StartDate", "{0:MM-dd-yyyy}") %>'/>                              
                                          </ItemTemplate>
                                    </asp:TemplateField>    
                                     <asp:TemplateField HeaderText="<%$ Resources:Labels,End%>" ItemStyle-Width="15%">
                                          <ItemTemplate>
-                                                 <asp:Label ID="LblEnd" runat="server" 
-                                                 Text='<%# Eval("EndDate") %>' />                              
+                                                 <asp:Label ID="LblEnd" runat="server" Text='<%# Bind("EndDate", "{0:MM-dd-yyyy}") %>'/>                              
                                          </ItemTemplate>
                                    </asp:TemplateField>   
                                       <asp:TemplateField HeaderText="<%$ Resources:Labels,TaskExecutor%>">
@@ -534,7 +533,10 @@
                                          </ItemTemplate>
                                    </asp:TemplateField>   
                                   <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-finish">
-                                           <ItemTemplate>                     
+                                      <ItemTemplate>
+                                                 <asp:Label ID="LblStatus" runat="server" />                              
+                                         </ItemTemplate>     
+                                      <ItemTemplate>                     
                                                 <asp:LinkButton ID="finishTask" runat="server" myCustomID='<%# Eval("DailyTaskID")%>'  CssClass="td-approve">
                                                     <asp:Image ImageUrl="~/images/accept_document.png" runat="server" ToolTip="<%$ Resources:Labels,Finish%>" Width="20px" Height="20px" />
                                                 </asp:LinkButton>  

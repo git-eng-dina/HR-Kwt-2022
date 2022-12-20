@@ -323,17 +323,23 @@ namespace Human_Resource.Views.ExecutiveProc
                 var rowView =(TaskModel) e.Row.DataItem;
                 if (rowView != null)
                 {
+
                     var status = rowView.Status;
                     if (status == "Doing")
                     {
                         LinkButton imgBtn = (LinkButton)e.Row.FindControl("finishTask");
                         imgBtn.Visible = false;
 
-                        e.Row.CssClass = "acceptedRow";
+                        Label lbl = (Label)e.Row.FindControl("LblStatus");
+                        lbl.Text = Resources.Labels.Doing;
+                        e.Row.CssClass = "doingRow";
                     }
                     else if(status == "Complete")
                     {
-                        e.Row.CssClass = "rejectedRow";
+                        Label lbl = (Label)e.Row.FindControl("LblStatus");
+                        lbl.Visible = false;
+
+                        e.Row.CssClass = "acceptedRow";
 
                     }
                     else
