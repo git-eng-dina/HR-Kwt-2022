@@ -49,25 +49,43 @@ namespace Human_Resource.Views.ExecutiveProc
                 else if (role == "Supervisor" )
                 {
                     needApprove = taskModel.getNeedApproveForSupervisor(userId);
-                    gv_approve.DataSource = needApprove;
-
+                   
                     executedTasks = taskModel.getExcutedForSupervisor(userId);
-                    gv_executed.DataSource = executedTasks;
+                    
                 }
                 else if (role == "ManagementManager"  )
                 {
                     needApprove = taskModel.getNeedApproveForManagement(userId);
-                    gv_approve.DataSource = needApprove;
                 }
             }
-                var depts = taskModel.getActivity();
+
+
+            //for logged in employee
+            var myTasks = taskModel.getActivity(userId);
             if (textSearch != "")
-                depts = depts.Where(x => x.RepeatedEvery.ToLower().Contains(textSearch.ToLower())
+            {
+                needApprove = needApprove.Where(x => x.RepeatedEvery.ToLower().Contains(textSearch.ToLower())
                                 || x.Name.Contains(textSearch)
                                 || x.Description.Contains(textSearch)
                                  || x.EmployeeName.ToLower().Contains(textSearch.ToLower())
+                                 || x.AssignedEmployeeName.ToLower().Contains(textSearch.ToLower())
                                  ).ToList();
-            // gv_data.DataSource = depts;
+                 executedTasks = executedTasks.Where(x => x.RepeatedEvery.ToLower().Contains(textSearch.ToLower())
+                                || x.Name.Contains(textSearch)
+                                || x.Description.Contains(textSearch)
+                                 || x.EmployeeName.ToLower().Contains(textSearch.ToLower())
+                                 || x.AssignedEmployeeName.ToLower().Contains(textSearch.ToLower())
+                                 ).ToList();
+                myTasks = myTasks.Where(x => x.RepeatedEvery.ToLower().Contains(textSearch.ToLower())
+                                || x.Name.Contains(textSearch)
+                                || x.Description.Contains(textSearch)
+                                 || x.EmployeeName.ToLower().Contains(textSearch.ToLower())
+                                 || x.AssignedEmployeeName.ToLower().Contains(textSearch.ToLower())
+                                 ).ToList();
+            }
+            gv_approve.DataSource = needApprove;
+            gv_executed.DataSource = executedTasks;
+            gv_myTasks.DataSource = myTasks;
 
 
             var repeatedTypes = GetData.repeatTypeList.ToList();
@@ -260,6 +278,23 @@ namespace Human_Resource.Views.ExecutiveProc
 
         }
         [WebMethod(EnableSession = true)]
+        public static string EditTaskStatus(string taskID , string userID,string status)
+        {
+            try
+            {
+                TaskModel confirm = new TaskModel();
+                confirm.EditTaskStatus(int.Parse(taskID),status,int.Parse(userID));
+
+                return "1";
+            }
+            catch
+            {
+                return "0";
+
+            }
+
+        }
+        [WebMethod(EnableSession = true)]
         public static string FinishTask(string DailyTaskID, string userID,string role,string taskID)
         {
             try
@@ -344,6 +379,36 @@ namespace Human_Resource.Views.ExecutiveProc
                     }
                     else
                         e.Row.CssClass = "normalRow";
+                }
+            }
+        }
+       protected void gv_myTasks_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                var rowView =(TaskModel) e.Row.DataItem;
+                if (rowView != null)
+                {
+
+                    var status = rowView.Status;
+                    if (status == "Doing")
+                    {
+                                          
+                        e.Row.CssClass = "doingRow";
+                    }
+                    else if(status == "Complete")
+                    {
+                        LinkButton imgBtn = (LinkButton)e.Row.FindControl("finishMyTask");
+                        imgBtn.Visible = false;
+
+                        Label lbl = (Label)e.Row.FindControl("LblStatus3");
+                        lbl.Text = Resources.Labels.Done;
+
+                        e.Row.CssClass = "acceptedRow";
+
+                    }
+
                 }
             }
         }

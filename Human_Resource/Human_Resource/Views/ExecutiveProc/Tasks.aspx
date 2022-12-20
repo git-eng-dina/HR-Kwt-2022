@@ -132,6 +132,35 @@
 
                 return false;
             });
+            $('.td-finishMyTask').click(function () {
+                var customID = $(this).attr('myCustomID');
+                if (confirm("<%= Resources.Labels.AreYouSure%>")) {
+   
+                    var parameter = {
+                        taskID: customID,
+                        userID:<%= Session["user_id"].ToString() %>,
+                        status :'Complete'
+                    };
+ 
+                    $.ajax({
+                        type: "POST",
+                        url: "Tasks.aspx/EditTaskStatus",
+                        data: JSON.stringify(parameter),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (data) {
+                            window.location = "tasks.aspx";
+
+                        },
+                        failure: function (response) {
+                            alert(response.d);
+                        }
+                    });
+
+                }
+
+                return false;
+            });
 
         });
 
@@ -532,13 +561,11 @@
                                                  Text='<%# Eval("AddedBy") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>   
-                                  <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-finish">
-                                      <ItemTemplate>
-                                                 <asp:Label ID="LblStatus" runat="server" />                              
-                                         </ItemTemplate>     
-                                      <ItemTemplate>                     
+                                  <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-finish">    
+                                      <ItemTemplate> 
+                                           <asp:Label ID="LblStatus" runat="server" />       
                                                 <asp:LinkButton ID="finishTask" runat="server" myCustomID='<%# Eval("DailyTaskID")%>'  CssClass="td-approve">
-                                                    <asp:Image ImageUrl="~/images/accept_document.png" runat="server" ToolTip="<%$ Resources:Labels,Finish%>" Width="20px" Height="20px" />
+                                                    <asp:Image ImageUrl="~/images/task-complete.png" runat="server" ToolTip="<%$ Resources:Labels,Finish%>" Width="20px" Height="20px" />
                                                 </asp:LinkButton>  
                                              </ItemTemplate>
                                         </asp:TemplateField>
@@ -552,9 +579,9 @@
                         <div class="row gridView-title" id="gv_myTasks_title" runat="server">                       
                            <span><asp:Literal Text=" <%$ Resources:Labels,MyTasks%>" runat="server"></asp:Literal> </span>
                         </div>
-                            <asp:GridView ID="gv_myTasks" runat="server"  CssClass="gridView col-md-12"  
+                            <asp:GridView ID="gv_myTasks" runat="server"  CssClass="specialist-gridview col-md-12"  
                                 AutoGenerateColumns="False"  Width="90%" 
-
+                                 OnRowDataBound="gv_myTasks_RowDataBound" 
                              style="margin-top:0px;"
                                 class="table table-bordered table-condensed table-responsive table-hover ">
                                 <Columns>
@@ -586,15 +613,27 @@
                                                  <asp:Label ID="LblDrepeatedEvery" runat="server" 
                                                  Text='<%# Eval("RepeatedEvery") %>' />                              
                                          </ItemTemplate>
+                                   </asp:TemplateField>  
+                                     <asp:TemplateField HeaderText="<%$ Resources:Labels,Start%>" ItemStyle-Width="15%">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblStart3" runat="server" 
+                                                Text='<%# Bind("StartDate", "{0:MM-dd-yyyy}") %>'/>                              
+                                         </ItemTemplate>
+                                   </asp:TemplateField>    
+                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,End%>" ItemStyle-Width="15%">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblEnd3" runat="server" Text='<%# Bind("EndDate", "{0:MM-dd-yyyy}") %>'/>                              
+                                         </ItemTemplate>
                                    </asp:TemplateField>   
                                       <asp:TemplateField HeaderText="<%$ Resources:Labels,AddedBy%>">
                                          <ItemTemplate>
-                                                 <asp:Label ID="LblLoc" runat="server" 
+                                                 <asp:Label ID="LblLoc3" runat="server" 
                                                  Text='<%# Eval("AddedBy") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>   
                                   <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-finishMyTask">
-                                           <ItemTemplate>                     
+                                           <ItemTemplate> 
+                                                <asp:Label ID="LblStatus3" runat="server" /> 
                                                 <asp:LinkButton ID="finishMyTask" runat="server" myCustomID='<%# Eval("TaskID")%>'  CssClass="td-approve">
                                                     <asp:Image ImageUrl="~/images/accept_document.png" runat="server" ToolTip="<%$ Resources:Labels,Finish%>" Width="20px" Height="20px" />
                                                 </asp:LinkButton>  
@@ -708,6 +747,7 @@
                 </div>
                  </div>
             </div>
+        </div>
         </div>
 </asp:Content>
 
