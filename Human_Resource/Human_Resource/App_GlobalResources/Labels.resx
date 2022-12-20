@@ -807,4 +807,7 @@
   <data name="CompletedTask" xml:space="preserve">
     <value>Completed Task</value>
   </data>
+  <data name="Doing" xml:space="preserve">
+    <value>Doing</value>
+  </data>
 </root>

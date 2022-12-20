@@ -322,7 +322,7 @@ namespace Human_Resource.App_Code
             using (HRSystemEntities entity = new HRSystemEntities())
             {
                 var schedule = entity.scheduledJobs.Where(x => x.Name == "DialyTasks").FirstOrDefault();
-                if(schedule.ScheduleDate == null || schedule.ScheduleDate <= DateTime.Now)
+                if(schedule.ScheduleDate == null || schedule.ScheduleDate <= DateTime.Now.Date)
                 {
                     schedule.ScheduleDate = DateTime.Now;
 

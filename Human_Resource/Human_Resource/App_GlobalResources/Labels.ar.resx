@@ -804,4 +804,7 @@
   <data name="CompletedTask" xml:space="preserve">
     <value>المهام المكتملة</value>
   </data>
+  <data name="Doing" xml:space="preserve">
+    <value>قيد التنفيذ</value>
+  </data>
 </root>
