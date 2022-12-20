@@ -22,7 +22,7 @@ namespace Human_Resource
             this.employeesTasks = new HashSet<employeesTasks>();
         }
     
-        public int TaskID { get; set; }
+        public long TaskID { get; set; }
         public Nullable<int> EmployeeID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

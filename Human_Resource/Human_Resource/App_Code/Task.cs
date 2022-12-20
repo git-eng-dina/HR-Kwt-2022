@@ -253,7 +253,7 @@ namespace Human_Resource.App_Code
             }
         }
 
-        public int SaveTask(TaskModel tsk, string empIds)
+        public long SaveTask(TaskModel tsk, string empIds)
         {
             try
             {

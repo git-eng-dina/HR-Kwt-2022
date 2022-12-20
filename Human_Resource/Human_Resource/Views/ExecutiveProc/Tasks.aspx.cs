@@ -142,7 +142,7 @@ namespace Human_Resource.Views.ExecutiveProc
                     taskObj.CreateUserID = taskObj.UpdateUserID = taskObj.EmployeeID = int.Parse(HttpContext.Current.Session["user_id"].ToString());
 
 
-               int taskIdInt = taskObj.SaveTask(taskObj, empIds);
+               long taskIdInt = taskObj.SaveTask(taskObj, empIds);
                 if (taskIdInt != 0)
                 {
                   //  if(attachment != "")
@@ -160,7 +160,7 @@ namespace Human_Resource.Views.ExecutiveProc
         }
 
 
-        public static void UploadFile(string fileName, int taskId, string tag)
+        public static void UploadFile(string fileName, long taskId, string tag)
         {
             //save file in the specified folder and path
             string extension = Path.GetExtension(fileName);
@@ -436,7 +436,7 @@ namespace Human_Resource.Views.ExecutiveProc
                     taskObj.CreateUserID = taskObj.UpdateUserID = taskObj.EmployeeID = int.Parse(HttpContext.Current.Session["user_id"].ToString());
 
 
-                int taskIdInt = taskObj.SaveTask(taskObj, hdn_empIds.Value);
+                long taskIdInt = taskObj.SaveTask(taskObj, hdn_empIds.Value);
                 if (taskIdInt != 0)
                 {
                     if (file.FileName != "")

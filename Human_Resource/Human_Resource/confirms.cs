@@ -21,7 +21,7 @@ namespace Human_Resource
         public Nullable<int> CreateUserID { get; set; }
         public Nullable<int> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
-        public Nullable<int> TaskID { get; set; }
+        public Nullable<long> TaskID { get; set; }
         public Nullable<int> SalaryIncreaseID { get; set; }
         public Nullable<int> MessagesTemplateID { get; set; }
         public Nullable<int> HourlyPermissionID { get; set; }
