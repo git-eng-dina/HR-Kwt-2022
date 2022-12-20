@@ -8,10 +8,10 @@ namespace Human_Resource.App_Code
     public class EmployeesTaskModel
     {
         #region Attributes
-        public int EmployeesTaskID { get; set; }
+        public long EmployeesTaskID { get; set; }
         public Nullable<int> EmployeeID { get; set; }
         public string EmployeeName { get; set; }
-        public Nullable<int> TaskID { get; set; }
+        public Nullable<long> TaskID { get; set; }
         public string TaskName { get; set; }
         public string Notes { get; set; }
         public bool BossDone { get; set; }
@@ -67,7 +67,7 @@ namespace Human_Resource.App_Code
             }
         }
 
-        public int SaveDept(EmployeesTaskModel dept)
+        public long SaveDept(EmployeesTaskModel dept)
         {
             try
             {

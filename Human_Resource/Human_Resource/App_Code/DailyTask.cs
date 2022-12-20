@@ -8,10 +8,10 @@ namespace Human_Resource.App_Code
     public class DailyTaskModel
     {
         #region Attributes
-        public int DailyTaskID { get; set; }
+        public long DailyTaskID { get; set; }
         public Nullable<int> EmployeeID { get; set; }
         public string EmployeeName { get; set; }
-        public Nullable<int> TaskID { get; set; }
+        public Nullable<long> TaskID { get; set; }
         public string TaskName { get; set; }
         public string Status { get; set; }
 
@@ -69,54 +69,54 @@ namespace Human_Resource.App_Code
             }
         }
 
-        public int SaveDept(DailyTaskModel dept)
-        {
-            try
-            {
-                dailyTasks dailyTask;
+        //public long SaveDept(DailyTaskModel dept)
+        //{
+        //    try
+        //    {
+        //        dailyTasks dailyTask;
 
-                using (HRSystemEntities entity = new HRSystemEntities())
-                {
-                    if (dept.DailyTaskID.Equals(0))
-                    {
-                        dailyTask = new dailyTasks()
-                        {
-                            //Type = dept.Type,
-                            EmployeeID = dept.EmployeeID,
-                            TaskID = dept.TaskID,
-                            //EmpDone = dept.EmpDone,
-                           // BossDone = dept.BossDone,
-                            IsActive = true,
-                            CreateUserID = dept.CreateUserID,
-                            UpdateUserID = dept.UpdateUserID,
-                            CreateDate = DateTime.Now,
-                            UpdateDate = DateTime.Now,
-                        };
-                        dailyTask = entity.dailyTasks.Add(dailyTask);
-                    }
-                    else
-                    {
-                        dailyTask = entity.dailyTasks.Find(dept.DailyTaskID);
-                        //dailyTask.Type = dept.Type;
-                        dailyTask.EmployeeID = dept.EmployeeID;
-                        dailyTask.TaskID = dept.TaskID;
-                       // dailyTask.EmpDone = dept.EmpDone;
-                       // dailyTask.BossDone = dept.BossDone;
-                        dailyTask.Notes = dept.Notes;
-                        dailyTask.IsActive = true;
-                        dailyTask.UpdateUserID = dept.UpdateUserID;
-                        dailyTask.UpdateDate = DateTime.Now;
-                    }
-                    entity.SaveChanges();
-                }
-                return dailyTask.DailyTaskID;
-            }
+        //        using (HRSystemEntities entity = new HRSystemEntities())
+        //        {
+        //            if (dept.DailyTaskID.Equals(0))
+        //            {
+        //                dailyTask = new dailyTasks()
+        //                {
+        //                    //Type = dept.Type,
+        //                    EmployeeID = dept.EmployeeID,
+        //                    TaskID = dept.TaskID,
+        //                    //EmpDone = dept.EmpDone,
+        //                   // BossDone = dept.BossDone,
+        //                    IsActive = true,
+        //                    CreateUserID = dept.CreateUserID,
+        //                    UpdateUserID = dept.UpdateUserID,
+        //                    CreateDate = DateTime.Now,
+        //                    UpdateDate = DateTime.Now,
+        //                };
+        //                dailyTask = entity.dailyTasks.Add(dailyTask);
+        //            }
+        //            else
+        //            {
+        //                dailyTask = entity.dailyTasks.Find(dept.DailyTaskID);
+        //                //dailyTask.Type = dept.Type;
+        //                dailyTask.EmployeeID = dept.EmployeeID;
+        //                dailyTask.TaskID = dept.TaskID;
+        //               // dailyTask.EmpDone = dept.EmpDone;
+        //               // dailyTask.BossDone = dept.BossDone;
+        //                dailyTask.Notes = dept.Notes;
+        //                dailyTask.IsActive = true;
+        //                dailyTask.UpdateUserID = dept.UpdateUserID;
+        //                dailyTask.UpdateDate = DateTime.Now;
+        //            }
+        //            entity.SaveChanges();
+        //        }
+        //        return dailyTask.DailyTaskID;
+        //    }
 
-            catch
-            {
-                return 0;
-            }
-        }
+        //    catch
+        //    {
+        //        return 0;
+        //    }
+        //}
         public bool DeleteDept(int deptId, int? userId)
         {
             try

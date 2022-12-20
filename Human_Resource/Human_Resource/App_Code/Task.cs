@@ -11,7 +11,8 @@ namespace Human_Resource.App_Code
      {
 
         #region Attributes
-        public int TaskID { get; set; }
+        public long TaskID { get; set; }
+        public long EmployeeTaskID { get; set; }
         public string RepeatedEvery { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -146,6 +147,7 @@ namespace Human_Resource.App_Code
                                 select new TaskModel()
                                 {
                                     TaskID = x.TaskID,
+                                    EmployeeTaskID = e.EmployeesTaskID,
                                     RepeatedEvery = x.RepeatedEvery,
                                     Name = x.Name,
                                     Description = x.Description,
@@ -471,7 +473,7 @@ namespace Human_Resource.App_Code
                 return false;
             }
         }
-         public bool EditTaskStatus(int taskId,string status, int? userId)
+         public bool EditTaskStatus(long taskId,string status, int? userId)
         {
             try
             {
@@ -503,32 +505,18 @@ namespace Human_Resource.App_Code
             }
         }
 
-        public bool FinishTask(long? dailyTaskID, int? userId,string role,long? taskID )
+        public bool FinishTask(long employeeTaskId, int? userId,string role,string status )
         {
             try
             {
+
+              
                 using (HRSystemEntities entity = new HRSystemEntities())
                 {
-                    dailyTasks taskObj = new dailyTasks();
-                    if(dailyTaskID != null)
-                    {
-                       taskObj = entity.dailyTasks.Find(dailyTaskID);
-                        //taskObj.BossDone = true;
-                    }
-                    else
-                    {
-                        taskObj = new dailyTasks()
-                        {
-                            TaskID = (int)taskID,
-                            EmployeeID = userId,
-                           // EmpDone= true,
-                            CreateDate = DateTime.Now,
-                            UpdateDate=DateTime.Now,
-                            CreateUserID= userId,
-                            UpdateUserID = userId,
-                        };
-                        entity.dailyTasks.Add(taskObj);
-                    }
+                    var t = entity.employeesTasks.Find(employeeTaskId);
+                    EditTaskStatus((long)t.TaskID, status, userId);
+                    t.BossDone = true;
+
 
                     entity.SaveChanges();
                 }

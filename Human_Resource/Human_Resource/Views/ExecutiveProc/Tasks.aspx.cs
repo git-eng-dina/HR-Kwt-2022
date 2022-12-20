@@ -295,19 +295,13 @@ namespace Human_Resource.Views.ExecutiveProc
 
         }
         [WebMethod(EnableSession = true)]
-        public static string FinishTask(string DailyTaskID, string userID,string role,string taskID)
+        public static string FinishTask(string employeeTaskId, string userID,string role,string status)
         {
             try
             {
-                long? DailyTaskIDInt = null;
-                long? TaskIDInt = null;
-                if (DailyTaskID != "")
-                    DailyTaskIDInt = long.Parse(DailyTaskID);
-                if (taskID != "")
-                    TaskIDInt = long.Parse(taskID);
 
                 TaskModel confirm = new TaskModel();
-                confirm.FinishTask(DailyTaskIDInt,int.Parse(userID), role,TaskIDInt);
+                confirm.FinishTask(long.Parse(employeeTaskId),int.Parse(userID), role,status);
 
                 return "1";
             }

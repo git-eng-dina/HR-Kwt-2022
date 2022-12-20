@@ -107,10 +107,10 @@
                 if (confirm("<%= Resources.Labels.AreYouSure%>")) {
    
                     var parameter = {
-                        DailyTaskID: customID,
+                        employeeTaskId: customID,
                         userID:<%= Session["user_id"].ToString() %>,
                         role:<%= Session["urole"].ToString() %>,
-                        taskID :'0'
+                        status ='Done',
                     };
  
                     $.ajax({
@@ -564,7 +564,7 @@
                                   <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-finish">    
                                       <ItemTemplate> 
                                            <asp:Label ID="LblStatus" runat="server" />       
-                                                <asp:LinkButton ID="finishTask" runat="server" myCustomID='<%# Eval("DailyTaskID")%>'  CssClass="td-approve">
+                                                <asp:LinkButton ID="finishTask" runat="server" myCustomID='<%# Eval("EmployeeTaskID")%>'  CssClass="td-approve">
                                                     <asp:Image ImageUrl="~/images/task-complete.png" runat="server" ToolTip="<%$ Resources:Labels,Finish%>" Width="20px" Height="20px" />
                                                 </asp:LinkButton>  
                                              </ItemTemplate>
