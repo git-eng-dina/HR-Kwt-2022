@@ -104,6 +104,88 @@ namespace Human_Resource.App_Code
                 return tasks;
             }
         }
+        public List<TaskModel> getNeedApproveForDirector()
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var now = DateTime.Now.Date;
+                var tasks = entity.tasks.Where(x => x.IsActive == true  &&
+                                (x.EndDate == null || x.EndDate >= now) && x.StartDate >= now)
+                                .Select(x => new TaskModel()
+                                {
+                                    TaskID = x.TaskID,
+                                    RepeatedEvery = x.RepeatedEvery,
+                                    Name = x.Name,
+                                    Description = x.Description,
+                                    EmployeeID = x.EmployeeID,
+                                    EmployeeName = entity.employees.Where(m => m.EmployeeID == x.EmployeeID).Select(m => m.NameAr).FirstOrDefault(),
+                                    CreateUserID = x.CreateUserID,
+                                    UpdateUserID = x.UpdateUserID,
+                                    Notes = x.Notes,
+                                    StartDate = x.StartDate,
+                                    EndDate = x.EndDate,
+                                    CreateDate = x.CreateDate,
+                                    UpdateDate = x.UpdateDate,
+                                    Approved = x.Approved,
+                                    AddedBy = entity.employees.Where(e => e.EmployeeID == x.EmployeeID).Select(e => e.NameAr).FirstOrDefault(),
+                                }).ToList();
+
+                //tasks = tasks.Where(x => (Convert.ToDateTime(x.StartDate.ToString()) >= DateTime.Now)).ToList();
+                return tasks;
+            }
+        }
+        public List<TaskModel> getExcutedForDirector()
+        {
+            var result = new List<TaskModel>();
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var tasks = (from x in entity.tasks.Where(ex => ex.IsActive == true && ex.Approved == true)
+                             join e in entity.employeesTasks.Where(em => em.IsActive == true && em.BossDone == null) on x.TaskID equals e.TaskID
+
+                             select new TaskModel()
+                             {
+                                 TaskID = x.TaskID,
+                                 EmployeeTaskID = e.EmployeesTaskID,
+                                 RepeatedEvery = x.RepeatedEvery,
+                                 Name = x.Name,
+                                 Description = x.Description,
+                                 EmployeeID = x.EmployeeID,
+                                 EmployeeName = entity.employees.Where(m => m.EmployeeID == x.EmployeeID).Select(m => m.NameAr).FirstOrDefault(),
+                                 CreateUserID = x.CreateUserID,
+                                 UpdateUserID = x.UpdateUserID,
+                                 Notes = x.Notes,
+                                 StartDate = x.StartDate,
+                                 EndDate = x.EndDate,
+                                 CreateDate = x.CreateDate,
+                                 UpdateDate = x.UpdateDate,
+                                 Approved = x.Approved,
+                                 AddedBy = entity.employees.Where(ex => ex.EmployeeID == x.EmployeeID).Select(ex => ex.NameAr).FirstOrDefault(),
+                                 AssignedEmployeeID = e.EmployeeID,
+                                 AssignedEmployeeName = entity.employees.Where(y => y.EmployeeID == e.EmployeeID).Select(y => y.NameAr).FirstOrDefault(),
+                                 Status = entity.dailyTasks.Where(y => y.DailyTaskID == entity.dailyTasks.Where(m => m.TaskID == x.TaskID && m.EmployeeID == e.EmployeeID).Max(m => m.DailyTaskID)).Select(y => y.Status).FirstOrDefault(),
+                             }).ToList();
+
+                foreach (var t in tasks)
+                {
+                    switch (t.RepeatedEvery)
+                    {
+                        case "Daily":
+                            t.EndDate = t.StartDate;
+                            break;
+                        case "Weekly":
+                            t.EndDate = (DateTime)t.StartDate.Value.AddDays(7);
+                            break;
+                        case "Monthly":
+                            t.EndDate = (DateTime)t.StartDate.Value.AddMonths(1);
+                            break;
+                        case "Annual":
+                            t.EndDate = (DateTime)t.StartDate.Value.AddYears(1);
+                            break;
+                    };
+                }
+                return tasks;
+            }
+        }
         public List<TaskModel> getNeedApproveForSupervisor(int managerId)
         {
             using (HRSystemEntities entity = new HRSystemEntities())
@@ -189,6 +271,7 @@ namespace Human_Resource.App_Code
                 return tasks;
             }
         }
+      
         public List<TaskModel> getNeedApproveForManagement(int managerId)
         {
             using (HRSystemEntities entity = new HRSystemEntities())

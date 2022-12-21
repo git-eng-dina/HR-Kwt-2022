@@ -49,7 +49,9 @@ namespace Human_Resource.Views.ExecutiveProc
                 string role = Session["urole"].ToString();
                 if (role == "GeneralDirector" || role == "CEO")
                 {
+                    needApprove = taskModel.getNeedApproveForDirector();
 
+                    executedTasks = taskModel.getExcutedForDirector();
                 }
                 else if (role == "Supervisor" )
                 {
