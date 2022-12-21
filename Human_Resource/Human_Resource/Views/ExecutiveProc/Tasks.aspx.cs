@@ -31,12 +31,12 @@ namespace Human_Resource.Views.ExecutiveProc
 
         protected void btn_Search_Click(object sender, EventArgs e)
         {
-            try
+            //try
             {
                 string textSearch = txt_search.Value;
                 BindData(textSearch);
             }
-            catch { }
+            //catch { }
         }
         private void BindData(string textSearch = "")
         {
@@ -58,9 +58,19 @@ namespace Human_Resource.Views.ExecutiveProc
                     executedTasks = taskModel.getExcutedForSupervisor(userId);
                     
                 }
-                else if (role == "ManagementManager"  )
+                else if (role == "ManagementManager")
                 {
                     needApprove = taskModel.getNeedApproveForManagement(userId);
+                    executedTasks = taskModel.getExcutedForManagement(userId);
+                }
+                else
+                {
+                    gv_approve_title.Visible = false;
+                    gv_approve.Visible = false;
+                    gv_executed_title.Visible = false;
+                    gv_executed.Visible = false;
+                    gv_executedBlank.Visible=false;
+                    gv_myTasksBlank.Visible =false;
                 }
             }
 
@@ -73,7 +83,6 @@ namespace Human_Resource.Views.ExecutiveProc
                                 || x.Name.Contains(textSearch)
                                 || x.Description.Contains(textSearch)
                                  || x.EmployeeName.ToLower().Contains(textSearch.ToLower())
-                                 || x.AssignedEmployeeName.ToLower().Contains(textSearch.ToLower())
                                  ).ToList();
                  executedTasks = executedTasks.Where(x => x.RepeatedEvery.ToLower().Contains(textSearch.ToLower())
                                 || x.Name.Contains(textSearch)
@@ -85,7 +94,6 @@ namespace Human_Resource.Views.ExecutiveProc
                                 || x.Name.Contains(textSearch)
                                 || x.Description.Contains(textSearch)
                                  || x.EmployeeName.ToLower().Contains(textSearch.ToLower())
-                                 || x.AssignedEmployeeName.ToLower().Contains(textSearch.ToLower())
                                  ).ToList();
             }
             gv_approve.DataSource = needApprove;
@@ -329,18 +337,21 @@ namespace Human_Resource.Views.ExecutiveProc
                     var approved = rowView.Approved;
                     if (approved == true)
                     {
-                        LinkButton imgBtn = (LinkButton)e.Row.FindControl("approveTask");
-                        imgBtn.Visible = false;
+                        LinkButton approveBtn = (LinkButton)e.Row.FindControl("approveTask");
+                        approveBtn.Visible = false;
+                        LinkButton rejectBtn = (LinkButton)e.Row.FindControl("rejectTask");
+                        rejectBtn.Visible = false;
 
                         e.Row.CssClass = "acceptedRow";
-                        //e.Row.BackColor = System.Drawing.ColorTranslator.FromHtml("#5fbf00");
                     }
                     else if(approved == false)
                     {
-                        LinkButton imgBtn = (LinkButton)e.Row.FindControl("rejectTask");
-                        imgBtn.Visible = false;
+                        LinkButton approveBtn = (LinkButton)e.Row.FindControl("approveTask");
+                        approveBtn.Visible = false;
+                        LinkButton rejectBtn = (LinkButton)e.Row.FindControl("rejectTask");
+                        rejectBtn.Visible = false;
+
                         e.Row.CssClass = "rejectedRow";
-                        //e.Row.BackColor = System.Drawing.ColorTranslator.FromHtml("#5fbf00");
 
                     }
                     else
@@ -359,7 +370,7 @@ namespace Human_Resource.Views.ExecutiveProc
                 {
 
                     var status = rowView.Status;
-                    if (status == "Doing")
+                    if (status == "Doing" || status == null)
                     {
                         LinkButton imgBtn = (LinkButton)e.Row.FindControl("finishTask");
                         imgBtn.Visible = false;
@@ -368,7 +379,7 @@ namespace Human_Resource.Views.ExecutiveProc
                         lbl.Text = Resources.Labels.Doing;
                         e.Row.CssClass = "doingRow";
                     }
-                    else if(status == "Complete")
+                    else if (status == "Complete")
                     {
                         Label lbl = (Label)e.Row.FindControl("LblStatus");
                         lbl.Visible = false;
@@ -377,7 +388,9 @@ namespace Human_Resource.Views.ExecutiveProc
 
                     }
                     else
+                    {
                         e.Row.CssClass = "normalRow";
+                    }
                 }
             }
         }

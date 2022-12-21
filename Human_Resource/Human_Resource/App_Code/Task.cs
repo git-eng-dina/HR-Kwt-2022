@@ -108,8 +108,9 @@ namespace Human_Resource.App_Code
         {
             using (HRSystemEntities entity = new HRSystemEntities())
             {
+                var now = DateTime.Now.Date;
                 var tasks = entity.tasks.Where(x => x.IsActive == true  &&
-                (x.EndDate == null || x.EndDate >= DateTime.Now) && x.StartDate >= DateTime.Now &&
+                (x.EndDate == null || x.EndDate >= now) && x.StartDate >= now &&
             ( entity.employees.Where(e => e.managements.branches.ManagerID == managerId).Select(e => e.EmployeeID).ToList().Contains((int)x.EmployeeID)|| x.EmployeeID == managerId))
                                 .Select(x => new TaskModel()
                                 {
@@ -193,10 +194,11 @@ namespace Human_Resource.App_Code
             using (HRSystemEntities entity = new HRSystemEntities())
             {
                 //  var now = DateTime.Today;
-                var now = DateTime.Now.ToString(System.Globalization.CultureInfo.InvariantCulture);
-                var depts = entity.tasks.Where(x => x.IsActive == true &&
-                ((DbFunctions.TruncateTime(x.StartDate) >= DateTime.Parse(now) && x.EmployeeID == entity.employees.Where(e => e.managements.ManagerID == managerId && e.EmployeeID == x.EmployeeID).Select(e => e.EmployeeID).FirstOrDefault())
-                || x.EmployeeID == managerId))
+                var now = DateTime.Now.Date;
+                var tasks = entity.tasks.Where(x => x.IsActive == true &&
+               (x.EndDate == null || x.EndDate >= now) && x.StartDate >= now &&
+                ( x.EmployeeID == entity.employees.Where(e => e.managements.ManagerID == managerId && e.EmployeeID == x.EmployeeID).Select(e => e.EmployeeID).FirstOrDefault()  
+                 || x.EmployeeID == managerId))
                                 .Select(x => new TaskModel()
                                 {
                                     TaskID = x.TaskID,
@@ -213,7 +215,61 @@ namespace Human_Resource.App_Code
                                     Approved = x.Approved,
                                     AddedBy = entity.employees.Where(e => e.EmployeeID == x.EmployeeID).Select(e => e.NameAr).FirstOrDefault(),
                                 }).ToList();
-                return depts;
+                return tasks;
+            }
+        }
+
+        public List<TaskModel> getExcutedForManagement(int managerId)
+        {
+            var result = new List<TaskModel>();
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var tasks = (from x in entity.tasks.Where(ex => ex.IsActive == true && ex.Approved == true
+                && entity.employees.Where(ee => ee.managements.ManagerID == managerId).Select(ee => ee.EmployeeID).ToList().Contains((int)ex.EmployeeID))
+                             join e in entity.employeesTasks.Where(em => em.IsActive == true && em.BossDone == null) on x.TaskID equals e.TaskID
+
+                             select new TaskModel()
+                             {
+                                 TaskID = x.TaskID,
+                                 EmployeeTaskID = e.EmployeesTaskID,
+                                 RepeatedEvery = x.RepeatedEvery,
+                                 Name = x.Name,
+                                 Description = x.Description,
+                                 EmployeeID = x.EmployeeID,
+                                 EmployeeName = entity.employees.Where(m => m.EmployeeID == x.EmployeeID).Select(m => m.NameAr).FirstOrDefault(),
+                                 CreateUserID = x.CreateUserID,
+                                 UpdateUserID = x.UpdateUserID,
+                                 Notes = x.Notes,
+                                 StartDate = x.StartDate,
+                                 EndDate = x.EndDate,
+                                 CreateDate = x.CreateDate,
+                                 UpdateDate = x.UpdateDate,
+                                 Approved = x.Approved,
+                                 AddedBy = entity.employees.Where(ex => ex.EmployeeID == x.EmployeeID).Select(ex => ex.NameAr).FirstOrDefault(),
+                                 AssignedEmployeeID = e.EmployeeID,
+                                 AssignedEmployeeName = entity.employees.Where(y => y.EmployeeID == e.EmployeeID).Select(y => y.NameAr).FirstOrDefault(),
+                                 Status = entity.dailyTasks.Where(y => y.DailyTaskID == entity.dailyTasks.Where(m => m.TaskID == x.TaskID && m.EmployeeID == e.EmployeeID).Max(m => m.DailyTaskID)).Select(y => y.Status).FirstOrDefault(),
+                             }).ToList();
+
+                foreach (var t in tasks)
+                {
+                    switch (t.RepeatedEvery)
+                    {
+                        case "Daily":
+                            t.EndDate = t.StartDate;
+                            break;
+                        case "Weekly":
+                            t.EndDate = (DateTime)t.StartDate.Value.AddDays(7);
+                            break;
+                        case "Monthly":
+                            t.EndDate = (DateTime)t.StartDate.Value.AddMonths(1);
+                            break;
+                        case "Annual":
+                            t.EndDate = (DateTime)t.StartDate.Value.AddYears(1);
+                            break;
+                    };
+                }
+                return tasks;
             }
         }
         public TaskModel getTask(int taskId)
@@ -297,7 +353,7 @@ namespace Human_Resource.App_Code
                         entity.employeesTasks.RemoveRange(
                             employeesTaskss
                             );
-                        entity.SaveChanges();
+                       
 
                         //"1,2,"
                         //empIds
@@ -317,7 +373,7 @@ namespace Human_Resource.App_Code
 
 
                         }
-                        
+                        entity.SaveChanges();
                     }
                 }
                 return task.TaskID;
@@ -500,7 +556,7 @@ namespace Human_Resource.App_Code
                         var dTasks = entity.dailyTasks.Where(x => x.TaskID == taskId).ToList();
                         if(dTasks.Count() ==0)
                         {
-                            var taskEmp = entity.employeesTasks.Where(x => x.TaskID == TaskID && x.IsActive == true).ToList();
+                            var taskEmp = entity.employeesTasks.Where(x => x.TaskID == taskId && x.IsActive == true).ToList();
                             foreach(var emp in taskEmp)
                             {
                                 var dailyTask = new dailyTasks()

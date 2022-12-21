@@ -25,6 +25,11 @@
                 $('#MainContent_file').trigger('click');
             });
 
+            $("[id*=btn_addEmp]").click(function (e) {
+                addEmp();
+                e.preventDefault();
+            });
+
             $myWindow = $('#dialog');
 
             //instantiate the dialog
@@ -112,7 +117,7 @@
                     var parameter = {
                         employeeTaskId: customID,
                         userID:<%= Session["user_id"].ToString() %>,
-                        role:<%= Session["urole"].ToString() %>,
+                        role:'<%= Session["urole"].ToString() %>',
                         status :'Done',
                     };
  
@@ -123,7 +128,7 @@
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function (data) {
-                           // window.location = "tasks.aspx";
+                          window.location = "tasks.aspx";
 
                         },
                         failure: function (response) {
@@ -273,13 +278,19 @@
                 $('#MainContent_dp_start').attr("class", "form-control is-invalid");
                 valid = false;
             }
-
+            if ($("[id*=sel_repeatedEvery]").val() == "" || $("[id*=sel_repeatedEvery]").val() == null) {
+                if ($("[id*=dp_end]").val() == "" || $("[id*=dp_end]").val() == null) {
+                    $("[id*=dp_end]").attr("class", "form-control is-invalid");
+                    valid = false;
+                }
+            }
             var empIdsStr = "";
             var inputs = $('ul li input');
             inputs.each(function (e) {
                 empIdsStr = empIdsStr + $(this).val() + ',';
             });
             $("#MainContent_hdn_empIds").val(empIdsStr);
+
             if (empIdsStr == "") {
                 $('#MainContent_sel_employee').attr("class", "form-control is-invalid");
                 valid = false;
@@ -287,7 +298,7 @@
 
             if (valid) {
                 var uniqID = $('#MainContent_hdnButtonID').val();
-                alert(uniqID);
+
                 __doPostBack(uniqID, "OnClick");
             }
             return valid;
@@ -513,7 +524,7 @@
                                 <EditRowStyle BackColor="#009999" VerticalAlign="Middle" />
                             </asp:GridView>
                             <!---- executed tasks -->
-                        <div class="row">&nbsp;</div>
+                        <div class="row" id="gv_executedBlank" runat="server">&nbsp;</div>
                         <div class="row gridView-title" id="gv_executed_title" runat="server">                       
                            <span><asp:Literal Text=" <%$ Resources:Labels,CompletedTask%>" runat="server"></asp:Literal> </span>
                         </div>
@@ -583,7 +594,7 @@
                                 <EditRowStyle BackColor="#009999" VerticalAlign="Middle" />
                             </asp:GridView>
                         <!---- my tasks -->
-                        <div class="row">&nbsp;</div>
+                        <div class="row" id="gv_myTasksBlank" runat="server">&nbsp;</div>
                         <div class="row gridView-title" id="gv_myTasks_title" runat="server">                       
                            <span><asp:Literal Text=" <%$ Resources:Labels,MyTasks%>" runat="server"></asp:Literal> </span>
                         </div>
@@ -735,7 +746,7 @@
                                 <input type="hidden" runat="server" id="hdn_empIds" name="hdn_empIds"/>
                          <select runat="server" id="sel_employee" name="sel_employee" style="width:70%" class="form-control input-lg" ></select>
                           <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
-                                  <button class="add-arrow-btn"  runat="server" onclick="addEmp()" id="Button1" >
+                                  <button class="add-arrow-btn"  runat="server"   id="btn_addEmp" >
                                    <i class="fas fa-arrow-alt-circle-down"></i>
                                 </button>
                             </div>

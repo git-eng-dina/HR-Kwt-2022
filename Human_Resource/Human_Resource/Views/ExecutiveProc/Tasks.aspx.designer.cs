@@ -58,6 +58,15 @@ namespace Human_Resource.Views.ExecutiveProc {
         protected global::System.Web.UI.WebControls.GridView gv_approve;
         
         /// <summary>
+        /// gv_executedBlank control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl gv_executedBlank;
+        
+        /// <summary>
         /// gv_executed_title control.
         /// </summary>
         /// <remarks>
@@ -74,6 +83,15 @@ namespace Human_Resource.Views.ExecutiveProc {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gv_executed;
+        
+        /// <summary>
+        /// gv_myTasksBlank control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl gv_myTasksBlank;
         
         /// <summary>
         /// gv_myTasks_title control.
@@ -175,13 +193,13 @@ namespace Human_Resource.Views.ExecutiveProc {
         protected global::System.Web.UI.HtmlControls.HtmlSelect sel_employee;
         
         /// <summary>
-        /// Button1 control.
+        /// btn_addEmp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton Button1;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btn_addEmp;
         
         /// <summary>
         /// lst_employee control.
