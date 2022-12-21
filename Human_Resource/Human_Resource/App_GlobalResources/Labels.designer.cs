@@ -313,6 +313,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Assignee.
+        /// </summary>
+        internal static string Assignee {
+            get {
+                return ResourceManager.GetString("Assignee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Attendance.
         /// </summary>
         internal static string Attendance {

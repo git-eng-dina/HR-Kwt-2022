@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Tasks.aspx.cs" Inherits="Human_Resource.Views.ExecutiveProc.Tasks" EnableEventValidation="false"%>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Tasks.aspx.cs" Inherits="Human_Resource.Views.ExecutiveProc.Tasks" enableEventValidation="false"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -39,6 +39,8 @@
                 overlay: { opacity: 0.5, background: 'black' },
                
             });
+
+            $("#dialog").parent().appendTo($("form:first"));
 
             $('.td-edit').click(function () {
                 var customID = $(this).attr('myCustomID');
@@ -104,13 +106,14 @@
             });
             $('.td-finish').click(function () {
                 var customID = $(this).attr('myCustomID');
+                alert(customID);
                 if (confirm("<%= Resources.Labels.AreYouSure%>")) {
    
                     var parameter = {
                         employeeTaskId: customID,
                         userID:<%= Session["user_id"].ToString() %>,
                         role:<%= Session["urole"].ToString() %>,
-                        status ='Done',
+                        status :'Done',
                     };
  
                     $.ajax({
@@ -202,7 +205,6 @@
                     for (var prop in data) {
                         var item = data[prop];
                         $('#MainContent_hid_taskId').val(item.TaskID);
-                        //$('#MainContent_emp').val(item.EmployeeID);
                         $('#MainContent_sel_repeatedEvery').val(item.RepeatedEvery);
                         $('#MainContent_txt_name').val(item.Name);
                         $('#MainContent_txt_description').val(item.Description);
@@ -271,6 +273,7 @@
                 $('#MainContent_dp_start').attr("class", "form-control is-invalid");
                 valid = false;
             }
+
             var empIdsStr = "";
             var inputs = $('ul li input');
             inputs.each(function (e) {
@@ -282,6 +285,11 @@
                 valid = false;
             }
 
+            if (valid) {
+                var uniqID = $('#MainContent_hdnButtonID').val();
+                alert(uniqID);
+                __doPostBack(uniqID, "OnClick");
+            }
             return valid;
         }
 
@@ -549,7 +557,7 @@
                                                  <asp:Label ID="LblEnd" runat="server" Text='<%# Bind("EndDate", "{0:MM-dd-yyyy}") %>'/>                              
                                          </ItemTemplate>
                                    </asp:TemplateField>   
-                                      <asp:TemplateField HeaderText="<%$ Resources:Labels,TaskExecutor%>">
+                                      <asp:TemplateField HeaderText="<%$ Resources:Labels,Assignee%>">
                                          <ItemTemplate>
                                                  <asp:Label ID="LblAssign" runat="server" 
                                                  Text='<%# Eval("AssignedEmployeeName") %>' />                              
@@ -682,7 +690,7 @@
                      <div class ="row">
                      <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Task%>" /></span>
-                                <input type="text" class="form-control input-lg" id="txt_name"  runat="server" value="" onchange="removeValidation($(this));" />
+                                <input type="text" class="form-control input-lg" id="txt_name" name="txt_name"  runat="server" value="" onchange="removeValidation($(this));" />
                           <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
                           <a href=""  id="uploadTrigger_1"> <i class="fa fa-upload"></i></a>
                             </div>
@@ -723,7 +731,7 @@
 
                         <div class ="row">
                      <div class="form-group" style="display:block">
-                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Employees%>" /></span>
+                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Assignee%>" /></span>
                                 <input type="hidden" runat="server" id="hdn_empIds" name="hdn_empIds"/>
                          <select runat="server" id="sel_employee" name="sel_employee" style="width:70%" class="form-control input-lg" ></select>
                           <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
@@ -737,12 +745,13 @@
                     </div>
                     
                 <div class="modal-footer">
-                    <asp:button class="btn btn-new"  runat="server" Text=" <%$ Resources:Labels,Save%>"
-                        UseSubmitBehavior="false" CausesValidation="False" OnClientClick="alert(checkValidation());if (!checkValidation()) return false;" OnClick="btn_ads_Click" id="btn_ads" >
-                     <%--   <asp:Literal  runat="server" Text=" <%$ Resources:Labels,Save%>" />--%>
+                    <asp:HiddenField  runat="server" ID="hdnButtonID"/>
+                    <asp:button class="btn btn-new"  id="btn_save"  runat="server" Text=" <%$ Resources:Labels,Save%>"
+                     UseSubmitBehavior="False"  
+                        OnClick="btn_save_Click" 
+                        OnClientClick="javascript:return checkValidation();" >
                     </asp:button>
  
-
                     </div>
                 </div>
                  </div>

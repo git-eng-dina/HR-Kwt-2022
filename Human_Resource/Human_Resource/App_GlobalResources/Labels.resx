@@ -813,4 +813,7 @@
   <data name="Done" xml:space="preserve">
     <value>Done</value>
   </data>
+  <data name="Assignee" xml:space="preserve">
+    <value>Assignee</value>
+  </data>
 </root>

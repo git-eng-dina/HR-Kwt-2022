@@ -807,6 +807,9 @@
   <data name="Doing" xml:space="preserve">
     <value>قيد التنفيذ</value>
   </data>
+  <data name="Assignee" xml:space="preserve">
+    <value> المعين للعمل</value>
+  </data>
   <data name="Done" xml:space="preserve">
     <value>تم</value>
   </data>

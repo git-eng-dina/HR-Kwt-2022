@@ -168,28 +168,21 @@ namespace Human_Resource.App_Code
                                 }).ToList();
 
                 foreach(var t in tasks)
-              {
-                //    dailyTasks done = new dailyTasks();
+                {
                   switch (t.RepeatedEvery)
                    {
                        case "Daily":
                             t.EndDate = t.StartDate;
                             break;
-                //        case "Weekly":
-                //            done = entity.dailyTasks.Where(x => x.TaskID == t.TaskID && x.CreateDate == DateTime.Now &&
-                //                             x.EmployeeID == t.AssignedEmployeeID && x.EmpDone == true).FirstOrDefault();
-                //            break;
-                //        case "Monthly":
-                //            break;
-                //        case "Annual":
-                //            break;
-                //    };
-                  
-                //    if(done != null )
-                //    {
-                //        t.DailyTaskID = done.DailyTaskID;
-                //        t.EmpDone = done.EmpDone;
-                //        t.PossDone = done.BossDone;
+                        case "Weekly":
+                            t.EndDate =(DateTime) t.StartDate.Value.AddDays(7);
+                            break;
+                        case "Monthly":
+                            t.EndDate = (DateTime)t.StartDate.Value.AddMonths(1);
+                            break;
+                        case "Annual":
+                            t.EndDate = (DateTime)t.StartDate.Value.AddYears(1);
+                            break;
                     };
                 }
                 return tasks;
@@ -358,6 +351,7 @@ namespace Human_Resource.App_Code
 
         public void ScheduleTasks()
         {
+            List<tasks> scheduledTasks = new List<tasks>();
             using (HRSystemEntities entity = new HRSystemEntities())
             {
                 var schedule = entity.scheduledJobs.Where(x => x.Name == "DialyTasks").FirstOrDefault();
@@ -365,11 +359,72 @@ namespace Human_Resource.App_Code
                 {
                     schedule.ScheduleDate = DateTime.Now;
 
+                    #region daily tasks
                     var dailyTasks = entity.tasks.Where(x => x.IsActive == true &&
                                     x.RepeatedEvery== "Daily" && x.Approved == true &&
                                    x.IsBasic ==true && x.StartDate < DateTime.Now  && 
                                     (x.EndDate == null || x.EndDate >=DateTime.Now)).ToList();
-                    foreach(var dTask in dailyTasks)
+
+                    scheduledTasks.AddRange(dailyTasks);
+                    #endregion
+
+                    #region weekly Tasks
+                    var weeklyTasks = entity.tasks.Where(x => x.IsActive == true &&
+                                  x.RepeatedEvery == "Weekly" && x.Approved == true &&
+                                 x.IsBasic == true && x.StartDate < DateTime.Now &&
+                                  (x.EndDate == null || x.EndDate >= DateTime.Now)).ToList();
+
+                    foreach (var t in weeklyTasks)
+                    {
+                        TimeSpan tspan = DateTime.Now.Subtract((DateTime)t.StartDate);
+
+                        if((int)tspan.TotalDays != 0 &&  ((int)tspan.TotalDays % 7) == 0)
+                        {
+                            t.EndDate = DateTime.Now.AddDays(7);
+                            scheduledTasks.Add(t);
+                        }
+                    }
+
+                    #endregion
+                    
+                    #region Monthly Tasks
+                    var monthyTasks = entity.tasks.Where(x => x.IsActive == true &&
+                                  x.RepeatedEvery == "Monthly" && x.Approved == true &&
+                                 x.IsBasic == true && x.StartDate < DateTime.Now &&
+                                  (x.EndDate == null || x.EndDate >= DateTime.Now)).ToList();
+
+                    foreach (var t in monthyTasks)
+                    {
+                        var startDate = (DateTime)t.StartDate;
+
+                        if(startDate.Day == DateTime.Now.Day &&  startDate.Month != DateTime.Now.Month)
+                        {
+                            t.EndDate = DateTime.Now.AddMonths(1);
+                            scheduledTasks.Add(t);
+                        }
+                    }
+
+                    #endregion
+
+                    #region Annual Tasks
+                    var yearlyTasks = entity.tasks.Where(x => x.IsActive == true &&
+                                  x.RepeatedEvery == "Annual" && x.Approved == true &&
+                                 x.IsBasic == true && x.StartDate < DateTime.Now &&
+                                  (x.EndDate == null || x.EndDate >= DateTime.Now)).ToList();
+
+                    foreach (var t in monthyTasks)
+                    {
+                        var startDate = (DateTime)t.StartDate;
+
+                        if(startDate.Day == DateTime.Now.Day && startDate.Month == DateTime.Now.Month &&  startDate.Year != DateTime.Now.Year)
+                        {
+                            t.EndDate = DateTime.Now.AddMonths(1);
+                            scheduledTasks.Add(t);
+                        }
+                    }
+
+                    #endregion
+                    foreach (var dTask in scheduledTasks)
                     {
                         long taskID = dTask.TaskID;
                         var newTask = new tasks()
