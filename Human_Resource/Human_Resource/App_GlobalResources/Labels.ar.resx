@@ -813,4 +813,7 @@
   <data name="Done" xml:space="preserve">
     <value>تم</value>
   </data>
+  <data name="Attacment" xml:space="preserve">
+    <value>مرفق</value>
+  </data>
 </root>

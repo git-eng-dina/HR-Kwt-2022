@@ -32,12 +32,12 @@ namespace Human_Resource.App_Code
         public Nullable<bool> BossDone { get; set; }
         public Nullable<int> BranchManagerID { get; set; }
         public Nullable<int> ManagementManagerID { get; set; }
-        public string Attachment { get; set; }
+        
         public string AddedBy { get; set; }
         public Nullable<int> AssignedEmployeeID { get; set; }
         public string AssignedEmployeeName { get; set; }
         public Nullable<int> DailyTaskID { get; set; }
-
+        public Attachment Attachment { get; set; }
         public List<EmployeeModel> Employees { get; set; }
         #endregion
 
@@ -46,10 +46,11 @@ namespace Human_Resource.App_Code
         {
             using (HRSystemEntities entity = new HRSystemEntities())
             {
-                var tasks = (from x in entity.tasks.Where(ex => ex.IsActive == true && ex.Approved == true && 
-                             ex.StartDate <= DateTime.Now &&
-                             ( ex.EndDate == null || ex.EndDate >= DateTime.Now ))
-
+                var now = DateTime.Now.Date;
+                var tasks = (from x in entity.tasks.Where(ex => ex.IsActive == true && ex.Approved == true
+                             && ex.StartDate <= now
+                             && (ex.EndDate == null || ex.EndDate >= now)
+                             )
                              join e in entity.employeesTasks.Where(em => em.IsActive == true && em.BossDone == null && em.EmployeeID == employeeId) on x.TaskID equals e.TaskID
 
                              select new TaskModel()
@@ -73,7 +74,8 @@ namespace Human_Resource.App_Code
                                  AssignedEmployeeName = entity.employees.Where(y => y.EmployeeID == e.EmployeeID).Select(y => y.NameAr).FirstOrDefault(),
                                  Status = entity.dailyTasks.Where(y => y.DailyTaskID == entity.dailyTasks.Where(m => m.TaskID == x.TaskID && m.EmployeeID == e.EmployeeID).Max(m => m.DailyTaskID)).Select(y => y.Status).FirstOrDefault(),
                              })
-                             .ToList().Where( x=> x.Status == "Doing" || x.Status == "Complete").ToList();
+                             .ToList();
+                tasks = tasks.Where( x=> x.Status == "Doing" || x.Status == "Complete").ToList();
 
                 foreach (var t in tasks)
                 {
@@ -82,21 +84,15 @@ namespace Human_Resource.App_Code
                         case "Daily":
                             t.EndDate = t.StartDate;
                             break;
-                            //        case "Weekly":
-                            //            done = entity.dailyTasks.Where(x => x.TaskID == t.TaskID && x.CreateDate == DateTime.Now &&
-                            //                             x.EmployeeID == t.AssignedEmployeeID && x.EmpDone == true).FirstOrDefault();
-                            //            break;
-                            //        case "Monthly":
-                            //            break;
-                            //        case "Annual":
-                            //            break;
-                            //    };
-
-                            //    if(done != null )
-                            //    {
-                            //        t.DailyTaskID = done.DailyTaskID;
-                            //        t.EmpDone = done.EmpDone;
-                            //        t.PossDone = done.BossDone;
+                        case "Weekly":
+                            t.EndDate = (DateTime)t.StartDate.Value.AddDays(7);
+                            break;
+                        case "Monthly":
+                            t.EndDate = (DateTime)t.StartDate.Value.AddMonths(1);
+                            break;
+                        case "Annual":
+                            t.EndDate = (DateTime)t.StartDate.Value.AddYears(1);
+                            break;
                     };
 
                        
@@ -213,7 +209,7 @@ namespace Human_Resource.App_Code
                                     AddedBy = entity.employees.Where(e => e.EmployeeID == x.EmployeeID).Select(e => e.NameAr).FirstOrDefault(),
                                 }).ToList();
 
-                tasks = tasks.Where(x => (Convert.ToDateTime(x.StartDate.ToString()) >= DateTime.Now && x.EmployeeID != managerId) || x.EmployeeID == managerId).ToList();
+               // tasks = tasks.Where(x => (Convert.ToDateTime(x.StartDate.ToString()) >= DateTime.Now && x.EmployeeID != managerId) || x.EmployeeID == managerId).ToList();
                 return tasks;
             }
         }
@@ -366,7 +362,7 @@ namespace Human_Resource.App_Code
                                     RepeatedEvery = x.RepeatedEvery,
                                     Name = x.Name,
                                     Description = x.Description,
-                                     EmployeeID = x.EmployeeID,
+                                    EmployeeID = x.EmployeeID,
                                     EmployeeName = entity.employees.Where(m => m.EmployeeID == x.EmployeeID).Select(m => m.NameAr).FirstOrDefault(),
                                     CreateUserID = x.CreateUserID,
                                     UpdateUserID = x.UpdateUserID,
@@ -380,6 +376,10 @@ namespace Human_Resource.App_Code
                                                     NameAr = m.employees.NameAr,
                                                     NameEn = m.employees.NameEn,
                                                 }).ToList(),
+                                    Attachment = entity.Images.Where(m => m.TaskID == x.TaskID)
+                                                .Select(m => new Attachment() {
+                                                docName = m.docName,
+                                                docnum = m.docnum}).FirstOrDefault(),
                                 }).FirstOrDefault();
                 return dept;
             }
@@ -432,11 +432,15 @@ namespace Human_Resource.App_Code
                 {
                     using (HRSystemEntities entity = new HRSystemEntities())
                     {
+                        //remove assignee
                         var employeesTaskss = entity.employeesTasks.Where(x => x.TaskID == task.TaskID);
                         entity.employeesTasks.RemoveRange(
                             employeesTaskss
                             );
-                       
+                        //remove attachment
+                        var attachment = entity.Images.Where(x => x.TaskID == task.TaskID).FirstOrDefault();
+                        if(attachment != null)
+                            entity.Images.Remove(attachment);
 
                         //"1,2,"
                         //empIds
@@ -577,7 +581,7 @@ namespace Human_Resource.App_Code
                             StartDate = DateTime.Now,
                             EndDate = DateTime.Now,
                             Notes = dTask.Notes,
-                            Attachment = dTask.Attachment,
+                            //Attachment = dTask.Attachment,
                             CreateDate = dTask.CreateDate,
                             UpdateDate = dTask.UpdateDate,
                             CreateUserID = dTask.CreateUserID,
@@ -617,7 +621,18 @@ namespace Human_Resource.App_Code
                             };
                             entity.dailyTasks.Add(dailyTask);
                         }
-                        
+                        #region copy task attachment
+                        var attach = entity.Images.Where(x => x.TaskID == taskID).FirstOrDefault();
+                        var att = new Images()
+                        {
+                            TaskID = taskID,
+                            docName = attach.docName,
+                            docnum = attach.docnum,
+                            
+                        };
+                        entity.Images.Add(att);
+                        #endregion
+
                     }
                     entity.SaveChanges();
                 }

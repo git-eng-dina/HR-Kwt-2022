@@ -322,6 +322,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Attacment.
+        /// </summary>
+        internal static string Attacment {
+            get {
+                return ResourceManager.GetString("Attacment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Attendance.
         /// </summary>
         internal static string Attendance {
