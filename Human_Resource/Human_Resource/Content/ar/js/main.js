@@ -102,6 +102,21 @@ $(document).ready(function(){
     });  
 });
 
+function zeroPadded(val) {
+    if (val >= 10)
+        return val;
+    else
+        return '0' + val;
+}
+function convertToJavaScriptDate(value) {
+    var pattern = /Date\(([^)]+)\)/;
+    var results = pattern.exec(value);
+    var dt = new Date(parseFloat(results[1]));
+    var localDateTime = [dt.getFullYear(), zeroPadded(dt.getMonth() + 1),
+    zeroPadded(dt.getDate())].join('/');
+    return localDateTime;
+
+}
 //function zeroPadded(val) {
 //    if (val >= 10)
 //        return val;

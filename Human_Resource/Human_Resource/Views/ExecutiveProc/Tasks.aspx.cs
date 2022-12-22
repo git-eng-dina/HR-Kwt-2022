@@ -44,6 +44,7 @@ namespace Human_Resource.Views.ExecutiveProc
             int userId = int.Parse(Session["user_id"].ToString());
             List<TaskModel> needApprove = new List<TaskModel>();
             List<TaskModel> executedTasks = new List<TaskModel>();
+            List<TaskModel> myAddedTasks = new List<TaskModel>();
             if (Session["urole"] != null )
             {
                 string role = Session["urole"].ToString();
@@ -52,21 +53,34 @@ namespace Human_Resource.Views.ExecutiveProc
                     needApprove = taskModel.getNeedApproveForDirector();
 
                     executedTasks = taskModel.getExcutedForDirector();
+
+                    gv_myAddedTasks.Visible = false;
+                    gv_myAddedTasksBlank.Visible = false;
+                    gv_myAddedTasks_title.Visible = false;
                 }
                 else if (role == "Supervisor" )
                 {
                     needApprove = taskModel.getNeedApproveForSupervisor(userId);
                    
                     executedTasks = taskModel.getExcutedForSupervisor(userId);
-                    
+
+                    gv_myAddedTasks.Visible = false;
+                    gv_myAddedTasksBlank.Visible = false;
+                    gv_myAddedTasks_title.Visible = false;
                 }
                 else if (role == "ManagementManager")
                 {
                     needApprove = taskModel.getNeedApproveForManagement(userId);
                     executedTasks = taskModel.getExcutedForManagement(userId);
+
+                    gv_myAddedTasks.Visible = false;
+                    gv_myAddedTasksBlank.Visible = false;
+                    gv_myAddedTasks_title.Visible = false;
                 }
                 else
                 {
+                   myAddedTasks = taskModel.getMyAddedTasks(userId);
+
                     gv_approve_title.Visible = false;
                     gv_approve.Visible = false;
                     gv_executed_title.Visible = false;
@@ -96,6 +110,11 @@ namespace Human_Resource.Views.ExecutiveProc
                                 || x.Name.Contains(textSearch)
                                 || x.Description.Contains(textSearch)
                                  || x.EmployeeName.ToLower().Contains(textSearch.ToLower())
+                                 ).ToList();
+
+                myAddedTasks = myAddedTasks.Where(x => x.RepeatedEvery.ToLower().Contains(textSearch.ToLower())
+                                || x.Name.Contains(textSearch)
+                                || x.Description.Contains(textSearch)
                                  ).ToList();
             }
             gv_approve.DataSource = needApprove;
@@ -129,83 +148,17 @@ namespace Human_Resource.Views.ExecutiveProc
             DataBind();
         }
 
-        [WebMethod(EnableSession = true)]
-        public static string SaveTask(string taskId,  string name, string description, string repeatedEvery,
-                                string start,string end,string empIds, string postedFile1)
+
+        public static void UploadFile(string fileName,string docTitle, long taskId)
         {
-            //try
-            {
-                TaskModel taskObj = new TaskModel();
-                Attachment attach = new Attachment();
-                if (taskId != "")
-                {
-                    attach.DeleteTaskAttach(int.Parse(taskId));
-                    taskObj.TaskID = int.Parse(taskId);
-                }
-                else
-                    taskObj.TaskID = 0;
-
-                taskObj.RepeatedEvery = repeatedEvery;
-                taskObj.Name = name;
-                taskObj.Description = description;
-                // taskObj.Attachment =
-
-                taskObj.StartDate = DateTime.ParseExact(start, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-                if(end !="")
-                    taskObj.EndDate = DateTime.ParseExact(end, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-                if (HttpContext.Current.Session["user_id"] != null && HttpContext.Current.Session["user_id"].ToString() != "")
-                    taskObj.CreateUserID = taskObj.UpdateUserID = taskObj.EmployeeID = int.Parse(HttpContext.Current.Session["user_id"].ToString());
-
-
-               long taskIdInt = taskObj.SaveTask(taskObj, empIds);
-                if (taskIdInt != 0)
-                {
-                  //  if(attachment != "")
-                     //   UploadFile(attachment, taskIdInt, "task");
-                    return "1";
-                }
-                return "0";
-            }
-            //catch
-            //{
-            //    return "0";
-
-            //}
-
-        }
-
-
-        public static void UploadFile(string fileName, long taskId, string tag)
-        {
-            //save file in the specified folder and path
-            string extension = Path.GetExtension(fileName);
-            var newFileName = HelpClass.MD5Hash(taskId.ToString()) + "-" + tag + extension;
-            string FilePath = Path.Combine(HostingEnvironment.MapPath("~/Upload"), newFileName);
-
-            MemoryStream ms = new MemoryStream();
-            using (FileStream file = new FileStream(fileName, FileMode.Open, FileAccess.Read))
-                file.CopyTo(ms);
-
-            int length = 0;
-            using (FileStream writer = new FileStream(FilePath, FileMode.Create))
-            {
-                int readCount;
-                var buffer = new byte[8192];
-                while ((readCount = ms.Read(buffer, 0, buffer.Length)) != 0)
-                {
-                    writer.Write(buffer, 0, readCount);
-                    length += readCount;
-                }
-            }
-
-          
-
+           
             var attach = new Attachment()
             {
-                docnum = newFileName,
-                docName = Path.GetFileNameWithoutExtension(fileName),
+                docnum = fileName,
+                docName = docTitle,
                 TaskID = taskId,
             };
+            attach.DeleteTaskAttach(taskId);
             attach.SaveAttach(attach);
 
         }
@@ -432,7 +385,7 @@ namespace Human_Resource.Views.ExecutiveProc
 
             //try
             {
-               // if (IsControlsValid())
+              //if (!IsPostBack)
                 {
                     TaskModel taskObj = new TaskModel();
                     Attachment attach = new Attachment();
@@ -462,8 +415,24 @@ namespace Human_Resource.Views.ExecutiveProc
                     long taskIdInt = taskObj.SaveTask(taskObj, hdn_empIds.Value);
                     if (taskIdInt != 0)
                     {
+
                         if (file.FileName != "")
-                            UploadFile(file.FileName, taskIdInt, "task");
+                        {
+                            //folder path to save uploaded file
+                            string folderPath = Server.MapPath(HelpClass.TaskUpload);
+
+                            //Check whether Directory (Folder) exists, although we have created, if it si not created this code will check
+                            if (!Directory.Exists(folderPath))
+                            {
+                                //If folder does not exists. Create it.
+                                Directory.CreateDirectory(folderPath);
+                            }
+                            string extension = Path.GetExtension(file.FileName);
+                            string newFileName = HelpClass.MD5Hash(taskId.ToString()) + "-task" + extension;
+                            string filePath = Path.Combine(HostingEnvironment.MapPath(HelpClass.TaskUpload), newFileName);
+                            file.SaveAs(filePath);
+                            UploadFile(newFileName, Path.GetFileNameWithoutExtension(file.FileName), taskIdInt);
+                        }
                         // return "1";
                     }
                 }

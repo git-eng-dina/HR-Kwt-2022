@@ -85,6 +85,33 @@ namespace Human_Resource.Views.ExecutiveProc {
         protected global::System.Web.UI.WebControls.GridView gv_executed;
         
         /// <summary>
+        /// gv_myAddedTasksBlank control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl gv_myAddedTasksBlank;
+        
+        /// <summary>
+        /// gv_myAddedTasks_title control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl gv_myAddedTasks_title;
+        
+        /// <summary>
+        /// gv_myAddedTasks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gv_myAddedTasks;
+        
+        /// <summary>
         /// gv_myTasksBlank control.
         /// </summary>
         /// <remarks>
@@ -112,13 +139,13 @@ namespace Human_Resource.Views.ExecutiveProc {
         protected global::System.Web.UI.WebControls.GridView gv_myTasks;
         
         /// <summary>
-        /// txt_name control.
+        /// lbl_attach control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_name;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor lbl_attach;
         
         /// <summary>
         /// file control.
@@ -128,6 +155,15 @@ namespace Human_Resource.Views.ExecutiveProc {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload file;
+        
+        /// <summary>
+        /// txt_name control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_name;
         
         /// <summary>
         /// txt_description control.

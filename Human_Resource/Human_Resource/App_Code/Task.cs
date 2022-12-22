@@ -351,6 +351,33 @@ namespace Human_Resource.App_Code
                 return tasks;
             }
         }
+        public List<TaskModel> getMyAddedTasks(int employeeId)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                //  var now = DateTime.Today;
+                var now = DateTime.Now.Date;
+                var tasks = entity.tasks.Where(x => x.IsActive == true 
+                        && x.EmployeeID == employeeId && x.Approved == null)
+                    .Select(x => new TaskModel()
+                                {
+                                    TaskID = x.TaskID,
+                                    RepeatedEvery = x.RepeatedEvery,
+                                    Name = x.Name,
+                                    Description = x.Description,
+                                    EmployeeID = x.EmployeeID,
+                                    EmployeeName = entity.employees.Where(m => m.EmployeeID == x.EmployeeID).Select(m => m.NameAr).FirstOrDefault(),
+                                    CreateUserID = x.CreateUserID,
+                                    UpdateUserID = x.UpdateUserID,
+                                    Notes = x.Notes,
+                                    CreateDate = x.CreateDate,
+                                    UpdateDate = x.UpdateDate,
+                                    Approved = x.Approved,
+                                    AddedBy = entity.employees.Where(e => e.EmployeeID == x.EmployeeID).Select(e => e.NameAr).FirstOrDefault(),
+                                }).ToList();
+                return tasks;
+            }
+        }
         public TaskModel getTask(int taskId)
         {
             using (HRSystemEntities entity = new HRSystemEntities())
@@ -367,6 +394,8 @@ namespace Human_Resource.App_Code
                                     CreateUserID = x.CreateUserID,
                                     UpdateUserID = x.UpdateUserID,
                                     Notes = x.Notes,
+                                    StartDate = x.StartDate,
+                                    EndDate = x.EndDate,
                                     CreateDate = x.CreateDate,
                                     UpdateDate = x.UpdateDate,
                                     Employees = entity.employeesTasks.Where(m => m.TaskID == x.TaskID && m.IsActive == true)
@@ -437,11 +466,7 @@ namespace Human_Resource.App_Code
                         entity.employeesTasks.RemoveRange(
                             employeesTaskss
                             );
-                        //remove attachment
-                        var attachment = entity.Images.Where(x => x.TaskID == task.TaskID).FirstOrDefault();
-                        if(attachment != null)
-                            entity.Images.Remove(attachment);
-
+                        entity.SaveChanges();
                         //"1,2,"
                         //empIds
                         var empIdsList = empIds.Split(',').Where(x => !string.IsNullOrWhiteSpace(x)).ToList();

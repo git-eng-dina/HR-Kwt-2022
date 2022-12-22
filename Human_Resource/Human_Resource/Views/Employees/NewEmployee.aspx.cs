@@ -92,7 +92,7 @@ namespace Human_Resource.Views.Employees
                     {
                         lbl_certificate1.Text = "";
                         hr_cer1.InnerHtml= emp.Certificate1.docName;
-                        hr_cer1.HRef = "~/Upload/"+emp.Certificate1.docnum;
+                        hr_cer1.HRef = "../../Upload/CV/"+ emp.Certificate1.docnum;
                     }
                     //certificate 2
                     if(emp.EducationCertificate2 != null)
@@ -108,7 +108,7 @@ namespace Human_Resource.Views.Employees
                         {
                             lbl_certificate2.Text = "";
                             hr_cer2.InnerHtml = emp.Certificate2.docName;
-                            hr_cer2.HRef = "~/Upload/" + emp.Certificate2.docnum;
+                            hr_cer2.HRef = "../../Upload/CV/" + emp.Certificate2.docnum;
                         }
                     }
                     else
@@ -128,7 +128,7 @@ namespace Human_Resource.Views.Employees
                         {
                             lbl_certificate3.Visible = false;
                             hr_cer3.InnerHtml = emp.Certificate3.docName;
-                            hr_cer3.HRef = "~/Upload/" + emp.Certificate3.docnum;
+                            hr_cer3.HRef = "../../Upload/CV/" + emp.Certificate3.docnum;
 
                         lbl_certificate3.Text = emp.Certificate3.docName;
                         }
@@ -300,7 +300,7 @@ namespace Human_Resource.Views.Employees
         protected void UploadFile(string fileName,int empId,string tag)
         {
             //folder path to save uploaded file
-            string folderPath = Server.MapPath("~/Upload/");
+            string folderPath = Server.MapPath(HelpClass.CVUpload);
 
             //Check whether Directory (Folder) exists, although we have created, if it si not created this code will check
             if (!Directory.Exists(folderPath))

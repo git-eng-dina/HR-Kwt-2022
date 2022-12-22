@@ -62,7 +62,7 @@ body a:hover{text-decoration: none !important;}
   padding: 10px;
   border-radius: 10px;
 }
-
+ .highlight-menu {text-decoration: underline;color:black;background-color:white; font-weight:bold }
     .statis .c-profile {
         position: relative;
         background-color: #FFF;
@@ -727,6 +727,20 @@ nav .logo {
         font-style: italic
     }
 
+.btn-new {
+    color: #fff;
+    background-color: #895206;
+    border-color: #895206;
+    width: 80px;
+    height: 80%;
+    margin-top: 5px;
+    float: right;
+}
+
+    .btn-new:hover {
+        color: white;
+    }
+
  .c-form {
     position: relative;
     background-color: #FFF;
@@ -738,9 +752,19 @@ nav .logo {
     float: right;
 
 }
+.c-form .btn-new {
+    color: #fff;
+    background-color: #895206;
+    border-color: #895206;
+    width: 80px;
+    height: 80%;
+    margin-top: 5px;
+    float: right;
+}
   .c-form .form-group {
         width: 100%;
-    }
+    } 
+
     .c-form span {
         display: block;
         width: 20%;
@@ -788,18 +812,7 @@ nav .logo {
         background-color: rgb(16,85,118);
         color:white;
     }
-.btn-new {
-    color: #fff;
-    background-color: #895206;
-    border-color: #895206;
-    width: 80px;
-    height: 80%;
-    margin-top: 5px;
-    float: right;
-}
-    .btn-new:hover {
-        color: white;
-    }
+
 .gridView {
     text-align: center;
     /*min-width: 600px;*/
@@ -1365,4 +1378,19 @@ input[type=checkbox], input[type=radio] {
 .ul-noList {
     list-style-type: none;
     padding-right: 0px;
+}
+.div-attachment {
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 0px;
+}
+.href-file {
+    display: block;
+    width: 85%;
+    float: right;
+    text-align: right;
+    padding-top: 5px;
+    padding-right: 5px;
+    color: #5587bd;
+    font-size: 12px;
 }

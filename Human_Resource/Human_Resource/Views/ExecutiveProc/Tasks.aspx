@@ -25,6 +25,13 @@
                 $('#MainContent_file').trigger('click');
             });
 
+            $('[id*=delete_upload]').click(function (e) {
+                e.preventDefault();
+                $('#MainContent_file').val("");
+                $('#MainContent_lbl_attach').html("");
+                $('[id*=delete_upload]').hide();
+            });
+
             $("[id*=btn_addEmp]").click(function (e) {
                 addEmp();
                 e.preventDefault();
@@ -46,6 +53,17 @@
             });
 
             $("#dialog").parent().appendTo($("form:first"));
+
+            $(function () {
+                $('#MainContent_file').change(function () {
+                    var path = $(this).val();
+                    if (path != '' && path != null) {
+                        var q = path.substring(path.lastIndexOf('\\') + 1);
+                        $('#MainContent_lbl_attach').html(q);
+                        $('[id*=delete_upload]').show();
+                    }
+                })
+            });
 
             $('.td-edit').click(function () {
                 var customID = $(this).attr('myCustomID');
@@ -213,7 +231,19 @@
                         $('#MainContent_sel_repeatedEvery').val(item.RepeatedEvery);
                         $('#MainContent_txt_name').val(item.Name);
                         $('#MainContent_txt_description').val(item.Description);
+                        var start = convertToJavaScriptDate(item.StartDate);
+                        $('[id*=dp_start]').val(start);
 
+                        if (item.EndDate != null) {
+                            var end = convertToJavaScriptDate(item.EndDate);
+                            $('[id*=dp_end]').val(end);
+                        }
+
+                        if (item.Attachment != null) {
+                            $('#MainContent_lbl_attach').attr("href", "../../Upload/Tasks/" + item.Attachment.docnum);
+                            $('#MainContent_lbl_attach').html(item.Attachment.docName);
+                            $('[id*=delete_upload]').show();
+                        }
 
                         var lstView = $("[id*=lst_employee]");
                         for (var emp in item.Employees) {
@@ -593,7 +623,82 @@
                                 </Columns>
                                 <EditRowStyle BackColor="#009999" VerticalAlign="Middle" />
                             </asp:GridView>
-                        <!---- my tasks -->
+                        <!---- my added tasks -->
+                        <div class="row" id="gv_myAddedTasksBlank" runat="server">&nbsp;</div>
+                        <div class="row gridView-title" id="gv_myAddedTasks_title" runat="server">                       
+                           <span><asp:Literal Text=" <%$ Resources:Labels,Tasks%>" runat="server"></asp:Literal> </span>
+                        </div>
+                            <asp:GridView ID="gv_myAddedTasks" runat="server"  CssClass="gridview col-md-12"  
+                                AutoGenerateColumns="False"  Width="90%" 
+                             style="margin-top:0px;"
+                                class="table table-bordered table-condensed table-responsive table-hover ">
+                                <Columns>
+
+                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,Sequence%>" ItemStyle-Width="5%">
+                                         <ItemTemplate>
+                                                 <%#Container.DataItemIndex+1 %>                            
+                                         </ItemTemplate> 
+                                       </asp:TemplateField>
+
+                                          
+                                <asp:TemplateField HeaderText="<%$ Resources:Labels,Task%>" ItemStyle-Width="25%">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblName" runat="server" 
+                                                 Text='<%# Eval("Name") %>' />                              
+                                         </ItemTemplate>
+                                        </asp:TemplateField>
+                                
+                                        <asp:TemplateField HeaderText="<%$ Resources:Labels,Description%>" ItemStyle-Width="25%">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblDescription" runat="server" 
+                                                 Text='<%# Eval("Description") %>' />                              
+                                         </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                  
+                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,RepeatedEvery%>" ItemStyle-Width="15%">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblDrepeatedEvery" runat="server" 
+                                                 Text='<%# Eval("RepeatedEvery") %>' />                              
+                                         </ItemTemplate>
+                                   </asp:TemplateField>  
+                                     <asp:TemplateField HeaderText="<%$ Resources:Labels,Start%>" ItemStyle-Width="15%">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblStart3" runat="server" 
+                                                Text='<%# Bind("StartDate", "{0:MM-dd-yyyy}") %>'/>                              
+                                         </ItemTemplate>
+                                   </asp:TemplateField>    
+                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,End%>" ItemStyle-Width="15%">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblEnd3" runat="server" Text='<%# Bind("EndDate", "{0:MM-dd-yyyy}") %>'/>                              
+                                         </ItemTemplate>
+                                   </asp:TemplateField>   
+
+                                 <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-edit">
+                                          <ItemTemplate>                     
+                                                <asp:LinkButton ID="editTask" runat="server" myCustomID='<%# Eval("TaskID")%>'  CssClass="td-edit">
+                                                    <asp:Image ImageUrl="~/Images/edit.ico" runat="server" ToolTip="<%$ Resources:Labels,Edit%>" Width="20px" Height="20px" />
+                                                </asp:LinkButton>  
+                                             </ItemTemplate>
+                                        </asp:TemplateField>
+                                   
+                                   <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-delete">
+                                             <ItemTemplate>                     
+                                                <asp:ImageButton  CommandArgument='<%# Eval("TaskID")%>' OnCommand="deletedatafromgrid"
+                                                    OnClientClick="return confirm(<%= Resources.Labels.ConfirmDelete %>);return false;"
+                                                    ID="Image1" runat="server" ImageUrl="~/Images/delete.ico" ToolTip="<%$ Resources:Labels,Delete%>"/>
+                                                             
+                                             </ItemTemplate>
+                                    </asp:TemplateField> 
+
+                                   
+                                </Columns>
+                                <EditRowStyle BackColor="#009999" VerticalAlign="Middle" />
+                            </asp:GridView>
+    
+                      <%-- </div>--%> 
+                       
+                       <!---- my tasks -->
                         <div class="row" id="gv_myTasksBlank" runat="server">&nbsp;</div>
                         <div class="row gridView-title" id="gv_myTasks_title" runat="server">                       
                            <span><asp:Literal Text=" <%$ Resources:Labels,MyTasks%>" runat="server"></asp:Literal> </span>
@@ -688,33 +793,33 @@
             </div>
          </div>
             <div class="modal-body panel-body model-b">
-                <div class="c-form">
+                <div class="row div-attachment">
+                 <a href=""  id="uploadTrigger_1"> <i class="fa fa-paperclip" style="color:#a19c9c"></i></a>
+                      <a href="" id="lbl_attach" runat="server" target="_blank" class="href-file"></a>
+                   
+                   <a href="" id="delete_upload" style="display:none;"><i class='fas fa-trash' style="color:#a19c9c"></i></a>
+                    </div>
+                <div class="c-form" style="margin-top:5px;">
 
-                <%--        <div class="row">
-                     <div class="form-group" style="display:block">
-                              <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Employee%>" /></span>
-        
-                                <select runat="server" id="emp" name="emp" style="width:80%" class="form-control input-lg"></select>
-                            </div>
-                        </div>--%>
                    
                      <div class ="row">
                      <div class="form-group" style="display:block">
+                            <asp:FileUpload ID="file" runat="server" style="display:none;" />
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Task%>" /></span>
                                 <input type="text" class="form-control input-lg" id="txt_name" name="txt_name"  runat="server" value="" onchange="removeValidation($(this));" />
                           <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
-                          <a href=""  id="uploadTrigger_1"> <i class="fa fa-upload"></i></a>
+                       
                             </div>
                         </div> 
   
                    <div class ="row">
                      <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Description%>" /></span>
-                          <asp:FileUpload ID="file" runat="server" class="hidden" />
+                          
                                 <input type="text" class="form-control input-lg" id="txt_description"  runat="server" value="" onchange="removeValidation($(this));" />
                           <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
                             </div>
-                        </div> 
+                        </div>
                     <div class ="row">
                      <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,RepeatedEvery%>" /></span>
@@ -757,12 +862,14 @@
                     
                 <div class="modal-footer">
                     <asp:HiddenField  runat="server" ID="hdnButtonID"/>
+
+
                     <asp:button class="btn btn-new"  id="btn_save"  runat="server" Text=" <%$ Resources:Labels,Save%>"
                      UseSubmitBehavior="False"  
                         OnClick="btn_save_Click" 
                         OnClientClick="javascript:return checkValidation();" >
                     </asp:button>
- 
+
                     </div>
                 </div>
                  </div>

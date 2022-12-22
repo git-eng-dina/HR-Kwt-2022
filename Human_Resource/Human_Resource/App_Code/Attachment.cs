@@ -67,7 +67,7 @@ namespace Human_Resource.App_Code
             }
         }
 
-        public void DeleteTaskAttach(int taskId)
+        public void DeleteTaskAttach(long taskId)
         {
             using (HRSystemEntities entity = new HRSystemEntities())
             {
