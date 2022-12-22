@@ -628,7 +628,7 @@
                         <div class="row gridView-title" id="gv_myAddedTasks_title" runat="server">                       
                            <span><asp:Literal Text=" <%$ Resources:Labels,Tasks%>" runat="server"></asp:Literal> </span>
                         </div>
-                            <asp:GridView ID="gv_myAddedTasks" runat="server"  CssClass="gridview col-md-12"  
+                            <asp:GridView ID="gv_myAddedTasks" runat="server"  CssClass="specialist-gridview col-md-12"  
                                 AutoGenerateColumns="False"  Width="90%" 
                              style="margin-top:0px;"
                                 class="table table-bordered table-condensed table-responsive table-hover ">

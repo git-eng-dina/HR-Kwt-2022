@@ -366,6 +366,8 @@ namespace Human_Resource.App_Code
                                     Name = x.Name,
                                     Description = x.Description,
                                     EmployeeID = x.EmployeeID,
+                                    StartDate = x.StartDate,
+                                    EndDate = x.EndDate,
                                     EmployeeName = entity.employees.Where(m => m.EmployeeID == x.EmployeeID).Select(m => m.NameAr).FirstOrDefault(),
                                     CreateUserID = x.CreateUserID,
                                     UpdateUserID = x.UpdateUserID,

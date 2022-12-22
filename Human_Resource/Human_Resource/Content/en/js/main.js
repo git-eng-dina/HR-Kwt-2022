@@ -124,10 +124,8 @@ function convertToJavaScriptDate(value) {
     var pattern = /Date\(([^)]+)\)/;
     var results = pattern.exec(value);
     var dt = new Date(parseFloat(results[1]));
-    var localDateTime = [dt.getFullYear(), zeroPadded(dt.getMonth() + 1),
-    zeroPadded(dt.getDate())].join('-') + 'T' +
-        [zeroPadded(dt.getHours()),
-        zeroPadded(dt.getMinutes())].join(':');
+    var localDateTime = [zeroPadded(dt.getMonth() + 1),
+    zeroPadded(dt.getDate()), dt.getFullYear()].join('/');
     return localDateTime;
 
 }

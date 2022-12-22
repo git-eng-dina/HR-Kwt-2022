@@ -48,6 +48,7 @@ namespace Human_Resource.Views.ExecutiveProc
             if (Session["urole"] != null )
             {
                 string role = Session["urole"].ToString();
+
                 if (role == "GeneralDirector" || role == "CEO")
                 {
                     needApprove = taskModel.getNeedApproveForDirector();
@@ -86,7 +87,6 @@ namespace Human_Resource.Views.ExecutiveProc
                     gv_executed_title.Visible = false;
                     gv_executed.Visible = false;
                     gv_executedBlank.Visible=false;
-                    gv_myTasksBlank.Visible =false;
                 }
             }
 
@@ -120,7 +120,7 @@ namespace Human_Resource.Views.ExecutiveProc
             gv_approve.DataSource = needApprove;
             gv_executed.DataSource = executedTasks;
             gv_myTasks.DataSource = myTasks;
-
+            gv_myAddedTasks.DataSource = myAddedTasks;
 
             var repeatedTypes = GetData.repeatTypeList.ToList();
             repeatedTypes.Insert(0, new KeyValueString { key = "", value = "------" });
