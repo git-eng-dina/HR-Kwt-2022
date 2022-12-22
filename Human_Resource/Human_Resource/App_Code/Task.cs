@@ -648,14 +648,17 @@ namespace Human_Resource.App_Code
                         }
                         #region copy task attachment
                         var attach = entity.Images.Where(x => x.TaskID == taskID).FirstOrDefault();
-                        var att = new Images()
+                        if (attach != null)
                         {
-                            TaskID = taskID,
-                            docName = attach.docName,
-                            docnum = attach.docnum,
-                            
-                        };
-                        entity.Images.Add(att);
+                            var att = new Images()
+                            {
+                                TaskID = taskID,
+                                docName = attach.docName,
+                                docnum = attach.docnum,
+
+                            };
+                            entity.Images.Add(att);
+                        }
                         #endregion
 
                     }
