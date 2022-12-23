@@ -64,6 +64,7 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
@@ -187,7 +188,6 @@
     <Content Include="images\reject_document.png" />
     <Content Include="images\search.png" />
     <Content Include="images\task-cancle.png" />
-    <Content Include="images\task-complete.png" />
     <EntityDeploy Include="Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -510,16 +510,17 @@
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Views\Attendance\HourlyBills.aspx" />
     <Content Include="Views\Attendance\VacationReport.aspx" />
-    <Content Include="Views\Attendance\Vacations.aspx" />
     <Content Include="Views\Attendance\VaccaitionApproval.aspx" />
     <Content Include="Views\Attendance\WorkShifts.aspx" />
     <Content Include="Views\Employees\Employees.aspx" />
     <Content Include="Views\Employees\EmpPenalities.aspx" />
+    <Content Include="Views\Employees\ExpiredPassports.aspx" />
     <Content Include="Views\Employees\NewEmployee.aspx" />
     <Content Include="Views\Employees\UserAccounts.aspx" />
     <Content Include="Views\ExecutiveProc\AddEvaluation.aspx" />
     <Content Include="Views\ExecutiveProc\Custodies.aspx" />
     <Content Include="Views\ExecutiveProc\Events.aspx" />
+    <Content Include="Views\ExecutiveProc\EventsApprove.aspx" />
     <Content Include="Views\ExecutiveProc\MaterialsConsumption.aspx" />
     <Content Include="Views\ExecutiveProc\RewardsAndPenalties.aspx" />
     <Content Include="Views\ExecutiveProc\SalaryIncrease.aspx" />
@@ -558,10 +559,10 @@
     <Compile Include="App_Code\Task.cs" />
     <Compile Include="App_Code\Training.cs" />
     <Compile Include="App_Code\Period.cs" />
-    <Compile Include="App_GlobalResources\Labels.ar.designer.cs">
+    <Compile Include="App_GlobalResources\Labels.ar-As.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Labels.ar.resx</DependentUpon>
+      <DependentUpon>Labels.ar-As.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\Labels.designer.cs">
       <AutoGen>True</AutoGen>
@@ -702,13 +703,6 @@
     <Compile Include="Views\Attendance\VacationReport.aspx.designer.cs">
       <DependentUpon>VacationReport.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Attendance\Vacations.aspx.cs">
-      <DependentUpon>Vacations.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Attendance\Vacations.aspx.designer.cs">
-      <DependentUpon>Vacations.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Views\Attendance\VaccaitionApproval.aspx.cs">
       <DependentUpon>VaccaitionApproval.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -739,6 +733,13 @@
     </Compile>
     <Compile Include="Views\Employees\EmpPenalities.aspx.designer.cs">
       <DependentUpon>EmpPenalities.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Employees\ExpiredPassports.aspx.cs">
+      <DependentUpon>ExpiredPassports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Employees\ExpiredPassports.aspx.designer.cs">
+      <DependentUpon>ExpiredPassports.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Employees\NewEmployee.aspx.cs">
       <DependentUpon>NewEmployee.aspx</DependentUpon>
@@ -777,6 +778,13 @@
     </Compile>
     <Compile Include="Views\ExecutiveProc\Events.aspx.designer.cs">
       <DependentUpon>Events.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExecutiveProc\EventsApprove.aspx.cs">
+      <DependentUpon>EventsApprove.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ExecutiveProc\EventsApprove.aspx.designer.cs">
+      <DependentUpon>EventsApprove.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\ExecutiveProc\MaterialsConsumption.aspx.cs">
       <DependentUpon>MaterialsConsumption.aspx</DependentUpon>
@@ -953,14 +961,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_GlobalResources\Labels.ar.resx">
+    <EmbeddedResource Include="App_GlobalResources\Labels.ar-As.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Labels.ar.designer.cs</LastGenOutput>
-    </Content>
-    <Content Include="App_GlobalResources\Labels.resx">
+      <LastGenOutput>Labels.ar-As.designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_GlobalResources\Labels.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Labels.designer.cs</LastGenOutput>
-    </Content>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
