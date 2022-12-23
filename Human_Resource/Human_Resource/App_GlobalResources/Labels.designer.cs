@@ -1177,6 +1177,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ID Number.
+        /// </summary>
+        internal static string IDNumber {
+            get {
+                return ResourceManager.GetString("IDNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Initiative.
         /// </summary>
         internal static string Initiative {

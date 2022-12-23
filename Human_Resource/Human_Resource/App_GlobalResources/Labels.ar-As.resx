@@ -837,4 +837,7 @@
   <data name="Expired" xml:space="preserve">
     <value>منتهي الصلاحية</value>
   </data>
+  <data name="IDNumber" xml:space="preserve">
+    <value>رقم الهوية</value>
+  </data>
 </root>

@@ -493,6 +493,13 @@
                             </div>
                               <div class="form-group" style="display:block">
                                 <div class="col-md-4 col-sm-4 col-xs-4 div1">
+                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,IDNumber%>" /></span>
+                                </div>
+                                <div class="col-md-8 col-sm-8 col-xs-8 div2">
+                                    <input type="number" class="form-control" id="txt_IDNumber"  runat="server" value=""  />
+                            </div>
+                                  <div class="form-group" style="display:block">
+                                <div class="col-md-4 col-sm-4 col-xs-4 div1">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,WorkHours%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2">

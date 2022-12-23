@@ -337,6 +337,15 @@ namespace Human_Resource.Views.Employees {
         protected global::System.Web.UI.HtmlControls.HtmlSelect sel_department;
         
         /// <summary>
+        /// txt_IDNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txt_IDNumber;
+        
+        /// <summary>
         /// txt_workHours control.
         /// </summary>
         /// <remarks>

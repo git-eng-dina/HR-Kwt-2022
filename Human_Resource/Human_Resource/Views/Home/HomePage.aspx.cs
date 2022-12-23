@@ -20,13 +20,11 @@ namespace Human_Resource.Views.Home
 
 
             var employeesCount = 10;
-            var expiredPassCount = 15;
             var eventsCount = 15;
             var trainingsCount = 15;
             var vacations = 20;
 
             lbl_employees.InnerText = employeesCount.ToString();
-            lbl_expiredPassports.InnerText = expiredPassCount.ToString();
             lbl_events.InnerText = eventsCount.ToString();
             
             lbl_trainings.InnerText = trainingsCount.ToString();
@@ -58,6 +56,9 @@ namespace Human_Resource.Views.Home
 
             tasksChart.Series[0].Label = "#VALY";
             tasksChart.Series[0].LegendText = "#VALX";
+
+            ChartArea CA = tasksChart.ChartAreas[0];
+            CA.InnerPlotPosition = new ElementPosition(0, 0, 92, 90);
 
             tasksChart.Legends[0].Enabled = true;
         }
@@ -95,6 +96,9 @@ namespace Human_Resource.Views.Home
 
             passportsChart.Series[0].Label = "#VALY";
             passportsChart.Series[0].LegendText = "#VALX";
+
+            ChartArea CA = passportsChart.ChartAreas[0];  
+            CA.InnerPlotPosition = new ElementPosition(0, 0, 92, 90);
 
             passportsChart.Legends[0].Enabled = true;
         }

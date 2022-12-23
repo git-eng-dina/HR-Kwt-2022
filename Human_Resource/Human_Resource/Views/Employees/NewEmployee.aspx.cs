@@ -154,6 +154,7 @@ namespace Human_Resource.Views.Employees
                     sel_position.Value = emp.JobID.ToString();
                     sel_management.Value = emp.ManagementID.ToString();
                     sel_department.Value = emp.DepartmentID.ToString();
+                    txt_IDNumber.Value = emp.IDNumber;
                     txt_workHours.Value = emp.WorkHours.ToString();
                     txt_salary.Value = emp.BasicSalary.ToString();
                     if (emp.HiringDate != null)
@@ -257,6 +258,7 @@ namespace Human_Resource.Views.Employees
                     employee.ManagementID = int.Parse(sel_management.Value);
                 if(sel_department.Value != "" && sel_department.Value != "0")
                     employee.DepartmentID = int.Parse(sel_department.Value);
+                employee.IDNumber = txt_IDNumber.Value;
                 employee.WorkHours = int.Parse(txt_workHours.Value);
                 employee.BasicSalary = decimal.Parse(txt_salary.Value);
                 employee.Email = txt_email.Value;

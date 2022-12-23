@@ -14,10 +14,11 @@ namespace Human_Resource.App_Code
         public DateTime start { get; set; }
         public DateTime end { get; set; }
         public Nullable<int> EmployeeID { get; set; }
-        public string Attachment { get; set; }
         public Nullable<int> BranchManagerID { get; set; }
         public Nullable<int> ManagementManagerID { get; set; }
         public Nullable<bool> Approved { get; set; }
+
+        public Attachment Attachment { get; set; }
         public List<EmployeeModel> Employees { get; set; }
         #endregion
 

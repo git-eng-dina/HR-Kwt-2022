@@ -188,6 +188,7 @@ namespace Human_Resource
         public string JobDescription { get; set; }
 
         public string Guarantor { get; set; }
+        public string IDNumber { get; set; }
 
         #endregion
         #region extra info
@@ -329,7 +330,7 @@ namespace Human_Resource
                         PassportExpiryDate = x.PassportExpiryDate,
                         Sequence = x.Sequence,
                         UnifiedNumber = x.UnifiedNumber,
-
+                        IDNumber = x.IDNumber,
                         CreateUserID = x.CreateUserID,
                         UpdateUserID = x.UpdateUserID,
                         CreateDate = x.CreateDate,
@@ -558,7 +559,7 @@ namespace Human_Resource
                             PassportExpiryDate=employee.PassportExpiryDate,
                             Sequence= employee.Sequence ,
                             UnifiedNumber = employee.UnifiedNumber ,
-
+                            IDNumber = employee.IDNumber,
                             CreateUserID =employee.CreateUserID ,
                             UpdateUserID = employee.UpdateUserID,
                             CreateDate = DateTime.Now,
@@ -610,7 +611,7 @@ namespace Human_Resource
                         emp.PassportExpiryDate = employee.PassportExpiryDate;
                         emp.Sequence = employee.Sequence;
                         emp.UnifiedNumber = employee.UnifiedNumber;
-
+                        emp.IDNumber = employee.IDNumber;
                         emp.UpdateUserID = employee.UpdateUserID;
                         emp.UpdateDate = DateTime.Now;
                     }
