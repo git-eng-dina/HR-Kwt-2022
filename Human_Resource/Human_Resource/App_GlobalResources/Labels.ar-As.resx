@@ -831,4 +831,10 @@
   <data name="Complete" xml:space="preserve">
     <value>مكتمل</value>
   </data>
+  <data name="Active" xml:space="preserve">
+    <value>فعال</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>منتهي الصلاحية</value>
+  </data>
 </root>

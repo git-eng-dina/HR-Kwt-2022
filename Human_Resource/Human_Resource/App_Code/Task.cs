@@ -16,7 +16,7 @@ namespace Human_Resource.App_Code
 
         #region Methods
 
-        //in progress - complete task
+        //todo, in progress - complete - cancled task
         public List<TaskStatus> getTaskCount(int employeeId)
         {
             List<TaskStatus> result = new List<TaskStatus>();

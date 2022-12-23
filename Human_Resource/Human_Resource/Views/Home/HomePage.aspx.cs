@@ -14,9 +14,10 @@ namespace Human_Resource.Views.Home
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
 
+            renderPassportsChart();
             renderTasksChart();
+
 
             var employeesCount = 10;
             var expiredPassCount = 15;
@@ -59,6 +60,43 @@ namespace Human_Resource.Views.Home
             tasksChart.Series[0].LegendText = "#VALX";
 
             tasksChart.Legends[0].Enabled = true;
+        }
+
+        private void renderPassportsChart()
+        {
+            int userId = int.Parse(Session["user_id"].ToString());
+            string role = Session["urole"].ToString();
+
+            PassportStatus passportStatus = new PassportStatus();
+            List<PassportStatus> result = new List<PassportStatus>();
+
+            if (role == "GeneralDirector" || role == "CEO")
+                result = passportStatus.getPassportCountForDirector();
+            else if (role == "Supervisor")
+                result = passportStatus.getPassportCountForSupervisor(userId);
+            else if (role == "ManagementManager")
+                result = passportStatus.getPassportCountForManagement(userId);
+
+            lbl_expiredPassports.InnerText = result.Where(ts => ts.Status =="Expired").Select(ts => ts.PassportCount.ToString()).FirstOrDefault();
+
+            string[] x = new string[result.Count];
+            int[] y = new int[result.Count];
+            for (int i = 0; i < result.Count; i++)
+            {
+                x[i] = HelpClass.getStringTranslate(result[i].Status);
+
+                y[i] = result[i].PassportCount;
+            }
+
+
+            passportsChart.Series[0].Points.DataBindXY(x, y);
+            passportsChart.Series[0].ChartType = SeriesChartType.Pie;
+            passportsChart.ChartAreas["PassportChartArea"].Area3DStyle.Enable3D = true;
+
+            passportsChart.Series[0].Label = "#VALY";
+            passportsChart.Series[0].LegendText = "#VALX";
+
+            passportsChart.Legends[0].Enabled = true;
         }
     }
 }

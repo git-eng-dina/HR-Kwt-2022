@@ -10,9 +10,7 @@
                     <div class="row">
                         <div class="col-4 text-center mt-2 br-3 s-employees">
                             <i class="fa fa-users" style="font-size:40px;color:#2a3a92"></i>
-                           <%-- <svg class="s-invoice" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                 viewBox="0 0 128 128" style="enable-background:new 0 0 128 128;" xml:space="preserve">
-                            </svg>--%>
+
                         </div>
                           <div class="col-8 text-center block-cursor">
                              <a href="/Views/Employees/Employees.aspx">
@@ -38,6 +36,22 @@
                             </p>
                           </a>
                         </div>
+                         <div class="col-12 text-center">
+                            <asp:Chart ID="passportsChart" runat="server" Height="200px" Width="300px" >
+                                <Titles>
+                                    <asp:Title  Name="Items" />
+                                </Titles>
+                                <Legends>
+                                    <asp:Legend Alignment="Center" Docking="Right" IsTextAutoFit="False" Name="Default" LegendStyle="Column" />
+                                </Legends>
+                                <Series>
+                                    <asp:Series Name="Default" />
+                                </Series>
+                                <ChartAreas>
+                                    <asp:ChartArea Name="PassportChartArea" BorderWidth="0" />
+                                </ChartAreas>
+                            </asp:Chart>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -49,11 +63,12 @@
                         <div class="col-4 text-center mt-2 br-3 quotations">
                               <i class="fa fa-calendar-check" style="font-size:40px;color:#ff5d6f"></i>
                         </div>
-                        <div class="col-8 text-center">
+                         <div class="col-8 text-center block-cursor">
+                             <a href="/Views/ExecutiveProc/EventsApprove.aspx">
                             <label> <asp:Literal  runat="server" Text="<%$ Resources:Labels,Events%>" /></label>
                           <p id="lbl_events"  runat="server" >
-                                <%--<a class="a-enter" href="@Url.Action("SalesInvoices", "Agent", new { agentId= "xxx"})" title="">@AppResource.Enter</a>--%>
                             </p>
+                             </a>
                         </div>
                        
                     </div>
@@ -100,11 +115,12 @@
                         <div class="col-4 text-center mt-2 br-3 trainings">
                               <i class="fa fa-calendar-check" style="font-size:40px;color:#ffb36b"></i>
                         </div>
-                        <div class="col-8 text-center">
+                        <div class="col-8 text-center block-cursor">
+                             <a href="/Views/ExecutiveProc/Trainings.aspx">
                             <label> <asp:Literal  runat="server" Text="<%$ Resources:Labels,Trainings%>" /></label>
                           <p id="lbl_trainings"  runat="server" >
-                                <%--<a class="a-enter" href="@Url.Action("SalesInvoices", "Agent", new { agentId= "xxx"})" title="">@AppResource.Enter</a>--%>
                             </p>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -116,11 +132,12 @@
                         <div class="col-4 text-center mt-2 br-3 vacations">
                               <i class="fa fa-calendar-check" style="font-size:40px;color:#bc80ef"></i>
                         </div>
-                        <div class="col-8 text-center">
+                          <div class="col-8 text-center block-cursor">
+                             <a href="/Views/Attendance/VaccaitionApproval.aspx">
                             <label> <asp:Literal  runat="server" Text="<%$ Resources:Labels,Vacations%>" /></label>
                           <p id="lbl_vacations"  runat="server" >
-                                <%--<a class="a-enter" href="@Url.Action("SalesInvoices", "Agent", new { agentId= "xxx"})" title="">@AppResource.Enter</a>--%>
                             </p>
+                              </a>
                         </div>
                     </div>
                 </div>

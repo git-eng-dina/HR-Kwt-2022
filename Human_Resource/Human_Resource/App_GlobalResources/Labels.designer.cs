@@ -88,6 +88,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Active.
+        /// </summary>
+        internal static string Active {
+            get {
+                return ResourceManager.GetString("Active", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Brannch.
         /// </summary>
         internal static string AddBrannch {
@@ -993,6 +1002,15 @@ namespace Resources {
         internal static string Experience3 {
             get {
                 return ResourceManager.GetString("Experience3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expired.
+        /// </summary>
+        internal static string Expired {
+            get {
+                return ResourceManager.GetString("Expired", resourceCulture);
             }
         }
         

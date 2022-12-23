@@ -8,6 +8,114 @@ using System.Web;
 
 namespace Human_Resource
 {
+    public class PassportStatus
+    {
+        #region Attributes
+        public int PassportCount { get; set; }
+        public string Status { get; set; }
+        #endregion
+
+        #region Methods
+
+        //Active - Expired
+        public List<PassportStatus> getPassportCountForDirector()
+        {
+            List<PassportStatus> result = new List<PassportStatus>();
+            var now = DateTime.Now.Date;
+
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var searchPredicate = PredicateBuilder.New<employees>();
+
+                searchPredicate = searchPredicate.And(x => x.IsActive == true);
+                searchPredicate = searchPredicate.And(x => x.HiringDate != null);               
+
+                var user = entity.employees.Where(searchPredicate)
+                            .Select(x => new EmployeeModel()
+                            {
+                                EmployeeID = x.EmployeeID,
+ 
+                              PassportExpiryDate = x.PassportExpiryDate,
+                            }).ToList();
+
+                var expiredCount = user.Where(x => x.PassportExpiryDate < now).Count();
+                if (expiredCount > 0)
+                    result.Add(new PassportStatus() { Status = "Expired", PassportCount = expiredCount });
+
+                 var activeCount = user.Where(x => x.PassportExpiryDate >= now).Count();
+                if (activeCount > 0)
+                    result.Add(new PassportStatus() { Status = "Active", PassportCount = activeCount });
+
+
+                return result;
+            }
+        }
+        public List<PassportStatus> getPassportCountForSupervisor(int supervisorId)
+        {
+            List<PassportStatus> result = new List<PassportStatus>();
+            var now = DateTime.Now.Date;
+
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var searchPredicate = PredicateBuilder.New<employees>();
+             
+                searchPredicate = searchPredicate.And(x => x.HiringDate != null && x.IsActive== true);              
+                searchPredicate = searchPredicate.And(x => x.managements.branches.ManagerID == supervisorId);              
+
+                var user = entity.employees.Where(searchPredicate)
+                            .Select(x => new EmployeeModel()
+                            {
+                                EmployeeID = x.EmployeeID,
+ 
+                              PassportExpiryDate = x.PassportExpiryDate,
+                            }).ToList();
+
+                var expiredCount = user.Where(x => x.PassportExpiryDate < now).Count();
+                if (expiredCount > 0)
+                    result.Add(new PassportStatus() { Status = "Expired", PassportCount = expiredCount });
+
+                 var activeCount = user.Where(x => x.PassportExpiryDate >= now).Count();
+                if (activeCount > 0)
+                    result.Add(new PassportStatus() { Status = "Active", PassportCount = activeCount });
+
+
+                return result;
+            }
+        }
+        public List<PassportStatus> getPassportCountForManagement(int managerId)
+        {
+            List<PassportStatus> result = new List<PassportStatus>();
+            var now = DateTime.Now.Date;
+
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var searchPredicate = PredicateBuilder.New<employees>();
+             
+                searchPredicate = searchPredicate.And(x => x.HiringDate != null && x.IsActive== true);              
+                searchPredicate = searchPredicate.And(x => x.managements.ManagerID == managerId);              
+
+                var user = entity.employees.Where(searchPredicate)
+                            .Select(x => new EmployeeModel()
+                            {
+                                EmployeeID = x.EmployeeID,
+ 
+                              PassportExpiryDate = x.PassportExpiryDate,
+                            }).ToList();
+
+                var expiredCount = user.Where(x => x.PassportExpiryDate < now).Count();
+                if (expiredCount > 0)
+                    result.Add(new PassportStatus() { Status = "Expired", PassportCount = expiredCount });
+
+                 var activeCount = user.Where(x => x.PassportExpiryDate >= now).Count();
+                if (activeCount > 0)
+                    result.Add(new PassportStatus() { Status = "Active", PassportCount = activeCount });
+
+
+                return result;
+            }
+        }
+        #endregion
+    }
     public class EmployeeModel
     {
         #region Attributes
