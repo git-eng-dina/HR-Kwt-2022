@@ -21,7 +21,6 @@ namespace Human_Resource.Views.Home
             var employeesCount = 10;
             var expiredPassCount = 15;
             var eventsCount = 15;
-            var tasksCount = 15;
             var trainingsCount = 15;
             var vacations = 20;
 

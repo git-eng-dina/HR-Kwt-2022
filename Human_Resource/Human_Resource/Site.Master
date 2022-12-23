@@ -100,7 +100,7 @@
                     </a>
                 </li>  
                 <li>
-                    <a href="/Views/Settings/NewEmployee.aspx"> 
+                    <a href="/Views/Employees/ExpiredPassports.aspx"> 
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,ExpiredPassports%>" />
                     </a>
                 </li> 

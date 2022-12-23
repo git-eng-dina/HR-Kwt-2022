@@ -14,11 +14,12 @@
                                  viewBox="0 0 128 128" style="enable-background:new 0 0 128 128;" xml:space="preserve">
                             </svg>--%>
                         </div>
-                        <div class="col-8 text-center">
+                          <div class="col-8 text-center block-cursor">
+                             <a href="/Views/Employees/Employees.aspx">
                             <label> <asp:Literal  runat="server" Text="<%$ Resources:Labels,Employees%>" /></label>
                           <p id="lbl_employees"  runat="server" >
-                                <%--<a class="a-enter" href="@Url.Action("SalesInvoices", "Agent", new { agentId= "xxx"})" title="">@AppResource.Enter</a>--%>
                             </p>
+                              </a>
                         </div>
                     </div>
                 </div>
@@ -30,11 +31,12 @@
                         <div class="col-4 text-center mt-2 br-3 orders">
                               <i class="fa fa-id-card-o" style="font-size:40px;color:#1d75b8"></i>
                         </div>
-                        <div class="col-8 text-center">
+                      <div class="col-8 text-center block-cursor">
+                             <a href="/Views/Employees/ExpiredPassports.aspx">
                             <label> <asp:Literal  runat="server" Text="<%$ Resources:Labels,ExpiredPassports%>" /></label>
                           <p id="lbl_expiredPassports"  runat="server" >
-                                <%--<a class="a-enter" href="@Url.Action("SalesInvoices", "Agent", new { agentId= "xxx"})" title="">@AppResource.Enter</a>--%>
                             </p>
+                          </a>
                         </div>
                     </div>
                 </div>
@@ -68,10 +70,7 @@
                              <a href="/Views/ExecutiveProc/Tasks.aspx"> 
                             <label> <asp:Literal  runat="server" Text="<%$ Resources:Labels,Tasks%>" /></label>
                                  <p id="lbl_tasks"  runat="server" >  </p>
-                              </a>
-                        
-                                <%--<a class="a-enter" href="@Url.Action("SalesInvoices", "Agent", new { agentId= "xxx"})" title="">@AppResource.Enter</a>--%>
-                          
+                              </a>                                                  
                         </div>
                     
                              <div class="col-12 text-center">
