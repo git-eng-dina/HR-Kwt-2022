@@ -421,6 +421,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancled.
+        /// </summary>
+        internal static string Cancled {
+            get {
+                return ResourceManager.GetString("Cancled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Car.
         /// </summary>
         internal static string Car {
@@ -588,6 +597,15 @@ namespace Resources {
         internal static string CompanyOwnerEn {
             get {
                 return ResourceManager.GetString("CompanyOwnerEn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Complete.
+        /// </summary>
+        internal static string Complete {
+            get {
+                return ResourceManager.GetString("Complete", resourceCulture);
             }
         }
         
@@ -1965,6 +1983,15 @@ namespace Resources {
         internal static string ToDate {
             get {
                 return ResourceManager.GetString("ToDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To Do.
+        /// </summary>
+        internal static string ToDo {
+            get {
+                return ResourceManager.GetString("ToDo", resourceCulture);
             }
         }
         

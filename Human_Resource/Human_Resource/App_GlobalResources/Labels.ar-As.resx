@@ -822,4 +822,13 @@
   <data name="TimeExpired" xml:space="preserve">
     <value>انتهت المدة</value>
   </data>
+  <data name="ToDo" xml:space="preserve">
+    <value>بانتظار الموافقة</value>
+  </data>
+  <data name="Cancled" xml:space="preserve">
+    <value>ملغاة</value>
+  </data>
+  <data name="Complete" xml:space="preserve">
+    <value>مكتمل</value>
+  </data>
 </root>

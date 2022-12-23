@@ -49,6 +49,15 @@ namespace Human_Resource.Views.Home {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_tasks;
         
         /// <summary>
+        /// tasksChart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.DataVisualization.Charting.Chart tasksChart;
+        
+        /// <summary>
         /// lbl_trainings control.
         /// </summary>
         /// <remarks>

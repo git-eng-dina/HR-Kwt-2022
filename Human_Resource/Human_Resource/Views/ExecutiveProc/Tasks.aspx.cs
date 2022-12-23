@@ -22,11 +22,10 @@ namespace Human_Resource.Views.ExecutiveProc
         {
  
             hdnButtonID.Value = btn_save.UniqueID;
-            if (!IsPostBack)
-            {
-                BindData();
-                btn_new.Attributes.Add("OnClick", "ShowDialog('');");
-            }
+            
+            BindData();
+            btn_new.Attributes.Add("OnClick", "ShowDialog('');");
+ 
         }
 
         protected void btn_Search_Click(object sender, EventArgs e)

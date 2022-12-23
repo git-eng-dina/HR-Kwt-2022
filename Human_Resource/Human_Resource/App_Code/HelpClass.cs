@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Reflection;
+using System.Resources;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using System.Web;
 
 namespace Human_Resource.App_Code
@@ -33,6 +37,12 @@ namespace Human_Resource.App_Code
             return strBuilder.ToString();
         }
 
+        public static string getStringTranslate(string str)
+        {
+            System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resources.Labels", global::System.Reflection.Assembly.Load("App_GlobalResources"));
+
+            return temp.GetString(str);
+        }
         public static int get_age(DateTime dob)
         {
             int age = 0;

@@ -70,6 +70,24 @@
                                 <%--<a class="a-enter" href="@Url.Action("SalesInvoices", "Agent", new { agentId= "xxx"})" title="">@AppResource.Enter</a>--%>
                             </p>
                         </div>
+                    
+                             <div class="col-12 text-center">
+                            <asp:Chart ID="tasksChart" runat="server" Height="200px" Width="300px" >
+                                <Titles>
+                                    <asp:Title  Name="Items" />
+                                </Titles>
+                                <Legends>
+                                    <asp:Legend Alignment="Center" Docking="Right" IsTextAutoFit="False" Name="Default" LegendStyle="Column" />
+                                </Legends>
+                                <Series>
+                                    <asp:Series Name="Default" />
+                                </Series>
+                                <ChartAreas>
+                                    <asp:ChartArea Name="ChartArea1" BorderWidth="0" />
+                                </ChartAreas>
+                            </asp:Chart>
+                            </div>
+                     
                     </div>
                 </div>
             </div>

@@ -7,6 +7,67 @@ using System.Web;
 
 namespace Human_Resource.App_Code
 {
+    public class TaskStatus
+    {
+        #region Attributes
+        public int TaskCount { get; set; }
+        public string Status { get; set; }
+        #endregion
+
+        #region Methods
+
+        //in progress - complete task
+        public List<TaskStatus> getTaskCount(int employeeId)
+        {
+            List<TaskStatus> result = new List<TaskStatus>();
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                int year = DateTime.Now.Year;
+                DateTime now = new DateTime(year, 1, 1);
+                var tasks = (from x in entity.tasks.Where(ex => ex.IsActive == true && ex.Approved != false  && ex.StartDate >= now)
+                             join e in entity.employeesTasks.Where(em => em.IsActive == true  && em.EmployeeID == employeeId) on x.TaskID equals e.TaskID
+
+                             select new TaskModel()
+                             {
+                                 TaskID = x.TaskID,
+                                 RepeatedEvery = x.RepeatedEvery,
+                                 Name = x.Name,
+                                 Description = x.Description,
+                                 EmployeeID = x.EmployeeID,
+                                 EmployeeName = entity.employees.Where(m => m.EmployeeID == x.EmployeeID).Select(m => m.NameAr).FirstOrDefault(),
+                                 CreateUserID = x.CreateUserID,
+                                 UpdateUserID = x.UpdateUserID,
+                                 Notes = x.Notes,
+                                 StartDate = x.StartDate,
+                                 EndDate = x.EndDate,
+                                 CreateDate = x.CreateDate,
+                                 UpdateDate = x.UpdateDate,
+                                 Approved = x.Approved,
+                                 Status = entity.dailyTasks.Where(y => y.DailyTaskID == entity.dailyTasks.Where(m => m.TaskID == x.TaskID && m.EmployeeID == e.EmployeeID).Max(m => m.DailyTaskID)).Select(y => y.Status).FirstOrDefault(),
+                             })
+                             .ToList();
+
+                var toDoCount = tasks.Where(x => x.Status == null).Count();
+                if(toDoCount > 0)
+                    result.Add(new TaskStatus() { Status="ToDo", TaskCount= toDoCount });
+
+                var doingCount = tasks.Where(x => x.Status == "Doing").Count();
+                if (doingCount > 0)
+                    result.Add(new TaskStatus() { Status = "Doing", TaskCount = doingCount });
+
+                var completeCount = tasks.Where(x => x.Status == "Complete").Count();
+                if (completeCount > 0)
+                    result.Add(new TaskStatus() { Status = "Complete", TaskCount = doingCount });
+
+                var cancledCount = tasks.Where(x => x.Status == "Cancled").Count();
+                if (cancledCount > 0)
+                    result.Add(new TaskStatus() { Status = "Cancled", TaskCount = cancledCount });
+                
+                return result;
+            }
+        }
+        #endregion
+    }
     public class TaskModel
      {
 

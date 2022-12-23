@@ -825,4 +825,13 @@
   <data name="TimeExpired" xml:space="preserve">
     <value>Time Expired</value>
   </data>
+  <data name="ToDo" xml:space="preserve">
+    <value>To Do</value>
+  </data>
+  <data name="Cancled" xml:space="preserve">
+    <value>Cancled</value>
+  </data>
+  <data name="Complete" xml:space="preserve">
+    <value>Complete</value>
+  </data>
 </root>
