@@ -14,26 +14,10 @@ namespace Human_Resource.Views.Home
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            int userId = int.Parse(Session["user_id"].ToString());
-            #region tasks
-            TaskStatus taskStatus = new TaskStatus();
-            var taskStatusRes = taskStatus.getTaskCount(userId);
-            string[] x = new string[taskStatusRes.Count];
-            int[] y = new int[taskStatusRes.Count];
-            for (int i = 0; i < taskStatusRes.Count; i++)
-            {
-                x[i] = HelpClass.getStringTranslate( taskStatusRes[i].Status);
+            
 
-                y[i] = taskStatusRes[i].TaskCount;
-            }
-            tasksChart.Series[0].Points.DataBindXY(x, y);
-            tasksChart.Series[0].ChartType = SeriesChartType.Pie;
-            tasksChart.ChartAreas["ChartArea1"].Area3DStyle.Enable3D = true;
-            //remove text on  chart areas
-            tasksChart.ChartAreas["ChartArea1"].AxisX.LabelStyle.Enabled = false;
-            tasksChart.Legends[0].Enabled = true;
+            renderTasksChart();
 
-            #endregion
             var employeesCount = 10;
             var expiredPassCount = 15;
             var eventsCount = 15;
@@ -44,9 +28,38 @@ namespace Human_Resource.Views.Home
             lbl_employees.InnerText = employeesCount.ToString();
             lbl_expiredPassports.InnerText = expiredPassCount.ToString();
             lbl_events.InnerText = eventsCount.ToString();
-            lbl_tasks.InnerText = tasksCount.ToString();
+            
             lbl_trainings.InnerText = trainingsCount.ToString();
             lbl_vacations.InnerText = vacations.ToString();
+        }
+
+        private void renderTasksChart()
+        {
+            int userId = int.Parse(Session["user_id"].ToString());
+
+            TaskStatus taskStatus = new TaskStatus();
+            var taskStatusRes = taskStatus.getTaskCount(userId);
+
+            lbl_tasks.InnerText = taskStatusRes.Where(ts => ts.Status =="Doing").Select(ts => ts.TaskCount.ToString()).FirstOrDefault();
+
+            string[] x = new string[taskStatusRes.Count];
+            int[] y = new int[taskStatusRes.Count];
+            for (int i = 0; i < taskStatusRes.Count; i++)
+            {
+                x[i] = HelpClass.getStringTranslate(taskStatusRes[i].Status);
+
+                y[i] = taskStatusRes[i].TaskCount;
+            }
+
+
+            tasksChart.Series[0].Points.DataBindXY(x, y);
+            tasksChart.Series[0].ChartType = SeriesChartType.Pie;
+            tasksChart.ChartAreas["ChartArea1"].Area3DStyle.Enable3D = true;
+
+            tasksChart.Series[0].Label = "#VALY";
+            tasksChart.Series[0].LegendText = "#VALX";
+
+            tasksChart.Legends[0].Enabled = true;
         }
     }
 }
