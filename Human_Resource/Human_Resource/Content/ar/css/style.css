@@ -92,7 +92,11 @@ body a:hover{text-decoration: none !important;}
         width: 100%;     
     }
 
-    .statis .bcrumb-block .breadcrumb span,a {
+.statis .block-cursor a,label {
+    color: #6c6c6f;
+    cursor :pointer;
+}
+     .statis .bcrumb-block .breadcrumb span,a {
        color: white;
     }
     .statis .main-list span {
@@ -126,17 +130,21 @@ body a:hover{text-decoration: none !important;}
   margin-top: 20px;
 }
 
-.statis .info-block span.flag {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 100%;
-  display: block;
-  z-index: 310;
-  width: 20px;
-  height: 100%;
-  border-radius: 0 10px 10px 0;
-}
+    .statis .info-block .block-cursor{
+        cursor:pointer;
+    }
+
+    .statis .info-block span.flag {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 100%;
+        display: block;
+        z-index: 310;
+        width: 20px;
+        height: 100%;
+        border-radius: 0 10px 10px 0;
+    }
 
 .statis #statement span {
   color: #1ba8e5;

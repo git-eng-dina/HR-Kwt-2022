@@ -64,11 +64,14 @@
                         <div class="col-4 text-center mt-2 br-3 users">
                               <i class="fa fa-edit" style="font-size:40px;color:#00cc9e"></i>
                         </div>
-                        <div class="col-8 text-center">
+                        <div class="col-8 text-center block-cursor">
+                             <a href="/Views/ExecutiveProc/Tasks.aspx"> 
                             <label> <asp:Literal  runat="server" Text="<%$ Resources:Labels,Tasks%>" /></label>
-                          <p id="lbl_tasks"  runat="server" >
+                                 <p id="lbl_tasks"  runat="server" >  </p>
+                              </a>
+                        
                                 <%--<a class="a-enter" href="@Url.Action("SalesInvoices", "Agent", new { agentId= "xxx"})" title="">@AppResource.Enter</a>--%>
-                            </p>
+                          
                         </div>
                     
                              <div class="col-12 text-center">

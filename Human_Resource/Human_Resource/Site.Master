@@ -196,11 +196,11 @@
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,HourlyBills%>" />
                     </a>
                 </li> 
-                <li>
+             <%--   <li>
                     <a href="/Views/Attendance/Vacations.aspx"> 
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,Vacations%>" />
                     </a>
-                </li>
+                </li>--%>
                 <li>
                     <a href="/Views/Attendance/VaccaitionApproval.aspx" class="">
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,VaccaitionApproval%>" />
