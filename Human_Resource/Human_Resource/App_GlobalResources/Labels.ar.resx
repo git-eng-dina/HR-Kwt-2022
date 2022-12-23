@@ -816,4 +816,10 @@
   <data name="Attacment" xml:space="preserve">
     <value>مرفق</value>
   </data>
+  <data name="Status" xml:space="preserve">
+    <value>الحالة</value>
+  </data>
+  <data name="TimeExpired" xml:space="preserve">
+    <value>انتهت المدة</value>
+  </data>
 </root>

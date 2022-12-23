@@ -129,7 +129,7 @@
             });
             $('.td-finish').click(function () {
                 var customID = $(this).attr('myCustomID');
-                alert(customID);
+ 
                 if (confirm("<%= Resources.Labels.AreYouSure%>")) {
    
                     var parameter = {
@@ -137,6 +137,38 @@
                         userID:<%= Session["user_id"].ToString() %>,
                         role:'<%= Session["urole"].ToString() %>',
                         status :'Done',
+                    };
+ 
+                    $.ajax({
+                        type: "POST",
+                        url: "Tasks.aspx/FinishTask",
+                        data: JSON.stringify(parameter),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (data) {
+                          window.location = "tasks.aspx";
+
+                        },
+                        failure: function (response) {
+                            alert(response.d);
+                        }
+                    });
+
+                }
+
+                return false;
+            });
+
+            $('.td-cancle').click(function () {
+                var customID = $(this).attr('myCustomID');
+
+                if (confirm("<%= Resources.Labels.AreYouSure%>")) {
+   
+                    var parameter = {
+                        employeeTaskId: customID,
+                        userID:<%= Session["user_id"].ToString() %>,
+                        role:'<%= Session["urole"].ToString() %>',
+                        status :'Cancled',
                     };
  
                     $.ajax({
@@ -578,6 +610,11 @@
                                                  Text='<%# Eval("Name") %>' />                              
                                          </ItemTemplate>
                                         </asp:TemplateField>
+                                  <asp:TemplateField HeaderText="<%$ Resources:Labels,Status%>" ItemStyle-Width="25%">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblStatusExecuted" runat="server"  />                              
+                                         </ItemTemplate>
+                                        </asp:TemplateField>
                                 
                                         <asp:TemplateField HeaderText="<%$ Resources:Labels,Description%>" ItemStyle-Width="25%">
                                          <ItemTemplate>
@@ -612,9 +649,17 @@
                                    </asp:TemplateField>   
                                   <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-finish">    
                                       <ItemTemplate> 
-                                           <asp:Label ID="LblStatus" runat="server" />       
+                                        <%--   <asp:Label ID="LblStatus" runat="server" />   --%>    
                                                 <asp:LinkButton ID="finishTask" runat="server" myCustomID='<%# Eval("EmployeeTaskID")%>'  CssClass="td-approve">
-                                                    <asp:Image ImageUrl="~/images/task-complete.png" runat="server" ToolTip="<%$ Resources:Labels,Finish%>" Width="20px" Height="20px" />
+                                                    <asp:Image ImageUrl="~/images/task-complete1.png" runat="server" ToolTip="<%$ Resources:Labels,Finish%>" Width="20px" Height="20px" />
+                                                </asp:LinkButton>  
+                                             </ItemTemplate>
+                                        </asp:TemplateField>
+                                    <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-cancle">    
+                                      <ItemTemplate> 
+                                           <asp:Label ID="LblStatus" runat="server" />       
+                                                <asp:LinkButton ID="cancleTask" runat="server" myCustomID='<%# Eval("EmployeeTaskID")%>'  CssClass="td-cancle">
+                                                    <asp:Image ImageUrl="~/images/task-cancle.png" runat="server" ToolTip="<%$ Resources:Labels,Cancle%>" Width="20px" Height="20px" />
                                                 </asp:LinkButton>  
                                              </ItemTemplate>
                                         </asp:TemplateField>

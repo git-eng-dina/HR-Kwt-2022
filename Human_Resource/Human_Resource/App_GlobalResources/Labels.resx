@@ -819,4 +819,10 @@
   <data name="Attacment" xml:space="preserve">
     <value>Attacment</value>
   </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="TimeExpired" xml:space="preserve">
+    <value>Time Expired</value>
+  </data>
 </root>

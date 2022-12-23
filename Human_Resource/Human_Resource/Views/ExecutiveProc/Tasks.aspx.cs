@@ -327,25 +327,32 @@ namespace Human_Resource.Views.ExecutiveProc
                     var status = rowView.Status;
                     if (status == "Doing" || status == null)
                     {
-                        LinkButton imgBtn = (LinkButton)e.Row.FindControl("finishTask");
-                        imgBtn.Visible = false;
+                        if (rowView.EndDate < DateTime.Now)
+                            rowView.Status = Resources.Labels.TimeExpired;
+                        else
+                            rowView.Status = Resources.Labels.Doing;
+                        //LinkButton imgBtn = (LinkButton)e.Row.FindControl("finishTask");
+                        //imgBtn.Visible = false;
 
-                        Label lbl = (Label)e.Row.FindControl("LblStatus");
-                        lbl.Text = Resources.Labels.Doing;
+                       
                         e.Row.CssClass = "doingRow";
                     }
                     else if (status == "Complete")
                     {
-                        Label lbl = (Label)e.Row.FindControl("LblStatus");
-                        lbl.Visible = false;
+                        rowView.Status = Resources.Labels.Done;
+
+                        //Label lbl = (Label)e.Row.FindControl("LblStatus");
+                        //lbl.Visible = false;
 
                         e.Row.CssClass = "acceptedRow";
 
                     }
-                    else
-                    {
-                        e.Row.CssClass = "normalRow";
-                    }
+                    Label lbl = (Label)e.Row.FindControl("LblStatusExecuted");
+                    lbl.Text = rowView.Status;
+                    //else
+                    //{
+                    //    e.Row.CssClass = "normalRow";
+                    //}
                 }
             }
         }

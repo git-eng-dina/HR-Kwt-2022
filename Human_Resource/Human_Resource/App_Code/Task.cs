@@ -161,6 +161,8 @@ namespace Human_Resource.App_Code
                                  Status = entity.dailyTasks.Where(y => y.DailyTaskID == entity.dailyTasks.Where(m => m.TaskID == x.TaskID && m.EmployeeID == e.EmployeeID).Max(m => m.DailyTaskID)).Select(y => y.Status).FirstOrDefault(),
                              }).ToList();
 
+                tasks = tasks.Where(x => x.Status != "Done" && x.Status != "Cancled").ToList();
+
                 foreach (var t in tasks)
                 {
                     switch (t.RepeatedEvery)
@@ -246,6 +248,7 @@ namespace Human_Resource.App_Code
                                     Status = entity.dailyTasks.Where(y => y.DailyTaskID == entity.dailyTasks.Where(m => m.TaskID == x.TaskID && m.EmployeeID == e.EmployeeID).Max(m => m.DailyTaskID)).Select(y => y.Status).FirstOrDefault(),
                                 }).ToList();
 
+                tasks = tasks.Where(x => x.Status != "Done" && x.Status != "Cancled").ToList();
                 foreach(var t in tasks)
                 {
                   switch (t.RepeatedEvery)
@@ -329,6 +332,7 @@ namespace Human_Resource.App_Code
                                  AssignedEmployeeName = entity.employees.Where(y => y.EmployeeID == e.EmployeeID).Select(y => y.NameAr).FirstOrDefault(),
                                  Status = entity.dailyTasks.Where(y => y.DailyTaskID == entity.dailyTasks.Where(m => m.TaskID == x.TaskID && m.EmployeeID == e.EmployeeID).Max(m => m.DailyTaskID)).Select(y => y.Status).FirstOrDefault(),
                              }).ToList();
+                tasks = tasks.Where(x => x.Status != "Done" && x.Status != "Cancled").ToList();
 
                 foreach (var t in tasks)
                 {

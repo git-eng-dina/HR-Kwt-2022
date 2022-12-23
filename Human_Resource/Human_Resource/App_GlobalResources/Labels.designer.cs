@@ -1861,6 +1861,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        internal static string Status {
+            get {
+                return ResourceManager.GetString("Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Stay focused on helping customer.
         /// </summary>
         internal static string StayFocused {
@@ -1929,6 +1938,15 @@ namespace Resources {
         internal static string TheName {
             get {
                 return ResourceManager.GetString("TheName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time Expired.
+        /// </summary>
+        internal static string TimeExpired {
+            get {
+                return ResourceManager.GetString("TimeExpired", resourceCulture);
             }
         }
         
