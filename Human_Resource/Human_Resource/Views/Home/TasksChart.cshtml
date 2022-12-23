@@ -1,0 +1,13 @@
+﻿@{
+    var myChart = new Chart(width: 600, height: 400, theme: ChartTheme.Green)
+    .AddTitle("Student Marks (%)")
+    .AddSeries(
+       name: "Student",
+       xValue: new[] { "Allan", "Mark", "Ali", "Kerry", "Steve" },
+       yValues: new[] { "79", "53", "73", "81", "43" })
+    .Write();
+
+    //.AddSeries("Default", chartType: "Pie",
+    // xValue: data, xField: "FirstName",
+    // yValues: data, yFields: "Marks")
+}
