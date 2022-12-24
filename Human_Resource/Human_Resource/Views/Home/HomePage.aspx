@@ -22,39 +22,6 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="info-block">
-                    <span class="flag normal-blue"></span>
-                    <div class="row">
-                        <div class="col-4 text-center mt-2 br-3 orders">
-                              <i class="fa fa-id-card-o" style="font-size:40px;color:#1d75b8"></i>
-                        </div>
-                      <div class="col-8 text-center block-cursor">
-                             <a href="/Views/Employees/ExpiredPassports.aspx">
-                            <label> <asp:Literal  runat="server" Text="<%$ Resources:Labels,ExpiredPassports%>" /></label>
-                          <p id="lbl_expiredPassports"  runat="server" >
-                            </p>
-                          </a>
-                        </div>
-                         <div class="col-12 text-center">
-                            <asp:Chart ID="passportsChart" runat="server" Height="200px" Width="300px" >
-                                <Titles>
-                                    <asp:Title  Name="Items" />
-                                </Titles>
-                                <Legends>
-                                    <asp:Legend Alignment="Center" Docking="Right" IsTextAutoFit="False" Name="Default" LegendStyle="Column" />
-                                </Legends>
-                                <Series>
-                                    <asp:Series Name="Default" />
-                                </Series>
-                                <ChartAreas>
-                                    <asp:ChartArea Name="PassportChartArea" BorderWidth="0" />
-                                </ChartAreas>
-                            </asp:Chart>
-                            </div>
-                    </div>
-                </div>
-            </div>
               
             <div class="col-md-6">
                 <div class="info-block">
@@ -71,40 +38,6 @@
                              </a>
                         </div>
                        
-                    </div>
-                </div>
-            </div>
-              <div class="col-md-6">
-                <div class="info-block">
-                    <span class="flag green"></span>
-                    <div class="row">
-                        <div class="col-4 text-center mt-2 br-3 users">
-                              <i class="fa fa-edit" style="font-size:40px;color:#00cc9e"></i>
-                        </div>
-                        <div class="col-8 text-center block-cursor">
-                             <a href="/Views/ExecutiveProc/Tasks.aspx"> 
-                            <label> <asp:Literal  runat="server" Text="<%$ Resources:Labels,Tasks%>" /></label>
-                                 <p id="lbl_tasks"  runat="server" >  </p>
-                              </a>                                                  
-                        </div>
-                    
-                             <div class="col-12 text-center">
-                            <asp:Chart ID="tasksChart" runat="server" Height="200px" Width="300px" >
-                                <Titles>
-                                    <asp:Title  Name="Items" />
-                                </Titles>
-                                <Legends>
-                                    <asp:Legend Alignment="Center" Docking="Right" IsTextAutoFit="False" Name="Default" LegendStyle="Column" />
-                                </Legends>
-                                <Series>
-                                    <asp:Series Name="Default" />
-                                </Series>
-                                <ChartAreas>
-                                    <asp:ChartArea Name="ChartArea1" BorderWidth="0" />
-                                </ChartAreas>
-                            </asp:Chart>
-                            </div>
-                     
                     </div>
                 </div>
             </div>
@@ -142,6 +75,76 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-6">
+                <div class="info-block">
+                    <span class="flag normal-blue"></span>
+                    <div class="row">
+                        <div class="col-4 text-center mt-2 br-3 orders">
+                              <i class="fa fa-id-card-o" style="font-size:40px;color:#1d75b8"></i>
+                        </div>
+                      <div class="col-8 text-center block-cursor">
+                             <a href="/Views/Employees/ExpiredPassports.aspx">
+                            <label> <asp:Literal  runat="server" Text="<%$ Resources:Labels,ExpiredPassports%>" /></label>
+                          <p id="lbl_expiredPassports"  runat="server" >
+                            </p>
+                          </a>
+                        </div>
+                         <div class="col-12 text-center">
+                            <asp:Chart ID="passportsChart" runat="server" Height="200px" Width="300px" >
+                                <Titles>
+                                    <asp:Title  Name="Items" />
+                                </Titles>
+                                <Legends>
+                                    <asp:Legend Alignment="Center" Docking="Right" IsTextAutoFit="False" Name="Default" LegendStyle="Column" />
+                                </Legends>
+                                <Series>
+                                    <asp:Series Name="Default" />
+                                </Series>
+                                <ChartAreas>
+                                    <asp:ChartArea Name="PassportChartArea" BorderWidth="0" />
+                                </ChartAreas>
+                            </asp:Chart>
+                            </div>
+                    </div>
+                </div>
+            </div>
+              <div class="col-md-6">
+                <div class="info-block">
+                    <span class="flag green"></span>
+                    <div class="row">
+                        <div class="col-4 text-center mt-2 br-3 users">
+                              <i class="fa fa-edit" style="font-size:40px;color:#00cc9e"></i>
+                        </div>
+                        <div class="col-8 text-center block-cursor">
+                             <a href="/Views/ExecutiveProc/Tasks.aspx"> 
+                            <label> <asp:Literal  runat="server" Text="<%$ Resources:Labels,Tasks%>" /></label>
+                                 <p id="lbl_tasks"  runat="server" >  </p>
+                              </a>                                                  
+                        </div>
+                    
+                             <div class="col-12 text-center">
+                            <asp:Chart ID="tasksChart" runat="server" Height="200px" Width="300px" >
+                                <Titles>
+                                    <asp:Title  Name="Items" />
+                                </Titles>
+                                <Legends>
+                                    <asp:Legend Alignment="Center" Docking="Right" IsTextAutoFit="False" Name="Default" LegendStyle="Column" />
+                                </Legends>
+                                <Series>
+                                    <asp:Series Name="Default" />
+                                </Series>
+                                <ChartAreas>
+                                    <asp:ChartArea Name="ChartArea1" BorderWidth="0" />
+                                </ChartAreas>
+                            </asp:Chart>
+                            </div>
+                     
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </div>
 </section>         
