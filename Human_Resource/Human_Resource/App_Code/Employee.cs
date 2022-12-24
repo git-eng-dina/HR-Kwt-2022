@@ -412,7 +412,111 @@ namespace Human_Resource
                 return user;
             }
         }
+        public List<EmployeeModel> GetEmployeesExpiredPassports()
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var searchPredicate = PredicateBuilder.New<employees>();
 
+                searchPredicate = searchPredicate.And(x => x.IsActive == true);
+                searchPredicate = searchPredicate.And(x => x.HiringDate != null);
+                searchPredicate = searchPredicate.And(x => x.PassportExpiryDate < DateTime.Now);
+
+                var user = entity.employees.Where(searchPredicate)
+                            .Select(x => new EmployeeModel()
+                            {
+                                EmployeeID = x.EmployeeID,
+                                IsActive = x.IsActive,
+                                Username = x.Username,
+                                NameAr = x.NameAr,
+                                NameEn = x.NameEn,
+                                BasicSalary = x.BasicSalary,
+                                Position = x.jobs.Name,
+                                DepartmentName = x.departments.Name,
+                                ManagementName = x.managements.Name,
+                                
+                                AddedBy = entity.employees.Where(m => m.EmployeeID == x.CreateUserID).Select(m => m.NameAr).FirstOrDefault(),
+                            }).ToList();
+
+                foreach (var emp in user)
+                {
+                    if (emp.DOB != null)
+                        emp.Age = HelpClass.get_age((DateTime)emp.DOB);
+                }
+                return user;
+            }
+        }
+        // ForManagement ForSupervisor
+        public List<EmployeeModel> GetEmployeesExpiredPassportsForManagement(int managerId)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var searchPredicate = PredicateBuilder.New<employees>();
+
+                searchPredicate = searchPredicate.And(x => x.IsActive == true);
+                searchPredicate = searchPredicate.And(x => x.HiringDate != null);
+                searchPredicate = searchPredicate.And(x => x.PassportExpiryDate < DateTime.Now);
+                searchPredicate = searchPredicate.And(e => e.managements.ManagerID == managerId);
+
+                var user = entity.employees.Where(searchPredicate)
+                            .Select(x => new EmployeeModel()
+                            {
+                                EmployeeID = x.EmployeeID,
+                                IsActive = x.IsActive,
+                                Username = x.Username,
+                                NameAr = x.NameAr,
+                                NameEn = x.NameEn,
+                                BasicSalary = x.BasicSalary,
+                                Position = x.jobs.Name,
+                                DepartmentName = x.departments.Name,
+                                ManagementName = x.managements.Name,
+                                
+                                AddedBy = entity.employees.Where(m => m.EmployeeID == x.CreateUserID).Select(m => m.NameAr).FirstOrDefault(),
+                            }).ToList();
+
+                foreach (var emp in user)
+                {
+                    if (emp.DOB != null)
+                        emp.Age = HelpClass.get_age((DateTime)emp.DOB);
+                }
+                return user;
+            }
+        }
+        public List<EmployeeModel> GetEmployeesExpiredPassportsForSupervisor(int managerId)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var searchPredicate = PredicateBuilder.New<employees>();
+
+                searchPredicate = searchPredicate.And(x => x.IsActive == true);
+                searchPredicate = searchPredicate.And(x => x.HiringDate != null);
+                searchPredicate = searchPredicate.And(x => x.PassportExpiryDate < DateTime.Now);
+                searchPredicate = searchPredicate.And(e => e.managements.branches.ManagerID == managerId);
+
+                var user = entity.employees.Where(searchPredicate)
+                            .Select(x => new EmployeeModel()
+                            {
+                                EmployeeID = x.EmployeeID,
+                                IsActive = x.IsActive,
+                                Username = x.Username,
+                                NameAr = x.NameAr,
+                                NameEn = x.NameEn,
+                                BasicSalary = x.BasicSalary,
+                                Position = x.jobs.Name,
+                                DepartmentName = x.departments.Name,
+                                ManagementName = x.managements.Name,
+
+                                AddedBy = entity.employees.Where(m => m.EmployeeID == x.CreateUserID).Select(m => m.NameAr).FirstOrDefault(),
+                            }).ToList();
+
+                foreach (var emp in user)
+                {
+                    if (emp.DOB != null)
+                        emp.Age = HelpClass.get_age((DateTime)emp.DOB);
+                }
+                return user;
+            }
+        }
         //for department manager
         public List<EmployeeModel> GetNotHiredEmployees(int deptManagerId)
         {
