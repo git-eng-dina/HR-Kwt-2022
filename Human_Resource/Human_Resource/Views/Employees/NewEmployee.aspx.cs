@@ -23,6 +23,7 @@ namespace Human_Resource.Views.Employees
                 ManagementModel management = new ManagementModel();
 
                 hid_emp_id.Value = Request.QueryString["uid"];
+                hdnButtonID.Value = btnSave.UniqueID;
 
                 sel_maritalStatus.DataSource = GetData.maritalStatusList;
                 sel_maritalStatus.DataValueField = "Key";
@@ -111,8 +112,8 @@ namespace Human_Resource.Views.Employees
                             hr_cer2.HRef = "../../Upload/CV/" + emp.Certificate2.docnum;
                         }
                     }
-                    else
-                        frm_certificate2.Style.Add("visibility", "hidden");
+                    //else
+                    //    frm_certificate2.Style.Add("visibility", "hidden");
 
                     //certificate 3
                     if (emp.EducationCertificate3 != null)
@@ -133,8 +134,8 @@ namespace Human_Resource.Views.Employees
                         lbl_certificate3.Text = emp.Certificate3.docName;
                         }
                     }
-                    else
-                        frm_certificate3.Style.Add("visibility", "hidden");
+                    //else
+                    //    frm_certificate3.Style.Add("visibility", "hidden");
 
                     #endregion
 
@@ -215,12 +216,12 @@ namespace Human_Resource.Views.Employees
 
                 employee.NameAr = txt_nameAR.Value;
                 employee.NameEn = txt_nameEN.Value;
-                //DateTime myEurpeonDate = DateTime.ParseExact(dp_bod.Text, "dd/MM/yyyy", null);
-                DateTime datetime = DateTime.ParseExact(dp_bod.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-                //datetime = Convert.ToDateTime(datetime, System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat);
-                employee.DOB = datetime;
-                //employee.DOB = Convert.ToDateTime(dp_bod.Text,"MM/dd/yyyy");
-              //  employee.DOB =Convert.ToDateTime DateTime.Parse(dp_bod.Text);
+
+
+                var arrDOB = dp_bod.Text.Split('/');
+                var d = new DateTime(int.Parse(arrDOB[2]), int.Parse(arrDOB[0]), int.Parse(arrDOB[1]));
+               //DateTime datetime = DateTime.ParseExact(dp_bod.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                employee.DOB = d;
 
                 employee.Mobile = txt_mobile.Value;
                 employee.MaritalStatus = sel_maritalStatus.Value;
@@ -232,9 +233,14 @@ namespace Human_Resource.Views.Employees
                 #region certificates
                 employee.EducationCertificate1 = txt_certificate1.Value;
                 //employee.EducationCertificateFromDate1 = DateTime.Parse(dp_fromCer1.Text);
-                employee.EducationCertificateFromDate1 = DateTime.ParseExact(dp_fromCer1.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-                employee.EducationCertificateToDate1 = DateTime.ParseExact(dp_toCer1.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-                //employee.EducationCertificateToDate1 = DateTime.ParseExact(dp_toCer1.Value, "yyyy-MM-dd", cultures);
+                var arrFrom = dp_fromCer1.Text.Split('/');
+                 d = new DateTime(int.Parse(arrFrom[2]), int.Parse(arrFrom[0]), int.Parse(arrFrom[1]));
+                //employee.EducationCertificateFromDate1 = DateTime.ParseExact(dp_fromCer1.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                employee.EducationCertificateFromDate1 =d;
+                var arrTo = dp_toCer1.Text.Split('/');
+                d = new DateTime(int.Parse(arrTo[2]), int.Parse(arrTo[1]), int.Parse(arrTo[0]));
+                employee.EducationCertificateToDate1 =d;
+               // employee.EducationCertificateToDate1 = DateTime.ParseExact(dp_toCer1.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
 
                 if (txt_certificate2.Value !="")
                 {
@@ -259,15 +265,26 @@ namespace Human_Resource.Views.Employees
                 if(sel_department.Value != "" && sel_department.Value != "0")
                     employee.DepartmentID = int.Parse(sel_department.Value);
                 employee.IDNumber = txt_IDNumber.Value;
-                employee.WorkHours = int.Parse(txt_workHours.Value);
+                if(txt_workHours.Value != "")
+                    employee.WorkHours = int.Parse(txt_workHours.Value);
                 employee.BasicSalary = decimal.Parse(txt_salary.Value);
                 employee.Email = txt_email.Value;
-                employee.VacationsBalance = int.Parse(txt_vacationBalance.Value);
+
+                if(txt_vacationBalance.Value != "")
+                    employee.VacationsBalance = int.Parse(txt_vacationBalance.Value);
                 employee.Guarantor = txt_guarantor.Value;
                 employee.JobDescription = txt_jobDesc.Text;
                 employee.PassportNumber = txt_passportNo.Value;
-                employee.PassportReleaseDate = DateTime.ParseExact(dp_passportFromDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture); 
-                employee.PassportExpiryDate = DateTime.ParseExact(dp_passportEndDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+
+                var arr= dp_passportFromDate.Text.Split('/');
+                d = new DateTime(int.Parse(arr[2]), int.Parse(arr[0]), int.Parse(arr[1]));
+                employee.PassportReleaseDate = d;
+                //employee.PassportReleaseDate = DateTime.ParseExact(dp_passportFromDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture); 
+
+                arr = dp_passportEndDate.Text.Split('/');
+                d = new DateTime(int.Parse(arr[2]), int.Parse(arr[0]), int.Parse(arr[1]));
+                employee.PassportExpiryDate = d;
+                //employee.PassportExpiryDate = DateTime.ParseExact(dp_passportEndDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
                 employee.Sequence = txt_sequenceNum.Value;
                 employee.UnifiedNumber = txt_unifiedNum.Value;
 

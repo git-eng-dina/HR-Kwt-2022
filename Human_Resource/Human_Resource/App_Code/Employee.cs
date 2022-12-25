@@ -344,10 +344,12 @@ namespace Human_Resource
                         docnum= x.docnum,                        
                     }).ToList();
 
-                employee.Certificate1 = certificates.Where(x => x.docnum.Contains("cer1")).FirstOrDefault();
-                employee.Certificate2 = certificates.Where(x => x.docnum.Contains("cer2")).FirstOrDefault();
-                employee.Certificate3 = certificates.Where(x => x.docnum.Contains("cer3")).FirstOrDefault();
-
+                if (certificates.Count > 0)
+                {
+                    employee.Certificate1 = certificates.Where(x => x.docnum.Contains("cer1")).FirstOrDefault();
+                    employee.Certificate2 = certificates.Where(x => x.docnum.Contains("cer2")).FirstOrDefault();
+                    employee.Certificate3 = certificates.Where(x => x.docnum.Contains("cer3")).FirstOrDefault();
+                }
                 return employee;
             }
         }
@@ -377,7 +379,7 @@ namespace Human_Resource
                 return user;
             }
         }
-        public List<EmployeeModel> GetEmployees(bool isActive,bool hired)
+        public List<EmployeeModel> GetEmployees(bool isActive,bool hired,int? supervisorId = null,int? managerId= null)
         {
             using (HRSystemEntities entity = new HRSystemEntities())
             {
@@ -388,6 +390,11 @@ namespace Human_Resource
                     searchPredicate = searchPredicate.And(x => x.HiringDate != null);
                 else
                     searchPredicate = searchPredicate.And(x => x.HiringDate == null);
+
+                if (supervisorId != null)
+                    searchPredicate = searchPredicate.And(x => x.managements.branches.ManagerID == supervisorId);
+                if (managerId != null)
+                    searchPredicate = searchPredicate.And(x => x.managements.ManagerID == managerId);
 
                 var user = entity.employees.Where(searchPredicate)
                             .Select(x => new EmployeeModel()

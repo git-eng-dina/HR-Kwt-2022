@@ -32,34 +32,40 @@ namespace Human_Resource.Views.Employees
         private void BindData(string textSearch = "")
         {
             EmployeeModel emp = new EmployeeModel();
-            if (Session["urole"] != null)
+
+            List<EmployeeModel> unHiredEmployees = new List<EmployeeModel>();
+            int userId = int.Parse(Session["user_id"].ToString());
+            string role = Session["urole"].ToString();
+            if (role == "GeneralDirector" || role == "CEO" || role == "Supervisor" || role == "HRManager" || role.ToString() == "FinancialManager")
             {
-                List<EmployeeModel> unHiredEmployees = new List<EmployeeModel>();
-                int userId = int.Parse(Session["user_id"].ToString());
-                string role = Session["urole"].ToString();
-                if (role == "GeneralDirector" || role == "CEO" || role == "Supervisor" || role == "HRManager" || role.ToString() == "FinancialManager")
-                {
-                    if (role == "GeneralDirector" || role == "CEO")
-                        unHiredEmployees = emp.GetEmployees(true, false);
-                    else if (role == "Supervisor")
-                        unHiredEmployees = emp.GetNotHiredEmployees(userId);//not get any approval
-                    else if (role == "HRManager" || role.ToString() == "FinancialManager")
-                        unHiredEmployees = emp.GetNotHiredEmployees(role);
+                if (role == "GeneralDirector" || role == "CEO")
+                    unHiredEmployees = emp.GetEmployees(true, false);
+                else if (role == "Supervisor")
+                    unHiredEmployees = emp.GetNotHiredEmployees(userId);//not get any approval
+                else if (role == "HRManager" || role.ToString() == "FinancialManager")
+                    unHiredEmployees = emp.GetNotHiredEmployees(role);
 
 
-                    if (textSearch != "")
-                        unHiredEmployees = unHiredEmployees.Where(x => x.NameAr.ToLower().Contains(textSearch.ToLower())
-                                        || x.NameEn.ToLower().Contains(textSearch.ToLower())
-                                        || x.IdentityNumber.ToLower().Contains(textSearch.ToLower())).ToList();
-                    gv_unhiredEmp.DataSource = unHiredEmployees;
-                }
+                if (textSearch != "")
+                    unHiredEmployees = unHiredEmployees.Where(x => x.NameAr.ToLower().Contains(textSearch.ToLower())
+                                    || x.NameEn.ToLower().Contains(textSearch.ToLower())
+                                    || x.IdentityNumber.ToLower().Contains(textSearch.ToLower())).ToList();
+                gv_unhiredEmp.DataSource = unHiredEmployees;
             }
             else
             {
                 gv_unhiredEmp.Visible = false;
                 gv_unhiredEmp_title.Visible = false;
             }
-            var employees = emp.GetEmployees(true,true);
+
+            int? supervisorId = null;
+            int? managerId = null;
+            if (role == "Supervisor")
+                supervisorId = userId;
+            else if (role == "ManagementManager")
+                managerId = userId;
+
+            var employees = emp.GetEmployees(true,true,supervisorId,managerId);
             if (textSearch != "")
                 employees = employees.Where(x => x.NameAr.ToLower().Contains(textSearch.ToLower())
                                 || x.NameEn.ToLower().Contains(textSearch.ToLower())

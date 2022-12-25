@@ -343,7 +343,7 @@ namespace Human_Resource.Views.Employees {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txt_IDNumber;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_IDNumber;
         
         /// <summary>
         /// txt_workHours control.
@@ -452,6 +452,15 @@ namespace Human_Resource.Views.Employees {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText txt_unifiedNum;
+        
+        /// <summary>
+        /// hdnButtonID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnButtonID;
         
         /// <summary>
         /// btnSave control.

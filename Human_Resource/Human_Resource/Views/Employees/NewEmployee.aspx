@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="NewEmployee.aspx.cs" Inherits="Human_Resource.Views.Employees.NewEmployee" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="NewEmployee.aspx.cs" Inherits="Human_Resource.Views.Employees.NewEmployee" enableEventValidation="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <script src="https://cdn.syncfusion.com/14.1.0.41/js/common/ej.webform.min.js"></script>
      <script>
@@ -6,7 +6,7 @@
              $(".hasdatepicker").datepicker({
                  changeMonth: true,
                  changeYear: true,
-                 format:"dd/MM/yyyy",
+                 format:"MM/dd/yyyy",
              });
              //$(".hasdatepicker").datepicker("option", "dateFormat", "mm/dd/yy");
              //dtString = $("#MainContent_hdnDateBOD").val();
@@ -41,6 +41,7 @@
                     // $('#MainContent_lbl_certificate1').style.display= "inline";
                      $('#MainContent_hr_cer1').hide();
                      $('#MainContent_lbl_certificate1').html(q);
+                     $('[id*=cerValidMsg]').hide();
                  }
              })
          });
@@ -65,28 +66,29 @@
              })
          });
          function addCertificateRow() {
-             if ($('#frm_certificate2').is(':visible')) {
-                 $('#frm_certificate3').show();
-                 $('#frm-addCertificate').hide();
-                 $('#btn-deleteCertificate2').hide();
+             if ($('[id*=frm_certificate2]').is(':visible')) {
+                 $("[id*=frm_certificate3]").show();
+                 $("[id*=frm_certificate3]").css("visibility", "visible");
+                 $('[id*=frm-addCertificate]').hide();
+                 $('[id*=btn-deleteCertificate2]').hide();
              }
              else {
-                 alert();
-                 $('#frm_certificate2').show();
-
+ 
+                 $('[id*=frm_certificate2]').show();
+                 $("[id*=frm_certificate2]").css("visibility", "visible");
              }
          }
 
          function deleteCertificateRow() {
              var uploadFileText = "<%= Resources.Labels.UploadFile %>";
 
-             if ($('#frm_certificate3').is(':visible')) {
-                 $('#MainContent_txt_certificate3').val("");
-                 $('#MainContent_file_certificate3').val("");
-                 $('#MainContent_lbl_certificate3').html(uploadFileText);
-                 $('#frm_certificate3').hide();
-                 $('#frm-addCertificate').show();
-                 $('#btn-deleteCertificate2').show();
+             if ($('[id*=frm_certificate3]').is(':visible')) {
+                 $('[id*=MainContent_txt_certificate3]').val("");
+                 $('[id*=MainContent_file_certificate3]').val("");
+                 $('[id*=MainContent_lbl_certificate3]').html(uploadFileText);
+                 $('[id*=frm_certificate3]').hide();
+                 $('[id*=frm-addCertificate]').show();
+                 $('[id*=btn-deleteCertificate2]').show();
 
 
              }
@@ -94,34 +96,34 @@
                  $('#MainContent_txt_certificate2').val("");
                  $('#MainContent_file_certificate2').val("");
                  $('#MainContent_lbl_certificate2').html(uploadFileText);
-                 $('#frm_certificate2').hide();
+                 $('[id*=frm_certificate2]').hide();
              }
          }
          function addExperienceRow() {
-             if ($('#frm_experience2').is(':visible')) {
-                 $('#frm_experience3').show();
-                 $('#frm-addExperience').hide();
-                 $('#btn-deleteExperience2').hide();
+             if ($('#MainContent_frm_experience2').is(':visible')) {
+                 $('#MainContent_frm_experience3').show();
+                 $('#MainContent_frm-addExperience').hide();
+                 $('#MainContent_btn-deleteExperience2').hide();
              }
              else {
-                 $('#frm_experience2').show();
+                 $('[id*=frm_experience2]').show();
 
              }
          }
 
          function deleteExperienceRow() {
 
-              if ($('#frm_experience3').is(':visible')) {
+             if ($('#MainContent_frm_experience3').is(':visible')) {
                   $('#MainContent_txt_experience3').val("");
-                  $('#frm_experience3').hide();
-                  $('#frm-addExperience').show();
-                  $('#btn-deleteExperience2').show();
+                 $('#MainContent_frm_experience3').hide();
+                 $('#MainContent_frm-addExperience').show();
+                 $('#MainContent_btn-deleteExperience2').show();
 
 
               }
               else {
                   $('#MainContent_txt_experience2').val("");
-                  $('#frm_experience2').hide();
+                 $('#MainContent_frm_experience2').hide();
               }
          }
 
@@ -159,6 +161,71 @@
              }
          }
 
+         function removeValidation(input) {
+             if ($(input).attr("class") == "form-control is-invalid") {
+
+                 $(input).attr("class", "form-control");
+
+             }
+         }
+         function checkValidation() {
+             var valid = true;
+             if ($('[id*=txt_nameAR]').val() == "" || $('[id*=txt_nameAR]').val() == null) {
+                 $('[id*=txt_nameAR]').attr("class", "form-control is-invalid");
+                 valid = false;
+             }
+             if ($('[id*=txt_nameEN]').val() == "" || $('[id*=txt_nameEN]').val() == null) {
+                 $('[id*=txt_nameEN]').attr("class", "form-control is-invalid");
+                 valid = false;
+             }
+             if ($('[id*=dp_bod]').val() == "" || $('[id*=dp_bod]').val() == null) {
+                 $('[id*=dp_bod]').attr("class", "form-control is-invalid");
+                 valid = false;
+             }
+             if ($('[id*=txt_mobile]').val() == "" || $('[id*=txt_mobile]').val() == null) {
+                 $('[id*=txt_mobile]').attr("class", "form-control is-invalid");
+                 valid = false;
+             }
+             if ($('[id*=txt_identityNumber]').val() == "" || $('[id*=txt_identityNumber]').val() == null) {
+                 $('[id*=txt_identityNumber]').attr("class", "form-control is-invalid");
+                 valid = false;
+             }
+             if ($("[id*=sel_management]").val() == "" || $("[id*=sel_management]").val() == null || $("[id*=sel_management]").val() == '0') {
+                 $('[id*=sel_management]').attr("class", "form-control is-invalid");
+                 valid = false;
+             }
+             if ($('[id*=txt_salary]').val() == "" || $('[id*=txt_salary]').val() == null) {
+                 $('[id*=txt_salary]').attr("class", "form-control is-invalid");
+                 valid = false;
+             }
+             if ($('[id*=txt_email]').val() == "" || $('[id*=txt_email]').val() == null) {
+                 $('[id*=txt_email]').attr("class", "form-control is-invalid");
+                 valid = false;
+             }
+             if ($('[id*=txt_certificate1]').val() == "" || $('[id*=txt_certificate1]').val() == null) {
+                 $('[id*=txt_certificate1]').attr("class", "form-control is-invalid");
+                 valid = false;
+             }
+             if ($('[id*=dp_fromCer1]').val() == "" || $('[id*=dp_fromCer1]').val() == null) {
+                 $('[id*=dp_fromCer1]').attr("class", "form-control is-invalid");
+                 valid = false;
+             }
+             if ($('[id*=dp_toCer1]').val() == "" || $('[id*=dp_toCer1]').val() == null) {
+                 $('[id*=dp_toCer1]').attr("class", "form-control is-invalid");
+                 valid = false;
+             }
+             if ($('[id*=file_certificate1]').val() == "" || $('[id*=file_certificate1]').val() == null) {
+                 $('[id*=cerValidMsg]').show();
+                 valid = false;
+             }
+
+             if (valid) {
+                 var uniqID = $('#MainContent_hdnButtonID').val();
+
+                 __doPostBack(uniqID, "OnClick");
+             }
+             return valid;
+         }
         
      </script>
     <!-- text boxes -->
@@ -178,7 +245,8 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,NameAR%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
-                                <input type="text" class="form-control input-lg" id="txt_nameAR"  runat="server" value=""  />
+                                <input type="text" class="form-control input-lg" id="txt_nameAR"  runat="server" value="" onchange="removeValidation($(this));" />
+                                <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
                             </div>
 
                             </div>
@@ -187,7 +255,8 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,NameEN%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2">
-                                    <input type="text" class="form-control input-lg" id="txt_nameEN"  runat="server" value=""  />
+                                    <input type="text" class="form-control input-lg" id="txt_nameEN"  runat="server" onchange="removeValidation($(this));" />
+                                    <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
                             </div>
                                 </div>
                            <div class="form-group" style="display:block">
@@ -196,8 +265,8 @@
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2">
                      
-                                    <asp:TextBox ID="dp_bod" runat="server" class="form-control input-lg hasdatepicker"  value="2000-11-01" ></asp:TextBox>
-
+                                    <asp:TextBox ID="dp_bod" runat="server" class="form-control input-lg hasdatepicker" onchange="removeValidation($(this));" ></asp:TextBox>
+                                    <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
                             </div>
                                 </div>
                             <div class="form-group" style="display:block">
@@ -205,7 +274,8 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Mobile%>" /></span>
                                 </div>
                                     <div class="col-md-8 col-sm-8 col-xs-8 div2">
-                                        <input type="text" class="form-control input-lg" id="txt_mobile"  runat="server" value=""  />
+                                        <input type="text" class="form-control input-lg" id="txt_mobile"  runat="server" onchange="removeValidation($(this));" />
+                                        <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
                                     </div> 
                                 </div>
                             <div class="form-group" style="display:block">
@@ -260,16 +330,18 @@
                         <div class="panel-heading">
                         <span> <asp:literal runat="server" text="<%$ Resources:Labels,AcademicCertificates%>"/></span>
                         </div>
-                        <div class="c-form-dynamic" style="height:175px">
+                        <div class="c-form-dynamic" style="height:250px">
                             <div class="row">
+                             <div class="invalid-feedback" id="cerValidMsg"><asp:Literal  runat="server" Text="<%$ Resources:Labels,UploadFile%>" /></div>
                             <div class="form-group" style="display:block">
                                 <div class="col-md-4 col-sm-4 col-xs-4 div1">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Certificate1%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
-
-                                <input type="text" class="form-control input-lg" id="txt_certificate1"  runat="server" value=""  />
-                                   
+ 
+                                <input type="text" class="form-control input-lg" id="txt_certificate1"  runat="server" value="" onchange="removeValidation($(this));" />
+                                    <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
+                                    
                                 </div>
                            </div>
                            <div class="form-group" style="display:block">
@@ -277,9 +349,8 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,DateFrom%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
-                                      <asp:TextBox ID="dp_fromCer1" runat="server" class="form-control input-lg hasdatepicker"  value="2000-11-01" ></asp:TextBox>
-<%--                                  <input type="text" class="form-control input-lg hasdatepicker" id="dp_fromCer1"  runat="server" value="2000-11-01"   />--%>
-                                   
+                                      <asp:TextBox ID="dp_fromCer1" runat="server" class="form-control input-lg hasdatepicker"  value="01/11/2000" onchange="removeValidation($(this));"></asp:TextBox>
+                                     <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>                                   
                                 </div>
                            </div>
                            <div class="form-group" style="display:block">
@@ -287,7 +358,8 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,DateTo%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
-                                      <asp:TextBox ID="dp_toCer1" runat="server" class="form-control input-lg hasdatepicker"  value="2000-11-01" ></asp:TextBox>
+                                      <asp:TextBox ID="dp_toCer1" runat="server" class="form-control input-lg hasdatepicker"  value="01/11/2000" onchange="removeValidation($(this));"></asp:TextBox>
+                                     <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
 
 <%--                                  <input type="text" class="form-control input-lg hasdatepicker" id="dp_toCer1"  runat="server" value="2000-11-01"   />--%>
                                    
@@ -305,7 +377,7 @@
                                 </div>
                             </div>
                             
-                            <div class="row"  id="frm_certificate2" runat="server">
+                            <div class="row"  id="frm_certificate2" style="display:none" runat="server">
                              <div class="form-group"  >
                                 <div class="col-md-4 col-sm-4 col-xs-4 div1">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Certificate2%>" /></span>
@@ -317,23 +389,23 @@
                                 </div>
                                 
                             </div>
-                                 <div class="form-group" style="display:block">
+                                 <div class="form-group" >
                                 <div class="col-md-4 col-sm-4 col-xs-4 div1">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,DateFrom%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
-                                  <asp:TextBox ID="dp_fromCer2" runat="server" class="form-control input-lg hasdatepicker"  value="2000-11-01" ></asp:TextBox>
+                                  <asp:TextBox ID="dp_fromCer2" runat="server" class="form-control input-lg hasdatepicker"  value="01/11/2000" ></asp:TextBox>
 
 <%--                                  <input type="text" class="form-control input-lg hasdatepicker" id="dp_fromCer2"  runat="server" value="2000-11-01"   />--%>
                                    
                                 </div>
                            </div>
-                           <div class="form-group" style="display:block">
+                           <div class="form-group" >
                                 <div class="col-md-4 col-sm-4 col-xs-4 div1">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,DateTo%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
-                                   <asp:TextBox ID="dp_toCer2" runat="server" class="form-control input-lg hasdatepicker"  value="2000-11-01" ></asp:TextBox>
+                                   <asp:TextBox ID="dp_toCer2" runat="server" class="form-control input-lg hasdatepicker"  value="01/11/2000" ></asp:TextBox>
 <%--                    <input type="text" class="form-control input-lg hasdatepicker" id="dp_toCer2"  runat="server" value="2000-11-01"   />--%>
                                    
                                 </div>
@@ -348,10 +420,11 @@
                                    <a href=""  id="uploadTrigger_2"> <i class="fa fa-upload"></i></a>
                                          
                                      </div>
+                              
                                 </div>
                             </div>
 
-                            <div class="row" id="frm_certificate3" runat="server">
+                            <div class="row" id="frm_certificate3" style="display:none" runat="server">
                             <div class="form-group"  >
                                 <div class="col-md-4 col-sm-4 col-xs-4 div1">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Certificate3%>" /></span>
@@ -363,23 +436,23 @@
                                 </div>
                                 
                             </div>
-                            <div class="form-group" style="display:block">
+                            <div class="form-group" >
                                 <div class="col-md-4 col-sm-4 col-xs-4 div1">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,DateFrom%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
-                                 <asp:TextBox ID="dp_fromCer3" runat="server" class="form-control input-lg hasdatepicker"  value="2000-11-01" ></asp:TextBox>
+                                 <asp:TextBox ID="dp_fromCer3" runat="server" class="form-control input-lg hasdatepicker"  value="01/11/2000" ></asp:TextBox>
 
 <%--                                  <input type="text" class="form-control input-lg hasdatepicker" id="dp_fromCer3"  runat="server" value="2000-11-01"   />--%>
                                    
                                 </div>
                            </div>
-                           <div class="form-group" style="display:block">
+                           <div class="form-group" >
                                 <div class="col-md-4 col-sm-4 col-xs-4 div1">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,DateTo%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
-                                    <asp:TextBox ID="dp_toCer3" runat="server" class="form-control input-lg hasdatepicker"  value="2000-11-01" ></asp:TextBox>
+                                    <asp:TextBox ID="dp_toCer3" runat="server" class="form-control input-lg hasdatepicker"  value="01/11/2000" ></asp:TextBox>
 
 <%--                                  <input type="text" class="form-control input-lg hasdatepicker" id="dp_toCer3"  runat="server" value="2000-11-01"   />--%>
                                    
@@ -479,7 +552,8 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Management%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
-                                <select runat="server" id="sel_management" name="sel_management" class="form-control" onchange="fillDepartment(this.value)"></select>
+                                <select runat="server" id="sel_management" name="sel_management" class="form-control" onchange="fillDepartment(this.value);removeValidation($(this));"></select>
+                                     <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
                             </div>
                                  </div>
                             <div class="form-group" style="display:block">
@@ -496,8 +570,9 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,IDNumber%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2">
-                                    <input type="number" class="form-control" id="txt_IDNumber"  runat="server" value=""  />
+                                    <input type="text" class="form-control" id="txt_IDNumber"  runat="server" value=""  />
                             </div>
+                                  </div>
                                   <div class="form-group" style="display:block">
                                 <div class="col-md-4 col-sm-4 col-xs-4 div1">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,WorkHours%>" /></span>
@@ -511,7 +586,8 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,CurrentSalary%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2">
-                                    <input type="number" class="form-control" id="txt_salary"  runat="server" value=""  />
+                                    <input type="number" class="form-control" id="txt_salary"  runat="server" onchange="removeValidation($(this));" />
+                                     <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
                             </div>
                              </div>
                              <div class="form-group" style="display:block">
@@ -527,7 +603,8 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Email%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2">
-                                    <input type="text" class="form-control input-lg" id="txt_email" runat="server" value=""  />
+                                    <input type="text" class="form-control input-lg" id="txt_email" runat="server" value="" onchange="removeValidation($(this));" />
+                                    <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
                             </div>
                            </div>
                 
@@ -585,7 +662,7 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,PassportStartdate%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
-                                    <asp:TextBox ID="dp_passportFromDate" runat="server" class="form-control input-lg hasdatepicker"  value="2000-11-01" ></asp:TextBox>
+                                    <asp:TextBox ID="dp_passportFromDate" runat="server" class="form-control input-lg hasdatepicker"  value="01/11/2000" ></asp:TextBox>
 
 <%--                                    <input type="text" class="form-control input-lg hasdatepicker" id="dp_passportFromDate"  runat="server" value="2000-11-01"  />--%>
                             </div>
@@ -596,7 +673,7 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,PassportEnddate%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2">
-                                   <asp:TextBox ID="dp_passportEndDate" runat="server" class="form-control input-lg hasdatepicker"  value="2000-11-01" ></asp:TextBox>
+                                   <asp:TextBox ID="dp_passportEndDate" runat="server" class="form-control input-lg hasdatepicker"  value="01/11/2000" ></asp:TextBox>
 
 <%--                                    <input type="text" class="form-control input-lg hasdatepicker" id="dp_passportEndDate"  runat="server" value="2000-11-01"  />--%>
                             </div>
@@ -636,7 +713,11 @@
     <!-- buttons -->
     <div class="row">
         <div class="col-md-11 modal-footer">
-            <asp:LinkButton ID="btnSave" runat="server" CssClass="btn btn-new" OnClick="btn_save_Click" Width="128px" Height="33px">
+              <asp:HiddenField  runat="server" ID="hdnButtonID"/>
+            <asp:LinkButton ID="btnSave" runat="server" CssClass="btn btn-new"
+                 UseSubmitBehavior="False"  
+                OnClientClick="javascript:return checkValidation();"
+                OnClick="btn_save_Click" Width="128px" Height="33px">
                 <asp:Literal Text=" <%$Resources:Labels,Save%>" runat="server"></asp:Literal>
                 <i class="fa fa-check"></i>
             </asp:LinkButton>
