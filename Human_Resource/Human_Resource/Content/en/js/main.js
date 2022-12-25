@@ -129,3 +129,21 @@ function convertToJavaScriptDate(value) {
     return localDateTime;
 
 }
+
+function logout() {
+    $.ajax({
+        type: "POST",
+        url: "../../login.aspx/logout",
+
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+
+            window.location = "../../login.aspx";
+
+        },
+        failure: function (response) {
+            alert(response.d);
+        }
+    });
+}

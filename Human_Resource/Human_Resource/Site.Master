@@ -278,7 +278,7 @@
             </a>
              </li>
                 <li class="dropdown">
-                 <a href="@Url.Action("Logout", "Account")" class="">
+                 <a href="javascript:logout();"  class="">
                  <i class="fa fa-sign-out" aria-hidden="true"></i>
                 <asp:Literal runat="server" Text="<%$ Resources:Labels,Logout%>" />
                 </a>
