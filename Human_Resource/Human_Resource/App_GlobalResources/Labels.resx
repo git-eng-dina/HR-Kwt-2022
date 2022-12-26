@@ -843,4 +843,13 @@
   <data name="IDNumber" xml:space="preserve">
     <value>ID Number</value>
   </data>
+  <data name="Activities" xml:space="preserve">
+    <value>Activities</value>
+  </data>
+  <data name="Contributors" xml:space="preserve">
+    <value>Contributors</value>
+  </data>
+  <data name="SuggestedEvents" xml:space="preserve">
+    <value>Suggested events</value>
+  </data>
 </root>

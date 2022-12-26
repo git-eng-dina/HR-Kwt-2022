@@ -391,7 +391,7 @@ namespace Human_Resource.Views.ExecutiveProc
 
             //try
             {
-              //if (!IsPostBack)
+              if (!IsPostBack)
                 {
                     TaskModel taskObj = new TaskModel();
                     Attachment attach = new Attachment();

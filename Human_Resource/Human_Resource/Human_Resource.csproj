@@ -188,11 +188,11 @@
     <Content Include="images\reject_document.png" />
     <Content Include="images\search.png" />
     <Content Include="images\task-cancle.png" />
+    <Content Include="images\task-complete1.png" />
     <EntityDeploy Include="Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="images\task-complete1.png" />
     <Content Include="Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>

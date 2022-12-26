@@ -131,7 +131,7 @@
                     </a>
                 </li>  
                 <li>
-                    <a href="/Views/ExecutiveProc/Events.aspx"> 
+                    <a href="/Views/ExecutiveProc/EventsApprove.aspx"> 
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,Events%>" />
                     </a>
                 </li>
@@ -163,6 +163,28 @@
             </ul> 
             </li>
             
+            <li class="dropdown">
+            <a href="" class="" data-toggle="collapse" data-target="#demo_emp_activities">
+                    <i class="fa fa-edit" aria-hidden="true"></i>
+                    <asp:Literal runat="server" Text="<%$ Resources:Labels,Activities%>" />
+                    <i class="fa fa-fw fa-caret-down"></i>
+            </a>
+            <ul id="demo_emp_activities" class="collapse in" aria-expanded="true">
+                <li>
+                    <a href="/Views/ExecutiveProc/Events.aspx?my=1"> 
+                        <asp:Literal runat="server" Text="<%$ Resources:Labels,Events%>" />
+                    </a>
+                </li>
+                <li>
+                    <a href="/Views/ExecutiveProc/Trainings.aspx"> 
+                        <asp:Literal runat="server" Text="<%$ Resources:Labels,Trainings%>" />
+                    </a>
+                </li> 
+           
+            </ul>
+                </li> 
+                
+                
             <li class="dropdown">
             <a href="" class="" data-toggle="collapse" data-target="#demo_emp_penalities">
                     <i class="fa fa-edit" aria-hidden="true"></i>

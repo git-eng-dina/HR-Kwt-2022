@@ -840,4 +840,13 @@
   <data name="IDNumber" xml:space="preserve">
     <value>رقم الهوية</value>
   </data>
+  <data name="Activities" xml:space="preserve">
+    <value>النشاطات</value>
+  </data>
+  <data name="Contributors" xml:space="preserve">
+    <value>المساهمون</value>
+  </data>
+  <data name="SuggestedEvents" xml:space="preserve">
+    <value>الفعاليات المقترحة</value>
+  </data>
 </root>

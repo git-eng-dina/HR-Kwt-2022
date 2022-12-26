@@ -97,6 +97,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Activities.
+        /// </summary>
+        internal static string Activities {
+            get {
+                return ResourceManager.GetString("Activities", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Brannch.
         /// </summary>
         internal static string AddBrannch {
@@ -642,6 +651,15 @@ namespace Resources {
         internal static string ConfrontsProblems {
             get {
                 return ResourceManager.GetString("ConfrontsProblems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contributors.
+        /// </summary>
+        internal static string Contributors {
+            get {
+                return ResourceManager.GetString("Contributors", resourceCulture);
             }
         }
         
@@ -1929,6 +1947,15 @@ namespace Resources {
         internal static string StrategicThinking {
             get {
                 return ResourceManager.GetString("StrategicThinking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Suggested events.
+        /// </summary>
+        internal static string SuggestedEvents {
+            get {
+                return ResourceManager.GetString("SuggestedEvents", resourceCulture);
             }
         }
         

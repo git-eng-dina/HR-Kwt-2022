@@ -29,8 +29,8 @@ namespace Human_Resource.App_Code
         {
             using ( HRSystemEntities entity = new HRSystemEntities())
                 {
-                var events = entity.events.Where(x => x.IsActive == true
-                               //&& x.StartDate >= start && x.EndDate <= end
+                var events = entity.events.Where(x => x.IsActive == true && x.Approved == true
+                               && x.StartDate >= start && x.EndDate <= end
                                && (x.EmployeeID ==employeeID || entity.EemployeesEvents.Where(e => e.EventID == x.EventID).Select(e => e.EmployeeID).Contains(employeeID) ))
                     .Select(x => new EventModel()
                     {

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Events.aspx.cs" Inherits="Human_Resource.Views.ExecutiveProc.Events" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Events.aspx.cs" Inherits="Human_Resource.Views.ExecutiveProc.Events"  enableEventValidation="false"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
   <%-- <link href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/cupertino/jquery-ui.min.css" rel="stylesheet" />
@@ -64,35 +64,51 @@
             </div>
          </div>
             <div class="modal-body panel-body model-b">
-                <div class="c-form">
+                 <div class="row div-attachment">
+                 <a href=""  id="uploadTrigger_1"> <i class="fa fa-paperclip" style="color:#a19c9c"></i></a>
+                      <a href="" id="lbl_attach" runat="server" target="_blank" class="href-file"></a>
+                   
+                   <a href="" id="delete_upload" style="display:none;"><i class='fas fa-trash' style="color:#a19c9c"></i></a>
+                    </div>
+                <div class="c-form"  style="margin-top:5px;">
                     <div class ="row">
                      <div class="form-group" style="display:block">
+                          <asp:FileUpload ID="file" runat="server" style="display:none;" />
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Title%>" /></span>
                                 <input type="hidden"  id="eventId" name="eventId" runat="server" value=""  />
-                                <input type="text" class="form-control input-lg" id="title" name="title" runat="server" value=""  />
+                                <input type="text" class="form-control input-lg" id="txt_title" name="txt_title" runat="server" value=""  onchange="removeValidation($(this));"/>
+                                 <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
+
                             </div>
                         </div>
                      <div class ="row">
                      <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Description%>" /></span>
-                                 <asp:TextBox type="text" class="form-control input-lg textarea" ID="description" name="description"  TextMode="MultiLine" Rows="3" runat="server" value="" Width="80%"  />
+                                 <asp:TextBox type="text" class="form-control input-lg textarea" ID="description" name="description"  TextMode="MultiLine" Rows="3" runat="server" value="" Width="80%"  onchange="removeValidation($(this));" />
+                                 <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
+
                             </div>
                         </div>  
 
                     <div class="row">
                      <div class="form-group" style="display:block">
                               <span class="time-span"><asp:Literal  runat="server" Text="<%$ Resources:Labels,Start%>" /></span>
-                            <input type="datetime-local" class="form-control calendar" style="width:200px" id="start" runat="server">
+                            <input type="datetime-local" class="form-control calendar" style="width:200px" id="start" runat="server" onchange="removeValidation($(this));">
+                            <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
+
  
                             <span class="time-span"><asp:Literal  runat="server" Text="<%$ Resources:Labels,End%>" /></span>
-                            <input type="datetime-local" class="form-control input-lg calendar" id="end" style="width:200px"  runat="server"    />                            
+                            <input type="datetime-local" class="form-control input-lg calendar" id="end" style="width:200px"  runat="server"   onchange="removeValidation($(this));" /> 
+                            <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
+
                     </div>
                     </div>
                      <div class ="row">
                      <div class="form-group" style="display:block">
-                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Employees%>" /></span>
+                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Contributors%>" /></span>
+                                   <input type="hidden" runat="server" id="hdn_empIds" name="hdn_empIds"/>
                                  <select runat="server" id="sel_employee" name="sel_employee" style="width:70%" class="form-control input-lg" ></select>
-                                  <button class="add-arrow-btn"  runat="server" onclick="addEmp()" id="Button1" >
+                                  <button class="add-arrow-btn"  runat="server"  id="btn_addEmp" >
                                    <i class="fas fa-arrow-alt-circle-down"></i>
                                 </button>
                             </div>
@@ -100,13 +116,29 @@
                  <div class ="row employee-list">
                         <ul id="lst_employee" class="employee-list" runat="server"></ul>
                     </div>
-                 </div>
+              
                   </div>
                     
                 <div class="modal-footer">
-                    <button class="btn btn-new"  runat="server" onclick="saveEvent()" id="btn_ads" >
+                    <asp:HiddenField  runat="server" ID="hdnButtonID"/>
+
+
+                    <asp:button class="btn btn-new"  id="btn_ads"  runat="server" Text=" <%$ Resources:Labels,Save%>"
+                     UseSubmitBehavior="False"  
+                        OnClick="btn_save_Click" 
+                        OnClientClick="javascript:return checkValidation();" >
+                    </asp:button>
+
+                  <%--  <button class="btn btn-new"  runat="server" id="btn_ads"
+                         onclick="checkValidation()"  
+                        >
                         <asp:Literal  runat="server" Text=" <%$ Resources:Labels,Save%>" />
-                    </button>
+                    </button>--%>
+ 
+                    <%-- <button class="btn btn-new"  runat="server" id="btn_ads"
+                      onclick="saveEvent()">
+                        <asp:Literal  runat="server" Text=" <%$ Resources:Labels,Save%>" />
+                    </button>--%>
  
 
                     </div>

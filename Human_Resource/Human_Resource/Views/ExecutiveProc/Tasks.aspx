@@ -20,7 +20,7 @@
             });
 
 
-            $('#uploadTrigger_1').click(function (e) {
+            $('[id*=uploadTrigger_1]').click(function (e) {
                 e.preventDefault();
                 $('#MainContent_file').trigger('click');
             });
@@ -231,6 +231,7 @@
             $('#MainContent_dp_start').val("");
             $('#MainContent_dp_end').val("");
             $("#MainContent_hdn_empIds").val("");
+            $("#MainContent_file").val("");
             $('#MainContent_lst_employee').empty();
             $("#dialog").dialog("close");
         }
@@ -377,9 +378,8 @@
                 });
 
                 $("#MainContent_hdn_empIds").val(empIdsStr);
-                alert();
+
                 return true;
-                //$("#base_form").submit();
             }
             return false;
                 //var formData = new FormData();

@@ -31,7 +31,7 @@ function addSuccess(addResult) {
     if (addResult != -1) {
         $('#MainContent_calendar').fullCalendar('renderEvent',
             {
-                title: $("#MainContent_title").val(),
+                title: $("#MainContent_txt_title").val(),
                 start: addStartDate,
                 end: addEndDate,
                 id: addResult,
@@ -202,7 +202,7 @@ function ShowDialogWithData(customID) {
             for (var prop in data) {
                 var item = data[prop];
                 $('#MainContent_eventId').val(item.id);
-                $('#MainContent_title').val(item.title);
+                $('#MainContent_txt_title').val(item.title);
                 $('#MainContent_description').val(item.description);
 
 
@@ -255,12 +255,23 @@ function ShowDialogWithData(customID) {
 }
 
 function closeDialog() {
+
+    $("#MainContent_hdn_empIds").val("");
+    $("#MainContent_eventId").val("");
+    $("#MainContent_txt_title").val("");
+    $("#MainContent_description").val("");
+    $("#MainContent_start").val("");
+    $("#MainContent_end").val("");
+    $("#MainContent_file").val("");
+    $('#MainContent_lst_employee').empty();
+
     $("#dialog").dialog("close");
 }
 
 function saveEvent(eventId) {
+    alert('saveEveent');
     var eventId = $("#MainContent_eventId").val();
-    var title = $("#MainContent_title").val();
+    var title = $("#MainContent_txt_title").val();
     var description = $("#MainContent_description").val();
     var start = $("#MainContent_start").val();
     var end = $("#MainContent_end").val();
@@ -279,6 +290,7 @@ function saveEvent(eventId) {
         empIds: empIdsStr,
         eventId: eventId
     };
+    alert(JSON.stringify(parameter));
     $.ajax({
         type: "POST",
         url: "Events.aspx/SaveEvent",
@@ -444,7 +456,61 @@ function initFullcalendar(events) {
 
 }
 
+
+function removeValidation(input) {
+    if ($(input).attr("class") == "form-control is-invalid") {
+
+        $(input).attr("class", "form-control");
+
+    }
+}
+function checkValidation() {
+
+    var valid = true;
+    if ($('#MainContent_txt_title').val() == "" || $('#MainContent_txt_title').val() == null) {
+        $('#MainContent_txt_title').attr("class", "form-control is-invalid");
+        valid = false;
+    }
+
+    if ($('[id*=description]').val() == "" || $('[id*=description]').val() == null) {
+        $('[id*=description]').attr("class", "form-control is-invalid");
+        valid = false;
+    }
+
+    if ($('#MainContent_start').val() == "" || $('#MainContent_start').val() == null) {
+        $('#MainContent_start').attr("class", "form-control is-invalid");
+        valid = false;
+    }
+
+    if ($('#MainContent_end').val() == "" || $('#MainContent_end').val() == null) {
+        $('#MainContent_end').attr("class", "form-control is-invalid");
+        valid = false;
+    }
+   
+    if (valid) {
+
+        var empIdsStr = "";
+        var inputs = $('ul li input');
+        inputs.each(function (e) {
+            empIdsStr = empIdsStr + $(this).val() + ',';
+        });
+        $("#MainContent_hdn_empIds").val(empIdsStr);
+
+        var uniqID = $('#MainContent_hdnButtonID').val();
+
+        __doPostBack(uniqID, "OnClick");
+    }
+    return valid;
+}
+
+
 $(document).ready(function () {
+    $(".hasdatepicker").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        format: "dd/MM/yyyy",
+    });
+
     var events = [];
     $.ajax({
         type: "POST",
@@ -476,7 +542,10 @@ $(document).ready(function () {
 
   
 
-   // initFullcalendar();
+    $("[id*=btn_addEmp]").click(function (e) {
+        addEmp();
+        e.preventDefault();
+    });
     // add dialog
     $myWindow = $('#dialog');
 
@@ -492,7 +561,7 @@ $(document).ready(function () {
         overlay: { opacity: 0.5, background: 'black' },
 
     });
-
+    $("#dialog").parent().appendTo($("form:first"));
 
     // update Dialog
     $('#updatedialog').dialog({
@@ -503,14 +572,14 @@ $(document).ready(function () {
                 alert(currentUpdateEvent.title);
                 var eventToUpdate = {
                     id: currentUpdateEvent.id,
-                    name: $("#MainContent_title").val(),
+                    name: $("#MainContent_txt_title").val(),
                     description: $("#MainContent_description").val()
                 };
 
                 PageMethods.UpdateEvent(eventToUpdate, updateSuccess);
                 $(this).dialog("close");
 
-                currentUpdateEvent.title = $("#MainContent_title").val();
+                currentUpdateEvent.title = $("#MainContent_txt_title").val();
                 currentUpdateEvent.description = $("#MainContent_description").val();
 
                 $('#MainContent_calendar').fullCalendar('updateEvent', currentUpdateEvent);
@@ -566,7 +635,28 @@ $(document).ready(function () {
         day: "numeric", hour: "2-digit", minute: "2-digit"
     };
 
+    $('[id*=uploadTrigger_1]').click(function (e) {
+        e.preventDefault();
+        $('[id*=file]').trigger('click');
+    });
 
+    $('[id*=delete_upload]').click(function (e) {
+        e.preventDefault();
+        $('[id*=file]').val("");
+        $('[id*=lbl_attach]').html("");
+        $('[id*=delete_upload]').hide();
+    });
+
+    $(function () {
+        $('[id*=file]').change(function () {
+            var path = $(this).val();
+            if (path != '' && path != null) {
+                var q = path.substring(path.lastIndexOf('\\') + 1);
+                $('[id*=lbl_attach]').html(q);
+                $('[id*=delete_upload]').show();
+            }
+        })
+    });
     //$('#MainContent_calendar').fullCalendar({
     //    theme: true,
     //    header: {

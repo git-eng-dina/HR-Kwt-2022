@@ -31,6 +31,24 @@ namespace Human_Resource.Views.ExecutiveProc {
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdClient;
         
         /// <summary>
+        /// lbl_attach control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor lbl_attach;
+        
+        /// <summary>
+        /// file control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload file;
+        
+        /// <summary>
         /// eventId control.
         /// </summary>
         /// <remarks>
@@ -40,13 +58,13 @@ namespace Human_Resource.Views.ExecutiveProc {
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden eventId;
         
         /// <summary>
-        /// title control.
+        /// txt_title control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText title;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_title;
         
         /// <summary>
         /// description control.
@@ -76,6 +94,15 @@ namespace Human_Resource.Views.ExecutiveProc {
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl end;
         
         /// <summary>
+        /// hdn_empIds control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdn_empIds;
+        
+        /// <summary>
         /// sel_employee control.
         /// </summary>
         /// <remarks>
@@ -85,13 +112,13 @@ namespace Human_Resource.Views.ExecutiveProc {
         protected global::System.Web.UI.HtmlControls.HtmlSelect sel_employee;
         
         /// <summary>
-        /// Button1 control.
+        /// btn_addEmp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton Button1;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btn_addEmp;
         
         /// <summary>
         /// lst_employee control.
@@ -103,12 +130,21 @@ namespace Human_Resource.Views.ExecutiveProc {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lst_employee;
         
         /// <summary>
+        /// hdnButtonID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnButtonID;
+        
+        /// <summary>
         /// btn_ads control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btn_ads;
+        protected global::System.Web.UI.WebControls.Button btn_ads;
     }
 }

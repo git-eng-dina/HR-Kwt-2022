@@ -16,6 +16,7 @@ namespace Human_Resource.App_Code
         public static HRSystemEntities entityForGet = new HRSystemEntities();
         public static string CVUpload="~/Upload/CV/";
         public static string TaskUpload="~/Upload/Tasks/";
+        public static string EventUpload="~/Upload/Events/";
         public static string MD5Hash(string text)
         {
             MD5 md5 = new MD5CryptoServiceProvider();
