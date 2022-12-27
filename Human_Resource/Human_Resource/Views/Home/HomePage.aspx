@@ -31,7 +31,7 @@
                               <i class="fa fa-calendar-check" style="font-size:40px;color:#ff5d6f"></i>
                         </div>
                          <div class="col-8 text-center block-cursor">
-                             <a href="/Views/ExecutiveProc/EventsApprove.aspx">
+                             <a href="/Views/ExecutiveProc/Events.aspx">
                             <label> <asp:Literal  runat="server" Text="<%$ Resources:Labels,Events%>" /></label>
                           <p id="lbl_events"  runat="server" >
                             </p>

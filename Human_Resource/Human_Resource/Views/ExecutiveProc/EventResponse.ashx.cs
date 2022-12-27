@@ -19,22 +19,18 @@ namespace Human_Resource.Views.ExecutiveProc
             DateTime start = new DateTime(1970, 1, 1);
             DateTime end = new DateTime(1970, 1, 1);
 
-            //start = start.AddSeconds(double.Parse(context.Request.QueryString["start"]));
-            //end = end.AddSeconds(double.Parse(context.Request.QueryString["end"]));
+            var d = context.Request.Params["start"];
+            var dd = d.Split('-');
+            start = new DateTime(int.Parse(dd[0]), int.Parse(dd[1]), int.Parse(dd[2]));
 
-
-
-            //String result = String.Empty;
-
-            //result += "[";
+           d = context.Request.Params["end"];
+             dd = d.Split('-');
+            end = new DateTime(int.Parse(dd[0]), int.Parse(dd[1]), int.Parse(dd[2]));
 
             List<long> idList = new List<long>();
             EventModel eventModel = new EventModel();
 
             var listCalender = eventModel.getEvents(start, end,int.Parse(context.Session["user_id"].ToString()));
-            //System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
-            //var ss = js.Serialize(listCalender);
-           // context.Response.Write(js.Serialize(listCalender));
 
             var result = "[";
            foreach (EventModel cevent in listCalender)
@@ -49,13 +45,13 @@ namespace Human_Resource.Views.ExecutiveProc
             }
 
             result += "]";
-            // //store list of event ids in Session, so that it can be accessed in web methods
-            //  context.Session["idList"] = idList;
+
             result = result.Replace("'", "\"");
             context.Response.Write(result);
 
 
         }
+   
         private  String convertCalendarEventIntoString(EventModel cevent)
         {
             String allDay = "true";
@@ -100,11 +96,6 @@ namespace Human_Resource.Views.ExecutiveProc
             return epoch;
 
         }
-        //public void ProcessRequest(HttpContext context)
-        //{
-        //    context.Response.ContentType = "text/plain";
-        //    context.Response.Write("Hello World");
-        //}
 
         public bool IsReusable
         {

@@ -60,7 +60,10 @@
             </span>
                 </div>
             <div class="float2" style="width:10px">
-            <button class="close col-12" onClick="closeDialog()" ><i class="fa fa-close"></i></button>
+            <button type="button" class="close col-12" onClick="javascript:closeDialog();" CausesValidation="False">
+                <i class="fa fa-close"></i>
+
+            </button>
             </div>
          </div>
             <div class="modal-body panel-body model-b">

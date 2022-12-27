@@ -439,16 +439,12 @@ namespace Human_Resource.Views.ExecutiveProc
                             file.SaveAs(filePath);
                             UploadFile(newFileName, Path.GetFileNameWithoutExtension(file.FileName), taskIdInt);
                         }
-                        // return "1";
+
                     }
                 }
-                //return "0";
-            }
-            //catch
-            //{
-            //    return "0";
 
-            //}
+            }
+
         }
       
         }

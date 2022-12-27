@@ -29,9 +29,9 @@ namespace Human_Resource.App_Code
         {
             using ( HRSystemEntities entity = new HRSystemEntities())
                 {
-                var events = entity.events.Where(x => x.IsActive == true && x.Approved == true
-                               && x.StartDate >= start && x.EndDate <= end
-                               && (x.EmployeeID ==employeeID || entity.EemployeesEvents.Where(e => e.EventID == x.EventID).Select(e => e.EmployeeID).Contains(employeeID) ))
+                var events = entity.events.Where(x => x.IsActive == true 
+                               && x.StartDate >= start && x.EndDate < end
+                               && (x.EmployeeID ==employeeID || (entity.EemployeesEvents.Where(e => e.EventID == x.EventID).Select(e => e.EmployeeID).Contains(employeeID) ) && x.Approved == true))
                     .Select(x => new EventModel()
                     {
                        id = x.EventID,
@@ -40,6 +40,7 @@ namespace Human_Resource.App_Code
                         start = (DateTime)x.StartDate.Value,
                        end=(DateTime)x.EndDate.Value,
                        EmployeeID = x.EmployeeID,
+                       Approved = x.Approved,
                        Employees = entity.EemployeesEvents.Where(e => e.EventID == x.EventID).Select(e => new EmployeeModel() { EmployeeID = e.EmployeeID}).ToList(),
                     }).ToList();
                 return events;
@@ -53,12 +54,12 @@ namespace Human_Resource.App_Code
                 var eventObj = entity.events.Where(x => x.EventID == eventId)
                                 .Select(x => new EventModel()
                                 {
-                                    id= x.EventID,
+                                    id = x.EventID,
                                     title = x.Name,
                                     description = x.Description,
-                                    start = (DateTime) x.StartDate.Value,
+                                    start = (DateTime)x.StartDate.Value,
                                     end = (DateTime)x.EndDate.Value,
-                                 
+
                                     Employees = entity.EemployeesEvents.Where(m => m.EventID == x.EventID && m.IsActive == true)
                                                 .Select(m => new EmployeeModel()
                                                 {
@@ -66,6 +67,12 @@ namespace Human_Resource.App_Code
                                                     NameAr = m.employees.NameAr,
                                                     NameEn = m.employees.NameEn,
                                                 }).ToList(),
+                                    Attachment = entity.Images.Where(m => m.EventID == eventId)
+                                            .Select(m => new Attachment()
+                                                {
+                                                    docName = m.docName,
+                                                    docnum = m.docnum
+                                                }).FirstOrDefault(),
                                 }).FirstOrDefault();
                 return eventObj;
             }

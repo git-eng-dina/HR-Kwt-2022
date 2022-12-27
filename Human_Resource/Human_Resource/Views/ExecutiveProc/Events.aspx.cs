@@ -47,7 +47,7 @@ namespace Human_Resource.Views.ExecutiveProc
         {
 
             //try
-            if (!IsPostBack)
+            //if (!IsPostBack)
             {
 
                 EventModel eventModel = new EventModel();
@@ -113,6 +113,11 @@ namespace Human_Resource.Views.ExecutiveProc
                     file.SaveAs(filePath);
                     UploadFile(newFileName, Path.GetFileNameWithoutExtension(file.FileName), eventIdRes);
                 }
+                else if (eventId.Value != "")
+                {
+                    var attach = new Attachment();
+                    attach.DeleteEventAttach(eventIdRes);
+                }
             }
             //catch
             //{
@@ -132,54 +137,7 @@ namespace Human_Resource.Views.ExecutiveProc
             attach.DeleteEventAttach(eventId);
             attach.SaveAttach(attach);
 
-        }
-        //[WebMethod(EnableSession = true)]
-        //public static string SaveEvent(string title, string description, string start, string end, string empIds, string eventId)
-        //{
-        //    try
-        //    {
-        //        EventModel eventModel = new EventModel();
-        //        if (eventId != "")
-        //            eventModel.id = long.Parse(eventId);
-        //        else
-        //            eventModel.id = 0;
-        //        eventModel.title = title;
-        //        eventModel.description = description;
-        //        eventModel.start = DateTime.Parse(start);
-        //        eventModel.end = DateTime.Parse(end);
-
-        //        if (HttpContext.Current.Session["user_id"] != null && HttpContext.Current.Session["user_id"].ToString() != "")
-        //            eventModel.EmployeeID = int.Parse(HttpContext.Current.Session["user_id"].ToString());
-
-        //        if (empIds.EndsWith(","))
-        //            empIds = empIds.Substring(0, empIds.Length - 1);
-
-        //        List<int> idsList = new List<int>();
-        //        if (empIds != "")
-        //        {
-        //            var Ids = empIds.Split(',');
-
-        //            for (int i = 0; i < Ids.Length; i++)
-        //            {
-
-        //                idsList.Add( int.Parse(Ids[i]));
-        //            }
-        //        }
-
-        //        long eventIdRes = eventModel.Save(eventModel, idsList);
-        //        if (eventIdRes != 0)
-        //        {
-        //            return eventIdRes.ToString();
-        //        }
-        //        return "0";
-        //    }
-        //    catch
-        //    {
-        //        return "0";
-
-        //    }
-
-        //}
+        }      
 
         [WebMethod]
         public static EventModel GetEvent(string ID)
