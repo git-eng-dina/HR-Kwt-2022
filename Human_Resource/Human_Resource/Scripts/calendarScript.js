@@ -305,7 +305,7 @@ function initFullcalendar(events) {
         eventDrop: eventDropped,
         eventResize: eventResized,
         eventRender: function (event, element) {
-            alert(event.Approved);
+
             element.css('color', '#6c6c6f');
             if (event.Approved == '') {
                 element.css('background-color', '#e3c56c');               
@@ -749,71 +749,5 @@ $(document).ready(function () {
             }
         })
     });
-    //$('#MainContent_calendar').fullCalendar({
-    //    theme: true,
-    //    header: {
-    //        left: 'prev,next today customBtn',
-    //        center: 'title',
-    //        right: 'month,agendaWeek,agendaDay'
-    //    },
-    //    customButtons: {
-    //        customBtn: {
-    //            text: 'Custom Button',
-    //            click: function () {
-    //                alert('This custom button is hot! 🔥\nNow go have fun!');
-    //            }
-    //        }
-    //    },
-    //    defaultView: 'agendaWeek',
-    //    eventClick: updateEvent,
-    //    selectable: true,
-    //    selectHelper: true,
-    //    select: selectDate,
-    //    editable: true,
-    //    events: function (start, end, timezone, callback) {
-    //        $.ajax({
-    //            url: "Events.aspx/ProcessRequest",
-    //            type: "POST",
-    //            dataType: "JSON",
-    //            data: {
-    //                start: start.unix(),
-    //                end: end.unix()
-    //            },
-    //            success: function (result) {
-    //                var eventsList = [];
-    //                 alert(result);                 // --1--
-    //                // alert(JSON.stringify(result)); // --2--
-    //                $(result).each(function () {
-    //                    var eventTitle = $(this).attr('EventTitle');
-    //                    var eventStart = $(this).attr('ShiftDate');
-    //                    var eventId = $(this).attr('id');
-    //                    eventsList.push(
-    //                        {
-    //                            id: eventId,
-    //                            title: eventTitle,
-    //                            start: eventStart
-    //                        });
-    //                });
-    //                if (callback)
-    //                    callback(eventsList);
-    //            }
-    //        });
-    //    },
-    //    eventDrop: eventDropped,
-    //    eventResize: eventResized,
-    //    eventRender: function (event, element) {
-    //        //alert(event.title);
-    //        element.qtip({
-    //            content: {
-    //                text: qTipText(event.start, event.end, event.description),
-    //                title: '<strong>' + event.title + '</strong>'
-    //            },
-    //            position: {
-    //                my: 'bottom left',
-    //                at: 'top right'
-    //            },
-    //            style: { classes: 'qtip-shadow qtip-rounded' }
-    //        });
-    //    }
-    //});
+    
 });
