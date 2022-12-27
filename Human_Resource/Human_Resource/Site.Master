@@ -131,7 +131,7 @@
                     </a>
                 </li>  
                 <li>
-                    <a href="/Views/ExecutiveProc/EventsApprove.aspx"> 
+                    <a href="/Views/ExecutiveProc/Events.aspx"> 
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,Events%>" />
                     </a>
                 </li>

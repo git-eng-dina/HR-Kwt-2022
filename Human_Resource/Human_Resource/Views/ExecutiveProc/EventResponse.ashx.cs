@@ -85,7 +85,8 @@ namespace Human_Resource.Views.ExecutiveProc
                      "'start': '" + cevent.start.ToString("s") + "'," +
                      "'end': '" + cevent.end.ToString("s") + "'," +
                       "'allDay':" + allDay + "," +
-                      "'description': '" + HttpContext.Current.Server.HtmlEncode(cevent.description) + "'" +
+                      "'description': '" + HttpContext.Current.Server.HtmlEncode(cevent.description) + "'," +
+                      "'Approved': '" + HttpContext.Current.Server.HtmlEncode(cevent.Approved.ToString()) + "'" +
                       "},";
         }
         private long ConvertToTimestamp(DateTime value)

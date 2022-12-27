@@ -10,7 +10,8 @@ function updateEvent(event, element) {
     if ($(this).data("qtip")) $(this).qtip("destroy");
 
     currentUpdateEvent = event;
-    ShowDialogWithData(event.id);
+    if (event.Approved != 'False')
+        ShowDialogWithData(event.id);
 
     return false;
 }
@@ -304,11 +305,12 @@ function initFullcalendar(events) {
         eventDrop: eventDropped,
         eventResize: eventResized,
         eventRender: function (event, element) {
- 
-            if (event.Approved == null) {
-                element.css('background-color', '#e3c56c');
+            alert(event.Approved);
+            element.css('color', '#6c6c6f');
+            if (event.Approved == '') {
+                element.css('background-color', '#e3c56c');               
             }
-            else if (event.Approved == true) {
+            else if (event.Approved == 'True') {
                 element.css('background-color', '#b0dfb0');
             }
             else
@@ -437,7 +439,7 @@ $(document).ready(function () {
                     description: v.description,
                     start: v.start,
                     end: v.end != null ? v.end : null,
-                    //  color: v.ThemeColor,
+                    Approved : v.Approved,
                     allDay: v.allDay
                 });
             })
@@ -462,6 +464,7 @@ $(document).ready(function () {
                                 description: v.description,
                                 start: v.start,
                                 end: v.end != null ? v.end : null,
+                                Approved : v.Approved,
                                 allDay: v.allDay
                             });
                         })
@@ -495,6 +498,7 @@ $(document).ready(function () {
                                 description: v.description,
                                 start: v.start,
                                 end: v.end != null ? v.end : null,
+                                Approved: v.Approved,
                                 allDay: v.allDay
                             });
                         })
@@ -528,6 +532,7 @@ $(document).ready(function () {
                                 description: v.description,
                                 start: v.start,
                                 end: v.end != null ? v.end : null,
+                                Approved: v.Approved,
                                 allDay: v.allDay
                             });
                         })
@@ -561,6 +566,7 @@ $(document).ready(function () {
                                 description: v.description,
                                 start: v.start,
                                 end: v.end != null ? v.end : null,
+                                Approved: v.Approved,
                                 allDay: v.allDay
                             });
                         })
@@ -594,6 +600,7 @@ $(document).ready(function () {
                                 description: v.description,
                                 start: v.start,
                                 end: v.end != null ? v.end : null,
+                                Approved: v.Approved,
                                 allDay: v.allDay
                             });
                         })
@@ -627,6 +634,7 @@ $(document).ready(function () {
                                 description: v.description,
                                 start: v.start,
                                 end: v.end != null ? v.end : null,
+                                Approved: v.Approved,
                                 allDay: v.allDay
                             });
                         })
