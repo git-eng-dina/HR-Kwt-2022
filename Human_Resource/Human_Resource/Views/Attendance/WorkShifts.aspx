@@ -163,14 +163,14 @@
                                      <asp:TemplateField HeaderText="<%$ Resources:Labels,Start%>" ItemStyle-Width="25%">
                                          <ItemTemplate>
                                                  <asp:Label ID="LblStartTime" runat="server" 
-                                                 Text='<%# Eval("StartTime") %>' />                              
+                                                 text= '<%# Eval("StartTime", "{0:HH:mm}") %>'  />                              
                                          </ItemTemplate>
                                         </asp:TemplateField>
                                    
                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,End%>" ItemStyle-Width="25%">
                                          <ItemTemplate>
                                                  <asp:Label ID="LblEndTime" runat="server" 
-                                                 Text='<%# Eval("EndTime") %>' />                              
+                                                text= '<%# Eval("EndTime", "{0:HH:mm}") %>'   />                              
                                          </ItemTemplate>
                                         </asp:TemplateField>
                                    

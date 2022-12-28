@@ -3,8 +3,27 @@ var addStartDate;
 var addEndDate;
 var globalAllDay;
 var CustomButtonText;
+var TodayButtonText;
+var MonthButtonText;
+var WeekButtonText;
+var DayButtonText;
+var EditText;
+var SaveText;
+var ConfirmMsg;
+var UserID;
 
 
+function setResourceParams(AddButtonText,TodayText,MonthText,WeekText,DayText,SaveTxt,EditTxt,ConfirmM,UserIDD) {
+    CustomButtonText = AddButtonText;
+    TodayButtonText = TodayText;
+    MonthButtonText = MonthText;
+    WeekButtonText = WeekText;
+    DayButtonText = DayText;
+    SaveText = SaveTxt;
+    EditText = EditTxt;
+    ConfirmMsg = ConfirmM;
+    UserID = UserIDD;
+}
 function updateEvent(event, element) {
 
     if ($(this).data("qtip")) $(this).qtip("destroy");
@@ -23,6 +42,33 @@ function updateSuccess(updateResult) {
 
 }
 
+function deleteEvent() {
+    if (confirm(ConfirmMsg)) {
+        var customID = $("[id*=eventId]").val();
+
+        var parameter = {
+            ID: customID,
+            userId: UserID,
+        };
+        $.ajax({
+            type: "POST",
+            url: "Events.aspx/DeleteEvent",
+            data: JSON.stringify(parameter),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                $('#MainContent_calendar').fullCalendar('removeEvents', $("[id*=eventId]").val());
+                closeDialog();
+                
+            },
+            failure: function (response) {
+                alert(response.d);
+            }
+        });
+                 
+                   
+    }
+}
 function deleteSuccess(deleteResult) {
     alert(deleteResult);
 }
@@ -120,7 +166,8 @@ function qTipText(start, end, description) {
 }
 
 function ShowDialog() {
-
+    $('[id*=btn_ads]').prop('value', SaveText);
+    $('[id*=btn_delete]').hide();
     $("#dialog").dialog("open");
     $(".ui-dialog-titlebar").hide();
     var retval = "";
@@ -150,6 +197,9 @@ function ShowDialogWithData(customID) {
     if ('<%= Session["CultureName"] %>' != null)
         lang = '<%= Session["CultureName"].ToString() %>';
 
+    $('[id*=btn_ads]').prop('value', EditText);
+   
+
     var parameter = {
         ID: customID
     };
@@ -162,7 +212,9 @@ function ShowDialogWithData(customID) {
         success: function (data) {
             ShowDialog();
             for (var prop in data) {
+
                 var item = data[prop];
+
                 $('#MainContent_eventId').val(item.id);
                 $('#MainContent_txt_title').val(item.title);
                 $('#MainContent_description').val(item.description);
@@ -211,6 +263,33 @@ function ShowDialogWithData(customID) {
                     var hid_input = li.find("input");
                     hid_input.attr("id", "hid_emp_" + employee.EmployeeID);
                     hid_input.val(employee.EmployeeID);
+       
+                }
+
+                if (UserID == item.EmployeeID && (item.Approved == "" || item.Approved == null)) {
+                    $('[id*=btn_delete]').show();
+                    $('[id*=btn_ads]').show();
+                    $('[id*=btn_addEmp]').show();
+                    $('[id*=delete_upload]').show();
+                    $('[id*=sel_employee]').show();
+                    $('.delete-row-span').show();
+                    $('[id*=txt_title]').prop('readonly', false);
+                    $('[id*=description]').prop('readonly', false);
+                    $('[id*=start]').prop('readonly', false);
+                    $('[id*=end]').prop('readonly', false);
+                }
+                else {
+                    $('[id*=btn_delete]').hide();
+                    $('[id*=btn_ads]').hide();
+                    $('[id*=btn_addEmp]').hide();
+                    $('[id*=delete_upload]').hide();
+                    $('[id*=sel_employee]').hide();
+                    $('.delete-row-span').hide();
+                    $('[id*=txt_title]').prop('readonly', true);
+                    $('[id*=txt_description]').prop('readonly', true);
+                    $('[id*=start]').prop('readonly', true);
+                    $('[id*=end]').prop('readonly', true);
+
                 }
             }
 
@@ -235,6 +314,15 @@ function closeDialog() {
 
     $("#dialog").dialog("close");
 
+    $('[id*=btn_delete]').show();
+    $('[id*=btn_ads]').show();
+    $('[id*=btn_addEmp]').show();
+    $('[id*=sel_employee]').show();
+    $('.delete-row-span').show();
+    $('[id*=txt_title]').prop('readonly', false);
+    $('[id*=description]').prop('readonly', false);
+    $('[id*=start]').prop('readonly', false);
+    $('[id*=end]').prop('readonly', false);
     return false;
 }
 
@@ -289,11 +377,17 @@ function initFullcalendar(events) {
         },
         customButtons: {
             customBtn: {
-                text: 'add event',
+                text: CustomButtonText,
                 click: function () {
                     ShowDialog();
                 }
             }
+        },
+        buttonText: {
+            month: MonthButtonText,
+            agendaWeek: WeekButtonText,
+            agendaDay: DayButtonText,
+            today: TodayButtonText,
         },
         defaultView: 'agendaWeek',
         eventClick: updateEvent,

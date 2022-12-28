@@ -23,8 +23,11 @@
 
   <script>
       $(document).ready(function () {
-          CustomButtonText = "<%= Resources.Labels.NewEvent%>";
-          //get_eventsdata('2017-10-10', '2017-11-10');
+          setResourceParams("<%= Resources.Labels.NewEvent%>", "<%= Resources.Labels.Today%>",
+              "<%= Resources.Labels.Month%>", "<%= Resources.Labels.Week%>", "<%= Resources.Labels.Day%>",
+              "<%= Resources.Labels.Save%>", "<%= Resources.Labels.Edit%>", "<%= Resources.Labels.ConfirmDelete%>",
+              "<%= Session["user_id"]%>");
+
       });
   </script>
 
@@ -129,7 +132,12 @@
                     <asp:button class="btn btn-new"  id="btn_ads"  runat="server" Text=" <%$ Resources:Labels,Save%>"
                      UseSubmitBehavior="False"  
                         OnClick="btn_save_Click" 
-                        OnClientClick="javascript:return checkValidation();" >
+                        OnClientClick="javascript:checkValidation(); return false;" >
+                    </asp:button>
+
+              <asp:button class="btn btn-delete"  id="btn_delete"  runat="server" Text=" <%$ Resources:Labels,Delete%>"
+                     UseSubmitBehavior="False"  
+                        OnClientClick="javascript:return deleteEvent();" >
                     </asp:button>
 
                   <%--  <button class="btn btn-new"  runat="server" id="btn_ads"

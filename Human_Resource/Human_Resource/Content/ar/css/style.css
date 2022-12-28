@@ -749,6 +749,19 @@ nav .logo {
         color: white;
     }
 
+.btn-delete {
+    color: #fff;
+    background-color: #8f1108;
+    border-color: #8f1108;
+    width: 80px;
+    height: 80%;
+    margin-top: 5px;
+    float: right;
+}
+    .btn-delete:hover {
+        color: white;
+        background-color: #5e0b05;
+    }
  .c-form {
     position: relative;
     background-color: #FFF;
@@ -1347,7 +1360,8 @@ input[type=checkbox], input[type=radio] {
 }
 .c-form .value-list{
     width:70%;
-    padding-right:10px;
+    padding-right:50px;
+    font-style:italic;
 }
 .delete-row-list {
     font-size: 14px;

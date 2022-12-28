@@ -849,4 +849,19 @@
   <data name="SuggestedEvents" xml:space="preserve">
     <value>الفعاليات المقترحة</value>
   </data>
+  <data name="Day" xml:space="preserve">
+    <value>يوم</value>
+  </data>
+  <data name="EventsApproval" xml:space="preserve">
+    <value>موافقة الفعاليات</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>شهر</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>اليوم</value>
+  </data>
+  <data name="Week" xml:space="preserve">
+    <value>أسبوع</value>
+  </data>
 </root>

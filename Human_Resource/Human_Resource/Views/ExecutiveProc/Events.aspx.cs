@@ -18,7 +18,7 @@ namespace Human_Resource.Views.ExecutiveProc
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (!IsPostBack)
+            if (!IsPostBack)
             {
                 EmployeeModel emp = new EmployeeModel();
                 var employees = emp.GetEmployees(true, true);
@@ -46,8 +46,7 @@ namespace Human_Resource.Views.ExecutiveProc
         protected void btn_save_Click(object sender, EventArgs e)
         {
 
-            //try
-            //if (!IsPostBack)
+            try
             {
 
                 EventModel eventModel = new EventModel();
@@ -58,22 +57,8 @@ namespace Human_Resource.Views.ExecutiveProc
                 eventModel.title = txt_title.Value;
                 eventModel.description = description.Text;
 
-
-                //try
-                //{
-                //    var result = DateTime.Parse(start.Value);
-              
-                //    //DateTimeFormatInfo sdf = new DateTimeFormatInfo();
-                //    //sdf.LongDatePattern = Locale(identifier: "en_US_POSIX")
-                //    //sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
-                //    //System.out.println(sdf.format(result)); //prints date in the format sdf
-                //}
-                //catch { }
-
                 eventModel.start = DateTime.Parse(start.Value);
                 eventModel.end = DateTime.Parse(end.Value);
-                //eventModel.start = DateTime.Parse(start);
-                //eventModel.end = DateTime.Parse(end);
 
                 if (HttpContext.Current.Session["user_id"] != null && HttpContext.Current.Session["user_id"].ToString() != "")
                     eventModel.EmployeeID = int.Parse(HttpContext.Current.Session["user_id"].ToString());
@@ -118,11 +103,13 @@ namespace Human_Resource.Views.ExecutiveProc
                     var attach = new Attachment();
                     attach.DeleteEventAttach(eventIdRes);
                 }
-            }
-            //catch
-            //{
 
-            //}
+                Response.Redirect("Events.aspx");
+            }
+            catch
+            {
+
+            }
         }
 
         public static void UploadFile(string fileName, string docTitle, long eventId)
@@ -146,7 +133,7 @@ namespace Human_Resource.Views.ExecutiveProc
             {
                 EventModel eventModel = new EventModel();
 
-                int eventId = int.Parse(ID);
+                long eventId = long.Parse(ID);
                 eventModel = eventModel.getEvent(eventId);
 
                 return eventModel;
@@ -154,6 +141,24 @@ namespace Human_Resource.Views.ExecutiveProc
             catch
             {
                 return null;
+
+            }
+
+        }
+
+        [WebMethod]
+        public static void DeleteEvent(string ID, string userId)
+        {
+            try
+            {
+                EventModel eventModel = new EventModel();
+
+                long eventId = long.Parse(ID);
+                eventModel.DeleteEvent(eventId,int.Parse(userId));
+
+            }
+            catch
+            {
 
             }
 

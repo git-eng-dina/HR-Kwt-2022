@@ -733,7 +733,7 @@ namespace Human_Resource.App_Code
                 }
             }
         }
-        public bool EditApprove(int taskId,bool approve, int? userId)
+        public bool EditApprove(long taskId,bool approve, int? userId)
         {
             try
             {

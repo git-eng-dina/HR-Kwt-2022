@@ -382,52 +382,7 @@
                 return true;
             }
             return false;
-                //var formData = new FormData();
-                //formData.append("taskId", $("#MainContent_hid_taskId").val());
-                //formData.append("name", $("#MainContent_txt_name").val());
-                //formData.append("description", $("#MainContent_txt_description").val());
-                //formData.append("repeatedEvery", $("#MainContent_sel_repeatedEvery").val());
-                //formData.append("start", $("#MainContent_dp_start").val());
-                //formData.append("end", $("#MainContent_dp_end").val());
-                //formData.append("empIds", empIdsStr);
-                //formData.append("postedFile1", $("#MainContent_file").files[0]);
-                //var id = $('#MainContent_hid_taskId').val();
-                //var name = $("#MainContent_txt_name").val();
-                //var description = $("#MainContent_txt_description").val();
-                //var repeatedEvery = $("#MainContent_sel_repeatedEvery").find(":selected").val();
-                //var start = $("#MainContent_dp_start").val();
-                //var end = $("#MainContent_dp_end").val();
-                //var attachment = $("#MainContent_file").val();
-              
 
-
-                //var parameter = {
-                //    taskId: id,
-                //    name: name,
-                //    description: description,
-                //    repeatedEvery: repeatedEvery,
-                //    start: start,
-                //    end: end,
-                //    attachment: attachment ,
-                //    empIds: empIdsStr,
-
-                //};
-                //$.ajax({
-                //    type: "POST",
-                //    url: "Tasks.aspx/SaveTask",
-                //    //data: JSON.stringify(parameter),
-                //    data: formData,
-                //    contentType: "application/json; charset=utf-8",
-                //    dataType: "json",
-                //    success: function (data) {
-                //        window.top.location = "Tasks.aspx";
-
-                //    },
-                //    failure: function (response) {
-                //        alert(response.d);
-                //    }
-                //});
-            //}
         }
 
 

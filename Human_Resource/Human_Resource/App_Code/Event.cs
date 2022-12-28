@@ -14,6 +14,7 @@ namespace Human_Resource.App_Code
         public DateTime start { get; set; }
         public DateTime end { get; set; }
         public Nullable<int> EmployeeID { get; set; }
+        public string EmployeeName { get; set; }
         public Nullable<int> BranchManagerID { get; set; }
         public Nullable<int> ManagementManagerID { get; set; }
         public Nullable<bool> Approved { get; set; }
@@ -47,7 +48,7 @@ namespace Human_Resource.App_Code
             }
         }
 
-        public EventModel getEvent(int eventId)
+        public EventModel getEvent(long eventId)
         {
             using (HRSystemEntities entity = new HRSystemEntities())
             {
@@ -60,6 +61,7 @@ namespace Human_Resource.App_Code
                                     start = (DateTime)x.StartDate.Value,
                                     end = (DateTime)x.EndDate.Value,
 
+                                    EmployeeID = x.EmployeeID,
                                     Employees = entity.EemployeesEvents.Where(m => m.EventID == x.EventID && m.IsActive == true)
                                                 .Select(m => new EmployeeModel()
                                                 {
@@ -75,6 +77,18 @@ namespace Human_Resource.App_Code
                                                 }).FirstOrDefault(),
                                 }).FirstOrDefault();
                 return eventObj;
+            }
+        }
+
+        public void DeleteEvent(long eventId,int userId)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var eventObj = entity.events.Find(eventId);
+                eventObj.IsActive = false;
+                eventObj.UpdateDate = DateTime.Now;
+                eventObj.UpdateUserID = userId;
+                entity.SaveChanges();
             }
         }
         public long Save(EventModel eventModel,List<int> empIds)
@@ -143,6 +157,96 @@ namespace Human_Resource.App_Code
             catch
             {
                 return 0;
+            }
+        }
+
+        public List<EventModel> getNeedApproveForDirector()
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var now = DateTime.Now.Date;
+                var tasks = entity.events.Where(x => x.IsActive == true && x.StartDate <= now)
+                                .Select(x => new EventModel()
+                                {
+                                    id = x.EventID,
+                                    title = x.Name,
+                                    start =(DateTime) x.StartDate,
+                                    end = (DateTime)x.EndDate,
+                                    EmployeeID = x.EmployeeID,
+                                    EmployeeName = entity.employees.Where(m => m.EmployeeID == x.EmployeeID).Select(m => m.NameAr).FirstOrDefault(),
+                                    Approved = x.Approved,
+                                 
+                                }).ToList();
+
+                //tasks = tasks.Where(x => (Convert.ToDateTime(x.StartDate.ToString()) >= DateTime.Now)).ToList();
+                return tasks;
+            }
+        }
+        public List<EventModel> getNeedApproveForSupervisor(int supervisorId)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var now = DateTime.Now.Date;
+                var events = entity.events.Where(x => x.IsActive == true && x.StartDate <= now
+                && (entity.employees.Where(e => e.managements.branches.ManagerID == supervisorId).Select(e => e.EmployeeID).ToList().Contains((int)x.EmployeeID) || x.EmployeeID == supervisorId))
+                                .Select(x => new EventModel()
+                                {
+                                    id = x.EventID,
+                                    title = x.Name,
+                                    start =(DateTime) x.StartDate,
+                                    end = (DateTime)x.EndDate,
+                                    EmployeeID = x.EmployeeID,
+                                    EmployeeName = entity.employees.Where(m => m.EmployeeID == x.EmployeeID).Select(m => m.NameAr).FirstOrDefault(),
+                                    Approved = x.Approved,
+                                 
+                                }).ToList();
+
+                return events;
+            }
+        }
+
+        public List<EventModel> getNeedApproveForManagement(int managerId)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var now = DateTime.Now.Date;
+                var events = entity.events.Where(x => x.IsActive == true && x.StartDate <= now
+                && (entity.employees.Where(e => e.managements.ManagerID == managerId).Select(e => e.EmployeeID).ToList().Contains((int)x.EmployeeID) || x.EmployeeID == managerId))
+                                .Select(x => new EventModel()
+                                {
+                                    id = x.EventID,
+                                    title = x.Name,
+                                    start =(DateTime) x.StartDate,
+                                    end = (DateTime)x.EndDate,
+                                    EmployeeID = x.EmployeeID,
+                                    EmployeeName = entity.employees.Where(m => m.EmployeeID == x.EmployeeID).Select(m => m.NameAr).FirstOrDefault(),
+                                    Approved = x.Approved,
+                                 
+                                }).ToList();
+
+                return events;
+            }
+        }
+
+        public bool EditApprove(long eventId, bool approve, int? userId)
+        {
+            try
+            {
+                using (HRSystemEntities entity = new HRSystemEntities())
+                {
+                    var taskObj = entity.events.Find(eventId);
+                    taskObj.Approved = approve;
+                    taskObj.UpdateDate = DateTime.Now;
+                    taskObj.UpdateUserID = userId;
+
+                    entity.SaveChanges();
+                }
+                return true;
+            }
+
+            catch
+            {
+                return false;
             }
         }
         #endregion
