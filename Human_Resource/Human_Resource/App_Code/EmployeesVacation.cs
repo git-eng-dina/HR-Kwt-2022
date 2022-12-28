@@ -22,6 +22,9 @@ namespace Human_Resource.App_Code
         public Nullable<int> CreateUserID { get; set; }
         public Nullable<int> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
+
+        public Nullable<bool> Approved { get; set; }
+
         #endregion
 
         #region methods

@@ -925,6 +925,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Employer data.
+        /// </summary>
+        internal static string EmployerData {
+            get {
+                return ResourceManager.GetString("EmployerData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to My Penalties.
         /// </summary>
         internal static string EmpPenalties {
@@ -1294,6 +1303,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to License Address.
+        /// </summary>
+        internal static string LicenseAddress {
+            get {
+                return ResourceManager.GetString("LicenseAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Listening Skills.
         /// </summary>
         internal static string ListeningSkills {
@@ -1555,6 +1573,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Passport Expiry Date.
+        /// </summary>
+        internal static string PassportEnd {
+            get {
+                return ResourceManager.GetString("PassportEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Passport End Date.
         /// </summary>
         internal static string PassportEnddate {
@@ -1753,6 +1780,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Print.
+        /// </summary>
+        internal static string Print {
+            get {
+                return ResourceManager.GetString("Print", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Productivity.
         /// </summary>
         internal static string Productivity {
@@ -1848,6 +1884,15 @@ namespace Resources {
         internal static string SalaryIncrease {
             get {
                 return ResourceManager.GetString("SalaryIncrease", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Salary Type.
+        /// </summary>
+        internal static string SalaryType {
+            get {
+                return ResourceManager.GetString("SalaryType", resourceCulture);
             }
         }
         
@@ -2284,6 +2329,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to WorkerData.
+        /// </summary>
+        internal static string WorkerData {
+            get {
+                return ResourceManager.GetString("WorkerData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Worker Name.
+        /// </summary>
+        internal static string WorkerName {
+            get {
+                return ResourceManager.GetString("WorkerName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Worker Type.
+        /// </summary>
+        internal static string WorkerType {
+            get {
+                return ResourceManager.GetString("WorkerType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Work Hours.
         /// </summary>
         internal static string WorkHours {
@@ -2293,11 +2365,29 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Working Permission.
+        ///   Looks up a localized string similar to Work Permit.
         /// </summary>
         internal static string WorkingPermission {
             get {
                 return ResourceManager.GetString("WorkingPermission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Work permit data to the Ministry of Interior.
+        /// </summary>
+        internal static string WorkPermitData {
+            get {
+                return ResourceManager.GetString("WorkPermitData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Work Permit Duration.
+        /// </summary>
+        internal static string WorkPermitDuration {
+            get {
+                return ResourceManager.GetString("WorkPermitDuration", resourceCulture);
             }
         }
         

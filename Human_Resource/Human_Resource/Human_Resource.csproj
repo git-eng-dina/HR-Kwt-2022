@@ -185,6 +185,7 @@
     <Content Include="images\edit.png" />
     <Content Include="images\en.png" />
     <Content Include="images\hr_logo.png" />
+    <Content Include="images\new kuwait logo.jpg" />
     <Content Include="images\reject_document.png" />
     <Content Include="images\search.png" />
     <Content Include="images\task-cancle.png" />
@@ -517,6 +518,7 @@
     <Content Include="Views\Employees\ExpiredPassports.aspx" />
     <Content Include="Views\Employees\NewEmployee.aspx" />
     <Content Include="Views\Employees\UserAccounts.aspx" />
+    <Content Include="Views\Employees\WorkPermit.aspx" />
     <Content Include="Views\ExecutiveProc\AddEvaluation.aspx" />
     <Content Include="Views\ExecutiveProc\Custodies.aspx" />
     <Content Include="Views\ExecutiveProc\Events.aspx" />
@@ -754,6 +756,13 @@
     </Compile>
     <Compile Include="Views\Employees\UserAccounts.aspx.designer.cs">
       <DependentUpon>UserAccounts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Employees\WorkPermit.aspx.cs">
+      <DependentUpon>WorkPermit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Employees\WorkPermit.aspx.designer.cs">
+      <DependentUpon>WorkPermit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\ExecutiveProc\AddEvaluation.aspx.cs">
       <DependentUpon>AddEvaluation.aspx</DependentUpon>

@@ -436,7 +436,7 @@
     <value>تاريخ الانتهاء</value>
   </data>
   <data name="passportNo" xml:space="preserve">
-    <value>رقم الجواز</value>
+    <value>رقم جواز السفر</value>
   </data>
   <data name="PassportStartdate" xml:space="preserve">
     <value>تاريخ الاصدار</value>
@@ -852,16 +852,46 @@
   <data name="Day" xml:space="preserve">
     <value>يوم</value>
   </data>
+  <data name="EmployerData" xml:space="preserve">
+    <value>بيانات صاحب العمل</value>
+  </data>
   <data name="EventsApproval" xml:space="preserve">
     <value>موافقة الفعاليات</value>
   </data>
+  <data name="LicenseAddress" xml:space="preserve">
+    <value>عنوان الترخيص</value>
+  </data>
   <data name="Month" xml:space="preserve">
     <value>شهر</value>
+  </data>
+  <data name="PassportEnd" xml:space="preserve">
+    <value>تاريخ نهاية الجواز</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>طباعة</value>
+  </data>
+  <data name="SalaryType" xml:space="preserve">
+    <value>نوع الراتب</value>
   </data>
   <data name="Today" xml:space="preserve">
     <value>اليوم</value>
   </data>
   <data name="Week" xml:space="preserve">
     <value>أسبوع</value>
+  </data>
+  <data name="WorkerData" xml:space="preserve">
+    <value>بيانات العامل</value>
+  </data>
+  <data name="WorkerName" xml:space="preserve">
+    <value>اسم العامل</value>
+  </data>
+  <data name="WorkerType" xml:space="preserve">
+    <value>نوع العامل</value>
+  </data>
+  <data name="WorkPermitData" xml:space="preserve">
+    <value>ايصال بيانات اذن عمل لوزارة الداخلية</value>
+  </data>
+  <data name="WorkPermitDuration" xml:space="preserve">
+    <value>مدة اذن العمل</value>
   </data>
 </root>

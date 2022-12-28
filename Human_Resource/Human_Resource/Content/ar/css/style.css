@@ -1415,3 +1415,31 @@ input[type=checkbox], input[type=radio] {
     color: #5587bd;
     font-size: 12px;
 }
+
+.report-title {
+    width: 100%;
+    border: 2px solid #6c6c6f;
+    height: 40px;
+    margin-top: 20px;
+}
+.c-form .report-title span {
+    display: block;
+    width: 100%;
+    float: right;
+    text-align: center;
+    margin-top: 7px;
+    border: 0px;
+}
+.report-fieldset {
+    width: 100%;
+    border: 1px solid #6c6c6f;
+    height:auto;
+    margin-top: 20px;
+}
+.legend {
+    border: 1px solid #6c6c6f;
+    padding: 0.2em 0.8em;
+    margin-right: 1em;
+    width: auto;
+font-size:inherit;
+}

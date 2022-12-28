@@ -280,7 +280,7 @@
     <value>Save</value>
   </data>
   <data name="WorkingPermission" xml:space="preserve">
-    <value>Working Permission</value>
+    <value>Work Permit</value>
   </data>
   <data name="Sequence" xml:space="preserve">
     <value>#</value>
@@ -866,5 +866,35 @@
   </data>
   <data name="Week" xml:space="preserve">
     <value>Week</value>
+  </data>
+  <data name="EmployerData" xml:space="preserve">
+    <value>Employer data</value>
+  </data>
+  <data name="LicenseAddress" xml:space="preserve">
+    <value>License Address</value>
+  </data>
+  <data name="PassportEnd" xml:space="preserve">
+    <value>Passport Expiry Date</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="SalaryType" xml:space="preserve">
+    <value>Salary Type</value>
+  </data>
+  <data name="WorkerData" xml:space="preserve">
+    <value>WorkerData</value>
+  </data>
+  <data name="WorkerName" xml:space="preserve">
+    <value>Worker Name</value>
+  </data>
+  <data name="WorkerType" xml:space="preserve">
+    <value>Worker Type</value>
+  </data>
+  <data name="WorkPermitData" xml:space="preserve">
+    <value>Work permit data to the Ministry of Interior</value>
+  </data>
+  <data name="WorkPermitDuration" xml:space="preserve">
+    <value>Work Permit Duration</value>
   </data>
 </root>
