@@ -58,12 +58,12 @@ namespace Human_Resource.Views.ExecutiveProc
         }
 
         [WebMethod(EnableSession = true)]
-        public static string Approve(string TaskID, string userID)
+        public static string Approve(string eventID, string userID)
         {
             try
             {
                 EventModel confirm = new EventModel();
-                confirm.EditApprove(long.Parse(TaskID), true, int.Parse(userID));
+                confirm.EditApprove(long.Parse(eventID), true, int.Parse(userID));
 
                 return "1";
             }
@@ -76,12 +76,12 @@ namespace Human_Resource.Views.ExecutiveProc
         }
 
         [WebMethod(EnableSession = true)]
-        public static string Reject(string TaskID, string userID)
+        public static string Reject(string eventID, string userID)
         {
             try
             {
                 EventModel confirm = new EventModel();
-                confirm.EditApprove(long.Parse(TaskID), false, int.Parse(userID));
+                confirm.EditApprove(long.Parse(eventID), false, int.Parse(userID));
 
                 return "1";
             }

@@ -125,23 +125,18 @@
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,MaterialsConsumption%>" />
                     </a>
                 </li> --%>
-                <li>
-                    <a href="/Views/ExecutiveProc/Tasks.aspx"> 
-                        <asp:Literal runat="server" Text="<%$ Resources:Labels,Tasks%>" />
-                    </a>
-                </li>  
+               
                 <li>
                     <a href="/Views/ExecutiveProc/EventsApprove.aspx"> 
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,EventsApproval%>" />
                     </a>
                 </li>
-                <li>
+              <%--  <li>
                     <a href="/Views/ExecutiveProc/Trainings.aspx"> 
-<%--                        <i class="fa fa-calendar-check" aria-hidden="true"></i>--%>
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,Trainings%>" />
 
                     </a>
-                </li>  
+                </li>  --%>
            <%--     <li>
                     <a href="/Views/ExecutiveProc/SalaryIncrease.aspx"> 
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,SalaryIncrease%>" />
@@ -175,6 +170,11 @@
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,Events%>" />
                     </a>
                 </li>
+                 <li>
+                    <a href="/Views/ExecutiveProc/Tasks.aspx"> 
+                        <asp:Literal runat="server" Text="<%$ Resources:Labels,Tasks%>" />
+                    </a>
+                </li>  
                 <li>
                     <a href="/Views/ExecutiveProc/Trainings.aspx"> 
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,Trainings%>" />

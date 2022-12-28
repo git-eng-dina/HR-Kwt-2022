@@ -165,7 +165,7 @@ namespace Human_Resource.App_Code
             using (HRSystemEntities entity = new HRSystemEntities())
             {
                 var now = DateTime.Now.Date;
-                var tasks = entity.events.Where(x => x.IsActive == true && x.StartDate <= now)
+                var events = entity.events.Where(x => x.IsActive == true && x.StartDate >= now)
                                 .Select(x => new EventModel()
                                 {
                                     id = x.EventID,
@@ -178,8 +178,7 @@ namespace Human_Resource.App_Code
                                  
                                 }).ToList();
 
-                //tasks = tasks.Where(x => (Convert.ToDateTime(x.StartDate.ToString()) >= DateTime.Now)).ToList();
-                return tasks;
+                return events;
             }
         }
         public List<EventModel> getNeedApproveForSupervisor(int supervisorId)
@@ -187,7 +186,7 @@ namespace Human_Resource.App_Code
             using (HRSystemEntities entity = new HRSystemEntities())
             {
                 var now = DateTime.Now.Date;
-                var events = entity.events.Where(x => x.IsActive == true && x.StartDate <= now
+                var events = entity.events.Where(x => x.IsActive == true && x.StartDate >= now
                 && (entity.employees.Where(e => e.managements.branches.ManagerID == supervisorId).Select(e => e.EmployeeID).ToList().Contains((int)x.EmployeeID) || x.EmployeeID == supervisorId))
                                 .Select(x => new EventModel()
                                 {
@@ -210,7 +209,7 @@ namespace Human_Resource.App_Code
             using (HRSystemEntities entity = new HRSystemEntities())
             {
                 var now = DateTime.Now.Date;
-                var events = entity.events.Where(x => x.IsActive == true && x.StartDate <= now
+                var events = entity.events.Where(x => x.IsActive == true && x.StartDate >= now
                 && (entity.employees.Where(e => e.managements.ManagerID == managerId).Select(e => e.EmployeeID).ToList().Contains((int)x.EmployeeID) || x.EmployeeID == managerId))
                                 .Select(x => new EventModel()
                                 {

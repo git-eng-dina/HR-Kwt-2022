@@ -10,7 +10,7 @@
 
                      var parameter = {
                          eventID: customID,
-
+                         userID:'<%= Session["user_id"].ToString() %>'
                      };
 
                      $.ajax({
@@ -40,7 +40,7 @@
 
                      var parameter = {
                          eventID: customID,
-
+                         userID: '<%= Session["user_id"].ToString() %>'
                      };
 
                      $.ajax({
@@ -100,7 +100,7 @@
                         </div>
 
 
-                            <asp:GridView ID="gv_events" runat="server" style="width:100%; margin-top:0px;" CssClass="gridView col-md-12"  
+                            <asp:GridView ID="gv_events" runat="server" style="width:100%; margin-top:0px;" CssClass="specialist-gridview col-md-12"  
                                  OnRowDataBound="gv_events_RowDataBound" AutoGenerateColumns="False"  Width="100%">
                                 <Columns>
                                     <asp:TemplateField HeaderText="<%$ Resources:Labels,Sequence%>">
