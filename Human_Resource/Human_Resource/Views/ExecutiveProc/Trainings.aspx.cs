@@ -1,6 +1,7 @@
 ﻿using Human_Resource.App_Code;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
@@ -58,7 +59,7 @@ namespace Human_Resource.Views.ExecutiveProc
             DataBind();
         }
         [WebMethod(EnableSession = true)]
-        public static string SaveTraining(string trainingId, string name, string description,string empIds)
+        public static string SaveTraining(string trainingId, string name, string description,string empIds, string startDate, string endDate)
         {
             try
             {
@@ -69,6 +70,12 @@ namespace Human_Resource.Views.ExecutiveProc
                     dept.TrainingID = 0;
                 dept.Name = name;
                 dept.Description = description;
+
+                if (startDate != "")
+                dept.StartDate = DateTime.ParseExact(startDate, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                if (endDate != "")
+                    dept.EndDate = DateTime.ParseExact(endDate, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+
 
                 if (HttpContext.Current.Session["user_id"] != null && HttpContext.Current.Session["user_id"].ToString() != "")
                     dept.CreateUserID = dept.UpdateUserID = int.Parse(HttpContext.Current.Session["user_id"].ToString());

@@ -41,6 +41,8 @@
             $('#MainContent_txt_description').val("");
             $("#MainContent_hdn_empIds").val("");
             $('#MainContent_lst_employee').empty();
+            $('#MainContent_dp_start').val("");
+            $('#MainContent_dp_end').val("");
             $("#dialog").dialog("close");
         }
 
@@ -72,6 +74,16 @@
                         $('#MainContent_hid_trainingId').val(item.TrainingID);
                         $('#MainContent_txt_name').val(item.Name);
                         $('#MainContent_txt_description').val(item.Description);
+
+                        if (item.StartDate != null) {
+                        var start = convertToJavaScriptDate(item.StartDate);
+                        $('[id*=dp_start]').val(start);
+                        }
+
+                        if (item.EndDate != null) {
+                            var end = convertToJavaScriptDate(item.EndDate);
+                            $('[id*=dp_end]').val(end);
+                        }
 
                         var lstView = $("[id*=lst_employee]");
                         for (var emp in item.Employees) {
@@ -118,6 +130,8 @@
             var id = $('#MainContent_hid_trainingId').val();
             var name = $("#MainContent_txt_name").val();
             var description = $("#MainContent_txt_description").val();
+            var startDate = $("#MainContent_dp_start").val();
+            var endDate = $("#MainContent_dp_end").val();
 
 
 
@@ -132,6 +146,8 @@
                 trainingId: id,
                 name: name,
                 description: description,
+                startDate: startDate,
+                endDate: endDate,
                 empIds: empIdsStr,
             };
             $.ajax({
@@ -259,7 +275,17 @@
                                                  Text='<%# Eval("Description") %>' />                              
                                          </ItemTemplate>
                                         </asp:TemplateField>
-
+                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,Start%>" ItemStyle-Width="15%">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblStart" runat="server" 
+                                                Text='<%# Bind("StartDate", "{0:MM-dd-yyyy}") %>'/>                              
+                                         </ItemTemplate>
+                                   </asp:TemplateField>    
+                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,End%>" ItemStyle-Width="15%">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblEnd" runat="server" Text='<%# Bind("EndDate", "{0:MM-dd-yyyy}") %>'/>                              
+                                         </ItemTemplate>
+                                   </asp:TemplateField>   
                                  
 
 
@@ -325,7 +351,22 @@
                                 <input type="text" class="form-control input-lg" id="txt_description"  runat="server" value=""  />
                             </div>
                         </div> 
-                    
+                     <div class ="row">
+                   <div class="form-group" style="display:block">
+                              <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Start%>" /></span>
+                            <asp:TextBox  ID="dp_start" runat="server" class="form-control input-lg hasdatepicker" onchange="removeValidation($(this));" ></asp:TextBox>
+                        <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
+                             </div>
+                        </div>
+                  
+                    <div class ="row">
+                   <div class="form-group" style="display:block">
+                              <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,End%>" /></span>
+                            <asp:TextBox  ID="dp_end" runat="server" class="form-control input-lg hasdatepicker" ></asp:TextBox>
+                              <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
+
+                   </div>
+                 </div>
                     <div class ="row">
                      <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Employees%>" /></span>

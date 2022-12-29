@@ -38,7 +38,6 @@ namespace Human_Resource
         public Nullable<bool> Approved { get; set; }
         public Nullable<int> BranchManagerID { get; set; }
         public Nullable<int> ManagementManagerID { get; set; }
-        public string Attachment { get; set; }
         public Nullable<bool> IsBasic { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
