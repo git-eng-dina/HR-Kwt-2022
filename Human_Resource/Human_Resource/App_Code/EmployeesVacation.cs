@@ -24,15 +24,20 @@ namespace Human_Resource.App_Code
         public Nullable<bool> IsActive { get; set; }
 
         public Nullable<bool> Approved { get; set; }
-
+        public Nullable<int> VacationsBalance { get; set; }
+        
         #endregion
 
         #region methods
-        public List<EmployeesVacationModel> getActivity()
+        public List<EmployeesVacationModel> getActivity(int employeeId)
         {
+            var now = DateTime.Now.Year;
+            var year = new DateTime(now, 1, 1);
+
             using (HRSystemEntities entity = new HRSystemEntities())
             {
-                var depts = entity.employeesVacations.Where(x => x.IsActive == true)
+                var depts = entity.employeesVacations.Where(x => x.IsActive == true
+                && x.EmployeeID == employeeId && x.FromDate >= year)
                                 .Select(x => new EmployeesVacationModel()
                                 {
                                     EmployeesVacationID = x.EmployeesVacationID,
@@ -47,6 +52,7 @@ namespace Human_Resource.App_Code
                                     Notes = x.Notes,
                                     CreateDate = x.CreateDate,
                                     UpdateDate = x.UpdateDate,
+                                    Approved = x.Approved,
                                 }).ToList();
                 return depts;
             }
@@ -84,11 +90,29 @@ namespace Human_Resource.App_Code
             {
                 using (HRSystemEntities entity = new HRSystemEntities())
                 {
-                    var taskObj = entity.employeesVacations.Find(empVacId);
-                    taskObj.Approved = approve;
-                    taskObj.UpdateDate = DateTime.Now;
-                    taskObj.UpdateUserID = userId;
+                    var vac = entity.employeesVacations.Find(empVacId);
+                    vac.Approved = approve;
+                    vac.UpdateDate = DateTime.Now;
+                    vac.UpdateUserID = userId;
 
+                    #region update employee vacation balance
+                    int dayCount = (int)(vac.ToDate - vac.FromDate).Value.TotalDays + 1;
+                    employees emp = entity.employees.Find(vac.EmployeeID);
+                    if (approve == true)
+                    {
+                        if (emp.VacationsBalance != null)
+                            emp.VacationsBalance -= dayCount;
+                        else
+                            emp.VacationsBalance = 0;                       
+                    }
+                    else
+                    {
+                        if (emp.VacationsBalance != null)
+                            emp.VacationsBalance += dayCount;
+                        else
+                            emp.VacationsBalance = 0;
+                    }
+                    #endregion
                     entity.SaveChanges();
                 }
                 return true;
@@ -121,6 +145,7 @@ namespace Human_Resource.App_Code
                                     UpdateDate = x.UpdateDate,
                                     Approved = x.Approved,
                                     VacationName = x.vacations.Name,
+                                    VacationsBalance = x.employees.VacationsBalance,
                                 }).ToList();
 
                 return tasks;
@@ -148,6 +173,7 @@ namespace Human_Resource.App_Code
                                     UpdateDate = x.UpdateDate,
                                     Approved = x.Approved,
                                     VacationName = x.vacations.Name,
+                                    VacationsBalance = x.employees.VacationsBalance,
                                 }).ToList();
 
                 return tasks;
@@ -176,6 +202,7 @@ namespace Human_Resource.App_Code
                                     UpdateDate = x.UpdateDate,
                                     Approved = x.Approved,
                                     VacationName = x.vacations.Name,
+                                    VacationsBalance = x.employees.VacationsBalance,
                                 }).ToList();
 
                 return tasks;
@@ -205,7 +232,7 @@ namespace Human_Resource.App_Code
             }
         }
 
-        public int SaveDept(EmployeesVacationModel dept)
+        public int SaveVacation(EmployeesVacationModel dept)
         {
             try
             {
@@ -230,35 +257,35 @@ namespace Human_Resource.App_Code
                         employeesVacation = entity.employeesVacations.Add(employeesVacation);
                         entity.SaveChanges();
 
-                        #region update employee vacation balance
-                        if(employeesVacation.EmployeesVacationID>0)
-                        {
-                            int dayCount = (int)(employeesVacation.ToDate - employeesVacation.FromDate).Value.TotalDays+1;
-                            employees emp = entity.employees.Find(employeesVacation.EmployeeID);
-                            if (emp.VacationsBalance != null)
-                                emp.VacationsBalance -= dayCount;
-                            else
-                                emp.VacationsBalance = 0;
-                            entity.SaveChanges();
-                        }
-                        #endregion
+                        //#region update employee vacation balance
+                        //if(employeesVacation.EmployeesVacationID>0)
+                        //{
+                        //    int dayCount = (int)(employeesVacation.ToDate - employeesVacation.FromDate).Value.TotalDays+1;
+                        //    employees emp = entity.employees.Find(employeesVacation.EmployeeID);
+                        //    if (emp.VacationsBalance != null)
+                        //        emp.VacationsBalance -= dayCount;
+                        //    else
+                        //        emp.VacationsBalance = 0;
+                        //    entity.SaveChanges();
+                        //}
+                        //#endregion
                     }
                     else
                     {
                         employeesVacation = entity.employeesVacations.Find(dept.EmployeesVacationID);
 
-                        #region update employee vacation balance
-                        if (employeesVacation.EmployeesVacationID > 0)
-                        {
-                            int dayCount = (int)(employeesVacation.ToDate - employeesVacation.FromDate).Value.TotalDays + 1;
-                            employees emp = entity.employees.Find(employeesVacation.EmployeeID);
-                            if (emp.VacationsBalance != null)
-                                emp.VacationsBalance += dayCount;
-                            else
-                                emp.VacationsBalance = dayCount;
-                            entity.SaveChanges();
-                        }
-                        #endregion
+                        //#region update employee vacation balance
+                        //if (employeesVacation.EmployeesVacationID > 0)
+                        //{
+                        //    int dayCount = (int)(employeesVacation.ToDate - employeesVacation.FromDate).Value.TotalDays + 1;
+                        //    employees emp = entity.employees.Find(employeesVacation.EmployeeID);
+                        //    if (emp.VacationsBalance != null)
+                        //        emp.VacationsBalance += dayCount;
+                        //    else
+                        //        emp.VacationsBalance = dayCount;
+                        //    entity.SaveChanges();
+                        //}
+                        //#endregion
 
                         employeesVacation.VacationID = dept.VacationID;
                         employeesVacation.EmployeeID = dept.EmployeeID;

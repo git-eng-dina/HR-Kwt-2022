@@ -80,7 +80,7 @@
 
                      $.ajax({
                          type: "POST",
-                         url: "VaccaitionApproval.aspx/Approve",
+                         url: "VaccaitionApproval.aspx/Reject",
                          data: JSON.stringify(parameter),
                          contentType: "application/json; charset=utf-8",
                          dataType: "json",
@@ -220,7 +220,7 @@
                         <div class="row gridView-title" id="gv_approve_title" runat="server">                       
                            <span><asp:Literal Text=" <%$ Resources:Labels,WaitingApprove%>" runat="server"></asp:Literal> </span>
                         </div>
-                       <asp:GridView ID="gv_needApprove" runat="server"  CssClass="gridView col-md-12"  
+                       <asp:GridView ID="gv_needApprove" runat="server"  CssClass="specialist-gridview col-md-12"  
                                style="margin-top:0px;"  AutoGenerateColumns="False"  Width="90%" 
                             OnRowDataBound="gv_approve_RowDataBound"      
                            class="table table-bordered table-condensed table-responsive table-hover ">
@@ -260,17 +260,23 @@
                                                text= '<%# Eval("ToDate", "{0:dd/MM/yyyy}") %>' />                              
                                          </ItemTemplate>
                                         </asp:TemplateField>
+                                          <asp:TemplateField HeaderText="<%$ Resources:Labels,VacationsBalance%>" ItemStyle-Width="25%">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblBalance1" runat="server" 
+                                               text= '<%# Eval("VacationsBalance") %>' />                              
+                                         </ItemTemplate>
+                                        </asp:TemplateField>
                                           
                                     <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-approve">
                                           <ItemTemplate>                     
-                                                     <asp:LinkButton ID="approveTask" runat="server" myCustomID='<%# Eval("EmployeesVacationID")%>'  CssClass="td-approve">
+                                                     <asp:LinkButton ID="approveVac" runat="server" myCustomID='<%# Eval("EmployeesVacationID")%>'  CssClass="td-approve">
                                                          <asp:Image ImageUrl="~/images/accept_document.png" runat="server" Width="20px" Height="20px" ToolTip="<%$ Resources:Labels,Approve%>" />
                                                      </asp:LinkButton>  
                                              </ItemTemplate>
                                         </asp:TemplateField>
                                    <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-reject">
                                              <ItemTemplate>                     
-                                                     <asp:LinkButton ID="approveTask" runat="server" myCustomID='<%# Eval("EmployeesVacationID")%>'  CssClass="td-reject">
+                                                     <asp:LinkButton ID="rejectVac" runat="server" myCustomID='<%# Eval("EmployeesVacationID")%>'  CssClass="td-reject">
                                                          <asp:Image ImageUrl="~/images/reject_document.png" runat="server" Width="20px" Height="20px" ToolTip="<%$ Resources:Labels,Reject%>"/>
                                                      </asp:LinkButton>  
                                                              
@@ -286,9 +292,10 @@
                            <span><asp:Literal Text=" <%$ Resources:Labels,Vacations%>" runat="server"></asp:Literal> </span>
                         </div>
 
-                            <asp:GridView ID="gv_data" runat="server"  CssClass="gridView col-md-12"  
-                                AutoGenerateColumns="False"  Width="90%" 
-                                style="margin-top:0px;" class="table table-bordered table-condensed table-responsive table-hover ">
+                            <asp:GridView ID="gv_data" runat="server"  CssClass="specialist-gridview col-md-12"  
+                               style="margin-top:0px;"  AutoGenerateColumns="False"  Width="90%"  
+                                OnRowDataBound="gv_data_RowDataBound" 
+                                class="table table-bordered table-condensed table-responsive table-hover ">
                                 <Columns>
 
                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,Sequence%>" ItemStyle-Width="5%">
@@ -320,16 +327,16 @@
                                           
                                     <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-edit">
                                           <ItemTemplate>                     
-                                                     <asp:LinkButton ID="LinkProducts" runat="server" myCustomID='<%# Eval("EmployeesVacationID")%>'  CssClass="td-edit">
+                                                     <asp:LinkButton ID="btnEdit" runat="server" myCustomID='<%# Eval("EmployeesVacationID")%>'  CssClass="td-edit">
                                                          <asp:Image ImageUrl="~/Images/edit.ico" runat="server" Width="20px" Height="20px" />
                                                      </asp:LinkButton>  
                                              </ItemTemplate>
                                         </asp:TemplateField>
                                    <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-delete">
                                              <ItemTemplate>                     
-                                                     <asp:ImageButton  CommandArgument='<%# Eval("EmployeesVacationID")%>' OnCommand="deletedatafromgrid"
+                                                     <asp:ImageButton ID="btnDelete" CommandArgument='<%# Eval("EmployeesVacationID")%>' OnCommand="deletedatafromgrid"
                                                             OnClientClick="return confirm(<%= Resources.Labels.ConfirmDelete %>);return false;"
-                                                            ID="Image1" runat="server" ImageUrl="~/Images/delete.ico" />
+                                                           runat="server" ImageUrl="~/Images/delete.ico" />
                                                              
                                              </ItemTemplate>
                                     </asp:TemplateField> 
@@ -404,6 +411,7 @@
                 </div>
                  </div>
             </div>
+        </div>
         </div>
 </asp:Content>
 

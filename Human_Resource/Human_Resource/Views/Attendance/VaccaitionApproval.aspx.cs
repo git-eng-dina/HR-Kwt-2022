@@ -56,21 +56,24 @@ namespace Human_Resource.Views.Attendance
                 gv_needApprove.Visible = false;
                 gv_Blank.Visible = false;
             }
-            gv_needApprove.DataSource = needApprove;
-
-            
-
-          
-            var depts = vac.getActivity();
+           
+            var depts = vac.getActivity(userId);
             if (textSearch != "")
+            {
+                needApprove = needApprove.Where(x => 
+                                x.EmployeeName.ToLower().Contains(textSearch.ToLower())
+                                || x.VacationName.ToLower().Contains(textSearch.ToLower())
+                                || x.VacationsBalance.ToString().Contains(textSearch.ToLower())
+                                ).ToList();
+
                 depts = depts.Where(x =>
                                   x.EmployeeName.ToLower().Contains(textSearch.ToLower())
+                                  || x.VacationName.ToLower().Contains(textSearch.ToLower())
+                                   || x.VacationsBalance.ToString().Contains(textSearch.ToLower())
                                  ).ToList();
+            }
+            gv_needApprove.DataSource = needApprove;
             gv_data.DataSource = depts;
-
-
-
-
 
 
             EmployeeModel employeeModel = new EmployeeModel();
@@ -105,21 +108,47 @@ namespace Human_Resource.Views.Attendance
                     var approved = rowView.Approved;
                     if (approved == true)
                     {
-                        LinkButton approveBtn = (LinkButton)e.Row.FindControl("approveTask");
+                        LinkButton approveBtn = (LinkButton)e.Row.FindControl("approveVac");
                         approveBtn.Visible = false;
-                        LinkButton rejectBtn = (LinkButton)e.Row.FindControl("rejectTask");
-                        rejectBtn.Visible = false;
 
                         e.Row.CssClass = "acceptedRow";
                     }
                     else if (approved == false)
                     {
-                        LinkButton approveBtn = (LinkButton)e.Row.FindControl("approveTask");
-                        approveBtn.Visible = false;
-                        LinkButton rejectBtn = (LinkButton)e.Row.FindControl("rejectTask");
+                        LinkButton rejectBtn = (LinkButton)e.Row.FindControl("rejectVac");
                         rejectBtn.Visible = false;
 
                         e.Row.CssClass = "rejectedRow";
+
+                    }
+                    else
+                        e.Row.CssClass = "normalRow";
+                }
+            }
+        }
+
+        protected void gv_data_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                var rowView = (EmployeesVacationModel)e.Row.DataItem;
+                if (rowView != null)
+                {
+                    var approved = rowView.Approved;
+                    if (approved == true)
+                    {
+                        LinkButton editBtn = (LinkButton)e.Row.FindControl("btnEdit");
+                        editBtn.Visible = false;
+                        ImageButton delBtn = (ImageButton)e.Row.FindControl("btnDelete");
+                        delBtn.Visible = false;
+
+                        e.Row.CssClass = "acceptedRow";
+                    }
+                    else if (approved == false)
+                    {
+
+                       e.Row.CssClass = "rejectedRow";
 
                     }
                     else
@@ -141,14 +170,14 @@ namespace Human_Resource.Views.Attendance
                     dept.EmployeesVacationID = 0;
                 dept.EmployeeID = int.Parse(employeeId);
                 dept.VacationID = int.Parse(vacationId);
-                dept.FromDate = DateTime.ParseExact(fromDate, "MM/dd/yyyy", cultures); ;
-                dept.ToDate = DateTime.ParseExact(toDate, "MM/dd/yyyy", cultures); ;
+                dept.FromDate = DateTime.ParseExact(fromDate, "MM/dd/yyyy", cultures);
+                dept.ToDate = DateTime.ParseExact(toDate, "MM/dd/yyyy", cultures) ;
 
                 if (HttpContext.Current.Session["user_id"] != null && HttpContext.Current.Session["user_id"].ToString() != "")
                     dept.CreateUserID = dept.UpdateUserID = int.Parse(HttpContext.Current.Session["user_id"].ToString());
 
 
-                int deptId = dept.SaveDept(dept);
+                int deptId = dept.SaveVacation(dept);
                 if (deptId != 0)
                 {
                     return "1";
