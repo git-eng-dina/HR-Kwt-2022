@@ -3,10 +3,20 @@
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
  
 <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
-
+     <style>
+       #ui-datepicker-div{
+           z-index:10000 !important;
+       }
+   </style>
     <script>
 
         $(document).ready(function () {
+
+                $(".hasdatepicker").datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    format: "dd/MM/yyyy",
+                });
 
             $myWindow = $('#dialog');
 
@@ -28,6 +38,65 @@
                 ShowDialogWithData(customID);
                 return false;
             });
+
+            $('.td-approve').click(function () {
+
+                var customID = $(this).attr('myCustomID');
+                if (confirm("<%= Resources.Labels.AreYouSure%>")) {
+
+                     var parameter = {
+                         employeeVacationID: customID,
+                         userID: <%= Session["user_id"].ToString() %>,
+                     };
+
+                     $.ajax({
+                         type: "POST",
+                         url: "VaccaitionApproval.aspx/Approve",
+                         data: JSON.stringify(parameter),
+                         contentType: "application/json; charset=utf-8",
+                         dataType: "json",
+                         success: function (data) {
+                             window.location = "VaccaitionApproval.aspx";
+
+                         },
+                         failure: function (response) {
+                             alert(response.d);
+                         }
+                     });
+
+                 }
+
+                 return false;
+             });
+             $('.td-reject').click(function () {
+
+                var customID = $(this).attr('myCustomID');
+                if (confirm("<%= Resources.Labels.AreYouSure%>")) {
+
+                     var parameter = {
+                         employeeVacationID: customID,
+                         userID: <%= Session["user_id"].ToString() %>,
+                     };
+
+                     $.ajax({
+                         type: "POST",
+                         url: "VaccaitionApproval.aspx/Approve",
+                         data: JSON.stringify(parameter),
+                         contentType: "application/json; charset=utf-8",
+                         dataType: "json",
+                         success: function (data) {
+                             window.location = "VaccaitionApproval.aspx";
+
+                         },
+                         failure: function (response) {
+                             alert(response.d);
+                         }
+                     });
+
+                 }
+
+                 return false;
+             });
 
         });
 
@@ -64,8 +133,12 @@
                         $('#MainContent_hid_employeesVacationId').val(item.EmployeesVacationID);
                         $('#MainContent_emp').val(item.EmployeeID);
                         $('#MainContent_vac').val(item.VacationID);
-                        $('#MainContent_txt_fromDate').val(item.FromDate);
-                        $('#MainContent_txt_toDate').val(item.ToDate);
+
+                        var start = convertToJavaScriptDate(item.FromDate);
+                        $('#MainContent_txt_fromDate').val(start);
+
+                        var end = convertToJavaScriptDate(item.ToDate);
+                        $('#MainContent_txt_toDate').val(end);
  
                      }
 
@@ -143,11 +216,14 @@
                         </div>
    
                         </div>
-
-                       <!---- table -->
-                            <asp:GridView ID="gv_data" runat="server"  CssClass="gridView col-md-12"  
-                                AutoGenerateColumns="False"  Width="90%" 
-                                class="table table-bordered table-condensed table-responsive table-hover ">
+                          <!------- approval vaccation -->
+                        <div class="row gridView-title" id="gv_approve_title" runat="server">                       
+                           <span><asp:Literal Text=" <%$ Resources:Labels,WaitingApprove%>" runat="server"></asp:Literal> </span>
+                        </div>
+                       <asp:GridView ID="gv_needApprove" runat="server"  CssClass="gridView col-md-12"  
+                               style="margin-top:0px;"  AutoGenerateColumns="False"  Width="90%" 
+                            OnRowDataBound="gv_approve_RowDataBound"      
+                           class="table table-bordered table-condensed table-responsive table-hover ">
                                 <Columns>
 
                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,Sequence%>" ItemStyle-Width="5%">
@@ -159,10 +235,67 @@
                                     
                                         <asp:TemplateField HeaderText="<%$ Resources:Labels,employee%>" ItemStyle-Width="20%">
                                          <ItemTemplate>
-                                                 <asp:Label ID="LblDemployee" runat="server" 
+                                                 <asp:Label ID="LblDemployee1" runat="server" 
                                                  Text='<%# Eval("EmployeeName") %>' />                              
                                          </ItemTemplate>
                                         </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,Vacation%>" ItemStyle-Width="20%">
+                                             <ItemTemplate>
+                                                     <asp:Label ID="LblDvacation1" runat="server" 
+                                                     Text='<%# Eval("VacationName") %>' />                              
+                                             </ItemTemplate>
+                                            </asp:TemplateField>
+                                
+                                                  <asp:TemplateField HeaderText="<%$ Resources:Labels,FromDate%>" ItemStyle-Width="25%">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblFromDate1" runat="server" 
+                                             text= '<%# Eval("FromDate", "{0:dd/MM/yyyy}") %>' />                              
+                                         </ItemTemplate>
+                                        </asp:TemplateField>
+                                          
+                                 <asp:TemplateField HeaderText="<%$ Resources:Labels,ToDate%>" ItemStyle-Width="25%">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblToDate1" runat="server" 
+                                               text= '<%# Eval("ToDate", "{0:dd/MM/yyyy}") %>' />                              
+                                         </ItemTemplate>
+                                        </asp:TemplateField>
+                                          
+                                    <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-approve">
+                                          <ItemTemplate>                     
+                                                     <asp:LinkButton ID="approveTask" runat="server" myCustomID='<%# Eval("EmployeesVacationID")%>'  CssClass="td-approve">
+                                                         <asp:Image ImageUrl="~/images/accept_document.png" runat="server" Width="20px" Height="20px" ToolTip="<%$ Resources:Labels,Approve%>" />
+                                                     </asp:LinkButton>  
+                                             </ItemTemplate>
+                                        </asp:TemplateField>
+                                   <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-reject">
+                                             <ItemTemplate>                     
+                                                     <asp:LinkButton ID="approveTask" runat="server" myCustomID='<%# Eval("EmployeesVacationID")%>'  CssClass="td-reject">
+                                                         <asp:Image ImageUrl="~/images/reject_document.png" runat="server" Width="20px" Height="20px" ToolTip="<%$ Resources:Labels,Reject%>"/>
+                                                     </asp:LinkButton>  
+                                                             
+                                             </ItemTemplate>
+                                    </asp:TemplateField> 
+                                   
+                                </Columns>
+                                <EditRowStyle BackColor="#009999" VerticalAlign="Middle" />
+                            </asp:GridView>
+                       <!---- table -->
+                        <div class="row" id="gv_Blank" runat="server">&nbsp;</div>
+                        <div class="row gridView-title" id="gv_executed_title" runat="server">                       
+                           <span><asp:Literal Text=" <%$ Resources:Labels,Vacations%>" runat="server"></asp:Literal> </span>
+                        </div>
+
+                            <asp:GridView ID="gv_data" runat="server"  CssClass="gridView col-md-12"  
+                                AutoGenerateColumns="False"  Width="90%" 
+                                style="margin-top:0px;" class="table table-bordered table-condensed table-responsive table-hover ">
+                                <Columns>
+
+                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,Sequence%>" ItemStyle-Width="5%">
+                                         <ItemTemplate>
+                                                 <%#Container.DataItemIndex+1 %>                            
+                                         </ItemTemplate> 
+                                       </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="<%$ Resources:Labels,Vacation%>" ItemStyle-Width="20%">
                                              <ItemTemplate>
@@ -185,11 +318,6 @@
                                          </ItemTemplate>
                                         </asp:TemplateField>
                                           
-                             
-
-                               
-                                 
-
                                     <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-edit">
                                           <ItemTemplate>                     
                                                      <asp:LinkButton ID="LinkProducts" runat="server" myCustomID='<%# Eval("EmployeesVacationID")%>'  CssClass="td-edit">
@@ -252,13 +380,13 @@
                     <div class ="row">
                      <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,FromDate%>" /></span>
-                           <asp:TextBox ID="txt_fromDate" runat="server" class="form-control input-lg hasdatepicker"  textMode="date" value="2000-11-01"></asp:TextBox>
+                           <asp:TextBox ID="txt_fromDate" runat="server" class="form-control input-lg hasdatepicker"  ></asp:TextBox>
                          </div>
                         </div> 
                     <div class ="row">
                      <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,ToDate%>" /></span>
-                           <asp:TextBox ID="txt_toDate" runat="server" class="form-control input-lg hasdatepicker"  textMode="date" value="2000-11-01"></asp:TextBox>
+                           <asp:TextBox ID="txt_toDate" runat="server" class="form-control input-lg hasdatepicker"  ></asp:TextBox>
                          </div>
                         </div> 
                    

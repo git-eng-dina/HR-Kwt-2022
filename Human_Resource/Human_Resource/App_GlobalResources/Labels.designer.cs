@@ -2347,6 +2347,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Awaiting Approval.
+        /// </summary>
+        internal static string WaitingApprove {
+            get {
+                return ResourceManager.GetString("WaitingApprove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Employees awaiting approval.
         /// </summary>
         internal static string WaitingEmployees {

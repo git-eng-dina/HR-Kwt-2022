@@ -32,9 +32,36 @@ namespace Human_Resource.Views.Attendance
         }
         private void BindData(string textSearch = "")
         {
-            EmployeesVacationModel dept = new EmployeesVacationModel();
+            string role = Session["urole"].ToString();
+            int userId = int.Parse(Session["user_id"].ToString());
 
-            var depts = dept.getActivity();
+            EmployeesVacationModel vac = new EmployeesVacationModel();
+            List<EmployeesVacationModel> needApprove = new List<EmployeesVacationModel>();
+
+            if (role == "GeneralDirector" || role == "CEO")
+            {
+                needApprove = vac.getNeedApproveForDirector();
+            }
+            else if (role == "Supervisor")
+            {
+                needApprove = vac.getNeedApproveForSupervisor(userId);
+            }
+            else if (role == "ManagementManager")
+            {
+                needApprove = vac.getNeedApproveForManagement(userId);
+            }
+            else
+            {
+                gv_approve_title.Visible = false;
+                gv_needApprove.Visible = false;
+                gv_Blank.Visible = false;
+            }
+            gv_needApprove.DataSource = needApprove;
+
+            
+
+          
+            var depts = vac.getActivity();
             if (textSearch != "")
                 depts = depts.Where(x =>
                                   x.EmployeeName.ToLower().Contains(textSearch.ToLower())
@@ -59,12 +86,46 @@ namespace Human_Resource.Views.Attendance
             VacationModel vacationModel = new VacationModel();
             List<VacationModel> vacations = new List<VacationModel>();
             vacations = vacationModel.GetActivity();
-            vac.DataSource = vacations;
-            vac.DataValueField = "VacationID";
-            vac.DataTextField = "Name";
+            this.vac.DataSource = vacations;
+            this.vac.DataValueField = "VacationID";
+            this.vac.DataTextField = "Name";
 
 
             DataBind();
+        }
+
+        protected void gv_approve_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                var rowView = (EmployeesVacationModel)e.Row.DataItem;
+                if (rowView != null)
+                {
+                    var approved = rowView.Approved;
+                    if (approved == true)
+                    {
+                        LinkButton approveBtn = (LinkButton)e.Row.FindControl("approveTask");
+                        approveBtn.Visible = false;
+                        LinkButton rejectBtn = (LinkButton)e.Row.FindControl("rejectTask");
+                        rejectBtn.Visible = false;
+
+                        e.Row.CssClass = "acceptedRow";
+                    }
+                    else if (approved == false)
+                    {
+                        LinkButton approveBtn = (LinkButton)e.Row.FindControl("approveTask");
+                        approveBtn.Visible = false;
+                        LinkButton rejectBtn = (LinkButton)e.Row.FindControl("rejectTask");
+                        rejectBtn.Visible = false;
+
+                        e.Row.CssClass = "rejectedRow";
+
+                    }
+                    else
+                        e.Row.CssClass = "normalRow";
+                }
+            }
         }
         [WebMethod(EnableSession = true)]
         public static string SaveEmployeesVacation(string employeesVacationId, string employeeId,string vacationId, string fromDate, string toDate)
@@ -80,8 +141,8 @@ namespace Human_Resource.Views.Attendance
                     dept.EmployeesVacationID = 0;
                 dept.EmployeeID = int.Parse(employeeId);
                 dept.VacationID = int.Parse(vacationId);
-                dept.FromDate = DateTime.ParseExact(fromDate, "yyyy-MM-dd", cultures); ;
-                dept.ToDate = DateTime.ParseExact(toDate, "yyyy-MM-dd", cultures); ;
+                dept.FromDate = DateTime.ParseExact(fromDate, "MM/dd/yyyy", cultures); ;
+                dept.ToDate = DateTime.ParseExact(toDate, "MM/dd/yyyy", cultures); ;
 
                 if (HttpContext.Current.Session["user_id"] != null && HttpContext.Current.Session["user_id"].ToString() != "")
                     dept.CreateUserID = dept.UpdateUserID = int.Parse(HttpContext.Current.Session["user_id"].ToString());
@@ -122,7 +183,35 @@ namespace Human_Resource.Views.Attendance
             }
 
         }
-        
+        [WebMethod(EnableSession = true)]
+        public static void Approve(string employeeVacationID, string userID)
+        {
+            try
+            {
+                EmployeesVacationModel confirm = new EmployeesVacationModel();
+                confirm.EditApprove(int.Parse(employeeVacationID), true, int.Parse(userID));
+            }
+            catch
+            {
+
+            }
+
+        }
+
+        [WebMethod(EnableSession = true)]
+        public static void Reject(string employeeVacationID, string userID)
+        {
+            try
+            {
+                EmployeesVacationModel confirm = new EmployeesVacationModel();
+                confirm.EditApprove(int.Parse(employeeVacationID), false, int.Parse(userID));
+            }
+            catch
+            {
+
+            }
+
+        }
         protected void deletedatafromgrid(object sender, CommandEventArgs e)
         {
 

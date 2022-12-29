@@ -58,7 +58,7 @@ namespace Human_Resource.App_Code
             var year = new DateTime(now, 1, 1);
             using (HRSystemEntities entity = new HRSystemEntities())
             {
-                var count = entity.employeesVacations.Where(x => x.IsActive == true
+                var lst = entity.employeesVacations.Where(x => x.IsActive == true
                                 && x.Approved == true 
                                 && x.FromDate >= year
                                 && x.EmployeeID == employeeId)
@@ -66,8 +66,119 @@ namespace Human_Resource.App_Code
                                 {
                                     EmployeesVacationID = x.EmployeesVacationID,
                                     FromDate = x.FromDate,
-                                }).ToList().Count;
+                                    ToDate = x.ToDate,
+                                }).ToList();
+
+                int count = 0;
+                foreach(var row in lst)
+                {
+                    int dayCount = (int)(row.ToDate - row.FromDate).Value.TotalDays + 1;
+                    count += dayCount;
+                }
                 return count;
+            }
+        }
+        public bool EditApprove(int empVacId, bool approve, int? userId)
+        {
+            try
+            {
+                using (HRSystemEntities entity = new HRSystemEntities())
+                {
+                    var taskObj = entity.employeesVacations.Find(empVacId);
+                    taskObj.Approved = approve;
+                    taskObj.UpdateDate = DateTime.Now;
+                    taskObj.UpdateUserID = userId;
+
+                    entity.SaveChanges();
+                }
+                return true;
+            }
+
+            catch
+            {
+                return false;
+            }
+        }
+
+        public List<EmployeesVacationModel> getNeedApproveForDirector()
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var now = DateTime.Now.Date;
+                var tasks = entity.employeesVacations.Where(x => x.IsActive == true &&
+                                x.ToDate >= now )
+                                .Select(x => new EmployeesVacationModel()
+                                {
+                                    EmployeesVacationID = x.EmployeesVacationID,
+                                    EmployeeID = x.EmployeeID,
+                                    EmployeeName = entity.employees.Where(m => m.EmployeeID == x.EmployeeID).Select(m => m.NameAr).FirstOrDefault(),
+                                    CreateUserID = x.CreateUserID,
+                                    UpdateUserID = x.UpdateUserID,
+                                    Notes = x.Notes,
+                                    FromDate = x.FromDate,
+                                    ToDate = x.ToDate,
+                                    CreateDate = x.CreateDate,
+                                    UpdateDate = x.UpdateDate,
+                                    Approved = x.Approved,
+                                    VacationName = x.vacations.Name,
+                                }).ToList();
+
+                return tasks;
+            }
+        }
+        public List<EmployeesVacationModel> getNeedApproveForSupervisor(int managerId)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var now = DateTime.Now.Date;
+                var tasks = entity.employeesVacations.Where(x => x.IsActive == true &&
+                                 x.ToDate >= now &&
+                                 (entity.employees.Where(e => e.managements.branches.ManagerID == managerId).Select(e => e.EmployeeID).ToList().Contains((int)x.EmployeeID) || x.EmployeeID == managerId))
+                                .Select(x => new EmployeesVacationModel()
+                                {
+                                    EmployeesVacationID = x.EmployeesVacationID,
+                                    EmployeeID = x.EmployeeID,
+                                    EmployeeName = entity.employees.Where(m => m.EmployeeID == x.EmployeeID).Select(m => m.NameAr).FirstOrDefault(),
+                                    CreateUserID = x.CreateUserID,
+                                    UpdateUserID = x.UpdateUserID,
+                                    Notes = x.Notes,
+                                    FromDate = x.FromDate,
+                                    ToDate = x.ToDate,
+                                    CreateDate = x.CreateDate,
+                                    UpdateDate = x.UpdateDate,
+                                    Approved = x.Approved,
+                                    VacationName = x.vacations.Name,
+                                }).ToList();
+
+                return tasks;
+            }
+        }
+
+        public List<EmployeesVacationModel> getNeedApproveForManagement(int managerId)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var now = DateTime.Now.Date;
+                var tasks = entity.employeesVacations.Where(x => x.IsActive == true &&
+                                 x.ToDate >= now &&
+                                 (entity.employees.Where(e => e.managements.ManagerID == managerId).Select(e => e.EmployeeID).ToList().Contains((int)x.EmployeeID) || x.EmployeeID == managerId))
+                                .Select(x => new EmployeesVacationModel()
+                                {
+                                    EmployeesVacationID = x.EmployeesVacationID,
+                                    EmployeeID = x.EmployeeID,
+                                    EmployeeName = entity.employees.Where(m => m.EmployeeID == x.EmployeeID).Select(m => m.NameAr).FirstOrDefault(),
+                                    CreateUserID = x.CreateUserID,
+                                    UpdateUserID = x.UpdateUserID,
+                                    Notes = x.Notes,
+                                    FromDate = x.FromDate,
+                                    ToDate = x.ToDate,
+                                    CreateDate = x.CreateDate,
+                                    UpdateDate = x.UpdateDate,
+                                    Approved = x.Approved,
+                                    VacationName = x.vacations.Name,
+                                }).ToList();
+
+                return tasks;
             }
         }
         public EmployeesVacationModel getEmployeesVacation(int employeesVacationId)

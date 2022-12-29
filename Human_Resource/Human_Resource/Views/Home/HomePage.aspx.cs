@@ -32,11 +32,6 @@ namespace Human_Resource.Views.Home
             getActiveTrainingCount();
             getVacationCount(); //vacation from beggining of year
             renderTasksChart();
-
-            var vacations = 20;
-
- 
-            lbl_vacations.InnerText = vacations.ToString();
         }
 
         private void getEmployeeCount()
@@ -101,7 +96,11 @@ namespace Human_Resource.Views.Home
             TaskStatus taskStatus = new TaskStatus();
             var taskStatusRes = taskStatus.getTaskCount(userId);
 
-            if (taskStatusRes.Count != 0)
+            if(taskStatusRes.Count == 0)
+            {
+                tasksChart.Visible = false;
+            }
+            else
             {
                 events_notFount.Visible = false;
 

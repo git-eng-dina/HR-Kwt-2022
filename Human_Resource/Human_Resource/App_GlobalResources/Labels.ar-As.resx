@@ -912,6 +912,9 @@
   <data name="SalaryDK" xml:space="preserve">
     <value>الراتب (د.ك)</value>
   </data>
+  <data name="WaitingApprove" xml:space="preserve">
+    <value>بانتظار الموافقة</value>
+  </data>
   <data name="WorkPermitEnd" xml:space="preserve">
     <value>تاريخ نهاية اذن العمل</value>
   </data>

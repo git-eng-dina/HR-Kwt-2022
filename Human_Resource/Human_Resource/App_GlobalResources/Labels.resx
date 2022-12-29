@@ -915,6 +915,9 @@
   <data name="SalaryDK" xml:space="preserve">
     <value>Salary (D.K)</value>
   </data>
+  <data name="WaitingApprove" xml:space="preserve">
+    <value>Awaiting Approval</value>
+  </data>
   <data name="WorkPermitEnd" xml:space="preserve">
     <value>Work Permit End Date</value>
   </data>

@@ -40,6 +40,42 @@ namespace Human_Resource.Views.Attendance {
         protected global::System.Web.UI.HtmlControls.HtmlButton btn_new;
         
         /// <summary>
+        /// gv_approve_title control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl gv_approve_title;
+        
+        /// <summary>
+        /// gv_needApprove control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gv_needApprove;
+        
+        /// <summary>
+        /// gv_Blank control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl gv_Blank;
+        
+        /// <summary>
+        /// gv_executed_title control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl gv_executed_title;
+        
+        /// <summary>
         /// gv_data control.
         /// </summary>
         /// <remarks>

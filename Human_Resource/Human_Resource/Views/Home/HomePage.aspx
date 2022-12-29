@@ -76,8 +76,8 @@
                 </div>
             </div>
 
-            <div class="col-md-6" id="div_passports" runat="server">
-                <div class="info-block">
+            <div class="col-md-6" >
+                <div class="info-block" id="div_passports" runat="server">
                     <span class="flag normal-blue"></span>
                     <div class="row">
                         <div class="col-4 text-center mt-2 br-3 orders">

@@ -225,7 +225,7 @@
                 </li>--%>
                 <li>
                     <a href="/Views/Attendance/VaccaitionApproval.aspx" class="">
-                        <asp:Literal runat="server" Text="<%$ Resources:Labels,VaccaitionApproval%>" />
+                        <asp:Literal runat="server" Text="<%$ Resources:Labels,ScheduleVacation%>" />
                     </a>
                 </li> 
                 <li>
