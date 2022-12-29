@@ -30,7 +30,7 @@ namespace Human_Resource.Views.Home
 
             getActiveEventCount();
             getActiveTrainingCount();
-            //getVacationCount();
+            getVacationCount(); //vacation from beggining of year
             renderTasksChart();
 
             var vacations = 20;
@@ -53,7 +53,10 @@ namespace Human_Resource.Views.Home
 
             EmployeeModel emp = new EmployeeModel();
             var employeesCount = emp.GetEmployeesCount(true,true,supervisorId,managerId);
-            lbl_employees.InnerText = employeesCount.ToString();
+            if (employeesCount == 0)
+                lbl_employees.InnerText = Resources.Labels.NotFound;
+            else
+                lbl_employees.InnerText = employeesCount.ToString();
         }
 
         private void getActiveEventCount()
@@ -61,15 +64,35 @@ namespace Human_Resource.Views.Home
             int userId = int.Parse(Session["user_id"].ToString());
 
             EventModel evt = new EventModel();  
-            lbl_events.InnerText = evt.GetActiveEventCount(userId).ToString();
+            var count = evt.GetActiveEventCount(userId);
+            if (count == 0)
+                lbl_events.InnerText = Resources.Labels.NotFound;
+            else
+                lbl_events.InnerText = count.ToString() ;
         }
 
         private void getActiveTrainingCount()
         {
             int userId = int.Parse(Session["user_id"].ToString());
 
-            TrainingModel evt = new TrainingModel();  
-            lbl_trainings.InnerText = evt.GetActiveCount(userId).ToString();
+            TrainingModel evt = new TrainingModel();
+            var count = evt.GetActiveCount(userId);
+            if (count == 0)
+                lbl_trainings.InnerText = Resources.Labels.NotFound;
+            else
+                lbl_trainings.InnerText = count.ToString();
+        }
+
+        private void getVacationCount()
+        {
+            int userId = int.Parse(Session["user_id"].ToString());
+
+            EmployeesVacationModel evt = new EmployeesVacationModel();
+            var count = evt.GetVacCount(userId);
+            if (count == 0)
+                lbl_vacations.InnerText = Resources.Labels.NotFound;
+            else
+                lbl_vacations.InnerText = count.ToString();
         }
         private void renderTasksChart()
         {
@@ -78,11 +101,7 @@ namespace Human_Resource.Views.Home
             TaskStatus taskStatus = new TaskStatus();
             var taskStatusRes = taskStatus.getTaskCount(userId);
 
-            if (taskStatusRes.Count == 0)
-            {
-                tasksChart.Visible = false;
-            }
-            else
+            if (taskStatusRes.Count != 0)
             {
                 events_notFount.Visible = false;
 

@@ -51,6 +51,25 @@ namespace Human_Resource.App_Code
                 return depts;
             }
         }
+
+        public int GetVacCount(int employeeId)
+        {
+            var now = DateTime.Now.Year;
+            var year = new DateTime(now, 1, 1);
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var count = entity.employeesVacations.Where(x => x.IsActive == true
+                                && x.Approved == true 
+                                && x.FromDate >= year
+                                && x.EmployeeID == employeeId)
+                                .Select(x => new EmployeesVacationModel()
+                                {
+                                    EmployeesVacationID = x.EmployeesVacationID,
+                                    FromDate = x.FromDate,
+                                }).ToList().Count;
+                return count;
+            }
+        }
         public EmployeesVacationModel getEmployeesVacation(int employeesVacationId)
         {
             using (HRSystemEntities entity = new HRSystemEntities())

@@ -124,7 +124,6 @@
                         </div>
                     
                              <div class="col-12 text-center">
-                                 <%-- <p id="P1"  runat="server" >  <label> <asp:Literal ID="events_notFount"  runat="server" Text="<%$ Resources:Labels,NotFound%>" /></label>--%>
                             <asp:Chart ID="tasksChart" runat="server" Height="200px" Width="300px" >
                                 <Titles>
                                     <asp:Title  Name="Items" />
