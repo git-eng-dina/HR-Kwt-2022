@@ -514,10 +514,10 @@
     <Content Include="Views\Attendance\WorkShifts.aspx" />
     <Content Include="Views\Employees\Employees.aspx" />
     <Content Include="Views\Employees\EmpPenalities.aspx" />
+    <Content Include="Views\Employees\EmpTrainings.aspx" />
     <Content Include="Views\Employees\ExpiredPassports.aspx" />
     <Content Include="Views\Employees\NewEmployee.aspx" />
     <Content Include="Views\Employees\UserAccounts.aspx" />
-    <Content Include="Views\Employees\WorkPermit.aspx" />
     <Content Include="Views\ExecutiveProc\AddEvaluation.aspx" />
     <Content Include="Views\ExecutiveProc\Custodies.aspx" />
     <Content Include="Views\ExecutiveProc\Events.aspx" />
@@ -735,6 +735,13 @@
     <Compile Include="Views\Employees\EmpPenalities.aspx.designer.cs">
       <DependentUpon>EmpPenalities.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Employees\EmpTrainings.aspx.cs">
+      <DependentUpon>EmpTrainings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Employees\EmpTrainings.aspx.designer.cs">
+      <DependentUpon>EmpTrainings.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Employees\ExpiredPassports.aspx.cs">
       <DependentUpon>ExpiredPassports.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -755,13 +762,6 @@
     </Compile>
     <Compile Include="Views\Employees\UserAccounts.aspx.designer.cs">
       <DependentUpon>UserAccounts.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Employees\WorkPermit.aspx.cs">
-      <DependentUpon>WorkPermit.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Employees\WorkPermit.aspx.designer.cs">
-      <DependentUpon>WorkPermit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\ExecutiveProc\AddEvaluation.aspx.cs">
       <DependentUpon>AddEvaluation.aspx</DependentUpon>
