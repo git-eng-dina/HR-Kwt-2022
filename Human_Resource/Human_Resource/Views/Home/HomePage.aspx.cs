@@ -30,6 +30,7 @@ namespace Human_Resource.Views.Home
 
             getActiveEventCount();
             getActiveTrainingCount();
+            //getVacationCount();
             renderTasksChart();
 
             var vacations = 20;
@@ -77,29 +78,38 @@ namespace Human_Resource.Views.Home
             TaskStatus taskStatus = new TaskStatus();
             var taskStatusRes = taskStatus.getTaskCount(userId);
 
-            lbl_tasks.InnerText = taskStatusRes.Where(ts => ts.Status =="Doing").Select(ts => ts.TaskCount.ToString()).FirstOrDefault();
-
-            string[] x = new string[taskStatusRes.Count];
-            int[] y = new int[taskStatusRes.Count];
-            for (int i = 0; i < taskStatusRes.Count; i++)
+            if (taskStatusRes.Count == 0)
             {
-                x[i] = HelpClass.getStringTranslate(taskStatusRes[i].Status);
-
-                y[i] = taskStatusRes[i].TaskCount;
+                tasksChart.Visible = false;
             }
+            else
+            {
+                events_notFount.Visible = false;
+
+                lbl_tasks.InnerText = taskStatusRes.Where(ts => ts.Status == "Doing").Select(ts => ts.TaskCount.ToString()).FirstOrDefault();
+
+                string[] x = new string[taskStatusRes.Count];
+                int[] y = new int[taskStatusRes.Count];
+                for (int i = 0; i < taskStatusRes.Count; i++)
+                {
+                    x[i] = HelpClass.getStringTranslate(taskStatusRes[i].Status);
+
+                    y[i] = taskStatusRes[i].TaskCount;
+                }
 
 
-            tasksChart.Series[0].Points.DataBindXY(x, y);
-            tasksChart.Series[0].ChartType = SeriesChartType.Pie;
-            tasksChart.ChartAreas["ChartArea1"].Area3DStyle.Enable3D = true;
+                tasksChart.Series[0].Points.DataBindXY(x, y);
+                tasksChart.Series[0].ChartType = SeriesChartType.Pie;
+                tasksChart.ChartAreas["ChartArea1"].Area3DStyle.Enable3D = true;
 
-            tasksChart.Series[0].Label = "#VALY";
-            tasksChart.Series[0].LegendText = "#VALX";
+                tasksChart.Series[0].Label = "#VALY";
+                tasksChart.Series[0].LegendText = "#VALX";
 
-            ChartArea CA = tasksChart.ChartAreas[0];
-            CA.InnerPlotPosition = new ElementPosition(0, 0, 92, 90);
+                ChartArea CA = tasksChart.ChartAreas[0];
+                CA.InnerPlotPosition = new ElementPosition(0, 0, 92, 90);
 
-            tasksChart.Legends[0].Enabled = true;
+                tasksChart.Legends[0].Enabled = true;
+            }
         }
 
         private void renderPassportsChart()

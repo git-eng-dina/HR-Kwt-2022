@@ -1546,6 +1546,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Not Found.
+        /// </summary>
+        internal static string NotFound {
+            get {
+                return ResourceManager.GetString("NotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Offices.
         /// </summary>
         internal static string Offices {

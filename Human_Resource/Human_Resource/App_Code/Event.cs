@@ -49,11 +49,11 @@ namespace Human_Resource.App_Code
         }
          public int GetActiveEventCount(int employeeID)
         {
-            var now = DateTime.Now.Date;
+            var now = DateTime.Now;
             using ( HRSystemEntities entity = new HRSystemEntities())
                 {
                 var count = entity.events.Where(x => x.IsActive == true && x.Approved ==true
-                               && x.StartDate <= now && x.EndDate <= now
+                               && x.StartDate <= now && x.EndDate >= now
                                && entity.EemployeesEvents.Where(e => e.EventID == x.EventID).Select(e => e.EmployeeID).Contains(employeeID) )
                     .Select(x => new EventModel()
                     {

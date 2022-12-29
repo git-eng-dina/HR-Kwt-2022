@@ -900,6 +900,9 @@
   <data name="NoData" xml:space="preserve">
     <value>لا يوجد بيانات</value>
   </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>لا يوجد</value>
+  </data>
   <data name="OutgoingNumber" xml:space="preserve">
     <value>رقم الصادر</value>
   </data>

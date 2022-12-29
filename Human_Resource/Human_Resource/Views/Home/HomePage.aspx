@@ -119,11 +119,12 @@
                         <div class="col-8 text-center block-cursor">
                              <a href="/Views/ExecutiveProc/Tasks.aspx"> 
                             <label> <asp:Literal  runat="server" Text="<%$ Resources:Labels,Tasks%>" /></label>
-                                 <p id="lbl_tasks"  runat="server" >  </p>
+                                 <p id="lbl_tasks"  runat="server" > <asp:Literal ID="events_notFount"  runat="server" Text="<%$ Resources:Labels,NotFound%>" /> </p>
                               </a>                                                  
                         </div>
                     
                              <div class="col-12 text-center">
+                                 <%-- <p id="P1"  runat="server" >  <label> <asp:Literal ID="events_notFount"  runat="server" Text="<%$ Resources:Labels,NotFound%>" /></label>--%>
                             <asp:Chart ID="tasksChart" runat="server" Height="200px" Width="300px" >
                                 <Titles>
                                     <asp:Title  Name="Items" />
