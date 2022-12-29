@@ -18,6 +18,8 @@ namespace Human_Resource.App_Code
         public Nullable<int> CreateUserID { get; set; }
         public Nullable<int> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
+        public Nullable<System.DateTime> StartDate { get; set; }
+        public Nullable<System.DateTime> EndDate { get; set; }
 
         public List<EmployeeModel> Employees { get; set; }
         #endregion
@@ -33,6 +35,8 @@ namespace Human_Resource.App_Code
                                     TrainingID = x.TrainingID,
                                     Name = x.Name,
                                     Description = x.Description,
+                                    StartDate = x.StartDate,
+                                    EndDate = x.EndDate,
                                     CreateUserID = x.CreateUserID,
                                     UpdateUserID = x.UpdateUserID,
                                     Notes = x.Notes,
@@ -42,7 +46,27 @@ namespace Human_Resource.App_Code
                 return depts;
             }
         }
-
+        public List<TrainingModel> getEmployeeTraining(int EmpID)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var depts = entity.trainings.Where(x => x.IsActive == true && x.employeesTrainings.Where(et => et.employees.EmployeeID == EmpID).Count() >0)
+                                .Select(x => new TrainingModel()
+                                {
+                                    TrainingID = x.TrainingID,
+                                    Name = x.Name,
+                                    Description = x.Description,
+                                    StartDate = x.StartDate,
+                                    EndDate = x.EndDate,
+                                    CreateUserID = x.CreateUserID,
+                                    UpdateUserID = x.UpdateUserID,
+                                    Notes = x.Notes,
+                                    CreateDate = x.CreateDate,
+                                    UpdateDate = x.UpdateDate,
+                                }).ToList();
+                return depts;
+            }
+        }
         public int GetActiveCount(int employeeId)
         {
             var now = DateTime.Now.Date;
@@ -54,6 +78,8 @@ namespace Human_Resource.App_Code
                                     TrainingID = x.TrainingID,
                                     Name = x.Name,
                                     Description = x.Description,
+                                    StartDate = x.StartDate,
+                                    EndDate = x.EndDate,
                                     CreateUserID = x.CreateUserID,
                                     UpdateUserID = x.UpdateUserID,
                                     Notes = x.Notes,
@@ -73,6 +99,8 @@ namespace Human_Resource.App_Code
                                     TrainingID = x.TrainingID,
                                     Name = x.Name,
                                     Description = x.Description,
+                                    StartDate = x.StartDate,
+                                    EndDate = x.EndDate,
                                     CreateUserID = x.CreateUserID,
                                     UpdateUserID = x.UpdateUserID,
                                     Notes = x.Notes,
@@ -103,6 +131,8 @@ namespace Human_Resource.App_Code
                         {
                             Name = dept.Name,
                             Description = dept.Description,
+                            StartDate = dept.StartDate,
+                            EndDate = dept.EndDate,
                             IsActive = true,
                             CreateUserID = dept.CreateUserID,
                             UpdateUserID = dept.UpdateUserID,
@@ -116,6 +146,8 @@ namespace Human_Resource.App_Code
                         training = entity.trainings.Find(dept.TrainingID);
                         training.Name = dept.Name;
                         training.Description = dept.Description;
+                        training.StartDate = dept.StartDate;
+                        training.EndDate = dept.EndDate;
                         training.Notes = dept.Notes;
                         training.IsActive = true;
                         training.UpdateUserID = dept.UpdateUserID;
