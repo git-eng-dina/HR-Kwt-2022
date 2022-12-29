@@ -42,6 +42,27 @@ namespace Human_Resource.App_Code
                 return depts;
             }
         }
+
+        public int GetActiveCount(int employeeId)
+        {
+            var now = DateTime.Now.Date;
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var depts = entity.trainings.Where(x => x.IsActive == true)
+                                .Select(x => new TrainingModel()
+                                {
+                                    TrainingID = x.TrainingID,
+                                    Name = x.Name,
+                                    Description = x.Description,
+                                    CreateUserID = x.CreateUserID,
+                                    UpdateUserID = x.UpdateUserID,
+                                    Notes = x.Notes,
+                                    CreateDate = x.CreateDate,
+                                    UpdateDate = x.UpdateDate,
+                                }).ToList();
+                return depts.Count();
+            }
+        }
         public TrainingModel getTraining(int trainingId)
         {
             using (HRSystemEntities entity = new HRSystemEntities())

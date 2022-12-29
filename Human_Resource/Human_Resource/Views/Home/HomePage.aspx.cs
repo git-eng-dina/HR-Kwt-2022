@@ -27,18 +27,14 @@ namespace Human_Resource.Views.Home
                 div_employees.Visible = false;
                 div_passports.Visible = false;
             }
+
+            getActiveEventCount();
+            getActiveTrainingCount();
             renderTasksChart();
 
-           
-            
-            var eventsCount = 15;
-            var trainingsCount = 15;
             var vacations = 20;
 
-            
-            lbl_events.InnerText = eventsCount.ToString();
-            
-            lbl_trainings.InnerText = trainingsCount.ToString();
+ 
             lbl_vacations.InnerText = vacations.ToString();
         }
 
@@ -57,6 +53,22 @@ namespace Human_Resource.Views.Home
             EmployeeModel emp = new EmployeeModel();
             var employeesCount = emp.GetEmployeesCount(true,true,supervisorId,managerId);
             lbl_employees.InnerText = employeesCount.ToString();
+        }
+
+        private void getActiveEventCount()
+        {
+            int userId = int.Parse(Session["user_id"].ToString());
+
+            EventModel evt = new EventModel();  
+            lbl_events.InnerText = evt.GetActiveEventCount(userId).ToString();
+        }
+
+        private void getActiveTrainingCount()
+        {
+            int userId = int.Parse(Session["user_id"].ToString());
+
+            TrainingModel evt = new TrainingModel();  
+            lbl_trainings.InnerText = evt.GetActiveCount(userId).ToString();
         }
         private void renderTasksChart()
         {
