@@ -84,10 +84,8 @@ namespace Human_Resource.Views.Employees
                     #region fill certificates
                     //certificate 1
                     txt_certificate1.Value = emp.EducationCertificate1;
-                   // dt = emp.EducationCertificateFromDate1.Value.ToString().Split(' ');
                     dp_fromCer1.Text = HelpClass.setDateFormat(emp.EducationCertificateFromDate1.Value); 
 
-                    //dt = emp.EducationCertificateToDate1.Value.ToString().Split(' ');
                     dp_toCer1.Text = HelpClass.setDateFormat(emp.EducationCertificateToDate1.Value);
                     if (emp.Certificate1 != null)
                     {
@@ -100,10 +98,8 @@ namespace Human_Resource.Views.Employees
                     {
                         frm_certificate2.Style.Add("visibility", "visible");
                         txt_certificate2.Value = emp.EducationCertificate2;
-                    //dt = emp.EducationCertificateFromDate2.Value.ToString().Split(' ');
                         dp_fromCer2.Text = HelpClass.setDateFormat(emp.EducationCertificateFromDate2.Value);
 
-                        //dt = emp.EducationCertificateToDate2.Value.ToString().Split(' ');
                         dp_toCer2.Text = HelpClass.setDateFormat(emp.EducationCertificateToDate2.Value);
                         if (emp.Certificate2 != null)
                         {
@@ -112,8 +108,7 @@ namespace Human_Resource.Views.Employees
                             hr_cer2.HRef = "../../Upload/CV/" + emp.Certificate2.docnum;
                         }
                     }
-                    //else
-                    //    frm_certificate2.Style.Add("visibility", "hidden");
+
 
                     //certificate 3
                     if (emp.EducationCertificate3 != null)
@@ -121,9 +116,7 @@ namespace Human_Resource.Views.Employees
                         frm_certificate3.Style.Add("visibility", "visible");
 
                         txt_certificate3.Value = emp.EducationCertificate3;
-                        //dt = emp.EducationCertificateFromDate3.Value.ToString().Split(' ');
                         dp_fromCer3.Text = HelpClass.setDateFormat(emp.EducationCertificateFromDate3.Value);
-                        //dt = emp.EducationCertificateToDate3.Value.ToString().Split(' ');
                         dp_toCer3.Text = HelpClass.setDateFormat(emp.EducationCertificateToDate3.Value);
                         if (emp.Certificate3 != null)
                         {
@@ -134,8 +127,6 @@ namespace Human_Resource.Views.Employees
                         lbl_certificate3.Text = emp.Certificate3.docName;
                         }
                     }
-                    //else
-                    //    frm_certificate3.Style.Add("visibility", "hidden");
 
                     #endregion
 
@@ -160,14 +151,24 @@ namespace Human_Resource.Views.Employees
                     txt_salary.Value = emp.BasicSalary.ToString();
                     if (emp.HiringDate != null)
                     {
-                       // dt = emp.HiringDate.Value.ToString().Split(' ');
-
                         txt_hiringDate.Value = HelpClass.setDateFormat(emp.HiringDate.Value);
                     }
                     txt_email.Value = emp.Email;
                     txt_vacationBalance.Value = emp.VacationsBalance.ToString();
                     txt_guarantor.Value = emp.Guarantor;
                     txt_jobDesc.Text = emp.JobDescription;
+                    if(emp.WorkPermit != null && emp.WorkPermit != "")
+                    {
+                        lbl_permit.Visible = false;
+                        hrf_permit.InnerHtml = emp.WorkPermit;
+                        hrf_permit.HRef = "../../Upload/WorkPermit/" + emp.WorkPermit;
+                    }
+                    if (emp.WorkContract != null && emp.WorkContract != "")
+                    {
+                        lbl_contract.Visible = false;
+                        hrf_contract.InnerHtml = emp.WorkPermit;
+                        hrf_contract.HRef = "../../Upload/WorkContract/" + emp.WorkContract;
+                    }
                     #endregion
 
                     #region fill passport info
@@ -193,8 +194,6 @@ namespace Human_Resource.Views.Employees
                 {
                     frm_certificate2.Style.Add("visibility", "hidden");
                     frm_certificate3.Style.Add("visibility", "hidden");
-                    //frm_certificate2.Visible = false;
-                    //frm_certificate3.Visible = false;
                 }
                 #endregion
 
@@ -220,7 +219,6 @@ namespace Human_Resource.Views.Employees
 
                 var arrDOB = dp_bod.Text.Split('/');
                 var d = new DateTime(int.Parse(arrDOB[2]), int.Parse(arrDOB[0]), int.Parse(arrDOB[1]));
-               //DateTime datetime = DateTime.ParseExact(dp_bod.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
                 employee.DOB = d;
 
                 employee.Mobile = txt_mobile.Value;
@@ -232,15 +230,13 @@ namespace Human_Resource.Views.Employees
 
                 #region certificates
                 employee.EducationCertificate1 = txt_certificate1.Value;
-                //employee.EducationCertificateFromDate1 = DateTime.Parse(dp_fromCer1.Text);
+
                 var arrFrom = dp_fromCer1.Text.Split('/');
                  d = new DateTime(int.Parse(arrFrom[2]), int.Parse(arrFrom[0]), int.Parse(arrFrom[1]));
-                //employee.EducationCertificateFromDate1 = DateTime.ParseExact(dp_fromCer1.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
                 employee.EducationCertificateFromDate1 =d;
                 var arrTo = dp_toCer1.Text.Split('/');
                 d = new DateTime(int.Parse(arrTo[2]), int.Parse(arrTo[1]), int.Parse(arrTo[0]));
                 employee.EducationCertificateToDate1 =d;
-               // employee.EducationCertificateToDate1 = DateTime.ParseExact(dp_toCer1.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
 
                 if (txt_certificate2.Value !="")
                 {
@@ -259,6 +255,8 @@ namespace Human_Resource.Views.Employees
                 employee.WorkExperience1 = txt_experience1.Text;
                 employee.WorkExperience2 = txt_experience2.Text;
                 employee.WorkExperience3 = txt_experience3.Text;
+
+                #region work details
                 employee.JobID =int.Parse( sel_position.Value);
                 if(sel_management.Value != "")
                     employee.ManagementID = int.Parse(sel_management.Value);
@@ -274,17 +272,18 @@ namespace Human_Resource.Views.Employees
                     employee.VacationsBalance = int.Parse(txt_vacationBalance.Value);
                 employee.Guarantor = txt_guarantor.Value;
                 employee.JobDescription = txt_jobDesc.Text;
+
+               
+                #endregion
                 employee.PassportNumber = txt_passportNo.Value;
 
                 var arr= dp_passportFromDate.Text.Split('/');
                 d = new DateTime(int.Parse(arr[2]), int.Parse(arr[0]), int.Parse(arr[1]));
                 employee.PassportReleaseDate = d;
-                //employee.PassportReleaseDate = DateTime.ParseExact(dp_passportFromDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture); 
 
                 arr = dp_passportEndDate.Text.Split('/');
                 d = new DateTime(int.Parse(arr[2]), int.Parse(arr[0]), int.Parse(arr[1]));
                 employee.PassportExpiryDate = d;
-                //employee.PassportExpiryDate = DateTime.ParseExact(dp_passportEndDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
                 employee.Sequence = txt_sequenceNum.Value;
                 employee.UnifiedNumber = txt_unifiedNum.Value;
 
@@ -297,6 +296,7 @@ namespace Human_Resource.Views.Employees
                 #endregion
 
                 int empId = employee.SaveEmployee(employee);
+                employee.EmployeeID = empId;
                 hid_emp_id.Value = empId.ToString();
                
                 #region upload cerificates
@@ -312,6 +312,18 @@ namespace Human_Resource.Views.Employees
                 }
                 #endregion
 
+                #region upload work permit - contract
+                if (permitFile.FileName != "" || contractFile.FileName != "")
+                {
+                    if (permitFile.FileName != "")
+                            employee.WorkPermit = uploadFile(permitFile.FileName, empId, "permit", HelpClass.WorkPermit);
+                    if (contractFile.FileName != "")
+                        employee.WorkContract = uploadFile(contractFile.FileName, empId, "contract", HelpClass.WorkContract);
+
+                    employee.SaveEmployee(employee);
+                }
+              
+                #endregion
                 Response.Redirect("NewEmployee.aspx?uid="+ hid_emp_id.Value);
             }
             //catch { }
@@ -341,6 +353,25 @@ namespace Human_Resource.Views.Employees
             };
             attach.SaveAttach(attach);
             
+        }
+
+
+        private string uploadFile(string fileName, int empId, string tag,string folderPath1)
+        {
+            //folder path to save uploaded file
+            string folderPath = Server.MapPath(folderPath1);
+
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+
+            //save file in the specified folder and path
+            string extension = Path.GetExtension(fileName);
+            var newFileName = HelpClass.MD5Hash(empId.ToString()) + "-" + tag + extension;
+            permitFile.SaveAs(folderPath + Path.GetFileName(newFileName));
+
+            return newFileName;
         }
 
         [WebMethod(EnableSession = true)]

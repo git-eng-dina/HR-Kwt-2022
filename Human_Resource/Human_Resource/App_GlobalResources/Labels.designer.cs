@@ -2392,6 +2392,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Work Contract.
+        /// </summary>
+        internal static string WorkContract {
+            get {
+                return ResourceManager.GetString("WorkContract", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to WorkerData.
         /// </summary>
         internal static string WorkerData {

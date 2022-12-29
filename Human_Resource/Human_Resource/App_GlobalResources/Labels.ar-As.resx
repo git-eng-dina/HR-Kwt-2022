@@ -921,4 +921,7 @@
   <data name="WorkPermitStart" xml:space="preserve">
     <value>تاريخ بداية اذن العمل</value>
   </data>
+  <data name="WorkContract" xml:space="preserve">
+    <value>عقد العمل</value>
+  </data>
 </root>

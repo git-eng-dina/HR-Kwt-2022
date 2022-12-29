@@ -918,6 +918,9 @@
   <data name="WaitingApprove" xml:space="preserve">
     <value>Awaiting Approval</value>
   </data>
+  <data name="WorkContract" xml:space="preserve">
+    <value>Work Contract</value>
+  </data>
   <data name="WorkPermitEnd" xml:space="preserve">
     <value>Work Permit End Date</value>
   </data>

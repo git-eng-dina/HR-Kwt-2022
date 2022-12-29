@@ -31,6 +31,16 @@
                  $('#MainContent_file_certificate3').trigger('click');
              });
 
+             $('#permitTrigger').click(function (e) {
+                 e.preventDefault();
+                 $('[id*=permitFile]').trigger('click');
+             });
+
+             $('#contractTrigger').click(function (e) {
+                 e.preventDefault();
+                 $('[id*=contractFile]').trigger('click');
+             });
+
          });
 
          $(function () {
@@ -62,6 +72,26 @@
                      var q = path.substring(path.lastIndexOf('\\') + 1);
                      $('#MainContent_hr_cer3').hide();
                      $('#MainContent_lbl_certificate3').html(q);
+                 }
+             })
+         });
+
+         $(function () {
+             $('[id*=permitFile]').change(function () {
+                 var path = $(this).val();
+                 if (path != '' && path != null) {
+                     var q = path.substring(path.lastIndexOf('\\') + 1);
+                     $('[id*=lbl_permit]').html(q);
+                 }
+             })
+         });
+
+         $(function () {
+             $('[id*=contractFile]').change(function () {
+                 var path = $(this).val();
+                 if (path != '' && path != null) {
+                     var q = path.substring(path.lastIndexOf('\\') + 1);
+                     $('[id*=lbl_contract]').html(q);
                  }
              })
          });
@@ -617,13 +647,38 @@
                             </div>
                            </div>
                             
-                                <div class="form-group" style="display:block">
+                           <div class="form-group" style="display:block">
                                 <div class="col-md-4 col-sm-4 col-xs-4 div1">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Guarantor%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2">
                                     <input type="text" class="form-control input-lg" id="txt_guarantor"  runat="server" value=""  />
                             </div>
+                            </div> 
+
+                           <div class="form-group" style="display:block">
+                                <div class="col-md-4 col-sm-4 col-xs-4 div1">
+                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,WorkingPermission%>" /></span>
+                                </div>
+                                <div class="col-md-8 col-sm-8 col-xs-8 div2">
+                                     <asp:FileUpload ID="permitFile" runat="server"  CssClass="hidden fileUpload" />
+                                     <a href=""  id="permitTrigger"> <i class="fa fa-upload"></i></a>
+                                     <a href="" id="hrf_permit" runat="server" target="_blank" class="href-file"></a>
+                                     <asp:Label ID="lbl_permit" runat="server"  CssClass="span-uploadFile"></asp:Label>
+                                </div>
+                            </div> 
+                            
+                            <div class="form-group" style="display:block">
+                                <div class="col-md-4 col-sm-4 col-xs-4 div1">
+                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,WorkContract%>" /></span>
+                                </div>
+                                <div class="col-md-8 col-sm-8 col-xs-8 div2">
+                                     <asp:FileUpload ID="contractFile" runat="server"  CssClass="hidden fileUpload" />
+                                     <a href=""  id="contractTrigger"> <i class="fa fa-upload"></i></a>
+                                     <a href="" id="hrf_contract" runat="server" target="_blank" class="href-file"></a>
+
+                                     <asp:Label ID="lbl_contract" runat="server"  CssClass="span-uploadFile"></asp:Label>
+                                </div>
                             </div> 
                           
                             <div class="form-group" style="display:block">
@@ -664,7 +719,6 @@
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
                                     <asp:TextBox ID="dp_passportFromDate" runat="server" class="form-control input-lg hasdatepicker"  value="01/11/2000" ></asp:TextBox>
 
-<%--                                    <input type="text" class="form-control input-lg hasdatepicker" id="dp_passportFromDate"  runat="server" value="2000-11-01"  />--%>
                             </div>
 
                             </div>

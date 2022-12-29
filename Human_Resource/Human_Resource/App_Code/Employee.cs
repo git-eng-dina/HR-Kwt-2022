@@ -190,6 +190,8 @@ namespace Human_Resource
         public string Guarantor { get; set; }
         public string IDNumber { get; set; }
 
+        public string WorkPermit { get; set; }
+        public string WorkContract { get; set; }
         #endregion
         #region extra info
         public int Age { get; set; }
@@ -325,6 +327,8 @@ namespace Human_Resource
                         VacationsBalance = x.VacationsBalance,
                         Guarantor = x.Guarantor,
                         JobDescription = x.JobDescription,
+                        WorkPermit=x.WorkPermit,
+                        WorkContract=x.WorkContract,
                         PassportNumber = x.PassportNumber,
                         PassportReleaseDate = x.PassportReleaseDate,
                         PassportExpiryDate = x.PassportExpiryDate,
@@ -693,6 +697,8 @@ namespace Human_Resource
                             VacationsBalance = employee.VacationsBalance,
                             Guarantor = employee.Guarantor,
                             JobDescription= employee.JobDescription,
+                            WorkContract = employee.WorkContract,
+                            WorkPermit = employee.WorkPermit,
                             PassportNumber = employee.PassportNumber ,
                             PassportReleaseDate= employee.PassportReleaseDate,
                             PassportExpiryDate=employee.PassportExpiryDate,
@@ -745,6 +751,8 @@ namespace Human_Resource
                         emp.VacationsBalance = employee.VacationsBalance;
                         emp.Guarantor = employee.Guarantor;
                         emp.JobDescription = employee.JobDescription;
+                        emp.WorkContract = employee.WorkContract;
+                        emp.WorkPermit = employee.WorkPermit;
                         emp.PassportNumber = employee.PassportNumber;
                         emp.PassportReleaseDate = employee.PassportReleaseDate;
                         emp.PassportExpiryDate = employee.PassportExpiryDate;
