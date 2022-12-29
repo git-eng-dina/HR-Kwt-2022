@@ -4,7 +4,7 @@
 <section class="statis">
     <div class="container" >
           <div class="row">
-                 <div class="col-md-6">
+                 <div class="col-md-6" id="div_employees" runat="server">
                 <div class="flag info-block">
                     <span class="flag dark-blue"></span>
                     <div class="row">
@@ -76,7 +76,7 @@
                 </div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-6" id="div_passports" runat="server">
                 <div class="info-block">
                     <span class="flag normal-blue"></span>
                     <div class="row">

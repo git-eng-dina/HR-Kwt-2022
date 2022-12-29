@@ -897,4 +897,25 @@
   <data name="WorkPermitDuration" xml:space="preserve">
     <value>Work Permit Duration</value>
   </data>
+  <data name="EducationalLevel" xml:space="preserve">
+    <value>Educational Level</value>
+  </data>
+  <data name="NoData" xml:space="preserve">
+    <value>No Data</value>
+  </data>
+  <data name="OutgoingNumber" xml:space="preserve">
+    <value>Outgoing Number</value>
+  </data>
+  <data name="Qualification" xml:space="preserve">
+    <value>Qualification</value>
+  </data>
+  <data name="SalaryDK" xml:space="preserve">
+    <value>Salary (D.K)</value>
+  </data>
+  <data name="WorkPermitEnd" xml:space="preserve">
+    <value>Work Permit End Date</value>
+  </data>
+  <data name="WorkPermitStart" xml:space="preserve">
+    <value>Work Permit Start Date</value>
+  </data>
 </root>

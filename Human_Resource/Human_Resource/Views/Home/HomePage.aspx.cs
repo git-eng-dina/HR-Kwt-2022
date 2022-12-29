@@ -14,23 +14,50 @@ namespace Human_Resource.Views.Home
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string role = Session["urole"].ToString();
 
-            renderPassportsChart();
+            if (role != "Employee")
+            {
+                getEmployeeCount();
+
+                renderPassportsChart();
+            }
+            else
+            {
+                div_employees.Visible = false;
+                div_passports.Visible = false;
+            }
             renderTasksChart();
 
-
-            var employeesCount = 10;
+           
+            
             var eventsCount = 15;
             var trainingsCount = 15;
             var vacations = 20;
 
-            lbl_employees.InnerText = employeesCount.ToString();
+            
             lbl_events.InnerText = eventsCount.ToString();
             
             lbl_trainings.InnerText = trainingsCount.ToString();
             lbl_vacations.InnerText = vacations.ToString();
         }
 
+        private void getEmployeeCount()
+        {
+            int userId = int.Parse(Session["user_id"].ToString());
+            string role = Session["urole"].ToString();
+
+            int? supervisorId = null;
+            int? managerId = null;
+            if (role == "Supervisor")
+                supervisorId = userId;
+            else if (role == "ManagementManager")
+                managerId = userId;
+
+            EmployeeModel emp = new EmployeeModel();
+            var employeesCount = emp.GetEmployeesCount(true,true,supervisorId,managerId);
+            lbl_employees.InnerText = employeesCount.ToString();
+        }
         private void renderTasksChart()
         {
             int userId = int.Parse(Session["user_id"].ToString());

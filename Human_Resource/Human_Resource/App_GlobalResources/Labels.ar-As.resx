@@ -894,4 +894,25 @@
   <data name="WorkPermitDuration" xml:space="preserve">
     <value>مدة اذن العمل</value>
   </data>
+  <data name="EducationalLevel" xml:space="preserve">
+    <value>المستوى التعليمي</value>
+  </data>
+  <data name="NoData" xml:space="preserve">
+    <value>لا يوجد بيانات</value>
+  </data>
+  <data name="OutgoingNumber" xml:space="preserve">
+    <value>رقم الصادر</value>
+  </data>
+  <data name="Qualification" xml:space="preserve">
+    <value>المؤهل العلمي</value>
+  </data>
+  <data name="SalaryDK" xml:space="preserve">
+    <value>الراتب (د.ك)</value>
+  </data>
+  <data name="WorkPermitEnd" xml:space="preserve">
+    <value>تاريخ نهاية اذن العمل</value>
+  </data>
+  <data name="WorkPermitStart" xml:space="preserve">
+    <value>تاريخ بداية اذن العمل</value>
+  </data>
 </root>

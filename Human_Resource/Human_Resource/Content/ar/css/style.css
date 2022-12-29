@@ -747,6 +747,7 @@ nav .logo {
 
     .btn-new:hover {
         color: white;
+        background-color: #623b04;
     }
 
 .btn-delete {
@@ -762,6 +763,7 @@ nav .logo {
         color: white;
         background-color: #5e0b05;
     }
+
  .c-form {
     position: relative;
     background-color: #FFF;
@@ -1416,6 +1418,11 @@ input[type=checkbox], input[type=radio] {
     font-size: 12px;
 }
 
+
+.report {
+    font-family: Arial,sans-serif;
+    color: #39393a;
+}
 .report-title {
     width: 100%;
     border: 2px solid #6c6c6f;
@@ -1436,6 +1443,16 @@ input[type=checkbox], input[type=radio] {
     height:auto;
     margin-top: 20px;
 }
+
+    .report-fieldset span {
+        display: block;
+        width: 100%;
+        float: right;
+        text-align: right;
+        margin-top: 7px;
+        margin-right:20px;
+        border: 0px;
+    }
 .legend {
     border: 1px solid #6c6c6f;
     padding: 0.2em 0.8em;

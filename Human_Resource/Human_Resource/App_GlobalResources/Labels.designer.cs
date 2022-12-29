@@ -862,6 +862,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Educational Level.
+        /// </summary>
+        internal static string EducationalLevel {
+            get {
+                return ResourceManager.GetString("EducationalLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
         internal static string Email {
@@ -1519,6 +1528,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No Data.
+        /// </summary>
+        internal static string NoData {
+            get {
+                return ResourceManager.GetString("NoData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Notes.
         /// </summary>
         internal static string Notes {
@@ -1560,6 +1578,15 @@ namespace Resources {
         internal static string Other {
             get {
                 return ResourceManager.GetString("Other", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Outgoing Number.
+        /// </summary>
+        internal static string OutgoingNumber {
+            get {
+                return ResourceManager.GetString("OutgoingNumber", resourceCulture);
             }
         }
         
@@ -1807,6 +1834,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Qualification.
+        /// </summary>
+        internal static string Qualification {
+            get {
+                return ResourceManager.GetString("Qualification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ratio.
         /// </summary>
         internal static string Ratio {
@@ -1875,6 +1911,15 @@ namespace Resources {
         internal static string RewardsAndPenalties {
             get {
                 return ResourceManager.GetString("RewardsAndPenalties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Salary (D.K).
+        /// </summary>
+        internal static string SalaryDK {
+            get {
+                return ResourceManager.GetString("SalaryDK", resourceCulture);
             }
         }
         
@@ -2388,6 +2433,24 @@ namespace Resources {
         internal static string WorkPermitDuration {
             get {
                 return ResourceManager.GetString("WorkPermitDuration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Work Permit End Date.
+        /// </summary>
+        internal static string WorkPermitEnd {
+            get {
+                return ResourceManager.GetString("WorkPermitEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Work Permit Start Date.
+        /// </summary>
+        internal static string WorkPermitStart {
+            get {
+                return ResourceManager.GetString("WorkPermitStart", resourceCulture);
             }
         }
         

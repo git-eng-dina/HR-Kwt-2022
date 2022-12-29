@@ -13,6 +13,15 @@ namespace Human_Resource.Views.Home {
     public partial class HomePage {
         
         /// <summary>
+        /// div_employees control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_employees;
+        
+        /// <summary>
         /// lbl_employees control.
         /// </summary>
         /// <remarks>
@@ -47,6 +56,15 @@ namespace Human_Resource.Views.Home {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_vacations;
+        
+        /// <summary>
+        /// div_passports control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_passports;
         
         /// <summary>
         /// lbl_expiredPassports control.

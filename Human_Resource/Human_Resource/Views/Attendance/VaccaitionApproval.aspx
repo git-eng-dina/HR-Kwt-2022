@@ -174,14 +174,14 @@
                                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,FromDate%>" ItemStyle-Width="25%">
                                          <ItemTemplate>
                                                  <asp:Label ID="LblFromDate" runat="server" 
-                                                 Text='<%# Eval("FromDate") %>' />                              
+                                             text= '<%# Eval("FromDate", "{0:dd/MM/yyyy}") %>' />                              
                                          </ItemTemplate>
                                         </asp:TemplateField>
                                           
                                  <asp:TemplateField HeaderText="<%$ Resources:Labels,ToDate%>" ItemStyle-Width="25%">
                                          <ItemTemplate>
                                                  <asp:Label ID="LblToDate" runat="server" 
-                                                 Text='<%# Eval("ToDate") %>' />                              
+                                               text= '<%# Eval("ToDate", "{0:dd/MM/yyyy}") %>' />                              
                                          </ItemTemplate>
                                         </asp:TemplateField>
                                           

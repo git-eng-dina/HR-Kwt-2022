@@ -419,6 +419,34 @@ namespace Human_Resource
                 return user;
             }
         }
+
+        public int GetEmployeesCount(bool isActive,bool hired,int? supervisorId = null,int? managerId= null)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var searchPredicate = PredicateBuilder.New<employees>();
+
+                searchPredicate = searchPredicate.And(x => x.IsActive == isActive);
+                if(hired == true)
+                    searchPredicate = searchPredicate.And(x => x.HiringDate != null);
+                else
+                    searchPredicate = searchPredicate.And(x => x.HiringDate == null);
+
+                if (supervisorId != null)
+                    searchPredicate = searchPredicate.And(x => x.managements.branches.ManagerID == supervisorId);
+                if (managerId != null)
+                    searchPredicate = searchPredicate.And(x => x.managements.ManagerID == managerId);
+
+                var count = entity.employees.Where(searchPredicate)
+                            .Select(x => new EmployeeModel()
+                            {
+                                EmployeeID = x.EmployeeID,
+                                IsActive = x.IsActive,
+                            }).ToList().Count();
+
+                return count;
+            }
+        }
         public List<EmployeeModel> GetEmployeesExpiredPassports()
         {
             using (HRSystemEntities entity = new HRSystemEntities())
