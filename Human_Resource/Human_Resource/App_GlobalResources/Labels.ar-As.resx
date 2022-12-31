@@ -924,4 +924,13 @@
   <data name="WorkContract" xml:space="preserve">
     <value>عقد العمل</value>
   </data>
+  <data name="AddDevice" xml:space="preserve">
+    <value>إضافة جهاز</value>
+  </data>
+  <data name="Devices" xml:space="preserve">
+    <value>الأجهزة</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>المنفذ</value>
+  </data>
 </root>

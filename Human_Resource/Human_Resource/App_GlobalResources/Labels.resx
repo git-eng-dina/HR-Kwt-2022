@@ -927,4 +927,13 @@
   <data name="WorkPermitStart" xml:space="preserve">
     <value>Work Permit Start Date</value>
   </data>
+  <data name="AddDevice" xml:space="preserve">
+    <value>Add Device</value>
+  </data>
+  <data name="Devices" xml:space="preserve">
+    <value>Devices</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>Port</value>
+  </data>
 </root>

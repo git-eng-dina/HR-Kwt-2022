@@ -133,6 +133,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Device.
+        /// </summary>
+        internal static string AddDevice {
+            get {
+                return ResourceManager.GetString("AddDevice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Added By.
         /// </summary>
         internal static string AddedBy {
@@ -822,6 +831,15 @@ namespace Resources {
         internal static string Details {
             get {
                 return ResourceManager.GetString("Details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Devices.
+        /// </summary>
+        internal static string Devices {
+            get {
+                return ResourceManager.GetString("Devices", resourceCulture);
             }
         }
         
@@ -1785,6 +1803,15 @@ namespace Resources {
         internal static string Physical {
             get {
                 return ResourceManager.GetString("Physical", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Port.
+        /// </summary>
+        internal static string Port {
+            get {
+                return ResourceManager.GetString("Port", resourceCulture);
             }
         }
         

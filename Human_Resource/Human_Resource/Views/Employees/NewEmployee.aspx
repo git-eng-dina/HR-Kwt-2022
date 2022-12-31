@@ -8,13 +8,6 @@
                  changeYear: true,
                  format:"MM/dd/yyyy",
              });
-             //$(".hasdatepicker").datepicker("option", "dateFormat", "mm/dd/yy");
-             //dtString = $("#MainContent_hdnDateBOD").val();
-             //dtString = dtString.split(',');
-             //alert(dtString[0]);
-             //var defaultDate = new Date(dtString[0], dtString[1], dtString[2]);
-             //alert(defaultDate.toISOString());
-            // $(".hasdatepicker").datepicker("setDate", defaultDate);
 
              $('#uploadTrigger_1').click(function (e) {
                  e.preventDefault();

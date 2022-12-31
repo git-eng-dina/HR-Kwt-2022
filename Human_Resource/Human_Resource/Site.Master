@@ -287,6 +287,12 @@
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,VaccationTypes%>" />
 
                     </a>
+                </li> 
+                <li>
+                    <a href="/Views/Settings/Devices.aspx"> 
+                        <asp:Literal runat="server" Text="<%$ Resources:Labels,Devices%>" />
+
+                    </a>
                 </li>
             </ul>
             </li>

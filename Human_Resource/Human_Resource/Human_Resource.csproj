@@ -534,6 +534,7 @@
     <Content Include="Views\Settings\CompanyList.aspx" />
     <Content Include="Views\Settings\CompanyListView.aspx" />
     <Content Include="Views\Settings\Departments.aspx" />
+    <Content Include="Views\Settings\Devices.aspx" />
     <Content Include="Views\Settings\Jobs.aspx" />
     <Content Include="Views\Settings\Managements.aspx" />
     <Content Include="Views\Settings\VaccationType.aspx" />
@@ -548,6 +549,7 @@
     <Compile Include="App_Code\Custodie.cs" />
     <Content Include="App_Code\DailyTask.cs" />
     <Content Include="App_Code\EmployeesTask.cs" />
+    <Compile Include="App_Code\Device.cs" />
     <Compile Include="App_Code\EmployeesVacation.cs" />
     <Compile Include="App_Code\Evaluation.cs" />
     <Compile Include="App_Code\Event.cs" />
@@ -591,7 +593,13 @@
     <Compile Include="departments.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Devices.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="EemployeesEvents.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeFingureprint.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="employees.cs">
@@ -878,6 +886,13 @@
     <Compile Include="Views\Settings\Departments.aspx.designer.cs">
       <DependentUpon>Departments.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Settings\Devices.aspx.cs">
+      <DependentUpon>Devices.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Settings\Devices.aspx.designer.cs">
+      <DependentUpon>Devices.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Settings\Jobs.aspx.cs">
       <DependentUpon>Jobs.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -980,6 +995,17 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="zkeuemkeeper">
+      <Guid>{EE9EED34-E159-408E-8490-B720A5E632C7}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
