@@ -508,6 +508,7 @@
     <Content Include="tiny_mce\utils\mctabs.js" />
     <Content Include="tiny_mce\utils\validate.js" />
     <Content Include="ViewSwitcher.ascx" />
+    <Content Include="Views\Attendance\AttendanceReport.aspx" />
     <Content Include="Views\Attendance\HourlyBills.aspx" />
     <Content Include="Views\Attendance\VacationReport.aspx" />
     <Content Include="Views\Attendance\VaccaitionApproval.aspx" />
@@ -697,6 +698,13 @@
     </Compile>
     <Compile Include="vacations.cs">
       <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Attendance\AttendanceReport.aspx.cs">
+      <DependentUpon>AttendanceReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Attendance\AttendanceReport.aspx.designer.cs">
+      <DependentUpon>AttendanceReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Attendance\HourlyBills.aspx.cs">
       <DependentUpon>HourlyBills.aspx</DependentUpon>

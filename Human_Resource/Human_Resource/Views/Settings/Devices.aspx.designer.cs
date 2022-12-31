@@ -73,7 +73,7 @@ namespace Human_Resource.Views.Settings {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_port;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txt_port;
         
         /// <summary>
         /// txt_notes control.

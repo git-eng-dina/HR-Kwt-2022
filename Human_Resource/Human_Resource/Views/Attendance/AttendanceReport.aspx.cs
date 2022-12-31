@@ -13,15 +13,19 @@ namespace Human_Resource.Views.Attendance
         {
 
         }
-
         protected void btn_Search_Click(object sender, EventArgs e)
         {
             try
             {
-                zkemkeeper.CZKEM axCZKEM1 = new zkemkeeper.CZKEM();
-                string deviceID = txt_deviceNum.Value;
+                zkeuemkeeper.CZKEUEM axCZKEM1 = new zkeuemkeeper.CZKEUEM();
+                bool bIsConnected = axCZKEM1.Connect_Net("localhost", 4370);   // 4370 is port no of attendance machine
+                if (bIsConnected == true)
+                {
+                    var IsRead = axCZKEM1.ReadGeneralLogData(dwMachineNumber);
+                }
+                 string deviceID = txt_deviceNum.Value;
                 string port = txt_port.Value;
-               // BindData(textSearch);
+                // BindData(textSearch);
             }
             catch { }
         }

@@ -244,7 +244,7 @@
                      <div class ="row">
                      <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Port%>" /></span>
-                                <input type="text" class="form-control input-lg" id="txt_port"  runat="server" value="" onchange="removeValidation($(this));" />
+                                <input type="number" class="form-control input-lg" id="txt_port"  runat="server" value="" onchange="removeValidation($(this));" />
                          <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
                             </div>
                         </div> 

@@ -927,10 +927,19 @@
   <data name="AddDevice" xml:space="preserve">
     <value>إضافة جهاز</value>
   </data>
+  <data name="AttendanceReport" xml:space="preserve">
+    <value>تقرير الحضور</value>
+  </data>
   <data name="Devices" xml:space="preserve">
     <value>الأجهزة</value>
   </data>
+  <data name="From" xml:space="preserve">
+    <value>من</value>
+  </data>
   <data name="Port" xml:space="preserve">
     <value>المنفذ</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>إلى</value>
   </data>
 </root>

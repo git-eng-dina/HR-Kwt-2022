@@ -237,6 +237,11 @@
                     <a href="/Views/Attendance/WorkShifts.aspx" class="">
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,WorkShifts%>" />
                     </a>
+                </li> 
+                <li>
+                    <a href="/Views/Attendance/AttendanceReport.aspx" class="">
+                        <asp:Literal runat="server" Text="<%$ Resources:Labels,AttendanceReport%>" />
+                    </a>
                 </li>
                
             </ul>

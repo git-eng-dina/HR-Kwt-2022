@@ -930,10 +930,19 @@
   <data name="AddDevice" xml:space="preserve">
     <value>Add Device</value>
   </data>
+  <data name="AttendanceReport" xml:space="preserve">
+    <value>Attendance Report</value>
+  </data>
   <data name="Devices" xml:space="preserve">
     <value>Devices</value>
   </data>
+  <data name="From" xml:space="preserve">
+    <value>From</value>
+  </data>
   <data name="Port" xml:space="preserve">
     <value>Port</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>To</value>
   </data>
 </root>

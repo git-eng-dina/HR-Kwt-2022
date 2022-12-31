@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AttendanceReport.aspx.cs" Inherits="Human_Resource.Views.Attendance.AttendanceReport" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-         <script>
+
+     <script>
              $(document).ready(function () {
                  $(".hasdatepicker").datepicker({
                      changeMonth: true,
@@ -28,7 +29,7 @@
 
                         <div class="input-group">
                             <div class="col-2">
-                                <input type="text" runat="server" id="txt_deviceNum" placeholder="<%$ Resources:Labels,DeviceID%>" />
+                                <input type="text" runat="server" id="txt_deviceNum" placeholder="<%$ Resources:Labels,TheName%>" />
                             </div>
                             <div class="col-2">
                                 <input type="text" runat="server" id="txt_port" placeholder="<%$ Resources:Labels,Port%>" />
