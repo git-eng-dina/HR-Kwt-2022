@@ -165,45 +165,41 @@ namespace Human_Resource.Views.Settings
             #endregion
             companyId = company.SaveCompanyInfo(company, advisors).ToString();
 
+            #region confirm Managers
+            ConfirmModel confirm = new ConfirmModel();
+         
+            confirm.Role = "GeneralDirector";
+            confirm.ConfirmType = "emp_hiring";
+            confirm.CreateUserID = int.Parse(userId);
+            confirm.UpdateUserID = int.Parse(userId);
+
+            //confirm general director
+            confirm.EmployeeID = int.Parse(GeneralDirector);
+            confirm.AddConfirm(confirm); 
+            //confirm CEO
+            confirm.EmployeeID = int.Parse(CEO);
+            confirm.AddConfirm(confirm);
+            //confirm FinancialManager
+            confirm.EmployeeID = int.Parse(FinancialManager);
+            confirm.AddConfirm(confirm);
+            //confirm HRManager
+            confirm.EmployeeID = int.Parse(HRManager);
+            confirm.AddConfirm(confirm);
+
+            //confirm LegalManager
+            confirm.EmployeeID = int.Parse(LegalManager);
+            confirm.AddConfirm(confirm);
+
+            //confirm advisors
+            foreach (var v in advisors)
+            {
+                confirm.EmployeeID = v;
+                confirm.AddConfirm(confirm);
+            }
+            #endregion
             return companyId.ToString();
 
         }
-        //protected void btn_edit_Click(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        CompanyModel company = new CompanyModel();
-        //        company.Name = txt_name.Text;
-        //        company.Address = txt_address.Text;
-        //        company.Mobile = txt_mobile.Text;
-        //        company.Phone = txt_phone.Text;
-        //        company.Fax = txt_fax.Text;
-        //        company.Email = txt_email.Value;
-        //        company.Notes = txt_notes.Text;
-        //        company.OurCompany = true;
-        //        company.GeneralDirector = int.Parse( sel_generalDirector.Value);
-        //        company.CEO = int.Parse( sel_CEO.Value);
-        //        company.FinancialManager = int.Parse( sel_financialManager.Value);
-        //        company.HRManager = int.Parse( sel_HRManager.Value);
-        //        company.LegalManager = int.Parse(sel_legal.Value);
-
-              
-        //        if(Session["user_id"] != null && Session["user_id"].ToString() != "")
-        //            company.CreateUserID = company.UpdateUserID = int.Parse(Session["user_id"].ToString());
-
-        //        if (!hid_companyID.Value.Equals(""))
-        //            company.CompanyID = int.Parse(hid_companyID.Value);
-        //        else
-        //            company.CompanyID = 0;
-
-        //        int companyId = company.SaveCompanyInfo(company);
-        //        if (companyId != 0)
-        //        {
-        //            hid_companyID.Value = companyId.ToString();
-        //            Response.Write("<script>alert('"+ Resources.Labels.SaveSuccessfully+"')</script>");
-        //        }
-        //    }
-        //    catch { }
-        //}
+ 
     }
 }
