@@ -13,6 +13,15 @@ namespace Human_Resource.Views.Attendance {
     public partial class AttendanceReport {
         
         /// <summary>
+        /// sel_device control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect sel_device;
+        
+        /// <summary>
         /// txt_deviceNum control.
         /// </summary>
         /// <remarks>

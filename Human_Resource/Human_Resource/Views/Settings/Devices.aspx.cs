@@ -45,7 +45,7 @@ namespace Human_Resource.Views.Settings
         }
 
         [WebMethod(EnableSession = true)]
-        public static string SaveDevice(string id, string name,string port,string notes)
+        public static string SaveDevice(string id, string name,string port,string deviceNumber,string notes)
         {
             try
             {
@@ -56,6 +56,7 @@ namespace Human_Resource.Views.Settings
                     device.ID = 0;
                 device.Name = name;
                 device.Port = int.Parse(port);
+                device.DeviceNumber = int.Parse(deviceNumber);
                 device.Notes = notes;
 
                 if (HttpContext.Current.Session["user_id"] != null && HttpContext.Current.Session["user_id"].ToString() != "")

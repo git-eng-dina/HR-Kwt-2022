@@ -38,12 +38,14 @@ namespace Human_Resource.Views.Employees
             string role = Session["urole"].ToString();
             if (role == "GeneralDirector" || role == "CEO" || role == "Supervisor" || role == "HRManager" || role.ToString() == "FinancialManager")
             {
-                if (role == "GeneralDirector" || role == "CEO")
-                    unHiredEmployees = emp.GetEmployees(true, false);
-                else if (role == "Supervisor")
+                if (role == "GeneralDirector" || role == "CEO" || role == "FinancialManager")
+                    unHiredEmployees = emp.GetNotHiredEmpForHeigh();
+                else if (role == "Supervisor")//branch manager
                     unHiredEmployees = emp.GetNotHiredEmployees(userId);//not get any approval
-                else if (role == "HRManager" || role.ToString() == "FinancialManager")
-                    unHiredEmployees = emp.GetNotHiredEmployees(role);
+                else if (role == "HRManager")
+                    unHiredEmployees = emp.GetNotHiredEmployeesForHR(role);
+                //else if (role.ToString() == "FinancialManager")
+                //    unHiredEmployees = emp.GetNotHiredEmpForHeigh(role);
 
 
                 if (textSearch != "")
@@ -121,7 +123,7 @@ namespace Human_Resource.Views.Employees
                 long confirmId = confirm.AddConfirm(confirm);
                 if (confirmId != 0)
                 {
-                    emp.SetHireDate(int.Parse(employeeID));
+                    //emp.SetHireDate(int.Parse(employeeID));
                     return "1";
                 }
                 return "0";

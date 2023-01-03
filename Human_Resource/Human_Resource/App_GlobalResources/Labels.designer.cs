@@ -844,6 +844,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Device.
+        /// </summary>
+        internal static string Device {
+            get {
+                return ResourceManager.GetString("Device", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Device Number.
+        /// </summary>
+        internal static string DeviceNumber {
+            get {
+                return ResourceManager.GetString("DeviceNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Devices.
         /// </summary>
         internal static string Devices {
@@ -1920,6 +1938,15 @@ namespace Resources {
         internal static string Reject {
             get {
                 return ResourceManager.GetString("Reject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remaining Balance.
+        /// </summary>
+        internal static string RemainingBalance {
+            get {
+                return ResourceManager.GetString("RemainingBalance", resourceCulture);
             }
         }
         

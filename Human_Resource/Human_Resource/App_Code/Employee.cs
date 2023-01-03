@@ -28,7 +28,9 @@ namespace Human_Resource
                 var searchPredicate = PredicateBuilder.New<employees>();
 
                 searchPredicate = searchPredicate.And(x => x.IsActive == true);
-                searchPredicate = searchPredicate.And(x => x.HiringDate != null);               
+                searchPredicate = searchPredicate.And(x => entity.confirms.Any(y => y.EmployeeID == x.EmployeeID
+                            && (y.Role == "FinancialManager" || y.Role == "GeneralDirector" || y.Role == "CEO")
+                            && y.ConfirmType == "emp_hiring"));               
 
                 var user = entity.employees.Where(searchPredicate)
                             .Select(x => new EmployeeModel()
@@ -58,8 +60,11 @@ namespace Human_Resource
             using (HRSystemEntities entity = new HRSystemEntities())
             {
                 var searchPredicate = PredicateBuilder.New<employees>();
-             
-                searchPredicate = searchPredicate.And(x => x.HiringDate != null && x.IsActive== true);              
+
+                searchPredicate = searchPredicate.And(x => x.IsActive == true);
+                searchPredicate = searchPredicate.And(x => entity.confirms.Any(y => y.EmployeeID == x.EmployeeID
+                            && (y.Role == "FinancialManager" || y.Role == "GeneralDirector" || y.Role == "CEO")
+                            && y.ConfirmType == "emp_hiring"));              
                 searchPredicate = searchPredicate.And(x => x.managements.branches.ManagerID == supervisorId);              
 
                 var user = entity.employees.Where(searchPredicate)
@@ -90,8 +95,11 @@ namespace Human_Resource
             using (HRSystemEntities entity = new HRSystemEntities())
             {
                 var searchPredicate = PredicateBuilder.New<employees>();
-             
-                searchPredicate = searchPredicate.And(x => x.HiringDate != null && x.IsActive== true);              
+
+                searchPredicate = searchPredicate.And(x => x.IsActive == true);
+                searchPredicate = searchPredicate.And(x => entity.confirms.Any(y => y.EmployeeID == x.EmployeeID
+                            && (y.Role == "FinancialManager" || y.Role == "GeneralDirector" || y.Role == "CEO")
+                            && y.ConfirmType == "emp_hiring"));              
                 searchPredicate = searchPredicate.And(x => x.managements.ManagerID == managerId);              
 
                 var user = entity.employees.Where(searchPredicate)
@@ -357,12 +365,29 @@ namespace Human_Resource
                 return employee;
             }
         }
+       public int GetVaccationBalance(int empId)
+        {
+            int balance = 0;
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+               var bal = entity.employees.Where(x => x.EmployeeID == empId )
+                    .Select(x => 
+                        x.VacationsBalance).FirstOrDefault();
+
+                if (bal != null)
+                    balance =(int) bal;
+
+                return balance;
+            }
+        }
 
         public List<EmployeeModel> GetHiredEmployees(bool isActive)
         {
             using (HRSystemEntities entity = new HRSystemEntities())
             {
-                var user = entity.employees.Where(x => x.IsActive == isActive && x.HiringDate != null)
+                var user = entity.employees.Where(x => x.IsActive == isActive && entity.confirms.Any(y => y.EmployeeID == x.EmployeeID
+                            && (y.Role == "FinancialManager" || y.Role == "GeneralDirector" || y.Role == "CEO")
+                            && y.ConfirmType == "emp_hiring"))
                             .Select(x => new EmployeeModel()
                             {
                                 EmployeeID = x.EmployeeID,
@@ -391,9 +416,13 @@ namespace Human_Resource
 
                 searchPredicate = searchPredicate.And(x => x.IsActive == isActive);
                 if(hired == true)
-                    searchPredicate = searchPredicate.And(x => x.HiringDate != null);
+                    searchPredicate = searchPredicate.And(x => entity.confirms.Any(y => y.EmployeeID == x.EmployeeID
+                            && (y.Role == "FinancialManager" || y.Role == "GeneralDirector" || y.Role == "CEO")
+                            && y.ConfirmType == "emp_hiring"));
                 else
-                    searchPredicate = searchPredicate.And(x => x.HiringDate == null);
+                    searchPredicate = searchPredicate.And(x => !entity.confirms.Any(y => y.EmployeeID == x.EmployeeID
+                            && (y.Role == "FinancialManager" || y.Role == "GeneralDirector" || y.Role == "CEO")
+                            && y.ConfirmType == "emp_hiring"));
 
                 if (supervisorId != null)
                     searchPredicate = searchPredicate.And(x => x.managements.branches.ManagerID == supervisorId);
@@ -432,9 +461,13 @@ namespace Human_Resource
 
                 searchPredicate = searchPredicate.And(x => x.IsActive == isActive);
                 if(hired == true)
-                    searchPredicate = searchPredicate.And(x => x.HiringDate != null);
+                    searchPredicate = searchPredicate.And(x => entity.confirms.Any(y => y.EmployeeID == x.EmployeeID
+                            && (y.Role == "FinancialManager" || y.Role == "GeneralDirector" || y.Role == "CEO")
+                            && y.ConfirmType == "emp_hiring"));
                 else
-                    searchPredicate = searchPredicate.And(x => x.HiringDate == null);
+                    searchPredicate = searchPredicate.And(x => !entity.confirms.Any(y => y.EmployeeID == x.EmployeeID
+                            && (y.Role == "FinancialManager" || y.Role == "GeneralDirector" || y.Role == "CEO")
+                            && y.ConfirmType == "emp_hiring"));
 
                 if (supervisorId != null)
                     searchPredicate = searchPredicate.And(x => x.managements.branches.ManagerID == supervisorId);
@@ -458,7 +491,9 @@ namespace Human_Resource
                 var searchPredicate = PredicateBuilder.New<employees>();
 
                 searchPredicate = searchPredicate.And(x => x.IsActive == true);
-                searchPredicate = searchPredicate.And(x => x.HiringDate != null);
+                searchPredicate = searchPredicate.And(x => entity.confirms.Any(y => y.EmployeeID == x.EmployeeID
+                            && (y.Role == "FinancialManager" || y.Role == "GeneralDirector" || y.Role == "CEO")
+                            && y.ConfirmType == "emp_hiring"));
                 searchPredicate = searchPredicate.And(x => x.PassportExpiryDate < DateTime.Now);
 
                 var user = entity.employees.Where(searchPredicate)
@@ -493,7 +528,9 @@ namespace Human_Resource
                 var searchPredicate = PredicateBuilder.New<employees>();
 
                 searchPredicate = searchPredicate.And(x => x.IsActive == true);
-                searchPredicate = searchPredicate.And(x => x.HiringDate != null);
+                searchPredicate = searchPredicate.And(x => entity.confirms.Any(y => y.EmployeeID == x.EmployeeID
+                            && (y.Role == "FinancialManager" || y.Role == "GeneralDirector" || y.Role == "CEO")
+                            && y.ConfirmType == "emp_hiring"));
                 searchPredicate = searchPredicate.And(x => x.PassportExpiryDate < DateTime.Now);
                 searchPredicate = searchPredicate.And(e => e.managements.ManagerID == managerId);
 
@@ -528,7 +565,9 @@ namespace Human_Resource
                 var searchPredicate = PredicateBuilder.New<employees>();
 
                 searchPredicate = searchPredicate.And(x => x.IsActive == true);
-                searchPredicate = searchPredicate.And(x => x.HiringDate != null);
+                searchPredicate = searchPredicate.And(x => entity.confirms.Any(y => y.EmployeeID == x.EmployeeID
+                            && (y.Role == "FinancialManager" || y.Role == "GeneralDirector" || y.Role == "CEO")
+                            && y.ConfirmType == "emp_hiring"));
                 searchPredicate = searchPredicate.And(x => x.PassportExpiryDate < DateTime.Now);
                 searchPredicate = searchPredicate.And(e => e.managements.branches.ManagerID == managerId);
 
@@ -563,9 +602,7 @@ namespace Human_Resource
             {
                 var searchPredicate = PredicateBuilder.New<employees>();
 
-                //searchPredicate = searchPredicate.And(x => x.DepartmentID == entity.departments.Where(m => m.ManagerID == deptManagerId).Select(m => m.DepartmentID).FirstOrDefault());
                 searchPredicate = searchPredicate.And(x => x.ManagementID == entity.managements.Where(m => m.ManagerID == deptManagerId).Select(m => m.ManagementID).FirstOrDefault());
-                searchPredicate = searchPredicate.And(x => x.HiringDate == null);
                 searchPredicate = searchPredicate.And(x => !entity.confirms.Any(y => y.EmployeeID == x.EmployeeID && y.Role == "DepartmentManager" && y.ConfirmType== "emp_hiring"));
                 var user = entity.employees.Where(searchPredicate)
                             .Select(x => new EmployeeModel()
@@ -592,14 +629,45 @@ namespace Human_Resource
         }
 
         //for HR
-        public List<EmployeeModel> GetNotHiredEmployees(string role)
+        public List<EmployeeModel> GetNotHiredEmployeesForHR(string role)
         {
             using (HRSystemEntities entity = new HRSystemEntities())
             {
                 var searchPredicate = PredicateBuilder.New<employees>();
 
-                searchPredicate = searchPredicate.And(x => x.HiringDate == null);
                 searchPredicate = searchPredicate.And(x => !entity.confirms.Any(y => y.EmployeeID == x.EmployeeID && y.Role == role && y.ConfirmType == "emp_hiring"));
+                var user = entity.employees.Where(searchPredicate)
+                            .Select(x => new EmployeeModel()
+                            {
+                                EmployeeID = x.EmployeeID,
+                                IsActive = x.IsActive,
+                                Username = x.Username,
+                                NameAr = x.NameAr,
+                                NameEn = x.NameEn,
+                                BasicSalary = x.BasicSalary,
+                                Position = x.jobs.Name,
+                                DepartmentName = x.departments.Name,
+                                ManagementName=x.managements.Name,
+                                AddedBy = entity.employees.Where(m => m.EmployeeID == x.CreateUserID).Select(m => m.NameAr).FirstOrDefault(),
+                            }).ToList();
+
+                foreach(var emp in user)
+                {
+                    if (emp.DOB != null)
+                        emp.Age = HelpClass.get_age((DateTime)emp.DOB);
+                }
+                return user;
+            }
+        }
+         public List<EmployeeModel> GetNotHiredEmpForHeigh()
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var searchPredicate = PredicateBuilder.New<employees>();
+
+                searchPredicate = searchPredicate.And(x => !entity.confirms.Any(y => y.EmployeeID == x.EmployeeID 
+                            &&( y.Role == "FinancialManager" || y.Role == "GeneralDirector" || y.Role == "CEO") 
+                            && y.ConfirmType == "emp_hiring"));
                 var user = entity.employees.Where(searchPredicate)
                             .Select(x => new EmployeeModel()
                             {
@@ -693,6 +761,7 @@ namespace Human_Resource
                             ManagementID = employee.ManagementID,
                             WorkHours = employee.WorkHours,
                             BasicSalary = employee.BasicSalary ,
+                            HiringDate = employee.HiringDate,
                             Email = employee.Email,
                             VacationsBalance = employee.VacationsBalance,
                             Guarantor = employee.Guarantor,
@@ -747,6 +816,7 @@ namespace Human_Resource
                         emp.ManagementID = employee.ManagementID;
                         emp.WorkHours = employee.WorkHours;
                         emp.BasicSalary = employee.BasicSalary;
+                        emp.HiringDate = employee.HiringDate;
                         emp.Email = employee.Email;
                         emp.VacationsBalance = employee.VacationsBalance;
                         emp.Guarantor = employee.Guarantor;
@@ -793,17 +863,6 @@ namespace Human_Resource
                 return false;
             }
         }
-
-        public void SetHireDate(int empID)
-        {
-            using (HRSystemEntities entity = new HRSystemEntities())
-            {
-                var emp = entity.employees.Find(empID);
-                emp.HiringDate = DateTime.Now;
-                entity.SaveChanges();
-            }
-        }
-      
 
         #endregion
 

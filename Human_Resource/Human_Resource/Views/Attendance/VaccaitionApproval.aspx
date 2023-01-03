@@ -289,7 +289,11 @@
                        <!---- table -->
                         <div class="row" id="gv_Blank" runat="server">&nbsp;</div>
                         <div class="row gridView-title" id="gv_executed_title" runat="server">                       
-                           <span><asp:Literal Text=" <%$ Resources:Labels,Vacations%>" runat="server"></asp:Literal> </span>
+                           <span><asp:Literal Text=" <%$ Resources:Labels,Vacations%>" runat="server"></asp:Literal>
+                               <asp:Literal Text=" - " runat="server"></asp:Literal>
+                               <asp:Literal Text="<%$ Resources:Labels,RemainingBalance%> " runat="server"></asp:Literal>
+                                <asp:Literal Text=" - " runat="server" ID="lbl_balance"></asp:Literal>
+                           </span>
                         </div>
 
                             <asp:GridView ID="gv_data" runat="server"  CssClass="specialist-gridview col-md-12"  

@@ -95,6 +95,8 @@ namespace Human_Resource.Views.Attendance
 
 
             DataBind();
+            var vacBalance = employeeModel.GetVaccationBalance(userId);
+            lbl_balance.Text = vacBalance.ToString();
         }
 
         protected void gv_approve_RowDataBound(object sender, GridViewRowEventArgs e)

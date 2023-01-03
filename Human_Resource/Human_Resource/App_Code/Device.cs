@@ -12,6 +12,7 @@ namespace Human_Resource.App_Code
         public int ID { get; set; }
         public string Name { get; set; }
         public Nullable<int> Port { get; set; }
+        public Nullable<int> DeviceNumber { get; set; }
         public string Notes { get; set; }
 
         public Nullable<bool> IsActive { get; set; }
@@ -36,6 +37,7 @@ namespace Human_Resource.App_Code
                                 ID = x.ID,
                                 Name = x.Name,
                                 Port = x.Port,
+                                DeviceNumber = x.DeviceNumber,
                                 Notes = x.Notes,
                                 CreateDate = x.CreateDate,
                                 UpdateDate = x.UpdateDate,
@@ -57,7 +59,8 @@ namespace Human_Resource.App_Code
                                 {
                                     ID = x.ID,
                                     Name = x.Name,
-                                    Port=x.Port,                                  
+                                    Port=x.Port,
+                                    DeviceNumber = x.DeviceNumber,
                                     CreateUserID = x.CreateUserID,
                                     UpdateUserID = x.UpdateUserID,
                                     Notes = x.Notes,
@@ -82,7 +85,8 @@ namespace Human_Resource.App_Code
                         {
                             Name = device.Name,
                             Port=device.Port,
-                            Notes=device.Notes,
+                            DeviceNumber = device.DeviceNumber,
+                            Notes =device.Notes,
                             IsActive = true,
                             CreateUserID = device.CreateUserID,
                             UpdateUserID = device.UpdateUserID,
@@ -96,6 +100,7 @@ namespace Human_Resource.App_Code
                         dev = entity.Devices.Find(device.ID);
                         dev.Name = device.Name;
                         dev.Port = device.Port;
+                        dev.DeviceNumber = device.DeviceNumber;
                         dev.Notes = device.Notes;
                         dev.IsActive = true;
                         dev.UpdateUserID = device.UpdateUserID;

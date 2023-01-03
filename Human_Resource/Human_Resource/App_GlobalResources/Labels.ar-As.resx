@@ -942,4 +942,13 @@
   <data name="To" xml:space="preserve">
     <value>إلى</value>
   </data>
+  <data name="Device" xml:space="preserve">
+    <value>الجهاز</value>
+  </data>
+  <data name="DeviceNumber" xml:space="preserve">
+    <value>رقم الجهاز</value>
+  </data>
+  <data name="RemainingBalance" xml:space="preserve">
+    <value>الرصيد المتبقي</value>
+  </data>
 </root>

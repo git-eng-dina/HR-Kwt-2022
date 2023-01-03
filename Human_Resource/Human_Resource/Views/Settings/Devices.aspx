@@ -32,6 +32,7 @@
             $('#MainContent_hid_ID').val("");
             $('#MainContent_txt_name').val("");
             $('#MainContent_txt_port').val("");
+            $('#MainContent_txt_deviceNumber').val("");
             $('#MainContent_txt_notes').val("");
             $("#dialog").dialog("close");
         }
@@ -59,6 +60,7 @@
                         $('#MainContent_hid_ID').val(item.ID);
                         $('#MainContent_txt_name').val(item.Name);
                         $('#MainContent_txt_port').val(item.Port);
+                        $('#MainContent_txt_deviceNumber').val(item.DeviceNumber);
                         $('#MainContent_txt_notes').val(item.Notes);
                     }
 
@@ -86,6 +88,10 @@
                 $('#MainContent_txt_port').attr("class", "form-control is-invalid");
                 valid = false;
             }
+            if ($('#MainContent_txt_deviceNumber').val() == "" || $('#MainContent_txt_deviceNumber').val() == null) {
+                $('#MainContent_txt_deviceNumber').attr("class", "form-control is-invalid");
+                valid = false;
+            }
            
 
             return valid;
@@ -96,12 +102,14 @@
                 var id = $('#MainContent_hid_ID').val();
                 var name = $("#MainContent_txt_name").val();
                 var port = $("#MainContent_txt_port").val();
+                var deviceNumber = $("#MainContent_txt_deviceNumber").val();
                 var notes = $("#MainContent_txt_notes").val();
 
                 var parameter = {
                     id: id,
                     name: name,
                     port: port,
+                    deviceNumber: deviceNumber,
                     notes: notes,
                 };
                 $.ajax({
@@ -175,16 +183,22 @@
                                                  Text='<%# Eval("Name") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>             
+                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,DeviceNumber%>" ItemStyle-Width="15%">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblDnumber" runat="server" 
+                                                 Text='<%# Eval("DeviceNumber") %>' />                              
+                                         </ItemTemplate>
+                                   </asp:TemplateField>             
                                           
                                 <asp:TemplateField HeaderText="<%$ Resources:Labels,Port%>" ItemStyle-Width="25%">
                                          <ItemTemplate>
-                                                 <asp:Label ID="LblMobile" runat="server" 
+                                                 <asp:Label ID="LblPort" runat="server" 
                                                  Text='<%# Eval("Port") %>' />                              
                                          </ItemTemplate>
                                         </asp:TemplateField>
                                     <asp:TemplateField HeaderText="<%$ Resources:Labels,AddedBy%>" ItemStyle-Width="25%">
                                          <ItemTemplate>
-                                                 <asp:Label ID="LblAddress" runat="server" 
+                                                 <asp:Label ID="LblAddedBy" runat="server" 
                                                  Text='<%# Eval("AddedBy") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>  
@@ -245,6 +259,14 @@
                      <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Port%>" /></span>
                                 <input type="number" class="form-control input-lg" id="txt_port"  runat="server" value="" onchange="removeValidation($(this));" />
+                         <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
+                            </div>
+                        </div>  
+                    
+                    <div class ="row">
+                     <div class="form-group" style="display:block">
+                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,DeviceNumber%>" /></span>
+                                <input type="number" class="form-control input-lg" id="txt_deviceNumber"  runat="server" value="" onchange="removeValidation($(this));" />
                          <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
                             </div>
                         </div> 

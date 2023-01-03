@@ -29,7 +29,8 @@
 
                         <div class="input-group">
                             <div class="col-2">
-                                <input type="text" runat="server" id="txt_deviceNum" placeholder="<%$ Resources:Labels,TheName%>" />
+                                 <select runat="server" id="sel_device" name="sel_maritalStatus" class="form-control" placeholder="<%$ Resources:Labels,Device%>"></select>
+                                <input type="text" runat="server" id="txt_deviceNum" placeholder="<%$ Resources:Labels,Device%>" />
                             </div>
                             <div class="col-2">
                                 <input type="text" runat="server" id="txt_port" placeholder="<%$ Resources:Labels,Port%>" />

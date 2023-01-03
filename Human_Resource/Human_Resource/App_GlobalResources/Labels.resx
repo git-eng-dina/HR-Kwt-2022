@@ -945,4 +945,13 @@
   <data name="To" xml:space="preserve">
     <value>To</value>
   </data>
+  <data name="DeviceNumber" xml:space="preserve">
+    <value>Device Number</value>
+  </data>
+  <data name="Device" xml:space="preserve">
+    <value>Device</value>
+  </data>
+  <data name="RemainingBalance" xml:space="preserve">
+    <value>Remaining Balance</value>
+  </data>
 </root>
