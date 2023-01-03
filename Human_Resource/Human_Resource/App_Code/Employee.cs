@@ -439,6 +439,7 @@ namespace Human_Resource
                                 NameEn = x.NameEn,
                                 BasicSalary = x.BasicSalary,
                                 Position = x.jobs.Name,
+                                DOB = x.DOB,
                                 DepartmentName = x.departments.Name,
                                 ManagementName = x.managements.Name,
                                 AddedBy = entity.employees.Where(m => m.EmployeeID == x.CreateUserID).Select(m => m.NameAr).FirstOrDefault(),
