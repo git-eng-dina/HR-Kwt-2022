@@ -353,7 +353,7 @@
                         <div class="panel-heading">
                         <span> <asp:literal runat="server" text="<%$ Resources:Labels,AcademicCertificates%>"/></span>
                         </div>
-                        <div class="c-form-dynamic" style="height:250px">
+                        <div class="c-form-dynamic" style="height:300px">
                             <div class="row">
                              <div class="invalid-feedback" id="cerValidMsg"><asp:Literal  runat="server" Text="<%$ Resources:Labels,UploadFile%>" /></div>
                             <div class="form-group" style="display:block">
@@ -476,8 +476,6 @@
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
                                     <asp:TextBox ID="dp_toCer3" runat="server" class="form-control input-lg hasdatepicker"  value="01/11/2000" ></asp:TextBox>
-
-<%--                                  <input type="text" class="form-control input-lg hasdatepicker" id="dp_toCer3"  runat="server" value="2000-11-01"   />--%>
                                    
                                 </div>
                            </div>
@@ -510,7 +508,7 @@
                         <div class="panel-heading">
                         <span> <asp:literal runat="server" text="<%$ Resources:Labels,PreviousExperience%>"/></span>
                         </div>
-                        <div class="c-form-dynamic" style="height:140px">
+                        <div class="c-form-dynamic" style="height:180px">
                             <div class="form-textarea" style="display:block">
                                 <div class="col-md-3 col-sm-4 col-xs-4 div1">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Experience1%>" /></span>
