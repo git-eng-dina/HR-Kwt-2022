@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -59,6 +60,24 @@ namespace Human_Resource
                 Response.Redirect("Views/Home/HomePage.aspx");
 
             }
+        }
+
+        [WebMethod(EnableSession = true)]
+        public static string logout()
+        {
+            try
+            {
+                // remove authintication
+                FormsAuthentication.SignOut();
+                HttpContext.Current.Session.Abandon();
+                return "1";
+            }
+            catch
+            {
+                return "0";
+
+            }
+
         }
     }
 }

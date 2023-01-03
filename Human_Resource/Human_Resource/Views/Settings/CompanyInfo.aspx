@@ -70,8 +70,7 @@
             if (valid == true) {
                 var advisorsIds = "";
                 $('#MainContent_lst_employee li').each(function (i) {
-                    var inp = $(this).find('input');
-                    advisorsIds += inp.val() + ",";
+                    advisorsIds += $(this).attr("id") + ",";
                 });
 
 
