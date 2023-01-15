@@ -675,7 +675,7 @@
   <data name="EvaluationDate" xml:space="preserve">
     <value>Evaluation Date</value>
   </data>
-  <data name="Reviewer" xml:space="preserve">
+  <data name="ReviewerHint" xml:space="preserve">
     <value>Reviewer</value>
   </data>
   <data name="Attendance" xml:space="preserve">
@@ -953,5 +953,26 @@
   </data>
   <data name="RemainingBalance" xml:space="preserve">
     <value>Remaining Balance</value>
+  </data>
+  <data name="BarcodeUser" xml:space="preserve">
+    <value>Is barcode user</value>
+  </data>
+  <data name="12Digit" xml:space="preserve">
+    <value>Should be 12 digits</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="Evaluation" xml:space="preserve">
+    <value>Evaluation</value>
+  </data>
+  <data name="Technicians" xml:space="preserve">
+    <value>Technicians</value>
+  </data>
+  <data name="Reviewer" xml:space="preserve">
+    <value>Reviewer</value>
+  </data>
+  <data name="Charity" xml:space="preserve">
+    <value>Charity</value>
   </data>
 </root>

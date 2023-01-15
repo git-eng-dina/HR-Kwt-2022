@@ -156,6 +156,7 @@
                        <!---- table -->
                             <asp:GridView ID="gv_data" runat="server"  CssClass="gridView col-md-12"  
                                 AutoGenerateColumns="False"  Width="90%" 
+                                OnRowCreated="gv_data_RowCreated"
                                 class="table table-bordered table-condensed table-responsive table-hover ">
                                 <Columns>
 

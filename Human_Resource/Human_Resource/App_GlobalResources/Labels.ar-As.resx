@@ -675,7 +675,7 @@
   <data name="EvaluationDate" xml:space="preserve">
     <value>تاريخ التقييم</value>
   </data>
-  <data name="Reviewer" xml:space="preserve">
+  <data name="ReviewerHint" xml:space="preserve">
     <value>المقيم</value>
   </data>
   <data name="Attendance" xml:space="preserve">
@@ -950,5 +950,26 @@
   </data>
   <data name="RemainingBalance" xml:space="preserve">
     <value>الرصيد المتبقي</value>
+  </data>
+  <data name="BarcodeUser" xml:space="preserve">
+    <value>مستخدم برنامج الباركود</value>
+  </data>
+  <data name="12Digit" xml:space="preserve">
+    <value>يجب أن يكون 12 رقم</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>تحميل</value>
+  </data>
+  <data name="Evaluation" xml:space="preserve">
+    <value>التقييم</value>
+  </data>
+  <data name="Technicians" xml:space="preserve">
+    <value>التقنيين</value>
+  </data>
+  <data name="Reviewer" xml:space="preserve">
+    <value>المقيم</value>
+  </data>
+  <data name="Charity" xml:space="preserve">
+    <value>الأعمال الخيرية</value>
   </data>
 </root>

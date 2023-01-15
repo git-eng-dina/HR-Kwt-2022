@@ -58,6 +58,33 @@ namespace Human_Resource.Views.Employees {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txt_mobile;
         
         /// <summary>
+        /// img_Emp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage img_Emp;
+        
+        /// <summary>
+        /// file_image control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload file_image;
+        
+        /// <summary>
+        /// uploadImageBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton uploadImageBtn;
+        
+        /// <summary>
         /// sel_maritalStatus control.
         /// </summary>
         /// <remarks>
@@ -100,7 +127,7 @@ namespace Human_Resource.Views.Employees {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_identityNumber;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txt_identityNumber;
         
         /// <summary>
         /// txt_certificate1 control.
@@ -370,7 +397,7 @@ namespace Human_Resource.Views.Employees {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_hiringDate;
+        protected global::System.Web.UI.WebControls.TextBox txt_hiringDate;
         
         /// <summary>
         /// txt_email control.

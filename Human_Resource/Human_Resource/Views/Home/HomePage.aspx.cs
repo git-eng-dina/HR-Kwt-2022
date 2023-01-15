@@ -16,11 +16,13 @@ namespace Human_Resource.Views.Home
         {
             string role = Session["urole"].ToString();
 
+            int passportCount = 0;
+            int tasksCount = 0;
             if (role != "Employee")
             {
                 getEmployeeCount();
 
-                renderPassportsChart();
+                passportCount = renderPassportsChart();
             }
             else
             {
@@ -31,7 +33,13 @@ namespace Human_Resource.Views.Home
             getActiveEventCount();
             getActiveTrainingCount();
             getVacationCount(); //vacation from beggining of year
-            renderTasksChart();
+            tasksCount = renderTasksChart();
+
+            if(passportCount == 0 && tasksCount == 0)
+            {
+                passportsChart.Visible = false;
+                tasksChart.Visible = false;
+            }
         }
 
         private void getEmployeeCount()
@@ -89,48 +97,45 @@ namespace Human_Resource.Views.Home
             else
                 lbl_vacations.InnerText = count.ToString();
         }
-        private void renderTasksChart()
+        private int renderTasksChart()
         {
             int userId = int.Parse(Session["user_id"].ToString());
 
             TaskStatus taskStatus = new TaskStatus();
             var taskStatusRes = taskStatus.getTaskCount(userId);
 
-            if(taskStatusRes.Count == 0)
+
+            events_notFount.Visible = false;
+
+            lbl_tasks.InnerText = taskStatusRes.Where(ts => ts.Status == "Doing").Select(ts => ts.TaskCount.ToString()).FirstOrDefault();
+
+            string[] x = new string[taskStatusRes.Count];
+            int[] y = new int[taskStatusRes.Count];
+            for (int i = 0; i < taskStatusRes.Count; i++)
             {
-                tasksChart.Visible = false;
+                x[i] = HelpClass.getStringTranslate(taskStatusRes[i].Status);
+
+                y[i] = taskStatusRes[i].TaskCount;
             }
-            else
-            {
-                events_notFount.Visible = false;
-
-                lbl_tasks.InnerText = taskStatusRes.Where(ts => ts.Status == "Doing").Select(ts => ts.TaskCount.ToString()).FirstOrDefault();
-
-                string[] x = new string[taskStatusRes.Count];
-                int[] y = new int[taskStatusRes.Count];
-                for (int i = 0; i < taskStatusRes.Count; i++)
-                {
-                    x[i] = HelpClass.getStringTranslate(taskStatusRes[i].Status);
-
-                    y[i] = taskStatusRes[i].TaskCount;
-                }
 
 
-                tasksChart.Series[0].Points.DataBindXY(x, y);
-                tasksChart.Series[0].ChartType = SeriesChartType.Pie;
-                tasksChart.ChartAreas["ChartArea1"].Area3DStyle.Enable3D = true;
+            tasksChart.Series[0].Points.DataBindXY(x, y);
+            tasksChart.Series[0].ChartType = SeriesChartType.Pie;
+            tasksChart.ChartAreas["ChartArea1"].Area3DStyle.Enable3D = true;
 
-                tasksChart.Series[0].Label = "#VALY";
-                tasksChart.Series[0].LegendText = "#VALX";
+            tasksChart.Series[0].Label = "#VALY";
+            tasksChart.Series[0].LegendText = "#VALX";
 
-                ChartArea CA = tasksChart.ChartAreas[0];
-                CA.InnerPlotPosition = new ElementPosition(0, 0, 92, 90);
+            ChartArea CA = tasksChart.ChartAreas[0];
+            CA.InnerPlotPosition = new ElementPosition(0, 0, 92, 90);
 
-                tasksChart.Legends[0].Enabled = true;
-            }
+            tasksChart.Legends[0].Enabled = true;
+
+               
+            return taskStatusRes.Count;
         }
 
-        private void renderPassportsChart()
+        private int renderPassportsChart()
         {
             int userId = int.Parse(Session["user_id"].ToString());
             string role = Session["urole"].ToString();
@@ -144,6 +149,7 @@ namespace Human_Resource.Views.Home
                 result = passportStatus.getPassportCountForSupervisor(userId);
             else if (role == "ManagementManager")
                 result = passportStatus.getPassportCountForManagement(userId);
+
 
             lbl_expiredPassports.InnerText = result.Where(ts => ts.Status =="Expired").Select(ts => ts.PassportCount.ToString()).FirstOrDefault();
 
@@ -168,6 +174,8 @@ namespace Human_Resource.Views.Home
             CA.InnerPlotPosition = new ElementPosition(0, 0, 92, 90);
 
             passportsChart.Legends[0].Enabled = true;
+
+            return result.Count;
         }
     }
 }

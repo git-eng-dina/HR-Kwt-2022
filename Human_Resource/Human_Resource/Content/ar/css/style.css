@@ -11,6 +11,7 @@ body {
     direction: rtl;
     text-align: left;
     line-height: 1;
+    font-size: 14px;
 }
 body a:hover{text-decoration: none !important;}
 /* End General */
@@ -27,7 +28,7 @@ body a:hover{text-decoration: none !important;}
     left: 0;
     z-index: 1200;
     width: 100%;
-    height: 50px;
+    height: 70px;
     padding-top: 0.0rem;
     padding-right: 1rem;
     padding-bottom: 0.0rem;
@@ -53,7 +54,7 @@ body a:hover{text-decoration: none !important;}
     padding-bottom: 10px;
 }
 .statis {
-    margin-top: 60px;
+    margin-top: 80px;
 }
 
 .statis .main-list {
@@ -66,31 +67,33 @@ body a:hover{text-decoration: none !important;}
     .statis .c-profile {
         position: relative;
         background-color: #FFF;
-        padding: 20px;
-        border: 1px solid #6c6c6f;
+        /*padding: 20px;*/
+        /*border: 1px solid #6c6c6f;*/
         border-radius: 10px;
         margin-top: 20px;
-        width: 20%;
+        width: 100%;
         float: right;
     }
 
-.statis .c-profile img {
-  width: 100%;
-  margin-left: 20px;
-  border: 1px solid #ddd;
-  float: right;
-}
+        .statis .c-profile img {
+            width: 100%;
+            height: 125px;
+            margin-left: 20px;
+            border: 1px solid #ddd;
+            float: right;
+        }
 
 .statis .c-profile .details {
   font-size: 14px;
   text-align: right;
+  padding-left:0px;
 }
 
-    .statis .c-profile .details span {
+    /*.statis .c-profile .details span {
         font-weight: bold;
         display: inline-block;
         width: 100%;     
-    }
+    }*/
 
 .statis .block-cursor a,label {
     color: #6c6c6f;
@@ -344,10 +347,10 @@ footer .copyright {
     display: block;
     height: 100%;
     width: 250px;
-    top: 50px;
+    top: 70px;
     right: -250px;
     z-index: 1000;
-    background-color: #343131;
+    background-color: #201d1d;
     padding-top: 10px;
     padding-bottom: 20px;
 }
@@ -385,30 +388,38 @@ footer .copyright {
         text-decoration: none;
         color: #ada9a9;
     }
-.main-menu .avatar {
-  width: 90px;
-  margin: auto;
-  margin-bottom: 30px;
+.container .avatar {
+  width: 60px;
+  /*margin-top:5px;*/
+  margin-left:10px;
+  /*margin-bottom: 30px;*/
 }
 
-.main-menu .avatar img {
-  border-radius: 50%;
-}
+    .container .avatar img {
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        border: none;
+        background-color: inherit;
+    }
 
-.main-menu .avatar p {
-  color: #fff;
-}
+    .container .avatar p {
+        color: #cb7a0b;
+    }
 
+.container .lang-logo{
+    padding-left:5px;
+}
 .menu-bg {
-  background-color: #000;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: 999;
-  opacity: 0.6;
-  display: none;
-  position: fixed;
+    background-color: #000;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    opacity: 0.6;
+    display: none;
+    position: fixed;
 }
 /* End main menu */
 
@@ -750,6 +761,18 @@ nav .logo {
         background-color: #623b04;
     }
 
+.btn-upload {
+    color: #fff;
+    background-color: #0b354e;
+    border-color: #0b354e;
+    width: 100%;
+    height: 70%;
+}
+
+    .btn-upload:hover {
+        color: white;
+        background-color: #051f2e;
+    }
 .btn-delete {
     color: #fff;
     background-color: #8f1108;
@@ -1097,6 +1120,7 @@ input[type=checkbox], input[type=radio] {
     padding: 0;
     width: auto;
     margin-left: 10px;
+    margin-top :10px;
 }
 
 .float1{
@@ -1304,12 +1328,14 @@ input[type=checkbox], input[type=radio] {
     float: right;
     border: 0px;
     color: #c30505;
+    margin-top: 20px;
 }
 .label-success {
     width: 80%;
     float: right;
     border: 0px;
     color: #2e9d2e;
+    margin-top:20px;
 }
 
 .add-arrow-btn {
@@ -1422,6 +1448,8 @@ input[type=checkbox], input[type=radio] {
 .report {
     font-family: Arial,sans-serif;
     color: #39393a;
+    margin-top: 0px;
+    font-size: 16px;
 }
 .report-title {
     width: 100%;
@@ -1440,18 +1468,26 @@ input[type=checkbox], input[type=radio] {
 .report-fieldset {
     width: 100%;
     border: 1px solid #6c6c6f;
-    height:auto;
-    margin-top: 20px;
+    height: auto;
+    margin-top: 10px;
+    padding-bottom: 10px;
 }
 
-    .report-fieldset span {
+    .report-fieldset .title {
         display: block;
-        width: 100%;
+        width: 50%;
         float: right;
         text-align: right;
         margin-top: 7px;
-        margin-right:20px;
+        margin-right: 20px;
         border: 0px;
+        font-weight: bold;
+    }
+
+    .report-fieldset .span-value {
+        margin-right: 10px;
+        font-size: 14px;
+
     }
 .legend {
     border: 1px solid #6c6c6f;
@@ -1459,4 +1495,5 @@ input[type=checkbox], input[type=radio] {
     margin-right: 1em;
     width: auto;
 font-size:inherit;
+font-weight:bold;
 }

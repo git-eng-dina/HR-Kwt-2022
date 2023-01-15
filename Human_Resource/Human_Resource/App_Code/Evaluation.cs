@@ -121,6 +121,54 @@ namespace Human_Resource.App_Code
                 return depts;
             }
         }
+        public EvaluationModel getEmpEvaluation(int empId)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var evaluations = entity.evaluations.Where(x => x.IsActive == true
+                                && x.EmployeeID == empId)
+                                .Select(x => new EvaluationModel()
+                                {
+                                    EvaluationID = x.EvaluationID,
+                                    Behavior = x.Behavior,
+                                    Attendance = x.Attendance,
+                                    Punctuality = x.Punctuality,
+                                    Productivity = x.Productivity,
+                                    Creativity = x.Creativity,
+                                    ClientRelation = x.ClientRelation,
+                                    Initiative = x.Initiative,
+                                    Communication = x.Communication,
+                                    Cooperation = x.Cooperation,
+                                    StrategicThinking = x.StrategicThinking,
+                                    HandleStressful = x.HandleStressful,
+                                    ListeningSkills = x.ListeningSkills,
+                                    MeetingDeadlines = x.MeetingDeadlines,
+                                    Performance = x.Performance,
+                                    JobKnowledge = x.JobKnowledge,
+                                    OrganizeIdea = x.OrganizeIdea,
+                                    RespondResourcefully = x.RespondResourcefully,
+                                    ConfrontsProblems = x.ConfrontsProblems,
+                                    CustomerNeeds = x.CustomerNeeds,
+                                    OrganizationVision = x.OrganizationVision,
+                                    StayFocused = x.StayFocused,
+                                    OverAllProgress = x.OverAllProgress,
+                                    Comment = x.Comment,
+                                    EmployeeID = x.EmployeeID,
+                                    EmployeeName = entity.employees.Where(m => m.EmployeeID == x.EmployeeID).Select(m => m.NameAr).FirstOrDefault(),
+                                    ReviewerID = x.ReviewerID,
+                                    ReviewerName = entity.employees.Where(m => m.EmployeeID == x.ReviewerID).Select(m => m.NameAr).FirstOrDefault(),
+                                    EvaluationDate = x.EvaluationDate,
+                                    CreateUserID = x.CreateUserID,
+                                    UpdateUserID = x.UpdateUserID,
+                                    Notes = x.Notes,
+                                    CreateDate = x.CreateDate,
+                                    UpdateDate = x.UpdateDate,
+                                }).ToList();
+
+                var eval = evaluations.Where(x => x.EvaluationID == evaluations.Max(y => y.EvaluationID)).FirstOrDefault();
+                return eval;
+            }
+        }
         public EvaluationModel getEvaluation(int evaluationId)
         {
             using (HRSystemEntities entity = new HRSystemEntities())

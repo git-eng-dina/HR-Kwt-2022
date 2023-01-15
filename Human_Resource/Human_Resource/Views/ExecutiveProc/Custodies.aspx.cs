@@ -15,6 +15,10 @@ namespace Human_Resource.Views.ExecutiveProc
         {
             if (!IsPostBack)
             {
+                var role = Session["urole"].ToString();
+                if (role != "GeneralDirector" && role != "CEO")
+                    btn_new.Visible = false;
+
                 BindData();
                 btn_new.Attributes.Add("OnClick", "ShowDialog('');");
             }
@@ -160,6 +164,12 @@ namespace Human_Resource.Views.ExecutiveProc
             catch (Exception ex)
             {
             }
+        }
+
+        protected void gv_data_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            e.Row.Cells[5].Visible = false;
+            e.Row.Cells[6].Visible = false;
         }
     }
 }

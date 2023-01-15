@@ -31,9 +31,9 @@ namespace Human_Resource.Views.ExecutiveProc
         }
         private void BindData(string textSearch = "")
         {
-            EvaluationModel emp = new EvaluationModel();
+            EvaluationModel evaluation = new EvaluationModel();
             
-            var evaluations = emp.getActivity();
+            var evaluations = evaluation.getActivity();
             if (textSearch != "")
                 evaluations = evaluations.Where(x => x.EmployeeName.ToLower().Contains(textSearch.ToLower())
                 || x.Comment.ToLower().Contains(textSearch.ToLower())

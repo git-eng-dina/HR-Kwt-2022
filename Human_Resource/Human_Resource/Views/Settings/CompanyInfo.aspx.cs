@@ -197,6 +197,11 @@ namespace Human_Resource.Views.Settings
                 confirm.AddConfirm(confirm);
             }
             #endregion
+
+            #region refresh session 
+            EmployeeModel emp = new EmployeeModel();
+            HttpContext.Current.Session["urole"] = emp.getUserRole(int.Parse(userId));
+            #endregion
             return companyId.ToString();
 
         }

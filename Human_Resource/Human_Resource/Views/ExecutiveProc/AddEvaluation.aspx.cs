@@ -285,9 +285,9 @@ namespace Human_Resource.Views.ExecutiveProc
                 int evalId = evaluation.SaveDept(evaluation);
                 hid_eval_id.Value = evalId.ToString();
 
+                HelpClass.ShowMessage(this.Page, Resources.Labels.SaveSuccessfully);
 
-
-                Response.Redirect("AddEvaluation.aspx?uid=" + hid_eval_id.Value);
+                //Response.Redirect("AddEvaluation.aspx?uid=" + hid_eval_id.Value);
             }
             //catch { }
         }

@@ -31,14 +31,14 @@ namespace Human_Resource.Views.Attendance
                 Device device = new Device();
                 device = device.getDevice(int.Parse(sel_device.Value));
 
-                zkeuemkeeper.CZKEUEM axCZKEM1 = new zkeuemkeeper.CZKEUEM();
-                bool bIsConnected = axCZKEM1.Connect_Net(ip, (int)device.Port);   // 4370 is port no of attendance machine
-                if (bIsConnected == true)
-                {
-                    var dwMachineNumber = (int)device.DeviceNumber;
+                //zkeuemkeeper.CZKEUEM axCZKEM1 = new zkeuemkeeper.CZKEUEM();
+                //bool bIsConnected = axCZKEM1.Connect_Net(ip, (int)device.Port);   // 4370 is port no of attendance machine
+                //if (bIsConnected == true)
+                //{
+                //    var dwMachineNumber = (int)device.DeviceNumber;
 
-                    var IsRead = axCZKEM1.ReadGeneralLogData(dwMachineNumber);
-                }
+                //    var IsRead = axCZKEM1.ReadGeneralLogData(dwMachineNumber);
+                //}
                  string deviceID = txt_deviceNum.Value;
                 string port = txt_port.Value;
                 // BindData(textSearch);

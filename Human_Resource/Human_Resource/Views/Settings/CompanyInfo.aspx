@@ -207,7 +207,7 @@
                             </div>
                             <div class="row">
                             <div class="form-group" style="display:block">
-                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Advisors%>" /></span>
+                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Technicians%>" /></span>
                                 <select runat="server" id="sel_advisor" name="sel_advisor" class="form-control select" style="width:70%"></select>
                                 <button type="button" class="add-arrow-btn"  runat="server" onclick="addEmp()" id="Button1" >
                                    <i class="fas fa-arrow-alt-circle-down"></i>
@@ -228,9 +228,7 @@
                             <Button type="button" runat="server" class="btn btn-secondary btn-block save" id="btn_save" OnClick="setAdvisorsIds();" CausesValidation="false" >
                                 <asp:Literal  runat="server" Text=" <%$ Resources:Labels,Edit%>" />
                             </Button>
-                          <%-- <asp:Button runat="server" Text = "<%$ Resources:Labels,Edit%>" class="btn btn-secondary btn-block" id="btn_edit"  CausesValidation="false" >
-                            </asp:Button>--%>
-  
+
                         </div>
                    </div>
              </div>

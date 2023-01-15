@@ -265,13 +265,13 @@
 
                                  
 
-                                    <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-edit">
+                                   <%-- <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-edit">
                                           <ItemTemplate>                     
                                                      <asp:LinkButton ID="LinkProducts" runat="server" myCustomID='<%# Eval("RewardID")%>'  CssClass="td-edit">
                                                          <asp:Image ImageUrl="~/Images/edit.ico" runat="server" Width="20px" Height="20px" />
                                                      </asp:LinkButton>  
                                              </ItemTemplate>
-                                        </asp:TemplateField>
+                                        </asp:TemplateField>--%>
                                   
                                    
                                 </Columns>

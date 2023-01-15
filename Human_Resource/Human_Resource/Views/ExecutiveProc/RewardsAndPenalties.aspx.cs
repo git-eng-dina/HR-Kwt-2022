@@ -14,6 +14,9 @@ namespace Human_Resource.Views.ExecutiveProc
         {
             if (!IsPostBack)
             {
+                if (Request.QueryString["my"] == "1")
+                    btn_new.Visible = false;
+
                 BindData(Request.QueryString["my"]);
                 btn_new.Attributes.Add("OnClick", "ShowDialog('');");
             }
@@ -63,6 +66,7 @@ namespace Human_Resource.Views.ExecutiveProc
 
                 gv_myPenalties.Visible = false;
                 gv_myPenalties_title.Visible = false;
+             
 
             }
             else

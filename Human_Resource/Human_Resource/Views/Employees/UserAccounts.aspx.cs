@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -17,17 +18,20 @@ namespace Human_Resource.Views.Employees
                 EmployeeModel emp = new EmployeeModel();
                 var employees = emp.GetEmployees(true, true);
 
-                sel_employee.DataSource = employees;
                 sel_employee.DataValueField = "EmployeeID";
                 if (Session["CultureName"] != null && Session["CultureName"].ToString().ToLower() == "en-us")
                 {
                     sel_employee.DataTextField = "NameEn";
-
+                    var newEmp = new EmployeeModel() { NameEn = Resources.Labels.SelectHere, EmployeeID = 0 };
+                    employees.Insert(0, newEmp);
                 }
                 else
                 {
                     sel_employee.DataTextField = "NameAr";
+                    var newEmp = new EmployeeModel() { NameAr = Resources.Labels.SelectHere, EmployeeID = 0 };
+                    employees.Insert(0, newEmp);
                 }
+                sel_employee.DataSource = employees;
                 DataBind();
             }
         }
@@ -47,6 +51,8 @@ namespace Human_Resource.Views.Employees
                     emp.Username = txt_userName.Text;
                     emp.Password =  HelpClass.MD5Hash("Inc-m" + txt_password.Value.Trim());
 
+                    emp.IsBarcodeUser = isBarcodeUser.Checked;
+
                     if (Session["user_id"] != null && Session["user_id"].ToString() != "")
                          emp.UpdateUserID = int.Parse(Session["user_id"].ToString());
 
@@ -62,6 +68,29 @@ namespace Human_Resource.Views.Employees
 
             }
             catch { }
+        }
+
+        [WebMethod(EnableSession = true)]
+        public static EmployeeModel GetAccount(string userID)
+        {
+            try
+            {
+                EmployeeModel user = new EmployeeModel();
+                int userIDVal =0;
+
+                if (userID != "")
+                    userIDVal = int.Parse(userID);
+
+                user = user.GetAccountInfo(userIDVal);
+
+                return user;
+            }
+            catch
+            {
+                return null;
+
+            }
+
         }
     }
 }

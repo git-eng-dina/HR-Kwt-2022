@@ -22,12 +22,12 @@ namespace Human_Resource.Views.Employees
         }
         protected void btn_Search_Click(object sender, EventArgs e)
         {
-            try
+            //try
             {
                 string textSearch = txt_search.Value;
                 BindData(textSearch);
             }
-            catch { }
+            //catch { }
         }
         private void BindData(string textSearch = "")
         {
@@ -38,19 +38,25 @@ namespace Human_Resource.Views.Employees
             string role = Session["urole"].ToString();
             if (role == "GeneralDirector" || role == "CEO" || role == "Supervisor" || role == "HRManager" || role.ToString() == "FinancialManager")
             {
-                if (role == "GeneralDirector" || role == "CEO" || role == "FinancialManager")
+                if (role == "GeneralDirector" || role == "CEO")
                     unHiredEmployees = emp.GetNotHiredEmpForHeigh();
                 else if (role == "Supervisor")//branch manager
                     unHiredEmployees = emp.GetNotHiredEmployees(userId);//not get any approval
                 else if (role == "HRManager")
                     unHiredEmployees = emp.GetNotHiredEmployeesForHR(role);
-                //else if (role.ToString() == "FinancialManager")
-                //    unHiredEmployees = emp.GetNotHiredEmpForHeigh(role);
+                else if (role.ToString() == "FinancialManager")
+                    unHiredEmployees = emp.GetNotHiredEmpFinantial();
 
 
                 if (textSearch != "")
                     unHiredEmployees = unHiredEmployees.Where(x => x.NameAr.ToLower().Contains(textSearch.ToLower())
                                     || x.NameEn.ToLower().Contains(textSearch.ToLower())
+                                    || (x.ManagementName != null && x.ManagementName.ToLower().Contains(textSearch.ToLower()))
+                                    || (x.DepartmentName != null && x.DepartmentName.ToLower().Contains(textSearch.ToLower()))
+                                    || (x.Position != null && x.Position.ToLower().Contains(textSearch.ToLower()))
+                                    || x.Age.ToString().Contains(textSearch)
+                                    || (x.BasicSalary!= null && x.BasicSalary.ToString().Contains(textSearch))
+                                    || x.AddedBy.ToString().Contains(textSearch.ToLower())
                                     || x.IdentityNumber.ToLower().Contains(textSearch.ToLower())).ToList();
                 gv_unhiredEmp.DataSource = unHiredEmployees;
             }
@@ -70,8 +76,14 @@ namespace Human_Resource.Views.Employees
             var employees = emp.GetEmployees(true,true,supervisorId,managerId);
             if (textSearch != "")
                 employees = employees.Where(x => x.NameAr.ToLower().Contains(textSearch.ToLower())
-                                || x.NameEn.ToLower().Contains(textSearch.ToLower())
-                                || x.IdentityNumber.ToLower().Contains(textSearch.ToLower())).ToList();
+                                    || x.NameEn.ToLower().Contains(textSearch.ToLower())
+                                    || (x.ManagementName != null && x.ManagementName.ToLower().Contains(textSearch.ToLower()))
+                                    || (x.DepartmentName != null && x.DepartmentName.ToLower().Contains(textSearch.ToLower()))
+                                    || (x.Position != null && x.Position.ToLower().Contains(textSearch.ToLower()))
+                                    || x.Age.ToString().Contains(textSearch)
+                                    || (x.BasicSalary != null && x.BasicSalary.ToString().Contains(textSearch))
+                                    || (x.AddedBy != null && x.AddedBy.ToString().Contains(textSearch.ToLower()))
+                                    ||(x.IdentityNumber != null && x.IdentityNumber.ToLower().Contains(textSearch.ToLower()))).ToList();
             gv_employees.DataSource = employees;
             DataBind();
         }

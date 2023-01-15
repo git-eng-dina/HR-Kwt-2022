@@ -8,10 +8,11 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Web;
+using System.Web.UI;
 
 namespace Human_Resource.App_Code
 {
-    public class HelpClass
+    public static class HelpClass
     {
         public static HRSystemEntities entityForGet = new HRSystemEntities();
         public static string CVUpload="~/Upload/CV/";
@@ -62,6 +63,15 @@ namespace Human_Resource.App_Code
 
            
             return dt;
+        }
+
+        public static void ShowMessage(this Page Page, String Message)
+        {
+            Page.ClientScript.RegisterStartupScript(
+               Page.GetType(),
+               "MessageBox",
+               "<script language='javascript'>alert('" + Message + "');</script>"
+            );
         }
     }
 }

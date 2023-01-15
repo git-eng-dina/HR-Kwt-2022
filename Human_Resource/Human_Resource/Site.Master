@@ -43,22 +43,35 @@
 
         <div class="menu-bg"></div>
         <nav class="navbar navbar-dark">
-        <div class="container" style="height:50px">
+
+            <!-- header -->
+        <div class="container" style="height:70px">
+             <div class="avatar">
+            <img src="" alt="" class="img-thumbnail text-center" id="img_profile"  runat="server">
+           
+            <p class="text-center"> <asp:Literal runat="server" id="txt_profileName" /></p>
+        </div>
             <div class="main-menu-button">
-                <i class="fa fa-bars fa-2x"></i>
-                <i class="fa fa-close fa-2x x"></i>
+                <i class="fa fa-bars fa-2x" style="color:#cb7a0b;"></i>
+                <i class="fa fa-close fa-2x x" style="color:#cb7a0b;"></i>
             </div>
             <div class="logo ">
-                  <asp:Image ImageUrl="~/images/download (1).png" Height="50px" Width="250px"  CssClass="mt-0"  runat="server" />
+                  <asp:Image ImageUrl="~/images/123.png" Height="50px" Width="200px"  CssClass="mt-0"  runat="server" />
 
             </div>
-            <div>
-                
+            <div class="lang-logo">                
+                <asp:ImageButton runat="server" ImageUrl="~/images/en.png"  width="40" height="40"  id="messageImage"  OnClick="langBtn_Click"  />
+            </div> 
+            <div class="lang-logo">                
                 <asp:ImageButton runat="server"  width="40" height="40" id="cultureImage"  OnClick="langBtn_Click"  />
-
-                </div>
+            </div>
+            <div>                
+                <asp:ImageButton runat="server" ImageUrl="~/images/Back-ar.png"  width="40" height="40" id="backImage"  OnClientClick="JavaScript:window.history.back(1);return false;"  />
+            </div>
 
         </div>
+
+            <!-- end header -->
     </nav>
     <div class="main-menu open">
         <div class="nlist">
@@ -66,40 +79,32 @@
 
                 <li class="dropdown">
                 <a href="/Views/Home/HomePage.aspx" class="active">
-                     <%--<img src="images/home.svg" width="30" height="30" />--%>
-                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                         viewBox="0 0 141.7 141.7" style="enable-background:new 0 0 141.7 141.7;" xml:space="preserve">
-                    <path d="M70.9,14.9L9.5,75.1l15,7.9l46-48.4L117.3,83l15-7.9L70.9,14.9L70.9,14.9z M27.8,84.5L27.8,84.5L71,41.3l43.1,43.2l0,0l0,0
-					v42.4H82.6v-30H59v30H27.8V84.5L27.8,84.5L27.8,84.5z" />
+                     <i class="fa fa-home" aria-hidden="true"></i>
 
-
-				</svg><asp:Literal runat="server" Text="<%$ Resources:Labels,Home%>" />
+				<asp:Literal runat="server" Text="<%$ Resources:Labels,Home%>" />
                  </a>
                 </li>
 
-                <li class="dropdown">
+                <!-- قائمة الموظفون-->
+           <li class="dropdown" runat="server" id="li_employeesList">
              <a href="" data-toggle="collapse" data-target="#demo_emp">
                     <i class="fa fa-users" aria-hidden="true"></i>
                     <asp:Literal runat="server" Text="<%$ Resources:Labels,Employees%>" />
                     <i class="fa fa-fw fa-caret-down"></i>
             </a>
             <ul id="demo_emp" class="collapse in" aria-expanded="true">
-                <li>
+
+                <li runat="server" id="li_employeesInfo">
                     <a href="/Views/Employees/Employees.aspx"> 
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,EmployeesInfo%>" />
                     </a>
                 </li>
-                <li>
+                <li runat="server" id="li_newEmployee">
                     <a href="/Views/Employees/NewEmployee.aspx"> 
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,NewEmployee%>" />
                     </a>
                 </li> 
-                <li>
-                    <a href="/Views/Settings/NewEmployee.aspx"> 
-                        <asp:Literal runat="server" Text="<%$ Resources:Labels,WorkingPermission%>" />
-                    </a>
-                </li>  
-                <li>
+                <li runat="server" id="li_expiredExports">
                     <a href="/Views/Employees/ExpiredPassports.aspx"> 
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,ExpiredPassports%>" />
                     </a>
@@ -126,12 +131,12 @@
                     </a>
                 </li> --%>
                
-                <li>
+                <li runat="server" id="li_eventsApprove">
                     <a href="/Views/ExecutiveProc/EventsApprove.aspx"> 
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,EventsApproval%>" />
                     </a>
                 </li>
-                <li>
+                <li runat="server" id="li_addTrainings">
                     <a href="/Views/ExecutiveProc/Trainings.aspx"> 
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,Trainings%>" />
 
@@ -143,7 +148,7 @@
 
                     </a>
                 </li> --%> 
-                <li>
+                <li runat="server" id="li_rewardsPenalties">
                     <a href="/Views/ExecutiveProc/RewardsAndPenalties.aspx"> 
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,Penalties%>" />
 
@@ -155,6 +160,12 @@
 
                     </a>
                 </li> 
+                <li>
+                    <a href="/Views/ExecutiveProc/Charity.aspx"> 
+                        <asp:Literal runat="server" Text="<%$ Resources:Labels,Charity%>" />
+                    </a>
+                </li> 
+           
             </ul> 
             </li>
             
@@ -180,7 +191,12 @@
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,Trainings%>" />
                     </a>
                 </li> 
-           
+                <li>
+                    <a href="/Views/Employees/empEvalution.aspx"> 
+                        <asp:Literal runat="server" Text="<%$ Resources:Labels,Evaluation%>" />
+                    </a>
+                </li> 
+             
             </ul>
                 </li> 
                 
@@ -228,17 +244,17 @@
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,ScheduleVacation%>" />
                     </a>
                 </li> 
-                <li>
+                <li runat="server" id="li_vacationReport">
                     <a href="/Views/Attendance/VacationReport.aspx" class="">
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,VacationReport%>" />
                     </a>
                 </li>
-                <li>
+                <li runat="server" id="li_workShifts">
                     <a href="/Views/Attendance/WorkShifts.aspx" class="">
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,WorkShifts%>" />
                     </a>
                 </li> 
-                <li>
+                <li runat="server" id="li_attendanceReport">
                     <a href="/Views/Attendance/AttendanceReport.aspx" class="">
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,AttendanceReport%>" />
                     </a>
@@ -248,7 +264,7 @@
             </li>
 
 
-          <li class="dropdown">
+          <li class="dropdown" id="li_basicInformation" runat="server">
             <a href="" class="" data-toggle="collapse" data-target="#demo_Users3">
                     <i class="fa fa-gears" aria-hidden="true"></i>
                     <asp:Literal runat="server" Text="<%$ Resources:Labels,BasicInformation%>" />
@@ -303,7 +319,7 @@
             </li>
 
 
-            <li class="dropdown">
+            <li class="dropdown" id="li_userAccounts" runat="server">
                 <a href="/Views/Employees/UserAccounts.aspx" class="">
                    <i class="fa fa-users" aria-hidden="true"></i>
                     <asp:Literal runat="server" Text="<%$ Resources:Labels,UsersInfo%>" />

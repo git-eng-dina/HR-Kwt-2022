@@ -28,7 +28,7 @@
                     <span class="flag rose"></span>
                     <div class="row">
                         <div class="col-4 text-center mt-2 br-3 quotations">
-                              <i class="fa fa-calendar-check" style="font-size:40px;color:#ff5d6f"></i>
+                              <i class="fa fa-calendar" style="font-size:40px;color:#ff5d6f"></i>
                         </div>
                          <div class="col-8 text-center block-cursor">
                              <a href="/Views/ExecutiveProc/Events.aspx">
@@ -46,7 +46,7 @@
                     <span class="flag orange"></span>
                     <div class="row">
                         <div class="col-4 text-center mt-2 br-3 trainings">
-                              <i class="fa fa-calendar-check" style="font-size:40px;color:#ffb36b"></i>
+                              <i class="fa fa-calendar" style="font-size:40px;color:#ffb36b"></i>
                         </div>
                         <div class="col-8 text-center block-cursor">
                              <a href="/Views/ExecutiveProc/Trainings.aspx">
@@ -63,7 +63,7 @@
                     <span class="flag purble"></span>
                     <div class="row">
                         <div class="col-4 text-center mt-2 br-3 vacations">
-                              <i class="fa fa-calendar-check" style="font-size:40px;color:#bc80ef"></i>
+                              <i class="fa fa-calendar" style="font-size:40px;color:#bc80ef"></i>
                         </div>
                           <div class="col-8 text-center block-cursor">
                              <a href="/Views/Attendance/VaccaitionApproval.aspx">

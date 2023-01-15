@@ -8,6 +8,7 @@
     <!-- text boxes -->
     <section class="statis">
         <div class="container" >
+
         <div class="row">
             <div class="col-md-12">
                   <div class="col-md-6 float1" style="display:inline">
@@ -306,7 +307,7 @@
                  <div class="col-md-6 float2" style="display:inline">
                  <div class="panel panel-primary">
                         <div class="panel-heading">
-                        <span> <asp:literal runat="server" text=""/></span>
+                        <span> <asp:literal runat="server" text="<%$ Resources:Labels,OverAllProgress%>"/></span>
                         </div>
                         <div class="c-form-box">
 

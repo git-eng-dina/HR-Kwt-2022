@@ -147,14 +147,14 @@
                                    </asp:TemplateField>                          
                                    <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-approve">
                                            <ItemTemplate>                     
-                                                <asp:LinkButton ID="LinkProducts" runat="server" myCustomID='<%# Eval("EmployeeID")%>'  CssClass="td-approve">
+                                                <asp:LinkButton ID="LinkApprove" runat="server" myCustomID='<%# Eval("EmployeeID")%>'  CssClass="td-approve">
                                                     <asp:Image ImageUrl="~/images/check.ico" runat="server" ToolTip="<%$ Resources:Labels,Approve%>" Width="20px" Height="20px" />
                                                 </asp:LinkButton>  
                                              </ItemTemplate>
                                         </asp:TemplateField>
                                    <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-edit">
                                            <ItemTemplate>                     
-                                                     <asp:LinkButton ID="LinkProducts" runat="server" myCustomID='<%# Eval("EmployeeID")%>'  CssClass="td-edit">
+                                                     <asp:LinkButton ID="LinkEdit" runat="server" myCustomID='<%# Eval("EmployeeID")%>'  CssClass="td-edit">
                                                          <asp:Image ImageUrl="~/Images/edit.ico" runat="server" Width="20px" Height="20px" />
                                                      </asp:LinkButton>  
                                              </ItemTemplate>
@@ -163,7 +163,7 @@
                                              <ItemTemplate>                     
                                                      <asp:ImageButton  CommandArgument='<%# Eval("EmployeeID")%>' OnCommand="deletedatafromgrid"
                                                             OnClientClick="return confirm(<%= Resources.Labels.ConfirmDelete %>);return false;"
-                                                            ID="Image1" runat="server" ImageUrl="~/Images/delete.ico" />
+                                                            ID="delete1" runat="server" ImageUrl="~/Images/delete.ico" />
                                                              
                                              </ItemTemplate>
                                     </asp:TemplateField> 
@@ -246,7 +246,7 @@
                                         </asp:TemplateField>   
                                     <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-edit">
                                            <ItemTemplate>                     
-                                                     <asp:LinkButton ID="LinkProducts" runat="server" myCustomID='<%# Eval("EmployeeID")%>'  CssClass="td-edit">
+                                                     <asp:LinkButton ID="LinkEdit2" runat="server" myCustomID='<%# Eval("EmployeeID")%>'  CssClass="td-edit">
                                                          <asp:Image ImageUrl="~/Images/edit.ico" runat="server" Width="20px" Height="20px" />
                                                      </asp:LinkButton>  
                                              </ItemTemplate>

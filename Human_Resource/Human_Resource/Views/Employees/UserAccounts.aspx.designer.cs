@@ -40,6 +40,15 @@ namespace Human_Resource.Views.Employees {
         protected global::System.Web.UI.HtmlControls.HtmlInputPassword txt_password;
         
         /// <summary>
+        /// isBarcodeUser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox isBarcodeUser;
+        
+        /// <summary>
         /// lbl_msg control.
         /// </summary>
         /// <remarks>

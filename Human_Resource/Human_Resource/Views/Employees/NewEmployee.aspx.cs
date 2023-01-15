@@ -30,15 +30,17 @@ namespace Human_Resource.Views.Employees
                 sel_maritalStatus.DataTextField = "Value";
                 sel_maritalStatus.DataBind();
 
-                sel_nationality.DataSource = country.get();
+                
                 sel_nationality.DataValueField = "CountriesNameID";
                 if (Session["CultureName"] != null && Session["CultureName"].ToString().ToLower() == "en-us")
                 {
+                    sel_nationality.DataSource = country.get().OrderBy(x => x.NameEn);
                     sel_nationality.DataTextField ="NameEN";
     
                 }
                 else
                 {
+                    sel_nationality.DataSource = country.get().OrderBy(x => x.NameAr);
                     sel_nationality.DataTextField = "NameAR";
                 }
 
@@ -69,11 +71,13 @@ namespace Human_Resource.Views.Employees
                     #region fill inputs
                     txt_nameAR.Value = emp.NameAr;
                     txt_nameEN.Value = emp.NameEn;
-
-                    dp_bod.Text = HelpClass.setDateFormat(emp.DOB.Value); ;
-
-                    txt_mobile.Value = emp.Mobile;
+                    if(emp.DOB != null)
+                        dp_bod.Text = HelpClass.setDateFormat(emp.DOB.Value); 
+                   txt_mobile.Value = emp.Mobile;
                    
+                    if(emp.Image != null)
+                        img_Emp.Src = "data:image;base64," + Convert.ToBase64String(emp.Image);
+
                     sel_maritalStatus.Value = emp.MaritalStatus;
                     sel_nationality.Value = emp.Nationality.ToString();
                     txt_blood.Value = emp.BloodType;
@@ -84,9 +88,11 @@ namespace Human_Resource.Views.Employees
                     #region fill certificates
                     //certificate 1
                     txt_certificate1.Value = emp.EducationCertificate1;
-                    dp_fromCer1.Text = HelpClass.setDateFormat(emp.EducationCertificateFromDate1.Value); 
+                    if(emp.EducationCertificateFromDate1 != null)
+                        dp_fromCer1.Text = HelpClass.setDateFormat(emp.EducationCertificateFromDate1.Value); 
 
-                    dp_toCer1.Text = HelpClass.setDateFormat(emp.EducationCertificateToDate1.Value);
+                    if(emp.EducationCertificateToDate1 != null)
+                        dp_toCer1.Text = HelpClass.setDateFormat(emp.EducationCertificateToDate1.Value);
                     if (emp.Certificate1 != null)
                     {
                         lbl_certificate1.Text = "";
@@ -151,7 +157,7 @@ namespace Human_Resource.Views.Employees
                     txt_salary.Value = emp.BasicSalary.ToString();
                     if (emp.HiringDate != null)
                     {
-                        txt_hiringDate.Value = HelpClass.setDateFormat(emp.HiringDate.Value);
+                        txt_hiringDate.Text = HelpClass.setDateFormat(emp.HiringDate.Value);
                     }
                     txt_email.Value = emp.Email;
                     txt_vacationBalance.Value = emp.VacationsBalance.ToString();
@@ -213,10 +219,14 @@ namespace Human_Resource.Views.Employees
                 else
                     employee.EmployeeID = int.Parse(hid_emp_id.Value);
 
+                #region personal info
                 employee.NameAr = txt_nameAR.Value;
                 employee.NameEn = txt_nameEN.Value;
 
-
+                if (file_image.FileName != "")
+                {
+                   employee.Image = file_image.FileBytes;
+                }
                 var arrDOB = dp_bod.Text.Split('/');
                 var d = new DateTime(int.Parse(arrDOB[2]), int.Parse(arrDOB[0]), int.Parse(arrDOB[1]));
                 employee.DOB = d;
@@ -256,9 +266,11 @@ namespace Human_Resource.Views.Employees
                 employee.WorkExperience2 = txt_experience2.Text;
                 employee.WorkExperience3 = txt_experience3.Text;
 
+                #endregion
+
                 #region work details
                 employee.JobID =int.Parse( sel_position.Value);
-                if(sel_management.Value != "")
+                if(sel_management.Value != "" && int.Parse(sel_management.Value) != 0)
                     employee.ManagementID = int.Parse(sel_management.Value);
                 if(sel_department.Value != "" && sel_department.Value != "0")
                     employee.DepartmentID = int.Parse(sel_department.Value);
@@ -268,7 +280,14 @@ namespace Human_Resource.Views.Employees
                 employee.BasicSalary = decimal.Parse(txt_salary.Value);
                 employee.Email = txt_email.Value;
 
-                if(txt_vacationBalance.Value != "")
+                if (txt_hiringDate.Text != "")
+                {
+                    var arrhiring = txt_hiringDate.Text.Split('/');
+                    d = new DateTime(int.Parse(arrhiring[2]), int.Parse(arrhiring[0]), int.Parse(arrhiring[1]));
+                    employee.HiringDate = d;
+                }
+
+                if (txt_vacationBalance.Value != "")
                     employee.VacationsBalance = int.Parse(txt_vacationBalance.Value);
                 employee.Guarantor = txt_guarantor.Value;
                 employee.JobDescription = txt_jobDesc.Text;
@@ -322,9 +341,11 @@ namespace Human_Resource.Views.Employees
 
                     employee.SaveEmployee(employee);
                 }
-              
+
                 #endregion
-                Response.Redirect("NewEmployee.aspx?uid="+ hid_emp_id.Value);
+
+                HelpClass.ShowMessage(this.Page, Resources.Labels.SaveSuccessfully);
+                //Response.Redirect("NewEmployee.aspx?uid="+ hid_emp_id.Value);
             }
             //catch { }
         }

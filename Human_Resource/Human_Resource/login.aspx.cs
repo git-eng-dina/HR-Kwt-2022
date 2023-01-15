@@ -33,6 +33,9 @@ namespace Human_Resource
                 Session["user_id"] = loginUser.EmployeeID;
                 Session["urole"] = user.getUserRole(loginUser.EmployeeID);
 
+                Session["UserNameEN"] = loginUser.NameEn;
+                Session["UserNameAR"] = loginUser.NameAr;
+                Session["UserImage"] = loginUser.Image;
                 TaskModel taskModel = new TaskModel();
                 taskModel.ScheduleTasks();
                 //FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket

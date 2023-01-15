@@ -385,6 +385,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Is barcode user.
+        /// </summary>
+        internal static string BarcodeUser {
+            get {
+                return ResourceManager.GetString("BarcodeUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Basic Information.
         /// </summary>
         internal static string BasicInformation {
@@ -543,6 +552,15 @@ namespace Resources {
         internal static string Certificate3 {
             get {
                 return ResourceManager.GetString("Certificate3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Charity.
+        /// </summary>
+        internal static string Charity {
+            get {
+                return ResourceManager.GetString("Charity", resourceCulture);
             }
         }
         
@@ -1020,6 +1038,15 @@ namespace Resources {
         internal static string ErrorOccured {
             get {
                 return ResourceManager.GetString("ErrorOccured", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Evaluation.
+        /// </summary>
+        internal static string Evaluation {
+            get {
+                return ResourceManager.GetString("Evaluation", resourceCulture);
             }
         }
         
@@ -1978,6 +2005,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reviewer.
+        /// </summary>
+        internal static string ReviewerHint {
+            get {
+                return ResourceManager.GetString("ReviewerHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reward.
         /// </summary>
         internal static string Reward {
@@ -2194,6 +2230,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Technicians.
+        /// </summary>
+        internal static string Technicians {
+            get {
+                return ResourceManager.GetString("Technicians", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ltr.
         /// </summary>
         internal static string TextDirection {
@@ -2298,6 +2343,15 @@ namespace Resources {
         internal static string UnifiedNumber {
             get {
                 return ResourceManager.GetString("UnifiedNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload.
+        /// </summary>
+        internal static string Upload {
+            get {
+                return ResourceManager.GetString("Upload", resourceCulture);
             }
         }
         
@@ -2568,6 +2622,15 @@ namespace Resources {
         internal static string WorkShifts {
             get {
                 return ResourceManager.GetString("WorkShifts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Should be 12 digits.
+        /// </summary>
+        internal static string _12Digit {
+            get {
+                return ResourceManager.GetString("12Digit", resourceCulture);
             }
         }
     }

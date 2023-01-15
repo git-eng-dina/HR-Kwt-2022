@@ -19,8 +19,18 @@ namespace Human_Resource
         protected void Page_Load(object sender, EventArgs e)
         {
             string path = "images/en.png";
+
+            //profile image
+            var res = Session["UserImage"] as byte[];
+            if (res != null)
+                img_profile.Src = "data:image;base64," + Convert.ToBase64String(res);
+            else
+                img_profile.Src = "~/images/no-image-icon-125x125.png";
+
             if (Session["CultureName"] != null)
             {
+              
+                //selected language
                 path = Session["CultureImage"].ToString();
                 cultureImage.ImageUrl = path;
 
@@ -33,6 +43,9 @@ namespace Human_Resource
 
                 if (Session["CultureName"].ToString().ToLower() == "en-us")
                 {
+                    //profile user name
+                    txt_profileName.Text = Session["UserNameEN"].ToString();
+
                     LinkCss.AddCss("/Content/en/css/bootstrap.css", this.Page);
                     LinkCss.AddCss("/Content/en/css/font-awesome.css", this.Page);
                     LinkCss.AddCss("/Content/en/css/style.css", this.Page);
@@ -46,6 +59,9 @@ namespace Human_Resource
                 }
                 else
                 {
+                    //profile user name
+                    txt_profileName.Text = Session["UserNameAR"].ToString();
+
                     LinkCss.AddCss("/Content/ar/css/bootstrap-rtl.min.css", this.Page);
                     LinkCss.AddCss("/Content/ar/css/font-awesome.css", this.Page);
                     LinkCss.AddCss("/Content/ar/css/style.css", this.Page);
@@ -61,7 +77,10 @@ namespace Human_Resource
             }
             else
             {
+                txt_profileName.Text = Session["UserNameAR"].ToString();
+
                 Session["CultureName"] = "ar-as";
+
                 Session["CultureImage"] = path;
                 cultureImage.ImageUrl = path;
 
@@ -76,6 +95,86 @@ namespace Human_Resource
                 Page.ClientScript.RegisterClientScriptInclude("main.js", ResolveUrl("~/Content/ar/js/main.js"));
             }
 
+            #region permissions
+            var role = Session["urole"].ToString();
+            if (role == "GeneralDirector" || role == "CEO")
+            {
+                li_rewardsPenalties.Visible = true;
+            }
+            else
+            {
+                li_rewardsPenalties.Visible = false;
+
+            }
+
+
+            if (role == "GeneralDirector" || role == "CEO" || role == "HRManager" || role == "Advisor")
+            {
+                li_basicInformation.Visible = true;
+
+                if(role == "Advisor")
+                {
+                    li_attendanceReport.Visible = false;
+                    li_workShifts.Visible = false;
+                    li_addTrainings.Visible = false;
+                }
+                else
+                {
+                    li_attendanceReport.Visible = true;
+                    li_workShifts.Visible = true;
+                    li_addTrainings.Visible = true;
+                }
+
+                if (role == "GeneralDirector" || role == "CEO" || role == "Advisor")
+                {
+                    li_userAccounts.Visible = true;
+                }
+                else
+                {
+                    li_userAccounts.Visible = false;
+
+                }
+            }
+            else
+            {
+                li_basicInformation.Visible = false;
+                li_attendanceReport.Visible = false;
+                li_workShifts.Visible = false;
+                li_addTrainings.Visible = false;
+                li_userAccounts.Visible = false;
+            }
+
+            if (role == "GeneralDirector" || role == "CEO" || role == "HRManager" 
+                || role == "ManagementManager"|| role == "Supervisor")
+            {
+
+                li_vacationReport.Visible = true;
+                li_employeesList.Visible = true;
+                if(role == "HRManager")
+                {
+                    li_eventsApprove.Visible = false;
+                }
+                else
+                {
+                    li_eventsApprove.Visible = true;
+
+                }
+            }
+            else if(role == "Advisor")
+            {
+                li_employeesInfo.Visible = false;
+                li_expiredExports.Visible = false;
+                li_newEmployee.Visible = true;
+            }
+            else 
+            {
+                li_vacationReport.Visible = false;
+                li_eventsApprove.Visible = false;
+                li_employeesList.Visible = false;
+
+
+            }
+            #endregion
 
         }
 
@@ -90,6 +189,7 @@ namespace Human_Resource
             Session["CultureName"] = Session["CultureName"].ToString().ToLower() == "en-us" ? CultureInfo.CreateSpecificCulture("ar-as") : CultureInfo.CreateSpecificCulture("en-us");
             Session["CultureImage"] = Session["CultureName"].ToString().ToLower() == "ar-as" ? "images/en.png" : "images/ar.png";
             cultureImage.ImageUrl = Session["CultureImage"].ToString();
+
 
             HttpCookie cookie = new HttpCookie("CultureInfo");
             cookie.Value = Session["CultureName"].ToString();
