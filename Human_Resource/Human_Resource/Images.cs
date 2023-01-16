@@ -18,9 +18,12 @@ namespace Human_Resource
         public string docName { get; set; }
         public string docnum { get; set; }
         public string image { get; set; }
-        public Nullable<int> EmployeeID { get; set; }
-        public Nullable<int> MessageID { get; set; }
+        public Nullable<long> EmployeeID { get; set; }
+        public Nullable<long> MessageID { get; set; }
+        public Nullable<long> EventID { get; set; }
+        public Nullable<long> TaskID { get; set; }
     
         public virtual employees employees { get; set; }
+        public virtual events events { get; set; }
     }
 }

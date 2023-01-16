@@ -18,17 +18,17 @@ namespace Human_Resource
         public string Notes { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
-        public Nullable<int> CreateUserID { get; set; }
-        public Nullable<int> UpdateUserID { get; set; }
+        public Nullable<long> CreateUserID { get; set; }
+        public Nullable<long> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public Nullable<long> TaskID { get; set; }
         public Nullable<int> SalaryIncreaseID { get; set; }
-        public Nullable<int> MessagesTemplateID { get; set; }
-        public Nullable<int> HourlyPermissionID { get; set; }
+        public Nullable<long> MessagesTemplateID { get; set; }
+        public Nullable<long> HourlyPermissionID { get; set; }
         public Nullable<int> JobID { get; set; }
         public Nullable<int> DepartmentID { get; set; }
         public string ConfirmType { get; set; }
-        public Nullable<int> EmployeeID { get; set; }
+        public Nullable<long> EmployeeID { get; set; }
         public string Role { get; set; }
         public Nullable<long> EventID { get; set; }
     

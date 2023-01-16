@@ -31,15 +31,15 @@ namespace Human_Resource.App_Code
         public string CompanyListAr { get; set; }
         public string CompanyListEn { get; set; }
         public Nullable<bool> OurCompany { get; set; }
-        public Nullable<int> GeneralDirector { get; set; }
-        public Nullable<int> FinancialManager { get; set; }
-        public Nullable<int> HRManager { get; set; }
-        public Nullable<int> CEO { get; set; }
-        public Nullable<int> LegalManager { get; set; }
+        public Nullable<long> GeneralDirector { get; set; }
+        public Nullable<long> FinancialManager { get; set; }
+        public Nullable<long> HRManager { get; set; }
+        public Nullable<long> CEO { get; set; }
+        public Nullable<long> LegalManager { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
-        public Nullable<int> CreateUserID { get; set; }
-        public Nullable<int> UpdateUserID { get; set; }
+        public Nullable<long> CreateUserID { get; set; }
+        public Nullable<long> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
 
         public List<EmployeeModel> Advisors { get; set; }
@@ -390,11 +390,11 @@ namespace Human_Resource.App_Code
     public class ManagementModel
     {
         #region Attributes
-        public int ManagementID { get; set; }
+        public long ManagementID { get; set; }
         public string Name { get; set; }
         public Nullable<int> BranchID { get; set; }
         public string BranchName { get; set; }
-        public Nullable<int> ManagerID { get; set; }
+        public Nullable<long> ManagerID { get; set; }
         public string ManagerName { get; set; }
         public string Mobile { get; set; }
 
@@ -402,8 +402,8 @@ namespace Human_Resource.App_Code
         public string Address { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
-        public Nullable<int> CreateUserID { get; set; }
-        public Nullable<int> UpdateUserID { get; set; }
+        public Nullable<long> CreateUserID { get; set; }
+        public Nullable<long> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
         #endregion
 
@@ -478,7 +478,7 @@ namespace Human_Resource.App_Code
             }
         }
 
-        public int SaveDept(ManagementModel dept)
+        public long SaveDept(ManagementModel dept)
         {
             try
             {
@@ -524,7 +524,7 @@ namespace Human_Resource.App_Code
                 return 0;
             }
         }
-        public bool DeleteDept(int deptId, int? userId)
+        public bool DeleteDept(int deptId, long? userId)
         {
             try
             {
@@ -553,9 +553,9 @@ namespace Human_Resource.App_Code
         #region Attributes
         public int DepartmentID { get; set; }
         public string Name { get; set; }
-        public Nullable<int> ManagementID { get; set; }
+        public Nullable<long> ManagementID { get; set; }
         public string ManagementName { get; set; }
-        public Nullable<int> ManagerID { get; set; }
+        public Nullable<long> ManagerID { get; set; }
         public string ManagerName { get; set; }
         public string Mobile { get; set; }
 
@@ -563,8 +563,8 @@ namespace Human_Resource.App_Code
         public string Address { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
-        public Nullable<int> CreateUserID { get; set; }
-        public Nullable<int> UpdateUserID { get; set; }
+        public Nullable<long> CreateUserID { get; set; }
+        public Nullable<long> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
         #endregion
 
@@ -709,7 +709,7 @@ namespace Human_Resource.App_Code
                 return 0;
             }
         }
-        public bool DeleteDept(int deptId, int? userId)
+        public bool DeleteDept(int deptId, long? userId)
         {
             try
             {
@@ -735,13 +735,13 @@ namespace Human_Resource.App_Code
     public class VacationModel
     {
         #region attributes
-        public int VacationID { get; set; }
+        public long VacationID { get; set; }
         public string Name { get; set; }
         public string Notes { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
-        public Nullable<int> CreateUserID { get; set; }
-        public Nullable<int> UpdateUserID { get; set; }
+        public Nullable<long> CreateUserID { get; set; }
+        public Nullable<long> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
         #endregion
 
@@ -785,7 +785,7 @@ namespace Human_Resource.App_Code
             }
         }
 
-        public int SaveVacation(VacationModel dept)
+        public long SaveVacation(VacationModel dept)
         {
             try
             {
@@ -825,7 +825,7 @@ namespace Human_Resource.App_Code
                 return 0;
             }
         }
-        public bool DeleteVacation(int deptId, int? userId)
+        public bool DeleteVacation(int deptId, long? userId)
         {
             try
             {
@@ -864,8 +864,8 @@ namespace Human_Resource.App_Code
         public string Notes { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
-        public Nullable<int> CreateUserID { get; set; }
-        public Nullable<int> UpdateUserID { get; set; }
+        public Nullable<long> CreateUserID { get; set; }
+        public Nullable<long> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
         #endregion
 
@@ -955,7 +955,7 @@ namespace Human_Resource.App_Code
                 return 0;
             }
         }
-        public bool DeleteDept(int deptId, int? userId)
+        public bool DeleteDept(long deptId, long? userId)
         {
             try
             {

@@ -73,7 +73,7 @@ namespace Human_Resource.Views.ExecutiveProc
                     dept.CreateUserID = dept.UpdateUserID = int.Parse(HttpContext.Current.Session["user_id"].ToString());
 
 
-                int deptId = dept.SaveDept(dept);
+                long deptId = dept.SaveDept(dept);
                 if (deptId != 0)
                 {
                     return "1";
@@ -113,11 +113,11 @@ namespace Human_Resource.Views.ExecutiveProc
             try
             {
                 MaterialsConsumptionModel dept = new MaterialsConsumptionModel();
-                int Ref = Convert.ToInt32(e.CommandArgument.ToString());
+                long Ref = Convert.ToInt32(e.CommandArgument.ToString());
 
-                int? userId = null;
+                long? userId = null;
                 if (Session["user_id"] != null && Session["user_id"].ToString() != "")
-                    userId = dept.UpdateUserID = int.Parse(Session["user_id"].ToString());
+                    userId = dept.UpdateUserID = long.Parse(Session["user_id"].ToString());
 
                 if (dept.DeleteDept(Ref, userId))
                 {

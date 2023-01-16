@@ -8,7 +8,7 @@ namespace Human_Resource.App_Code
     public class RewardModel
      {
         #region Attributes
-        public int RewardID { get; set; }
+        public long RewardID { get; set; }
         //public string Type { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
@@ -18,8 +18,8 @@ namespace Human_Resource.App_Code
         public string Notes { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
-        public Nullable<int> CreateUserID { get; set; }
-        public Nullable<int> UpdateUserID { get; set; }
+        public Nullable<long> CreateUserID { get; set; }
+        public Nullable<long> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
         #endregion
 
@@ -142,7 +142,7 @@ namespace Human_Resource.App_Code
             }
         }
 
-        public int SaveDept(RewardModel dept)
+        public long SaveDept(RewardModel dept)
         {
             try
             {
@@ -190,7 +190,7 @@ namespace Human_Resource.App_Code
                 return 0;
             }
         }
-        public bool DeleteDept(int deptId, int? userId)
+        public bool DeleteDept(long deptId, long? userId)
         {
             try
             {

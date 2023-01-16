@@ -20,14 +20,14 @@ namespace Human_Resource
             this.employeesTrainings = new HashSet<employeesTrainings>();
         }
     
-        public int TrainingID { get; set; }
+        public long TrainingID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Notes { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
-        public Nullable<int> CreateUserID { get; set; }
-        public Nullable<int> UpdateUserID { get; set; }
+        public Nullable<long> CreateUserID { get; set; }
+        public Nullable<long> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public Nullable<System.DateTime> StartDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }

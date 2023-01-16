@@ -27,13 +27,17 @@ namespace Human_Resource
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<appObjects> appObjects { get; set; }
         public virtual DbSet<branches> branches { get; set; }
+        public virtual DbSet<charitys> charitys { get; set; }
         public virtual DbSet<companies> companies { get; set; }
         public virtual DbSet<confirms> confirms { get; set; }
         public virtual DbSet<countriesName> countriesName { get; set; }
         public virtual DbSet<custodies> custodies { get; set; }
         public virtual DbSet<dailyTasks> dailyTasks { get; set; }
         public virtual DbSet<departments> departments { get; set; }
+        public virtual DbSet<Devices> Devices { get; set; }
+        public virtual DbSet<DocumentCategories> DocumentCategories { get; set; }
         public virtual DbSet<EemployeesEvents> EemployeesEvents { get; set; }
         public virtual DbSet<employees> employees { get; set; }
         public virtual DbSet<employeesScheduleVacations> employeesScheduleVacations { get; set; }
@@ -48,16 +52,20 @@ namespace Human_Resource
         public virtual DbSet<jobs> jobs { get; set; }
         public virtual DbSet<managements> managements { get; set; }
         public virtual DbSet<materialsConsumption> materialsConsumption { get; set; }
+        public virtual DbSet<MessageReply> MessageReply { get; set; }
         public virtual DbSet<messages> messages { get; set; }
         public virtual DbSet<messagesTemplates> messagesTemplates { get; set; }
         public virtual DbSet<periods> periods { get; set; }
         public virtual DbSet<rewards> rewards { get; set; }
         public virtual DbSet<salaryIncreases> salaryIncreases { get; set; }
+        public virtual DbSet<scheduledJobs> scheduledJobs { get; set; }
         public virtual DbSet<scheduleVacations> scheduleVacations { get; set; }
         public virtual DbSet<statuses> statuses { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<tasks> tasks { get; set; }
         public virtual DbSet<trainings> trainings { get; set; }
+        public virtual DbSet<usersMessages> usersMessages { get; set; }
+        public virtual DbSet<usersPermissions> usersPermissions { get; set; }
         public virtual DbSet<vacations> vacations { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)

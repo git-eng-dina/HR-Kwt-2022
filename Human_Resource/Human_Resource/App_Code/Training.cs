@@ -9,14 +9,14 @@ namespace Human_Resource.App_Code
     {
 
         #region Attributes
-        public int TrainingID { get; set; }
+        public long TrainingID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Notes { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
-        public Nullable<int> CreateUserID { get; set; }
-        public Nullable<int> UpdateUserID { get; set; }
+        public Nullable<long> CreateUserID { get; set; }
+        public Nullable<long> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public Nullable<System.DateTime> StartDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
@@ -117,7 +117,7 @@ namespace Human_Resource.App_Code
             }
         }
 
-        public int SaveDept(TrainingModel dept, string empIds)
+        public long SaveDept(TrainingModel dept, string empIds)
         {
             try
             {
@@ -195,7 +195,7 @@ namespace Human_Resource.App_Code
                 return 0;
             }
         }
-        public bool DeleteDept(int deptId, int? userId)
+        public bool DeleteDept(long deptId, long? userId)
         {
             try
             {

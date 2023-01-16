@@ -61,7 +61,7 @@ namespace Human_Resource.Views.Settings
                     dept.CreateUserID = dept.UpdateUserID = int.Parse(HttpContext.Current.Session["user_id"].ToString());
 
 
-                int deptId = dept.SaveVacation(dept);
+                long deptId = dept.SaveVacation(dept);
                 if (deptId != 0)
                 {
                     return "1";
@@ -103,9 +103,9 @@ namespace Human_Resource.Views.Settings
                 VacationModel dept = new VacationModel();
                 int Ref = Convert.ToInt32(e.CommandArgument.ToString());
 
-                int? userId = null;
+                long? userId = null;
                 if (Session["user_id"] != null && Session["user_id"].ToString() != "")
-                    userId = dept.UpdateUserID = int.Parse(Session["user_id"].ToString());
+                    userId = dept.UpdateUserID = long.Parse(Session["user_id"].ToString());
 
                 if (dept.DeleteVacation(Ref, userId))
                 {

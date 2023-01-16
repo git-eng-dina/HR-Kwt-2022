@@ -9,7 +9,7 @@ namespace Human_Resource.App_Code
     {
 
         #region Attributes
-        public int HourlyPermissionID { get; set; }
+        public long HourlyPermissionID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
@@ -18,8 +18,8 @@ namespace Human_Resource.App_Code
         public string Notes { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
-        public Nullable<int> CreateUserID { get; set; }
-        public Nullable<int> UpdateUserID { get; set; }
+        public Nullable<long> CreateUserID { get; set; }
+        public Nullable<long> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
         #endregion
 
@@ -69,7 +69,7 @@ namespace Human_Resource.App_Code
             }
         }
 
-        public int SaveDept(HourlyPermissionModel dept)
+        public long SaveDept(HourlyPermissionModel dept)
         {
             try
             {
@@ -115,7 +115,7 @@ namespace Human_Resource.App_Code
                 return 0;
             }
         }
-        public bool DeleteDept(int deptId, int? userId)
+        public bool DeleteDept(long deptId, long? userId)
         {
             try
             {

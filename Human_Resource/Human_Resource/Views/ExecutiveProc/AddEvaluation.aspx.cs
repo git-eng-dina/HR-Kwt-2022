@@ -282,7 +282,7 @@ namespace Human_Resource.Views.ExecutiveProc
                     attachment.DeleteCertificateAttach(evaluation.EvaluationID);
                 #endregion
 
-                int evalId = evaluation.SaveDept(evaluation);
+                long evalId = evaluation.SaveDept(evaluation);
                 hid_eval_id.Value = evalId.ToString();
 
                 HelpClass.ShowMessage(this.Page, Resources.Labels.SaveSuccessfully);

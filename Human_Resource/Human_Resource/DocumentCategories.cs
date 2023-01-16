@@ -12,26 +12,31 @@ namespace Human_Resource
     using System;
     using System.Collections.Generic;
     
-    public partial class salaryIncreases
+    public partial class DocumentCategories
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public salaryIncreases()
+        public DocumentCategories()
         {
-            this.confirms = new HashSet<confirms>();
+            this.DocumentCategories1 = new HashSet<DocumentCategories>();
         }
     
-        public int SalaryIncreaseID { get; set; }
-        public string Name { get; set; }
-        public string IncreaseType { get; set; }
-        public Nullable<decimal> IncreaseValue { get; set; }
-        public string Notes { get; set; }
+        public int CategoryID { get; set; }
+        public string CategoryCode { get; set; }
+        public string NameAR { get; set; }
+        public string NameEN { get; set; }
+        public string Details { get; set; }
+        public Nullable<bool> IsActive { get; set; }
+        public Nullable<int> ParentID { get; set; }
+        public Nullable<bool> IsFixed { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public Nullable<long> CreateUserID { get; set; }
         public Nullable<long> UpdateUserID { get; set; }
-        public Nullable<bool> IsActive { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<confirms> confirms { get; set; }
+        public virtual ICollection<DocumentCategories> DocumentCategories1 { get; set; }
+        public virtual DocumentCategories DocumentCategories2 { get; set; }
+        public virtual employees employees { get; set; }
+        public virtual employees employees1 { get; set; }
     }
 }

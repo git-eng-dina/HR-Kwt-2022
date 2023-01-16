@@ -17,9 +17,12 @@ namespace Human_Resource
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public employees()
         {
+            this.charitys = new HashSet<charitys>();
             this.confirms = new HashSet<confirms>();
             this.custodies = new HashSet<custodies>();
             this.dailyTasks = new HashSet<dailyTasks>();
+            this.DocumentCategories = new HashSet<DocumentCategories>();
+            this.DocumentCategories1 = new HashSet<DocumentCategories>();
             this.EemployeesEvents = new HashSet<EemployeesEvents>();
             this.employeesScheduleVacations = new HashSet<employeesScheduleVacations>();
             this.employeesTasks = new HashSet<employeesTasks>();
@@ -28,6 +31,8 @@ namespace Human_Resource
             this.evaluations = new HashSet<evaluations>();
             this.evaluations1 = new HashSet<evaluations>();
             this.events = new HashSet<events>();
+            this.events1 = new HashSet<events>();
+            this.events2 = new HashSet<events>();
             this.highrManagment = new HashSet<highrManagment>();
             this.hourlyPermissions = new HashSet<hourlyPermissions>();
             this.Images = new HashSet<Images>();
@@ -35,9 +40,13 @@ namespace Human_Resource
             this.messages = new HashSet<messages>();
             this.periods = new HashSet<periods>();
             this.rewards = new HashSet<rewards>();
+            this.tasks = new HashSet<tasks>();
+            this.tasks1 = new HashSet<tasks>();
+            this.usersMessages = new HashSet<usersMessages>();
+            this.usersPermissions = new HashSet<usersPermissions>();
         }
     
-        public int EmployeeID { get; set; }
+        public long EmployeeID { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public Nullable<int> DepartmentID { get; set; }
@@ -51,7 +60,6 @@ namespace Human_Resource
         public Nullable<int> Nationality { get; set; }
         public string Religion { get; set; }
         public string BloodType { get; set; }
-        public string Image { get; set; }
         public string IdentityType { get; set; }
         public string IdentityNumber { get; set; }
         public Nullable<System.DateTime> IdentityReleaseDate { get; set; }
@@ -88,8 +96,8 @@ namespace Human_Resource
         public string Notes { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
-        public Nullable<int> CreateUserID { get; set; }
-        public Nullable<int> UpdateUserID { get; set; }
+        public Nullable<long> CreateUserID { get; set; }
+        public Nullable<long> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public Nullable<decimal> BasicSalary { get; set; }
         public string TransportationCompensationType { get; set; }
@@ -102,7 +110,15 @@ namespace Human_Resource
         public Nullable<int> WorkHours { get; set; }
         public string JobDescription { get; set; }
         public string Guarantor { get; set; }
+        public Nullable<long> ManagementID { get; set; }
+        public string IDNumber { get; set; }
+        public string WorkPermit { get; set; }
+        public string WorkContract { get; set; }
+        public Nullable<bool> IsBarcodeUser { get; set; }
+        public byte[] Image { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<charitys> charitys { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<confirms> confirms { get; set; }
         public virtual countriesName countriesName { get; set; }
@@ -112,8 +128,13 @@ namespace Human_Resource
         public virtual ICollection<dailyTasks> dailyTasks { get; set; }
         public virtual departments departments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DocumentCategories> DocumentCategories { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DocumentCategories> DocumentCategories1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EemployeesEvents> EemployeesEvents { get; set; }
         public virtual jobs jobs { get; set; }
+        public virtual managements managements { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<employeesScheduleVacations> employeesScheduleVacations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -129,6 +150,10 @@ namespace Human_Resource
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<events> events { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<events> events1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<events> events2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<highrManagment> highrManagment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<hourlyPermissions> hourlyPermissions { get; set; }
@@ -142,5 +167,13 @@ namespace Human_Resource
         public virtual ICollection<periods> periods { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<rewards> rewards { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tasks> tasks { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tasks> tasks1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<usersMessages> usersMessages { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<usersPermissions> usersPermissions { get; set; }
     }
 }

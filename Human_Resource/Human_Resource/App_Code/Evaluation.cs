@@ -8,7 +8,7 @@ namespace Human_Resource.App_Code
     public class EvaluationModel
     {
         #region Attributes
-        public int EvaluationID { get; set; }
+        public long EvaluationID { get; set; }
         public Nullable<long> EmployeeID { get; set; }
         public string EmployeeName { get; set; }
         public Nullable<long> ReviewerID { get; set; }
@@ -17,8 +17,8 @@ namespace Human_Resource.App_Code
         public string Notes { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
-        public Nullable<int> CreateUserID { get; set; }
-        public Nullable<int> UpdateUserID { get; set; }
+        public Nullable<long> CreateUserID { get; set; }
+        public Nullable<long> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
 
         //Behavior 
@@ -215,7 +215,7 @@ namespace Human_Resource.App_Code
             }
         }
 
-        public int SaveDept(EvaluationModel dept)
+        public long SaveDept(EvaluationModel dept)
         {
             try
             {
@@ -305,7 +305,7 @@ namespace Human_Resource.App_Code
                 return 0;
             }
         }
-        public bool DeleteDept(int deptId, int? userId)
+        public bool DeleteDept(long deptId, long? userId)
         {
             try
             {

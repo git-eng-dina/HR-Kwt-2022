@@ -31,15 +31,16 @@ namespace Human_Resource
         public Nullable<bool> OurCompany { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
-        public Nullable<int> CreateUserID { get; set; }
-        public Nullable<int> UpdateUserID { get; set; }
+        public Nullable<long> CreateUserID { get; set; }
+        public Nullable<long> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
-        public Nullable<int> GeneralDirector { get; set; }
-        public Nullable<int> FinancialManager { get; set; }
-        public Nullable<int> HRManager { get; set; }
-        public Nullable<int> CEO { get; set; }
-        public Nullable<int> LegalManager { get; set; }
-        public string CompanyList { get; set; }
+        public Nullable<long> GeneralDirector { get; set; }
+        public Nullable<long> FinancialManager { get; set; }
+        public Nullable<long> HRManager { get; set; }
+        public Nullable<long> CEO { get; set; }
+        public Nullable<long> LegalManager { get; set; }
+        public string CompanyListAr { get; set; }
+        public string CompanyListEn { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<branches> branches { get; set; }

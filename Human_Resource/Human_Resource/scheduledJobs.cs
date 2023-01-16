@@ -12,15 +12,10 @@ namespace Human_Resource
     using System;
     using System.Collections.Generic;
     
-    public partial class statuses
+    public partial class scheduledJobs
     {
-        public long StatusID { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
-        public string Notes { get; set; }
-        public Nullable<System.DateTime> CreateDate { get; set; }
-        public Nullable<System.DateTime> UpdateDate { get; set; }
-        public Nullable<long> CreateUserID { get; set; }
-        public Nullable<long> UpdateUserID { get; set; }
-        public Nullable<bool> IsActive { get; set; }
+        public Nullable<System.DateTime> ScheduleDate { get; set; }
     }
 }

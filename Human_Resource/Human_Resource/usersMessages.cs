@@ -12,26 +12,28 @@ namespace Human_Resource
     using System;
     using System.Collections.Generic;
     
-    public partial class salaryIncreases
+    public partial class usersMessages
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public salaryIncreases()
+        public usersMessages()
         {
-            this.confirms = new HashSet<confirms>();
+            this.MessageReply = new HashSet<MessageReply>();
         }
     
-        public int SalaryIncreaseID { get; set; }
-        public string Name { get; set; }
-        public string IncreaseType { get; set; }
-        public Nullable<decimal> IncreaseValue { get; set; }
+        public long UsersMessageID { get; set; }
+        public Nullable<long> ToEmployeeID { get; set; }
+        public string Title { get; set; }
+        public string ContentMessage { get; set; }
         public string Notes { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public Nullable<long> CreateUserID { get; set; }
         public Nullable<long> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
+        public Nullable<bool> IsRead { get; set; }
     
+        public virtual employees employees { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<confirms> confirms { get; set; }
+        public virtual ICollection<MessageReply> MessageReply { get; set; }
     }
 }

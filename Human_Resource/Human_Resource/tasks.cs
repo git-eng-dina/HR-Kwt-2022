@@ -23,21 +23,21 @@ namespace Human_Resource
         }
     
         public long TaskID { get; set; }
-        public Nullable<int> EmployeeID { get; set; }
+        public Nullable<long> EmployeeID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string RepeatedEvery { get; set; }
         public string Notes { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
-        public Nullable<int> CreateUserID { get; set; }
-        public Nullable<int> UpdateUserID { get; set; }
+        public Nullable<long> CreateUserID { get; set; }
+        public Nullable<long> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public Nullable<System.DateTime> StartDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
         public Nullable<bool> Approved { get; set; }
-        public Nullable<int> BranchManagerID { get; set; }
-        public Nullable<int> ManagementManagerID { get; set; }
+        public Nullable<long> BranchManagerID { get; set; }
+        public Nullable<long> ManagementManagerID { get; set; }
         public Nullable<bool> IsBasic { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

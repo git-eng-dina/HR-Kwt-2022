@@ -21,16 +21,16 @@ namespace Human_Resource
             this.employees = new HashSet<employees>();
         }
     
-        public int ManagementID { get; set; }
+        public long ManagementID { get; set; }
         public Nullable<int> BranchID { get; set; }
         public string Name { get; set; }
         public string Notes { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
-        public Nullable<int> CreateUserID { get; set; }
-        public Nullable<int> UpdateUserID { get; set; }
+        public Nullable<long> CreateUserID { get; set; }
+        public Nullable<long> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
-        public Nullable<int> ManagerID { get; set; }
+        public Nullable<long> ManagerID { get; set; }
         public string Mobile { get; set; }
     
         public virtual branches branches { get; set; }

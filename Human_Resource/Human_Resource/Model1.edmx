@@ -5,6 +5,21 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="HRSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="appObjects">
+          <Key>
+            <PropertyRef Name="AppObjectID" />
+          </Key>
+          <Property Name="AppObjectID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="NameAr" Type="nvarchar" MaxLength="100" />
+          <Property Name="NameEn" Type="nvarchar" MaxLength="100" />
+          <Property Name="Notes" Type="ntext" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="CreateUserID" Type="int" />
+          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
         <EntityType Name="branches">
           <Key>
             <PropertyRef Name="BranchID" />
@@ -22,6 +37,22 @@
           <Property Name="Mobile" Type="nvarchar" MaxLength="100" />
           <Property Name="Address" Type="ntext" />
         </EntityType>
+        <EntityType Name="charitys">
+          <Key>
+            <PropertyRef Name="CharityID" />
+          </Key>
+          <Property Name="CharityID" Type="int" Nullable="false" />
+          <Property Name="EmployeeID" Type="bigint" />
+          <Property Name="Reason" Type="nvarchar" MaxLength="100" />
+          <Property Name="Amount" Type="decimal" Precision="20" Scale="3" />
+          <Property Name="Details" Type="ntext" />
+          <Property Name="Notes" Type="ntext" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="CreateUserID" Type="bigint" />
+          <Property Name="UpdateUserID" Type="bigint" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
         <EntityType Name="companies">
           <Key>
             <PropertyRef Name="CompanyID" />
@@ -37,14 +68,14 @@
           <Property Name="OurCompany" Type="bit" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" />
           <Property Name="UpdateDate" Type="datetime2" Precision="7" />
-          <Property Name="CreateUserID" Type="int" />
-          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="CreateUserID" Type="bigint" />
+          <Property Name="UpdateUserID" Type="bigint" />
           <Property Name="IsActive" Type="bit" />
-          <Property Name="GeneralDirector" Type="int" />
-          <Property Name="FinancialManager" Type="int" />
-          <Property Name="HRManager" Type="int" />
-          <Property Name="CEO" Type="int" />
-          <Property Name="LegalManager" Type="int" />
+          <Property Name="GeneralDirector" Type="bigint" />
+          <Property Name="FinancialManager" Type="bigint" />
+          <Property Name="HRManager" Type="bigint" />
+          <Property Name="CEO" Type="bigint" />
+          <Property Name="LegalManager" Type="bigint" />
           <Property Name="CompanyListAr" Type="ntext" />
           <Property Name="CompanyListEn" Type="ntext" />
         </EntityType>
@@ -56,17 +87,17 @@
           <Property Name="Notes" Type="ntext" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" />
           <Property Name="UpdateDate" Type="datetime2" Precision="7" />
-          <Property Name="CreateUserID" Type="int" />
-          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="CreateUserID" Type="bigint" />
+          <Property Name="UpdateUserID" Type="bigint" />
           <Property Name="IsActive" Type="bit" />
-          <Property Name="TaskID" Type="int" />
+          <Property Name="TaskID" Type="bigint" />
           <Property Name="SalaryIncreaseID" Type="int" />
-          <Property Name="MessagesTemplateID" Type="int" />
-          <Property Name="HourlyPermissionID" Type="int" />
+          <Property Name="MessagesTemplateID" Type="bigint" />
+          <Property Name="HourlyPermissionID" Type="bigint" />
           <Property Name="JobID" Type="int" />
           <Property Name="DepartmentID" Type="int" />
           <Property Name="ConfirmType" Type="nvarchar" MaxLength="100" />
-          <Property Name="EmployeeID" Type="int" />
+          <Property Name="EmployeeID" Type="bigint" />
           <Property Name="Role" Type="nvarchar" MaxLength="50" />
           <Property Name="EventID" Type="bigint" />
         </EntityType>
@@ -86,30 +117,29 @@
           <Property Name="Type" Type="nvarchar" MaxLength="100" />
           <Property Name="Details" Type="ntext" />
           <Property Name="Value" Type="nvarchar" MaxLength="100" />
-          <Property Name="EmployeeID" Type="int" />
+          <Property Name="EmployeeID" Type="bigint" />
           <Property Name="IsRecovery" Type="bit" />
           <Property Name="Notes" Type="ntext" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" />
           <Property Name="UpdateDate" Type="datetime2" Precision="7" />
-          <Property Name="CreateUserID" Type="int" />
-          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="CreateUserID" Type="bigint" />
+          <Property Name="UpdateUserID" Type="bigint" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
         <EntityType Name="dailyTasks">
           <Key>
             <PropertyRef Name="DailyTaskID" />
           </Key>
-          <Property Name="DailyTaskID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DailyTaskID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Notes" Type="ntext" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" />
           <Property Name="UpdateDate" Type="datetime2" Precision="7" />
-          <Property Name="CreateUserID" Type="int" />
-          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="CreateUserID" Type="bigint" />
+          <Property Name="UpdateUserID" Type="bigint" />
           <Property Name="IsActive" Type="bit" />
-          <Property Name="EmployeeID" Type="int" />
-          <Property Name="TaskID" Type="int" />
-          <Property Name="EmpDone" Type="bit" />
-          <Property Name="BossDone" Type="bit" />
+          <Property Name="EmployeeID" Type="bigint" />
+          <Property Name="TaskID" Type="bigint" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="departments">
           <Key>
@@ -120,32 +150,64 @@
           <Property Name="Notes" Type="ntext" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" />
           <Property Name="UpdateDate" Type="datetime2" Precision="7" />
-          <Property Name="CreateUserID" Type="int" />
-          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="CreateUserID" Type="bigint" />
+          <Property Name="UpdateUserID" Type="bigint" />
           <Property Name="IsActive" Type="bit" />
-          <Property Name="ManagerID" Type="int" />
+          <Property Name="ManagerID" Type="bigint" />
           <Property Name="Mobile" Type="nvarchar" MaxLength="100" />
-          <Property Name="ManagementID" Type="int" />
+          <Property Name="ManagementID" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Devices">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Port" Type="int" />
+          <Property Name="DeviceNumber" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreateUserID" Type="bigint" />
+          <Property Name="UpdateUserID" Type="bigint" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="Notes" Type="ntext" />
+        </EntityType>
+        <EntityType Name="DocumentCategories">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="NameAR" Type="nvarchar" MaxLength="100" />
+          <Property Name="NameEN" Type="nvarchar" MaxLength="100" />
+          <Property Name="Details" Type="ntext" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="ParentID" Type="int" />
+          <Property Name="IsFixed" Type="bit" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="CreateUserID" Type="bigint" />
+          <Property Name="UpdateUserID" Type="bigint" />
         </EntityType>
         <EntityType Name="EemployeesEvents">
           <Key>
             <PropertyRef Name="EmployeesEventsID" />
           </Key>
-          <Property Name="EmployeesEventsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeesEventsID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EventID" Type="bigint" />
-          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="EmployeeID" Type="bigint" Nullable="false" />
           <Property Name="Notes" Type="ntext" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" />
           <Property Name="UpdateDate" Type="datetime2" Precision="7" />
-          <Property Name="CreateUserID" Type="int" />
-          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="CreateUserID" Type="bigint" />
+          <Property Name="UpdateUserID" Type="bigint" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
         <EntityType Name="employees">
           <Key>
             <PropertyRef Name="EmployeeID" />
           </Key>
-          <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Username" Type="nvarchar" MaxLength="100" />
           <Property Name="Password" Type="nvarchar" MaxLength="100" />
           <Property Name="DepartmentID" Type="int" />
@@ -159,7 +221,6 @@
           <Property Name="Nationality" Type="int" />
           <Property Name="Religion" Type="nvarchar" MaxLength="100" />
           <Property Name="BloodType" Type="nvarchar" MaxLength="100" />
-          <Property Name="Image" Type="ntext" />
           <Property Name="IdentityType" Type="nvarchar" MaxLength="100" />
           <Property Name="IdentityNumber" Type="nvarchar" MaxLength="100" />
           <Property Name="IdentityReleaseDate" Type="datetime2" Precision="7" />
@@ -196,8 +257,8 @@
           <Property Name="Notes" Type="ntext" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" />
           <Property Name="UpdateDate" Type="datetime2" Precision="7" />
-          <Property Name="CreateUserID" Type="int" />
-          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="CreateUserID" Type="bigint" />
+          <Property Name="UpdateUserID" Type="bigint" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="BasicSalary" Type="decimal" Precision="20" Scale="3" />
           <Property Name="TransportationCompensationType" Type="nvarchar" MaxLength="100" />
@@ -210,73 +271,80 @@
           <Property Name="WorkHours" Type="int" />
           <Property Name="JobDescription" Type="ntext" />
           <Property Name="Guarantor" Type="nvarchar" MaxLength="100" />
-          <Property Name="ManagementID" Type="int" />
+          <Property Name="ManagementID" Type="bigint" />
+          <Property Name="IDNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="WorkPermit" Type="nvarchar" MaxLength="250" />
+          <Property Name="WorkContract" Type="nvarchar" MaxLength="250" />
+          <Property Name="IsBarcodeUser" Type="bit" />
+          <Property Name="Image" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="employeesScheduleVacations">
           <Key>
             <PropertyRef Name="EmployeesScheduleVacationsID" />
           </Key>
-          <Property Name="EmployeesScheduleVacationsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ScheduleVacationID" Type="int" />
-          <Property Name="EmployeeID" Type="int" />
+          <Property Name="EmployeesScheduleVacationsID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ScheduleVacationID" Type="bigint" />
+          <Property Name="EmployeeID" Type="bigint" />
           <Property Name="Notes" Type="ntext" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" />
           <Property Name="UpdateDate" Type="datetime2" Precision="7" />
-          <Property Name="CreateUserID" Type="int" />
-          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="CreateUserID" Type="bigint" />
+          <Property Name="UpdateUserID" Type="bigint" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
         <EntityType Name="employeesTasks">
           <Key>
             <PropertyRef Name="EmployeesTaskID" />
           </Key>
-          <Property Name="EmployeesTaskID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="EmployeeID" Type="int" />
-          <Property Name="TaskID" Type="int" />
+          <Property Name="EmployeesTaskID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="bigint" />
+          <Property Name="TaskID" Type="bigint" />
           <Property Name="Notes" Type="ntext" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" />
           <Property Name="UpdateDate" Type="datetime2" Precision="7" />
-          <Property Name="CreateUserID" Type="int" />
-          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="CreateUserID" Type="bigint" />
+          <Property Name="UpdateUserID" Type="bigint" />
           <Property Name="IsActive" Type="bit" />
+          <Property Name="BossDone" Type="bit" />
         </EntityType>
         <EntityType Name="employeesTrainings">
           <Key>
             <PropertyRef Name="EmployeesTrainingsID" />
           </Key>
-          <Property Name="EmployeesTrainingsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TrainingID" Type="int" />
-          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="EmployeesTrainingsID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TrainingID" Type="bigint" />
+          <Property Name="EmployeeID" Type="bigint" Nullable="false" />
           <Property Name="Notes" Type="ntext" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" />
           <Property Name="UpdateDate" Type="datetime2" Precision="7" />
-          <Property Name="CreateUserID" Type="int" />
-          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="CreateUserID" Type="bigint" />
+          <Property Name="UpdateUserID" Type="bigint" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
         <EntityType Name="employeesVacations">
           <Key>
             <PropertyRef Name="EmployeesVacationID" />
           </Key>
-          <Property Name="EmployeesVacationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="VacationID" Type="int" />
-          <Property Name="EmployeeID" Type="int" />
+          <Property Name="EmployeesVacationID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VacationID" Type="bigint" />
+          <Property Name="EmployeeID" Type="bigint" />
           <Property Name="Notes" Type="ntext" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" />
           <Property Name="UpdateDate" Type="datetime2" Precision="7" />
-          <Property Name="CreateUserID" Type="int" />
-          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="CreateUserID" Type="bigint" />
+          <Property Name="UpdateUserID" Type="bigint" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="FromDate" Type="datetime2" Precision="7" />
           <Property Name="ToDate" Type="datetime2" Precision="7" />
+          <Property Name="Approved" Type="bit" />
         </EntityType>
         <EntityType Name="evaluations">
           <Key>
             <PropertyRef Name="EvaluationID" />
           </Key>
-          <Property Name="EvaluationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="EmployeeID" Type="int" />
-          <Property Name="ReviewerID" Type="int" />
+          <Property Name="EvaluationID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="bigint" />
+          <Property Name="ReviewerID" Type="bigint" />
           <Property Name="EvaluationDate" Type="datetime2" Precision="7" />
           <Property Name="Behavior" Type="nvarchar" MaxLength="100" />
           <Property Name="Attendance" Type="nvarchar" MaxLength="100" />
@@ -304,8 +372,8 @@
           <Property Name="Notes" Type="ntext" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" />
           <Property Name="UpdateDate" Type="datetime2" Precision="7" />
-          <Property Name="CreateUserID" Type="int" />
-          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="CreateUserID" Type="bigint" />
+          <Property Name="UpdateUserID" Type="bigint" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
         <EntityType Name="events">
@@ -318,16 +386,15 @@
           <Property Name="Notes" Type="ntext" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" />
           <Property Name="UpdateDate" Type="datetime2" Precision="7" />
-          <Property Name="CreateUserID" Type="int" />
-          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="CreateUserID" Type="bigint" />
+          <Property Name="UpdateUserID" Type="bigint" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="StartDate" Type="datetime2" Precision="7" />
           <Property Name="EndDate" Type="datetime2" Precision="7" />
           <Property Name="EventDate" Type="datetime2" Precision="7" />
-          <Property Name="EmployeeID" Type="int" />
-          <Property Name="Attachment" Type="nvarchar" MaxLength="100" />
-          <Property Name="BranchManagerID" Type="int" />
-          <Property Name="ManagementManagerID" Type="int" />
+          <Property Name="EmployeeID" Type="bigint" />
+          <Property Name="BranchManagerID" Type="bigint" />
+          <Property Name="ManagementManagerID" Type="bigint" />
           <Property Name="Approved" Type="bit" />
         </EntityType>
         <!--Errors Found During Generation:
@@ -335,36 +402,36 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
         <EntityType Name="EventTags">
           <Property Name="ID" Type="bigint" />
           <Property Name="EventID" Type="bigint" />
-          <Property Name="EmployeeID" Type="int" />
+          <Property Name="EmployeeID" Type="bigint" />
         </EntityType>-->
         <EntityType Name="highrManagment">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="EmployeeID" Type="int" />
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="bigint" />
           <Property Name="Role" Type="nvarchar" MaxLength="100" />
           <Property Name="Notes" Type="ntext" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" />
           <Property Name="UpdateDate" Type="datetime2" Precision="7" />
-          <Property Name="CreateUserID" Type="int" />
-          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="CreateUserID" Type="bigint" />
+          <Property Name="UpdateUserID" Type="bigint" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
         <EntityType Name="hourlyPermissions">
           <Key>
             <PropertyRef Name="HourlyPermissionID" />
           </Key>
-          <Property Name="HourlyPermissionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HourlyPermissionID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" />
           <Property Name="Description" Type="ntext" />
           <Property Name="Notes" Type="ntext" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" />
           <Property Name="UpdateDate" Type="datetime2" Precision="7" />
-          <Property Name="CreateUserID" Type="int" />
-          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="CreateUserID" Type="bigint" />
+          <Property Name="UpdateUserID" Type="bigint" />
           <Property Name="IsActive" Type="bit" />
-          <Property Name="EmployeeID" Type="int" />
+          <Property Name="EmployeeID" Type="bigint" />
           <Property Name="Date" Type="datetime2" Precision="7" />
         </EntityType>
         <EntityType Name="Images">
@@ -375,8 +442,8 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <Property Name="docName" Type="ntext" />
           <Property Name="docnum" Type="nvarchar" MaxLength="200" />
           <Property Name="image" Type="ntext" />
-          <Property Name="EmployeeID" Type="int" />
-          <Property Name="MessageID" Type="int" />
+          <Property Name="EmployeeID" Type="bigint" />
+          <Property Name="MessageID" Type="bigint" />
           <Property Name="EventID" Type="bigint" />
           <Property Name="TaskID" Type="bigint" />
         </EntityType>
@@ -389,66 +456,83 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <Property Name="Notes" Type="ntext" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" />
           <Property Name="UpdateDate" Type="datetime2" Precision="7" />
-          <Property Name="CreateUserID" Type="int" />
-          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="CreateUserID" Type="bigint" />
+          <Property Name="UpdateUserID" Type="bigint" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
         <EntityType Name="managements">
           <Key>
             <PropertyRef Name="ManagementID" />
           </Key>
-          <Property Name="ManagementID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ManagementID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="BranchID" Type="int" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" />
           <Property Name="Notes" Type="ntext" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" />
           <Property Name="UpdateDate" Type="datetime2" Precision="7" />
-          <Property Name="CreateUserID" Type="int" />
-          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="CreateUserID" Type="bigint" />
+          <Property Name="UpdateUserID" Type="bigint" />
           <Property Name="IsActive" Type="bit" />
-          <Property Name="ManagerID" Type="int" />
+          <Property Name="ManagerID" Type="bigint" />
           <Property Name="Mobile" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="materialsConsumption">
           <Key>
             <PropertyRef Name="MaterialsConsumptionID" />
           </Key>
-          <Property Name="MaterialsConsumptionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaterialsConsumptionID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Type" Type="nvarchar" MaxLength="100" />
           <Property Name="Details" Type="ntext" />
-          <Property Name="EmployeeID" Type="int" />
+          <Property Name="EmployeeID" Type="bigint" />
           <Property Name="Value" Type="nvarchar" MaxLength="100" />
           <Property Name="Notes" Type="ntext" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" />
           <Property Name="UpdateDate" Type="datetime2" Precision="7" />
-          <Property Name="CreateUserID" Type="int" />
-          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="CreateUserID" Type="bigint" />
+          <Property Name="UpdateUserID" Type="bigint" />
           <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="MessageReply">
+          <Key>
+            <PropertyRef Name="ReplyID" />
+          </Key>
+          <Property Name="ReplyID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UsersMessageID" Type="bigint" />
+          <Property Name="FromEmployee" Type="bigint" />
+          <Property Name="ToEmployee" Type="bigint" />
+          <Property Name="ContentMessage" Type="ntext" />
+          <Property Name="Notes" Type="ntext" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="CreateUserID" Type="bigint" />
+          <Property Name="UpdateUserID" Type="bigint" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsRead" Type="bit" />
         </EntityType>
         <EntityType Name="messages">
           <Key>
             <PropertyRef Name="MessageID" />
           </Key>
-          <Property Name="MessageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MessageID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Notes" Type="ntext" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" />
           <Property Name="UpdateDate" Type="datetime2" Precision="7" />
-          <Property Name="CreateUserID" Type="int" />
-          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="CreateUserID" Type="bigint" />
+          <Property Name="UpdateUserID" Type="bigint" />
           <Property Name="IsActive" Type="bit" />
-          <Property Name="EmployeeID" Type="int" />
-          <Property Name="ToEmployeeID" Type="int" />
+          <Property Name="EmployeeID" Type="bigint" />
+          <Property Name="ToEmployeeID" Type="bigint" />
         </EntityType>
         <EntityType Name="messagesTemplates">
           <Key>
             <PropertyRef Name="MessagesTemplateID" />
           </Key>
-          <Property Name="MessagesTemplateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MessagesTemplateID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Notes" Type="ntext" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" />
           <Property Name="UpdateDate" Type="datetime2" Precision="7" />
-          <Property Name="CreateUserID" Type="int" />
-          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="CreateUserID" Type="bigint" />
+          <Property Name="UpdateUserID" Type="bigint" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
         <EntityType Name="periods">
@@ -456,22 +540,22 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
             <PropertyRef Name="PeriodID" />
           </Key>
           <Property Name="PeriodID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="EmployeeID" Type="int" />
+          <Property Name="EmployeeID" Type="bigint" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" />
           <Property Name="StartTime" Type="datetime2" Precision="7" />
           <Property Name="EndTime" Type="datetime2" Precision="7" />
           <Property Name="Notes" Type="ntext" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" />
           <Property Name="UpdateDate" Type="datetime2" Precision="7" />
-          <Property Name="CreateUserID" Type="int" />
-          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="CreateUserID" Type="bigint" />
+          <Property Name="UpdateUserID" Type="bigint" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
         <EntityType Name="rewards">
           <Key>
             <PropertyRef Name="RewardID" />
           </Key>
-          <Property Name="RewardID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RewardID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Type" Type="nvarchar" MaxLength="100" />
           <Property Name="Title" Type="nvarchar" MaxLength="100" />
           <Property Name="Description" Type="ntext" />
@@ -479,10 +563,10 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <Property Name="Notes" Type="ntext" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" />
           <Property Name="UpdateDate" Type="datetime2" Precision="7" />
-          <Property Name="CreateUserID" Type="int" />
-          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="CreateUserID" Type="bigint" />
+          <Property Name="UpdateUserID" Type="bigint" />
           <Property Name="IsActive" Type="bit" />
-          <Property Name="EmployeeID" Type="int" />
+          <Property Name="EmployeeID" Type="bigint" />
         </EntityType>
         <EntityType Name="salaryIncreases">
           <Key>
@@ -495,33 +579,41 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <Property Name="Notes" Type="ntext" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" />
           <Property Name="UpdateDate" Type="datetime2" Precision="7" />
-          <Property Name="CreateUserID" Type="int" />
-          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="CreateUserID" Type="bigint" />
+          <Property Name="UpdateUserID" Type="bigint" />
           <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="scheduledJobs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="ScheduleDate" Type="datetime2" Precision="7" />
         </EntityType>
         <EntityType Name="scheduleVacations">
           <Key>
             <PropertyRef Name="ScheduleVacationID" />
           </Key>
-          <Property Name="ScheduleVacationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ScheduleVacationID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Notes" Type="ntext" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" />
           <Property Name="UpdateDate" Type="datetime2" Precision="7" />
-          <Property Name="CreateUserID" Type="int" />
-          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="CreateUserID" Type="bigint" />
+          <Property Name="UpdateUserID" Type="bigint" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
         <EntityType Name="statuses">
           <Key>
             <PropertyRef Name="StatusID" />
           </Key>
-          <Property Name="StatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" />
           <Property Name="Notes" Type="ntext" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" />
           <Property Name="UpdateDate" Type="datetime2" Precision="7" />
-          <Property Name="CreateUserID" Type="int" />
-          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="CreateUserID" Type="bigint" />
+          <Property Name="UpdateUserID" Type="bigint" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -538,49 +630,83 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <Key>
             <PropertyRef Name="TaskID" />
           </Key>
-          <Property Name="TaskID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="EmployeeID" Type="int" />
+          <Property Name="TaskID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="bigint" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" />
           <Property Name="Description" Type="ntext" />
           <Property Name="RepeatedEvery" Type="nvarchar" MaxLength="100" />
           <Property Name="Notes" Type="ntext" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" />
           <Property Name="UpdateDate" Type="datetime2" Precision="7" />
-          <Property Name="CreateUserID" Type="int" />
-          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="CreateUserID" Type="bigint" />
+          <Property Name="UpdateUserID" Type="bigint" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="StartDate" Type="datetime2" Precision="7" />
           <Property Name="EndDate" Type="datetime2" Precision="7" />
           <Property Name="Approved" Type="bit" />
-          <Property Name="BranchManagerID" Type="int" />
-          <Property Name="ManagementManagerID" Type="int" />
-          <Property Name="Attachment" Type="nvarchar" MaxLength="100" />
+          <Property Name="BranchManagerID" Type="bigint" />
+          <Property Name="ManagementManagerID" Type="bigint" />
+          <Property Name="IsBasic" Type="bit" />
         </EntityType>
         <EntityType Name="trainings">
           <Key>
             <PropertyRef Name="TrainingID" />
           </Key>
-          <Property Name="TrainingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TrainingID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" />
           <Property Name="Description" Type="ntext" />
           <Property Name="Notes" Type="ntext" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" />
           <Property Name="UpdateDate" Type="datetime2" Precision="7" />
-          <Property Name="CreateUserID" Type="int" />
-          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="CreateUserID" Type="bigint" />
+          <Property Name="UpdateUserID" Type="bigint" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="StartDate" Type="datetime2" Precision="7" />
+          <Property Name="EndDate" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="usersMessages">
+          <Key>
+            <PropertyRef Name="UsersMessageID" />
+          </Key>
+          <Property Name="UsersMessageID" Type="bigint" Nullable="false" />
+          <Property Name="ToEmployeeID" Type="bigint" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" />
+          <Property Name="ContentMessage" Type="ntext" />
+          <Property Name="Notes" Type="ntext" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="CreateUserID" Type="bigint" />
+          <Property Name="UpdateUserID" Type="bigint" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsRead" Type="bit" />
+        </EntityType>
+        <EntityType Name="usersPermissions">
+          <Key>
+            <PropertyRef Name="UsersPermissionID" />
+          </Key>
+          <Property Name="UsersPermissionID" Type="int" Nullable="false" />
+          <Property Name="AppObjectID" Type="int" />
+          <Property Name="EmployeeID" Type="bigint" />
+          <Property Name="ViewObject" Type="bit" />
+          <Property Name="EditObject" Type="bit" />
+          <Property Name="Notes" Type="ntext" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="CreateUserID" Type="bigint" />
+          <Property Name="UpdateUserID" Type="bigint" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
         <EntityType Name="vacations">
           <Key>
             <PropertyRef Name="VacationID" />
           </Key>
-          <Property Name="VacationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VacationID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" />
           <Property Name="Notes" Type="ntext" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" />
           <Property Name="UpdateDate" Type="datetime2" Precision="7" />
-          <Property Name="CreateUserID" Type="int" />
-          <Property Name="UpdateUserID" Type="int" />
+          <Property Name="CreateUserID" Type="bigint" />
+          <Property Name="UpdateUserID" Type="bigint" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
         <Association Name="FK_branches_companies">
@@ -592,6 +718,18 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
             </Principal>
             <Dependent Role="branches">
               <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_charitys_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="charitys" Type="Self.charitys" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="charitys">
+              <PropertyRef Name="EmployeeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -736,6 +874,42 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
             </Principal>
             <Dependent Role="departments">
               <PropertyRef Name="ManagementID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentCategories_DocumentCategories">
+          <End Role="DocumentCategories" Type="Self.DocumentCategories" Multiplicity="0..1" />
+          <End Role="DocumentCategories1" Type="Self.DocumentCategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentCategories">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="DocumentCategories1">
+              <PropertyRef Name="ParentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentCategories_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="DocumentCategories" Type="Self.DocumentCategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="DocumentCategories">
+              <PropertyRef Name="CreateUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentCategories_employees1">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="DocumentCategories" Type="Self.DocumentCategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="DocumentCategories">
+              <PropertyRef Name="UpdateUserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1039,6 +1213,18 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MessageReply_usersMessages">
+          <End Role="usersMessages" Type="Self.usersMessages" Multiplicity="0..1" />
+          <End Role="MessageReply" Type="Self.MessageReply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usersMessages">
+              <PropertyRef Name="UsersMessageID" />
+            </Principal>
+            <Dependent Role="MessageReply">
+              <PropertyRef Name="UsersMessageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_messages_employees">
           <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
           <End Role="messages" Type="Self.messages" Multiplicity="*" />
@@ -1099,6 +1285,42 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_usersMessages_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="usersMessages" Type="Self.usersMessages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="usersMessages">
+              <PropertyRef Name="ToEmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_usersPermissions_appObjects">
+          <End Role="appObjects" Type="Self.appObjects" Multiplicity="0..1" />
+          <End Role="usersPermissions" Type="Self.usersPermissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="appObjects">
+              <PropertyRef Name="AppObjectID" />
+            </Principal>
+            <Dependent Role="usersPermissions">
+              <PropertyRef Name="AppObjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_usersPermissions_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="usersPermissions" Type="Self.usersPermissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="usersPermissions">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -1131,13 +1353,17 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="HRSystemModelStoreContainer">
+          <EntitySet Name="appObjects" EntityType="Self.appObjects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="branches" EntityType="Self.branches" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="charitys" EntityType="Self.charitys" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="companies" EntityType="Self.companies" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="confirms" EntityType="Self.confirms" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="countriesName" EntityType="Self.countriesName" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="custodies" EntityType="Self.custodies" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="dailyTasks" EntityType="Self.dailyTasks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="departments" EntityType="Self.departments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Devices" EntityType="Self.Devices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DocumentCategories" EntityType="Self.DocumentCategories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EemployeesEvents" EntityType="Self.EemployeesEvents" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="employees" EntityType="Self.employees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="employeesScheduleVacations" EntityType="Self.employeesScheduleVacations" Schema="dbo" store:Type="Tables" />
@@ -1152,20 +1378,28 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <EntitySet Name="jobs" EntityType="Self.jobs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="managements" EntityType="Self.managements" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="materialsConsumption" EntityType="Self.materialsConsumption" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MessageReply" EntityType="Self.MessageReply" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="messages" EntityType="Self.messages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="messagesTemplates" EntityType="Self.messagesTemplates" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="periods" EntityType="Self.periods" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="rewards" EntityType="Self.rewards" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="salaryIncreases" EntityType="Self.salaryIncreases" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="scheduledJobs" EntityType="Self.scheduledJobs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="scheduleVacations" EntityType="Self.scheduleVacations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="statuses" EntityType="Self.statuses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tasks" EntityType="Self.tasks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="trainings" EntityType="Self.trainings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usersMessages" EntityType="Self.usersMessages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usersPermissions" EntityType="Self.usersPermissions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="vacations" EntityType="Self.vacations" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_branches_companies" Association="Self.FK_branches_companies">
             <End Role="companies" EntitySet="companies" />
             <End Role="branches" EntitySet="branches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_charitys_employees" Association="Self.FK_charitys_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="charitys" EntitySet="charitys" />
           </AssociationSet>
           <AssociationSet Name="FK_confirms_departments" Association="Self.FK_confirms_departments">
             <End Role="departments" EntitySet="departments" />
@@ -1214,6 +1448,18 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <AssociationSet Name="FK_departments_managements" Association="Self.FK_departments_managements">
             <End Role="managements" EntitySet="managements" />
             <End Role="departments" EntitySet="departments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentCategories_DocumentCategories" Association="Self.FK_DocumentCategories_DocumentCategories">
+            <End Role="DocumentCategories" EntitySet="DocumentCategories" />
+            <End Role="DocumentCategories1" EntitySet="DocumentCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentCategories_employees" Association="Self.FK_DocumentCategories_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="DocumentCategories" EntitySet="DocumentCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentCategories_employees1" Association="Self.FK_DocumentCategories_employees1">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="DocumentCategories" EntitySet="DocumentCategories" />
           </AssociationSet>
           <AssociationSet Name="FK_EemployeesEvents_employees" Association="Self.FK_EemployeesEvents_employees">
             <End Role="employees" EntitySet="employees" />
@@ -1315,6 +1561,10 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
             <End Role="employees" EntitySet="employees" />
             <End Role="materialsConsumption" EntitySet="materialsConsumption" />
           </AssociationSet>
+          <AssociationSet Name="FK_MessageReply_usersMessages" Association="Self.FK_MessageReply_usersMessages">
+            <End Role="usersMessages" EntitySet="usersMessages" />
+            <End Role="MessageReply" EntitySet="MessageReply" />
+          </AssociationSet>
           <AssociationSet Name="FK_messages_employees" Association="Self.FK_messages_employees">
             <End Role="employees" EntitySet="employees" />
             <End Role="messages" EntitySet="messages" />
@@ -1335,12 +1585,40 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
             <End Role="employees" EntitySet="employees" />
             <End Role="tasks" EntitySet="tasks" />
           </AssociationSet>
+          <AssociationSet Name="FK_usersMessages_employees" Association="Self.FK_usersMessages_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="usersMessages" EntitySet="usersMessages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_usersPermissions_appObjects" Association="Self.FK_usersPermissions_appObjects">
+            <End Role="appObjects" EntitySet="appObjects" />
+            <End Role="usersPermissions" EntitySet="usersPermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_usersPermissions_employees" Association="Self.FK_usersPermissions_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="usersPermissions" EntitySet="usersPermissions" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HRSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="appObjects">
+          <Key>
+            <PropertyRef Name="AppObjectID" />
+          </Key>
+          <Property Name="AppObjectID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NameAr" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NameEn" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="CreateUserID" Type="Int32" />
+          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="usersPermissions" Relationship="Self.FK_usersPermissions_appObjects" FromRole="appObjects" ToRole="usersPermissions" />
+        </EntityType>
         <EntityType Name="branches">
           <Key>
             <PropertyRef Name="BranchID" />
@@ -1360,6 +1638,23 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <NavigationProperty Name="companies" Relationship="Self.FK_branches_companies" FromRole="branches" ToRole="companies" />
           <NavigationProperty Name="managements" Relationship="Self.FK_managements_branches" FromRole="branches" ToRole="managements" />
         </EntityType>
+        <EntityType Name="charitys">
+          <Key>
+            <PropertyRef Name="CharityID" />
+          </Key>
+          <Property Name="CharityID" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeID" Type="Int64" />
+          <Property Name="Reason" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Decimal" Precision="20" Scale="3" />
+          <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="CreateUserID" Type="Int64" />
+          <Property Name="UpdateUserID" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="employees" Relationship="Self.FK_charitys_employees" FromRole="charitys" ToRole="employees" />
+        </EntityType>
         <EntityType Name="companies">
           <Key>
             <PropertyRef Name="CompanyID" />
@@ -1375,14 +1670,14 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <Property Name="OurCompany" Type="Boolean" />
           <Property Name="CreateDate" Type="DateTime" Precision="7" />
           <Property Name="UpdateDate" Type="DateTime" Precision="7" />
-          <Property Name="CreateUserID" Type="Int32" />
-          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="CreateUserID" Type="Int64" />
+          <Property Name="UpdateUserID" Type="Int64" />
           <Property Name="IsActive" Type="Boolean" />
-          <Property Name="GeneralDirector" Type="Int32" />
-          <Property Name="FinancialManager" Type="Int32" />
-          <Property Name="HRManager" Type="Int32" />
-          <Property Name="CEO" Type="Int32" />
-          <Property Name="LegalManager" Type="Int32" />
+          <Property Name="GeneralDirector" Type="Int64" />
+          <Property Name="FinancialManager" Type="Int64" />
+          <Property Name="HRManager" Type="Int64" />
+          <Property Name="CEO" Type="Int64" />
+          <Property Name="LegalManager" Type="Int64" />
           <Property Name="CompanyListAr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CompanyListEn" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="branches" Relationship="Self.FK_branches_companies" FromRole="companies" ToRole="branches" />
@@ -1395,17 +1690,17 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="7" />
           <Property Name="UpdateDate" Type="DateTime" Precision="7" />
-          <Property Name="CreateUserID" Type="Int32" />
-          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="CreateUserID" Type="Int64" />
+          <Property Name="UpdateUserID" Type="Int64" />
           <Property Name="IsActive" Type="Boolean" />
-          <Property Name="TaskID" Type="Int32" />
+          <Property Name="TaskID" Type="Int64" />
           <Property Name="SalaryIncreaseID" Type="Int32" />
-          <Property Name="MessagesTemplateID" Type="Int32" />
-          <Property Name="HourlyPermissionID" Type="Int32" />
+          <Property Name="MessagesTemplateID" Type="Int64" />
+          <Property Name="HourlyPermissionID" Type="Int64" />
           <Property Name="JobID" Type="Int32" />
           <Property Name="DepartmentID" Type="Int32" />
           <Property Name="ConfirmType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="EmployeeID" Type="Int64" />
           <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="EventID" Type="Int64" />
           <NavigationProperty Name="departments" Relationship="Self.FK_confirms_departments" FromRole="confirms" ToRole="departments" />
@@ -1434,13 +1729,13 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <Property Name="Type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Value" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="EmployeeID" Type="Int64" />
           <Property Name="IsRecovery" Type="Boolean" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="7" />
           <Property Name="UpdateDate" Type="DateTime" Precision="7" />
-          <Property Name="CreateUserID" Type="Int32" />
-          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="CreateUserID" Type="Int64" />
+          <Property Name="UpdateUserID" Type="Int64" />
           <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="employees" Relationship="Self.FK_custodies_employees" FromRole="custodies" ToRole="employees" />
         </EntityType>
@@ -1448,17 +1743,16 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <Key>
             <PropertyRef Name="DailyTaskID" />
           </Key>
-          <Property Name="DailyTaskID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DailyTaskID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="7" />
           <Property Name="UpdateDate" Type="DateTime" Precision="7" />
-          <Property Name="CreateUserID" Type="Int32" />
-          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="CreateUserID" Type="Int64" />
+          <Property Name="UpdateUserID" Type="Int64" />
           <Property Name="IsActive" Type="Boolean" />
-          <Property Name="EmployeeID" Type="Int32" />
-          <Property Name="TaskID" Type="Int32" />
-          <Property Name="EmpDone" Type="Boolean" />
-          <Property Name="BossDone" Type="Boolean" />
+          <Property Name="EmployeeID" Type="Int64" />
+          <Property Name="TaskID" Type="Int64" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="employees" Relationship="Self.FK_dailyTasks_employees" FromRole="dailyTasks" ToRole="employees" />
           <NavigationProperty Name="tasks" Relationship="Self.FK_dailyTasks_tasks" FromRole="dailyTasks" ToRole="tasks" />
         </EntityType>
@@ -1471,28 +1765,64 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="7" />
           <Property Name="UpdateDate" Type="DateTime" Precision="7" />
-          <Property Name="CreateUserID" Type="Int32" />
-          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="CreateUserID" Type="Int64" />
+          <Property Name="UpdateUserID" Type="Int64" />
           <Property Name="IsActive" Type="Boolean" />
-          <Property Name="ManagerID" Type="Int32" />
+          <Property Name="ManagerID" Type="Int64" />
           <Property Name="Mobile" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ManagementID" Type="Int32" />
+          <Property Name="ManagementID" Type="Int64" />
           <NavigationProperty Name="confirms" Relationship="Self.FK_confirms_departments" FromRole="departments" ToRole="confirms" />
           <NavigationProperty Name="managements" Relationship="Self.FK_departments_managements" FromRole="departments" ToRole="managements" />
           <NavigationProperty Name="employees" Relationship="Self.FK_employees_departments" FromRole="departments" ToRole="employees" />
+        </EntityType>
+        <EntityType Name="Devices">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Port" Type="Int32" />
+          <Property Name="DeviceNumber" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreateUserID" Type="Int64" />
+          <Property Name="UpdateUserID" Type="Int64" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DocumentCategories">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NameAR" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NameEN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="ParentID" Type="Int32" />
+          <Property Name="IsFixed" Type="Boolean" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="CreateUserID" Type="Int64" />
+          <Property Name="UpdateUserID" Type="Int64" />
+          <NavigationProperty Name="DocumentCategories1" Relationship="Self.FK_DocumentCategories_DocumentCategories" FromRole="DocumentCategories" ToRole="DocumentCategories1" />
+          <NavigationProperty Name="DocumentCategories2" Relationship="Self.FK_DocumentCategories_DocumentCategories" FromRole="DocumentCategories1" ToRole="DocumentCategories" />
+          <NavigationProperty Name="employees" Relationship="Self.FK_DocumentCategories_employees" FromRole="DocumentCategories" ToRole="employees" />
+          <NavigationProperty Name="employees1" Relationship="Self.FK_DocumentCategories_employees1" FromRole="DocumentCategories" ToRole="employees" />
         </EntityType>
         <EntityType Name="EemployeesEvents">
           <Key>
             <PropertyRef Name="EmployeesEventsID" />
           </Key>
-          <Property Name="EmployeesEventsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeesEventsID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EventID" Type="Int64" />
-          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeID" Type="Int64" Nullable="false" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="7" />
           <Property Name="UpdateDate" Type="DateTime" Precision="7" />
-          <Property Name="CreateUserID" Type="Int32" />
-          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="CreateUserID" Type="Int64" />
+          <Property Name="UpdateUserID" Type="Int64" />
           <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="employees" Relationship="Self.FK_EemployeesEvents_employees" FromRole="EemployeesEvents" ToRole="employees" />
           <NavigationProperty Name="events" Relationship="Self.FK_EemployeesEvents_events" FromRole="EemployeesEvents" ToRole="events" />
@@ -1501,7 +1831,7 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <Key>
             <PropertyRef Name="EmployeeID" />
           </Key>
-          <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="DepartmentID" Type="Int32" />
@@ -1515,7 +1845,6 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <Property Name="Nationality" Type="Int32" />
           <Property Name="Religion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="BloodType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IdentityType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="IdentityNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="IdentityReleaseDate" Type="DateTime" Precision="7" />
@@ -1552,8 +1881,8 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="7" />
           <Property Name="UpdateDate" Type="DateTime" Precision="7" />
-          <Property Name="CreateUserID" Type="Int32" />
-          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="CreateUserID" Type="Int64" />
+          <Property Name="UpdateUserID" Type="Int64" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="BasicSalary" Type="Decimal" Precision="20" Scale="3" />
           <Property Name="TransportationCompensationType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -1566,12 +1895,20 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <Property Name="WorkHours" Type="Int32" />
           <Property Name="JobDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Guarantor" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ManagementID" Type="Int32" />
+          <Property Name="ManagementID" Type="Int64" />
+          <Property Name="IDNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="WorkPermit" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="WorkContract" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="IsBarcodeUser" Type="Boolean" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="charitys" Relationship="Self.FK_charitys_employees" FromRole="employees" ToRole="charitys" />
           <NavigationProperty Name="confirms" Relationship="Self.FK_confirms_employees" FromRole="employees" ToRole="confirms" />
           <NavigationProperty Name="countriesName" Relationship="Self.FK_employees_countriesName" FromRole="employees" ToRole="countriesName" />
           <NavigationProperty Name="custodies" Relationship="Self.FK_custodies_employees" FromRole="employees" ToRole="custodies" />
           <NavigationProperty Name="dailyTasks" Relationship="Self.FK_dailyTasks_employees" FromRole="employees" ToRole="dailyTasks" />
           <NavigationProperty Name="departments" Relationship="Self.FK_employees_departments" FromRole="employees" ToRole="departments" />
+          <NavigationProperty Name="DocumentCategories" Relationship="Self.FK_DocumentCategories_employees" FromRole="employees" ToRole="DocumentCategories" />
+          <NavigationProperty Name="DocumentCategories1" Relationship="Self.FK_DocumentCategories_employees1" FromRole="employees" ToRole="DocumentCategories" />
           <NavigationProperty Name="EemployeesEvents" Relationship="Self.FK_EemployeesEvents_employees" FromRole="employees" ToRole="EemployeesEvents" />
           <NavigationProperty Name="jobs" Relationship="Self.FK_employees_jobs" FromRole="employees" ToRole="jobs" />
           <NavigationProperty Name="managements" Relationship="Self.FK_employees_managements" FromRole="employees" ToRole="managements" />
@@ -1593,19 +1930,21 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <NavigationProperty Name="rewards" Relationship="Self.FK_rewards_employees" FromRole="employees" ToRole="rewards" />
           <NavigationProperty Name="tasks" Relationship="Self.FK_tasks_employees" FromRole="employees" ToRole="tasks" />
           <NavigationProperty Name="tasks1" Relationship="Self.FK_tasks_employees1" FromRole="employees" ToRole="tasks" />
+          <NavigationProperty Name="usersMessages" Relationship="Self.FK_usersMessages_employees" FromRole="employees" ToRole="usersMessages" />
+          <NavigationProperty Name="usersPermissions" Relationship="Self.FK_usersPermissions_employees" FromRole="employees" ToRole="usersPermissions" />
         </EntityType>
         <EntityType Name="employeesScheduleVacations">
           <Key>
             <PropertyRef Name="EmployeesScheduleVacationsID" />
           </Key>
-          <Property Name="EmployeesScheduleVacationsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ScheduleVacationID" Type="Int32" />
-          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="EmployeesScheduleVacationsID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ScheduleVacationID" Type="Int64" />
+          <Property Name="EmployeeID" Type="Int64" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="7" />
           <Property Name="UpdateDate" Type="DateTime" Precision="7" />
-          <Property Name="CreateUserID" Type="Int32" />
-          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="CreateUserID" Type="Int64" />
+          <Property Name="UpdateUserID" Type="Int64" />
           <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="employees" Relationship="Self.FK_employeesScheduleVacations_employees" FromRole="employeesScheduleVacations" ToRole="employees" />
           <NavigationProperty Name="scheduleVacations" Relationship="Self.FK_employeesScheduleVacations_scheduleVacations" FromRole="employeesScheduleVacations" ToRole="scheduleVacations" />
@@ -1614,15 +1953,16 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <Key>
             <PropertyRef Name="EmployeesTaskID" />
           </Key>
-          <Property Name="EmployeesTaskID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EmployeeID" Type="Int32" />
-          <Property Name="TaskID" Type="Int32" />
+          <Property Name="EmployeesTaskID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int64" />
+          <Property Name="TaskID" Type="Int64" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="7" />
           <Property Name="UpdateDate" Type="DateTime" Precision="7" />
-          <Property Name="CreateUserID" Type="Int32" />
-          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="CreateUserID" Type="Int64" />
+          <Property Name="UpdateUserID" Type="Int64" />
           <Property Name="IsActive" Type="Boolean" />
+          <Property Name="BossDone" Type="Boolean" />
           <NavigationProperty Name="employees" Relationship="Self.FK_employeesTasks_employees" FromRole="employeesTasks" ToRole="employees" />
           <NavigationProperty Name="tasks" Relationship="Self.FK_employeesTasks_tasks" FromRole="employeesTasks" ToRole="tasks" />
         </EntityType>
@@ -1630,14 +1970,14 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <Key>
             <PropertyRef Name="EmployeesTrainingsID" />
           </Key>
-          <Property Name="EmployeesTrainingsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TrainingID" Type="Int32" />
-          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="EmployeesTrainingsID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TrainingID" Type="Int64" />
+          <Property Name="EmployeeID" Type="Int64" Nullable="false" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="7" />
           <Property Name="UpdateDate" Type="DateTime" Precision="7" />
-          <Property Name="CreateUserID" Type="Int32" />
-          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="CreateUserID" Type="Int64" />
+          <Property Name="UpdateUserID" Type="Int64" />
           <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="employees" Relationship="Self.FK_employeesTrainings_employees1" FromRole="employeesTrainings" ToRole="employees" />
           <NavigationProperty Name="trainings" Relationship="Self.FK_employeesTrainings_trainings1" FromRole="employeesTrainings" ToRole="trainings" />
@@ -1646,17 +1986,18 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <Key>
             <PropertyRef Name="EmployeesVacationID" />
           </Key>
-          <Property Name="EmployeesVacationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="VacationID" Type="Int32" />
-          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="EmployeesVacationID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VacationID" Type="Int64" />
+          <Property Name="EmployeeID" Type="Int64" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="7" />
           <Property Name="UpdateDate" Type="DateTime" Precision="7" />
-          <Property Name="CreateUserID" Type="Int32" />
-          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="CreateUserID" Type="Int64" />
+          <Property Name="UpdateUserID" Type="Int64" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="FromDate" Type="DateTime" Precision="7" />
           <Property Name="ToDate" Type="DateTime" Precision="7" />
+          <Property Name="Approved" Type="Boolean" />
           <NavigationProperty Name="employees" Relationship="Self.FK_employeesVacations_employees" FromRole="employeesVacations" ToRole="employees" />
           <NavigationProperty Name="vacations" Relationship="Self.FK_employeesVacations_vacations" FromRole="employeesVacations" ToRole="vacations" />
         </EntityType>
@@ -1664,9 +2005,9 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <Key>
             <PropertyRef Name="EvaluationID" />
           </Key>
-          <Property Name="EvaluationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EmployeeID" Type="Int32" />
-          <Property Name="ReviewerID" Type="Int32" />
+          <Property Name="EvaluationID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int64" />
+          <Property Name="ReviewerID" Type="Int64" />
           <Property Name="EvaluationDate" Type="DateTime" Precision="7" />
           <Property Name="Behavior" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Attendance" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -1694,8 +2035,8 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="7" />
           <Property Name="UpdateDate" Type="DateTime" Precision="7" />
-          <Property Name="CreateUserID" Type="Int32" />
-          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="CreateUserID" Type="Int64" />
+          <Property Name="UpdateUserID" Type="Int64" />
           <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="employees" Relationship="Self.FK_evaluations_employees" FromRole="evaluations" ToRole="employees" />
           <NavigationProperty Name="employees1" Relationship="Self.FK_evaluations_employees1" FromRole="evaluations" ToRole="employees" />
@@ -1710,16 +2051,15 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="7" />
           <Property Name="UpdateDate" Type="DateTime" Precision="7" />
-          <Property Name="CreateUserID" Type="Int32" />
-          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="CreateUserID" Type="Int64" />
+          <Property Name="UpdateUserID" Type="Int64" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="StartDate" Type="DateTime" Precision="7" />
           <Property Name="EndDate" Type="DateTime" Precision="7" />
           <Property Name="EventDate" Type="DateTime" Precision="7" />
-          <Property Name="EmployeeID" Type="Int32" />
-          <Property Name="Attachment" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="BranchManagerID" Type="Int32" />
-          <Property Name="ManagementManagerID" Type="Int32" />
+          <Property Name="EmployeeID" Type="Int64" />
+          <Property Name="BranchManagerID" Type="Int64" />
+          <Property Name="ManagementManagerID" Type="Int64" />
           <Property Name="Approved" Type="Boolean" />
           <NavigationProperty Name="confirms" Relationship="Self.FK_confirms_events" FromRole="events" ToRole="confirms" />
           <NavigationProperty Name="EemployeesEvents" Relationship="Self.FK_EemployeesEvents_events" FromRole="events" ToRole="EemployeesEvents" />
@@ -1732,14 +2072,14 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int64" />
           <Property Name="Role" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="7" />
           <Property Name="UpdateDate" Type="DateTime" Precision="7" />
-          <Property Name="CreateUserID" Type="Int32" />
-          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="CreateUserID" Type="Int64" />
+          <Property Name="UpdateUserID" Type="Int64" />
           <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="employees" Relationship="Self.FK_highrManagment_employees" FromRole="highrManagment" ToRole="employees" />
         </EntityType>
@@ -1747,16 +2087,16 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <Key>
             <PropertyRef Name="HourlyPermissionID" />
           </Key>
-          <Property Name="HourlyPermissionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HourlyPermissionID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="7" />
           <Property Name="UpdateDate" Type="DateTime" Precision="7" />
-          <Property Name="CreateUserID" Type="Int32" />
-          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="CreateUserID" Type="Int64" />
+          <Property Name="UpdateUserID" Type="Int64" />
           <Property Name="IsActive" Type="Boolean" />
-          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="EmployeeID" Type="Int64" />
           <Property Name="Date" Type="DateTime" Precision="7" />
           <NavigationProperty Name="confirms" Relationship="Self.FK_confirms_hourlyPermissions" FromRole="hourlyPermissions" ToRole="confirms" />
           <NavigationProperty Name="employees" Relationship="Self.FK_hourlyPermissions_employees" FromRole="hourlyPermissions" ToRole="employees" />
@@ -1769,8 +2109,8 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <Property Name="docName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="docnum" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="EmployeeID" Type="Int32" />
-          <Property Name="MessageID" Type="Int32" />
+          <Property Name="EmployeeID" Type="Int64" />
+          <Property Name="MessageID" Type="Int64" />
           <Property Name="EventID" Type="Int64" />
           <Property Name="TaskID" Type="Int64" />
           <NavigationProperty Name="employees" Relationship="Self.FK_Images_employees" FromRole="Images" ToRole="employees" />
@@ -1785,8 +2125,8 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="7" />
           <Property Name="UpdateDate" Type="DateTime" Precision="7" />
-          <Property Name="CreateUserID" Type="Int32" />
-          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="CreateUserID" Type="Int64" />
+          <Property Name="UpdateUserID" Type="Int64" />
           <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="confirms" Relationship="Self.FK_confirms_jobs" FromRole="jobs" ToRole="confirms" />
           <NavigationProperty Name="employees" Relationship="Self.FK_employees_jobs" FromRole="jobs" ToRole="employees" />
@@ -1795,16 +2135,16 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <Key>
             <PropertyRef Name="ManagementID" />
           </Key>
-          <Property Name="ManagementID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ManagementID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="BranchID" Type="Int32" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="7" />
           <Property Name="UpdateDate" Type="DateTime" Precision="7" />
-          <Property Name="CreateUserID" Type="Int32" />
-          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="CreateUserID" Type="Int64" />
+          <Property Name="UpdateUserID" Type="Int64" />
           <Property Name="IsActive" Type="Boolean" />
-          <Property Name="ManagerID" Type="Int32" />
+          <Property Name="ManagerID" Type="Int64" />
           <Property Name="Mobile" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="branches" Relationship="Self.FK_managements_branches" FromRole="managements" ToRole="branches" />
           <NavigationProperty Name="departments" Relationship="Self.FK_departments_managements" FromRole="managements" ToRole="departments" />
@@ -1814,44 +2154,62 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <Key>
             <PropertyRef Name="MaterialsConsumptionID" />
           </Key>
-          <Property Name="MaterialsConsumptionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaterialsConsumptionID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="EmployeeID" Type="Int64" />
           <Property Name="Value" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="7" />
           <Property Name="UpdateDate" Type="DateTime" Precision="7" />
-          <Property Name="CreateUserID" Type="Int32" />
-          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="CreateUserID" Type="Int64" />
+          <Property Name="UpdateUserID" Type="Int64" />
           <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="employees" Relationship="Self.FK_materialsConsumption_employees" FromRole="materialsConsumption" ToRole="employees" />
+        </EntityType>
+        <EntityType Name="MessageReply">
+          <Key>
+            <PropertyRef Name="ReplyID" />
+          </Key>
+          <Property Name="ReplyID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsersMessageID" Type="Int64" />
+          <Property Name="FromEmployee" Type="Int64" />
+          <Property Name="ToEmployee" Type="Int64" />
+          <Property Name="ContentMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="CreateUserID" Type="Int64" />
+          <Property Name="UpdateUserID" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsRead" Type="Boolean" />
+          <NavigationProperty Name="usersMessages" Relationship="Self.FK_MessageReply_usersMessages" FromRole="MessageReply" ToRole="usersMessages" />
         </EntityType>
         <EntityType Name="messages">
           <Key>
             <PropertyRef Name="MessageID" />
           </Key>
-          <Property Name="MessageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MessageID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="7" />
           <Property Name="UpdateDate" Type="DateTime" Precision="7" />
-          <Property Name="CreateUserID" Type="Int32" />
-          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="CreateUserID" Type="Int64" />
+          <Property Name="UpdateUserID" Type="Int64" />
           <Property Name="IsActive" Type="Boolean" />
-          <Property Name="EmployeeID" Type="Int32" />
-          <Property Name="ToEmployeeID" Type="Int32" />
+          <Property Name="EmployeeID" Type="Int64" />
+          <Property Name="ToEmployeeID" Type="Int64" />
           <NavigationProperty Name="employees" Relationship="Self.FK_messages_employees" FromRole="messages" ToRole="employees" />
         </EntityType>
         <EntityType Name="messagesTemplates">
           <Key>
             <PropertyRef Name="MessagesTemplateID" />
           </Key>
-          <Property Name="MessagesTemplateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MessagesTemplateID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="7" />
           <Property Name="UpdateDate" Type="DateTime" Precision="7" />
-          <Property Name="CreateUserID" Type="Int32" />
-          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="CreateUserID" Type="Int64" />
+          <Property Name="UpdateUserID" Type="Int64" />
           <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="confirms" Relationship="Self.FK_confirms_messagesTemplates" FromRole="messagesTemplates" ToRole="confirms" />
         </EntityType>
@@ -1860,15 +2218,15 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
             <PropertyRef Name="PeriodID" />
           </Key>
           <Property Name="PeriodID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="EmployeeID" Type="Int64" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="StartTime" Type="DateTime" Precision="7" />
           <Property Name="EndTime" Type="DateTime" Precision="7" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="7" />
           <Property Name="UpdateDate" Type="DateTime" Precision="7" />
-          <Property Name="CreateUserID" Type="Int32" />
-          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="CreateUserID" Type="Int64" />
+          <Property Name="UpdateUserID" Type="Int64" />
           <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="employees" Relationship="Self.FK_periods_employees" FromRole="periods" ToRole="employees" />
         </EntityType>
@@ -1876,7 +2234,7 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <Key>
             <PropertyRef Name="RewardID" />
           </Key>
-          <Property Name="RewardID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RewardID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -1884,10 +2242,10 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="7" />
           <Property Name="UpdateDate" Type="DateTime" Precision="7" />
-          <Property Name="CreateUserID" Type="Int32" />
-          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="CreateUserID" Type="Int64" />
+          <Property Name="UpdateUserID" Type="Int64" />
           <Property Name="IsActive" Type="Boolean" />
-          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="EmployeeID" Type="Int64" />
           <NavigationProperty Name="employees" Relationship="Self.FK_rewards_employees" FromRole="rewards" ToRole="employees" />
         </EntityType>
         <EntityType Name="salaryIncreases">
@@ -1901,21 +2259,29 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="7" />
           <Property Name="UpdateDate" Type="DateTime" Precision="7" />
-          <Property Name="CreateUserID" Type="Int32" />
-          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="CreateUserID" Type="Int64" />
+          <Property Name="UpdateUserID" Type="Int64" />
           <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="confirms" Relationship="Self.FK_confirms_salaryIncreases" FromRole="salaryIncreases" ToRole="confirms" />
+        </EntityType>
+        <EntityType Name="scheduledJobs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ScheduleDate" Type="DateTime" Precision="7" />
         </EntityType>
         <EntityType Name="scheduleVacations">
           <Key>
             <PropertyRef Name="ScheduleVacationID" />
           </Key>
-          <Property Name="ScheduleVacationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ScheduleVacationID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="7" />
           <Property Name="UpdateDate" Type="DateTime" Precision="7" />
-          <Property Name="CreateUserID" Type="Int32" />
-          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="CreateUserID" Type="Int64" />
+          <Property Name="UpdateUserID" Type="Int64" />
           <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="employeesScheduleVacations" Relationship="Self.FK_employeesScheduleVacations_scheduleVacations" FromRole="scheduleVacations" ToRole="employeesScheduleVacations" />
         </EntityType>
@@ -1923,13 +2289,13 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <Key>
             <PropertyRef Name="StatusID" />
           </Key>
-          <Property Name="StatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="7" />
           <Property Name="UpdateDate" Type="DateTime" Precision="7" />
-          <Property Name="CreateUserID" Type="Int32" />
-          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="CreateUserID" Type="Int64" />
+          <Property Name="UpdateUserID" Type="Int64" />
           <Property Name="IsActive" Type="Boolean" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -1946,23 +2312,23 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <Key>
             <PropertyRef Name="TaskID" />
           </Key>
-          <Property Name="TaskID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="TaskID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int64" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="RepeatedEvery" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="7" />
           <Property Name="UpdateDate" Type="DateTime" Precision="7" />
-          <Property Name="CreateUserID" Type="Int32" />
-          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="CreateUserID" Type="Int64" />
+          <Property Name="UpdateUserID" Type="Int64" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="StartDate" Type="DateTime" Precision="7" />
           <Property Name="EndDate" Type="DateTime" Precision="7" />
           <Property Name="Approved" Type="Boolean" />
-          <Property Name="BranchManagerID" Type="Int32" />
-          <Property Name="ManagementManagerID" Type="Int32" />
-          <Property Name="Attachment" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BranchManagerID" Type="Int64" />
+          <Property Name="ManagementManagerID" Type="Int64" />
+          <Property Name="IsBasic" Type="Boolean" />
           <NavigationProperty Name="confirms" Relationship="Self.FK_confirms_tasks" FromRole="tasks" ToRole="confirms" />
           <NavigationProperty Name="dailyTasks" Relationship="Self.FK_dailyTasks_tasks" FromRole="tasks" ToRole="dailyTasks" />
           <NavigationProperty Name="employees" Relationship="Self.FK_tasks_employees" FromRole="tasks" ToRole="employees" />
@@ -1973,31 +2339,81 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <Key>
             <PropertyRef Name="TrainingID" />
           </Key>
-          <Property Name="TrainingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TrainingID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="7" />
           <Property Name="UpdateDate" Type="DateTime" Precision="7" />
-          <Property Name="CreateUserID" Type="Int32" />
-          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="CreateUserID" Type="Int64" />
+          <Property Name="UpdateUserID" Type="Int64" />
           <Property Name="IsActive" Type="Boolean" />
+          <Property Name="StartDate" Type="DateTime" Precision="7" />
+          <Property Name="EndDate" Type="DateTime" Precision="7" />
           <NavigationProperty Name="employeesTrainings" Relationship="Self.FK_employeesTrainings_trainings1" FromRole="trainings" ToRole="employeesTrainings" />
+        </EntityType>
+        <EntityType Name="usersMessages">
+          <Key>
+            <PropertyRef Name="UsersMessageID" />
+          </Key>
+          <Property Name="UsersMessageID" Type="Int64" Nullable="false" />
+          <Property Name="ToEmployeeID" Type="Int64" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ContentMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="CreateUserID" Type="Int64" />
+          <Property Name="UpdateUserID" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsRead" Type="Boolean" />
+          <NavigationProperty Name="employees" Relationship="Self.FK_usersMessages_employees" FromRole="usersMessages" ToRole="employees" />
+          <NavigationProperty Name="MessageReply" Relationship="Self.FK_MessageReply_usersMessages" FromRole="usersMessages" ToRole="MessageReply" />
+        </EntityType>
+        <EntityType Name="usersPermissions">
+          <Key>
+            <PropertyRef Name="UsersPermissionID" />
+          </Key>
+          <Property Name="UsersPermissionID" Type="Int32" Nullable="false" />
+          <Property Name="AppObjectID" Type="Int32" />
+          <Property Name="EmployeeID" Type="Int64" />
+          <Property Name="ViewObject" Type="Boolean" />
+          <Property Name="EditObject" Type="Boolean" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="CreateUserID" Type="Int64" />
+          <Property Name="UpdateUserID" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="appObjects" Relationship="Self.FK_usersPermissions_appObjects" FromRole="usersPermissions" ToRole="appObjects" />
+          <NavigationProperty Name="employees" Relationship="Self.FK_usersPermissions_employees" FromRole="usersPermissions" ToRole="employees" />
         </EntityType>
         <EntityType Name="vacations">
           <Key>
             <PropertyRef Name="VacationID" />
           </Key>
-          <Property Name="VacationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VacationID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="7" />
           <Property Name="UpdateDate" Type="DateTime" Precision="7" />
-          <Property Name="CreateUserID" Type="Int32" />
-          <Property Name="UpdateUserID" Type="Int32" />
+          <Property Name="CreateUserID" Type="Int64" />
+          <Property Name="UpdateUserID" Type="Int64" />
           <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="employeesVacations" Relationship="Self.FK_employeesVacations_vacations" FromRole="vacations" ToRole="employeesVacations" />
         </EntityType>
+        <Association Name="FK_usersPermissions_appObjects">
+          <End Role="appObjects" Type="Self.appObjects" Multiplicity="0..1" />
+          <End Role="usersPermissions" Type="Self.usersPermissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="appObjects">
+              <PropertyRef Name="AppObjectID" />
+            </Principal>
+            <Dependent Role="usersPermissions">
+              <PropertyRef Name="AppObjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_branches_companies">
           <End Role="companies" Type="Self.companies" Multiplicity="0..1" />
           <End Role="branches" Type="Self.branches" Multiplicity="*" />
@@ -2019,6 +2435,18 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
             </Principal>
             <Dependent Role="managements">
               <PropertyRef Name="BranchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_charitys_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="charitys" Type="Self.charitys" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="charitys">
+              <PropertyRef Name="EmployeeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2187,6 +2615,42 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
             </Principal>
             <Dependent Role="employees">
               <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentCategories_DocumentCategories">
+          <End Role="DocumentCategories" Type="Self.DocumentCategories" Multiplicity="0..1" />
+          <End Role="DocumentCategories1" Type="Self.DocumentCategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentCategories">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="DocumentCategories1">
+              <PropertyRef Name="ParentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentCategories_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="DocumentCategories" Type="Self.DocumentCategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="DocumentCategories">
+              <PropertyRef Name="CreateUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentCategories_employees1">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="DocumentCategories" Type="Self.DocumentCategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="DocumentCategories">
+              <PropertyRef Name="UpdateUserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2454,6 +2918,30 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_usersMessages_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="usersMessages" Type="Self.usersMessages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="usersMessages">
+              <PropertyRef Name="ToEmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_usersPermissions_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="usersPermissions" Type="Self.usersPermissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="usersPermissions">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_employeesScheduleVacations_scheduleVacations">
           <End Role="scheduleVacations" Type="Self.scheduleVacations" Multiplicity="0..1" />
           <End Role="employeesScheduleVacations" Type="Self.employeesScheduleVacations" Multiplicity="*" />
@@ -2514,14 +3002,30 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MessageReply_usersMessages">
+          <End Role="usersMessages" Type="Self.usersMessages" Multiplicity="0..1" />
+          <End Role="MessageReply" Type="Self.MessageReply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usersMessages">
+              <PropertyRef Name="UsersMessageID" />
+            </Principal>
+            <Dependent Role="MessageReply">
+              <PropertyRef Name="UsersMessageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="HRSystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="appObjects" EntityType="Self.appObjects" />
           <EntitySet Name="branches" EntityType="Self.branches" />
+          <EntitySet Name="charitys" EntityType="Self.charitys" />
           <EntitySet Name="companies" EntityType="Self.companies" />
           <EntitySet Name="confirms" EntityType="Self.confirms" />
           <EntitySet Name="countriesName" EntityType="Self.countriesName" />
           <EntitySet Name="custodies" EntityType="Self.custodies" />
           <EntitySet Name="dailyTasks" EntityType="Self.dailyTasks" />
           <EntitySet Name="departments" EntityType="Self.departments" />
+          <EntitySet Name="Devices" EntityType="Self.Devices" />
+          <EntitySet Name="DocumentCategories" EntityType="Self.DocumentCategories" />
           <EntitySet Name="EemployeesEvents" EntityType="Self.EemployeesEvents" />
           <EntitySet Name="employees" EntityType="Self.employees" />
           <EntitySet Name="employeesScheduleVacations" EntityType="Self.employeesScheduleVacations" />
@@ -2536,17 +3040,25 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <EntitySet Name="jobs" EntityType="Self.jobs" />
           <EntitySet Name="managements" EntityType="Self.managements" />
           <EntitySet Name="materialsConsumption" EntityType="Self.materialsConsumption" />
+          <EntitySet Name="MessageReply" EntityType="Self.MessageReply" />
           <EntitySet Name="messages" EntityType="Self.messages" />
           <EntitySet Name="messagesTemplates" EntityType="Self.messagesTemplates" />
           <EntitySet Name="periods" EntityType="Self.periods" />
           <EntitySet Name="rewards" EntityType="Self.rewards" />
           <EntitySet Name="salaryIncreases" EntityType="Self.salaryIncreases" />
+          <EntitySet Name="scheduledJobs" EntityType="Self.scheduledJobs" />
           <EntitySet Name="scheduleVacations" EntityType="Self.scheduleVacations" />
           <EntitySet Name="statuses" EntityType="Self.statuses" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="tasks" EntityType="Self.tasks" />
           <EntitySet Name="trainings" EntityType="Self.trainings" />
+          <EntitySet Name="usersMessages" EntityType="Self.usersMessages" />
+          <EntitySet Name="usersPermissions" EntityType="Self.usersPermissions" />
           <EntitySet Name="vacations" EntityType="Self.vacations" />
+          <AssociationSet Name="FK_usersPermissions_appObjects" Association="Self.FK_usersPermissions_appObjects">
+            <End Role="appObjects" EntitySet="appObjects" />
+            <End Role="usersPermissions" EntitySet="usersPermissions" />
+          </AssociationSet>
           <AssociationSet Name="FK_branches_companies" Association="Self.FK_branches_companies">
             <End Role="companies" EntitySet="companies" />
             <End Role="branches" EntitySet="branches" />
@@ -2554,6 +3066,10 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <AssociationSet Name="FK_managements_branches" Association="Self.FK_managements_branches">
             <End Role="branches" EntitySet="branches" />
             <End Role="managements" EntitySet="managements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_charitys_employees" Association="Self.FK_charitys_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="charitys" EntitySet="charitys" />
           </AssociationSet>
           <AssociationSet Name="FK_confirms_departments" Association="Self.FK_confirms_departments">
             <End Role="departments" EntitySet="departments" />
@@ -2610,6 +3126,18 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <AssociationSet Name="FK_employees_departments" Association="Self.FK_employees_departments">
             <End Role="departments" EntitySet="departments" />
             <End Role="employees" EntitySet="employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentCategories_DocumentCategories" Association="Self.FK_DocumentCategories_DocumentCategories">
+            <End Role="DocumentCategories" EntitySet="DocumentCategories" />
+            <End Role="DocumentCategories1" EntitySet="DocumentCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentCategories_employees" Association="Self.FK_DocumentCategories_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="DocumentCategories" EntitySet="DocumentCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentCategories_employees1" Association="Self.FK_DocumentCategories_employees1">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="DocumentCategories" EntitySet="DocumentCategories" />
           </AssociationSet>
           <AssociationSet Name="FK_EemployeesEvents_employees" Association="Self.FK_EemployeesEvents_employees">
             <End Role="employees" EntitySet="employees" />
@@ -2699,6 +3227,14 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
             <End Role="employees" EntitySet="employees" />
             <End Role="tasks" EntitySet="tasks" />
           </AssociationSet>
+          <AssociationSet Name="FK_usersMessages_employees" Association="Self.FK_usersMessages_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="usersMessages" EntitySet="usersMessages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_usersPermissions_employees" Association="Self.FK_usersPermissions_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="usersPermissions" EntitySet="usersPermissions" />
+          </AssociationSet>
           <AssociationSet Name="FK_employeesScheduleVacations_scheduleVacations" Association="Self.FK_employeesScheduleVacations_scheduleVacations">
             <End Role="scheduleVacations" EntitySet="scheduleVacations" />
             <End Role="employeesScheduleVacations" EntitySet="employeesScheduleVacations" />
@@ -2718,6 +3254,10 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
           <AssociationSet Name="FK_Images_events" Association="Self.FK_Images_events">
             <End Role="events" EntitySet="events" />
             <End Role="Images" EntitySet="Images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MessageReply_usersMessages" Association="Self.FK_MessageReply_usersMessages">
+            <End Role="usersMessages" EntitySet="usersMessages" />
+            <End Role="MessageReply" EntitySet="MessageReply" />
           </AssociationSet>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -2767,6 +3307,22 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="HRSystemModelStoreContainer" CdmEntityContainer="HRSystemEntities">
+          <EntitySetMapping Name="appObjects">
+            <EntityTypeMapping TypeName="HRSystemModel.appObjects">
+              <MappingFragment StoreEntitySet="appObjects">
+                <ScalarProperty Name="AppObjectID" ColumnName="AppObjectID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="NameAr" ColumnName="NameAr" />
+                <ScalarProperty Name="NameEn" ColumnName="NameEn" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="branches">
             <EntityTypeMapping TypeName="HRSystemModel.branches">
               <MappingFragment StoreEntitySet="branches">
@@ -2782,6 +3338,23 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
                 <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
                 <ScalarProperty Name="Mobile" ColumnName="Mobile" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="charitys">
+            <EntityTypeMapping TypeName="HRSystemModel.charitys">
+              <MappingFragment StoreEntitySet="charitys">
+                <ScalarProperty Name="CharityID" ColumnName="CharityID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2874,8 +3447,7 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="TaskID" ColumnName="TaskID" />
-                <ScalarProperty Name="EmpDone" ColumnName="EmpDone" />
-                <ScalarProperty Name="BossDone" ColumnName="BossDone" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2893,6 +3465,40 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
                 <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
                 <ScalarProperty Name="Mobile" ColumnName="Mobile" />
                 <ScalarProperty Name="ManagementID" ColumnName="ManagementID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Devices">
+            <EntityTypeMapping TypeName="HRSystemModel.Devices">
+              <MappingFragment StoreEntitySet="Devices">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="DeviceNumber" ColumnName="DeviceNumber" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DocumentCategories">
+            <EntityTypeMapping TypeName="HRSystemModel.DocumentCategories">
+              <MappingFragment StoreEntitySet="DocumentCategories">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="CategoryCode" ColumnName="CategoryCode" />
+                <ScalarProperty Name="NameAR" ColumnName="NameAR" />
+                <ScalarProperty Name="NameEN" ColumnName="NameEN" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="IsFixed" ColumnName="IsFixed" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2928,7 +3534,6 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
                 <ScalarProperty Name="Nationality" ColumnName="Nationality" />
                 <ScalarProperty Name="Religion" ColumnName="Religion" />
                 <ScalarProperty Name="BloodType" ColumnName="BloodType" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="IdentityType" ColumnName="IdentityType" />
                 <ScalarProperty Name="IdentityNumber" ColumnName="IdentityNumber" />
                 <ScalarProperty Name="IdentityReleaseDate" ColumnName="IdentityReleaseDate" />
@@ -2980,6 +3585,11 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
                 <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
                 <ScalarProperty Name="Guarantor" ColumnName="Guarantor" />
                 <ScalarProperty Name="ManagementID" ColumnName="ManagementID" />
+                <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
+                <ScalarProperty Name="WorkPermit" ColumnName="WorkPermit" />
+                <ScalarProperty Name="WorkContract" ColumnName="WorkContract" />
+                <ScalarProperty Name="IsBarcodeUser" ColumnName="IsBarcodeUser" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3010,6 +3620,7 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
                 <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
                 <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="BossDone" ColumnName="BossDone" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3042,6 +3653,7 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="FromDate" ColumnName="FromDate" />
                 <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3100,7 +3712,6 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
                 <ScalarProperty Name="EndDate" ColumnName="EndDate" />
                 <ScalarProperty Name="EventDate" ColumnName="EventDate" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="Attachment" ColumnName="Attachment" />
                 <ScalarProperty Name="BranchManagerID" ColumnName="BranchManagerID" />
                 <ScalarProperty Name="ManagementManagerID" ColumnName="ManagementManagerID" />
                 <ScalarProperty Name="Approved" ColumnName="Approved" />
@@ -3201,6 +3812,24 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="MessageReply">
+            <EntityTypeMapping TypeName="HRSystemModel.MessageReply">
+              <MappingFragment StoreEntitySet="MessageReply">
+                <ScalarProperty Name="ReplyID" ColumnName="ReplyID" />
+                <ScalarProperty Name="UsersMessageID" ColumnName="UsersMessageID" />
+                <ScalarProperty Name="FromEmployee" ColumnName="FromEmployee" />
+                <ScalarProperty Name="ToEmployee" ColumnName="ToEmployee" />
+                <ScalarProperty Name="ContentMessage" ColumnName="ContentMessage" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="messages">
             <EntityTypeMapping TypeName="HRSystemModel.messages">
               <MappingFragment StoreEntitySet="messages">
@@ -3280,6 +3909,15 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="scheduledJobs">
+            <EntityTypeMapping TypeName="HRSystemModel.scheduledJobs">
+              <MappingFragment StoreEntitySet="scheduledJobs">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ScheduleDate" ColumnName="ScheduleDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="scheduleVacations">
             <EntityTypeMapping TypeName="HRSystemModel.scheduleVacations">
               <MappingFragment StoreEntitySet="scheduleVacations">
@@ -3337,7 +3975,7 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
                 <ScalarProperty Name="Approved" ColumnName="Approved" />
                 <ScalarProperty Name="BranchManagerID" ColumnName="BranchManagerID" />
                 <ScalarProperty Name="ManagementManagerID" ColumnName="ManagementManagerID" />
-                <ScalarProperty Name="Attachment" ColumnName="Attachment" />
+                <ScalarProperty Name="IsBasic" ColumnName="IsBasic" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3347,6 +3985,42 @@ warning 6013: The table/view 'HRSystem.dbo.EventTags' does not have a primary ke
                 <ScalarProperty Name="TrainingID" ColumnName="TrainingID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usersMessages">
+            <EntityTypeMapping TypeName="HRSystemModel.usersMessages">
+              <MappingFragment StoreEntitySet="usersMessages">
+                <ScalarProperty Name="UsersMessageID" ColumnName="UsersMessageID" />
+                <ScalarProperty Name="ToEmployeeID" ColumnName="ToEmployeeID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ContentMessage" ColumnName="ContentMessage" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usersPermissions">
+            <EntityTypeMapping TypeName="HRSystemModel.usersPermissions">
+              <MappingFragment StoreEntitySet="usersPermissions">
+                <ScalarProperty Name="UsersPermissionID" ColumnName="UsersPermissionID" />
+                <ScalarProperty Name="AppObjectID" ColumnName="AppObjectID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="ViewObject" ColumnName="ViewObject" />
+                <ScalarProperty Name="EditObject" ColumnName="EditObject" />
                 <ScalarProperty Name="Notes" ColumnName="Notes" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />

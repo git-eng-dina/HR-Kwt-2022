@@ -120,11 +120,11 @@ namespace Human_Resource.Views.ExecutiveProc
             try
             {
                 SalaryIncreaseModel dept = new SalaryIncreaseModel();
-                int Ref = Convert.ToInt32(e.CommandArgument.ToString());
+                long Ref = Convert.ToInt32(e.CommandArgument.ToString());
 
-                int? userId = null;
+                long? userId = null;
                 if (Session["user_id"] != null && Session["user_id"].ToString() != "")
-                    userId = dept.UpdateUserID = int.Parse(Session["user_id"].ToString());
+                    userId = dept.UpdateUserID = long.Parse(Session["user_id"].ToString());
 
                 if (dept.DeleteDept(Ref, userId))
                 {

@@ -12,19 +12,17 @@ namespace Human_Resource
     using System;
     using System.Collections.Generic;
     
-    public partial class employeesTrainings
+    public partial class Devices
     {
-        public long EmployeesTrainingsID { get; set; }
-        public Nullable<long> TrainingID { get; set; }
-        public long EmployeeID { get; set; }
-        public string Notes { get; set; }
-        public Nullable<System.DateTime> CreateDate { get; set; }
-        public Nullable<System.DateTime> UpdateDate { get; set; }
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public Nullable<int> Port { get; set; }
+        public Nullable<int> DeviceNumber { get; set; }
+        public Nullable<bool> IsActive { get; set; }
         public Nullable<long> CreateUserID { get; set; }
         public Nullable<long> UpdateUserID { get; set; }
-        public Nullable<bool> IsActive { get; set; }
-    
-        public virtual employees employees { get; set; }
-        public virtual trainings trainings { get; set; }
+        public Nullable<System.DateTime> CreateDate { get; set; }
+        public Nullable<System.DateTime> UpdateDate { get; set; }
+        public string Notes { get; set; }
     }
 }

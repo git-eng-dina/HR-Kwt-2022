@@ -78,15 +78,15 @@ namespace Human_Resource.App_Code
         public string Name { get; set; }
         public string Description { get; set; }
         public string Status { get; set; }
-        public Nullable<int> EmployeeID { get; set; }
+        public Nullable<long> EmployeeID { get; set; }
         public string EmployeeName { get; set; }
         public string Notes { get; set; }
         public Nullable<System.DateTime> StartDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
-        public Nullable<int> CreateUserID { get; set; }
-        public Nullable<int> UpdateUserID { get; set; }
+        public Nullable<long> CreateUserID { get; set; }
+        public Nullable<long> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public Nullable<bool> IsBasic { get; set; }
         public Nullable<bool> Approved { get; set; }
@@ -563,7 +563,7 @@ namespace Human_Resource.App_Code
                 return 0;
             }
         }
-        public bool DeleteTask(int deptId, int? userId)
+        public bool DeleteTask(long deptId, long? userId)
         {
             try
             {

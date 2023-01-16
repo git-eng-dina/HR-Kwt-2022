@@ -47,11 +47,11 @@ namespace Human_Resource.Views.ExecutiveProc
             try
             {
                 EvaluationModel emp = new EvaluationModel();
-                int Ref = Convert.ToInt32(e.CommandArgument.ToString());
+                long Ref = Convert.ToInt32(e.CommandArgument.ToString());
 
-                int? userId = null;
+                long? userId = null;
                 if (Session["user_id"] != null && Session["user_id"].ToString() != "")
-                    userId = emp.UpdateUserID = int.Parse(Session["user_id"].ToString());
+                    userId = emp.UpdateUserID = long.Parse(Session["user_id"].ToString());
 
                 if (emp.DeleteDept(Ref, userId))
                 {

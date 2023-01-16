@@ -14,15 +14,18 @@ namespace Human_Resource
     
     public partial class employeesVacations
     {
-        public int EmployeesVacationsID { get; set; }
-        public Nullable<int> VacationID { get; set; }
-        public Nullable<int> EmployeeID { get; set; }
+        public long EmployeesVacationID { get; set; }
+        public Nullable<long> VacationID { get; set; }
+        public Nullable<long> EmployeeID { get; set; }
         public string Notes { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
-        public Nullable<int> CreateUserID { get; set; }
-        public Nullable<int> UpdateUserID { get; set; }
+        public Nullable<long> CreateUserID { get; set; }
+        public Nullable<long> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
+        public Nullable<System.DateTime> FromDate { get; set; }
+        public Nullable<System.DateTime> ToDate { get; set; }
+        public Nullable<bool> Approved { get; set; }
     
         public virtual employees employees { get; set; }
         public virtual vacations vacations { get; set; }

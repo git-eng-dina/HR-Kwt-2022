@@ -129,7 +129,7 @@ namespace Human_Resource
         #region Attributes
         public long EmployeeID { get; set; }
         public Nullable<int> DepartmentID { get; set; }
-        public Nullable<int> ManagementID { get; set; }
+        public Nullable<long> ManagementID { get; set; }
 
         public string Username { get; set; }
         public string Password { get; set; }
@@ -184,8 +184,8 @@ namespace Human_Resource
         public string Notes { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
-        public Nullable<int> CreateUserID { get; set; }
-        public Nullable<int> UpdateUserID { get; set; }
+        public Nullable<long> CreateUserID { get; set; }
+        public Nullable<long> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public Nullable<decimal> BasicSalary { get; set; }
         public string TransportationCompensationType { get; set; }
@@ -904,7 +904,7 @@ namespace Human_Resource
             }
         }
 
-        public bool DeleteEmp(int empId, int? userId)
+        public bool DeleteEmp(long empId, long? userId)
         {
             try
             {

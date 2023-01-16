@@ -12,18 +12,13 @@ namespace Human_Resource
     using System;
     using System.Collections.Generic;
     
-    public partial class salaryIncreases
+    public partial class charitys
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public salaryIncreases()
-        {
-            this.confirms = new HashSet<confirms>();
-        }
-    
-        public int SalaryIncreaseID { get; set; }
-        public string Name { get; set; }
-        public string IncreaseType { get; set; }
-        public Nullable<decimal> IncreaseValue { get; set; }
+        public int CharityID { get; set; }
+        public Nullable<long> EmployeeID { get; set; }
+        public string Reason { get; set; }
+        public Nullable<decimal> Amount { get; set; }
+        public string Details { get; set; }
         public string Notes { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
@@ -31,7 +26,6 @@ namespace Human_Resource
         public Nullable<long> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<confirms> confirms { get; set; }
+        public virtual employees employees { get; set; }
     }
 }

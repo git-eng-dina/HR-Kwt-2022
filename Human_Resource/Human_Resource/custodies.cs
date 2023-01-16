@@ -18,13 +18,13 @@ namespace Human_Resource
         public string Type { get; set; }
         public string Details { get; set; }
         public string Value { get; set; }
-        public Nullable<int> EmployeeID { get; set; }
+        public Nullable<long> EmployeeID { get; set; }
         public Nullable<bool> IsRecovery { get; set; }
         public string Notes { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
-        public Nullable<int> CreateUserID { get; set; }
-        public Nullable<int> UpdateUserID { get; set; }
+        public Nullable<long> CreateUserID { get; set; }
+        public Nullable<long> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
     
         public virtual employees employees { get; set; }

@@ -14,7 +14,7 @@ namespace Human_Resource
     
     public partial class rewards
     {
-        public int RewardID { get; set; }
+        public long RewardID { get; set; }
         public string Type { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
@@ -22,10 +22,10 @@ namespace Human_Resource
         public string Notes { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
-        public Nullable<int> CreateUserID { get; set; }
-        public Nullable<int> UpdateUserID { get; set; }
+        public Nullable<long> CreateUserID { get; set; }
+        public Nullable<long> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
-        public Nullable<int> EmployeeID { get; set; }
+        public Nullable<long> EmployeeID { get; set; }
     
         public virtual employees employees { get; set; }
     }

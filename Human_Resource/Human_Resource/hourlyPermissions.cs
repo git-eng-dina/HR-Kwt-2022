@@ -20,16 +20,17 @@ namespace Human_Resource
             this.confirms = new HashSet<confirms>();
         }
     
-        public int HourlyPermissionID { get; set; }
+        public long HourlyPermissionID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Notes { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
-        public Nullable<int> CreateUserID { get; set; }
-        public Nullable<int> UpdateUserID { get; set; }
+        public Nullable<long> CreateUserID { get; set; }
+        public Nullable<long> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
-        public Nullable<int> EmployeeID { get; set; }
+        public Nullable<long> EmployeeID { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<confirms> confirms { get; set; }
