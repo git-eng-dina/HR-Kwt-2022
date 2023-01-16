@@ -9,7 +9,7 @@ namespace Human_Resource.App_Code
     {
         #region Attributes
         public long DailyTaskID { get; set; }
-        public Nullable<int> EmployeeID { get; set; }
+        public Nullable<long> EmployeeID { get; set; }
         public string EmployeeName { get; set; }
         public Nullable<long> TaskID { get; set; }
         public string TaskName { get; set; }

@@ -12,7 +12,7 @@ namespace Human_Resource.App_Code
         public string docName { get; set; }
         public string docnum { get; set; }
         public string image { get; set; }
-        public Nullable<int> EmployeeID { get; set; }
+        public Nullable<long> EmployeeID { get; set; }
         public Nullable<long> TaskID { get; set; }
         public Nullable<long> EventID { get; set; }
         public Nullable<int> MessageID { get; set; }
@@ -59,7 +59,7 @@ namespace Human_Resource.App_Code
             }
         }
 
-        public void DeleteCertificateAttach(int empID)
+        public void DeleteCertificateAttach(long empID)
         {
             using (HRSystemEntities entity = new HRSystemEntities())
             {

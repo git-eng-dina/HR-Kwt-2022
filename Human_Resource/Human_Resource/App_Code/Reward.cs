@@ -13,7 +13,7 @@ namespace Human_Resource.App_Code
         public string Title { get; set; }
         public string Description { get; set; }
         public string Value { get; set; }
-        public Nullable<int> EmployeeID { get; set; }
+        public Nullable<long> EmployeeID { get; set; }
         public string EmployeeName { get; set; }
         public string Notes { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }

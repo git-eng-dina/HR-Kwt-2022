@@ -265,7 +265,7 @@ namespace Human_Resource
                 entity.SaveChanges();
             }
         }
-        public string getUserRole(int empId)
+        public string getUserRole(long empId)
         {
             using (HRSystemEntities entity = new HRSystemEntities())
             {

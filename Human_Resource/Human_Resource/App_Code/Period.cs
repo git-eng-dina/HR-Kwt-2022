@@ -10,7 +10,7 @@ namespace Human_Resource.App_Code
         #region Attributes
         public int PeriodID { get; set; }
         public string Name { get; set; }
-        public Nullable<int> EmployeeID { get; set; }
+        public Nullable<long> EmployeeID { get; set; }
         public string EmployeeName { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }

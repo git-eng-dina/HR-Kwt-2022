@@ -314,7 +314,7 @@ namespace Human_Resource.Views.Employees
                     attachment.DeleteCertificateAttach(employee.EmployeeID);
                 #endregion
 
-                int empId = employee.SaveEmployee(employee);
+                long empId = employee.SaveEmployee(employee);
                 employee.EmployeeID = empId;
                 hid_emp_id.Value = empId.ToString();
                
@@ -349,7 +349,7 @@ namespace Human_Resource.Views.Employees
             }
             //catch { }
         }
-        protected void UploadFile(string fileName,int empId,string tag)
+        protected void UploadFile(string fileName,long empId,string tag)
         {
             //folder path to save uploaded file
             string folderPath = Server.MapPath(HelpClass.CVUpload);
@@ -377,7 +377,7 @@ namespace Human_Resource.Views.Employees
         }
 
 
-        private string uploadFile(string fileName, int empId, string tag,string folderPath1)
+        private string uploadFile(string fileName, long empId, string tag,string folderPath1)
         {
             //folder path to save uploaded file
             string folderPath = Server.MapPath(folderPath1);
