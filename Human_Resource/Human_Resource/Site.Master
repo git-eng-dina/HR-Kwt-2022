@@ -167,7 +167,7 @@
                     <i class="fa fa-fw fa-caret-down"></i>
             </a>
             <ul id="demo_procedurs" class="collapse in" aria-expanded="true">
-                <li>
+                <li runat="server" id="li_custodies">
                     <a href="/Views/ExecutiveProc/Custodies.aspx"> 
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,Custody%>" />
                     </a>
@@ -201,13 +201,13 @@
 
                     </a>
                 </li> 
-                <li>
+                <li runat="server" id="li_staffEvaluation">
                     <a href="/Views/ExecutiveProc/StaffEvaluation.aspx"> 
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,StaffEvaluation%>" />
 
                     </a>
                 </li> 
-                <li>
+                <li runat="server" id="li_charity">
                     <a href="/Views/ExecutiveProc/Charity.aspx"> 
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,Charity%>" />
                     </a>
@@ -276,7 +276,7 @@
                     <i class="fa fa-fw fa-caret-down"></i>
             </a>
             <ul id="demo_attendance" class="collapse in" aria-expanded="true">
-                <li>
+                <li runat="server" id="li_hourlyBills"> 
                     <a href="/Views/Attendance/HourlyBills.aspx"> 
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,HourlyBills%>" />
                     </a>
@@ -286,7 +286,7 @@
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,Vacations%>" />
                     </a>
                 </li>--%>
-                <li>
+                <li runat="server" id="li_scheduleVacation">
                     <a href="/Views/Attendance/VaccaitionApproval.aspx" class="">
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,ScheduleVacation%>" />
                     </a>
@@ -318,45 +318,45 @@
                     <i class="fa fa-fw fa-caret-down"></i>
             </a>
             <ul id="demo_Users3" class="collapse in" aria-expanded="true">
-                <li>
+                <li runat="server" id="li_companyInfo">
                     <a href="/Views/Settings/CompanyInfo.aspx"> 
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,CompanyInfo%>" />
                     </a>
                 </li>
-                  <li>
+                  <li runat="server" id="li_companyList">
                     <a href="/Views/Settings/CompanyList.aspx"> 
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,CompanyList%>" />
                     </a>
                 </li> 
-                <li>
+                <li runat="server" id="li_branches">
                     <a href="/Views/Settings/Branches.aspx"> 
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,Branches%>" />
                     </a>
                 </li> 
-                <li>
+                <li runat="server" id="li_managements">
                     <a href="/Views/Settings/Managements.aspx"> 
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,Managements%>" />
                     </a>
                 </li> 
-                <li>
+                <li runat="server" id="li_departments">
                     <a href="/Views/Settings/Departments.aspx"> 
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,Departments%>" />
 
                     </a>
                 </li> 
-                <li>
+                <li runat="server" id="li_jobsTitle">
                     <a href="/Views/Settings/Jobs.aspx"> 
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,JobsTitle%>" />
 
                     </a>
                 </li> 
-                <li>
+                <li runat="server" id="li_vaccationTypes">
                     <a href="/Views/Settings/VaccationType.aspx"> 
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,VaccationTypes%>" />
 
                     </a>
                 </li> 
-                <li>
+                <li runat="server" id="li_devices">
                     <a href="/Views/Settings/Devices.aspx"> 
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,Devices%>" />
 

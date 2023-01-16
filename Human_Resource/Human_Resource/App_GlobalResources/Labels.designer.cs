@@ -925,6 +925,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        internal static string EditPage {
+            get {
+                return ResourceManager.GetString("EditPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Educational Level.
         /// </summary>
         internal static string EducationalLevel {
@@ -2478,6 +2487,15 @@ namespace Resources {
         internal static string veryExcellent {
             get {
                 return ResourceManager.GetString("veryExcellent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ViewPage.
+        /// </summary>
+        internal static string ViewPage {
+            get {
+                return ResourceManager.GetString("ViewPage", resourceCulture);
             }
         }
         

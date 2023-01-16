@@ -1497,3 +1497,34 @@ input[type=checkbox], input[type=radio] {
 font-size:inherit;
 font-weight:bold;
 }
+
+.statis .c-user-profile {
+    position: relative;
+    background-color: #FFF;
+    /* padding: 20px; */
+    border: 1px solid #6c6c6f;
+    border-radius: 10px;
+    margin-top: 5px;
+    width: 100%;
+    float: right;
+}
+
+.statis .c-user-profile .details {
+    font-size: 14px;
+    text-align: right;
+    padding-left: 0px;
+}
+
+    .statis .c-user-profile .details span {
+        font-weight: bold;
+        display: inline-block;
+        width: 100%;
+        padding-top: 10px;
+    }
+    .statis .c-user-profile img {
+        width: 100%;
+        height: 125px;
+        margin-left: 20px;
+        border: 1px solid #ddd;
+        float: right;
+    }

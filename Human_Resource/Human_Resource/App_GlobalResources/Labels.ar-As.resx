@@ -972,7 +972,13 @@
   <data name="Charity" xml:space="preserve">
     <value>الأعمال الخيرية</value>
   </data>
+  <data name="EditPage" xml:space="preserve">
+    <value>التعديل</value>
+  </data>
   <data name="Permissions" xml:space="preserve">
     <value>السماحيات</value>
+  </data>
+  <data name="ViewPage" xml:space="preserve">
+    <value>عرض الصفحة</value>
   </data>
 </root>

@@ -66,7 +66,7 @@ namespace Human_Resource.Views.Employees
                 #region get employee info
                 if (Request.QueryString["uid"] != null && Request.QueryString["uid"] != "")
                 {
-                    int empId = int.Parse(Request.QueryString["uid"]);
+                    long empId = long.Parse(Request.QueryString["uid"]);
                     emp = emp.GetByID(empId);
                     #region fill inputs
                     txt_nameAR.Value = emp.NameAr;

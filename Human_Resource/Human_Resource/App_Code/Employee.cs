@@ -308,7 +308,7 @@ namespace Human_Resource
             return "Employee";
         }
         #endregion
-        public EmployeeModel GetByID(int empId)
+        public EmployeeModel GetByID(long empId)
         {
             using (HRSystemEntities entity = new HRSystemEntities())
             {
