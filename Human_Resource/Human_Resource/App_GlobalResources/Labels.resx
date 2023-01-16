@@ -975,4 +975,7 @@
   <data name="Charity" xml:space="preserve">
     <value>Charity</value>
   </data>
+  <data name="Permissions" xml:space="preserve">
+    <value>Permissions</value>
+  </data>
 </root>

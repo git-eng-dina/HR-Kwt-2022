@@ -15,7 +15,54 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script>
 
+        //$(document).ready(function () {
+
+
+        //    $myWindow = $('#dialog');
+
+
+        //    //instantiate the dialog
+        //    $myWindow.dialog({
+        //        height: 500,
+        //        width: 400,
+        //        modal: true,
+        //        closeOnEscape: true,
+        //        position: { my: 'top', at: 'top+75' },
+        //        autoOpen: false,
+        //        draggable: true,
+        //        overlay: { opacity: 0.5, background: 'black' },
+
+        //    });
+
+
+        //});
+
+   //function closeDialog() {
+   //       $('#MainContent_hid_departmentId').val("");
+   //       $('#MainContent_dept_name').val("");
+   //       $('#MainContent_txt_mobile').val("");
+   //       $('#MainContent_emp').val("");
+   //       $('#MainContent_management').val("");
+   //       $("#dialog").dialog("close");
+   //   }
+
+
+            function openModal() {
+                $('#myModal').modal('show');
+         }
+
+      //session end 
+       <%-- var sessionTimeoutWarning = "<%= Session.Timeout %>" ;
+        alert(sessionTimeoutWarning);
+        var sTimeout = parseInt(sessionTimeoutWarning) * 60 * 1000;
+        setTimeout('SessionEnd()', sTimeout);
+
+        function SessionEnd() {
+            logout();
+        }--%>
+    </script>
 
 </head>
 <body>
@@ -60,7 +107,7 @@
 
             </div>
             <div class="lang-logo">                
-                <asp:ImageButton runat="server" ImageUrl="~/images/en.png"  width="40" height="40"  id="messageImage"  OnClick="langBtn_Click"  />
+                <asp:ImageButton runat="server" ImageUrl="~/images/en.png"  width="40" height="40"  id="msgBtn" OnClick="msgBtn_Click"  />
             </div> 
             <div class="lang-logo">                
                 <asp:ImageButton runat="server"  width="40" height="40" id="cultureImage"  OnClick="langBtn_Click"  />
@@ -315,6 +362,12 @@
 
                     </a>
                 </li>
+                <li runat="server" id="li_permissions">
+                    <a href="/Views/Settings/Permissions.aspx"> 
+                        <asp:Literal runat="server" Text="<%$ Resources:Labels,Permissions%>" />
+
+                    </a>
+                </li>
             </ul>
             </li>
 
@@ -349,8 +402,28 @@
         </div>
         </div>
 
-        
+       
+          <!--Bootstrap Modal (Dialog Box / Pop-up Window) Example-->
+     <div id="MyModal" class="modal fade" role="dialog" runat="server">
+        <div class="modal-dialog" runat="server">
+            <div class="modal-content" runat="server">
+                <div class="modal-header" runat="server">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                     <h4>This is Modal Header</h4>
+                 </div>
+                 <div class="modal-body" runat="server">This is Modal Body
+                  </div>
+                  <div class="modal-footer" runat="server">This is Modal Footer
+                      <button type="button" class="btn btn-default" data-dismiss="modal" runat="server">Close</button>
+                 </div>
+              </div>
+          </div>
+      </div>
+      <!-- End of Bootstrap Model (Dialog Box / Popup Window)-->
+
     </form>
+
+    
 </body>
 </html>
 

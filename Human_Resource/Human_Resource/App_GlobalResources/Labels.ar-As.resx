@@ -972,4 +972,7 @@
   <data name="Charity" xml:space="preserve">
     <value>الأعمال الخيرية</value>
   </data>
+  <data name="Permissions" xml:space="preserve">
+    <value>السماحيات</value>
+  </data>
 </root>

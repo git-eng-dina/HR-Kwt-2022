@@ -95,7 +95,7 @@ namespace Human_Resource.App_Code
         public Nullable<int> ManagementManagerID { get; set; }
         
         public string AddedBy { get; set; }
-        public Nullable<int> AssignedEmployeeID { get; set; }
+        public Nullable<long> AssignedEmployeeID { get; set; }
         public string AssignedEmployeeName { get; set; }
         public Nullable<int> DailyTaskID { get; set; }
         public Attachment Attachment { get; set; }

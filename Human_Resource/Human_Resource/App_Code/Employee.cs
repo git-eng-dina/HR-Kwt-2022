@@ -127,7 +127,7 @@ namespace Human_Resource
     public class EmployeeModel
     {
         #region Attributes
-        public int EmployeeID { get; set; }
+        public long EmployeeID { get; set; }
         public Nullable<int> DepartmentID { get; set; }
         public Nullable<int> ManagementID { get; set; }
 
@@ -775,7 +775,7 @@ namespace Human_Resource
             }
         }
 
-        public int SaveEmployee(EmployeeModel employee)
+        public long SaveEmployee(EmployeeModel employee)
         {
             try
             {

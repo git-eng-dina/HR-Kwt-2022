@@ -9,9 +9,9 @@ namespace Human_Resource.App_Code
     {
         #region Attributes
         public int EvaluationID { get; set; }
-        public Nullable<int> EmployeeID { get; set; }
+        public Nullable<long> EmployeeID { get; set; }
         public string EmployeeName { get; set; }
-        public Nullable<int> ReviewerID { get; set; }
+        public Nullable<long> ReviewerID { get; set; }
         public string ReviewerName { get; set; }
         public Nullable<System.DateTime> EvaluationDate { get; set; }
         public string Notes { get; set; }

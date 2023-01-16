@@ -18,6 +18,7 @@ namespace Human_Resource
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
             string path = "images/en.png";
 
             //profile image
@@ -28,8 +29,7 @@ namespace Human_Resource
                 img_profile.Src = "~/images/no-image-icon-125x125.png";
 
             if (Session["CultureName"] != null)
-            {
-              
+            {             
                 //selected language
                 path = Session["CultureImage"].ToString();
                 cultureImage.ImageUrl = path;
@@ -180,7 +180,10 @@ namespace Human_Resource
 
 
 
-
+        protected void msgBtn_Click(object sender, ImageClickEventArgs e)
+        {
+            ScriptManager.RegisterClientScriptBlock(this, GetType(), "mykey", "openModal();", true);
+        }
         protected void langBtn_Click(object sender, ImageClickEventArgs e)
         {
             ImageButton theButton = (ImageButton)sender;

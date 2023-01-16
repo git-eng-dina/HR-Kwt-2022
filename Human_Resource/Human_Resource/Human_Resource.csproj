@@ -565,6 +565,7 @@
     <Content Include="Views\Employees\UserAccounts.aspx" />
     <Content Include="Views\Employees\WorkPermit.aspx" />
     <Content Include="Views\ExecutiveProc\AddEvaluation.aspx" />
+    <Content Include="Views\ExecutiveProc\Charity.aspx" />
     <Content Include="Views\ExecutiveProc\Custodies.aspx" />
     <Content Include="Views\ExecutiveProc\Events.aspx" />
     <Content Include="Views\ExecutiveProc\EventsApprove.aspx" />
@@ -589,6 +590,9 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="appObjects.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Code\Attachment.cs" />
     <Compile Include="App_Code\Confirm.cs" />
     <Compile Include="App_Code\CountriesName.cs" />
@@ -603,6 +607,7 @@
     <Compile Include="App_Code\HourlyPermission.cs" />
     <Compile Include="App_Code\Job.cs" />
     <Compile Include="App_Code\MaterialsConsumption.cs" />
+    <Compile Include="App_Code\Message.cs" />
     <Compile Include="App_Code\Reward.cs" />
     <Compile Include="App_Code\SalaryIncrease.cs" />
     <Compile Include="App_Code\Task.cs" />
@@ -621,6 +626,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="branches.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="charitys.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="companies.cs">
@@ -689,6 +697,9 @@
     <Compile Include="materialsConsumption.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="MessageReply.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="messages.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -741,6 +752,12 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="trainings.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usersMessages.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usersPermissions.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="vacations.cs">
@@ -839,6 +856,13 @@
     </Compile>
     <Compile Include="Views\ExecutiveProc\AddEvaluation.aspx.designer.cs">
       <DependentUpon>AddEvaluation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExecutiveProc\Charity.aspx.cs">
+      <DependentUpon>Charity.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ExecutiveProc\Charity.aspx.designer.cs">
+      <DependentUpon>Charity.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\ExecutiveProc\Custodies.aspx.cs">
       <DependentUpon>Custodies.aspx</DependentUpon>

@@ -40,13 +40,13 @@ namespace Human_Resource {
         protected global::System.Web.UI.WebControls.Literal txt_profileName;
         
         /// <summary>
-        /// messageImage control.
+        /// msgBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton messageImage;
+        protected global::System.Web.UI.WebControls.ImageButton msgBtn;
         
         /// <summary>
         /// cultureImage control.
@@ -166,6 +166,15 @@ namespace Human_Resource {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl li_basicInformation;
         
         /// <summary>
+        /// li_permissions control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl li_permissions;
+        
+        /// <summary>
         /// li_userAccounts control.
         /// </summary>
         /// <remarks>
@@ -182,5 +191,14 @@ namespace Human_Resource {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        
+        /// <summary>
+        /// MyModal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MyModal;
     }
 }
