@@ -1517,7 +1517,7 @@ font-weight:bold;
 
     .statis .c-user-profile .details span {
         font-weight: bold;
-        display: inline-block;
+        display: inline;
         width: 70px;
         padding-top: 10px;
     }
@@ -1528,3 +1528,43 @@ font-weight:bold;
         border: 1px solid #ddd;
         float: right;
     }
+
+.lst-links {
+    border-left: 1px solid #6c6c6f;
+    max-height: 500px;
+    overflow-y: scroll;
+    float:right;
+}
+.lst-links .row{
+    height:40px;
+}
+    .lst-links .details {
+        padding-right: 15px;
+    }
+
+    .lst-links .row:hover {
+        background-color: #cb7a0b;
+        color: black;
+        cursor: pointer;
+    }
+    .lst-links .value-list {
+        width: 100%;
+        padding-right: 5px;
+        font-style: normal;
+    }
+
+.permission-icon {
+    font-size: 12px;
+    padding-left:10px;
+}
+
+.view-li{
+    font-size:18px;
+    padding-right:20px;
+    padding-left:20px;
+}
+
+.per-chk{
+    float:left;
+    padding-left:15px;
+}

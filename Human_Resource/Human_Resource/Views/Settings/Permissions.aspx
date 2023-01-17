@@ -2,6 +2,21 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <script>
 
+        $(document).ready(function () {
+
+            $('.object').click(function (e) {
+                e.preventDefault();
+                if ($('[id*=emp]').val() == 0)
+                    alert("اختر موظف");
+                   <%--// alert(<%= Resources.Labels.SelectHere %>);--%>
+                else {
+
+                }
+
+                alert($(this).attr('id'));
+            });
+        });
+
         function getEmpInfo(sel) {
             var id = sel.val();
             var parameter = {
@@ -16,7 +31,7 @@
                 success: function (data) {
                     for (var prop in data) {
                         var item = data[prop];
-                        alert(item.NameAr);
+
                         $('[id*=txt_empName]').text(item.NameAr);
                         $('[id*=txt_position]').val(item.Position);
 
@@ -27,6 +42,26 @@
                         var imageUrl = urlCreator.createObjectURL(blob);
                         var img = document.querySelector("[id*=img_emp]");
                         img.src = imageUrl;
+
+                        $.ajax({
+                            type: "POST",
+                            url: "Permissions.aspx/GetEmpPermissions",
+                            data: JSON.stringify(parameter),
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function (data) {
+                                for (var prop in data) {
+                                    var item = data[prop];
+                                    alert(item.ViewObject);
+                                    $('[id*=txt_empName]').text(item.NameAr);
+                                    $('[id*=txt_position]').val(item.Position);
+
+                                }
+                            },
+                            failure: function (response) {
+                                alert(response.d);
+                            }
+                        });
  
                     }
 
@@ -65,19 +100,19 @@
                    <div class="col-12">
                     <div class="c-user-profile">
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-3">
 
                            <img src="../../images/no-image-icon-125x125.png" id="img_emp" alt="" class="rounded mx-auto text-center">
            
                         </div>
 
-                        <div class="col-7 details">
+                        <div class="col-9 details">
                             <div>
-                                <p id="pName"><span style="width:20%"><asp:Literal  runat="server" Text="<%$ Resources:Labels,Name%>" /> :</span>
+                                <p id="pName" style="margin-top:20px;"><span style="width:20%"><asp:Literal  runat="server" Text="<%$ Resources:Labels,Name%>" /> :</span>
                                     <span id="txt_empName" style="width:80%"></span></p>
                             </div>
                             <div>
-                                <p id="pCompany"><span style="width:20%"><asp:Literal  runat="server" Text="<%$ Resources:Labels,Position%>" />: </span>
+                                <p id="pCompany" style="margin-top:20px;"><span style="width:20%"><asp:Literal  runat="server" Text="<%$ Resources:Labels,Position%>" />: </span>
                                     <span id="txt_position" style="width:80%"></span>
                                 </p>
                             </div>
@@ -88,16 +123,27 @@
             </div>
 
                    <div class="col-12">
-                        <div class="c-form" >
-                            <div class="col-4">
-                            <ul id="lst_links"  runat="server"></ul>
+                        <div class="c-form" style="margin-top:5px;" >
+                            <div class="col-4 lst-links " id="lst_links" runat="server">
+                                
                             </div>
 
-                            <div class="col-8">
-                            <div class="form-group" style="display:block">
-                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Employee%>" /></span>
-                                <select runat="server" id="Select2" name="emp" style="width:80%" class="form-control input-lg" onchange="getEmpInfo($(this));" ></select>
-                               
+                            <div class="col-8 float2" style="display:inline">
+                            <div class="row">
+                                 <i class="fa fa-eye view-li" aria-hidden="true"></i>
+                                <asp:Literal runat="server" Text="<%$ Resources:Labels,Home%>" />
+
+                                <div class="per-chk">
+                                    <asp:CheckBox runat="server" id="chk_view" name="chk_view"  class=" input-lg"></asp:CheckBox>
+
+                                </div>
+                                
+                            </div>
+                            <div class="row">
+                                 <i class="fa fa-edit view-li" aria-hidden="true"></i>
+                                 <asp:Literal runat="server" Text="<%$ Resources:Labels,Home%>" />
+                                 <asp:CheckBox runat="server" id="chk_edit" name="chk_edit"  class="form-control input-lg"></asp:CheckBox>
+
                             </div>
                             </div>
                         </div>

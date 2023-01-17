@@ -31,12 +31,21 @@ namespace Human_Resource.Views.Settings {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lst_links;
         
         /// <summary>
-        /// Select2 control.
+        /// chk_view control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect Select2;
+        protected global::System.Web.UI.WebControls.CheckBox chk_view;
+        
+        /// <summary>
+        /// chk_edit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chk_edit;
     }
 }

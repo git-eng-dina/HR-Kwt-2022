@@ -113,6 +113,28 @@ namespace Human_Resource.App_Code
             }
         }
 
+        public List<UsersPermissionModel> getEmployeePermission(long empId)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var dept = entity.usersPermissions.Where(x => x.EmployeeID == empId && x.IsActive == true)
+                                .Select(x => new UsersPermissionModel()
+                                {
+                                    UsersPermissionID = x.UsersPermissionID,
+                                    AppObjectID = x.AppObjectID.Value,
+                                    EmployeeID = x.EmployeeID.Value,
+                                    ViewObject = x.ViewObject,
+                                    EditObject = x.EditObject,
+                                    CreateUserID = x.CreateUserID,
+                                    UpdateUserID = x.UpdateUserID,
+                                    Notes = x.Notes,
+                                    CreateDate = x.CreateDate,
+                                    UpdateDate = x.UpdateDate,
+                                }).ToList();
+                return dept;
+            }
+        }
+
         public int SaveDept(UsersPermissionModel dept)
         {
             try
