@@ -3,8 +3,9 @@
     <script>
 
         function getEmpInfo(sel) {
+            var id = sel.val();
             var parameter = {
-                ID: sel.val(),
+                ID: id,
             };
             $.ajax({
                 type: "POST",
@@ -13,14 +14,20 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (data) {
-                    ShowDialog();
                     for (var prop in data) {
                         var item = data[prop];
-                        $('#MainContent_hid_managementId').val(item.ManagementID);
-                        $('#MainContent_dept_name').val(item.Name);
-                        $('#MainContent_txt_mobile').val(item.Mobile);
-                        $('#MainContent_emp').val(item.ManagerID);
-                        $('#MainContent_branch').val(item.BranchID);
+                        alert(item.NameAr);
+                        $('[id*=txt_empName]').text(item.NameAr);
+                        $('[id*=txt_position]').val(item.Position);
+
+
+                        var arrayBufferView = new Uint8Array(item.Image);
+                        var blob = new Blob([arrayBufferView], { type: "image/jpeg" });
+                        var urlCreator = window.URL || window.webkitURL;
+                        var imageUrl = urlCreator.createObjectURL(blob);
+                        var img = document.querySelector("[id*=img_emp]");
+                        img.src = imageUrl;
+ 
                     }
 
 
@@ -45,7 +52,7 @@
                     </div>
 
                     <div class="col-12">
-                        <div class="c-form">
+                        <div class="c-form" style="padding-bottom:0px;">
                             <div class="row">
                             <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Employee%>" /></span>
@@ -56,28 +63,45 @@
                         </div>
                     </div>
                    <div class="col-12">
-                <div class="c-user-profile">
+                    <div class="c-user-profile">
                     <div class="row">
                         <div class="col-4">
 
-                           <img src="../../images/no-image-icon-125x125.png" id="img_Customer" alt="" class="rounded mx-auto text-center">
+                           <img src="../../images/no-image-icon-125x125.png" id="img_emp" alt="" class="rounded mx-auto text-center">
            
                         </div>
 
                         <div class="col-7 details">
                             <div>
-                                <p id="pName"><span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Name%>" /> :</span></p>
+                                <p id="pName"><span style="width:20%"><asp:Literal  runat="server" Text="<%$ Resources:Labels,Name%>" /> :</span>
+                                    <span id="txt_empName" style="width:80%"></span></p>
                             </div>
                             <div>
-                                <p id="pCompany"><span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Position%>" />: </span></p>
+                                <p id="pCompany"><span style="width:20%"><asp:Literal  runat="server" Text="<%$ Resources:Labels,Position%>" />: </span>
+                                    <span id="txt_position" style="width:80%"></span>
+                                </p>
                             </div>
-                            <div>
-                                <p id="pMobile"><span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Permissions%>" /> </span></p>
-                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
+
+                   <div class="col-12">
+                        <div class="c-form" >
+                            <div class="col-4">
+                            <ul id="lst_links"  runat="server"></ul>
+                            </div>
+
+                            <div class="col-8">
+                            <div class="form-group" style="display:block">
+                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Employee%>" /></span>
+                                <select runat="server" id="Select2" name="emp" style="width:80%" class="form-control input-lg" onchange="getEmpInfo($(this));" ></select>
+                               
+                            </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             </section>

@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Human_Resource.App_Code;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace Human_Resource.Views.Settings
@@ -38,6 +40,22 @@ namespace Human_Resource.Views.Settings
                 emp.DataTextField = "NameAr";
 
             DataBind();
+
+            #region display links
+            appObjectsModel objectsModel = new appObjectsModel();
+            var appObjects = objectsModel.GetAppObjects() ;
+            foreach (var row in appObjects)
+            {
+                HtmlGenericControl li = new HtmlGenericControl("li");
+               if( Session["CultureName"].ToString().ToLower() == "en-us")
+                li.Attributes.Add("id", row.NameEn);
+               else
+                    li.Attributes.Add("id", row.NameAr);
+
+                lst_links.Controls.Add(li);
+
+            }
+            #endregion
         }
 
         [WebMethod]
