@@ -609,6 +609,7 @@
     <Compile Include="App_Code\Job.cs" />
     <Compile Include="App_Code\MaterialsConsumption.cs" />
     <Compile Include="App_Code\Message.cs" />
+    <Compile Include="App_Code\Permissions.cs" />
     <Compile Include="App_Code\Reward.cs" />
     <Compile Include="App_Code\SalaryIncrease.cs" />
     <Compile Include="App_Code\Task.cs" />
