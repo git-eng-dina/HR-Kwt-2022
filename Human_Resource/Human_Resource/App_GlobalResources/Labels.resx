@@ -993,4 +993,10 @@
   <data name="View" xml:space="preserve">
     <value>View</value>
   </data>
+  <data name="AddCharity" xml:space="preserve">
+    <value>Add Charity</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Reason</value>
+  </data>
 </root>

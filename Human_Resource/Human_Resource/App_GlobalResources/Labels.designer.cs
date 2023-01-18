@@ -115,6 +115,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Charity.
+        /// </summary>
+        internal static string AddCharity {
+            get {
+                return ResourceManager.GetString("AddCharity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Custody.
         /// </summary>
         internal static string AddCustody {
@@ -1974,6 +1983,15 @@ namespace Resources {
         internal static string Ratio {
             get {
                 return ResourceManager.GetString("Ratio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reason.
+        /// </summary>
+        internal static string Reason {
+            get {
+                return ResourceManager.GetString("Reason", resourceCulture);
             }
         }
         
