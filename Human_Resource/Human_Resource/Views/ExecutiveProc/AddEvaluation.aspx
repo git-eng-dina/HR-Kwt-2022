@@ -1,8 +1,28 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddEvaluation.aspx.cs" Inherits="Human_Resource.Views.ExecutiveProc.AddEvaluation" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddEvaluation.aspx.cs" Inherits="Human_Resource.Views.ExecutiveProc.AddEvaluation" enableEventValidation="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
   <script>
         
+      function removeValidation(input) {
+          if ($(input).attr("class") == "form-control is-invalid") {
 
+              $(input).attr("class", "form-control");
+
+          }
+      }
+      function checkValidation() {
+          var valid = true;
+          if ($('[id*=evaluationDate]').val() == "" || $('[id*=evaluationDate]').val() == null) {
+              $('[id*=evaluationDate]').attr("class", "form-control is-invalid");
+              valid = false;
+          }
+
+             if (valid) {
+                 var uniqID = $('#MainContent_hdnButtonID').val();
+
+                 __doPostBack(uniqID, "OnClick");
+             }
+             return valid;
+         }
         
      </script>
     <!-- text boxes -->
@@ -41,8 +61,10 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,EvaluationDate%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
-                                    <asp:TextBox ID="evaluationDate" runat="server" class="form-control input-lg hasdatepicker"  textMode="date" value="2000-11-01"></asp:TextBox>
-                            </div>
+                                    <asp:TextBox ID="evaluationDate" runat="server" class="form-control input-lg hasdatepicker"  textMode="date" value="2000-11-01" onchange="removeValidation($(this));"></asp:TextBox>
+                             <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
+                                        </div>
+                                </div>
                             </div>
 
                            
@@ -358,17 +380,21 @@
 
 
     <!-- buttons -->
-    <div class="row">
+             <div class="row">
         <div class="col-md-11 modal-footer">
-            <asp:LinkButton ID="btnSave" runat="server" CssClass="btn btn-new" OnClick="btn_save_Click" Width="128px" Height="33px">
+              <asp:HiddenField  runat="server" ID="hdnButtonID"/>
+            <asp:LinkButton ID="btnSave" runat="server" CssClass="btn btn-new"
+                 UseSubmitBehavior="False"  
+                OnClientClick="javascript:return checkValidation();"
+                OnClick="btn_save_Click" Width="128px" Height="33px">
                 <asp:Literal Text=" <%$Resources:Labels,Save%>" runat="server"></asp:Literal>
                 <i class="fa fa-check"></i>
             </asp:LinkButton>
-
-
         </div>
-
     </div>
+
+
+
     </div>
         </section>
 

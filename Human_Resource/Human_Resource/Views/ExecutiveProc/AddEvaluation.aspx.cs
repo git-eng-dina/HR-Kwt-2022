@@ -22,6 +22,7 @@ namespace Human_Resource.Views.ExecutiveProc
                 EvaluationModel evaluation = new EvaluationModel();
 
                 hid_eval_id.Value = Request.QueryString["uid"];
+                hdnButtonID.Value = btnSave.UniqueID;
 
                 #region fill select
                 //Employee Mannerism Group
