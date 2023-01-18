@@ -32,12 +32,12 @@ namespace Human_Resource.Views.Settings
             var newEmp = new EmployeeModel() { NameAr = Resources.Labels.SelectHere,NameEn= Resources.Labels.SelectHere, EmployeeID = 0 };
             employees.Insert(0, newEmp);
 
-            emp.DataSource = employees;
-            emp.DataValueField = "EmployeeID";
+            sel_emp.DataSource = employees;
+            sel_emp.DataValueField = "EmployeeID";
             if (Session["CultureName"] != null && Session["CultureName"].ToString().ToLower() == "en-us")
-                emp.DataTextField = "NameEn";
+                sel_emp.DataTextField = "NameEn";
             else
-                emp.DataTextField = "NameAr";
+                sel_emp.DataTextField = "NameAr";
 
             DataBind();
 
@@ -110,13 +110,55 @@ namespace Human_Resource.Views.Settings
                 UsersPermissionModel empModel = new UsersPermissionModel();
 
                 long employeeID = long.Parse(ID);
-                var emp = empModel.getEmployeePermission(employeeID);
+                var per = empModel.getEmployeePermission(employeeID);
+
+                return per;
+            }
+            catch
+            {
+                return null;
+
+            }
+
+        }
+
+        [WebMethod]
+        public static UsersPermissionModel GetObjectPermission(string empId, string appObjectId)
+        {
+            try
+            {
+                UsersPermissionModel empModel = new UsersPermissionModel();
+
+                long employeeID = long.Parse(empId);
+                long objectID = long.Parse(appObjectId);
+                var emp = empModel.GetObjectPermission(employeeID,objectID);
 
                 return emp;
             }
             catch
             {
                 return null;
+
+            }
+
+        }
+
+        [WebMethod]
+        public static void savePermission(string empId, string appObjectId,string view, string edit)
+        {
+            try
+            {
+                UsersPermissionModel empModel = new UsersPermissionModel();
+
+                long employeeID = long.Parse(empId);
+                int objectID = int.Parse(appObjectId);
+                 empModel.SaveEmpObjectPermission(employeeID,objectID,bool.Parse(view),bool.Parse(edit), long.Parse(HttpContext.Current.Session["user_id"].ToString()));
+
+             
+            }
+            catch
+            {
+          
 
             }
 

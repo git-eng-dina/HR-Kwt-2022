@@ -135,7 +135,30 @@ namespace Human_Resource.App_Code
             }
         }
 
-        public int SaveDept(UsersPermissionModel dept)
+        public UsersPermissionModel GetObjectPermission(long empId, long appObjectId)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var dept = entity.usersPermissions.Where(x => x.EmployeeID == empId 
+                                    && x.AppObjectID == appObjectId && x.IsActive == true)
+                                .Select(x => new UsersPermissionModel()
+                                {
+                                    UsersPermissionID = x.UsersPermissionID,
+                                    AppObjectID = x.AppObjectID.Value,
+                                    EmployeeID = x.EmployeeID.Value,
+                                    ViewObject = x.ViewObject,
+                                    EditObject = x.EditObject,
+                                    CreateUserID = x.CreateUserID,
+                                    UpdateUserID = x.UpdateUserID,
+                                    Notes = x.Notes,
+                                    CreateDate = x.CreateDate,
+                                    UpdateDate = x.UpdateDate,
+                                }).FirstOrDefault();
+                return dept;
+            }
+        }
+
+        public int SaveEmpObjectPermission(long empId,int appObjectId,bool viewObject,bool editObject,long userId)
         {
             try
             {
@@ -143,39 +166,38 @@ namespace Human_Resource.App_Code
 
                 using (HRSystemEntities entity = new HRSystemEntities())
                 {
-                    if (dept.UsersPermissionID.Equals(0))
+                    var userPermission = entity.usersPermissions.Where(x => x.EmployeeID == empId
+                                        && x.AppObjectID == appObjectId && x.IsActive == true).FirstOrDefault();
+                   
+                    if(userPermission == null)
                     {
                         usersPermission = new usersPermissions()
                         {
-                            AppObjectID = dept.AppObjectID,
-                            EmployeeID = dept.EmployeeID,
-                            ViewObject = dept.ViewObject,
-                            EditObject = dept.EditObject,
+                            AppObjectID = appObjectId,
+                            EmployeeID = empId,
+                            ViewObject = viewObject,
+                            EditObject = editObject,
 
                             IsActive = true,
-                            CreateUserID = dept.CreateUserID,
-                            UpdateUserID = dept.UpdateUserID,
+                            CreateUserID = userId,
+                            UpdateUserID = userId,
                             CreateDate = DateTime.Now,
                             UpdateDate = DateTime.Now,
                         };
-                        usersPermission = entity.usersPermissions.Add(usersPermission);
+                        userPermission = entity.usersPermissions.Add(usersPermission);
                     }
                     else
                     {
-                        usersPermission = entity.usersPermissions.Find(dept.UsersPermissionID);
-                        usersPermission.AppObjectID = dept.AppObjectID;
-                        usersPermission.EmployeeID = dept.EmployeeID;
-                        usersPermission.ViewObject = dept.ViewObject;
-                        usersPermission.EditObject = dept.EditObject;
 
-                        usersPermission.Notes = dept.Notes;
-                        usersPermission.IsActive = true;
-                        usersPermission.UpdateUserID = dept.UpdateUserID;
-                        usersPermission.UpdateDate = DateTime.Now;
+                        userPermission.ViewObject = viewObject;
+                        userPermission.EditObject = editObject;
+
+                        userPermission.UpdateUserID = userId;
+                        userPermission.UpdateDate = DateTime.Now;
                     }
                     entity.SaveChanges();
                 }
-                return usersPermission.UsersPermissionID;
+                return 1;
             }
 
             catch

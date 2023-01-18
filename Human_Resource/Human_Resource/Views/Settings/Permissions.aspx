@@ -6,14 +6,51 @@
 
             $('.object').click(function (e) {
                 e.preventDefault();
-                if ($('[id*=emp]').val() == 0)
-                    alert("اختر موظف");
-                   <%--// alert(<%= Resources.Labels.SelectHere %>);--%>
+   
+                if ($('[id*=sel_emp]').val() == 0) {
+                    alert('<%= Resources.Labels.SelectUser %>');
+                }
                 else {
+                    var element = $(this);
+                    $('[id*=hid_appObjectID]').val(element.attr('id'));
 
+                    $('[id*=lbl_objectName]').text(element.find(">:first-child").text());
+
+                    var empId = $('[id*=sel_emp]').val();
+                    var appObjectId = $('[id*=hid_appObjectID]').val();
+                    var parameter = {
+                        empId: empId,
+                        appObjectId: appObjectId,
+                    };
+                    $.ajax({
+                        type: "POST",
+                        url: "Permissions.aspx/GetObjectPermission",
+                        data: JSON.stringify(parameter),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (data) {
+                            for (var prop in data) {
+                                var item = data[prop];
+                                alert(item);
+                                if (item != "" && item != null) {
+
+                                    $('[id*=chk_view]').prop('checked', item.ViewObject);
+                                    $('[id*=chk_edit]').prop('checked', item.EditObject);
+
+                                }
+                                else {
+                                    $('[id*=chk_view]').prop('checked', false);
+                                    $('[id*=chk_edit]').prop('checked', false);
+                                }
+
+                            }
+                        },
+                        failure: function (response) {
+                            alert(response.d);
+                        }
+                    });
                 }
 
-                alert($(this).attr('id'));
             });
         });
 
@@ -35,14 +72,18 @@
                         $('[id*=txt_empName]').text(item.NameAr);
                         $('[id*=txt_position]').val(item.Position);
 
-
-                        var arrayBufferView = new Uint8Array(item.Image);
-                        var blob = new Blob([arrayBufferView], { type: "image/jpeg" });
-                        var urlCreator = window.URL || window.webkitURL;
-                        var imageUrl = urlCreator.createObjectURL(blob);
                         var img = document.querySelector("[id*=img_emp]");
-                        img.src = imageUrl;
-
+                        if (item.Image != null) {
+                            var arrayBufferView = new Uint8Array(item.Image);
+                            var blob = new Blob([arrayBufferView], { type: "image/jpeg" });
+                            var urlCreator = window.URL || window.webkitURL;
+                            var imageUrl = urlCreator.createObjectURL(blob);
+                           
+                            img.src = imageUrl;
+                        }
+                        else {
+                            img.src = "../../images/no-image-icon-125x125.png";
+                        }
                         $.ajax({
                             type: "POST",
                             url: "Permissions.aspx/GetEmpPermissions",
@@ -52,9 +93,12 @@
                             success: function (data) {
                                 for (var prop in data) {
                                     var item = data[prop];
-                                    alert(item.ViewObject);
-                                    $('[id*=txt_empName]').text(item.NameAr);
-                                    $('[id*=txt_position]').val(item.Position);
+                                    alert(item);
+                                    if (item != "" && item != null) {
+                                        alert(item.ViewObject);
+                                        $('[id*=txt_empName]').text(item.NameAr);
+                                        $('[id*=txt_position]').val(item.Position);
+                                    }
 
                                 }
                             },
@@ -71,6 +115,39 @@
                     alert(response.d);
                 }
             });
+        }
+
+        function savePermission() {
+            var empId = $('[id*=sel_emp]').val();
+            var appObjectId = $('[id*=hid_appObjectID]').val();
+            var view = false;
+            if ($("[id*=chk_view]").is(':checked'))
+                view = true;
+
+            var edit = false;
+            if ($("[id*=chk_edit]").is(':checked'))
+                edit = true;
+            var parameter = {
+                empId: empId,
+                appObjectId: appObjectId,
+                view: view,
+                edit: edit,
+            };
+           
+            $.ajax({
+                type: "POST",
+                url: "Permissions.aspx/savePermission",
+                data: JSON.stringify(parameter),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    alert('<%= Resources.Labels.SaveSuccessfully%>');
+                },
+                failure: function (response) {
+                    alert(response.d);
+                }
+            });
+
         }
     </script>
          <section class="statis">
@@ -91,7 +168,7 @@
                             <div class="row">
                             <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Employee%>" /></span>
-                                <select runat="server" id="emp" name="emp" style="width:80%" class="form-control input-lg" onchange="getEmpInfo($(this));" ></select>
+                                <select runat="server" id="sel_emp" name="sel_emp" style="width:80%" class="form-control input-lg" onchange="getEmpInfo($(this));" ></select>
                                
                             </div>
                             </div>
@@ -123,27 +200,45 @@
             </div>
 
                    <div class="col-12">
-                        <div class="c-form" style="margin-top:5px;" >
+                        <div class="permission-form" style="margin-top:5px;" >
                             <div class="col-4 lst-links " id="lst_links" runat="server">
-                                
+                                <input type="hidden"  id="hid_appObjectID" name="hid_appObjectID" runat="server" value=""  />
+
                             </div>
 
-                            <div class="col-8 float2" style="display:inline">
-                            <div class="row">
-                                 <i class="fa fa-eye view-li" aria-hidden="true"></i>
-                                <asp:Literal runat="server" Text="<%$ Resources:Labels,Home%>" />
+                            <div class="col-8 box-shadows" >
+                                <div class="row">
+                                    <div class="row col-11 form-group title">
+                                        <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Permissions%>" />:&nbsp;</span>
+                                         <span  ID="lbl_objectName" ></span>
+                                    </div>
 
-                                <div class="per-chk">
-                                    <asp:CheckBox runat="server" id="chk_view" name="chk_view"  class=" input-lg"></asp:CheckBox>
+                                </div>
+                            <div class="row">
+                                <div class="col-8">
+                                 <i class="fa fa-eye view-li" aria-hidden="true"></i>
+                                <asp:Literal runat="server" Text="<%$ Resources:Labels,View%>" />
+                                </div>
+                                <div class="col-4 per-chk">
+                                    <asp:CheckBox runat="server" id="chk_view" name="chk_view"  class=" per-chk"></asp:CheckBox>
 
                                 </div>
                                 
                             </div>
-                            <div class="row">
+                            <div class="row" style="height:300px;">
+                                 <div class="col-8">
                                  <i class="fa fa-edit view-li" aria-hidden="true"></i>
-                                 <asp:Literal runat="server" Text="<%$ Resources:Labels,Home%>" />
-                                 <asp:CheckBox runat="server" id="chk_edit" name="chk_edit"  class="form-control input-lg"></asp:CheckBox>
+                                 <asp:Literal runat="server" Text="<%$ Resources:Labels,AddEditDelete%>" />
+                                 </div>
+                                 <div class="col-4 per-chk">
+                                <asp:CheckBox type="checkbox" runat="server" id="chk_edit" name="chk_edit"  class="per-chk"></asp:CheckBox>
+                                 </div>
+                            </div>
 
+                            <div class="row">
+                                  <button class="btn btn-secondary btn-block save"  runat="server" onclick="saveManagement()" id="btn_save" >
+                                    <asp:Literal  runat="server" Text=" <%$ Resources:Labels,Save%>" />
+                                </button>
                             </div>
                             </div>
                         </div>

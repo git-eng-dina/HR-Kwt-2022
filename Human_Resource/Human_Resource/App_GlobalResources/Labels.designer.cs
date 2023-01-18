@@ -151,6 +151,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add \ Edit \ Delete.
+        /// </summary>
+        internal static string AddEditDelete {
+            get {
+                return ResourceManager.GetString("AddEditDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Job.
         /// </summary>
         internal static string AddJob {
@@ -2122,6 +2131,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select User.
+        /// </summary>
+        internal static string SelectUser {
+            get {
+                return ResourceManager.GetString("SelectUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to #.
         /// </summary>
         internal static string Sequence {
@@ -2487,6 +2505,15 @@ namespace Resources {
         internal static string veryExcellent {
             get {
                 return ResourceManager.GetString("veryExcellent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View.
+        /// </summary>
+        internal static string View {
+            get {
+                return ResourceManager.GetString("View", resourceCulture);
             }
         }
         

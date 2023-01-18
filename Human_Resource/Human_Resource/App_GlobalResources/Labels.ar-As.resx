@@ -981,4 +981,13 @@
   <data name="ViewPage" xml:space="preserve">
     <value>عرض الصفحة</value>
   </data>
+  <data name="AddEditDelete" xml:space="preserve">
+    <value>إضافة / تعديل / حذف</value>
+  </data>
+  <data name="SelectUser" xml:space="preserve">
+    <value>اختر مستخدم</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>عرض</value>
+  </data>
 </root>

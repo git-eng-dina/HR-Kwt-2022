@@ -984,4 +984,13 @@
   <data name="ViewPage" xml:space="preserve">
     <value>ViewPage</value>
   </data>
+  <data name="AddEditDelete" xml:space="preserve">
+    <value>Add \ Edit \ Delete</value>
+  </data>
+  <data name="SelectUser" xml:space="preserve">
+    <value>Select User</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>View</value>
+  </data>
 </root>

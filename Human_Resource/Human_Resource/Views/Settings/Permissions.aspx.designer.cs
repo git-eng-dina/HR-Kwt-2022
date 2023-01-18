@@ -13,13 +13,13 @@ namespace Human_Resource.Views.Settings {
     public partial class Permissions {
         
         /// <summary>
-        /// emp control.
+        /// sel_emp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect emp;
+        protected global::System.Web.UI.HtmlControls.HtmlSelect sel_emp;
         
         /// <summary>
         /// lst_links control.
@@ -29,6 +29,15 @@ namespace Human_Resource.Views.Settings {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lst_links;
+        
+        /// <summary>
+        /// hid_appObjectID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hid_appObjectID;
         
         /// <summary>
         /// chk_view control.
@@ -47,5 +56,14 @@ namespace Human_Resource.Views.Settings {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chk_edit;
+        
+        /// <summary>
+        /// btn_save control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btn_save;
     }
 }
