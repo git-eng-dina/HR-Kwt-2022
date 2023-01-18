@@ -1611,8 +1611,20 @@ input[type=checkbox], input[type=radio] {
      .lst-links .details {
         padding-left:15px;
     }
-
-        .lst-links .row:hover {
+.permission-form .lst-links .form-group {
+    width: 100%;
+    margin-left: -15px;
+    border-bottom: 1px solid gray;
+}
+    .permission-form .lst-links .form-group span {
+        font-weight: bold;
+        display: inline;
+        /* width: 70px; */
+        padding-top: 10px;
+        padding-bottom: 5px;
+        /* padding-right: 20px; */
+    }
+        .lst-links .object:hover {
             background-color: #cb7a0b;
             color: black;
             cursor: pointer;

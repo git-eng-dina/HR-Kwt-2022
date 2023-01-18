@@ -31,7 +31,7 @@
                         success: function (data) {
                             for (var prop in data) {
                                 var item = data[prop];
-                                alert(item);
+ 
                                 if (item != "" && item != null) {
 
                                     $('[id*=chk_view]').prop('checked', item.ViewObject);
@@ -39,8 +39,7 @@
 
                                 }
                                 else {
-                                    $('[id*=chk_view]').prop('checked', false);
-                                    $('[id*=chk_edit]').prop('checked', false);
+                                    resetPermission();
                                 }
 
                             }
@@ -54,7 +53,19 @@
             });
         });
 
+        function resetPermission() {
+            $('[id*=chk_view]').prop('checked', false);
+            $('[id*=chk_edit]').prop('checked', false);
+          
+        }
+
         function getEmpInfo(sel) {
+            $('[id*=lbl_objectName]').text('');
+            $('.permission-icon').each(function () {
+                $(this).addClass('hidden');
+            });
+            resetPermission();
+
             var id = sel.val();
             var parameter = {
                 ID: id,
@@ -93,11 +104,25 @@
                             success: function (data) {
                                 for (var prop in data) {
                                     var item = data[prop];
-                                    alert(item);
                                     if (item != "" && item != null) {
-                                        alert(item.ViewObject);
-                                        $('[id*=txt_empName]').text(item.NameAr);
-                                        $('[id*=txt_position]').val(item.Position);
+                                        for (var perm in item) {
+                                            per = item[perm];
+ 
+                                            var element = $('[id*=' + per.AppObjectID + ']').find('div').first();
+                                            var ifaView = element.find('.fa-eye').first();
+                                            var ifaEdit = element.find('.fa-edit').first();
+               
+                                            if (per.ViewObject)
+                                                ifaView.removeClass("hidden");
+                                            else
+                                                ifaView.addClass("hidden");
+
+                                             if (per.EditObject)
+                                                 ifaEdit.removeClass("hidden");
+                                            else
+                                                 ifaEdit.addClass("hidden");
+                                        
+                                        }
                                     }
 
                                 }
@@ -141,6 +166,20 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (data) {
+
+                    var element = $('[id*=' + appObjectId + ']').find('div').first();
+                    var ifaView = element.find('.fa-eye').first();
+                    var ifaEdit = element.find('.fa-edit').first();
+
+                    if (view)
+                        ifaView.removeClass("hidden");
+                    else
+                        ifaView.addClass("hidden");
+
+                    if (edit)
+                        ifaEdit.removeClass("hidden");
+                    else
+                        ifaEdit.addClass("hidden");
                     alert('<%= Resources.Labels.SaveSuccessfully%>');
                 },
                 failure: function (response) {
@@ -174,6 +213,7 @@
                             </div>
                         </div>
                     </div>
+
                    <div class="col-12">
                     <div class="c-user-profile">
                     <div class="row">
@@ -202,6 +242,9 @@
                    <div class="col-12">
                         <div class="permission-form" style="margin-top:5px;" >
                             <div class="col-4 lst-links " id="lst_links" runat="server">
+                                <div class="row col-11 form-group title ">
+                                        <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Access%>" /></span>
+                                </div>
                                 <input type="hidden"  id="hid_appObjectID" name="hid_appObjectID" runat="server" value=""  />
 
                             </div>
@@ -236,7 +279,7 @@
                             </div>
 
                             <div class="row">
-                                  <button class="btn btn-secondary btn-block save"  runat="server" onclick="saveManagement()" id="btn_save" >
+                                  <button class="btn btn-secondary btn-block save"  runat="server" onclick="javascript:savePermission();return false;" id="btn_save" >
                                     <asp:Literal  runat="server" Text=" <%$ Resources:Labels,Save%>" />
                                 </button>
                             </div>

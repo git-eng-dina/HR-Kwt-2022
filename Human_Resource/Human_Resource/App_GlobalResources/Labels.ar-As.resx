@@ -996,4 +996,7 @@
   <data name="Reason" xml:space="preserve">
     <value>السبب</value>
   </data>
+  <data name="Access" xml:space="preserve">
+    <value>الوصول</value>
+  </data>
 </root>
