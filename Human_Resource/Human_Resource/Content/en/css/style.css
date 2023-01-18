@@ -1599,7 +1599,7 @@ input[type=checkbox], input[type=radio] {
 
 .lst-links {
     border-right: 1px solid #6c6c6f;
-    max-height: 500px;
+    max-height: 430px;
     overflow-y: scroll;
     float: left;
 }
@@ -1635,3 +1635,57 @@ input[type=checkbox], input[type=radio] {
     padding-right: 20px;
     padding-left: 20px;
 }
+
+.per-chk {
+    float: right;
+    padding-right: 15px;
+}
+.permission-form {
+    position: relative;
+    background-color: #FFF;
+    padding: 20px;
+    border: 1px solid #6c6c6f;
+    border-radius: 10px;
+    margin-top: 20px;
+    width: 100%;
+    float: left;
+}
+    .permission-form .form-group {
+        width: 100%;
+        margin-left: 10px;
+        border-bottom: 1px solid gray;
+    }
+
+.box-shadows {
+    display: inline;
+    float: right;
+    box-shadow: 2px 2px 2px 2px #adb5bd;
+    width: 65%;
+    padding-top: 10px;
+}
+
+    .box-shadows .title span {
+        font-weight: bold;
+        display: inline;
+        /*width: 70px;*/
+        padding-top: 10px;
+        padding-bottom: 5px;
+        /*padding-left: 20px;*/
+    }
+/*scrollbar*/
+::-webkit-scrollbar {
+    width: 10px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }

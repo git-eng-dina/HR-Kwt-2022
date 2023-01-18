@@ -107,7 +107,7 @@
 
             </div>
             <div class="lang-logo">                
-                <asp:ImageButton runat="server" ImageUrl="~/images/en.png"  width="40" height="40"  id="msgBtn" OnClick="msgBtn_Click"  />
+                <asp:ImageButton runat="server" ImageUrl="~/images/message.png"  width="40" height="40"  id="msgBtn" OnClick="msgBtn_Click"  />
             </div> 
             <div class="lang-logo">                
                 <asp:ImageButton runat="server"  width="40" height="40" id="cultureImage"  OnClick="langBtn_Click"  />
