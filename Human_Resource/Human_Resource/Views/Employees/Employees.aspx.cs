@@ -91,6 +91,46 @@ namespace Human_Resource.Views.Employees
             gv_employees.DataSource = employees;
             DataBind();
         }
+        protected void gv_employees_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            string role = Session["urole"].ToString();
+            if (role == "GeneralDirector" || role == "CEO" || role == "Supervisor" || role == "HRManager" || role.ToString() == "FinancialManager")
+            { }
+            else
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+
+                    var rowView = (EmployeeModel)e.Row.DataItem;
+                    if (rowView != null)
+                    {
+                        List<UsersPermissionModel> permissions = Session["UserPermissions"] as List<UsersPermissionModel>;
+
+                        var employees = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_employeesinfo").FirstOrDefault();
+
+                        LinkButton attendanceBtn = (LinkButton)e.Row.FindControl("LinkAttendance");
+                        LinkButton editBtn = (LinkButton)e.Row.FindControl("LinkEdit2");
+                        ImageButton deleteBtn = (ImageButton)e.Row.FindControl("Image1");
+                        if (employees != null && employees.EditObject == true)
+                        {
+
+                            attendanceBtn.Visible = true;
+                            editBtn.Visible = true;
+                            deleteBtn.Visible = true;
+                        }
+                        else
+                        {
+
+                            attendanceBtn.Visible = false;
+                            editBtn.Visible = false;
+                            deleteBtn.Visible = false;
+
+                        }
+
+                    }
+                }
+            }
+        }
         protected void deletedatafromgrid(object sender, CommandEventArgs e)
         {
 
