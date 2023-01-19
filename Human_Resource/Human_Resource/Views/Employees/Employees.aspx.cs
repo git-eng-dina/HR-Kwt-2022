@@ -94,9 +94,7 @@ namespace Human_Resource.Views.Employees
         protected void gv_employees_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             string role = Session["urole"].ToString();
-            if (role == "GeneralDirector" || role == "CEO" || role == "Supervisor" || role == "HRManager" || role.ToString() == "FinancialManager")
-            { }
-            else
+            if (role != "GeneralDirector"  )
             {
                 if (e.Row.RowType == DataControlRowType.DataRow)
                 {
