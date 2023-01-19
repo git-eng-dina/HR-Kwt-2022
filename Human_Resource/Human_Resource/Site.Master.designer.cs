@@ -76,6 +76,15 @@ namespace Human_Resource {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl li_employeesList;
         
         /// <summary>
+        /// demo_emp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl demo_emp;
+        
+        /// <summary>
         /// li_employeesInfo control.
         /// </summary>
         /// <remarks>
@@ -101,6 +110,15 @@ namespace Human_Resource {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl li_expiredExports;
+        
+        /// <summary>
+        /// li_executiveProcedures control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl li_executiveProcedures;
         
         /// <summary>
         /// li_custodies control.
@@ -155,6 +173,15 @@ namespace Human_Resource {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl li_charity;
+        
+        /// <summary>
+        /// li_attendanceAndVacations control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl li_attendanceAndVacations;
         
         /// <summary>
         /// li_hourlyBills control.

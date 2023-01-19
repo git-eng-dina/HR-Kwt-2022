@@ -12,6 +12,10 @@ namespace Human_Resource.Views.Attendance
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["user_id"] == null)
+            {
+                Response.Redirect("~/login.aspx");
+            }
             Device device = new Device();
 
             var devices = device.GetActivity().OrderBy(x => x.Name).ToList();

@@ -53,6 +53,7 @@ namespace Human_Resource.App_Code
         public int UsersPermissionID { get; set; }
         public int AppObjectID { get; set; }
         public string AppObjectName { get; set; }
+        public string LiElementName { get; set; }
         public long EmployeeID { get; set; }
         public string EmployeeName { get; set; }
         public Nullable<bool> ViewObject { get; set; }
@@ -99,6 +100,7 @@ namespace Human_Resource.App_Code
                                     UsersPermissionID = x.UsersPermissionID,
                                     AppObjectID = x.AppObjectID.Value,
                                     AppObjectName = entity.appObjects.Where(m => m.AppObjectID == x.AppObjectID).Select(m => m.NameEn).FirstOrDefault(),
+                                    LiElementName = entity.appObjects.Where(m => m.AppObjectID == x.AppObjectID).Select(m => m.Name).FirstOrDefault(),
                                     EmployeeID = x.EmployeeID.Value,
                                     EmployeeName = entity.employees.Where(m => m.EmployeeID == x.EmployeeID).Select(m => m.NameEn).FirstOrDefault(),
                                     ViewObject = x.ViewObject,
@@ -122,6 +124,7 @@ namespace Human_Resource.App_Code
                                 {
                                     UsersPermissionID = x.UsersPermissionID,
                                     AppObjectID = x.AppObjectID.Value,
+                                    LiElementName=x.appObjects.Name,
                                     EmployeeID = x.EmployeeID.Value,
                                     ViewObject = x.ViewObject,
                                     EditObject = x.EditObject,

@@ -139,7 +139,7 @@
                     <asp:Literal runat="server" Text="<%$ Resources:Labels,Employees%>" />
                     <i class="fa fa-fw fa-caret-down"></i>
             </a>
-            <ul id="demo_emp" class="collapse in" aria-expanded="true">
+            <ul id="demo_emp" runat="server" class="collapse in" aria-expanded="true">
 
                 <li runat="server" id="li_employeesInfo">
                     <a href="/Views/Employees/Employees.aspx"> 
@@ -160,7 +160,7 @@
             </li>
             
 
-                  <li class="dropdown">
+            <li class="dropdown" runat="server" id="li_executiveProcedures">
             <a href="" class="dropdown" data-toggle="collapse" data-target="#demo_procedurs">
                     <i class="fa fa-edit" aria-hidden="true"></i>
                     <asp:Literal runat="server" Text="<%$ Resources:Labels,ExecutiveProcedures%>" />
@@ -269,7 +269,7 @@
             </ul>
                 </li>
 
-                 <li class="dropdown">
+                 <li class="dropdown" runat="server" id="li_attendanceAndVacations">
        <a href="" class="" data-toggle="collapse" data-target="#demo_attendance">
                     <i class="fa fa-calendar" aria-hidden="true"></i>
                     <asp:Literal runat="server" Text="<%$ Resources:Labels,AttendanceAndVacations%>" />

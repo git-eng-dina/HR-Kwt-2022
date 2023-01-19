@@ -595,6 +595,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="App_Code\Attachment.cs" />
+    <Compile Include="App_Code\Charity.cs" />
     <Compile Include="App_Code\Confirm.cs" />
     <Compile Include="App_Code\CountriesName.cs" />
     <Compile Include="App_Code\Custodie.cs" />

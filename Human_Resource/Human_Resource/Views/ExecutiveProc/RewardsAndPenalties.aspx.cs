@@ -12,6 +12,11 @@ namespace Human_Resource.Views.ExecutiveProc
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["user_id"] == null)
+            {
+                Response.Redirect("~/login.aspx");
+            }
+
             if (!IsPostBack)
             {
                 if (Request.QueryString["my"] == "1")

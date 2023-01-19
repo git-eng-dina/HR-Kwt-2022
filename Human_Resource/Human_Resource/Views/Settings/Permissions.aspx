@@ -11,6 +11,7 @@
                     alert('<%= Resources.Labels.SelectUser %>');
                 }
                 else {
+                    $('[id*=btn_save]').prop('disabled', false);
                     var element = $(this);
                     $('[id*=hid_appObjectID]').val(element.attr('id'));
 
@@ -61,6 +62,8 @@
 
         function getEmpInfo(sel) {
             $('[id*=lbl_objectName]').text('');
+            $('[id*=hid_appObjectID]').text('');
+            $('[id*=btn_save]').prop('disabled',true);
             $('.permission-icon').each(function () {
                 $(this).addClass('hidden');
             });
@@ -279,7 +282,7 @@
                             </div>
 
                             <div class="row">
-                                  <button class="btn btn-secondary btn-block save"  runat="server" onclick="javascript:savePermission();return false;" id="btn_save" >
+                                  <button class="btn btn-secondary btn-block save"  runat="server" onclick="javascript:savePermission();return false;" id="btn_save" disabled>
                                     <asp:Literal  runat="server" Text=" <%$ Resources:Labels,Save%>" />
                                 </button>
                             </div>

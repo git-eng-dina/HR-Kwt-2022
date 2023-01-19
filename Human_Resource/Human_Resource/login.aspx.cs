@@ -20,6 +20,8 @@ namespace Human_Resource
         {
 
             EmployeeModel user = new EmployeeModel();
+            UsersPermissionModel userPermission = new UsersPermissionModel();
+
             string passwordStr = HelpClass.MD5Hash("Inc-m" + password.Value.Trim());
             var loginUser = user.GetUser(username.Value, passwordStr);
 
@@ -36,6 +38,7 @@ namespace Human_Resource
                 Session["UserNameEN"] = loginUser.NameEn;
                 Session["UserNameAR"] = loginUser.NameAr;
                 Session["UserImage"] = loginUser.Image;
+                Session["UserPermissions"] = userPermission.getEmployeePermission(loginUser.EmployeeID);
                 TaskModel taskModel = new TaskModel();
                 taskModel.ScheduleTasks();
                 //FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket

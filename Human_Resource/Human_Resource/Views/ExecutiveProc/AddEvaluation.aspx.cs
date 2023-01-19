@@ -16,6 +16,10 @@ namespace Human_Resource.Views.ExecutiveProc
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["user_id"] == null)
+            {
+                Response.Redirect("~/login.aspx");
+            }
             if (!IsPostBack)
             {
 
@@ -222,7 +226,7 @@ namespace Human_Resource.Views.ExecutiveProc
         }
         protected void btn_save_Click(object sender, EventArgs e)
         {
-            //try
+            try
             {
                 CultureInfo cultures = new CultureInfo("en-US");
                 Attachment attachment = new Attachment();
@@ -232,11 +236,7 @@ namespace Human_Resource.Views.ExecutiveProc
                     evaluation.EvaluationID = 0;
                 else
                     evaluation.EvaluationID = int.Parse(hid_eval_id.Value);
-
-                //evaluation.NameAr = txt_nameAR.Value;
-                //evaluation.DOB = DateTime.ParseExact(dp_bod.Text, "yyyy-MM-dd", cultures);
-                //employee.MaritalStatus = sel_maritalStatus.Value;
-                //employee.Nationality = int.Parse(sel_nationality.Value);
+ 
 
                 evaluation.EmployeeID = int.Parse(emp.Value);
                 evaluation.ReviewerID = int.Parse(reviewer.Value);
@@ -288,9 +288,8 @@ namespace Human_Resource.Views.ExecutiveProc
 
                 HelpClass.ShowMessage(this.Page, Resources.Labels.SaveSuccessfully);
 
-                //Response.Redirect("AddEvaluation.aspx?uid=" + hid_eval_id.Value);
             }
-            //catch { }
+            catch { }
         }
      }
 }

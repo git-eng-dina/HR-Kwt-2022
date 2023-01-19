@@ -14,6 +14,10 @@ namespace Human_Resource.Views.Home
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["user_id"] == null)
+            {
+                Response.Redirect("~/login.aspx");
+            } 
             string role = Session["urole"].ToString();
 
             int passportCount = 0;
