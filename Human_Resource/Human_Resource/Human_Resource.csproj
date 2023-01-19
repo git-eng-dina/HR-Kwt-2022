@@ -563,7 +563,6 @@
     <Content Include="Views\Employees\ExpiredPassports.aspx" />
     <Content Include="Views\Employees\NewEmployee.aspx" />
     <Content Include="Views\Employees\UserAccounts.aspx" />
-    <Content Include="Views\Employees\WorkPermit.aspx" />
     <Content Include="Views\ExecutiveProc\AddEvaluation.aspx" />
     <Content Include="Views\ExecutiveProc\Charity.aspx" />
     <Content Include="Views\ExecutiveProc\Custodies.aspx" />
