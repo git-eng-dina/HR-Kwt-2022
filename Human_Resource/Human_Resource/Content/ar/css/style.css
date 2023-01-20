@@ -1042,6 +1042,8 @@ nav .logo {
 .modal-body {
     /*max-height: calc(100% - 120px);*/
     height: 95%;
+    padding:0px;
+    margin-top:0px;
      /*min-height: calc(75% - 20px);*/ 
 }
 
@@ -1533,7 +1535,10 @@ font-weight:bold;
     border-left: 1px solid #6c6c6f;
     max-height: 430px;
     overflow-y: scroll;
-    float:right;
+    overflow-x: hidden;
+    float: right;
+    padding-left: 0px;
+    height: 430px;
 }
 .lst-links .row{
     height:40px;
@@ -1632,4 +1637,146 @@ font-weight:bold;
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
+}
+
+
+/* modal */
+.modal-ku {
+    width: 750px;
+    height: 500px;
+    margin: auto;
+}
+.modal-content {
+    margin-top: 75px;
+}
+
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    width:100%;
+}
+
+    /* Style the buttons that are used to open the tab content */
+    .tab button {
+        background-color: inherit;
+        float: right;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+    }
+
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+            background-color: #ddd;
+        }
+
+        /* Create an active/current tablink class */
+        .tab button.active {
+            background-color: #ccc;
+        }
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    /*border: 1px solid #ccc;*/
+    border-top: none;
+
+}
+
+.messageSearch {
+    position: relative;
+    background-color: #FFF;
+    padding: 0px;
+    height: 35px;
+    /*border-bottom: 1px solid gray;*/
+}
+
+    .messageSearch input:not([type=button]):not([type=reset]):not([type=submit]):not([type=image]) {
+        border-radius: 4px;
+        /*border-top-left-radius: 4px;*/
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+        height: 80%;
+        width: 80%;
+        margin-top: 5px;
+        font-size: small;
+        font-weight: 100;
+        padding-right: 5px;
+        box-shadow: 0px 1px 2px rgb(81, 184, 228) inset;
+    }
+    .messageSearch input[type=image] {
+        height: 30px;
+        width: 20%;
+        padding-right: 15px;
+        padding-top:5px;
+    }
+
+.img-search {
+    height: 20px;
+}
+
+
+.msg-card {
+    border-top: 1px solid gray;
+    margin-top:5px;
+}
+.msg-card:hover{
+    cursor:pointer;
+}
+.msg-card .row{
+    padding-top:5px;
+}
+.msg-title {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.lst-msg {
+    border-left: 1px solid #6c6c6f;
+    max-height: 430px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    float: right;
+    padding-left: 0px;
+    height: 430px;
+}
+
+
+
+    .lst-msg .details {
+        padding-right: 15px;
+    }
+
+.msg-details .lst-msg .form-group {
+    width: 100%;
+    margin-right: -15px;
+}
+
+    .msg-details .lst-msg .form-group span {
+        font-weight: bold;
+        display: inline;
+        /* width: 70px; */
+        padding-top: 10px;
+        padding-bottom: 5px;
+        /* padding-right: 20px; */
+    }
+
+    .msg-date{
+        font-size:12px;
+    }
+
+    .msg-content{
+        padding-top:15px;
+        height:150px;
+    }
+
+.send {
+    float: left;
+    width: 80px;
+    height: 80%;
 }

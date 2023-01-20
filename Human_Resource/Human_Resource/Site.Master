@@ -15,56 +15,98 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    
+
+</head>
     <script>
 
         //$(document).ready(function () {
 
-
-        //    $myWindow = $('#dialog');
-
-
-        //    //instantiate the dialog
-        //    $myWindow.dialog({
-        //        height: 500,
-        //        width: 400,
-        //        modal: true,
-        //        closeOnEscape: true,
-        //        position: { my: 'top', at: 'top+75' },
-        //        autoOpen: false,
-        //        draggable: true,
-        //        overlay: { opacity: 0.5, background: 'black' },
-
-        //    });
-
+        //        $('.modal').modal('show');
 
         //});
 
-   //function closeDialog() {
-   //       $('#MainContent_hid_departmentId').val("");
-   //       $('#MainContent_dept_name').val("");
-   //       $('#MainContent_txt_mobile').val("");
-   //       $('#MainContent_emp').val("");
-   //       $('#MainContent_management').val("");
-   //       $("#dialog").dialog("close");
-   //   }
+        //function closeDialog() {
+        //       $('#MainContent_hid_departmentId').val("");
+        //       $('#MainContent_dept_name').val("");
+        //       $('#MainContent_txt_mobile').val("");
+        //       $('#MainContent_emp').val("");
+        //       $('#MainContent_management').val("");
+        //       $("#dialog").dialog("close");
+        //   }
 
+  
+        function openModal() {
+            $('[id*=msg_cards]').empty();
+            $.ajax({
+                type: "POST",
+                url: "../../login.aspx/GetMessagesCount",
+                //data: JSON.stringify(parameter),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
 
-            function openModal() {
-                $('#myModal').modal('show');
-         }
+                    var total = data.d;
+                    var pageSize = 5;
+                    var page = $('[id*=hdn_page]').val();
+                    var skip = pageSize * (page - 1);
+                    var canPage = skip < total;
+                    var parameter = {
+                        skip: skip,
+                    };
+                    $.ajax({
+                        type: "POST",
+                        url: "../../login.aspx/GetUserMessages",
+                        data: JSON.stringify(parameter),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (data) {
+                            for (var prop in data) {
+                                var item = data[prop];
+                                for (var index in item) {
+                                    var msg = item[index];
+                                    addMsgToList(msg);
 
-      //session end 
-       <%-- var sessionTimeoutWarning = "<%= Session.Timeout %>" ;
-        alert(sessionTimeoutWarning);
-        var sTimeout = parseInt(sessionTimeoutWarning) * 60 * 1000;
-        setTimeout('SessionEnd()', sTimeout);
+                                }
+                                $('[id*=MyModal]').modal('show');
+                            }
+                        },
+                        failure: function (response) {
+                            alert(response.d);
+                        }
+                    });
 
-        function SessionEnd() {
-            logout();
-        }--%>
+                }
+            });
+        }
+
+        function addMsgToList(msg) {
+            var userMsgId = msg.UsersMessageID;
+            var msgDivClass = "";
+            if (msg.IsRead == false)
+                msgDivClass = "Unread-msg";
+
+            //main div
+            var mainDiv = '<div id="' + userMsgId + '" class="' + msgDivClass + '"></div>';
+
+            //sending info div
+            var sentInfoDiv = '<div class="row col-12 sentInfo" ></div>';
+            var empName = "";  
+            if ('<%= Session["CultureName"].ToString().ToLower() %>' == "en-us" )
+                empName = msg.FromEmployeeEn;
+            else
+                empName = msg.FromEmployeeAr;
+
+            var messageDate = convertToJavaScriptDateTime(msg.CreateDate );
+            $('<div class="msg-card" id="msgCard_' + msg.UsersMessageID+'"><div class="row col-12"><div class="col-6 float1"><span>' + empName + '</span></div><div class="col-6 float2"><span>' + messageDate + '</span></div><div></div>').appendTo('[id*=msg_cards]');
+
+            //title div
+            $('<div class="row col-12 msg-title" id="div_title_' + msg.UsersMessageID + '"><span>' + msg.Title + '</span></div>').appendTo('[id*=msgCard_'+msg.UsersMessageID+']');
+          
+            //content div
+            $('<div class="row col-12 msg-content" id="div_content_' + msg.UsersMessageID + '"><span>' + msg.ContentMessage + '</span></div>').appendTo('[id*=msgCard_' + msg.UsersMessageID + ']');
+        }
     </script>
-
-</head>
 <body>
     <form runat="server" dir="<%$ Resources:Labels,TextDirection%>" name="base_form" id="base_form">
         <asp:ScriptManager runat="server" EnablePageMethods="True">
@@ -95,7 +137,6 @@
         <div class="container" style="height:70px">
              <div class="avatar">
             <img src="" alt="" class="img-thumbnail text-center" id="img_profile"  runat="server">
-           
             <p class="text-center"> <asp:Literal runat="server" id="txt_profileName" /></p>
         </div>
             <div class="main-menu-button">
@@ -107,7 +148,7 @@
 
             </div>
             <div class="lang-logo">                
-                <asp:ImageButton runat="server" ImageUrl="~/images/message.png"  width="40" height="40"  id="msgBtn" OnClick="msgBtn_Click"  />
+                <asp:ImageButton runat="server" ImageUrl="~/images/message.png"  width="40" height="40"  id="msgBtn" data-toggle="modal" data-target="#MyModal" OnClientClick="javascript:openModal();return false;"  />
             </div> 
             <div class="lang-logo">                
                 <asp:ImageButton runat="server"  width="40" height="40" id="cultureImage"  OnClick="langBtn_Click"  />
@@ -394,7 +435,7 @@
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />  
-            <div class="navbar-inverse" style="background-color:black; margin-top:300px;">
+            <div class="navbar-inverse" style="background-color:black; /*margin-top:300px;*/">
              <footer width:100%">              
 
                 <p style="text-align:center;color:white">&copy; <%: DateTime.Now.Year %> - Human Resource</p>
@@ -405,13 +446,81 @@
        
           <!--Bootstrap Modal (Dialog Box / Pop-up Window) Example-->
      <div id="MyModal" class="modal fade" role="dialog" runat="server">
-        <div class="modal-dialog" runat="server">
+        <div class="modal-dialog  modal-ku" runat="server">
             <div class="modal-content" runat="server">
-                <div class="modal-header" runat="server">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                     <h4>This is Modal Header</h4>
+                <div class="modal-header" runat="server" style="padding:0px;">
+                       <!-- Tab links -->
+                    <div class="tab" >
+                      <button class="tablinks active" style="width:50%;" onclick="javascript:openMessageTab(event, 'inbox');return false;">Inbox</button>
+                      <button class="tablinks" style="width:50%;" onclick="javascript:openMessageTab(event, 'compose');return false;">Compose</button>
+                    </div>
                  </div>
-                 <div class="modal-body" runat="server">This is Modal Body
+                 <div class="statis modal-body" runat="server">
+
+                     <!-- Tab content -->
+                     <!-- inbox tab -->
+                     <div id="inbox" class="tabcontent msg-details" style="display:block">
+
+                            <div class="col-4 lst-msg " id="lst_links" runat="server">
+                                <div class="messageSearch row col-12 ">
+                                    <input type="hidden" runat="server" id="hdn_page" value="1" />
+                                    <input type="hidden" runat="server" id="hdn_usersMessageID" value="1" />
+                                     <input type="text" runat="server" id="txt_search" placeholder="<%$ Resources:Labels,Search%>" />
+                                          <asp:ImageButton CssClass="img-search" OnClientClick="search();return false;" 
+                                                            ID="img_search" runat="server" ImageUrl="~/images/search.png" />
+                                </div>
+                                <div class="messageSearch row col-12" id="msg_cards">
+
+                                </div>
+                            </div>
+
+                            <div class="col-8 box-shadows" >
+                                <div class="row">
+                                    <div class="row col-12 form-group title">
+                                         <div class="col-2">
+                                            <img src="../../images/no-image-icon-125x125.png" id="img_emp" style="width:30px;height:30px;" alt="" class="rounded mx-auto text-center">          
+                                        </div>
+                                        <div>
+                                         <span  ID="lbl_empName" ></span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                 <div class="row col-12 msg-date">
+                                      <span  ID="lbl_msgDate" ></span>
+                                  </div> 
+                                <div class="row col-12 msg-title">
+                                      <span  ID="lbl_msgTitle" ></span>
+                                  </div>
+                            <div class="row col-12 msg-content">
+                                <span  ID="lbl_msgContent" ></span>
+                                
+                            </div>
+
+                            <div class="box-shadows col-12" style="width:100%">
+                                <div class="row form-group">
+                                <asp:TextBox type="text" class="form-control input-lg textarea" ID="txt_experience1" name="txt_experience1"  TextMode="MultiLine" Rows="3" runat="server" CssClass="width:90%" />
+                                </div>
+                                <div class="row">
+                                    <button class="btn btn-secondary btn-block send"  runat="server" onclick="javascript:savePermission();return false;" id="Button1" disabled>
+                                    <asp:Literal  runat="server" Text=" <%$ Resources:Labels,Send%>" />
+                                        <i class="fa fa-send"></i>
+                                </button>
+                                </div>
+                             </div>
+
+                     </div>
+
+                    </div>
+
+
+                      <!-- compose tab -->
+                    <div id="compose" class="tabcontent">
+                    <h3>compose</h3>
+                         <p>Tokyo is the capital of Japan.</p>
+                    </div>
+
+
                   </div>
                   <div class="modal-footer" runat="server">This is Modal Footer
                       <button type="button" class="btn btn-default" data-dismiss="modal" runat="server">Close</button>

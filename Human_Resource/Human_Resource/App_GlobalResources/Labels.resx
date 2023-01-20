@@ -1002,4 +1002,7 @@
   <data name="Access" xml:space="preserve">
     <value>Access</value>
   </data>
+  <data name="Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
 </root>

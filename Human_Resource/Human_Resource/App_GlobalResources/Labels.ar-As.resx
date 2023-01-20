@@ -999,4 +999,7 @@
   <data name="Access" xml:space="preserve">
     <value>الوصول</value>
   </data>
+  <data name="Send" xml:space="preserve">
+    <value>ارسال</value>
+  </data>
 </root>

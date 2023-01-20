@@ -99,7 +99,76 @@ $(document).ready(function(){
     $('li.dropdown').click(function () {
         $('li.dropdown').not(this).find('ul').hide();
         $(this).find('ul').toggle();
-    });  
+    }); 
+
+
+    //message details
+
+    $('[id*=MyModal]').delegate('.msg-card', 'click', function (e) {
+        e.preventDefault();
+
+        var element = $(this);
+        var idStr = element.attr('id');
+        const myArray = idStr.split("_");
+        var id = myArray[1];
+    
+        $('[id*=hdn_usersMessageID]').val(id);
+
+        $('[id*=lbl_objectName]').text(element.find(">:first-child").text());
+
+        var parameter = {
+            usersMessageID: id,
+        };
+        $.ajax({
+            type: "POST",
+            url: "../../login.aspx/GetMessageDetails",
+            data: JSON.stringify(parameter),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                for (var prop in data) {
+                    var item = data[prop];
+
+                    if (item != "" && item != null) {
+                        var empName = "";
+                        if (item.CultureName == "en-us")
+                            empName = item.FromEmployeeEn;
+                        else
+                            empName = item.FromEmployeeAr;
+
+                        $('[id*=lbl_empName]').html(empName);
+
+                        $('[id*=lbl_msgDate]').html(convertToJavaScriptDateTime(item.CreateDate));
+                        $('[id*=lbl_msgTitle]').html(item.Title);
+                        $('[id*=lbl_msgContent]').html(item.ContentMessage);
+
+                        //emp image
+                        var img = document.querySelector("[id*=img_emp]");
+                        if (item.EmpImage != null) {
+                            var arrayBufferView = new Uint8Array(item.EmpImage);
+                            var blob = new Blob([arrayBufferView], { type: "image/jpeg" });
+                            var urlCreator = window.URL || window.webkitURL;
+                            var imageUrl = urlCreator.createObjectURL(blob);
+
+                            img.src = imageUrl;
+                        }
+                        else {
+                            img.src = "../../images/no-image-icon-125x125.png";
+                        }
+                       
+
+                    }
+                    else {
+                        resetPermission();
+                    }
+
+                }
+            },
+            failure: function (response) {
+                alert(response.d);
+            }
+        });
+    });
 });
 
 function zeroPadded(val) {
@@ -114,6 +183,18 @@ function convertToJavaScriptDate(value) {
     var dt = new Date(parseFloat(results[1]));
     var localDateTime = [zeroPadded(dt.getMonth() + 1),
         zeroPadded(dt.getDate()), dt.getFullYear()].join('/');
+    return localDateTime;
+
+}
+
+function convertToJavaScriptDateTime(value) {
+    var pattern = /Date\(([^)]+)\)/;
+    var results = pattern.exec(value);
+    var dt = new Date(parseFloat(results[1]));
+    var localDateTime = [dt.getFullYear(), zeroPadded(dt.getMonth() + 1),
+    zeroPadded(dt.getDate())].join('-') + ' ' +
+        [zeroPadded(dt.getHours()),
+        zeroPadded(dt.getMinutes())].join(':');
     return localDateTime;
 
 }
@@ -135,6 +216,29 @@ function logout() {
         }
     });
 }
+
+function openMessageTab(evt, tabName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+
 //function zeroPadded(val) {
 //    if (val >= 10)
 //        return val;

@@ -229,6 +229,7 @@
     <Content Include="images\message.png" />
     <Content Include="images\no-image-icon-125x125.png" />
     <Content Include="images\reject_document.png" />
+    <Content Include="images\search.png" />
     <Content Include="images\task-cancle.png" />
     <Content Include="images\task-complete1.png" />
     <EntityDeploy Include="Model1.edmx">

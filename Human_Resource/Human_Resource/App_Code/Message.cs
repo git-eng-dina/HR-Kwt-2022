@@ -23,8 +23,8 @@ namespace Human_Resource.App_Code
     public class Message
     {
         #region Attributes
-        public int UsersMessageID { get; set; }
-        public Nullable<int> ToEmployeeID { get; set; }
+        public long UsersMessageID { get; set; }
+        public Nullable<long> ToEmployeeID { get; set; }
         public string Title { get; set; }
         public string ContentMessage { get; set; }
         public string Notes { get; set; }
@@ -35,10 +35,67 @@ namespace Human_Resource.App_Code
         public Nullable<bool> IsActive { get; set; }
         public Nullable<bool> IsRead { get; set; }
 
+        public string FromEmployeeAr { get; set; }
+        public string FromEmployeeEn { get; set; }
+        public string CultureName { get; set; }
+        public byte[] EmpImage { get; set; }
         public List<Reply> Replies { get; set; }
         #endregion
 
         #region Methods
+
+        public List<Message> GetUserMessages(long empId,int skip)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var messages = entity.usersMessages
+                                .Where(x => x.ToEmployeeID == empId && x.IsActive == true)
+                                .Select(x=> new Message() {
+                                Title = x.Title,
+                                ContentMessage = x.ContentMessage,
+                                IsRead = x.IsRead,
+                                FromEmployeeAr = entity.employees.Where( y => y.EmployeeID == x.CreateUserID).Select(y => y.NameAr).FirstOrDefault(),
+                                FromEmployeeEn = entity.employees.Where( y => y.EmployeeID == x.CreateUserID).Select(y => y.NameEn).FirstOrDefault(),
+                                CreateDate = x.CreateDate,
+                                UsersMessageID = x.UsersMessageID,
+                                }).OrderBy(x => x.UsersMessageID).Skip(skip).Take(5).ToList();
+
+                return messages;
+            }
+        }
+
+        public Message GetMessageDetails(long usersMessageID)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var message = entity.usersMessages
+                                .Where(x => x.UsersMessageID== usersMessageID )
+                                .Select(x=> new Message() {
+                                Title = x.Title,
+                                ContentMessage = x.ContentMessage,
+                                IsRead = x.IsRead,
+                                FromEmployeeAr = entity.employees.Where( y => y.EmployeeID == x.CreateUserID).Select(y => y.NameAr).FirstOrDefault(),
+                                FromEmployeeEn = entity.employees.Where( y => y.EmployeeID == x.CreateUserID).Select(y => y.NameEn).FirstOrDefault(),
+                                CreateDate = x.CreateDate,
+                                UsersMessageID = x.UsersMessageID,
+                                EmpImage = entity.employees.Where(y => y.EmployeeID == x.CreateUserID).Select(y => y.Image).FirstOrDefault(),
+                                }).FirstOrDefault();
+
+                return message;
+            }
+        }
+
+        public long GetMessagesCount(long empId)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var messagesCount = entity.usersMessages
+                                .Where(x => x.ToEmployeeID == empId && x.IsActive == true)
+                                .Count();
+
+                return messagesCount;
+            }
+        }
         public long AddMessage(Message msg)
         {
             try

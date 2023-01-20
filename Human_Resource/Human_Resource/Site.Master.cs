@@ -95,6 +95,7 @@ namespace Human_Resource
                 Page.ClientScript.RegisterClientScriptInclude("main.js", ResolveUrl("~/Content/ar/js/main.js"));
             }
 
+
             #region permissions
             applyPermissionOnLinks();
             #endregion
