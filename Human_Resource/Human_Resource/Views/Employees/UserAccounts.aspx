@@ -7,7 +7,7 @@
         //    $("#MainContent_txt_userName").val("");
         //    $("#MainContent_txt_password").val("");
         //}
-
+         
         function getAccountInfo() {
             var parameter = {
                 userID: $("[id*=sel_employee").val(),

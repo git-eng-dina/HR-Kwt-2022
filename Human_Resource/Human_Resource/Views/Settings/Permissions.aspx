@@ -3,7 +3,7 @@
     <script>
 
         $(document).ready(function () {
-
+             
             $('.object').click(function (e) {
                 e.preventDefault();
    

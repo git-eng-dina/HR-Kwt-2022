@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Human_Resource.App_Code;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,6 +11,8 @@ namespace Human_Resource.Views.Settings
 {
     public partial class Jobs : System.Web.UI.Page
      {
+        string linkName = "li_jobsTitle";
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["user_id"] == null)
@@ -43,10 +46,61 @@ namespace Human_Resource.Views.Settings
             gv_data.DataSource = depts;
 
 
-          
+            string role = Session["urole"].ToString();
+            if (role != "GeneralDirector")
+            {
+                List<UsersPermissionModel> permissions = Session["UserPermissions"] as List<UsersPermissionModel>;
+                var employeesPermissions = permissions.Where(x => x.LiElementName.Trim().ToLower() == linkName).FirstOrDefault();
+
+                if (employeesPermissions != null && employeesPermissions.EditObject == true)
+                {
+                    btn_new.Visible = true;
+                }
+                else
+                {
+                    btn_new.Visible = false;
+                }
+            }
+
+
 
 
             DataBind();
+        }
+
+        protected void gv_data_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+            try
+            {
+                string role = Session["urole"].ToString();
+                if (role != "GeneralDirector")
+                {
+                    if (e.Row.RowType == DataControlRowType.DataRow)
+                    {
+                        var rowView = (JobModel)e.Row.DataItem;
+                        if (rowView != null)
+                        {
+                            List<UsersPermissionModel> permissions = Session["UserPermissions"] as List<UsersPermissionModel>;
+                            var employees = permissions.Where(x => x.LiElementName.Trim().ToLower() == linkName).FirstOrDefault();
+                            LinkButton editBtn = (LinkButton)e.Row.FindControl("LinkProducts");
+                            ImageButton deleteBtn = (ImageButton)e.Row.FindControl("Image1");
+                            if (employees != null && employees.EditObject == true)
+                            {
+                                editBtn.Visible = true;
+                                deleteBtn.Visible = true;
+                            }
+                            else
+                            {
+                                editBtn.Visible = false;
+                                deleteBtn.Visible = false;
+                            }
+                        }
+                    }
+                }
+            }
+            catch
+            { }
         }
         [WebMethod(EnableSession = true)]
         public static string SaveJob(string jobId, string name)

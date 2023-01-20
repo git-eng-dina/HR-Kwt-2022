@@ -13,7 +13,7 @@ src="../../tiny_mce/tiny_mce.js"></script>
              theme_advanced_buttons2: "forecolor,backcolor,|,formatselect,fontselect,fontsizeselect",
 
             // plugins: "pagebreak,style,layer,table,save,advhr, advimage, advlink, emotions, iespell, inlinepopups",
-            
+             
         });
     </script>
     <script>

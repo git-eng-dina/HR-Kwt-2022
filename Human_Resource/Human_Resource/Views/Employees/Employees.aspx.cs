@@ -90,44 +90,66 @@ namespace Human_Resource.Views.Employees
                                     ||(x.IdentityNumber != null && x.IdentityNumber.ToLower().Contains(textSearch.ToLower()))).ToList();
             gv_employees.DataSource = employees;
             DataBind();
+
+
+            if (role != "GeneralDirector")
+            {
+                List<UsersPermissionModel> permissions = Session["UserPermissions"] as List<UsersPermissionModel>;
+                var employeesPermissions = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_employeesinfo").FirstOrDefault();
+
+                if (employeesPermissions != null && employeesPermissions.EditObject == true)
+                {
+                    btn_new.Visible = true;
+                }
+                else
+                {
+                    btn_new.Visible = false;
+                }
+            }
         }
         protected void gv_employees_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            string role = Session["urole"].ToString();
-            if (role != "GeneralDirector"  )
+
+            try
             {
-                if (e.Row.RowType == DataControlRowType.DataRow)
+                string role = Session["urole"].ToString();
+                if (role != "GeneralDirector")
                 {
-
-                    var rowView = (EmployeeModel)e.Row.DataItem;
-                    if (rowView != null)
+                    if (e.Row.RowType == DataControlRowType.DataRow)
                     {
-                        List<UsersPermissionModel> permissions = Session["UserPermissions"] as List<UsersPermissionModel>;
 
-                        var employees = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_employeesinfo").FirstOrDefault();
-
-                        LinkButton attendanceBtn = (LinkButton)e.Row.FindControl("LinkAttendance");
-                        LinkButton editBtn = (LinkButton)e.Row.FindControl("LinkEdit2");
-                        ImageButton deleteBtn = (ImageButton)e.Row.FindControl("Image1");
-                        if (employees != null && employees.EditObject == true)
+                        var rowView = (EmployeeModel)e.Row.DataItem;
+                        if (rowView != null)
                         {
+                            List<UsersPermissionModel> permissions = Session["UserPermissions"] as List<UsersPermissionModel>;
 
-                            attendanceBtn.Visible = true;
-                            editBtn.Visible = true;
-                            deleteBtn.Visible = true;
+                            var employees = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_employeesinfo").FirstOrDefault();
+
+                            LinkButton attendanceBtn = (LinkButton)e.Row.FindControl("LinkAttendance");
+                            LinkButton editBtn = (LinkButton)e.Row.FindControl("LinkEdit2");
+                            ImageButton deleteBtn = (ImageButton)e.Row.FindControl("Image1");
+                            if (employees != null && employees.EditObject == true)
+                            {
+
+                                attendanceBtn.Visible = true;
+                                editBtn.Visible = true;
+                                deleteBtn.Visible = true;
+                            }
+                            else
+                            {
+
+                                attendanceBtn.Visible = false;
+                                editBtn.Visible = false;
+                                deleteBtn.Visible = false;
+
+                            }
+
                         }
-                        else
-                        {
-
-                            attendanceBtn.Visible = false;
-                            editBtn.Visible = false;
-                            deleteBtn.Visible = false;
-
-                        }
-
                     }
                 }
             }
+            catch
+            { }
         }
         protected void deletedatafromgrid(object sender, CommandEventArgs e)
         {

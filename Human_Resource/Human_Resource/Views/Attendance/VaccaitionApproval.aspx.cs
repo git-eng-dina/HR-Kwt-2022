@@ -12,6 +12,7 @@ namespace Human_Resource.Views.Attendance
 {
     public partial class VaccaitionApproval : System.Web.UI.Page
     {
+        string linkName = "li_scheduleVacation";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["user_id"] == null)
@@ -97,6 +98,22 @@ namespace Human_Resource.Views.Attendance
             this.vac.DataValueField = "VacationID";
             this.vac.DataTextField = "Name";
 
+            if (role != "GeneralDirector")
+            {
+                List<UsersPermissionModel> permissions = Session["UserPermissions"] as List<UsersPermissionModel>;
+                var employeesPermissions = permissions.Where(x => x.LiElementName.Trim().ToLower() == linkName).FirstOrDefault();
+
+                if (employeesPermissions != null && employeesPermissions.EditObject == true)
+                {
+                    btn_new.Visible = true;
+                }
+                else
+                {
+                    btn_new.Visible = false;
+                }
+            }
+
+
 
             DataBind();
             var vacBalance = employeeModel.GetVaccationBalance(userId);
@@ -131,6 +148,41 @@ namespace Human_Resource.Views.Attendance
                         e.Row.CssClass = "normalRow";
                 }
             }
+
+            try
+            {
+
+            }
+            catch
+            { }
+            string role = Session["urole"].ToString();
+            if (role != "GeneralDirector")
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    var rowView = (EmployeeModel)e.Row.DataItem;
+                    if (rowView != null)
+                    {
+                        List<UsersPermissionModel> permissions = Session["UserPermissions"] as List<UsersPermissionModel>;
+                        var employees = permissions.Where(x => x.LiElementName.Trim().ToLower() == linkName).FirstOrDefault();
+                        LinkButton approveVac = (LinkButton)e.Row.FindControl("approveVac");
+                        LinkButton rejectVac = (LinkButton)e.Row.FindControl("rejectVac");
+                        if (employees != null && employees.EditObject == true)
+                        {
+                            approveVac.Visible = true;
+                            rejectVac.Visible = true;
+                        }
+                        else
+                        {
+                            approveVac.Visible = false;
+                            rejectVac.Visible = false;
+                        }
+                    }
+                }
+            }
+
+
+
         }
 
         protected void gv_data_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -154,13 +206,45 @@ namespace Human_Resource.Views.Attendance
                     else if (approved == false)
                     {
 
-                       e.Row.CssClass = "rejectedRow";
+                        e.Row.CssClass = "rejectedRow";
 
                     }
                     else
                         e.Row.CssClass = "normalRow";
                 }
             }
+
+
+            try
+            {
+                string role = Session["urole"].ToString();
+                if (role != "GeneralDirector")
+                {
+                    if (e.Row.RowType == DataControlRowType.DataRow)
+                    {
+                        var rowView = (EmployeesVacationModel)e.Row.DataItem;
+                        if (rowView != null)
+                        {
+                            List<UsersPermissionModel> permissions = Session["UserPermissions"] as List<UsersPermissionModel>;
+                            var employees = permissions.Where(x => x.LiElementName.Trim().ToLower() == linkName).FirstOrDefault();
+                            LinkButton btnEdit = (LinkButton)e.Row.FindControl("btnEdit");
+                            ImageButton btnDelete = (ImageButton)e.Row.FindControl("btnDelete");
+                            if (employees != null && employees.EditObject == true)
+                            {
+                                btnEdit.Visible = true;
+                                btnDelete.Visible = true;
+                            }
+                            else
+                            {
+                                btnEdit.Visible = false;
+                                btnDelete.Visible = false;
+                            }
+                        }
+                    }
+                }
+            }
+            catch
+            { }
         }
         [WebMethod(EnableSession = true)]
         public static string SaveEmployeesVacation(string employeesVacationId, string employeeId,string vacationId, string fromDate, string toDate)

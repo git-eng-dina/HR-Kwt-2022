@@ -140,7 +140,7 @@
                       
                      <!---- table-->
                               <asp:GridView ID="gv_data" runat="server" style="width:100%; margin-top:0px;" CssClass="gridView col-md-12"  
-                                AutoGenerateColumns="False"  Width="90%" 
+                             OnRowDataBound="gv_data_RowDataBound"    AutoGenerateColumns="False"  Width="90%" 
                                 class="table table-bordered table-condensed table-responsive table-hover ">
                                 <Columns>
 

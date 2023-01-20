@@ -171,7 +171,7 @@
 
                        <!---- table -->
                             <asp:GridView ID="gv_data" runat="server"  CssClass="gridView col-md-12"  
-                                AutoGenerateColumns="False"  Width="90%" 
+                           OnRowDataBound="gv_data_RowDataBound"      AutoGenerateColumns="False"  Width="90%" 
                                 class="table table-bordered table-condensed table-responsive table-hover ">
                                 <Columns>
 

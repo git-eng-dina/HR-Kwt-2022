@@ -11,6 +11,7 @@ namespace Human_Resource.Views.Employees
 {
     public partial class ExpiredPassports : System.Web.UI.Page
     {
+        string linkName = "li_vaccationTypes";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["user_id"] == null)
@@ -62,14 +63,48 @@ namespace Human_Resource.Views.Employees
                                         || x.NameEn.ToLower().Contains(textSearch.ToLower())
                                         || x.IdentityNumber.ToLower().Contains(textSearch.ToLower())).ToList();
                     gv_employees.DataSource = employees;
+
+
+                   
+
                     DataBind();
 
                 }
             }
            
+
          
         }
 
-       
+        protected void gv_data_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            try
+            {
+                string role = Session["urole"].ToString();
+                if (role != "GeneralDirector")
+                {
+                    if (e.Row.RowType == DataControlRowType.DataRow)
+                    {
+                        var rowView = (EmployeeModel)e.Row.DataItem;
+                        if (rowView != null)
+                        {
+                            List<UsersPermissionModel> permissions = Session["UserPermissions"] as List<UsersPermissionModel>;
+                            var employees = permissions.Where(x => x.LiElementName.Trim().ToLower() == linkName).FirstOrDefault();
+                            LinkButton LinkAttendance = (LinkButton)e.Row.FindControl("LinkAttendance");
+                            if (employees != null && employees.EditObject == true)
+                            {
+                                LinkAttendance.Visible = true;
+                            }
+                            else
+                            {
+                                LinkAttendance.Visible = false;
+                            }
+                        }
+                    }
+                }
+            }
+            catch
+            { }
+        }
     }
 }

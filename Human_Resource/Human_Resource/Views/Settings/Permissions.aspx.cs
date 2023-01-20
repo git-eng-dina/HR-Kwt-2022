@@ -12,6 +12,7 @@ namespace Human_Resource.Views.Settings
 {
     public partial class Permissions : System.Web.UI.Page
     {
+        string linkName = "li_permissions";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["user_id"] == null)
@@ -42,6 +43,24 @@ namespace Human_Resource.Views.Settings
                 sel_emp.DataTextField = "NameEn";
             else
                 sel_emp.DataTextField = "NameAr";
+
+
+            string role = Session["urole"].ToString();
+            if (role != "GeneralDirector")
+            {
+                List<UsersPermissionModel> permissions = Session["UserPermissions"] as List<UsersPermissionModel>;
+                var employeesPermissions = permissions.Where(x => x.LiElementName.Trim().ToLower() == linkName).FirstOrDefault();
+
+                if (employeesPermissions != null && employeesPermissions.EditObject == true)
+                {
+                    btn_save.Visible = true;
+                }
+                else
+                {
+                    btn_save.Visible = false;
+                }
+            }
+
 
             DataBind();
 

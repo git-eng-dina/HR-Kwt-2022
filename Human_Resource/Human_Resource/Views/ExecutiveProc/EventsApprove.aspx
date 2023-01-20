@@ -12,7 +12,7 @@
                          eventID: customID,
                          userID:'<%= Session["user_id"].ToString() %>'
                      };
-
+                     
                      $.ajax({
                          type: "POST",
                          url: "EventsApprove.aspx/Approve",

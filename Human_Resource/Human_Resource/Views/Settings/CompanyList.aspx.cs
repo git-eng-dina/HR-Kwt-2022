@@ -11,6 +11,7 @@ namespace Human_Resource.Views.Settings
 {
     public partial class CompanyList : System.Web.UI.Page
     {
+        string linkName = "li_companyList";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["user_id"] == null)
@@ -27,6 +28,22 @@ namespace Human_Resource.Views.Settings
                     hid_companyID.Value = list.CompanyID.ToString();
                     companyListAr.Text = list.CompanyListAr;
                     companyListEn.Text = list.CompanyListEn;
+
+                    string role = Session["urole"].ToString();
+                    if (role != "GeneralDirector")
+                    {
+                        List<UsersPermissionModel> permissions = Session["UserPermissions"] as List<UsersPermissionModel>;
+                        var employeesPermissions = permissions.Where(x => x.LiElementName.Trim().ToLower() == linkName).FirstOrDefault();
+
+                        if (employeesPermissions != null && employeesPermissions.EditObject == true)
+                        {
+                            btn_save.Visible = true;
+                        }
+                        else
+                        {
+                            btn_save.Visible = false;
+                        }
+                    }
                 }
                 catch { }
             }

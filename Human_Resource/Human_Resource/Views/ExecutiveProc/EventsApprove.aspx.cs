@@ -11,6 +11,8 @@ namespace Human_Resource.Views.ExecutiveProc
 {
     public partial class EventsApprove : System.Web.UI.Page
     {
+        string linkName = "li_eventsApprove";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["user_id"] == null)
@@ -48,6 +50,23 @@ namespace Human_Resource.Views.ExecutiveProc
 
 
             gv_events.DataSource = needApprove;
+
+
+
+            if (role != "GeneralDirector")
+            {
+                List<UsersPermissionModel> permissions = Session["UserPermissions"] as List<UsersPermissionModel>;
+                var employeesPermissions = permissions.Where(x => x.LiElementName.Trim().ToLower() == linkName).FirstOrDefault();
+
+                if (employeesPermissions != null && employeesPermissions.EditObject == true)
+                {
+                    btn_new.Visible = true;
+                }
+                else
+                {
+                    btn_new.Visible = false;
+                }
+            }
 
             DataBind();
         }
@@ -111,13 +130,13 @@ namespace Human_Resource.Views.ExecutiveProc
                     {
                         LinkButton approveBtn = (LinkButton)e.Row.FindControl("approve");
                         approveBtn.Visible = false;
-                      
+
 
                         e.Row.CssClass = "acceptedRow";
                     }
                     else if (approved == false)
                     {
-    
+
                         LinkButton rejectBtn = (LinkButton)e.Row.FindControl("reject");
                         rejectBtn.Visible = false;
 
@@ -126,8 +145,41 @@ namespace Human_Resource.Views.ExecutiveProc
                     }
                     else
                         e.Row.CssClass = "normalRow";
+
+
                 }
             }
+
+            try
+            {
+                string role = Session["urole"].ToString();
+                if (role != "GeneralDirector")
+                {
+                    if (e.Row.RowType == DataControlRowType.DataRow)
+                    {
+                        var rowView = (EventModel)e.Row.DataItem;
+                        if (rowView != null)
+                        {
+                            List<UsersPermissionModel> permissions = Session["UserPermissions"] as List<UsersPermissionModel>;
+                            var employees = permissions.Where(x => x.LiElementName.Trim().ToLower() == linkName).FirstOrDefault();
+                            LinkButton approve = (LinkButton)e.Row.FindControl("approve");
+                            LinkButton reject = (LinkButton)e.Row.FindControl("reject");
+                            if (employees != null && employees.EditObject == true)
+                            {
+                                approve.Visible = true;
+                                reject.Visible = true;
+                            }
+                            else
+                            {
+                                approve.Visible = false;
+                                reject.Visible = false;
+                            }
+                        }
+                    }
+                }
+            }
+            catch
+            { }
         }
     }
 }

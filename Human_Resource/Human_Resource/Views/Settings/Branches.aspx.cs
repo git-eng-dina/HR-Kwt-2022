@@ -14,6 +14,8 @@ namespace Human_Resource.Views.Settings
 {
     public partial class Branches : System.Web.UI.Page
     {
+        string linkName = "li_branches";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["user_id"] == null)
@@ -59,7 +61,60 @@ namespace Human_Resource.Views.Settings
             else
                 emp.DataTextField = "NameAr";
 
+
+
+
+            string role = Session["urole"].ToString();
+            if (role != "GeneralDirector")
+            {
+                List<UsersPermissionModel> permissions = Session["UserPermissions"] as List<UsersPermissionModel>;
+                var employeesPermissions = permissions.Where(x => x.LiElementName.Trim().ToLower() == linkName).FirstOrDefault();
+
+                if (employeesPermissions != null && employeesPermissions.EditObject == true)
+                {
+                    btn_new.Visible = true;
+                }
+                else
+                {
+                    btn_new.Visible = false;
+                }
+            }
+
             DataBind();
+        }
+
+        protected void gv_data_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            try
+            {
+                string role = Session["urole"].ToString();
+                if (role != "GeneralDirector")
+                {
+                    if (e.Row.RowType == DataControlRowType.DataRow)
+                    {
+                        var rowView = (BranchModel)e.Row.DataItem;
+                        if (rowView != null)
+                        {
+                            List<UsersPermissionModel> permissions = Session["UserPermissions"] as List<UsersPermissionModel>;
+                            var employees = permissions.Where(x => x.LiElementName.Trim().ToLower() == linkName).FirstOrDefault();
+                            LinkButton editBtn = (LinkButton)e.Row.FindControl("LinkProducts");
+                            ImageButton deleteBtn = (ImageButton)e.Row.FindControl("Image1");
+                            if (employees != null && employees.EditObject == true)
+                            {
+                                editBtn.Visible = true;
+                                deleteBtn.Visible = true;
+                            }
+                            else
+                            {
+                                editBtn.Visible = false;
+                                deleteBtn.Visible = false;
+                            }
+                        }
+                    }
+                }
+            }
+            catch
+            { }
         }
         [WebMethod(EnableSession = true)]
         public static string SaveBranch(string branchId,string name, string mobile, string address, string managerId)

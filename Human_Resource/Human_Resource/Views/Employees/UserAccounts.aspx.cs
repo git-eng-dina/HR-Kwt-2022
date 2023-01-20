@@ -11,6 +11,7 @@ namespace Human_Resource.Views.Employees
 {
     public partial class UserAccounts : System.Web.UI.Page
     {
+        string linkName = "li_userAccounts";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["user_id"] == null)
@@ -37,6 +38,26 @@ namespace Human_Resource.Views.Employees
                     employees.Insert(0, newEmp);
                 }
                 sel_employee.DataSource = employees;
+
+
+                string role = Session["urole"].ToString();
+                if (role != "GeneralDirector")
+                {
+                    List<UsersPermissionModel> permissions = Session["UserPermissions"] as List<UsersPermissionModel>;
+                    var employeesPermissions = permissions.Where(x => x.LiElementName.Trim().ToLower() == linkName).FirstOrDefault();
+
+                    if (employeesPermissions != null && employeesPermissions.EditObject == true)
+                    {
+                        btn_save.Visible = true;
+                    }
+                    else
+                    {
+                        btn_save.Visible = false;
+                    }
+                }
+
+
+
                 DataBind();
             }
         }

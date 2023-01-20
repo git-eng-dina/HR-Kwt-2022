@@ -149,7 +149,7 @@
                            <span><asp:Literal Text=" <%$ Resources:Labels,EmployeesPenalties%>" runat="server"></asp:Literal> </span>
                         </div>
                             <asp:GridView ID="gv_data" runat="server" style="width:100%; margin-top:0px;" CssClass="gridView col-md-12"  
-                                AutoGenerateColumns="False"  Width="90%" 
+                          OnRowDataBound="gv_data_RowDataBound"       AutoGenerateColumns="False"  Width="90%" 
                                 class="table table-bordered table-condensed table-responsive table-hover ">
                                 <Columns>
 
@@ -214,7 +214,7 @@
                                     </asp:TemplateField> 
                                    
                                 </Columns>
-                                <EditRowStyle BackColor="#009999" VerticalAlign="Middle" />
+                                 <EditRowStyle BackColor="#009999" VerticalAlign="Middle" />
                             </asp:GridView>
                      <!---- table my penalities -->
                          <div class="row">&nbsp;</div>
@@ -222,7 +222,7 @@
                            <span><asp:Literal Text=" <%$ Resources:Labels,EmpPenalties%>" runat="server"></asp:Literal> </span>
                         </div>
                             <asp:GridView ID="gv_myPenalties" runat="server" style="width:100%; margin-top:0px;" CssClass="gridView col-md-12"  
-                                AutoGenerateColumns="False"  Width="90%" 
+                          OnRowDataBound="gv_data_RowDataBound"       AutoGenerateColumns="False"  Width="90%" 
                                 class="table table-bordered table-condensed table-responsive table-hover ">
                                 <Columns>
 

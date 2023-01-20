@@ -53,7 +53,7 @@
                        <!---- table hired evaluations-->
 
                             <asp:GridView ID="gv_evaluations" runat="server" style="width:100%; margin-top:0px;" CssClass="gridView col-md-12"  
-                                AutoGenerateColumns="False"  Width="100%">
+                              OnRowDataBound="gv_data_RowDataBound"  AutoGenerateColumns="False"  Width="100%">
                                 <Columns>
                                     <asp:TemplateField HeaderText="<%$ Resources:Labels,Sequence%>">
                                          <ItemTemplate>
