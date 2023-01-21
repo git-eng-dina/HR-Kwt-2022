@@ -1611,6 +1611,7 @@ font-weight:bold;
     box-shadow: 2px 2px 2px 2px #adb5bd;
     width: 65%;
     padding-top: 10px;
+    height:430px;
 }
 
     .box-shadows .title span {
@@ -1621,6 +1622,15 @@ font-weight:bold;
         padding-bottom:5px;
         /*padding-right: 20px;*/
     }
+
+.box-reply {
+    padding-top: 10px;
+    padding-right: 30px;
+    width: 100%;
+    box-shadow: 2px 2px 2px 2px #adb5bd;
+    border: 1px solid #adb5bd;
+    margin-top: 30px;
+}
 /*scrollbar*/
 ::-webkit-scrollbar {
     width: 10px;
@@ -1770,13 +1780,28 @@ font-weight:bold;
         font-size:12px;
     }
 
-    .msg-content{
+.msg-content {
+    padding-top: 15px;
+    height: 150px;
+    max-height: 180px;
+    overflow-y: auto;
+}
+.readed-msg {
+ background-color:   #f6f8fc;
+} 
+    .msg-reply-content{
         padding-top:15px;
-        height:150px;
+        margin-right:10px;
     }
 
 .send {
     float: left;
     width: 80px;
     height: 80%;
+    font-size: 12px;
+    cursor:pointer;
 }
+
+    .send:hover {
+        background-color: #555c62;
+    }

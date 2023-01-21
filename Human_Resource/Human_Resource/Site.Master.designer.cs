@@ -391,21 +391,21 @@ namespace Human_Resource {
         protected global::System.Web.UI.WebControls.ImageButton img_search;
         
         /// <summary>
-        /// txt_experience1 control.
+        /// txt_reply control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_experience1;
+        protected global::System.Web.UI.WebControls.TextBox txt_reply;
         
         /// <summary>
-        /// Button1 control.
+        /// btn_sendReply control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton Button1;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btn_sendReply;
     }
 }

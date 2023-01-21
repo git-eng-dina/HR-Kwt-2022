@@ -19,6 +19,9 @@ namespace Human_Resource.App_Code
         public Nullable<long> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public Nullable<bool> IsRead { get; set; }
+
+        public string FromEmployeeAr { get; set; }
+        public string FromEmployeeEn { get; set; }
     }
     public class Message
     {
@@ -48,38 +51,91 @@ namespace Human_Resource.App_Code
         {
             using (HRSystemEntities entity = new HRSystemEntities())
             {
-                var messages = entity.usersMessages
-                                .Where(x => x.ToEmployeeID == empId && x.IsActive == true)
-                                .Select(x=> new Message() {
+                var messages =(from x in entity.usersMessages 
+                               join r in entity.MessageReply on x.UsersMessageID equals r.UsersMessageID into lj
+                               from rep in lj.DefaultIfEmpty()
+                               where  (x.ToEmployeeID == empId || rep.ToEmployee == empId) && x.IsActive == true
+                                select  new Message() {
                                 Title = x.Title,
-                                ContentMessage = x.ContentMessage,
                                 IsRead = x.IsRead,
+                                ToEmployeeID = x.ToEmployeeID,
                                 FromEmployeeAr = entity.employees.Where( y => y.EmployeeID == x.CreateUserID).Select(y => y.NameAr).FirstOrDefault(),
                                 FromEmployeeEn = entity.employees.Where( y => y.EmployeeID == x.CreateUserID).Select(y => y.NameEn).FirstOrDefault(),
                                 CreateDate = x.CreateDate,
                                 UsersMessageID = x.UsersMessageID,
-                                }).OrderBy(x => x.UsersMessageID).Skip(skip).Take(5).ToList();
+                                }).Distinct().OrderBy(x => x.UsersMessageID).Skip(skip).Take(5).ToList();
 
+                foreach (var msg in messages)
+                {
+
+                    bool isRead = true;
+                    if (msg.ToEmployeeID == empId)
+                        isRead =(bool) msg.IsRead;
+
+                    if (isRead)
+                    {
+                        var replies = entity.MessageReply.Where(x => x.UsersMessageID == msg.UsersMessageID && x.IsActive == true).ToList();
+                        foreach (var rep in replies)
+                        {
+                            if (rep.ToEmployee == empId && rep.IsRead == false)
+                            {
+                                isRead = false;
+                                break;
+                            }
+                        }
+                        msg.IsRead = isRead;
+                    }
+                    msg.ContentMessage = entity.usersMessages.Find(msg.UsersMessageID).ContentMessage;
+                }
                 return messages;
             }
         }
 
-        public Message GetMessageDetails(long usersMessageID)
+        public Message GetMessageDetails(long usersMessageID,long empId)
         {
             using (HRSystemEntities entity = new HRSystemEntities())
             {
                 var message = entity.usersMessages
-                                .Where(x => x.UsersMessageID== usersMessageID )
-                                .Select(x=> new Message() {
-                                Title = x.Title,
-                                ContentMessage = x.ContentMessage,
-                                IsRead = x.IsRead,
-                                FromEmployeeAr = entity.employees.Where( y => y.EmployeeID == x.CreateUserID).Select(y => y.NameAr).FirstOrDefault(),
-                                FromEmployeeEn = entity.employees.Where( y => y.EmployeeID == x.CreateUserID).Select(y => y.NameEn).FirstOrDefault(),
-                                CreateDate = x.CreateDate,
-                                UsersMessageID = x.UsersMessageID,
-                                EmpImage = entity.employees.Where(y => y.EmployeeID == x.CreateUserID).Select(y => y.Image).FirstOrDefault(),
+                                .Where(x => x.UsersMessageID == usersMessageID)
+                                .Select(x => new Message() {
+                                    Title = x.Title,
+                                    ContentMessage = x.ContentMessage,
+                                    IsRead = x.IsRead,
+                                    ToEmployeeID = x.ToEmployeeID,
+                                    FromEmployeeAr = entity.employees.Where(y => y.EmployeeID == x.CreateUserID).Select(y => y.NameAr).FirstOrDefault(),
+                                    FromEmployeeEn = entity.employees.Where(y => y.EmployeeID == x.CreateUserID).Select(y => y.NameEn).FirstOrDefault(),
+                                    CreateDate = x.CreateDate,
+                                    UsersMessageID = x.UsersMessageID,
+                                    EmpImage = entity.employees.Where(y => y.EmployeeID == x.CreateUserID).Select(y => y.Image).FirstOrDefault(),
+                                    Replies = entity.MessageReply.Where(y => y.UsersMessageID == x.UsersMessageID && y.IsActive == true)
+                                        .Select(y => new Reply() { IsRead = y.IsRead,
+                                        ContentMessage = y.ContentMessage,
+                                        ReplyID = y.ReplyID,
+                                        CreateDate = y.CreateDate,
+                                        FromEmployee = y.FromEmployee,
+                                        ToEmployee = y.ToEmployee,
+                                        FromEmployeeAr = entity.employees.Where(z => z.EmployeeID == y.CreateUserID).Select(z => z.NameAr).FirstOrDefault(),
+                                        FromEmployeeEn = entity.employees.Where(z => z.EmployeeID == y.CreateUserID).Select(z => z.NameEn).FirstOrDefault(),
+                                        }).ToList(),
+
                                 }).FirstOrDefault();
+
+                if (message.ToEmployeeID == empId)
+                {
+                    var msg = entity.usersMessages.Find(usersMessageID);
+                    msg.IsRead = true;
+                    entity.SaveChanges();
+                }
+
+                foreach (var rep in message.Replies)
+                {
+                    if (rep.ToEmployee == empId && rep.IsRead == false)
+                    {
+                        var r = entity.MessageReply.Find(rep.ReplyID);
+                        r.IsRead = true;
+                    }
+                }
+                entity.SaveChanges();           
 
                 return message;
             }
@@ -150,32 +206,39 @@ namespace Human_Resource.App_Code
                 entity.SaveChanges();
             }
         }
-        public long AddReply(Reply rep)
+        public long AddReply(long userMessageID,long fromEmpID, string reply)
         {
             try
             {
-                MessageReply reply;
 
                 using (HRSystemEntities entity = new HRSystemEntities())
                 {
-                    reply = new MessageReply()
+                    var message = entity.usersMessages.Find(userMessageID);
+
+                    long toEmpID = 0;
+                    if (fromEmpID == message.CreateUserID)
+                        toEmpID = (long)message.ToEmployeeID;
+                    else
+                        toEmpID = (long)message.CreateUserID;
+
+                    MessageReply replyObj = new MessageReply()
                     {
-                        ContentMessage = rep.ContentMessage,
-                        ToEmployee = rep.ToEmployee,
-                        FromEmployee = rep.FromEmployee,
-                        Notes = rep.Notes,
+                        UsersMessageID = userMessageID,
+                        ContentMessage = reply,
+                        ToEmployee = toEmpID,
+                        FromEmployee = fromEmpID,
                         IsActive = true,
-                        CreateUserID = rep.CreateUserID,
-                        UpdateUserID = rep.UpdateUserID,
+                        CreateUserID = fromEmpID,
+                        UpdateUserID = fromEmpID,
                         CreateDate = DateTime.Now,
                         UpdateDate = DateTime.Now,
                         IsRead = false,
                     };
-                    reply = entity.MessageReply.Add(reply);
+                    replyObj = entity.MessageReply.Add(replyObj);
                   
                     entity.SaveChanges();
                 }
-                return reply.ReplyID;
+                return 1;
             }
 
             catch

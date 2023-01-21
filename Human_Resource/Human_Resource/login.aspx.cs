@@ -69,6 +69,75 @@ namespace Human_Resource
         }
 
         [WebMethod(EnableSession = true)]
+        public static long GetMessagesCount()
+        {
+            try
+            {
+                Message msg = new Message();
+                var messages = msg.GetMessagesCount(long.Parse( HttpContext.Current.Session["user_id"].ToString()));
+                return messages;
+            }
+            catch
+            {
+                return 0;
+
+            }
+
+        }
+         [WebMethod(EnableSession = true)]
+        public static List<Message> GetUserMessages(string skip)
+        {
+            try
+            {
+                Message msg = new Message();
+                var messages = msg.GetUserMessages(long.Parse( HttpContext.Current.Session["user_id"].ToString()),int.Parse(skip));
+                return messages;
+            }
+            catch(Exception ex)
+            {
+                return null;
+
+            }
+
+        }
+         [WebMethod(EnableSession = true)]
+        public static Message GetMessageDetails(string usersMessageID)
+        {
+            try
+            {
+                Message msg = new Message();
+                var message = msg.GetMessageDetails(long.Parse(usersMessageID), long.Parse(HttpContext.Current.Session["user_id"].ToString()));
+                message.CultureName = HttpContext.Current.Session["CultureName"].ToString();
+                return message;
+            }
+            catch(Exception ex)
+            {
+                return null;
+
+            }
+
+        }
+        [WebMethod(EnableSession = true)]
+        public static void AddMessageReply(string usersMessageID ,string replyText)
+        {
+            try
+            {
+                Message msg = new Message();
+                var message = msg.AddReply(long.Parse(usersMessageID),
+                            long.Parse(HttpContext.Current.Session["user_id"].ToString()),
+                             replyText);
+
+            }
+            catch(Exception ex)
+            {
+                
+
+            }
+
+        }
+
+
+        [WebMethod(EnableSession = true)]
         public static string logout()
         {
             try

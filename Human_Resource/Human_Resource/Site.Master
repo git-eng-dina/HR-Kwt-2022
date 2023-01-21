@@ -83,14 +83,14 @@
         function addMsgToList(msg) {
             var userMsgId = msg.UsersMessageID;
             var msgDivClass = "";
-            if (msg.IsRead == false)
-                msgDivClass = "Unread-msg";
+            if (msg.IsRead == true)
+                msgDivClass = "readed-msg";
 
             //main div
-            var mainDiv = '<div id="' + userMsgId + '" class="' + msgDivClass + '"></div>';
+            //var mainDiv = '<div id="' + userMsgId + '" class="' + msgDivClass + '"></div>';
 
             //sending info div
-            var sentInfoDiv = '<div class="row col-12 sentInfo" ></div>';
+           // var sentInfoDiv = '<div class="row col-12 sentInfo" ></div>';
             var empName = "";  
             if ('<%= Session["CultureName"].ToString().ToLower() %>' == "en-us" )
                 empName = msg.FromEmployeeEn;
@@ -464,7 +464,8 @@
                             <div class="col-4 lst-msg " id="lst_links" runat="server">
                                 <div class="messageSearch row col-12 ">
                                     <input type="hidden" runat="server" id="hdn_page" value="1" />
-                                    <input type="hidden" runat="server" id="hdn_usersMessageID" value="1" />
+                                    <input type="hidden" runat="server" id="hdn_usersMessageID"  />
+    
                                      <input type="text" runat="server" id="txt_search" placeholder="<%$ Resources:Labels,Search%>" />
                                           <asp:ImageButton CssClass="img-search" OnClientClick="search();return false;" 
                                                             ID="img_search" runat="server" ImageUrl="~/images/search.png" />
@@ -474,7 +475,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-8 box-shadows" >
+                            <div class="col-8 box-shadows" id="box_messageDetails" style="display:none;" >
                                 <div class="row">
                                     <div class="row col-12 form-group title">
                                          <div class="col-2">
@@ -489,20 +490,24 @@
                                  <div class="row col-12 msg-date">
                                       <span  ID="lbl_msgDate" ></span>
                                   </div> 
-                                <div class="row col-12 msg-title">
+                                <div class="row col-12 msg-title" style="height:60px;">
                                       <span  ID="lbl_msgTitle" ></span>
                                   </div>
-                            <div class="row col-12 msg-content">
+                            <div class="row col-12 msg-content" id="msg_content">
+                                <div class="col-12">
                                 <span  ID="lbl_msgContent" ></span>
-                                
+                                </div>
+                                <div class="col-12" id="msg_replies"></div>
                             </div>
 
-                            <div class="box-shadows col-12" style="width:100%">
+                            <div class="box-reply col-12">
                                 <div class="row form-group">
-                                <asp:TextBox type="text" class="form-control input-lg textarea" ID="txt_experience1" name="txt_experience1"  TextMode="MultiLine" Rows="3" runat="server" CssClass="width:90%" />
+                                <asp:TextBox type="text" class="form-control input-lg textarea" ID="txt_reply" name="txt_reply"  TextMode="MultiLine" Rows="3" runat="server" CssClass="width:90%" onchange="removeValidation($(this));"/>
+                                <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
+
                                 </div>
                                 <div class="row">
-                                    <button class="btn btn-secondary btn-block send"  runat="server" onclick="javascript:savePermission();return false;" id="Button1" disabled>
+                                    <button class="btn btn-secondary btn-block send"  runat="server"  id="btn_sendReply" >
                                     <asp:Literal  runat="server" Text=" <%$ Resources:Labels,Send%>" />
                                         <i class="fa fa-send"></i>
                                 </button>

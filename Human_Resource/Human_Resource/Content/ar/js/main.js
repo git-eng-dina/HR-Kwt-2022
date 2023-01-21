@@ -107,6 +107,7 @@ $(document).ready(function(){
     $('[id*=MyModal]').delegate('.msg-card', 'click', function (e) {
         e.preventDefault();
 
+        $('[id*=box_messageDetails]').show();
         var element = $(this);
         var idStr = element.attr('id');
         const myArray = idStr.split("_");
@@ -116,61 +117,139 @@ $(document).ready(function(){
 
         $('[id*=lbl_objectName]').text(element.find(">:first-child").text());
 
-        var parameter = {
-            usersMessageID: id,
-        };
-        $.ajax({
-            type: "POST",
-            url: "../../login.aspx/GetMessageDetails",
-            data: JSON.stringify(parameter),
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: function (data) {
-                for (var prop in data) {
-                    var item = data[prop];
+        getMessageDetails(id);
+       
+    });
 
-                    if (item != "" && item != null) {
-                        var empName = "";
-                        if (item.CultureName == "en-us")
-                            empName = item.FromEmployeeEn;
-                        else
-                            empName = item.FromEmployeeAr;
+    $('[id*=MyModal]').delegate('.send', 'click', function (e) {
+        e.preventDefault();
 
-                        $('[id*=lbl_empName]').html(empName);
+        var valid = checkReplyValidation();
+        if (valid)
+            addMsgReply();
 
-                        $('[id*=lbl_msgDate]').html(convertToJavaScriptDateTime(item.CreateDate));
-                        $('[id*=lbl_msgTitle]').html(item.Title);
-                        $('[id*=lbl_msgContent]').html(item.ContentMessage);
 
-                        //emp image
-                        var img = document.querySelector("[id*=img_emp]");
-                        if (item.EmpImage != null) {
-                            var arrayBufferView = new Uint8Array(item.EmpImage);
-                            var blob = new Blob([arrayBufferView], { type: "image/jpeg" });
-                            var urlCreator = window.URL || window.webkitURL;
-                            var imageUrl = urlCreator.createObjectURL(blob);
-
-                            img.src = imageUrl;
-                        }
-                        else {
-                            img.src = "../../images/no-image-icon-125x125.png";
-                        }
-                       
-
-                    }
-                    else {
-                        resetPermission();
-                    }
-
-                }
-            },
-            failure: function (response) {
-                alert(response.d);
-            }
-        });
     });
 });
 
+
+function getMessageDetails(id) {
+
+    $('[id*=msg_replies]').empty();
+    var parameter = {
+        usersMessageID: id,
+    };
+    $.ajax({
+        type: "POST",
+        url: "../../login.aspx/GetMessageDetails",
+        data: JSON.stringify(parameter),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            for (var prop in data) {
+                var item = data[prop];
+
+                if (item != "" && item != null) {
+                    var empName = "";
+                    if (item.CultureName == "en-us")
+                        empName = item.FromEmployeeEn;
+                    else
+                        empName = item.FromEmployeeAr;
+
+                    $('[id*=lbl_empName]').html(empName);
+
+                    $('[id*=lbl_msgDate]').html(convertToJavaScriptDateTime(item.CreateDate));
+                    $('[id*=lbl_msgTitle]').html(item.Title);
+                    $('[id*=lbl_msgContent]').html(item.ContentMessage);
+
+                    //emp image
+                    var img = document.querySelector("[id*=img_emp]");
+                    if (item.EmpImage != null) {
+                        var arrayBufferView = new Uint8Array(item.EmpImage);
+                        var blob = new Blob([arrayBufferView], { type: "image/jpeg" });
+                        var urlCreator = window.URL || window.webkitURL;
+                        var imageUrl = urlCreator.createObjectURL(blob);
+
+                        img.src = imageUrl;
+                    }
+                    else {
+                        img.src = "../../images/no-image-icon-125x125.png";
+                    }
+
+                    //replies
+                    for (var pp in item.Replies) {
+                        var reply = item.Replies[pp];
+                        
+                        //sending info div
+                        var empName = "";
+                        if (item.CultureName == "en-us")
+                            empName = reply.FromEmployeeEn;
+                        else
+                            empName = reply.FromEmployeeAr;
+
+                        var messageDate = convertToJavaScriptDateTime(reply.CreateDate);
+                        $('<div class="msg-card col-12" ><div class="row col-12"><div class="col-6 float1"><span>' + empName + '</span></div><div class="col-6 float2"><span>' + messageDate + '</span></div><div></div>').appendTo('[id*=msg_replies]');
+
+                        //content div
+                        $('<div class="row col-12 msg-reply-content" ><span>' + reply.ContentMessage + '</span></div>').appendTo('[id*=msg_replies]');
+                    }
+                }
+                else {
+                    resetPermission();
+                }
+
+            }
+        },
+        failure: function (response) {
+            alert(response.d);
+        }
+    });
+}
+function removeValidation(input) {
+    if ($(input).attr("class") == "form-control is-invalid") {
+
+        $(input).attr("class", "form-control");
+
+    }
+}
+
+function checkReplyValidation() {
+    var valid = true;
+    if ($('[id*=txt_reply]').val() == "" || $('[id*=txt_reply]').val() == null) {
+        $('[id*=txt_reply]').attr("class", "form-control is-invalid");
+        valid = false;
+    }
+    return valid;
+}
+
+
+function addMsgReply() {
+
+    var usersMessageID = $('[id*=hdn_usersMessageID]').val();
+
+    var replyText = $('[id*=txt_reply]').val();
+
+    var parameter = {
+        usersMessageID: usersMessageID,
+        replyText: replyText,
+    };
+    $.ajax({
+        type: "POST",
+        url: "../../login.aspx/AddMessageReply",
+        data: JSON.stringify(parameter),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+
+            var id = $('[id*=hdn_usersMessageID]').val();
+            getMessageDetails(id);
+
+        },
+        failure: function (response) {
+            alert(response.d);
+        }
+    });
+}
 function zeroPadded(val) {
     if (val >= 10)
         return val;
