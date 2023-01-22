@@ -94,12 +94,32 @@ namespace Human_Resource
                 Page.ClientScript.RegisterClientScriptInclude("bootstrap.min.js", ResolveUrl("~/Content/ar/js/bootstrap.min.js"));
                 Page.ClientScript.RegisterClientScriptInclude("main.js", ResolveUrl("~/Content/ar/js/main.js"));
             }
+            Page.ClientScript.RegisterClientScriptInclude("messages.js", ResolveUrl("~/Scripts/messages.js"));
 
 
             #region permissions
             applyPermissionOnLinks();
             #endregion
 
+            #region load employee
+
+            EmployeeModel employeeModel = new EmployeeModel();
+            List<EmployeeModel> employees = new List<EmployeeModel>();
+            employees = employeeModel.GetHiredEmployees(true);
+            employees = employees.Where(x => x.EmployeeID != long.Parse(Session["user_id"].ToString())).ToList();
+
+            var emp = new EmployeeModel() { EmployeeID = 0, NameAr = Resources.Labels.SelectHere,NameEn = Resources.Labels.SelectHere };
+            employees.Insert(0, emp);
+
+            sel_emp.DataSource = employees;
+            sel_emp.DataValueField = "EmployeeID";
+            if (Session["CultureName"] != null && Session["CultureName"].ToString().ToLower() == "en-us")
+                sel_emp.DataTextField = "NameEn";
+            else
+                sel_emp.DataTextField = "NameAr";
+
+            sel_emp.DataBind();
+            #endregion
         }
 
         protected void applyPermissionOnLinks()

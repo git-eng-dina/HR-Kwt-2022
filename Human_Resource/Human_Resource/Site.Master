@@ -20,64 +20,50 @@
 </head>
     <script>
 
-        //$(document).ready(function () {
-
-        //        $('.modal').modal('show');
-
-        //});
-
-        //function closeDialog() {
-        //       $('#MainContent_hid_departmentId').val("");
-        //       $('#MainContent_dept_name').val("");
-        //       $('#MainContent_txt_mobile').val("");
-        //       $('#MainContent_emp').val("");
-        //       $('#MainContent_management').val("");
-        //       $("#dialog").dialog("close");
-        //   }
-
-  
         function openModal() {
-            $('[id*=msg_cards]').empty();
-            $.ajax({
-                type: "POST",
-                url: "../../login.aspx/GetMessagesCount",
-                //data: JSON.stringify(parameter),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (data) {
 
-                    var total = data.d;
-                    var pageSize = 5;
-                    var page = $('[id*=hdn_page]').val();
-                    var skip = pageSize * (page - 1);
-                    var canPage = skip < total;
-                    var parameter = {
-                        skip: skip,
-                    };
-                    $.ajax({
-                        type: "POST",
-                        url: "../../login.aspx/GetUserMessages",
-                        data: JSON.stringify(parameter),
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        success: function (data) {
-                            for (var prop in data) {
-                                var item = data[prop];
-                                for (var index in item) {
-                                    var msg = item[index];
-                                    addMsgToList(msg);
+            loadMessages();
+            //$('[id*=msg_cards]').empty();
+            //$.ajax({
+            //    type: "POST",
+            //    url: "../../login.aspx/GetMessagesCount",
+            //    //data: JSON.stringify(parameter),
+            //    contentType: "application/json; charset=utf-8",
+            //    dataType: "json",
+            //    success: function (data) {
 
-                                }
-                                $('[id*=MyModal]').modal('show');
-                            }
-                        },
-                        failure: function (response) {
-                            alert(response.d);
-                        }
-                    });
+            //        var total = data.d;
+            //        var pageSize = 5;
+            //        var page = $('[id*=hdn_page]').val();
+            //        var skip = pageSize * (page - 1);
+            //        var canPage = skip < total;
+            //        var parameter = {
+            //            skip: skip,
+            //        };
+            //        $.ajax({
+            //            type: "POST",
+            //            url: "../../login.aspx/GetUserMessages",
+            //            data: JSON.stringify(parameter),
+            //            contentType: "application/json; charset=utf-8",
+            //            dataType: "json",
+            //            success: function (data) {
+            //                for (var prop in data) {
+            //                    var item = data[prop];
+            //                    for (var index in item) {
+            //                        var msg = item[index];
+            //                        addMsgToList(msg);
 
-                }
-            });
+            //                    }
+            //                    $('[id*=MyModal]').modal('show');
+            //                }
+            //            },
+            //            failure: function (response) {
+            //                alert(response.d);
+            //            }
+            //        });
+
+            //    }
+            //});
         }
 
         function addMsgToList(msg) {
@@ -98,7 +84,7 @@
                 empName = msg.FromEmployeeAr;
 
             var messageDate = convertToJavaScriptDateTime(msg.CreateDate );
-            $('<div class="msg-card" id="msgCard_' + msg.UsersMessageID+'"><div class="row col-12"><div class="col-6 float1"><span>' + empName + '</span></div><div class="col-6 float2"><span>' + messageDate + '</span></div><div></div>').appendTo('[id*=msg_cards]');
+            $('<div class="msg-card ' + msgDivClass+'" id="msgCard_' + msg.UsersMessageID+'"><div class="row col-12"><div class="col-6 float1"><span>' + empName + '</span></div><div class="col-6 float2" style="padding:0px;"><span>' + messageDate + '</span></div><div></div>').appendTo('[id*=msg_cards]');
 
             //title div
             $('<div class="row col-12 msg-title" id="div_title_' + msg.UsersMessageID + '"><span>' + msg.Title + '</span></div>').appendTo('[id*=msgCard_'+msg.UsersMessageID+']');
@@ -447,12 +433,12 @@
           <!--Bootstrap Modal (Dialog Box / Pop-up Window) Example-->
      <div id="MyModal" class="modal fade" role="dialog" runat="server">
         <div class="modal-dialog  modal-ku" runat="server">
-            <div class="modal-content" runat="server">
+            <div class="modal-content" style="margin-top:75px;" runat="server">
                 <div class="modal-header" runat="server" style="padding:0px;">
                        <!-- Tab links -->
                     <div class="tab" >
-                      <button class="tablinks active" style="width:50%;" onclick="javascript:openMessageTab(event, 'inbox');return false;">Inbox</button>
-                      <button class="tablinks" style="width:50%;" onclick="javascript:openMessageTab(event, 'compose');return false;">Compose</button>
+                      <button class="tablinks active" style="width:50%;" onclick="javascript:openMessageTab(event, 'inbox');return false;"> <asp:Literal runat="server" Text="<%$ Resources:Labels,Inbox%>" /></button>
+                      <button class="tablinks" style="width:50%;" onclick="javascript:openMessageTab(event, 'compose');return false;"> <asp:Literal runat="server" Text="<%$ Resources:Labels,Compose%>" /></button>
                     </div>
                  </div>
                  <div class="statis modal-body" runat="server">
@@ -461,7 +447,7 @@
                      <!-- inbox tab -->
                      <div id="inbox" class="tabcontent msg-details" style="display:block">
 
-                            <div class="col-4 lst-msg " id="lst_links" runat="server">
+                            <div class="col-5 float1" id="lst_links" runat="server">
                                 <div class="messageSearch row col-12 ">
                                     <input type="hidden" runat="server" id="hdn_page" value="1" />
                                     <input type="hidden" runat="server" id="hdn_usersMessageID"  />
@@ -470,12 +456,24 @@
                                           <asp:ImageButton CssClass="img-search" OnClientClick="search();return false;" 
                                                             ID="img_search" runat="server" ImageUrl="~/images/search.png" />
                                 </div>
-                                <div class="messageSearch row col-12" id="msg_cards">
+                                <div class="messageSearch row col-12 lst-msg" id="msg_cards">
 
+                                </div>
+
+                                <div class="row col-12 navigation-bar">
+                                 <a onclick="" class="navigation-link btnPrev" id="btn_prev">
+                                        <asp:Literal runat="server" Text="<%$ Resources:Labels,Previous%>" />
+
+                                </a>  
+                                    
+                                <a onclick="" class="navigation-link btnNext" id="btn_next">
+                                        <asp:Literal runat="server" Text="<%$ Resources:Labels,Next%>" />
+
+                                </a>
                                 </div>
                             </div>
 
-                            <div class="col-8 box-shadows" id="box_messageDetails" style="display:none;" >
+                            <div class="col-7 box-shadows" id="box_messageDetails" style="display:none;" >
                                 <div class="row">
                                     <div class="row col-12 form-group title">
                                          <div class="col-2">
@@ -493,7 +491,7 @@
                                 <div class="row col-12 msg-title" style="height:60px;">
                                       <span  ID="lbl_msgTitle" ></span>
                                   </div>
-                            <div class="row col-12 msg-content" id="msg_content">
+                            <div class="row col-12 msg-details-content" id="msg_content">
                                 <div class="col-12">
                                 <span  ID="lbl_msgContent" ></span>
                                 </div>
@@ -502,16 +500,23 @@
 
                             <div class="box-reply col-12">
                                 <div class="row form-group">
-                                <asp:TextBox type="text" class="form-control input-lg textarea" ID="txt_reply" name="txt_reply"  TextMode="MultiLine" Rows="3" runat="server" CssClass="width:90%" onchange="removeValidation($(this));"/>
+                                <asp:TextBox type="text" class="form-control input-lg " ID="txt_reply" name="txt_reply"  TextMode="MultiLine" Rows="5" 
+                                    runat="server" CssClass="width:90%"
+                                    placeholder="<%$ Resources:Labels,Reply%>"
+                                    onchange="removeValidation($(this));"/>
                                 <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
 
+                                    <button class="btn btn-secondary btn-block send sendRep"  runat="server"  id="btn_sendReply" style="margin-top:50px;">
+                                    <asp:Literal  runat="server" Text=" <%$ Resources:Labels,Send%>" />
+                                        <i class="fa fa-send"></i>
+                                     </button>
                                 </div>
-                                <div class="row">
-                                    <button class="btn btn-secondary btn-block send"  runat="server"  id="btn_sendReply" >
+                               <%-- <div class="row">
+                                    <button class="btn btn-secondary btn-block send sendRep"  runat="server"  id="btn_sendReply" >
                                     <asp:Literal  runat="server" Text=" <%$ Resources:Labels,Send%>" />
                                         <i class="fa fa-send"></i>
                                 </button>
-                                </div>
+                                </div>--%>
                              </div>
 
                      </div>
@@ -521,18 +526,53 @@
 
                       <!-- compose tab -->
                     <div id="compose" class="tabcontent">
-                    <h3>compose</h3>
-                         <p>Tokyo is the capital of Japan.</p>
-                    </div>
 
+                       <div class="col-12">
+                        <div class="c-form">
+                              <div class="row">
+                            <div class="form-group" style="display:block">
+                                <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,SendTo%>" /></span>
+                                <select runat="server" id="sel_emp" name="sel_emp" class="form-control select"  onchange="removeValidation($(this));"></select>
+                             
+                                <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
+                               
+                            </div>
+                            </div>
 
+                            <div class="row">
+                           <div class="form-group" style="display:block">
+                               <span> <asp:Literal  runat="server" Text="<%$ Resources:Labels,Title%>" /></span>
+                                <asp:TextBox class="form-control input-lg" id="txt_title" runat="server" onchange="removeValidation($(this));" />
+                                <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
+
+                            </div>
+                         </div>
+
+                             <div class="row">
+                            <div class="form-group" style="display:block">
+                               <span> <asp:Literal  runat="server" Text="<%$ Resources:Labels,Content%>" /></span>
+                                <asp:TextBox type="text" class="content-textarea" ID="txt_msgContent" name="txt_msgContent"  TextMode="MultiLine" Rows="15" runat="server" CssClass="width:80%" onchange="removeValidation($(this));"/>
+                                <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
+
+                            </div>
+                            </div>
+                            
+                          <button class="btn btn-secondary btn-block send sendMessage"  runat="server"  id="btn_sendMessage" >
+                            <asp:Literal  runat="server" Text=" <%$ Resources:Labels,Send%>" />
+                                <i class="fa fa-send"></i>
+                        </button>
+                       </div>
+
+                     </div>
                   </div>
-                  <div class="modal-footer" runat="server">This is Modal Footer
-                      <button type="button" class="btn btn-default" data-dismiss="modal" runat="server">Close</button>
+                </div>
+                  <div class="modal-footer" runat="server">
+                     <%-- <button type="button" class="btn btn-default" data-dismiss="modal" runat="server">Close</button>--%>
                  </div>
               </div>
-          </div>
+         
       </div>
+         </div>
       <!-- End of Bootstrap Model (Dialog Box / Popup Window)-->
 
     </form>
