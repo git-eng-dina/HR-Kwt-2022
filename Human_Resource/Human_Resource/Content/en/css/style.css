@@ -1291,7 +1291,7 @@ input[type=checkbox], input[type=radio] {
 .form-textarea input:not([type=file]), select, textarea {
     font-weight: bold;
     display: block;
-    width: 90%;
+    width: 80%;
     float: left;
 }
 
@@ -1723,9 +1723,9 @@ input[type=checkbox], input[type=radio] {
     margin: auto;
 }
 
-.modal-content {
+/*.modal-content {
     margin-top: 75px;
-}
+}*/
 
 /* Style the tab */
 .tab {
@@ -1798,9 +1798,11 @@ input[type=checkbox], input[type=radio] {
     height: 20px;
 }
 
+
 .msg-card {
     border-top: 1px solid gray;
-    margin-top: 5px;
+    /*margin-top: 5px;*/
+    width: 100%;
 }
     .msg-card:hover {
         cursor: pointer;
@@ -1816,11 +1818,11 @@ input[type=checkbox], input[type=radio] {
 .lst-msg {
     border-left: 1px solid #6c6c6f;
     max-height: 430px;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    /*overflow-y: scroll;
+    overflow-x: hidden;*/
     float: left;
     padding-right: 0px;
-    height: 430px;
+    height: 370px;
 }
 
 
@@ -1849,7 +1851,13 @@ input[type=checkbox], input[type=radio] {
 
 .msg-content {
     padding-top: 15px;
-    height: 150px;
+    height: 25px;
+    max-height: 180px;
+    overflow-y: hidden;
+}
+.msg-details-content {
+    /*padding-top: 15px;*/
+    height: 160px;
     max-height: 180px;
     overflow-y: auto;
 }
@@ -1862,8 +1870,16 @@ input[type=checkbox], input[type=radio] {
 }
 .send {
     float: right;
-    width: 80px;
+    width: 70px;
     height: 80%;
     font-size: 12px;
     cursor: pointer;
+    margin-left: 5px;
+}
+    .send:hover {
+        background-color: #555c62;
+    }
+
+.disable-click {
+    pointer-events: none;
 }

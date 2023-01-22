@@ -700,6 +700,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Compose.
+        /// </summary>
+        internal static string Compose {
+            get {
+                return ResourceManager.GetString("Compose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure to delete?.
         /// </summary>
         internal static string ConfirmDelete {
@@ -714,6 +723,15 @@ namespace Resources {
         internal static string ConfrontsProblems {
             get {
                 return ResourceManager.GetString("ConfrontsProblems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Content.
+        /// </summary>
+        internal static string Content {
+            get {
+                return ResourceManager.GetString("Content", resourceCulture);
             }
         }
         
@@ -1357,6 +1375,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Inbox.
+        /// </summary>
+        internal static string Inbox {
+            get {
+                return ResourceManager.GetString("Inbox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Initiative.
         /// </summary>
         internal static string Initiative {
@@ -1641,6 +1668,15 @@ namespace Resources {
         internal static string NewEvent {
             get {
                 return ResourceManager.GetString("NewEvent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to next.
+        /// </summary>
+        internal static string Next {
+            get {
+                return ResourceManager.GetString("Next", resourceCulture);
             }
         }
         
@@ -1933,6 +1969,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to previous.
+        /// </summary>
+        internal static string Previous {
+            get {
+                return ResourceManager.GetString("Previous", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Previous Employment.
         /// </summary>
         internal static string PreviousEmployment {
@@ -2037,6 +2082,15 @@ namespace Resources {
         internal static string RepeatedEvery {
             get {
                 return ResourceManager.GetString("RepeatedEvery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reply.
+        /// </summary>
+        internal static string Reply {
+            get {
+                return ResourceManager.GetString("Reply", resourceCulture);
             }
         }
         
@@ -2172,6 +2226,15 @@ namespace Resources {
         internal static string Send {
             get {
                 return ResourceManager.GetString("Send", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send To.
+        /// </summary>
+        internal static string SendTo {
+            get {
+                return ResourceManager.GetString("SendTo", resourceCulture);
             }
         }
         

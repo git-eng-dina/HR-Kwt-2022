@@ -1002,4 +1002,25 @@
   <data name="Send" xml:space="preserve">
     <value>ارسال</value>
   </data>
+  <data name="Compose" xml:space="preserve">
+    <value>إرسال</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>المحتوى</value>
+  </data>
+  <data name="Inbox" xml:space="preserve">
+    <value>الوارد</value>
+  </data>
+  <data name="SendTo" xml:space="preserve">
+    <value>إرسال إلى</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>التالي</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>السابق</value>
+  </data>
+  <data name="Reply" xml:space="preserve">
+    <value>ارسال رد</value>
+  </data>
 </root>

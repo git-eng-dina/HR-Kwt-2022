@@ -118,6 +118,25 @@ namespace Human_Resource
 
         }
         [WebMethod(EnableSession = true)]
+        public static string SaveMessage(string toEmployeeID, string title, string content)
+        {
+            try
+            {
+                Message msg = new Message();
+                var message = msg.AddMessage(long.Parse(toEmployeeID),
+                            long.Parse(HttpContext.Current.Session["user_id"].ToString()),
+                             title, content);
+
+                return Resources.Labels.SaveSuccessfully;
+            }
+            catch(Exception ex)
+            {
+                return Resources.Labels.ErrorOccured;
+            }
+
+        }
+
+        [WebMethod(EnableSession = true)]
         public static void AddMessageReply(string usersMessageID ,string replyText)
         {
             try

@@ -91,6 +91,24 @@ namespace Human_Resource.App_Code
             }
         }
 
+        public long GetMessagesCount(long empId)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var messagesCount = (from x in entity.usersMessages
+                                join r in entity.MessageReply on x.UsersMessageID equals r.UsersMessageID into lj
+                                from rep in lj.DefaultIfEmpty()
+                                where (x.ToEmployeeID == empId || rep.ToEmployee == empId) && x.IsActive == true
+                                select new Message()
+                                {
+                                    Title = x.Title,
+                                    ToEmployeeID = x.ToEmployeeID,
+                                    CreateDate = x.CreateDate,
+                                }).Distinct().Count();
+
+                return messagesCount;
+            }
+        }
         public Message GetMessageDetails(long usersMessageID,long empId)
         {
             using (HRSystemEntities entity = new HRSystemEntities())
@@ -141,18 +159,8 @@ namespace Human_Resource.App_Code
             }
         }
 
-        public long GetMessagesCount(long empId)
-        {
-            using (HRSystemEntities entity = new HRSystemEntities())
-            {
-                var messagesCount = entity.usersMessages
-                                .Where(x => x.ToEmployeeID == empId && x.IsActive == true)
-                                .Count();
-
-                return messagesCount;
-            }
-        }
-        public long AddMessage(Message msg)
+      
+        public long AddMessage(long toEmployeeID,long fromEmployeeID, string title, string content)
         {
             try
             {
@@ -162,13 +170,12 @@ namespace Human_Resource.App_Code
                 {
                     message = new usersMessages()
                     {
-                        Title = msg.Title,
-                        ContentMessage = msg.ContentMessage,
-                        ToEmployeeID = msg.ToEmployeeID,
-                        Notes = msg.Notes,
+                        Title = title,
+                        ContentMessage = content,
+                        ToEmployeeID = toEmployeeID,
                         IsActive = true,
-                        CreateUserID = msg.CreateUserID,
-                        UpdateUserID = msg.UpdateUserID,
+                        CreateUserID = fromEmployeeID,
+                        UpdateUserID = fromEmployeeID,
                         CreateDate = DateTime.Now,
                         UpdateDate = DateTime.Now,
                         IsRead = false,

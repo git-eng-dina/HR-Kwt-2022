@@ -216,7 +216,7 @@
                             </div>
                              <div class ="row advisor-list">
                                  <input type="hidden" runat="server" id="advisorsIds" name="advisorsIds" />
-                                 <ul id="lst_employee"  runat="server"></ul>
+                                 <ul id="lst_employee" style="width:100%"  runat="server"></ul>
                             </div>
                             <div class="row">
                             <div class="form-group" style="display:block">

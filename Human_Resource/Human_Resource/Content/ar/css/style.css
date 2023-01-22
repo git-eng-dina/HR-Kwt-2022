@@ -1226,7 +1226,7 @@ input[type=checkbox], input[type=radio] {
     .form-textarea input:not([type=file]), select, textarea {
         font-weight: bold;
         display: block;
-        width: 90%;
+        width: 80%;
         float: right;
     }
 .form-textarea .textarea{
@@ -1656,9 +1656,9 @@ font-weight:bold;
     height: 500px;
     margin: auto;
 }
-.modal-content {
+/*.modal-content {
     margin-top: 75px;
-}
+}*/
 
 /* Style the tab */
 .tab {
@@ -1733,7 +1733,8 @@ font-weight:bold;
 
 .msg-card {
     border-top: 1px solid gray;
-    margin-top:5px;
+    /*margin-top:5px;*/
+    width:100%;
 }
 .msg-card:hover{
     cursor:pointer;
@@ -1749,11 +1750,11 @@ font-weight:bold;
 .lst-msg {
     border-left: 1px solid #6c6c6f;
     max-height: 430px;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    /*overflow-y: scroll;
+    overflow-x: hidden;*/
     float: right;
     padding-left: 0px;
-    height: 430px;
+    height: 370px;
 }
 
 
@@ -1782,7 +1783,14 @@ font-weight:bold;
 
 .msg-content {
     padding-top: 15px;
-    height: 150px;
+    height: 25px;
+    max-height: 180px;
+    overflow-y: hidden;
+}
+
+.msg-details-content {
+    /*padding-top: 15px;*/
+    height: 160px;
     max-height: 180px;
     overflow-y: auto;
 }
@@ -1796,12 +1804,25 @@ font-weight:bold;
 
 .send {
     float: left;
-    width: 80px;
+    width: 70px;
     height: 80%;
     font-size: 12px;
-    cursor:pointer;
+    cursor: pointer;
+    margin-right: 5px;
 }
 
     .send:hover {
         background-color: #555c62;
+    }
+
+.navigation-link {
+    color: #cb7a0b;
+    margin-left: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size:12px;
+}
+
+    .navigation-link:hover {
+        color: #895206;
     }

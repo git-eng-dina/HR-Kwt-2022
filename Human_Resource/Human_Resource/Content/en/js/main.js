@@ -132,7 +132,7 @@ $(document).ready(function () {
 
     });
 
-    $('[id*=MyModal]').delegate('.send', 'click', function (e) {
+    $('[id*=MyModal]').delegate('.sendRep', 'click', function (e) {
         e.preventDefault();
 
         var valid = checkReplyValidation();
@@ -142,7 +142,64 @@ $(document).ready(function () {
 
     });
 
+    $('[id*=MyModal]').delegate('.sendMessage', 'click', function (e) {
+        e.preventDefault();
+
+        var valid = checkMsgValidation();
+        if (valid)
+            sendMessage();
+
+
+    });
 });
+
+function checkMsgValidation() {
+    var valid = true;
+    if ($('[id*=sel_emp]').val() == "" || $('[id*=sel_emp]').val() == null) {
+        $('[id*=sel_emp]').attr("class", "form-control is-invalid");
+        valid = false;
+    }
+    if ($('[id*=txt_title]').val() == "" || $('[id*=txt_title]').val() == null) {
+        $('[id*=txt_title]').attr("class", "form-control is-invalid");
+        valid = false;
+    }
+    if ($('[id*=txt_msgContent]').val() == "" || $('[id*=txt_msgContent]').val() == null) {
+        $('[id*=txt_msgContent]').attr("class", "form-control is-invalid");
+        valid = false;
+    }
+    return valid;
+}
+
+function sendMessage() {
+    var toEmployeeID = $('[id*=sel_emp]').val();
+    var title = $('[id*=txt_title]').val();
+    var content = $('[id*=txt_msgContent]').val();
+
+    var parameter = {
+        toEmployeeID: toEmployeeID,
+        title: title,
+        content: content,
+    };
+    $.ajax({
+        type: "POST",
+        url: "../../login.aspx/SaveMessage",
+        data: JSON.stringify(parameter),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+
+            $('[id*=sel_emp]').val('');
+            $('[id*=txt_title]').val('');
+            $('[id*=txt_msgContent]').val('');
+            alert(data.d);
+
+        },
+        failure: function (response) {
+            alert(response.d);
+        }
+    });
+}
+
 
 function getMessageDetails(id) {
 

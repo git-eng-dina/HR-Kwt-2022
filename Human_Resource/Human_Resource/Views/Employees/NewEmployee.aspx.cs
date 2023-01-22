@@ -311,7 +311,7 @@ namespace Human_Resource.Views.Employees
                 employee.UnifiedNumber = txt_unifiedNum.Value;
 
                 if (Session["user_id"] != null && Session["user_id"].ToString() != "")
-                    employee.CreateUserID = employee.UpdateUserID = int.Parse(Session["user_id"].ToString());
+                    employee.CreateUserID = employee.UpdateUserID = long.Parse(Session["user_id"].ToString());
 
                 #region delete previous certificates
                 if (employee.EmployeeID != 0)
