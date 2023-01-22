@@ -60,14 +60,27 @@
 
 
     });
+
+    $('[id*=MyModal]').delegate('[id*=img_searchMsg]', 'click', function (e) {
+        e.preventDefault();
+
+        loadMessages();
+
+
+    });
 });
 
 function loadMessages() {
     $('[id*=msg_cards]').empty();
+
+    var parameter = {
+        searchText: $('[id*=txt_search]').val(),
+    };
+
     $.ajax({
         type: "POST",
         url: "../../login.aspx/GetMessagesCount",
-        //data: JSON.stringify(parameter),
+        data: JSON.stringify(parameter),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
@@ -91,6 +104,7 @@ function loadMessages() {
 
             var parameter = {
                 skip: skip,
+                searchText: $('[id*=txt_search]').val(),
             };
             $.ajax({
                 type: "POST",
@@ -116,6 +130,29 @@ function loadMessages() {
 
         }
     });
+}
+
+function addMsgToList(msg) {
+    var userMsgId = msg.UsersMessageID;
+    var msgDivClass = "";
+    if (msg.IsRead == true)
+        msgDivClass = "readed-msg";
+
+
+    var empName = "";
+    if ('<%= Session["CultureName"].ToString().ToLower() %>' == "en-us")
+        empName = msg.FromEmployeeEn;
+    else
+        empName = msg.FromEmployeeAr;
+
+    var messageDate = convertToJavaScriptDateTime(msg.CreateDate);
+    $('<div class="msg-card ' + msgDivClass + '" id="msgCard_' + msg.UsersMessageID + '"><div class="row col-12"><div class="col-6 float1"><span>' + empName + '</span></div><div class="col-6 float2" style="padding:0px;"><span>' + messageDate + '</span></div><div></div>').appendTo('[id*=msg_cards]');
+
+    //title div
+    $('<div class="row col-12 msg-title" id="div_title_' + msg.UsersMessageID + '"><span>' + msg.Title + '</span></div>').appendTo('[id*=msgCard_' + msg.UsersMessageID + ']');
+
+    //content div
+    $('<div class="row col-12 msg-content" id="div_content_' + msg.UsersMessageID + '"><span>' + msg.ContentMessage + '</span></div>').appendTo('[id*=msgCard_' + msg.UsersMessageID + ']');
 }
 
 function checkMsgValidation() {

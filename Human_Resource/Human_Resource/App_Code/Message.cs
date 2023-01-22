@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LinqKit;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -47,15 +48,29 @@ namespace Human_Resource.App_Code
 
         #region Methods
 
-        public List<Message> GetUserMessages(long empId,int skip)
+        public List<Message> GetUserMessages(long empId,int skip,string searchText)
         {
             using (HRSystemEntities entity = new HRSystemEntities())
             {
-                var messages =(from x in entity.usersMessages 
+                var searchPredicate = PredicateBuilder.New<usersMessages>();
+
+                if (searchText != "")
+                {
+                    searchPredicate = searchPredicate.Or(x => x.ContentMessage.Contains(searchText));
+                    searchPredicate = searchPredicate.Or(x => x.Title.Contains(searchText));
+
+                    searchPredicate = searchPredicate.Or(x => entity.employees.Where(y => y.EmployeeID == x.CreateUserID).Select(y => y.NameAr).FirstOrDefault().Contains(searchText));
+                    searchPredicate = searchPredicate.Or(x => entity.employees.Where(y => y.EmployeeID == x.CreateUserID).Select(y => y.NameEn).FirstOrDefault().Contains(searchText));
+                }
+                else
+                {
+                    searchPredicate = searchPredicate.And(x => true);
+                }
+                var messages =(from x in entity.usersMessages.Where(searchPredicate)
                                join r in entity.MessageReply on x.UsersMessageID equals r.UsersMessageID into lj
                                from rep in lj.DefaultIfEmpty()
                                where  (x.ToEmployeeID == empId || rep.ToEmployee == empId) && x.IsActive == true
-                                select  new Message() {
+                               select  new Message() {
                                 Title = x.Title,
                                 IsRead = x.IsRead,
                                 ToEmployeeID = x.ToEmployeeID,
@@ -91,15 +106,31 @@ namespace Human_Resource.App_Code
             }
         }
 
-        public long GetMessagesCount(long empId)
+        public long GetMessagesCount(long empId,string searchText)
         {
             using (HRSystemEntities entity = new HRSystemEntities())
             {
-                var messagesCount = (from x in entity.usersMessages
+                var searchPredicate = PredicateBuilder.New<usersMessages>();
+              
+                if(searchText != "")
+                {
+                   
+                  searchPredicate = searchPredicate.Or(x => x.ContentMessage.Contains(searchText));
+                    searchPredicate = searchPredicate.Or(x => x.Title.Contains(searchText));
+              
+                    searchPredicate = searchPredicate.Or(x => entity.employees.Where(y => y.EmployeeID == x.CreateUserID).Select(y => y.NameAr).FirstOrDefault().Contains(searchText));
+                    searchPredicate = searchPredicate.Or(x => entity.employees.Where(y => y.EmployeeID == x.CreateUserID).Select(y => y.NameEn).FirstOrDefault().Contains(searchText));
+                }
+                else
+                {
+                    searchPredicate = searchPredicate.And(x=> true);
+                }
+
+                var messagesCount = (from x in entity.usersMessages.Where(searchPredicate)
                                 join r in entity.MessageReply on x.UsersMessageID equals r.UsersMessageID into lj
                                 from rep in lj.DefaultIfEmpty()
                                 where (x.ToEmployeeID == empId || rep.ToEmployee == empId) && x.IsActive == true
-                                select new Message()
+                                     select new Message()
                                 {
                                     Title = x.Title,
                                     ToEmployeeID = x.ToEmployeeID,

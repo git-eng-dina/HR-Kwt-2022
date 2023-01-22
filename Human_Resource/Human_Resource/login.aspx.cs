@@ -69,12 +69,12 @@ namespace Human_Resource
         }
 
         [WebMethod(EnableSession = true)]
-        public static long GetMessagesCount()
+        public static long GetMessagesCount(string searchText)
         {
             try
             {
                 Message msg = new Message();
-                var messages = msg.GetMessagesCount(long.Parse( HttpContext.Current.Session["user_id"].ToString()));
+                var messages = msg.GetMessagesCount(long.Parse( HttpContext.Current.Session["user_id"].ToString()), searchText);
                 return messages;
             }
             catch
@@ -85,12 +85,12 @@ namespace Human_Resource
 
         }
          [WebMethod(EnableSession = true)]
-        public static List<Message> GetUserMessages(string skip)
+        public static List<Message> GetUserMessages(string skip,string searchText)
         {
             try
             {
                 Message msg = new Message();
-                var messages = msg.GetUserMessages(long.Parse( HttpContext.Current.Session["user_id"].ToString()),int.Parse(skip));
+                var messages = msg.GetUserMessages(long.Parse( HttpContext.Current.Session["user_id"].ToString()),int.Parse(skip), searchText);
                 return messages;
             }
             catch(Exception ex)

@@ -66,32 +66,7 @@
             //});
         }
 
-        function addMsgToList(msg) {
-            var userMsgId = msg.UsersMessageID;
-            var msgDivClass = "";
-            if (msg.IsRead == true)
-                msgDivClass = "readed-msg";
-
-            //main div
-            //var mainDiv = '<div id="' + userMsgId + '" class="' + msgDivClass + '"></div>';
-
-            //sending info div
-           // var sentInfoDiv = '<div class="row col-12 sentInfo" ></div>';
-            var empName = "";  
-            if ('<%= Session["CultureName"].ToString().ToLower() %>' == "en-us" )
-                empName = msg.FromEmployeeEn;
-            else
-                empName = msg.FromEmployeeAr;
-
-            var messageDate = convertToJavaScriptDateTime(msg.CreateDate );
-            $('<div class="msg-card ' + msgDivClass+'" id="msgCard_' + msg.UsersMessageID+'"><div class="row col-12"><div class="col-6 float1"><span>' + empName + '</span></div><div class="col-6 float2" style="padding:0px;"><span>' + messageDate + '</span></div><div></div>').appendTo('[id*=msg_cards]');
-
-            //title div
-            $('<div class="row col-12 msg-title" id="div_title_' + msg.UsersMessageID + '"><span>' + msg.Title + '</span></div>').appendTo('[id*=msgCard_'+msg.UsersMessageID+']');
-          
-            //content div
-            $('<div class="row col-12 msg-content" id="div_content_' + msg.UsersMessageID + '"><span>' + msg.ContentMessage + '</span></div>').appendTo('[id*=msgCard_' + msg.UsersMessageID + ']');
-        }
+      
     </script>
 <body>
     <form runat="server" dir="<%$ Resources:Labels,TextDirection%>" name="base_form" id="base_form">
@@ -453,8 +428,8 @@
                                     <input type="hidden" runat="server" id="hdn_usersMessageID"  />
     
                                      <input type="text" runat="server" id="txt_search" placeholder="<%$ Resources:Labels,Search%>" />
-                                          <asp:ImageButton CssClass="img-search" OnClientClick="search();return false;" 
-                                                            ID="img_search" runat="server" ImageUrl="~/images/search.png" />
+                                          <asp:ImageButton CssClass="img-search" ID="img_searchMsg" runat="server"
+                                              ImageUrl="~/images/search.png" />
                                 </div>
                                 <div class="messageSearch row col-12 lst-msg" id="msg_cards">
 
