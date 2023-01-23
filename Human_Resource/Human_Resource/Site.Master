@@ -12,7 +12,9 @@
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
 
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+   <%-- <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon"/>
+<link rel="icon" href="~/favicon.ico" type="image/x-icon"/>--%>
 
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     
@@ -22,48 +24,7 @@
 
         function openModal() {
 
-            loadMessages();
-            //$('[id*=msg_cards]').empty();
-            //$.ajax({
-            //    type: "POST",
-            //    url: "../../login.aspx/GetMessagesCount",
-            //    //data: JSON.stringify(parameter),
-            //    contentType: "application/json; charset=utf-8",
-            //    dataType: "json",
-            //    success: function (data) {
-
-            //        var total = data.d;
-            //        var pageSize = 5;
-            //        var page = $('[id*=hdn_page]').val();
-            //        var skip = pageSize * (page - 1);
-            //        var canPage = skip < total;
-            //        var parameter = {
-            //            skip: skip,
-            //        };
-            //        $.ajax({
-            //            type: "POST",
-            //            url: "../../login.aspx/GetUserMessages",
-            //            data: JSON.stringify(parameter),
-            //            contentType: "application/json; charset=utf-8",
-            //            dataType: "json",
-            //            success: function (data) {
-            //                for (var prop in data) {
-            //                    var item = data[prop];
-            //                    for (var index in item) {
-            //                        var msg = item[index];
-            //                        addMsgToList(msg);
-
-            //                    }
-            //                    $('[id*=MyModal]').modal('show');
-            //                }
-            //            },
-            //            failure: function (response) {
-            //                alert(response.d);
-            //            }
-            //        });
-
-            //    }
-            //});
+            loadMessages();          
         }
 
       

@@ -10,6 +10,9 @@
     <link rel="stylesheet" type="text/css" href= "content/en/css/bootstrap.css"/>
     <link rel="stylesheet" type="text/css" href="content/en/css/font-awesome.css"/>
     <link rel="stylesheet" type="text/css" href="content/en/css/style.css"/>
+
+    
+     <link rel="shortcut icon" href="favicon.ico" />
 </head>
 <body class="login-bg">
     <section id="login">
