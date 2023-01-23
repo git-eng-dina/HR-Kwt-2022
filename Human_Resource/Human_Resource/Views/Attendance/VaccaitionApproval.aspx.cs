@@ -38,7 +38,7 @@ namespace Human_Resource.Views.Attendance
         private void BindData(string textSearch = "")
         {
             string role = Session["urole"].ToString();
-            int userId = int.Parse(Session["user_id"].ToString());
+            long userId = long.Parse(Session["user_id"].ToString());
 
             EmployeesVacationModel vac = new EmployeesVacationModel();
             List<EmployeesVacationModel> needApprove = new List<EmployeesVacationModel>();
@@ -290,7 +290,7 @@ namespace Human_Resource.Views.Attendance
             {
                 EmployeesVacationModel dept = new EmployeesVacationModel();
 
-                int employeesVacationId = int.Parse(ID);
+                long employeesVacationId = long.Parse(ID);
                 dept = dept.getEmployeesVacation(employeesVacationId);
 
                 return dept;

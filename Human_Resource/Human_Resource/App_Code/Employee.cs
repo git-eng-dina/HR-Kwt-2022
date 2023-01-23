@@ -383,7 +383,7 @@ namespace Human_Resource
                 return employee;
             }
         }
-       public int GetVaccationBalance(int empId)
+       public int GetVaccationBalance(long empId)
         {
             int balance = 0;
             using (HRSystemEntities entity = new HRSystemEntities())

@@ -29,7 +29,7 @@ namespace Human_Resource.App_Code
         #endregion
 
         #region methods
-        public List<EmployeesVacationModel> getActivity(int employeeId)
+        public List<EmployeesVacationModel> getActivity(long employeeId)
         {
             var now = DateTime.Now.Year;
             var year = new DateTime(now, 1, 1);
@@ -151,7 +151,35 @@ namespace Human_Resource.App_Code
                 return tasks;
             }
         }
-        public List<EmployeesVacationModel> getNeedApproveForSupervisor(int managerId)
+
+        public int getNeedApproveCountForDirector()
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var now = DateTime.Now.Date;
+                var tasks = entity.employeesVacations.Where(x => x.IsActive == true &&
+                                x.ToDate >= now  && x.Approved == null)
+                                .Select(x => new EmployeesVacationModel()
+                                {
+                                    EmployeesVacationID = x.EmployeesVacationID,
+                                    EmployeeID = x.EmployeeID,
+                                    EmployeeName = entity.employees.Where(m => m.EmployeeID == x.EmployeeID).Select(m => m.NameAr).FirstOrDefault(),
+                                    CreateUserID = x.CreateUserID,
+                                    UpdateUserID = x.UpdateUserID,
+                                    Notes = x.Notes,
+                                    FromDate = x.FromDate,
+                                    ToDate = x.ToDate,
+                                    CreateDate = x.CreateDate,
+                                    UpdateDate = x.UpdateDate,
+                                    Approved = x.Approved,
+                                    VacationName = x.vacations.Name,
+                                    VacationsBalance = x.employees.VacationsBalance,
+                                }).ToList().Count;
+
+                return tasks;
+            }
+        }
+        public List<EmployeesVacationModel> getNeedApproveForSupervisor(long managerId)
         {
             using (HRSystemEntities entity = new HRSystemEntities())
             {
@@ -180,7 +208,36 @@ namespace Human_Resource.App_Code
             }
         }
 
-        public List<EmployeesVacationModel> getNeedApproveForManagement(int managerId)
+        public int getNeedApproveCountForSupervisor(long managerId)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var now = DateTime.Now.Date;
+                var vacCount = entity.employeesVacations.Where(x => x.IsActive == true &&
+                                 x.ToDate >= now && x.Approved == null && 
+                                 (entity.employees.Where(e => e.managements.branches.ManagerID == managerId).Select(e => e.EmployeeID).ToList().Contains((int)x.EmployeeID) || x.EmployeeID == managerId))
+                                .Select(x => new EmployeesVacationModel()
+                                {
+                                    EmployeesVacationID = x.EmployeesVacationID,
+                                    EmployeeID = x.EmployeeID,
+                                    EmployeeName = entity.employees.Where(m => m.EmployeeID == x.EmployeeID).Select(m => m.NameAr).FirstOrDefault(),
+                                    CreateUserID = x.CreateUserID,
+                                    UpdateUserID = x.UpdateUserID,
+                                    Notes = x.Notes,
+                                    FromDate = x.FromDate,
+                                    ToDate = x.ToDate,
+                                    CreateDate = x.CreateDate,
+                                    UpdateDate = x.UpdateDate,
+                                    Approved = x.Approved,
+                                    VacationName = x.vacations.Name,
+                                    VacationsBalance = x.employees.VacationsBalance,
+                                }).ToList().Count;
+
+                return vacCount;
+            }
+        }
+
+        public List<EmployeesVacationModel> getNeedApproveForManagement(long managerId)
         {
             using (HRSystemEntities entity = new HRSystemEntities())
             {
@@ -208,7 +265,36 @@ namespace Human_Resource.App_Code
                 return tasks;
             }
         }
-        public EmployeesVacationModel getEmployeesVacation(int employeesVacationId)
+
+        public  int getNeedApproveCountForManagement(long managerId)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var now = DateTime.Now.Date;
+                var vacCount = entity.employeesVacations.Where(x => x.IsActive == true &&
+                                 x.ToDate >= now && x.Approved == null &&
+                                 (entity.employees.Where(e => e.managements.ManagerID == managerId).Select(e => e.EmployeeID).ToList().Contains((int)x.EmployeeID) || x.EmployeeID == managerId))
+                                .Select(x => new EmployeesVacationModel()
+                                {
+                                    EmployeesVacationID = x.EmployeesVacationID,
+                                    EmployeeID = x.EmployeeID,
+                                    EmployeeName = entity.employees.Where(m => m.EmployeeID == x.EmployeeID).Select(m => m.NameAr).FirstOrDefault(),
+                                    CreateUserID = x.CreateUserID,
+                                    UpdateUserID = x.UpdateUserID,
+                                    Notes = x.Notes,
+                                    FromDate = x.FromDate,
+                                    ToDate = x.ToDate,
+                                    CreateDate = x.CreateDate,
+                                    UpdateDate = x.UpdateDate,
+                                    Approved = x.Approved,
+                                    VacationName = x.vacations.Name,
+                                    VacationsBalance = x.employees.VacationsBalance,
+                                }).ToList().Count;
+
+                return vacCount;
+            }
+        }
+        public EmployeesVacationModel getEmployeesVacation(long employeesVacationId)
         {
             using (HRSystemEntities entity = new HRSystemEntities())
             {

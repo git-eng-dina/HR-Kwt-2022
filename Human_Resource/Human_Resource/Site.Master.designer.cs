@@ -220,6 +220,15 @@ namespace Human_Resource {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl li_scheduleVacation;
         
         /// <summary>
+        /// div_vacationsCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_vacationsCount;
+        
+        /// <summary>
         /// li_vacationReport control.
         /// </summary>
         /// <remarks>

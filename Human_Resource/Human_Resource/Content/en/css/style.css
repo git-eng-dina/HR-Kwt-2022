@@ -1908,7 +1908,19 @@ input[type=checkbox], input[type=radio] {
     top: 15%;
 }
 
-
+.menuNotifications {
+    z-index: 2;
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    text-align: center;
+    color: #fff;
+    background-color: #cb7a0b;
+    border-radius: 50%;
+    top: 15%;
+    display: inline-block;
+    font-size: 11px;
+}
 .BellCap {
     fill: none;
     stroke: #0D2296;

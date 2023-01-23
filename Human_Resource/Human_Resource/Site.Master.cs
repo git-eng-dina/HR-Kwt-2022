@@ -454,8 +454,10 @@ namespace Human_Resource
 
         protected void UpdateTimer_Tick(object sender, EventArgs e)
         {
+            long userId = long.Parse(Session["user_id"].ToString());
+
             Message msg = new Message();
-            var messages = msg.GetUnReadMessagesCount(long.Parse(HttpContext.Current.Session["user_id"].ToString()));
+            var messages = msg.GetUnReadMessagesCount(userId);
 
             if(messages == 0)
             {
@@ -465,6 +467,34 @@ namespace Human_Resource
                 div_countNotification.InnerHtml = "9+";
             else
                 div_countNotification.InnerHtml = messages.ToString();
+
+            #region vaccations count notification
+            string role = Session["urole"].ToString();
+
+            int vacationCount = 0;
+            EmployeesVacationModel vac = new EmployeesVacationModel();
+            if (role == "GeneralDirector" || role == "CEO")
+            {
+                vacationCount = vac.getNeedApproveCountForDirector();
+            }
+            else if (role == "Supervisor")
+            {
+                vacationCount = vac.getNeedApproveCountForSupervisor(userId);
+            }
+            else if (role == "ManagementManager")
+            {
+                vacationCount = vac.getNeedApproveCountForManagement(userId);
+            }
+
+            if (vacationCount == 0)
+            {
+                div_vacationsCount.Visible = false;
+            }
+            else if (vacationCount > 9)
+                div_vacationsCount.InnerHtml = "9+";
+            else
+                div_vacationsCount.InnerHtml = vacationCount.ToString();
+            #endregion
 
         }
         protected void msgBtn_Click(object sender, ImageClickEventArgs e)

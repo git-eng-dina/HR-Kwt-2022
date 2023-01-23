@@ -14,35 +14,38 @@ namespace Human_Resource.Views.Home
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["user_id"] == null)
+            if (!IsPostBack)
             {
-                Response.Redirect("~/login.aspx");
-            } 
-            string role = Session["urole"].ToString();
+                if (Session["user_id"] == null)
+                {
+                    Response.Redirect("~/login.aspx");
+                }
+                string role = Session["urole"].ToString();
 
-            int passportCount = 0;
-            int tasksCount = 0;
-            if (role != "Employee")
-            {
-                getEmployeeCount();
+                int passportCount = 0;
+                int tasksCount = 0;
+                if (role != "Employee")
+                {
+                    getEmployeeCount();
 
-                passportCount = renderPassportsChart();
-            }
-            else
-            {
-                div_employees.Visible = false;
-                div_passports.Visible = false;
-            }
+                    passportCount = renderPassportsChart();
+                }
+                else
+                {
+                    div_employees.Visible = false;
+                    div_passports.Visible = false;
+                }
 
-            getActiveEventCount();
-            getActiveTrainingCount();
-            getVacationCount(); //vacation from beggining of year
-            tasksCount = renderTasksChart();
+                getActiveEventCount();
+                getActiveTrainingCount();
+                getVacationCount(); //vacation from beggining of year
+                tasksCount = renderTasksChart();
 
-            if(passportCount == 0 && tasksCount == 0)
-            {
-                passportsChart.Visible = false;
-                tasksChart.Visible = false;
+                if (passportCount == 0 && tasksCount == 0)
+                {
+                    passportsChart.Visible = false;
+                    tasksChart.Visible = false;
+                }
             }
         }
 
