@@ -90,6 +90,7 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
+        <asp:Timer runat="server" id="UpdateTimer" interval="120000" ontick="UpdateTimer_Tick" />
 
         <div class="menu-bg"></div>
         <nav class="navbar navbar-dark">
@@ -108,8 +109,10 @@
                   <asp:Image ImageUrl="~/images/123.png" Height="50px" Width="200px"  CssClass="mt-0"  runat="server" />
 
             </div>
-            <div class="lang-logo">                
-                <asp:ImageButton runat="server" ImageUrl="~/images/message.png"  width="40" height="40"  id="msgBtn" data-toggle="modal" data-target="#MyModal" OnClientClick="javascript:openModal();return false;"  />
+            <div class="lang-logo"> 
+                <div class="countNotifications" id="div_countNotification" runat="server">0</div>
+                <asp:ImageButton CssClass="BellCap" runat="server" ImageUrl="~/images/message.png"  width="40" height="40"  id="msgBtn" data-toggle="modal" data-target="#MyModal" OnClientClick="javascript:openModal();return false;"  />
+                 
             </div> 
             <div class="lang-logo">                
                 <asp:ImageButton runat="server"  width="40" height="40" id="cultureImage"  OnClick="langBtn_Click"  />

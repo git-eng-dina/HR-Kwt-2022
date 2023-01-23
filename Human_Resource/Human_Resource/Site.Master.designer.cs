@@ -22,6 +22,15 @@ namespace Human_Resource {
         protected global::System.Web.UI.HtmlControls.HtmlForm base_form;
         
         /// <summary>
+        /// UpdateTimer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.Timer UpdateTimer;
+        
+        /// <summary>
         /// img_profile control.
         /// </summary>
         /// <remarks>
@@ -38,6 +47,15 @@ namespace Human_Resource {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal txt_profileName;
+        
+        /// <summary>
+        /// div_countNotification control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_countNotification;
         
         /// <summary>
         /// msgBtn control.

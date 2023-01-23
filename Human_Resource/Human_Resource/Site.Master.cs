@@ -97,6 +97,8 @@ namespace Human_Resource
             Page.ClientScript.RegisterClientScriptInclude("messages.js", ResolveUrl("~/Scripts/messages.js"));
 
 
+            //messages notification
+            UpdateTimer_Tick(null,null);
             #region permissions
             applyPermissionOnLinks();
             #endregion
@@ -450,6 +452,21 @@ namespace Human_Resource
 
         }
 
+        protected void UpdateTimer_Tick(object sender, EventArgs e)
+        {
+            Message msg = new Message();
+            var messages = msg.GetUnReadMessagesCount(long.Parse(HttpContext.Current.Session["user_id"].ToString()));
+
+            if(messages == 0)
+            {
+                div_countNotification.Visible = false;
+            }
+            else if (messages > 9)
+                div_countNotification.InnerHtml = "9+";
+            else
+                div_countNotification.InnerHtml = messages.ToString();
+
+        }
         protected void msgBtn_Click(object sender, ImageClickEventArgs e)
         {
             ScriptManager.RegisterClientScriptBlock(this, GetType(), "mykey", "openModal();", true);

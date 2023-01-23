@@ -1880,6 +1880,39 @@ input[type=checkbox], input[type=radio] {
         background-color: #555c62;
     }
 
-.disable-click {
-    pointer-events: none;
+.navigation-link {
+    color: #cb7a0b;
+    margin-right: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+    .navigation-link:hover {
+        color: #895206;
+    }
+
+
+.countNotifications {
+    position: absolute;
+    z-index: 2;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    color: #fff;
+    /*left: 35%;*/
+    background-color: #cb7a0b;
+    border-radius: 50%;
+    margin-left: -5px;
+    top: 15%;
+}
+
+
+.BellCap {
+    fill: none;
+    stroke: #0D2296;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2;
 }

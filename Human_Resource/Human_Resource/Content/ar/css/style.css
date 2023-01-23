@@ -1826,3 +1826,28 @@ font-weight:bold;
     .navigation-link:hover {
         color: #895206;
     }
+
+.countNotifications {
+    position: absolute;
+    z-index: 2;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    color: #fff;
+    /*left: 35%;*/
+    background-color: #cb7a0b;
+    border-radius: 50%;
+    margin-right: -5px;
+    top:15%;
+}
+
+
+.BellCap {
+    fill: none;
+    stroke: #0D2296;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2;
+}
+

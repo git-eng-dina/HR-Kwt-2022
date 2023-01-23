@@ -105,8 +105,25 @@ namespace Human_Resource.App_Code
                 return messages;
             }
         }
+         public int GetUnReadMessagesCount(long empId)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var unReadMsg = entity.usersMessages.Where(x => x.ToEmployeeID == empId && x.IsActive == true && x.IsRead == false).ToList().Count();
 
-        public long GetMessagesCount(long empId,string searchText)
+                var unReadRep = (from x in entity.MessageReply
+                                where  x.ToEmployee == empId && x.IsActive == true && x.IsRead == false
+                                select new Reply()
+                                {
+                                    UsersMessageID = x.UsersMessageID,
+                                    ToEmployee=x.ToEmployee,
+                                }).Distinct().ToList().Count();
+
+                return unReadMsg + unReadRep;
+            }
+        }
+
+        public long GetMessagesCount(long empId,string searchText="")
         {
             using (HRSystemEntities entity = new HRSystemEntities())
             {
