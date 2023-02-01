@@ -103,13 +103,13 @@ namespace Human_Resource.Views.Employees {
         protected global::System.Web.UI.HtmlControls.HtmlSelect sel_nationality;
         
         /// <summary>
-        /// txt_blood control.
+        /// sel_blood control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_blood;
+        protected global::System.Web.UI.HtmlControls.HtmlSelect sel_blood;
         
         /// <summary>
         /// rd_gender control.

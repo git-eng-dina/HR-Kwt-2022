@@ -90,7 +90,7 @@
                       
       
                         <asp:GridView ID="gv_unhiredEmp" runat="server" style="margin-top:0px;" CssClass="gridView col-md-12"  
-                              AutoGenerateColumns="False"  Width="100%">
+                           OnRowDataBound="gv_unhiredEmp_RowDataBound"  AutoGenerateColumns="False"  Width="100%">
                                 <Columns>
                                     <asp:TemplateField HeaderText="<%$ Resources:Labels,Sequence%>" ItemStyle-Width="5%">
                                          <ItemTemplate>
@@ -145,21 +145,21 @@
                                                  Text='<%# Eval("AddedBy") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>                          
-                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,Approve%>" ItemStyle-Width="15%" ControlStyle-CssClass="td-approve">
+                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,Approve%>" ItemStyle-Width="5%" ControlStyle-CssClass="td-approve">
                                            <ItemTemplate>                     
                                                 <asp:LinkButton ID="LinkApprove" runat="server" myCustomID='<%# Eval("EmployeeID")%>'  CssClass="td-approve">
                                                     <asp:Image ImageUrl="~/images/check.ico" runat="server" ToolTip="<%$ Resources:Labels,Approve%>" Width="20px" Height="20px" />
                                                 </asp:LinkButton>  
                                              </ItemTemplate>
                                         </asp:TemplateField>
-                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,Edit%>" ItemStyle-Width="15%" ControlStyle-CssClass="td-edit">
+                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,Edit%>" ItemStyle-Width="5%" ControlStyle-CssClass="td-edit">
                                            <ItemTemplate>                     
                                                      <asp:LinkButton ID="LinkEdit" runat="server" myCustomID='<%# Eval("EmployeeID")%>'  CssClass="td-edit">
                                                          <asp:Image ImageUrl="~/Images/edit.ico" runat="server" Width="20px" Height="20px" />
                                                      </asp:LinkButton>  
                                              </ItemTemplate>
                                         </asp:TemplateField>
-                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,Delete%>" ItemStyle-Width="15%"  ControlStyle-CssClass="td-delete">
+                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,Delete%>" ItemStyle-Width="5%"  ControlStyle-CssClass="td-delete">
                                              <ItemTemplate>                     
                                                      <asp:ImageButton  CommandArgument='<%# Eval("EmployeeID")%>' OnCommand="deletedatafromgrid"
                                                             OnClientClick="return confirm(<%= Resources.Labels.ConfirmDelete %>);return false;"
@@ -237,21 +237,21 @@
                                                  Text='<%# Eval("AddedBy") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>                          
-                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,WorkShifts%>" ItemStyle-Width="15%" ControlStyle-CssClass="td-attendance">
+                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,WorkShifts%>" ItemStyle-Width="5%" ControlStyle-CssClass="td-attendance">
                                            <ItemTemplate>                     
                                                      <asp:LinkButton ID="LinkAttendance" runat="server" myCustomID='<%# Eval("EmployeeID")%>'  CssClass="td-attendance">
                                                          <asp:Image ImageUrl="~/images/attendance-icon.png" runat="server" Width="20px" Height="20px" ToolTip="<%$ Resources:Labels,WorkShifts%>"/>
                                                      </asp:LinkButton>   
                                              </ItemTemplate>
                                         </asp:TemplateField>   
-                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,Edit%>" ItemStyle-Width="15%" ControlStyle-CssClass="td-edit">
+                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,Edit%>" ItemStyle-Width="5%" ControlStyle-CssClass="td-edit">
                                            <ItemTemplate>                     
                                                      <asp:LinkButton ID="LinkEdit2" runat="server" myCustomID='<%# Eval("EmployeeID")%>'  CssClass="td-edit">
                                                          <asp:Image ImageUrl="~/Images/edit.ico" runat="server" Width="20px" Height="20px" />
                                                      </asp:LinkButton>  
                                              </ItemTemplate>
                                         </asp:TemplateField>
-                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,Delete%>" ItemStyle-Width="15%"  ControlStyle-CssClass="td-delete">
+                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,Delete%>" ItemStyle-Width="5%"  ControlStyle-CssClass="td-delete">
                                              <ItemTemplate>                     
                                                      <asp:ImageButton  CommandArgument='<%# Eval("EmployeeID")%>' OnCommand="deletedatafromgrid"
                                                             OnClientClick="return confirm(<%= Resources.Labels.ConfirmDelete %>);return false;"

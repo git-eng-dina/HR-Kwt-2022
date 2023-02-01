@@ -18,8 +18,27 @@ namespace Human_Resource.App_Code
         static public List<CountriesNameModel> citysList = countriesName.get();
         #endregion
 
+        #region BloodTypes
+        static public List<KeyValueString> bloodTypesList = getBloodTypesList().ToList();
+        static IEnumerable<KeyValueString> getBloodTypesList()
+        {
+            maritalStatusList = new List<KeyValueString> {
+                   new KeyValueString { key = "-", value = ""  },
+                   new KeyValueString { key = "O+", value = "O+"  },
+                   new KeyValueString { key =   "A+", value = "A+" },
+                   new KeyValueString { key =   "B+", value = "B+" },
+                   new KeyValueString { key =   "AB+", value = "AB+"},
+                   new KeyValueString { key =   "AB-", value = "AB-" },
+                   new KeyValueString { key =   "A-", value = "A-" },
+                   new KeyValueString { key =   "B-", value = "B-" },
+                   new KeyValueString { key =   "O-", value = "O-" },
+                    };
+
+            return maritalStatusList;
+        }
+        #endregion
         #region MaritalStatus
-         static public List<KeyValueString> maritalStatusList = getMaritalStatusList().ToList();
+        static public List<KeyValueString> maritalStatusList = getMaritalStatusList().ToList();
         static IEnumerable<KeyValueString> getMaritalStatusList()
         {
              maritalStatusList = new List<KeyValueString> {
