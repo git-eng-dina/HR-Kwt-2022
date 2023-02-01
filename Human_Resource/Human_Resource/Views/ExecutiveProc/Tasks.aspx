@@ -506,21 +506,21 @@
                                                  Text='<%# Eval("AddedBy") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>   
-                                  <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-approve">
+                                  <asp:TemplateField HeaderText="<%$ Resources:Labels,Approve%>" ItemStyle-Width="15%" ControlStyle-CssClass="td-approve">
                                            <ItemTemplate>                     
                                                 <asp:LinkButton ID="approveTask" runat="server" myCustomID='<%# Eval("TaskID")%>'  CssClass="td-approve">
                                                     <asp:Image ImageUrl="~/images/accept_document.png" runat="server" ToolTip="<%$ Resources:Labels,Approve%>" Width="20px" Height="20px" />
                                                 </asp:LinkButton>  
                                              </ItemTemplate>
                                         </asp:TemplateField>
-                                     <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-reject">
+                                     <asp:TemplateField HeaderText="<%$ Resources:Labels,Reject%>" ItemStyle-Width="15%" ControlStyle-CssClass="td-reject">
                                           <ItemTemplate>                     
                                                 <asp:LinkButton ID="rejectTask" runat="server" myCustomID='<%# Eval("TaskID")%>'  CssClass="td-edit">
                                                     <asp:Image ImageUrl="~/images/reject_document.png" runat="server" ToolTip="<%$ Resources:Labels,Reject%>" Width="20px" Height="20px" />
                                                 </asp:LinkButton>  
                                              </ItemTemplate>
                                         </asp:TemplateField>
-                                    <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-edit">
+                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,Edit%>" ItemStyle-Width="15%" ControlStyle-CssClass="td-edit">
                                           <ItemTemplate>                     
                                                 <asp:LinkButton ID="editTask" runat="server" myCustomID='<%# Eval("TaskID")%>'  CssClass="td-edit">
                                                     <asp:Image ImageUrl="~/Images/edit.ico" runat="server" ToolTip="<%$ Resources:Labels,Edit%>" Width="20px" Height="20px" />
@@ -528,7 +528,7 @@
                                              </ItemTemplate>
                                         </asp:TemplateField>
                                    
-                                   <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-delete">
+                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,Delete%>" ItemStyle-Width="15%"  ControlStyle-CssClass="td-delete">
                                              <ItemTemplate>                     
                                                 <asp:ImageButton  CommandArgument='<%# Eval("TaskID")%>' OnCommand="deletedatafromgrid"
                                                     OnClientClick="return confirm(<%= Resources.Labels.ConfirmDelete %>);return false;"
@@ -602,7 +602,7 @@
                                                  Text='<%# Eval("AddedBy") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>   
-                                  <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-finish">    
+                                  <asp:TemplateField HeaderText="<%$ Resources:Labels,Finish%>" ItemStyle-Width="15%" ControlStyle-CssClass="td-finish">    
                                       <ItemTemplate> 
                                         <%--   <asp:Label ID="LblStatus" runat="server" />   --%>    
                                                 <asp:LinkButton ID="finishTask" runat="server" myCustomID='<%# Eval("EmployeeTaskID")%>'  CssClass="td-approve">
@@ -610,7 +610,7 @@
                                                 </asp:LinkButton>  
                                              </ItemTemplate>
                                         </asp:TemplateField>
-                                    <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-cancle">    
+                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,Cancle%>" ItemStyle-Width="15%" ControlStyle-CssClass="td-cancle">    
                                       <ItemTemplate> 
                                            <asp:Label ID="LblStatus" runat="server" />       
                                                 <asp:LinkButton ID="cancleTask" runat="server" myCustomID='<%# Eval("EmployeeTaskID")%>'  CssClass="td-cancle">
@@ -674,7 +674,7 @@
                                          </ItemTemplate>
                                    </asp:TemplateField>   
 
-                                 <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-edit">
+                                 <asp:TemplateField HeaderText="<%$ Resources:Labels,Edit%>" ItemStyle-Width="15%" ControlStyle-CssClass="td-edit">
                                           <ItemTemplate>                     
                                                 <asp:LinkButton ID="editTask" runat="server" myCustomID='<%# Eval("TaskID")%>'  CssClass="td-edit">
                                                     <asp:Image ImageUrl="~/Images/edit.ico" runat="server" ToolTip="<%$ Resources:Labels,Edit%>" Width="20px" Height="20px" />
@@ -682,7 +682,7 @@
                                              </ItemTemplate>
                                         </asp:TemplateField>
                                    
-                                   <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-delete">
+                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,Delete%>" ItemStyle-Width="15%"  ControlStyle-CssClass="td-delete">
                                              <ItemTemplate>                     
                                                 <asp:ImageButton  CommandArgument='<%# Eval("TaskID")%>' OnCommand="deletedatafromgrid"
                                                     OnClientClick="return confirm(<%= Resources.Labels.ConfirmDelete %>);return false;"
@@ -755,7 +755,7 @@
                                                  Text='<%# Eval("AddedBy") %>' />                              
                                          </ItemTemplate>
                                    </asp:TemplateField>   
-                                  <asp:TemplateField ShowHeader="false" ItemStyle-Width ="5%" ControlStyle-CssClass="td-finishMyTask">
+                                  <asp:TemplateField HeaderText="<%$ Resources:Labels,Finish%>" ItemStyle-Width="15%" ControlStyle-CssClass="td-finishMyTask">
                                            <ItemTemplate> 
                                                 <asp:Label ID="LblStatus3" runat="server" /> 
                                                 <asp:LinkButton ID="finishMyTask" runat="server" myCustomID='<%# Eval("TaskID")%>'  CssClass="td-approve">
