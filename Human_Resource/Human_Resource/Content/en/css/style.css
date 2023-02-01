@@ -108,9 +108,10 @@ body a:hover{text-decoration: none !important;}
     cursor: pointer;
 }
 
-.statis .bcrumb-block .breadcrumb span, a {
+.statis .bcrumb-block .breadcrumb span, a ,li{
     color: white;
 }
+
 
 .statis .main-list span {
     position: absolute;
@@ -309,6 +310,7 @@ body a:hover{text-decoration: none !important;}
 .breadcrumb-item + .breadcrumb-item::before {
     float: left;
     padding-right: 0.5rem;
+    color:white;
 }
 
 .statis .c-profile input[type=submit].back {
@@ -779,6 +781,7 @@ nav .logo {
     height: 80%;
     margin-top: 5px;
     float: left;
+    cursor: pointer;
 }
 
     .btn-new:hover {
@@ -807,6 +810,8 @@ nav .logo {
     height: 80%;
     margin-top: 5px;
     float: left;
+    cursor: pointer;
+    margin-right: 10px;
 }
 
     .btn-delete:hover {
@@ -1578,6 +1583,16 @@ input[type=checkbox], input[type=radio] {
     font-weight: bold;
 }
 
+.statis .c-user-profile {
+    position: relative;
+    background-color: #FFF;
+    /* padding: 20px; */
+    border: 1px solid #6c6c6f;
+    border-radius: 10px;
+    margin-top: 5px;
+    width: 100%;
+    float: left;
+}
 .statis .c-user-profile .details {
     font-size: 14px;
     text-align: left;
@@ -1635,11 +1650,12 @@ input[type=checkbox], input[type=radio] {
             cursor: pointer;
         }
 
-    .lst-links .value-list {
-        width: 100%;
-        padding-left: 5px;
-        font-style: normal;
-    }
+.lst-links .value-list {
+    width: 100%;
+    padding-left: 5px;
+    color: inherit;
+    font-style: normal;
+}
 
 .permission-icon {
     font-size: 12px;
@@ -1927,4 +1943,40 @@ input[type=checkbox], input[type=radio] {
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-width: 2;
+}
+
+.dismissal-table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #6c6c6f;
+    /*border: 1px solid #6c6c6f;*/
+    margin-left:5px;
+}
+
+.c-form .dismissal-table span {
+    display: block;
+    width: 80%;
+    float: left;
+    text-align: center;
+    margin-top: 7px;
+    border: 0px;
+}
+
+.c-form .dismissal-table label {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.c-form .dismissal-table input[type=checkbox] {
+    margin-top: 0px;
+    margin-left: 5px;
+}
+
+.dismissal-table .th, th {
+    vertical-align: central;
+    border: 1px solid #6c6c6f;
+    background-color: #FFF;
+    text-align: center;
+    /*padding-bottom: 5px;*/
+    height: 35px;
 }
