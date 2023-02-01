@@ -373,7 +373,8 @@
                                     <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Blood%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2">
-                               <input type="text" class="form-control input-lg" id="txt_blood"  runat="server" value=""  />
+                                     <select runat="server" id="sel_blood" name="sel_blood" class="form-control"></select>
+<%--                               <input type="text" class="form-control input-lg" id="txt_blood"  runat="server" value=""  />--%>
                                     </div>
                             </div>
                             <div class="form-group" style="display:block">

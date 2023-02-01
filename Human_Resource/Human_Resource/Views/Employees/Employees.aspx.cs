@@ -112,29 +112,35 @@ namespace Human_Resource.Views.Employees
 
             try
             {
-                long userId = long.Parse(Session["user_id"].ToString());
-                string role = Session["urole"].ToString();
-                if (role != "GeneralDirector" && userId != 1)
+                var rowView = (EmployeeModel)e.Row.DataItem;
+                if (rowView != null)
                 {
-                    if (e.Row.RowType == DataControlRowType.DataRow)
+                    ImageButton deleteBtn = (ImageButton)e.Row.FindControl("Image1");
+                    LinkButton attendanceBtn = (LinkButton)e.Row.FindControl("LinkAttendance");
+                    LinkButton editBtn = (LinkButton)e.Row.FindControl("LinkEdit2");
+                    long userId = long.Parse(Session["user_id"].ToString());
+                    string role = Session["urole"].ToString();
+                    if (role != "GeneralDirector" && userId != 1)
                     {
-
-                        var rowView = (EmployeeModel)e.Row.DataItem;
-                        if (rowView != null)
+                        if (e.Row.RowType == DataControlRowType.DataRow)
                         {
+
                             List<UsersPermissionModel> permissions = Session["UserPermissions"] as List<UsersPermissionModel>;
 
                             var employees = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_employeesinfo").FirstOrDefault();
 
-                            LinkButton attendanceBtn = (LinkButton)e.Row.FindControl("LinkAttendance");
-                            LinkButton editBtn = (LinkButton)e.Row.FindControl("LinkEdit2");
-                            ImageButton deleteBtn = (ImageButton)e.Row.FindControl("Image1");
                             if (employees != null && employees.EditObject == true)
                             {
 
                                 attendanceBtn.Visible = true;
                                 editBtn.Visible = true;
-                                deleteBtn.Visible = true;
+
+                                //hide delete button for admin account
+                                if (rowView.EmployeeID == 1)
+                                    deleteBtn.Visible = false;
+                                else
+                                    deleteBtn.Visible = true;
+
                             }
                             else
                             {
@@ -144,8 +150,76 @@ namespace Human_Resource.Views.Employees
                                 deleteBtn.Visible = false;
 
                             }
+                        }
+                    }
+                    else
+                    {
+                        if (rowView.EmployeeID == 1)
+                            deleteBtn.Visible = false;
+                        else
+                            deleteBtn.Visible = true;
+                    }
+                }
+            }
+            catch
+            { }
+        }
+
+        protected void gv_unhiredEmp_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+            try
+            {
+                var rowView = (EmployeeModel)e.Row.DataItem;
+                if (rowView != null)
+                {
+                    LinkButton approveBtn = (LinkButton)e.Row.FindControl("LinkApprove");
+                    LinkButton editBtn = (LinkButton)e.Row.FindControl("LinkEdit");
+                    ImageButton deleteBtn = (ImageButton)e.Row.FindControl("delete1");
+
+                    long userId = long.Parse(Session["user_id"].ToString());
+                    string role = Session["urole"].ToString();
+                    if (role != "GeneralDirector" && userId != 1)
+                    {
+                        if (e.Row.RowType == DataControlRowType.DataRow)
+                        {
+
+
+
+                            List<UsersPermissionModel> permissions = Session["UserPermissions"] as List<UsersPermissionModel>;
+
+                            var employees = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_employeesinfo").FirstOrDefault();
+
+                            if (employees != null && employees.EditObject == true)
+                            {
+
+                                approveBtn.Visible = true;
+                                editBtn.Visible = true;
+
+                                //hide delete button for admin account
+                                if (rowView.EmployeeID == 1)
+                                    deleteBtn.Visible = false;
+                                else
+                                    deleteBtn.Visible = true;
+                            }
+                            else
+                            {
+
+                                approveBtn.Visible = false;
+                                editBtn.Visible = false;
+                                deleteBtn.Visible = false;
+
+                            }
+
 
                         }
+                    }
+                    else
+                    {
+                        if (rowView.EmployeeID == 1)
+                            deleteBtn.Visible = false;
+                        else
+                            deleteBtn.Visible = true;
                     }
                 }
             }

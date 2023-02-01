@@ -34,6 +34,11 @@ namespace Human_Resource.Views.Employees
                 sel_maritalStatus.DataTextField = "Value";
                 sel_maritalStatus.DataBind();
 
+                sel_blood.DataSource = GetData.bloodTypesList;
+                sel_blood.DataValueField = "Key";
+                sel_blood.DataTextField = "Value";
+                sel_blood.DataBind();
+
                 
                 sel_nationality.DataValueField = "CountriesNameID";
                 if (Session["CultureName"] != null && Session["CultureName"].ToString().ToLower() == "en-us")
@@ -84,7 +89,7 @@ namespace Human_Resource.Views.Employees
 
                     sel_maritalStatus.Value = emp.MaritalStatus;
                     sel_nationality.Value = emp.Nationality.ToString();
-                    txt_blood.Value = emp.BloodType;
+                    sel_blood.Value = emp.BloodType;
                     rd_gender.SelectedValue = emp.Gender;
                     txt_identityNumber.Value = emp.IdentityNumber;
 
@@ -238,7 +243,7 @@ namespace Human_Resource.Views.Employees
                 employee.Mobile = txt_mobile.Value;
                 employee.MaritalStatus = sel_maritalStatus.Value;
                 employee.Nationality = int.Parse(sel_nationality.Value);
-                employee.BloodType = txt_blood.Value;
+                employee.BloodType = sel_blood.Value;
                 employee.Gender = rd_gender.SelectedValue;
                 employee.IdentityNumber = txt_identityNumber.Value;
 
