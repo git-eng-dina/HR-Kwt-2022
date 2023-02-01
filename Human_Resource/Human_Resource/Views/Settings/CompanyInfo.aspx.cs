@@ -130,8 +130,9 @@ namespace Human_Resource.Views.Settings
 
                 }
 
+                long userId = long.Parse(Session["user_id"].ToString());
                 string role = Session["urole"].ToString();
-                if (role != "GeneralDirector")
+                if (role != "GeneralDirector" && userId != 1)
                 {
                     List<UsersPermissionModel> permissions = Session["UserPermissions"] as List<UsersPermissionModel>;
                     var employeesPermissions = permissions.Where(x => x.LiElementName.Trim().ToLower() == linkName).FirstOrDefault();

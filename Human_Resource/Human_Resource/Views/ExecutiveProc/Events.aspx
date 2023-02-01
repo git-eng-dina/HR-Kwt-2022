@@ -140,22 +140,10 @@
                         OnClientClick="javascript:return deleteEvent();" >
                     </asp:button>
 
-                  <%--  <button class="btn btn-new"  runat="server" id="btn_ads"
-                         onclick="checkValidation()"  
-                        >
-                        <asp:Literal  runat="server" Text=" <%$ Resources:Labels,Save%>" />
-                    </button>--%>
- 
-                    <%-- <button class="btn btn-new"  runat="server" id="btn_ads"
-                      onclick="saveEvent()">
-                        <asp:Literal  runat="server" Text=" <%$ Resources:Labels,Save%>" />
-                    </button>--%>
- 
-
                     </div>
                 </div>
                  </div>
                 
             </div>
-     
+     </div>
 </asp:Content>

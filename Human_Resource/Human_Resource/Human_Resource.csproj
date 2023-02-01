@@ -559,11 +559,14 @@
     <Content Include="Views\Attendance\VaccaitionApproval.aspx" />
     <Content Include="Views\Attendance\WorkShifts.aspx" />
     <Content Include="Views\Employees\empEvalution.aspx" />
+    <Content Include="Views\Employees\EmployeeDismissal.aspx" />
     <Content Include="Views\Employees\Employees.aspx" />
     <Content Include="Views\Employees\EmpPenalities.aspx" />
     <Content Include="Views\Employees\EmpTrainings.aspx" />
     <Content Include="Views\Employees\ExpiredPassports.aspx" />
     <Content Include="Views\Employees\NewEmployee.aspx" />
+    <Content Include="Views\Employees\ResignationRequest.aspx" />
+    <Content Include="Views\Employees\Resignations.aspx" />
     <Content Include="Views\Employees\UserAccounts.aspx" />
     <Content Include="Views\ExecutiveProc\AddEvaluation.aspx" />
     <Content Include="Views\ExecutiveProc\Charity.aspx" />
@@ -612,6 +615,7 @@
     <Compile Include="App_Code\MaterialsConsumption.cs" />
     <Compile Include="App_Code\Message.cs" />
     <Compile Include="App_Code\Permissions.cs" />
+    <Compile Include="App_Code\ResignationModel.cs" />
     <Compile Include="App_Code\Reward.cs" />
     <Compile Include="App_Code\SalaryIncrease.cs" />
     <Compile Include="App_Code\Task.cs" />
@@ -704,9 +708,6 @@
     <Compile Include="MessageReply.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="messages.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="messagesTemplates.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -726,6 +727,9 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="periods.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Resignation.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="rewards.cs">
@@ -812,6 +816,13 @@
     <Compile Include="Views\Employees\empEvalution.aspx.designer.cs">
       <DependentUpon>empEvalution.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Employees\EmployeeDismissal.aspx.cs">
+      <DependentUpon>EmployeeDismissal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Employees\EmployeeDismissal.aspx.designer.cs">
+      <DependentUpon>EmployeeDismissal.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Employees\Employees.aspx.cs">
       <DependentUpon>Employees.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -846,6 +857,20 @@
     </Compile>
     <Compile Include="Views\Employees\NewEmployee.aspx.designer.cs">
       <DependentUpon>NewEmployee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Employees\ResignationRequest.aspx.cs">
+      <DependentUpon>ResignationRequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Employees\ResignationRequest.aspx.designer.cs">
+      <DependentUpon>ResignationRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Employees\Resignations.aspx.cs">
+      <DependentUpon>Resignations.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Employees\Resignations.aspx.designer.cs">
+      <DependentUpon>Resignations.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Employees\UserAccounts.aspx.cs">
       <DependentUpon>UserAccounts.aspx</DependentUpon>

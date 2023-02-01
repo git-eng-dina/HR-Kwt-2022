@@ -447,13 +447,13 @@
   <data name="Absoluto" xml:space="preserve">
     <value>مطلق</value>
   </data>
-  <data name="Casado" xml:space="preserve">
+  <data name="Married" xml:space="preserve">
     <value>متزوج</value>
   </data>
-  <data name="Soltero" xml:space="preserve">
+  <data name="Single" xml:space="preserve">
     <value>أعزب</value>
   </data>
-  <data name="Viudo" xml:space="preserve">
+  <data name="Widower" xml:space="preserve">
     <value>أرمل</value>
   </data>
   <data name="AddMaterialsConsumption" xml:space="preserve">
@@ -1022,5 +1022,32 @@
   </data>
   <data name="Reply" xml:space="preserve">
     <value>ارسال رد</value>
+  </data>
+  <data name="Dues" xml:space="preserve">
+    <value>المستحقات</value>
+  </data>
+  <data name="EmployeeDismissal" xml:space="preserve">
+    <value>إقالة موظف</value>
+  </data>
+  <data name="Indemnity" xml:space="preserve">
+    <value>مكافأة نهاية الخدمة</value>
+  </data>
+  <data name="Resignations" xml:space="preserve">
+    <value>الاستقالات</value>
+  </data>
+  <data name="VacationsAccount" xml:space="preserve">
+    <value>حساب الإجازات</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>الإجمالي</value>
+  </data>
+  <data name="RequestUnderReview" xml:space="preserve">
+    <value>الطلب قيد المعالجة</value>
+  </data>
+  <data name="ResignationRequest" xml:space="preserve">
+    <value>طلب استقالة</value>
+  </data>
+  <data name="YearsOfWork" xml:space="preserve">
+    <value>سنوات العمل</value>
   </data>
 </root>

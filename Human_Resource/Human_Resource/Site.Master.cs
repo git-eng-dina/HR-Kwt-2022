@@ -126,334 +126,354 @@ namespace Human_Resource
 
         protected void applyPermissionOnLinks()
         {
-            var role = Session["urole"].ToString();
-            if (role == "GeneralDirector" || role == "CEO")
+            long userId = long.Parse(HttpContext.Current.Session["user_id"].ToString());
+            if (userId != 1)
             {
-                li_rewardsPenalties.Visible = true;
-                li_permissions.Visible = true;
-            }
-            else
-            {
-                li_rewardsPenalties.Visible = false;
-                li_permissions.Visible = false;
-
-            }
-
-
-            if (role == "GeneralDirector" || role == "CEO" || role == "HRManager" || role == "Advisor")
-            {
-                li_basicInformation.Visible = true;
-
-                if (role == "Advisor")
+                var role = Session["urole"].ToString();
+                #region only general director
+                if (role == "GeneralDirector")
                 {
-                    li_attendanceReport.Visible = false;
-                    li_workShifts.Visible = false;
-                    li_addTrainings.Visible = false;
+                    li_resignations.Visible = true;
+                    li_employeeDismissal.Visible = true;
                 }
                 else
                 {
-                    li_attendanceReport.Visible = true;
-                    li_workShifts.Visible = true;
-                    li_addTrainings.Visible = true;
+                    li_resignations.Visible = false;
+                    li_employeeDismissal.Visible = false;
                 }
-
-                if (role == "GeneralDirector" || role == "CEO" || role == "Advisor")
-                {
-                    li_userAccounts.Visible = true;
-                }
-                else
-                {
-                    li_userAccounts.Visible = false;
-
-                }
-            }
-            else
-            {
-                li_basicInformation.Visible = false;
-                li_attendanceReport.Visible = false;
-                li_workShifts.Visible = false;
-                li_addTrainings.Visible = false;
-                li_userAccounts.Visible = false;
-            }
-
-            if (role == "GeneralDirector" || role == "CEO" || role == "HRManager"
-                || role == "ManagementManager" || role == "Supervisor")
-            {
-
-                li_vacationReport.Visible = true;
-                li_employeesList.Visible = true;
-                if (role == "HRManager")
-                {
-                    li_eventsApprove.Visible = false;
-                }
-                else
-                {
-                    li_eventsApprove.Visible = true;
-
-                }
-            }
-            else if (role == "Advisor")
-            {
-                li_employeesInfo.Visible = false;
-                li_expiredExports.Visible = false;
-                li_newEmployee.Visible = true;
-                li_permissions.Visible = true;
-            }
-            else
-            {
-                li_vacationReport.Visible = false;
-                li_eventsApprove.Visible = false;
-                li_employeesList.Visible = false;
-                li_permissions.Visible = false;
-            }
-
-            #region view links according to special permissions
-            if (role != "GeneralDirector")
-            {
-                List<UsersPermissionModel> permissions = Session["UserPermissions"] as List<UsersPermissionModel>;
-
-                #region employees
-                bool employeeSection = false;
-
-                var employees = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_employeesinfo").FirstOrDefault();
-                if(employees != null && employees.ViewObject == true)
-                {
-                    li_employeesInfo.Visible = true;
-                    employeeSection = true;
-                }
-                else
-                    li_employeesInfo.Visible = false;
-
-                var newEmployee = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_newemployee").FirstOrDefault();
-                if(newEmployee != null && newEmployee.ViewObject == true)
-                {
-                    li_newEmployee.Visible = true;
-                    employeeSection = true;
-                }
-                else
-                    li_newEmployee.Visible = false;
-
-                var expiredPassport = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_expiredexports").FirstOrDefault();
-                if(expiredPassport != null && expiredPassport.ViewObject == true)
-                {
-                    li_expiredExports.Visible = true;
-                    employeeSection = true;
-                }
-                else
-                    li_expiredExports.Visible = false;
-
-                if (!employeeSection)
-                    li_employeesList.Visible = false;
-                else
-                    li_employeesList.Visible = true;
                 #endregion
-
-                #region executiveProcedures
-                bool executiveProcedures = false;
-
-                var custodies = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_custodies").FirstOrDefault();
-                if(custodies != null && custodies.ViewObject == true)
-                {
-                    li_custodies.Visible = true;
-                    executiveProcedures = true;
-                }
-                else
-                    li_custodies.Visible = false;
-
-                var eventsApprove = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_eventsapprove").FirstOrDefault();
-                if(eventsApprove != null && eventsApprove.ViewObject == true)
-                {
-                    li_eventsApprove.Visible = true;
-                    executiveProcedures = true;
-                }
-                else
-                    li_eventsApprove.Visible = false;
-
-                var addTrainings = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_addtrainings").FirstOrDefault();
-                if(addTrainings != null && addTrainings.ViewObject == true)
-                {
-                    li_addTrainings.Visible = true;
-                    executiveProcedures = true;
-                }
-                else
-                    li_addTrainings.Visible = false;
-
-                var penalties = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_rewardspenalties").FirstOrDefault();
-                if(penalties != null && penalties.ViewObject == true)
+                if (role == "GeneralDirector" || role == "CEO")
                 {
                     li_rewardsPenalties.Visible = true;
-                    executiveProcedures = true;
+                    li_permissions.Visible = true;
                 }
                 else
+                {
                     li_rewardsPenalties.Visible = false;
+                    li_permissions.Visible = false;
 
-                 var evaluation = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_staffevaluation").FirstOrDefault();
-                if(evaluation != null && evaluation.ViewObject == true)
-                {
-                    li_staffEvaluation.Visible = true;
-                    executiveProcedures = true;
                 }
-                else
-                    li_staffEvaluation.Visible = false;
 
-                var charity = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_charity").FirstOrDefault();
-                if(charity != null && charity.ViewObject == true)
+
+                if (role == "GeneralDirector" || role == "CEO" || role == "HRManager" || role == "Advisor")
                 {
-                    li_charity.Visible = true;
-                    executiveProcedures = true;
-                }
-                else
-                    li_charity.Visible = false;
-
-                if (!executiveProcedures)
-                    li_executiveProcedures.Visible = false;
-                else
-                    li_executiveProcedures.Visible = true;
-                #endregion
-
-                #region attendanceAndVacations
-                bool attendanceAndVacations = false;
-
-                var hourlyBills = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_hourlybills").FirstOrDefault();
-                if(hourlyBills != null && hourlyBills.ViewObject == true)
-                {
-                    li_hourlyBills.Visible = true;
-                    attendanceAndVacations = true;
-                }
-                else
-                    li_hourlyBills.Visible = false;
-
-                var scheduleVacation = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_schedulevacation").FirstOrDefault();
-                if(scheduleVacation != null && scheduleVacation.ViewObject == true)
-                {
-                    li_scheduleVacation.Visible = true;
-                    attendanceAndVacations = true;
-                }
-                else
-                    li_scheduleVacation.Visible = false;
-
-                var vacationReport = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_vacationreport").FirstOrDefault();
-                if(vacationReport != null && vacationReport.ViewObject == true)
-                {
-                    li_vacationReport.Visible = true;
-                    attendanceAndVacations = true;
-                }
-                else
-                    li_vacationReport.Visible = false;
-
-                var workShifts = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_workshifts").FirstOrDefault();
-                if(workShifts != null && workShifts.ViewObject == true)
-                {
-                    li_workShifts.Visible = true;
-                    attendanceAndVacations = true;
-                }
-                else
-                    li_workShifts.Visible = false;
-
-                 var attendanceReport = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_attendancereport").FirstOrDefault();
-                if(attendanceReport != null && attendanceReport.ViewObject == true)
-                {
-                    li_attendanceReport.Visible = true;
-                    attendanceAndVacations = true;
-                }
-                else
-                    li_attendanceReport.Visible = false;
-
-                if (!attendanceAndVacations)
-                    li_attendanceAndVacations.Visible = false;
-                else
-                    li_attendanceAndVacations.Visible = true;
-                #endregion
-                    
-                #region settings
-                bool settings = false;
-
-                var companyInfo = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_companyinfo").FirstOrDefault();
-                if(companyInfo != null && companyInfo.ViewObject == true)
-                {
-                    li_companyInfo.Visible = true;
-                    settings = true;
-                }
-                else
-                    li_companyInfo.Visible = false;
-
-                var companyList = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_companylist").FirstOrDefault();
-                if(companyList != null && companyList.ViewObject == true)
-                {
-                    li_companyList.Visible = true;
-                    settings = true;
-                }
-                else
-                    li_companyList.Visible = false;
-
-                var branches = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_branches").FirstOrDefault();
-                if(branches != null && branches.ViewObject == true)
-                {
-                    li_branches.Visible = true;
-                    settings = true;
-                }
-                else
-                    li_branches.Visible = false;
-
-                var managements = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_managements").FirstOrDefault();
-                if(managements != null && managements.ViewObject == true)
-                {
-                    li_managements.Visible = true;
-                    settings = true;
-                }
-                else
-                    li_managements.Visible = false;
-
-                 var departments = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_departments").FirstOrDefault();
-                if(departments != null && departments.ViewObject == true)
-                {
-                    li_departments.Visible = true;
-                    settings = true;
-                }
-                else
-                    li_departments.Visible = false;
-
-                var jobsTitle = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_jobstitle").FirstOrDefault();
-                if(jobsTitle != null && jobsTitle.ViewObject == true)
-                {
-                    li_jobsTitle.Visible = true;
-                    settings = true;
-                }
-                else
-                    li_jobsTitle.Visible = false;
-
-                var vaccationTypes = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_vaccationtypes").FirstOrDefault();
-                if(vaccationTypes != null && vaccationTypes.ViewObject == true)
-                {
-                    li_vaccationTypes.Visible = true;
-                    settings = true;
-                }
-                else
-                    li_vaccationTypes.Visible = false;
-
-                var devices = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_devices").FirstOrDefault();
-                if(devices != null && devices.ViewObject == true)
-                {
-                    li_devices.Visible = true;
-                    settings = true;
-                }
-                else
-                    li_devices.Visible = false;
-
-                if (!settings)
-                    li_basicInformation.Visible = false;
-                else
                     li_basicInformation.Visible = true;
+
+                    if (role == "Advisor")
+                    {
+                        li_attendanceReport.Visible = false;
+                        li_workShifts.Visible = false;
+                        li_addTrainings.Visible = false;
+                    }
+                    else
+                    {
+                        li_attendanceReport.Visible = true;
+                        li_workShifts.Visible = true;
+                        li_addTrainings.Visible = true;
+                    }
+
+                    if (role == "GeneralDirector" || role == "CEO" || role == "Advisor")
+                    {
+                        li_userAccounts.Visible = true;
+                    }
+                    else
+                    {
+                        li_userAccounts.Visible = false;
+
+                    }
+                }
+                else
+                {
+                    li_basicInformation.Visible = false;
+                    li_attendanceReport.Visible = false;
+                    li_workShifts.Visible = false;
+                    li_addTrainings.Visible = false;
+                    li_userAccounts.Visible = false;
+                }
+
+                if (role == "GeneralDirector" || role == "CEO" || role == "HRManager"
+                    || role == "ManagementManager" || role == "Supervisor")
+                {
+
+                    li_vacationReport.Visible = true;
+                    li_employeesList.Visible = true;
+                    if (role == "HRManager")
+                    {
+                        li_eventsApprove.Visible = false;
+                    }
+                    else
+                    {
+                        li_eventsApprove.Visible = true;
+
+                    }
+                }
+                else if (role == "Advisor")
+                {
+                    li_employeesInfo.Visible = false;
+                    li_expiredExports.Visible = false;
+                    li_newEmployee.Visible = true;
+                    li_permissions.Visible = true;
+                }
+                else
+                {
+                    li_vacationReport.Visible = false;
+                    li_eventsApprove.Visible = false;
+                    li_employeesList.Visible = false;
+                    li_permissions.Visible = false;
+                }
+
+                #region view links according to special permissions
+                if (role != "GeneralDirector")
+                {
+                    List<UsersPermissionModel> permissions = Session["UserPermissions"] as List<UsersPermissionModel>;
+
+                    #region employees
+                    bool employeeSection = false;
+
+                    var employees = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_employeesinfo").FirstOrDefault();
+                    if (employees != null && employees.ViewObject == true)
+                    {
+                        li_employeesInfo.Visible = true;
+                        employeeSection = true;
+                    }
+                    else
+                        li_employeesInfo.Visible = false;
+
+                    var newEmployee = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_newemployee").FirstOrDefault();
+                    if (newEmployee != null && newEmployee.ViewObject == true)
+                    {
+                        li_newEmployee.Visible = true;
+                        employeeSection = true;
+                    }
+                    else
+                        li_newEmployee.Visible = false;
+
+                    var expiredPassport = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_expiredexports").FirstOrDefault();
+                    if (expiredPassport != null && expiredPassport.ViewObject == true)
+                    {
+                        li_expiredExports.Visible = true;
+                        employeeSection = true;
+                    }
+                    else
+                        li_expiredExports.Visible = false;
+
+                    if (!employeeSection)
+                        li_employeesList.Visible = false;
+                    else
+                        li_employeesList.Visible = true;
+                    #endregion
+
+                    #region executiveProcedures
+                    bool executiveProcedures = false;
+
+                    var custodies = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_custodies").FirstOrDefault();
+                    if (custodies != null && custodies.ViewObject == true)
+                    {
+                        li_custodies.Visible = true;
+                        executiveProcedures = true;
+                    }
+                    else
+                        li_custodies.Visible = false;
+
+                    var eventsApprove = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_eventsapprove").FirstOrDefault();
+                    if (eventsApprove != null && eventsApprove.ViewObject == true)
+                    {
+                        li_eventsApprove.Visible = true;
+                        executiveProcedures = true;
+                    }
+                    else
+                        li_eventsApprove.Visible = false;
+
+                    var addTrainings = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_addtrainings").FirstOrDefault();
+                    if (addTrainings != null && addTrainings.ViewObject == true)
+                    {
+                        li_addTrainings.Visible = true;
+                        executiveProcedures = true;
+                    }
+                    else
+                        li_addTrainings.Visible = false;
+
+                    var penalties = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_rewardspenalties").FirstOrDefault();
+                    if (penalties != null && penalties.ViewObject == true)
+                    {
+                        li_rewardsPenalties.Visible = true;
+                        executiveProcedures = true;
+                    }
+                    else
+                        li_rewardsPenalties.Visible = false;
+
+                    var evaluation = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_staffevaluation").FirstOrDefault();
+                    if (evaluation != null && evaluation.ViewObject == true)
+                    {
+                        li_staffEvaluation.Visible = true;
+                        executiveProcedures = true;
+                    }
+                    else
+                        li_staffEvaluation.Visible = false;
+
+                    var charity = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_charity").FirstOrDefault();
+                    if (charity != null && charity.ViewObject == true)
+                    {
+                        li_charity.Visible = true;
+                        executiveProcedures = true;
+                    }
+                    else
+                        li_charity.Visible = false;
+
+                    if (!executiveProcedures)
+                        li_executiveProcedures.Visible = false;
+                    else
+                        li_executiveProcedures.Visible = true;
+                    #endregion
+
+                    #region attendanceAndVacations
+                    bool attendanceAndVacations = false;
+
+                    var hourlyBills = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_hourlybills").FirstOrDefault();
+                    if (hourlyBills != null && hourlyBills.ViewObject == true)
+                    {
+                        li_hourlyBills.Visible = true;
+                        attendanceAndVacations = true;
+                    }
+                    else
+                        li_hourlyBills.Visible = false;
+
+                    var scheduleVacation = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_schedulevacation").FirstOrDefault();
+                    if (scheduleVacation != null && scheduleVacation.ViewObject == true)
+                    {
+                        li_scheduleVacation.Visible = true;
+                        attendanceAndVacations = true;
+                    }
+                    else
+                        li_scheduleVacation.Visible = false;
+
+                    var vacationReport = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_vacationreport").FirstOrDefault();
+                    if (vacationReport != null && vacationReport.ViewObject == true)
+                    {
+                        li_vacationReport.Visible = true;
+                        attendanceAndVacations = true;
+                    }
+                    else
+                        li_vacationReport.Visible = false;
+
+                    var workShifts = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_workshifts").FirstOrDefault();
+                    if (workShifts != null && workShifts.ViewObject == true)
+                    {
+                        li_workShifts.Visible = true;
+                        attendanceAndVacations = true;
+                    }
+                    else
+                        li_workShifts.Visible = false;
+
+                    var attendanceReport = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_attendancereport").FirstOrDefault();
+                    if (attendanceReport != null && attendanceReport.ViewObject == true)
+                    {
+                        li_attendanceReport.Visible = true;
+                        attendanceAndVacations = true;
+                    }
+                    else
+                        li_attendanceReport.Visible = false;
+
+                    //if (!attendanceAndVacations)
+                    //    li_attendanceAndVacations.Visible = false;
+                    //else
+                    //    li_attendanceAndVacations.Visible = true;
+                    #endregion
+
+                    #region settings
+                    bool settings = false;
+
+                    var companyInfo = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_companyinfo").FirstOrDefault();
+                    if (companyInfo != null && companyInfo.ViewObject == true)
+                    {
+                        li_companyInfo.Visible = true;
+                        settings = true;
+                    }
+                    else
+                        li_companyInfo.Visible = false;
+
+                    var companyList = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_companylist").FirstOrDefault();
+                    if (companyList != null && companyList.ViewObject == true)
+                    {
+                        li_companyList.Visible = true;
+                        settings = true;
+                    }
+                    else
+                        li_companyList.Visible = false;
+
+                    var branches = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_branches").FirstOrDefault();
+                    if (branches != null && branches.ViewObject == true)
+                    {
+                        li_branches.Visible = true;
+                        settings = true;
+                    }
+                    else
+                        li_branches.Visible = false;
+
+                    var managements = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_managements").FirstOrDefault();
+                    if (managements != null && managements.ViewObject == true)
+                    {
+                        li_managements.Visible = true;
+                        settings = true;
+                    }
+                    else
+                        li_managements.Visible = false;
+
+                    var departments = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_departments").FirstOrDefault();
+                    if (departments != null && departments.ViewObject == true)
+                    {
+                        li_departments.Visible = true;
+                        settings = true;
+                    }
+                    else
+                        li_departments.Visible = false;
+
+                    var jobsTitle = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_jobstitle").FirstOrDefault();
+                    if (jobsTitle != null && jobsTitle.ViewObject == true)
+                    {
+                        li_jobsTitle.Visible = true;
+                        settings = true;
+                    }
+                    else
+                        li_jobsTitle.Visible = false;
+
+                    var vaccationTypes = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_vaccationtypes").FirstOrDefault();
+                    if (vaccationTypes != null && vaccationTypes.ViewObject == true)
+                    {
+                        li_vaccationTypes.Visible = true;
+                        settings = true;
+                    }
+                    else
+                        li_vaccationTypes.Visible = false;
+
+                    var devices = permissions.Where(x => x.LiElementName.Trim().ToLower() == "li_devices").FirstOrDefault();
+                    if (devices != null && devices.ViewObject == true)
+                    {
+                        li_devices.Visible = true;
+                        settings = true;
+                    }
+                    else
+                        li_devices.Visible = false;
+
+                    if (!settings)
+                        li_basicInformation.Visible = false;
+                    else
+                        li_basicInformation.Visible = true;
+                    #endregion
+
+
+                }
                 #endregion
-
-                
             }
-            #endregion
-
         }
 
         protected void UpdateTimer_Tick(object sender, EventArgs e)
         {
+            if (Session["user_id"] == null)
+            {
+                Response.Redirect("~/login.aspx");
+            }
+
             long userId = long.Parse(Session["user_id"].ToString());
 
             Message msg = new Message();
@@ -494,6 +514,24 @@ namespace Human_Resource
                 div_vacationsCount.InnerHtml = "9+";
             else
                 div_vacationsCount.InnerHtml = vacationCount.ToString();
+            #endregion
+
+            #region resignation count notification
+            if (role == "GeneralDirector")
+            {
+                ResignationModel resignation = new ResignationModel();
+               int resCount = resignation.GetResignationCount();
+
+                if (resCount == 0)
+                {
+                    div_resignationsCount.Visible = false;
+                }
+                else if (resCount > 9)
+                    div_resignationsCount.InnerHtml = "9+";
+                else
+                    div_resignationsCount.InnerHtml = resCount.ToString();
+                
+            }
             #endregion
 
         }

@@ -51,7 +51,11 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
-        <asp:Timer runat="server" id="UpdateTimer" interval="120000" ontick="UpdateTimer_Tick" />
+        <asp:UpdatePanel ID="UpdatePanel4" runat="server">
+            <ContentTemplate>
+                <asp:Timer runat="server" id="UpdateTimer" interval="120000" ontick="UpdateTimer_Tick" />
+            </ContentTemplate>
+        </asp:UpdatePanel>
 
         <div class="menu-bg"></div>
         <nav class="navbar navbar-dark">
@@ -120,6 +124,17 @@
                 <li runat="server" id="li_expiredExports">
                     <a href="/Views/Employees/ExpiredPassports.aspx"> 
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,ExpiredPassports%>" />
+                    </a>
+                </li>  
+                <li runat="server" id="li_resignations">
+                    <a href="/Views/Employees/Resignations.aspx" class="" style="display:inline-flex"> 
+                        <asp:Literal runat="server" Text="<%$ Resources:Labels,Resignations%>" />
+                    </a>
+                     <div class="menuNotifications" id="div_resignationsCount" runat="server">0</div>
+                </li> 
+                <li runat="server" id="li_employeeDismissal">
+                    <a href="/Views/Employees/EmployeeDismissal.aspx"> 
+                        <asp:Literal runat="server" Text="<%$ Resources:Labels,EmployeeDismissal%>" />
                     </a>
                 </li> 
             </ul> 
@@ -272,6 +287,11 @@
                 <li runat="server" id="li_attendanceReport">
                     <a href="/Views/Attendance/AttendanceReport.aspx" class="">
                         <asp:Literal runat="server" Text="<%$ Resources:Labels,AttendanceReport%>" />
+                    </a>
+                </li>
+               <li runat="server" id="li_resignationRequest">
+                    <a href="/Views/Employees/ResignationRequest.aspx" class="">
+                        <asp:Literal runat="server" Text="<%$ Resources:Labels,ResignationRequest%>" />
                     </a>
                 </li>
                

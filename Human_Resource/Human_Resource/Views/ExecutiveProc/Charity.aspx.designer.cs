@@ -22,6 +22,24 @@ namespace Human_Resource.Views.ExecutiveProc {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txt_search;
         
         /// <summary>
+        /// dp_fromSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox dp_fromSearch;
+        
+        /// <summary>
+        /// dp_toSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox dp_toSearch;
+        
+        /// <summary>
         /// ButtonSearch control.
         /// </summary>
         /// <remarks>
@@ -49,13 +67,31 @@ namespace Human_Resource.Views.ExecutiveProc {
         protected global::System.Web.UI.WebControls.GridView gv_data;
         
         /// <summary>
-        /// emp control.
+        /// file control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect emp;
+        protected global::System.Web.UI.WebControls.FileUpload file;
+        
+        /// <summary>
+        /// lbl_attach control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor lbl_attach;
+        
+        /// <summary>
+        /// sel_emp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect sel_emp;
         
         /// <summary>
         /// hid_charityId control.
@@ -74,6 +110,15 @@ namespace Human_Resource.Views.ExecutiveProc {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText txt_reason;
+        
+        /// <summary>
+        /// dp_charityDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox dp_charityDate;
         
         /// <summary>
         /// txt_amount control.
@@ -103,12 +148,21 @@ namespace Human_Resource.Views.ExecutiveProc {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txt_details;
         
         /// <summary>
+        /// hdnButtonID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnButtonID;
+        
+        /// <summary>
         /// btn_ads control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btn_ads;
+        protected global::System.Web.UI.WebControls.Button btn_ads;
     }
 }

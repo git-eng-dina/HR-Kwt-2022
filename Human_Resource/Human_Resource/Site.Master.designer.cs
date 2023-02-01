@@ -22,6 +22,15 @@ namespace Human_Resource {
         protected global::System.Web.UI.HtmlControls.HtmlForm base_form;
         
         /// <summary>
+        /// UpdatePanel4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel4;
+        
+        /// <summary>
         /// UpdateTimer control.
         /// </summary>
         /// <remarks>
@@ -128,6 +137,33 @@ namespace Human_Resource {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl li_expiredExports;
+        
+        /// <summary>
+        /// li_resignations control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl li_resignations;
+        
+        /// <summary>
+        /// div_resignationsCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_resignationsCount;
+        
+        /// <summary>
+        /// li_employeeDismissal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl li_employeeDismissal;
         
         /// <summary>
         /// li_executiveProcedures control.
@@ -254,6 +290,15 @@ namespace Human_Resource {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl li_attendanceReport;
+        
+        /// <summary>
+        /// li_resignationRequest control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl li_resignationRequest;
         
         /// <summary>
         /// li_basicInformation control.

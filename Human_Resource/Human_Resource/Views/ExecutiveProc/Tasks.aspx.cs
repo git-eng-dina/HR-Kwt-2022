@@ -394,58 +394,57 @@ namespace Human_Resource.Views.ExecutiveProc
 
             //try
             {
-              if (!IsPostBack)
+
+                TaskModel taskObj = new TaskModel();
+                Attachment attach = new Attachment();
+                int taskId = 0;
+                if (hid_taskId.Value != "")
+                    taskId = int.Parse(hid_taskId.Value);
+                if (taskId != 0)
                 {
-                    TaskModel taskObj = new TaskModel();
-                    Attachment attach = new Attachment();
-                    int taskId = 0;
-                    if (hid_taskId.Value != "")
-                        taskId = int.Parse(hid_taskId.Value);
-                    if (taskId != 0)
+                    attach.DeleteTaskAttach(taskId);
+                    taskObj.TaskID = taskId;
+                }
+                else
+                    taskObj.TaskID = 0;
+
+                taskObj.RepeatedEvery = sel_repeatedEvery.Value;
+                taskObj.Name = txt_name.Value;
+                taskObj.Description = txt_description.Value;
+                // taskObj.Attachment =
+
+                taskObj.StartDate = DateTime.ParseExact(dp_start.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                if (dp_end.Text != "")
+                    taskObj.EndDate = DateTime.ParseExact(dp_end.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                if (HttpContext.Current.Session["user_id"] != null && HttpContext.Current.Session["user_id"].ToString() != "")
+                    taskObj.CreateUserID = taskObj.UpdateUserID = taskObj.EmployeeID = int.Parse(HttpContext.Current.Session["user_id"].ToString());
+
+
+                long taskIdInt = taskObj.SaveTask(taskObj, hdn_empIds.Value);
+                if (taskIdInt != 0)
+                {
+
+                    if (file.FileName != "")
                     {
-                        attach.DeleteTaskAttach(taskId);
-                        taskObj.TaskID = taskId;
-                    }
-                    else
-                        taskObj.TaskID = 0;
+                        //folder path to save uploaded file
+                        string folderPath = Server.MapPath(HelpClass.TaskUpload);
 
-                    taskObj.RepeatedEvery = sel_repeatedEvery.Value;
-                    taskObj.Name = txt_name.Value;
-                    taskObj.Description = txt_description.Value;
-                    // taskObj.Attachment =
-
-                    taskObj.StartDate = DateTime.ParseExact(dp_start.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-                    if (dp_end.Text != "")
-                        taskObj.EndDate = DateTime.ParseExact(dp_end.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-                    if (HttpContext.Current.Session["user_id"] != null && HttpContext.Current.Session["user_id"].ToString() != "")
-                        taskObj.CreateUserID = taskObj.UpdateUserID = taskObj.EmployeeID = int.Parse(HttpContext.Current.Session["user_id"].ToString());
-
-
-                    long taskIdInt = taskObj.SaveTask(taskObj, hdn_empIds.Value);
-                    if (taskIdInt != 0)
-                    {
-
-                        if (file.FileName != "")
+                        //Check whether Directory (Folder) exists, although we have created, if it si not created this code will check
+                        if (!Directory.Exists(folderPath))
                         {
-                            //folder path to save uploaded file
-                            string folderPath = Server.MapPath(HelpClass.TaskUpload);
-
-                            //Check whether Directory (Folder) exists, although we have created, if it si not created this code will check
-                            if (!Directory.Exists(folderPath))
-                            {
-                                //If folder does not exists. Create it.
-                                Directory.CreateDirectory(folderPath);
-                            }
-                            string extension = Path.GetExtension(file.FileName);
-                            string newFileName = HelpClass.MD5Hash(taskId.ToString()) + "-task" + extension;
-                            string filePath = Path.Combine(HostingEnvironment.MapPath(HelpClass.TaskUpload), newFileName);
-                            file.SaveAs(filePath);
-                            UploadFile(newFileName, Path.GetFileNameWithoutExtension(file.FileName), taskIdInt);
+                            //If folder does not exists. Create it.
+                            Directory.CreateDirectory(folderPath);
                         }
-
+                        string extension = Path.GetExtension(file.FileName);
+                        string newFileName = HelpClass.MD5Hash(taskId.ToString()) + "-task" + extension;
+                        string filePath = Path.Combine(HostingEnvironment.MapPath(HelpClass.TaskUpload), newFileName);
+                        file.SaveAs(filePath);
+                        UploadFile(newFileName, Path.GetFileNameWithoutExtension(file.FileName), taskIdInt);
                     }
+
                 }
 
+                Response.Redirect("Tasks.aspx");
             }
 
         }

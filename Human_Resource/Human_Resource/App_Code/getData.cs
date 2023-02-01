@@ -23,10 +23,10 @@ namespace Human_Resource.App_Code
         static IEnumerable<KeyValueString> getMaritalStatusList()
         {
              maritalStatusList = new List<KeyValueString> {
-                   new KeyValueString { key = "Soltero"       , value = Resources.Labels.Soltero  },
-                   new KeyValueString { key =   "Casado", value = Resources.Labels.Casado },
-                   new KeyValueString { key =   "Absoluto", value = Resources.Labels.Absoluto },
-                   new KeyValueString { key =   "Viudo", value = Resources.Labels.Viudo },
+                   new KeyValueString { key = "Single"       , value = Resources.Labels.Single  },
+                   new KeyValueString { key =   "Married", value = Resources.Labels.Married },
+                   new KeyValueString { key =   "Absolute", value = Resources.Labels.Absoluto },
+                   new KeyValueString { key =   "Widower", value = Resources.Labels.Widower },
                     };
 
             return maritalStatusList;

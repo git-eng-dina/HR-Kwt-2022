@@ -98,7 +98,8 @@ namespace Human_Resource.Views.Attendance
             this.vac.DataValueField = "VacationID";
             this.vac.DataTextField = "Name";
 
-            if (role != "GeneralDirector")
+
+            if (role != "GeneralDirector" && userId != 1)
             {
                 List<UsersPermissionModel> permissions = Session["UserPermissions"] as List<UsersPermissionModel>;
                 var employeesPermissions = permissions.Where(x => x.LiElementName.Trim().ToLower() == linkName).FirstOrDefault();

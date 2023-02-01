@@ -84,7 +84,7 @@
                         var item = data[prop];
 
                         $('[id*=txt_empName]').text(item.NameAr);
-                        $('[id*=txt_position]').val(item.Position);
+                        $('[id*=txt_position]').text(item.Position);
 
                         var img = document.querySelector("[id*=img_emp]");
                         if (item.Image != null) {

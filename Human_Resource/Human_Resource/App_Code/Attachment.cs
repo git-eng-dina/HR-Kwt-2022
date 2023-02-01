@@ -15,7 +15,8 @@ namespace Human_Resource.App_Code
         public Nullable<long> EmployeeID { get; set; }
         public Nullable<long> TaskID { get; set; }
         public Nullable<long> EventID { get; set; }
-        public Nullable<int> MessageID { get; set; }
+        public Nullable<long> MessageID { get; set; }
+        public Nullable<long> CharityID { get; set; }
         #endregion
 
         #region Methods
@@ -37,6 +38,7 @@ namespace Human_Resource.App_Code
                             TaskID = attach.TaskID,
                             MessageID = attach.MessageID,
                             EventID = attach.EventID,
+                            CharityID = attach.CharityID,
                             
                         };
                         img = entity.Images.Add(img);
@@ -83,6 +85,16 @@ namespace Human_Resource.App_Code
             using (HRSystemEntities entity = new HRSystemEntities())
             {
                 var attach = entity.Images.Where(x => x.EventID == eventId && x.MessageID == null).ToList();
+                entity.Images.RemoveRange(attach);
+                entity.SaveChanges();
+            }
+        }
+
+        public void DeleteCharityAttach(long charityID)
+        {
+            using (HRSystemEntities entity = new HRSystemEntities())
+            {
+                var attach = entity.Images.Where(x => x.CharityID == charityID && x.MessageID == null).ToList();
                 entity.Images.RemoveRange(attach);
                 entity.SaveChanges();
             }

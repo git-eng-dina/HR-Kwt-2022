@@ -20,6 +20,7 @@ namespace Human_Resource.App_Code
         public static string WorkContract= "~/Upload/WorkContract/";
         public static string TaskUpload="~/Upload/Tasks/";
         public static string EventUpload="~/Upload/Events/";
+        public static string CharityUpload="~/Upload/Charities/";
         public static string MD5Hash(string text)
         {
             MD5 md5 = new MD5CryptoServiceProvider();
@@ -50,7 +51,11 @@ namespace Human_Resource.App_Code
         public static int get_age(DateTime dob)
         {
             int age = 0;
-            age = DateTime.Now.AddYears(-dob.Year).Year;
+            try
+            {
+                age = DateTime.Now.AddYears(-dob.Year).Year;
+            }
+            catch { }
             return age;
         }
 

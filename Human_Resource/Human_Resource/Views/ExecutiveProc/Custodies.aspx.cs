@@ -21,9 +21,23 @@ namespace Human_Resource.Views.ExecutiveProc
             }
             if (!IsPostBack)
             {
-                var role = Session["urole"].ToString();
-                if (role != "GeneralDirector" && role != "CEO")
-                    btn_new.Visible = false;
+                long userId = long.Parse(Session["user_id"].ToString());
+
+               var role = Session["urole"].ToString();
+                if (role != "GeneralDirector" && userId != 1)
+                {
+                    List<UsersPermissionModel> permissions = Session["UserPermissions"] as List<UsersPermissionModel>;
+                    var employeesPermissions = permissions.Where(x => x.LiElementName.Trim().ToLower() == linkName).FirstOrDefault();
+
+                    if (employeesPermissions != null && employeesPermissions.EditObject == true)
+                    {
+                        btn_new.Visible = true;
+                    }
+                    else
+                    {
+                        btn_new.Visible = false;
+                    }
+                }
 
                 BindData();
                 btn_new.Attributes.Add("OnClick", "ShowDialog('');");
@@ -68,8 +82,10 @@ namespace Human_Resource.Views.ExecutiveProc
             else
                 emp.DataTextField = "NameAr";
 
-            string role = Session["urole"].ToString();
-            if (role != "GeneralDirector")
+            long userId = long.Parse(Session["user_id"].ToString());
+
+            var role = Session["urole"].ToString();
+            if (role != "GeneralDirector" && userId != 1)
             {
                 List<UsersPermissionModel> permissions = Session["UserPermissions"] as List<UsersPermissionModel>;
                 var employeesPermissions = permissions.Where(x => x.LiElementName.Trim().ToLower() == linkName).FirstOrDefault();
@@ -90,8 +106,10 @@ namespace Human_Resource.Views.ExecutiveProc
         {
             try
             {
-                string role = Session["urole"].ToString();
-                if (role != "GeneralDirector")
+                long userId = long.Parse(Session["user_id"].ToString());
+
+                 string role = Session["urole"].ToString();
+                if (role != "GeneralDirector" && role != "CEO" && userId != 1)
                 {
                     if (e.Row.RowType == DataControlRowType.DataRow)
                     {

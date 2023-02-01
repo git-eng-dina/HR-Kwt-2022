@@ -273,7 +273,8 @@ namespace Human_Resource.Views.Employees
                 #endregion
 
                 #region work details
-                employee.JobID =int.Parse( sel_position.Value);
+                if(sel_position.Value != "")
+                    employee.JobID =int.Parse( sel_position.Value);
                 if(sel_management.Value != "" && int.Parse(sel_management.Value) != 0)
                     employee.ManagementID = int.Parse(sel_management.Value);
                 if(sel_department.Value != "" && sel_department.Value != "0")
@@ -349,7 +350,7 @@ namespace Human_Resource.Views.Employees
                 #endregion
 
                 HelpClass.ShowMessage(this.Page, Resources.Labels.SaveSuccessfully);
-                //Response.Redirect("NewEmployee.aspx?uid="+ hid_emp_id.Value);
+                Response.Redirect("NewEmployee.aspx?uid="+ hid_emp_id.Value);
             }
             //catch { }
         }

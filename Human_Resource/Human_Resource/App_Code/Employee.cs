@@ -133,7 +133,7 @@ namespace Human_Resource
 
         public string Username { get; set; }
         public string Password { get; set; }
-        public Nullable<int> VacationsBalance { get; set; }
+        public int VacationsBalance { get; set; }
         public Nullable<bool> WarningPeriod { get; set; }
         public string NameAr { get; set; }
         public string NameEn { get; set; }
@@ -187,7 +187,7 @@ namespace Human_Resource
         public Nullable<long> CreateUserID { get; set; }
         public Nullable<long> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
-        public Nullable<decimal> BasicSalary { get; set; }
+        public decimal BasicSalary { get; set; }
         public string TransportationCompensationType { get; set; }
         public string HousingCompensationType { get; set; }
         public Nullable<System.DateTime> ResidenceDate { get; set; }
@@ -219,11 +219,16 @@ namespace Human_Resource
         #region employee methods
 
         #region account methods
-        public employees GetUser(string userName, string password)
+        public EmployeeModel GetUser(string userName, string password)
         {
             using (HRSystemEntities entity = new HRSystemEntities())
             {
-                var user = entity.employees.Where(x => x.Username == userName && x.Password == password && x.IsActive == true).FirstOrDefault();
+                var user = entity.employees.Where(x => x.Username == userName && x.Password == password && x.IsActive == true)
+                    .Select(x => new EmployeeModel() {
+                    EmployeeID = x.EmployeeID,
+                    NameAr = x.NameAr,
+                    NameEn = x.NameEn,
+                     Image= x.Image }).FirstOrDefault();
                 return user;
             }
         }
@@ -349,6 +354,7 @@ namespace Human_Resource
                         DepartmentID = x.DepartmentID,
                         WorkHours = x.WorkHours,
                         BasicSalary = x.BasicSalary,
+                        HiringDate=x.HiringDate,
                         Email = x.Email,
                         VacationsBalance = x.VacationsBalance,
                         Guarantor = x.Guarantor,
@@ -422,7 +428,7 @@ namespace Human_Resource
                 foreach (var emp in user)
                 {
                     if(emp.DOB != null)
-                        emp.Age = HelpClass.get_age((DateTime)emp.DOB);
+                        emp.Age = HelpClass.get_age((DateTime)emp.DOB.Value);
                 }
                 return user;
             }

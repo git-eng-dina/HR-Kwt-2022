@@ -339,7 +339,7 @@
                                         <img src="../../images/no-image-icon-125x125.png" id="img_Emp" name="img_Emp" class="rounded mx-auto text-center" runat="server">
                                         </div>
                                         <div >
-                                          <asp:FileUpload ID="file_image" runat="server" class="hidden" accept=".png, .jpej, .jpj"/>
+                                          <asp:FileUpload ID="file_image" runat="server" class="hidden" accept=".png, .jpeg, .jpg, .jfif"/>
                                             <button type="button" runat="server"  ID="uploadImageBtn" class="btn-upload" >
                                            <asp:Literal  runat="server" Text="<%$ Resources:Labels,Upload%>" />
 
@@ -427,7 +427,7 @@
                                      <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>                                   
                                 </div>
                            </div>
-                           <div class="form-group" style="display:block">
+                           <div class="form-group" style="display:block;height:auto">
                                 <div class="col-md-4 col-sm-4 col-xs-4 div1">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,DateTo%>" /></span>
                                 </div>
