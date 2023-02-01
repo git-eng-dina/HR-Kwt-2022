@@ -260,7 +260,7 @@
                                          </ItemTemplate>
                                    </asp:TemplateField>     
 
-                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,Edit%>" ItemStyle-Width="15%" ControlStyle-CssClass="td-edit">
+                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,Edit%>" ItemStyle-Width="5%" ControlStyle-CssClass="td-edit">
                                           <ItemTemplate>                     
                                                      <asp:LinkButton ID="LinkProducts" runat="server" myCustomID='<%# Eval("CharityID")%>'  CssClass="td-edit">
                                                          <asp:Image ImageUrl="~/Images/edit.ico" runat="server" Width="20px" Height="20px" />
@@ -268,7 +268,7 @@
                                              </ItemTemplate>
                                         </asp:TemplateField>
 
-                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,Delete%>" ItemStyle-Width="15%"  ControlStyle-CssClass="td-delete">
+                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,Delete%>" ItemStyle-Width="5%"  ControlStyle-CssClass="td-delete">
                                              <ItemTemplate>                     
                                                      <asp:ImageButton  CommandArgument='<%# Eval("CharityID")%>' OnCommand="deletedatafromgrid"
                                                             OnClientClick="return confirm(<%= Resources.Labels.ConfirmDelete %>);return false;"

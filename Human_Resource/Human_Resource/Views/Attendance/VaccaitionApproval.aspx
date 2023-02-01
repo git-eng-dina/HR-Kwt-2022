@@ -267,7 +267,7 @@
                                          </ItemTemplate>
                                         </asp:TemplateField>
                                           
-                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,Approve%>" ItemStyle-Width="15%" ControlStyle-CssClass="td-approve">
+                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,Approve%>" ItemStyle-Width="5%" ControlStyle-CssClass="td-approve">
                                           <ItemTemplate>                     
                                                      <asp:LinkButton ID="approveVac" runat="server" myCustomID='<%# Eval("EmployeesVacationID")%>'  CssClass="td-approve">
                                                          <asp:Image ImageUrl="~/images/accept_document.png" runat="server" Width="20px" Height="20px" ToolTip="<%$ Resources:Labels,Approve%>" />
@@ -329,14 +329,14 @@
                                          </ItemTemplate>
                                         </asp:TemplateField>
                                           
-                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,Edit%>" ItemStyle-Width="15%" ControlStyle-CssClass="td-edit">
+                                    <asp:TemplateField HeaderText="<%$ Resources:Labels,Edit%>" ItemStyle-Width="5%" ControlStyle-CssClass="td-edit">
                                           <ItemTemplate>                     
                                                      <asp:LinkButton ID="btnEdit" runat="server" myCustomID='<%# Eval("EmployeesVacationID")%>'  CssClass="td-edit">
                                                          <asp:Image ImageUrl="~/Images/edit.ico" runat="server" Width="20px" Height="20px" />
                                                      </asp:LinkButton>  
                                              </ItemTemplate>
                                         </asp:TemplateField>
-                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,Delete%>" ItemStyle-Width="15%"  ControlStyle-CssClass="td-delete">
+                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,Delete%>" ItemStyle-Width="5%"  ControlStyle-CssClass="td-delete">
                                              <ItemTemplate>                     
                                                      <asp:ImageButton ID="btnDelete" CommandArgument='<%# Eval("EmployeesVacationID")%>' OnCommand="deletedatafromgrid"
                                                             OnClientClick="return confirm(<%= Resources.Labels.ConfirmDelete %>);return false;"
