@@ -136,17 +136,17 @@
 
              }
              else {
-                 $('#MainContent_txt_certificate2').val("");
-                 $('#MainContent_file_certificate2').val("");
-                 $('#MainContent_lbl_certificate2').html(uploadFileText);
+                 $('[id*=txt_certificate2]').val("");
+                 $('[id*=file_certificate2]').val("");
+                 $('[id*=lbl_certificate2]').html(uploadFileText);
                  $('[id*=frm_certificate2]').hide();
              }
          }
          function addExperienceRow() {
-             if ($('#MainContent_frm_experience2').is(':visible')) {
-                 $('#MainContent_frm_experience3').show();
-                 $('#MainContent_frm-addExperience').hide();
-                 $('#MainContent_btn-deleteExperience2').hide();
+             if ($('[id*=frm_experience2]').is(':visible')) {
+                 $('[id*=frm_experience3]').show();
+                 $('[id*=frm-addExperience]').hide();
+                 $('[id*=btn-deleteExperience2]').hide();
              }
              else {
                  $('[id*=frm_experience2]').show();
@@ -156,17 +156,17 @@
 
          function deleteExperienceRow() {
 
-             if ($('#MainContent_frm_experience3').is(':visible')) {
-                  $('#MainContent_txt_experience3').val("");
-                 $('#MainContent_frm_experience3').hide();
-                 $('#MainContent_frm-addExperience').show();
-                 $('#MainContent_btn-deleteExperience2').show();
+             if ($('[id*=frm_experience3]').is(':visible')) {
+                 $('[id*=txt_experience3]').val("");
+                 $('[id*=frm_experience3]').hide();
+                 $('[id*=frm-addExperience]').show();
+                 $('[id*=btn-deleteExperience2]').show();
 
 
               }
               else {
-                  $('#MainContent_txt_experience2').val("");
-                 $('#MainContent_frm_experience2').hide();
+                  $('[id*=txt_experience2]').val("");
+                 $('[id*=frm_experience2]').hide();
               }
          }
 
@@ -374,7 +374,6 @@
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2">
                                      <select runat="server" id="sel_blood" name="sel_blood" class="form-control"></select>
-<%--                               <input type="text" class="form-control input-lg" id="txt_blood"  runat="server" value=""  />--%>
                                     </div>
                             </div>
                             <div class="form-group" style="display:block">
@@ -458,7 +457,7 @@
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
                                         <input type="text" class="form-control input-lg" id="txt_certificate2"  runat="server" value=""  />
                                    
-                                    <a href="javascript:deleteCertificateRow();"  id="btn-deleteCertificate2"> <i class="fas fa-minus"></i></a>
+                                    <a href="javascript:deleteCertificateRow();"  id="btn-deleteCertificate2"> <i class="fa fa-minus"></i></a>
                                 </div>
                                 
                             </div>
@@ -503,7 +502,7 @@
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
                                      <input type="text" class="form-control input-lg" id="txt_certificate3"  runat="server" value=""  />
                                   
-                                    <a href="javascript:deleteCertificateRow();"  id="btn-deleteCertificate3"> <i class="fas fa-minus"></i></a>
+                                    <a href="javascript:deleteCertificateRow();"  id="btn-deleteCertificate3"> <i class="fa fa-minus"></i></a>
                                 </div>
                                 
                             </div>
@@ -539,7 +538,7 @@
 
                              <div class="form-group" style="display:block" id="frm-addCertificate">
                                 <div class="col-md-4 col-sm-4 col-xs-4 div1">
-                                      <a href="javascript:addCertificateRow();" > <i class="fas fa-plus"></i></a>
+                                      <a href="javascript:addCertificateRow();" > <i class="fa fa-plus"></i></a>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
 
@@ -570,7 +569,7 @@
                                 </div>
                                 <div class="col-md-9 col-sm-8 col-xs-8 div2">
                                     <asp:TextBox type="text" class="form-control input-lg textarea" ID="txt_experience2" name="txt_experience2" TextMode="MultiLine" Rows="4" runat="server" value="" />
-                                    <a href="javascript:deleteExperienceRow();"  id="btn-deleteExperience2"> <i class="fas fa-minus"></i></a>
+                                    <a href="javascript:deleteExperienceRow();"  id="btn-deleteExperience2"> <i class="fa fa-minus"></i></a>
                             </div>
                                 </div>
                             <div class="form-textarea" style="display:none" id="frm_experience3">
@@ -579,13 +578,13 @@
                                 </div>
                                     <div class="col-md-9 col-sm-8 col-xs-8 div2">
                                         <asp:TextBox type="text" class="form-control input-lg textarea" ID="txt_experience3" name="txt_experience3" TextMode="MultiLine" Rows="4"  runat="server" value=""  />
-                                        <a href="javascript:deleteExperienceRow();"  id="btn-deleteExperience3"> <i class="fas fa-minus"></i></a>
+                                        <a href="javascript:deleteExperienceRow();"  id="btn-deleteExperience3"> <i class="fa fa-minus"></i></a>
 
                                     </div> 
                                 </div>
                               <div class="form-group" style="display:block" id="frm-addexperience">
                                 <div class="col-md-4 col-sm-4 col-xs-4 div1">
-                                      <a href="javascript:addExperienceRow();" > <i class="fas fa-plus"></i></a>
+                                      <a href="javascript:addExperienceRow();" > <i class="fa fa-plus"></i></a>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
 

@@ -357,6 +357,7 @@ footer .copyright {
     background-color: #201d1d;
     padding-top: 10px;
     padding-bottom: 20px;
+    overflow-y:auto;
 }
 
 .main-menu .nlist {
@@ -1011,11 +1012,11 @@ nav .logo {
     width: 95%;
     margin-bottom: 0px;
 }
-.panel-green > .panel-heading {
-    border-color: #12A4B8;
-    color: #fff;
-    background-color: #12A4B8;
-}
+    .panel-green > .panel-heading {
+        border-color: #895206;
+        color: #fff;
+        background-color: #895206;
+    }
 .panel-yellow {
     border-color: #f0ad4e;
     width: 95%;
@@ -1645,12 +1646,12 @@ font-weight:bold;
 }
 /* Track */
 ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: #343131;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #888;
+    background: #895206;
 }
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
@@ -1907,3 +1908,8 @@ font-weight:bold;
     height:35px;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

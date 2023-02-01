@@ -368,6 +368,7 @@ footer {
     background-color: #201d1d;
     padding-top: 10px;
     padding-bottom: 20px;
+    overflow-y: auto;
 }
 
     .main-menu .nlist {
@@ -1056,9 +1057,9 @@ nav .logo {
 }
 
     .panel-green > .panel-heading {
-        border-color: #12A4B8;
+        border-color: #895206;
         color: #fff;
-        background-color: #12A4B8;
+        background-color: #895206;
     }
 
 .panel-yellow {
@@ -1721,12 +1722,12 @@ input[type=checkbox], input[type=radio] {
 }
 /* Track */
 ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: #343131;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #888;
+    background: #895206;
 }
     /* Handle on hover */
     ::-webkit-scrollbar-thumb:hover {
@@ -1979,4 +1980,9 @@ input[type=checkbox], input[type=radio] {
     text-align: center;
     /*padding-bottom: 5px;*/
     height: 35px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }

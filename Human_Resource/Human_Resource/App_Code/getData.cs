@@ -23,7 +23,7 @@ namespace Human_Resource.App_Code
         static IEnumerable<KeyValueString> getBloodTypesList()
         {
             maritalStatusList = new List<KeyValueString> {
-                   new KeyValueString { key = "-", value = ""  },
+                   new KeyValueString { key = "", value = "----"  },
                    new KeyValueString { key = "O+", value = "O+"  },
                    new KeyValueString { key =   "A+", value = "A+" },
                    new KeyValueString { key =   "B+", value = "B+" },
