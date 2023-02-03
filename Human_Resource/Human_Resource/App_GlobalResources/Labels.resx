@@ -1053,4 +1053,10 @@
   <data name="YearsOfWork" xml:space="preserve">
     <value>Years of Work</value>
   </data>
+  <data name="ErrorEmailFormat" xml:space="preserve">
+    <value>Type email in correct format: ex. xxx@gmail.com</value>
+  </data>
+  <data name="VacBalanceError" xml:space="preserve">
+    <value>Vacations balance cannot exceed 200 days</value>
+  </data>
 </root>

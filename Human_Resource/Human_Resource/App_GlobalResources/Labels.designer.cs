@@ -1096,6 +1096,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Type email in correct format: ex. xxx@gmail.com.
+        /// </summary>
+        internal static string ErrorEmailFormat {
+            get {
+                return ResourceManager.GetString("ErrorEmailFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error Occured.
         /// </summary>
         internal static string ErrorOccured {
@@ -2631,6 +2640,15 @@ namespace Resources {
         internal static string VacationsBalance {
             get {
                 return ResourceManager.GetString("VacationsBalance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vacations balance cannot exceed 200 days.
+        /// </summary>
+        internal static string VacBalanceError {
+            get {
+                return ResourceManager.GetString("VacBalanceError", resourceCulture);
             }
         }
         

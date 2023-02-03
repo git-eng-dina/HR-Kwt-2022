@@ -220,13 +220,6 @@
              }
          }
 
-         function removeValidation(input) {
-             if ($(input).attr("class") == "form-control is-invalid") {
-
-                 $(input).attr("class", "form-control");
-
-             }
-         }
          function checkValidation() {
              var valid = true;
              if ($('[id*=txt_nameAR]').val() == "" || $('[id*=txt_nameAR]').val() == null) {
@@ -254,17 +247,39 @@
              if ($("[id*=txt_identityNumber]").val() != '' && $("[id*=txt_identityNumber]").val() != null) {
                  if ($("[id*=txt_identityNumber]").val().length < 12 || $("[id*=txt_identityNumber]").val().length > 12) {
                      $('[id*=identityValidMsg]').text ("<%= Resources.Labels._12Digit %>");
+
                      $('[id*=identityValidMsg]').show();
                      valid = false;
                  }
              }
+             //check vacation balance (should be less than 200)
+             if ($('[id*=txt_vacationBalance]').val() != "" && $('[id*=txt_vacationBalance]').val() != null) {
+                
+                 if (parseInt($("[id*=txt_vacationBalance]").val()) > 200) {
+                     $('[id*=txt_vacationBalance]').attr("class", "form-control is-invalid");
+
+                     valid = false;
+                 }
+             }
+
              if ($('[id*=txt_salary]').val() == "" || $('[id*=txt_salary]').val() == null) {
                  $('[id*=txt_salary]').attr("class", "form-control is-invalid");
                  valid = false;
              }
              if ($('[id*=txt_email]').val() == "" || $('[id*=txt_email]').val() == null) {
                  $('[id*=txt_email]').attr("class", "form-control is-invalid");
+                 $('[id*=msg_emailInvalid]').text("<%= Resources.Labels.ValueIsRequired %>");
+
                  valid = false;
+             }
+             else {
+
+                 if (validateEmail($('[id*=txt_email]').val()) == "" || validateEmail($('[id*=txt_email]').val()) == null) {
+                     $('[id*=txt_email]').attr("class", "form-control is-invalid");
+                     $('[id*=msg_emailInvalid]').text("<%= Resources.Labels.ErrorEmailFormat %>");
+
+                     valid = false;
+                 }
              }
              if ($('[id*=txt_certificate1]').val() == "" || $('[id*=txt_certificate1]').val() == null) {
                  $('[id*=txt_certificate1]').attr("class", "form-control is-invalid");
@@ -669,7 +684,12 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,CurrentSalary%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2">
-                                    <input type="number" class="form-control" id="txt_salary"  runat="server" onchange="removeValidation($(this));" />
+                                    <input type="number" class="form-control" 
+                                        id="txt_salary"  runat="server" 
+                                        min="1"
+                                        step="1"
+                                        onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                                        onchange="removeValidation($(this));" />
                                      <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
                             </div>
                              </div>
@@ -688,7 +708,7 @@
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2">
                                     <input type="text" class="form-control input-lg" id="txt_email" runat="server" value="" onchange="removeValidation($(this));" />
-                                    <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
+                                    <div class="invalid-feedback" id="msg_emailInvalid"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
                             </div>
                            </div>
                 
@@ -697,7 +717,14 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,VacationsBalance%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2">
-                                    <input type="number"  class="form-control input-lg" id="txt_vacationBalance" runat="server" value=""  />
+                                    <input type="number"  class="form-control input-lg" 
+                                        id="txt_vacationBalance" runat="server"
+                                        min="1"
+                                        step="1"
+                                        onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                                        onchange="removeValidation($(this));" />
+                                   <div class="invalid-feedback" ><asp:Literal  runat="server" Text="<%$ Resources:Labels,VacBalanceError%>" /></div>
+
                             </div>
                            </div>
                             

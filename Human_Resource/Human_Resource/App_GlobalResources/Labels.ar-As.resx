@@ -1050,4 +1050,10 @@
   <data name="YearsOfWork" xml:space="preserve">
     <value>سنوات العمل</value>
   </data>
+  <data name="ErrorEmailFormat" xml:space="preserve">
+    <value>اكتب الايميل بصيغة صحيحة: مثال.  xxx@gmail.com</value>
+  </data>
+  <data name="VacBalanceError" xml:space="preserve">
+    <value>رصيد الإجازات لا يمكن أن يتجاوز 200 يوم</value>
+  </data>
 </root>
