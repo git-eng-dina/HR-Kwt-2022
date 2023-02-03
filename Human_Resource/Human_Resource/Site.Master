@@ -30,7 +30,7 @@
       
     </script>
 <body>
-    <form runat="server" dir="<%$ Resources:Labels,TextDirection%>" name="base_form" id="base_form">
+    <form runat="server" dir="<%$ Resources:Labels,TextDirection%>" name="base_form" id="base_form" defaultbutton="btnFake">
         <asp:ScriptManager runat="server" EnablePageMethods="True">
             <Scripts>
                 <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
@@ -85,7 +85,7 @@
             <div>                
                 <asp:ImageButton runat="server" ImageUrl="~/images/Back-ar.png"  width="40" height="40" id="backImage"  OnClientClick="JavaScript:window.history.back(1);return false;"  />
             </div>
-
+            <asp:LinkButton ID="btnFake" runat="server" style="display:none" OnClientClick="return false;" ></asp:LinkButton>  
         </div>
 
             <!-- end header -->

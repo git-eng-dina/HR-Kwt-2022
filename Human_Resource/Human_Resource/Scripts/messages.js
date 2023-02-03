@@ -9,6 +9,7 @@
     });
     $(".hasdatepicker").keydown(false);
 
+
     //for message modal
     $('[id*=MyModal]').delegate('.msg-card', 'click', function (e) {
         e.preventDefault();
