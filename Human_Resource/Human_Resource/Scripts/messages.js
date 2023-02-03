@@ -1,7 +1,15 @@
 ﻿$(document).ready(function () {
 
     //message details
+    //for datepicker value after changed
+    $(".hasdatepicker").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        format: "MM/dd/yyyy",
+    });
+    $(".hasdatepicker").keydown(false);
 
+    //for message modal
     $('[id*=MyModal]').delegate('.msg-card', 'click', function (e) {
         e.preventDefault();
 

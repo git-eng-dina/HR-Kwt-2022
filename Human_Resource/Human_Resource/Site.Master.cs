@@ -94,11 +94,13 @@ namespace Human_Resource
                 Page.ClientScript.RegisterClientScriptInclude("bootstrap.min.js", ResolveUrl("~/Content/ar/js/bootstrap.min.js"));
                 Page.ClientScript.RegisterClientScriptInclude("main.js", ResolveUrl("~/Content/ar/js/main.js"));
             }
+
+            LinkCss.AddCss("/Content/css/chosen.min.css", this.Page);
             Page.ClientScript.RegisterClientScriptInclude("messages.js", ResolveUrl("~/Scripts/messages.js"));
+   
 
-
-            //messages notification
-            UpdateTimer_Tick(null,null);
+                //messages notification
+                UpdateTimer_Tick(null,null);
             #region permissions
             applyPermissionOnLinks();
             #endregion

@@ -1,14 +1,16 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="NewEmployee.aspx.cs" Inherits="Human_Resource.Views.Employees.NewEmployee" enableEventValidation="false" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <script src="https://cdn.syncfusion.com/14.1.0.41/js/common/ej.webform.min.js"></script>
+    <!-- for autocomplete -->
+    <script src="../../Scripts/chosen.js"></script>  
+
      <script>
          $(document).ready(function () {
-             $(".hasdatepicker").datepicker({
-                 changeMonth: true,
-                 changeYear: true,
-                 format:"MM/dd/yyyy",
-             });
 
+             //for autocomplete
+             InitDropDown(); 
+            
              $('[id*=uploadImageBtn]').click(function (e) {
                  e.preventDefault();
                  $('[id*=file_image]').trigger('click');
@@ -39,7 +41,21 @@
                  $('[id*=contractFile]').trigger('click');
              });
 
+             
          });
+
+         //for autocomplete
+         function InitDropDown() {
+
+             var config = {
+                 '.ChosenSelector': { allow_single_deselect: true, search_contains: true,size:10 },
+             }
+             for (var selector in config) {
+                 $(selector).chosen(config[selector]);
+
+             }
+         }  
+   
 
          $(function () {
              $('[id*=file_image]').change(function () {
@@ -329,7 +345,7 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Mobile%>" /></span>
                                 </div>
                                     <div class="col-md-8 col-sm-8 col-xs-8 div2">
-                                        <input type="text" class="form-control input-lg" id="txt_mobile"  runat="server" onchange="removeValidation($(this));" />
+                                        <input type="number" class="form-control input-lg" id="txt_mobile"  runat="server" onchange="removeValidation($(this));" />
                                         <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
                                     </div> 
                                 </div>
@@ -357,6 +373,7 @@
                                     <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,MaritalStatus%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2">
+  
                                 <select runat="server" id="sel_maritalStatus" name="sel_maritalStatus" class="form-control"></select>
                                     </div>
                             </div> 
@@ -365,7 +382,7 @@
                                     <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Nationality%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2">
-                                <select runat="server" id="sel_nationality" class="form-control"></select>
+                                <select runat="server" id="sel_nationality" class="form-control ChosenSelector" style="width:100%"></select>
                                     </div>
                             </div>
                             <div class="form-group" style="display:block">
@@ -404,7 +421,7 @@
                         <div class="panel-heading">
                         <span> <asp:literal runat="server" text="<%$ Resources:Labels,AcademicCertificates%>"/></span>
                         </div>
-                        <div class="c-form-dynamic" style="height:250px">
+                        <div class="c-form-dynamic" style="height:270px">
                             <div class="row">
                              <div class="invalid-feedback" id="cerValidMsg"><asp:Literal  runat="server" Text="<%$ Resources:Labels,UploadFile%>" /></div>
                             <div class="form-group" style="display:block">
@@ -432,7 +449,7 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,DateTo%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2" >
-                                      <asp:TextBox ID="dp_toCer1" runat="server" class="form-control input-lg hasdatepicker"  value="01/11/2000" onchange="removeValidation($(this));"></asp:TextBox>
+                                      <asp:TextBox ID="dp_toCer1" runat="server" class="form-control input-lg hasdatepicker"  value="01/11/2000" onchange="removeValidation($(this));" ></asp:TextBox>
                                      <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
                                    
                                 </div>
@@ -553,7 +570,7 @@
                         <div class="panel-heading">
                         <span> <asp:literal runat="server" text="<%$ Resources:Labels,PreviousExperience%>"/></span>
                         </div>
-                        <div class="c-form-dynamic" style="height:180px">
+                        <div class="c-form-dynamic" style="height:195px;">
                             <div class="form-textarea" style="display:block">
                                 <div class="col-md-3 col-sm-4 col-xs-4 div1">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Experience1%>" /></span>
@@ -661,7 +678,7 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,HiringDate%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2">
-                                    <asp:TextBox ID="txt_hiringDate" runat="server" class="form-control input-lg hasdatepicker"  ></asp:TextBox>
+                                    <asp:TextBox ID="txt_hiringDate" runat="server" class="form-control input-lg hasdatepicker" ></asp:TextBox>
 <%--                                    <input type="text" class="form-control input-lg readOnly" id="txt_hiringDate" disabled  runat="server" value=""  />--%>
                             </div>
                            </div>
@@ -723,7 +740,7 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,JobDescription%>" /></span>
                                 </div>
                                     <div class="col-md-8 col-sm-8 col-xs-8 div2">
-                                        <asp:TextBox type="text" class="form-control input-lg" ID="txt_jobDesc" name="txt_jobDesc" TextMode="MultiLine" Rows="5" runat="server" value=""  />
+                                        <asp:TextBox type="text" class="form-control input-lg textarea" ID="txt_jobDesc" name="txt_jobDesc" TextMode="MultiLine" Rows="5" runat="server"  />
                                     </div> 
                                 </div>
                             

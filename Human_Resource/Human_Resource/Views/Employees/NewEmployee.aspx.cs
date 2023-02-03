@@ -217,147 +217,149 @@ namespace Human_Resource.Views.Employees
 
         protected void btn_save_Click(object sender, EventArgs e)
         {
-            //try
+            if (Session["user_id"] == null)
             {
-                CultureInfo cultures = new CultureInfo("en-US");
-                Attachment attachment = new Attachment();
-
-                EmployeeModel employee = new EmployeeModel();
-                if (hid_emp_id.Value == "")
-                    employee.EmployeeID = 0;
-                else
-                    employee.EmployeeID = int.Parse(hid_emp_id.Value);
-
-                #region personal info
-                employee.NameAr = txt_nameAR.Value;
-                employee.NameEn = txt_nameEN.Value;
-
-                if (file_image.FileName != "")
-                {
-                   employee.Image = file_image.FileBytes;
-                }
-                var arrDOB = dp_bod.Text.Split('/');
-                var d = new DateTime(int.Parse(arrDOB[2]), int.Parse(arrDOB[0]), int.Parse(arrDOB[1]));
-                employee.DOB = d;
-
-                employee.Mobile = txt_mobile.Value;
-                employee.MaritalStatus = sel_maritalStatus.Value;
-                employee.Nationality = int.Parse(sel_nationality.Value);
-                employee.BloodType = sel_blood.Value;
-                employee.Gender = rd_gender.SelectedValue;
-                employee.IdentityNumber = txt_identityNumber.Value;
-
-                #region certificates
-                employee.EducationCertificate1 = txt_certificate1.Value;
-
-                var arrFrom = dp_fromCer1.Text.Split('/');
-                 d = new DateTime(int.Parse(arrFrom[2]), int.Parse(arrFrom[0]), int.Parse(arrFrom[1]));
-                employee.EducationCertificateFromDate1 =d;
-                var arrTo = dp_toCer1.Text.Split('/');
-                d = new DateTime(int.Parse(arrTo[2]), int.Parse(arrTo[1]), int.Parse(arrTo[0]));
-                employee.EducationCertificateToDate1 =d;
-
-                if (txt_certificate2.Value !="")
-                {
-                    employee.EducationCertificate2 = txt_certificate2.Value;
-                    employee.EducationCertificateFromDate2 = DateTime.ParseExact(dp_fromCer2.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture); 
-                    employee.EducationCertificateToDate2 = DateTime.ParseExact(dp_toCer2.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture); 
-
-                }
-                if (txt_certificate3.Value !="")
-                {
-                    employee.EducationCertificate3 = txt_certificate3.Value;
-                    employee.EducationCertificateFromDate3 = DateTime.ParseExact(dp_fromCer3.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-                    employee.EducationCertificateToDate3 = DateTime.ParseExact(dp_toCer3.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture); 
-                }
-                #endregion
-                employee.WorkExperience1 = txt_experience1.Text;
-                employee.WorkExperience2 = txt_experience2.Text;
-                employee.WorkExperience3 = txt_experience3.Text;
-
-                #endregion
-
-                #region work details
-                if(sel_position.Value != "")
-                    employee.JobID =int.Parse( sel_position.Value);
-                if(sel_management.Value != "" && int.Parse(sel_management.Value) != 0)
-                    employee.ManagementID = int.Parse(sel_management.Value);
-                if(sel_department.Value != "" && sel_department.Value != "0")
-                    employee.DepartmentID = int.Parse(sel_department.Value);
-                employee.IDNumber = txt_IDNumber.Value;
-                if(txt_workHours.Value != "")
-                    employee.WorkHours = int.Parse(txt_workHours.Value);
-                employee.BasicSalary = decimal.Parse(txt_salary.Value);
-                employee.Email = txt_email.Value;
-
-                if (txt_hiringDate.Text != "")
-                {
-                    var arrhiring = txt_hiringDate.Text.Split('/');
-                    d = new DateTime(int.Parse(arrhiring[2]), int.Parse(arrhiring[0]), int.Parse(arrhiring[1]));
-                    employee.HiringDate = d;
-                }
-
-                if (txt_vacationBalance.Value != "")
-                    employee.VacationsBalance = int.Parse(txt_vacationBalance.Value);
-                employee.Guarantor = txt_guarantor.Value;
-                employee.JobDescription = txt_jobDesc.Text;
-
-               
-                #endregion
-                employee.PassportNumber = txt_passportNo.Value;
-
-                var arr= dp_passportFromDate.Text.Split('/');
-                d = new DateTime(int.Parse(arr[2]), int.Parse(arr[0]), int.Parse(arr[1]));
-                employee.PassportReleaseDate = d;
-
-                arr = dp_passportEndDate.Text.Split('/');
-                d = new DateTime(int.Parse(arr[2]), int.Parse(arr[0]), int.Parse(arr[1]));
-                employee.PassportExpiryDate = d;
-                employee.Sequence = txt_sequenceNum.Value;
-                employee.UnifiedNumber = txt_unifiedNum.Value;
-
-                if (Session["user_id"] != null && Session["user_id"].ToString() != "")
-                    employee.CreateUserID = employee.UpdateUserID = long.Parse(Session["user_id"].ToString());
-
-                #region delete previous certificates
-                if (employee.EmployeeID != 0)
-                    attachment.DeleteCertificateAttach(employee.EmployeeID);
-                #endregion
-
-                long empId = employee.SaveEmployee(employee);
-                employee.EmployeeID = empId;
-                hid_emp_id.Value = empId.ToString();
-               
-                #region upload cerificates
-
-                UploadFile(file_certificate1.FileName,empId,"cer1");
-                if (txt_certificate2.Value != "")
-                {
-                    UploadFile(file_certificate2.FileName, empId, "cer2");
-                }
-                if (txt_certificate3.Value != "")
-                {
-                    UploadFile(file_certificate3.FileName, empId, "cer3");
-                }
-                #endregion
-
-                #region upload work permit - contract
-                if (permitFile.FileName != "" || contractFile.FileName != "")
-                {
-                    if (permitFile.FileName != "")
-                            employee.WorkPermit = uploadFile(permitFile.FileName, empId, "permit", HelpClass.WorkPermit);
-                    if (contractFile.FileName != "")
-                        employee.WorkContract = uploadFile(contractFile.FileName, empId, "contract", HelpClass.WorkContract);
-
-                    employee.SaveEmployee(employee);
-                }
-
-                #endregion
-
-                HelpClass.ShowMessage(this.Page, Resources.Labels.SaveSuccessfully);
-                Response.Redirect("NewEmployee.aspx?uid="+ hid_emp_id.Value);
+                Response.Redirect("~/login.aspx");
             }
-            //catch { }
+
+            CultureInfo cultures = new CultureInfo("en-US");
+            Attachment attachment = new Attachment();
+
+            EmployeeModel employee = new EmployeeModel();
+            if (hid_emp_id.Value == "")
+                employee.EmployeeID = 0;
+            else
+                employee.EmployeeID = int.Parse(hid_emp_id.Value);
+
+            #region personal info
+            employee.NameAr = txt_nameAR.Value;
+            employee.NameEn = txt_nameEN.Value;
+
+            if (file_image.FileName != "")
+            {
+                employee.Image = file_image.FileBytes;
+            }
+            var arrDOB = dp_bod.Text.Split('/');
+            var d = new DateTime(int.Parse(arrDOB[2]), int.Parse(arrDOB[0]), int.Parse(arrDOB[1]));
+            employee.DOB = d;
+
+            employee.Mobile = txt_mobile.Value;
+            employee.MaritalStatus = sel_maritalStatus.Value;
+            employee.Nationality = int.Parse(sel_nationality.Value);
+            employee.BloodType = sel_blood.Value;
+            employee.Gender = rd_gender.SelectedValue;
+            employee.IdentityNumber = txt_identityNumber.Value;
+
+            #region certificates
+            employee.EducationCertificate1 = txt_certificate1.Value;
+
+            var arrFrom = dp_fromCer1.Text.Split('/');
+                d = new DateTime(int.Parse(arrFrom[2]), int.Parse(arrFrom[0]), int.Parse(arrFrom[1]));
+            employee.EducationCertificateFromDate1 =d;
+            var arrTo = dp_toCer1.Text.Split('/');
+            d = new DateTime(int.Parse(arrTo[2]), int.Parse(arrTo[1]), int.Parse(arrTo[0]));
+            employee.EducationCertificateToDate1 =d;
+
+            if (txt_certificate2.Value !="")
+            {
+                employee.EducationCertificate2 = txt_certificate2.Value;
+                employee.EducationCertificateFromDate2 = DateTime.ParseExact(dp_fromCer2.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture); 
+                employee.EducationCertificateToDate2 = DateTime.ParseExact(dp_toCer2.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture); 
+
+            }
+            if (txt_certificate3.Value !="")
+            {
+                employee.EducationCertificate3 = txt_certificate3.Value;
+                employee.EducationCertificateFromDate3 = DateTime.ParseExact(dp_fromCer3.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                employee.EducationCertificateToDate3 = DateTime.ParseExact(dp_toCer3.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture); 
+            }
+            #endregion
+            employee.WorkExperience1 = txt_experience1.Text;
+            employee.WorkExperience2 = txt_experience2.Text;
+            employee.WorkExperience3 = txt_experience3.Text;
+
+            #endregion
+
+            #region work details
+            if(sel_position.Value != "")
+                employee.JobID =int.Parse( sel_position.Value);
+            if(sel_management.Value != "" && int.Parse(sel_management.Value) != 0)
+                employee.ManagementID = int.Parse(sel_management.Value);
+            if(sel_department.Value != "" && sel_department.Value != "0")
+                employee.DepartmentID = int.Parse(sel_department.Value);
+            employee.IDNumber = txt_IDNumber.Value;
+            if(txt_workHours.Value != "")
+                employee.WorkHours = int.Parse(txt_workHours.Value);
+            employee.BasicSalary = decimal.Parse(txt_salary.Value);
+            employee.Email = txt_email.Value;
+
+            if (txt_hiringDate.Text != "")
+            {
+                var arrhiring = txt_hiringDate.Text.Split('/');
+                d = new DateTime(int.Parse(arrhiring[2]), int.Parse(arrhiring[0]), int.Parse(arrhiring[1]));
+                employee.HiringDate = d;
+            }
+
+            if (txt_vacationBalance.Value != "")
+                employee.VacationsBalance = int.Parse(txt_vacationBalance.Value);
+            employee.Guarantor = txt_guarantor.Value;
+            employee.JobDescription = txt_jobDesc.Text;
+
+               
+            #endregion
+            employee.PassportNumber = txt_passportNo.Value;
+
+            var arr= dp_passportFromDate.Text.Split('/');
+            d = new DateTime(int.Parse(arr[2]), int.Parse(arr[0]), int.Parse(arr[1]));
+            employee.PassportReleaseDate = d;
+
+            arr = dp_passportEndDate.Text.Split('/');
+            d = new DateTime(int.Parse(arr[2]), int.Parse(arr[0]), int.Parse(arr[1]));
+            employee.PassportExpiryDate = d;
+            employee.Sequence = txt_sequenceNum.Value;
+            employee.UnifiedNumber = txt_unifiedNum.Value;
+
+            if (Session["user_id"] != null && Session["user_id"].ToString() != "")
+                employee.CreateUserID = employee.UpdateUserID = long.Parse(Session["user_id"].ToString());
+
+            #region delete previous certificates
+            if (employee.EmployeeID != 0)
+                attachment.DeleteCertificateAttach(employee.EmployeeID);
+            #endregion
+
+            long empId = employee.SaveEmployee(employee);
+            employee.EmployeeID = empId;
+            hid_emp_id.Value = empId.ToString();
+               
+            #region upload cerificates
+
+            UploadFile(file_certificate1.FileName,empId,"cer1");
+            if (txt_certificate2.Value != "")
+            {
+                UploadFile(file_certificate2.FileName, empId, "cer2");
+            }
+            if (txt_certificate3.Value != "")
+            {
+                UploadFile(file_certificate3.FileName, empId, "cer3");
+            }
+            #endregion
+
+            #region upload work permit - contract
+            if (permitFile.FileName != "" || contractFile.FileName != "")
+            {
+                if (permitFile.FileName != "")
+                        employee.WorkPermit = uploadFile(permitFile.FileName, empId, "permit", HelpClass.WorkPermit);
+                if (contractFile.FileName != "")
+                    employee.WorkContract = uploadFile(contractFile.FileName, empId, "contract", HelpClass.WorkContract);
+
+                employee.SaveEmployee(employee);
+            }
+
+            #endregion
+
+            HelpClass.ShowMessage(this.Page, Resources.Labels.SaveSuccessfully);
+            Response.Redirect("NewEmployee.aspx?uid="+ hid_emp_id.Value);
+
         }
         protected void UploadFile(string fileName,long empId,string tag)
         {
@@ -427,5 +429,7 @@ namespace Human_Resource.Views.Employees
             }
 
         }
+
+
     }
 }
