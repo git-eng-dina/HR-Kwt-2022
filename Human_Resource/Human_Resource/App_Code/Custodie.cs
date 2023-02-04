@@ -9,7 +9,7 @@ namespace Human_Resource.App_Code
     {
 
         #region Attributes
-        public int CustodieID { get; set; }
+        public long CustodieID { get; set; }
         public string Type { get; set; }
         public string Details { get; set; }
         public Nullable<bool> IsRecovery { get; set; }
@@ -21,6 +21,7 @@ namespace Human_Resource.App_Code
         public Nullable<long> CreateUserID { get; set; }
         public Nullable<long> UpdateUserID { get; set; }
         public Nullable<bool> IsActive { get; set; }
+        public Attachment Attachment { get; set; }
         #endregion
 
         #region methods
@@ -64,12 +65,18 @@ namespace Human_Resource.App_Code
                                     Notes = x.Notes,
                                     CreateDate = x.CreateDate,
                                     UpdateDate = x.UpdateDate,
+                                    Attachment = entity.Images.Where(m => m.CustodieID == custodieId)
+                                            .Select(m => new Attachment()
+                                            {
+                                                docName = m.docName,
+                                                docnum = m.docnum
+                                            }).FirstOrDefault(),
                                 }).FirstOrDefault();
                 return dept;
             }
         }
 
-        public int SaveDept(CustodieModel dept)
+        public long SaveCustody(CustodieModel custody)
         {
             try
             {
@@ -77,17 +84,17 @@ namespace Human_Resource.App_Code
 
                 using (HRSystemEntities entity = new HRSystemEntities())
                 {
-                    if (dept.CustodieID.Equals(0))
+                    if (custody.CustodieID.Equals(0))
                     {
                         custodie = new custodies()
                         {
-                            Type = dept.Type,
-                            EmployeeID = dept.EmployeeID,
-                            Details = dept.Details,
-                            IsRecovery = dept.IsRecovery,
+                            Type = custody.Type,
+                            EmployeeID = custody.EmployeeID,
+                            Details = custody.Details,
+                            IsRecovery = custody.IsRecovery,
                             IsActive = true,
-                            CreateUserID = dept.CreateUserID,
-                            UpdateUserID = dept.UpdateUserID,
+                            CreateUserID = custody.CreateUserID,
+                            UpdateUserID = custody.UpdateUserID,
                             CreateDate = DateTime.Now,
                             UpdateDate = DateTime.Now,
                         };
@@ -95,14 +102,14 @@ namespace Human_Resource.App_Code
                     }
                     else
                     {
-                        custodie = entity.custodies.Find(dept.CustodieID);
-                        custodie.Type = dept.Type;
-                        custodie.EmployeeID = dept.EmployeeID;
-                        custodie.Details = dept.Details;
-                        custodie.IsRecovery = dept.IsRecovery;
-                        custodie.Notes = dept.Notes;
+                        custodie = entity.custodies.Find(custody.CustodieID);
+                        custodie.Type = custody.Type;
+                        custodie.EmployeeID = custody.EmployeeID;
+                        custodie.Details = custody.Details;
+                        custodie.IsRecovery = custody.IsRecovery;
+                        custodie.Notes = custody.Notes;
                         custodie.IsActive = true;
-                        custodie.UpdateUserID = dept.UpdateUserID;
+                        custodie.UpdateUserID = custody.UpdateUserID;
                         custodie.UpdateDate = DateTime.Now;
                     }
                     entity.SaveChanges();

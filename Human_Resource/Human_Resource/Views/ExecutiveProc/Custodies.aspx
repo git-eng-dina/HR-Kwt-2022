@@ -1,12 +1,16 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Custodies.aspx.cs" Inherits="Human_Resource.Views.ExecutiveProc.Custodies" EnableEventValidation="true" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Custodies.aspx.cs" Inherits="Human_Resource.Views.ExecutiveProc.Custodies" EnableEventValidation="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
  
 <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
-
+      <!-- for autocomplete -->
+    <script src="../../Scripts/chosen.js"></script>  
     <script>
 
         $(document).ready(function () {
+
+            //for autocomplete
+            InitDropDown(); 
 
             $myWindow = $('#dialog');
 
@@ -22,6 +26,7 @@
                 overlay: { opacity: 0.5, background: 'black' },
 
             });
+            $("#dialog").parent().appendTo($("form:first"));
 
             $('.td-edit').click(function () {
                 var customID = $(this).attr('myCustomID');
@@ -29,14 +34,54 @@
                 return false;
             });
 
+
+            $('[id*=uploadTrigger_1]').click(function (e) {
+                e.preventDefault();
+                $('[id*=file]').trigger('click');
+            });
+
+            $('[id*=delete_upload]').click(function (e) {
+                e.preventDefault();
+                $('[id*=file]').val("");
+                $('[id*=hasFiles]').val("");
+                $('[id*=lbl_attach]').html("");
+                $('[id*=delete_upload]').hide();
+            });
+            $(function () {
+                $('[id*=file]').change(function () {
+                    var path = $(this).val();
+                    if (path != '' && path != null) {
+                        var q = path.substring(path.lastIndexOf('\\') + 1);
+                        $('[id*=lbl_attach]').html(q);
+                        $('[id*=delete_upload]').show();
+                    }
+                })
+            });
+
         });
+
+        //for autocomplete
+        function InitDropDown() {
+
+            var config = {
+                '.ChosenSelector': { allow_single_deselect: true, search_contains: true, size: 10 },
+            }
+            for (var selector in config) {
+                $(selector).chosen(config[selector]);
+                //$('.chosen-drop').css({ "width": "80%" });
+                $('.chosen-container-single').css({ "width": "80%" });
+
+            }
+        }  
 
         //function to close dialog, probably called by a button in the dialog
         function closeDialog() {
             $('#MainContent_hid_custodieId').val("");
-            $('#MainContent_emp').val("");
+            $('[id*=sel_emp]').val("");
             $('#MainContent_dept_type').val("");
             $('#MainContent_txt_details').val("");
+            $("#MainContent_file").val("");
+            $('[id*=hasFiles]').val("");
             $('#MainContent_chk_isRecovery').prop('checked', false);
             $("#dialog").dialog("close");
         }
@@ -62,10 +107,17 @@
                     for (var prop in data) {
                         var item = data[prop];
                         $('#MainContent_hid_custodieId').val(item.CustodieID);
-                        $('#MainContent_emp').val(item.EmployeeID);
+                        $('[id*=sel_emp]').val(item.EmployeeID);
                         $('#MainContent_dept_type').val(item.Type);
                         $('#MainContent_txt_details').val(item.Details);
-                         $('#MainContent_chk_isRecovery').prop('checked', item.IsRecovery);
+                        $('#MainContent_chk_isRecovery').prop('checked', item.IsRecovery);
+
+                        if (item.Attachment != null) {
+                            $('[id*=hasFiles]').val("1");
+                            $('#MainContent_lbl_attach').attr("href", "../../Upload/Custodies/" + item.Attachment.docnum);
+                            $('#MainContent_lbl_attach').html(item.Attachment.docName);
+                            $('[id*=delete_upload]').show();
+                        }
                      }
 
 
@@ -76,39 +128,7 @@
             });
         }
 
-        function saveCustodie() {
-            var id = $('#MainContent_hid_custodieId').val();
-            var emp = $("#MainContent_emp").find(":selected").val();
-            var type = $("#MainContent_dept_type").find(":selected").val();
-            var details = $("#MainContent_txt_details").val();
-            var isRecovery = false;
-            if ($("#MainContent_chk_isRecovery").is(':checked'))
-                isRecovery = true;
-
-             var parameter = {
-                custodieId: id,
-                 employeeId: emp,
-                type: type,
-                details: details,
-                 isRecovery: isRecovery,
-             };
-            $.ajax({
-                type: "POST",
-                url: "Custodies.aspx/SaveCustodie",
-                data: JSON.stringify(parameter),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (data) {
-                    window.top.location = "Custodies.aspx";
-
-                },
-                failure: function (response) {
-                    alert(response.d);
-                }
-            });
-
-        }
-
+       
         function typeChanged() {
 
             var type = $("#MainContent_dept_type").find(":selected").val();
@@ -116,7 +136,24 @@
 
         }
 
+        function checkValidation() {
 
+            var valid = true;
+
+            if ($('[id*=sel_emp]').find(":selected").val() == "" || $('[id*=sel_emp]').find(":selected").val() == null) {
+                $('[id*=sel_emp]').attr("class", "form-control is-invalid");
+                valid = false;
+            }
+
+           
+            if (valid) {
+
+                var uniqID = $('#MainContent_hdnButtonID').val();
+
+                __doPostBack(uniqID, "OnClick");
+            }
+            return valid;
+        }
 
 
 
@@ -156,7 +193,7 @@
                        <!---- table -->
                             <asp:GridView ID="gv_data" runat="server"  CssClass="gridView col-md-12"  
                                 AutoGenerateColumns="False"  Width="90%" 
-                                OnRowCreated="gv_data_RowCreated" OnRowDataBound="gv_data_RowDataBound" 
+                                 OnRowDataBound="gv_data_RowDataBound" 
                                 class="table table-bordered table-condensed table-responsive table-hover ">
                                 <Columns>
 
@@ -194,8 +231,6 @@
                                          </ItemTemplate>
                                         </asp:TemplateField>
 
-
-                                 
 
                                     <asp:TemplateField HeaderText="<%$ Resources:Labels,Edit%>" ItemStyle-Width="5%" ControlStyle-CssClass="td-edit">
                                           <ItemTemplate>                     
@@ -241,13 +276,27 @@
             </div>
          </div>
             <div class="modal-body panel-body model-b">
-                <div class="c-form">
+                 <div class="row div-attachment">
+                       <asp:FileUpload ID="file" runat="server" style="display:none;" />
+                 <a href=""  id="uploadTrigger_1"> <i class="fa fa-paperclip" style="color:#a19c9c"></i></a>
+                      <a href="" id="lbl_attach" runat="server" target="_blank" class="href-file"></a>
+                   
+                   <a href="" id="delete_upload"  style="display:none;"><i class='fas fa-trash' style="color:#a19c9c"></i></a>
+                    </div>
+
+                <div class="c-form" style="margin-top:5px;">
 
                         <div class="row">
                      <div class="form-group" style="display:block">
                               <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Employee%>" /></span>
         
-                                <select runat="server" id="emp" name="emp" style="width:80%" class="form-control input-lg"></select>
+                                <select runat="server" id="sel_emp" name="sel_emp" style="width:80%" 
+                                    class="form-control input-lg ChosenSelector" 
+                                    onchange="removeValidation($(this));" >
+                                </select>
+                                <div class="invalid-feedback" >
+                                    <asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" />
+                                </div>
                             </div>
                         </div>
 
@@ -255,13 +304,16 @@
                      <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Type%>" /></span>
                                 <input type="hidden"  id="hid_custodieId" name="hid_custodieId" runat="server" value=""  />
-                         <select runat="server" id="dept_type" name="dept_type" style="width:80%" class="form-control input-lg"    onchange="typeChanged()"/>
+                                <select runat="server" id="dept_type" name="dept_type" 
+                                    style="width:80%" class="form-control input-lg"    onchange="typeChanged()"/>
                              </div>
                         </div>
                      <div class ="row">
                      <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" id="txt_detailsTitle"  Text="<%$ Resources:Labels,Details%>" /></span>
-                                <input type="text" class="form-control input-lg" id="txt_details"  runat="server" value=""  />
+                                <input type="text" class="form-control input-lg" 
+                                    id="txt_details" name="txt_details"  
+                                    runat="server" value="" />
                             </div>
                         </div> 
 
@@ -272,19 +324,16 @@
                         </div>
                     
 
-                
-
-                    
-                    
-
-
-                  
                     
                 <div class="modal-footer">
-                    <button class="btn btn-new"  runat="server" onclick="saveCustodie()" id="btn_ads" >
-                        <asp:Literal  runat="server" Text=" <%$ Resources:Labels,Save%>" />
-                    </button>
- 
+                     <asp:HiddenField  runat="server" ID="hdnButtonID"/>
+                     <asp:HiddenField  runat="server" ID="hasFiles"/>
+
+                     <asp:button class="btn btn-new"  id="btn_ads"  runat="server" Text=" <%$ Resources:Labels,Save%>"
+                     UseSubmitBehavior="False"  
+                        OnClick="btn_save_Click" 
+                        OnClientClick="javascript:checkValidation(); return false;" >
+                    </asp:button>
 
                     </div>
                 </div>

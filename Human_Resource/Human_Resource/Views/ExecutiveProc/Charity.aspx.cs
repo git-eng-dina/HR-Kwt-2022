@@ -38,7 +38,10 @@ namespace Human_Resource.Views.ExecutiveProc
 
         protected void btn_Search_Click(object sender, EventArgs e)
         {
-            
+            if (Session["user_id"] == null)
+            {
+                Response.Redirect("~/login.aspx");
+            }
             try
             {
                 string textSearch = txt_search.Value;
@@ -198,7 +201,7 @@ namespace Human_Resource.Views.ExecutiveProc
                     file.SaveAs(filePath);
                     UploadFile(newFileName, Path.GetFileNameWithoutExtension(file.FileName), deptId);
                 }
-                else if (hid_charityId.Value != "")
+                else if (hid_charityId.Value != "" && hasFiles.Value == "")
                 {
                     var attach = new Attachment();
                     attach.DeleteCharityAttach(deptId);

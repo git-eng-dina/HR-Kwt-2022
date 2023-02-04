@@ -1050,6 +1050,9 @@
   <data name="YearsOfWork" xml:space="preserve">
     <value>سنوات العمل</value>
   </data>
+  <data name="EndBiggerThanStart" xml:space="preserve">
+    <value>تاريخ النهاية أكبر أو يساوي تاريخ البداية</value>
+  </data>
   <data name="ErrorEmailFormat" xml:space="preserve">
     <value>اكتب الايميل بصيغة صحيحة: مثال.  xxx@gmail.com</value>
   </data>

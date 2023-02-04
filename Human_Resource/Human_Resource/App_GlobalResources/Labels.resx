@@ -523,7 +523,7 @@
     <value>HR Manager</value>
   </data>
   <data name="AddTraining" xml:space="preserve">
-    <value>AddTraining</value>
+    <value>Add Training</value>
   </data>
   <data name="Training" xml:space="preserve">
     <value>Training</value>
@@ -1052,6 +1052,9 @@
   </data>
   <data name="YearsOfWork" xml:space="preserve">
     <value>Years of Work</value>
+  </data>
+  <data name="EndBiggerThanStart" xml:space="preserve">
+    <value>End date should be greater than or equal start date</value>
   </data>
   <data name="ErrorEmailFormat" xml:space="preserve">
     <value>Type email in correct format: ex. xxx@gmail.com</value>

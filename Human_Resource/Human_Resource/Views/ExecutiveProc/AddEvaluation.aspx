@@ -74,7 +74,7 @@
                    
                         </div>
                     </div>
-                      </div>
+                     <%-- </div>--%>
 
                  <div class="col-md-6 float2" style="display:inline">
                        <div class="panel panel-brown" style="width:100%">

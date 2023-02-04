@@ -838,7 +838,7 @@
                     <div class ="row">
                    <div class="form-group" style="display:block">
                               <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,End%>" /></span>
-                            <asp:TextBox  ID="dp_end" runat="server" class="form-control input-lg hasdatepicker" ></asp:TextBox>
+                            <asp:TextBox  ID="dp_end" runat="server" class="form-control input-lg hasdatepicker" onchange="removeValidation($(this));"></asp:TextBox>
                               <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
 
                    </div>
@@ -850,10 +850,11 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Assignee%>" /></span>
                                 <input type="hidden" runat="server" id="hdn_empIds" name="hdn_empIds"/>
                          <select runat="server" id="sel_employee" name="sel_employee" style="width:70%" class="form-control input-lg" ></select>
-                          <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
                                   <button class="add-arrow-btn"  runat="server"   id="btn_addEmp" >
                                    <i class="fas fa-arrow-alt-circle-down"></i>
                                 </button>
+                           <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
+
                             </div>
                         </div> 
                     <div class ="row employee-list">

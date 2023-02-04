@@ -268,7 +268,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AddTraining.
+        ///   Looks up a localized string similar to Add Training.
         /// </summary>
         internal static string AddTraining {
             get {
@@ -1083,6 +1083,15 @@ namespace Resources {
         internal static string End {
             get {
                 return ResourceManager.GetString("End", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End date should be greater than or equal start date.
+        /// </summary>
+        internal static string EndBiggerThanStart {
+            get {
+                return ResourceManager.GetString("EndBiggerThanStart", resourceCulture);
             }
         }
         

@@ -116,6 +116,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     padding: 5px 5px;
+    width:100%;
 }
 
 .chosen-container-single .chosen-single-with-deselect span {

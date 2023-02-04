@@ -4,6 +4,8 @@
  
 <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
 
+      <!-- for autocomplete -->
+    <script src="../../Scripts/chosen.js"></script> 
 
      <style>
        #ui-datepicker-div{
@@ -13,11 +15,8 @@
     <script>
 
         $(document).ready(function () {
-            $(".hasdatepicker").datepicker({
-                changeMonth: true,
-                changeYear: true,
-                format: "dd/MM/yyyy",
-            });
+            //for autocomplete
+            InitDropDown(); 
 
             $myWindow = $('#dialog');
 
@@ -49,6 +48,7 @@
             $('[id*=delete_upload]').click(function (e) {
                 e.preventDefault();
                 $('[id*=file]').val("");
+                $('[id*=hasFiles]').val("");
                 $('[id*=lbl_attach]').html("");
                 $('[id*=delete_upload]').hide();
             });
@@ -66,6 +66,19 @@
 
         });
 
+
+        //for autocomplete
+        function InitDropDown() {
+
+            var config = {
+                '.ChosenSelector': { allow_single_deselect: true, search_contains: true, size: 10 },
+            }
+            for (var selector in config) {
+                $(selector).chosen(config[selector]);
+                $('.chosen-container-single').css({ "width": "80%" });
+            }
+        }  
+
         //function to close dialog, probably called by a button in the dialog
         function closeDialog() {
             $('#MainContent_hid_charityId').val("");
@@ -74,6 +87,7 @@
             $('#MainContent_txt_details').val("");
             $('#MainContent_txt_amount').val("");
             $("#MainContent_file").val("");
+            $('[id*=hasFiles]').val("");
             $("#dialog").dialog("close");
         }
 
@@ -107,6 +121,7 @@
                         $('[id*=dp_charityDate]').val(date);
 
                         if (item.Attachment != null) {
+                            $('[id*=hasFiles]').val("1");
                             $('#MainContent_lbl_attach').attr("href", "../../Upload/Charities/" + item.Attachment.docnum);
                             $('#MainContent_lbl_attach').html(item.Attachment.docName);
                             $('[id*=delete_upload]').show();
@@ -121,37 +136,6 @@
             });
         }
 
-        //function saveCharity() {
-        //    var id = $('#MainContent_hid_charityId').val();
-        //    var emp = $("#MainContent_emp").find(":selected").val();
-        //    var reason = $("#MainContent_txt_reason").val();
-        //    var details = $("#MainContent_txt_details").val();
-        //    var amount = $("#MainContent_txt_amount").val();
-            
-
-        //     var parameter = {
-        //        charityId: id,
-        //         employeeId: emp,
-        //            reason: reason,
-        //            details: details,
-        //         amount: amount,
-        //     };
-        //    $.ajax({
-        //        type: "POST",
-        //        url: "Charity.aspx/SaveCharity",
-        //        data: JSON.stringify(parameter),
-        //        contentType: "application/json; charset=utf-8",
-        //        dataType: "json",
-        //        success: function (data) {
-        //            window.top.location = "Charity.aspx";
-
-        //        },
-        //        failure: function (response) {
-        //            alert(response.d);
-        //        }
-        //    });
-
-        //}
 
         function checkValidation() {
 
@@ -318,7 +302,8 @@
                      <div class="form-group" style="display:block">
                               <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Employee%>" /></span>
         
-                                <select runat="server" id="sel_emp" name="sel_emp" style="width:80%" class="form-control input-lg"></select>
+                                <select runat="server" id="sel_emp" name="sel_emp" 
+                                    style="width:80%" class="form-control input-lg ChosenSelector"></select>
                           <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
                             </div>
                         </div>
@@ -360,6 +345,7 @@
                     
                 <div class="modal-footer">
                      <asp:HiddenField  runat="server" ID="hdnButtonID"/>
+                    <asp:HiddenField  runat="server" ID="hasFiles"/>
 
                        <asp:button class="btn btn-new"  id="btn_ads"  runat="server" Text=" <%$ Resources:Labels,Save%>"
                      UseSubmitBehavior="False"  
@@ -367,12 +353,6 @@
                         OnClientClick="javascript:checkValidation(); return false;" >
                     </asp:button>
 
-                 <%--   <button class="btn btn-new"  runat="server"
-                         OnClientClick="javascript:checkValidation(); return false;"
-                        OnClick="btn_save_Click" id="btn_ads" >
-                        <asp:Literal  runat="server" Text=" <%$ Resources:Labels,Save%>" />
-                    </button>
- --%>
 
                     </div>
                 </div>

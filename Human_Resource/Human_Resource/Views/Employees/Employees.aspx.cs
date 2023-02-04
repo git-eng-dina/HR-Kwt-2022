@@ -60,8 +60,8 @@ namespace Human_Resource.Views.Employees
                                     || (x.Position != null && x.Position.ToLower().Contains(textSearch.ToLower()))
                                     || x.Age.ToString().Contains(textSearch)
                                     || (x.BasicSalary!= null && x.BasicSalary.ToString().Contains(textSearch))
-                                    || x.AddedBy.ToString().Contains(textSearch.ToLower())
-                                    || x.IdentityNumber.ToLower().Contains(textSearch.ToLower())).ToList();
+                                    || (x.AddedBy != null && x.AddedBy.ToString().Contains(textSearch.ToLower()))
+                                    || (x.IdentityNumber != null && x.IdentityNumber.ToLower().Contains(textSearch.ToLower()))).ToList();
                 gv_unhiredEmp.DataSource = unHiredEmployees;
             }
             else

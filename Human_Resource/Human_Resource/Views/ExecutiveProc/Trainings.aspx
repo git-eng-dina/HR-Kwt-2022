@@ -3,10 +3,20 @@
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
  
 <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+     <style>
+       #ui-datepicker-div{
+           z-index:10000 !important;
+       }
+   </style>
+    <!-- for autocomplete -->
+    <script src="../../Scripts/chosen.js"></script> 
 
     <script>
 
         $(document).ready(function () {
+
+            //for autocomplete
+            InitDropDown(); 
 
             $myWindow = $('#dialog');
 
@@ -29,11 +39,21 @@
                 return false;
             });
 
-
-           
-
         });
 
+        //for autocomplete
+        function InitDropDown() {
+
+            var config = {
+                '.ChosenSelector': { allow_single_deselect: true, search_contains: true, size: 10 },
+            }
+            for (var selector in config) {
+                $(selector).chosen(config[selector]);
+                //$('.chosen-drop').css({ "width": "80%" });
+                $('.chosen-container-single').css({ "width": "65%" });
+
+            }
+        }  
         //function to close dialog, probably called by a button in the dialog
         function closeDialog() {
             $('#MainContent_hid_trainingId').val("");
@@ -126,45 +146,95 @@
             });
         }
 
-        function saveTraining() {
-            var id = $('#MainContent_hid_trainingId').val();
-            var name = $("#MainContent_txt_name").val();
-            var description = $("#MainContent_txt_description").val();
-            var startDate = $("#MainContent_dp_start").val();
-            var endDate = $("#MainContent_dp_end").val();
+        function checkValidation() {
 
+            var valid = true;
 
+            if ($('#MainContent_txt_name').val() == "" || $('#MainContent_txt_name').val() == null) {
+                $('#MainContent_txt_name').attr("class", "form-control is-invalid");
+                valid = false;
+            }
+            if ($('#MainContent_txt_description').val() == "" || $('#MainContent_txt_description').val() == null) {
+                $('#MainContent_txt_description').attr("class", "form-control is-invalid");
+                valid = false;
+            }
+            if ($('#MainContent_dp_start').val() == "" || $('#MainContent_dp_start').val() == null) {
+                $('#MainContent_dp_start').attr("class", "form-control is-invalid");
+                valid = false;
+            }
+            if ($('#MainContent_dp_end').val() == "" || $('#MainContent_dp_end').val() == null) {
+                $('#MainContent_dp_end').attr("class", "form-control is-invalid");
+                $('[id*=endValidMsg]').text("<%= Resources.Labels.ValueIsRequired %>");
+                valid = false;
+            }
 
+            if ($('#MainContent_dp_start').val() != "" && $('#MainContent_dp_start').val() != null
+                && $('#MainContent_dp_end').val() != "" && $('#MainContent_dp_end').val() != null) {
+
+                var start = $('#MainContent_dp_start').val();
+                var end = $('#MainContent_dp_end').val();
+                if (start > end) {
+                    $('#MainContent_dp_end').attr("class", "form-control is-invalid");
+                    $('[id*=endValidMsg]').text("<%= Resources.Labels.EndBiggerThanStart %>");
+                    valid = false;
+                }
+            }
             var empIdsStr = "";
             var inputs = $('ul li input');
             inputs.each(function (e) {
                 empIdsStr = empIdsStr + $(this).val() + ',';
             });
-            
+            $("#MainContent_hdn_empIds").val(empIdsStr);
 
-            var parameter = {
-                trainingId: id,
-                name: name,
-                description: description,
-                startDate: startDate,
-                endDate: endDate,
-                empIds: empIdsStr,
-            };
-            $.ajax({
-                type: "POST",
-                url: "Trainings.aspx/SaveTraining",
-                data: JSON.stringify(parameter),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (data) {
-                    window.top.location = "Trainings.aspx";
+            if (empIdsStr == "") {
+                $('#MainContent_sel_employee').attr("class", "form-control is-invalid");
+                valid = false;
+            }
 
-                },
-                failure: function (response) {
-                    alert(response.d);
-                }
-            });
+            return valid;
+        }
 
+        function saveTraining() {
+            var valid = checkValidation();
+            if (valid) {
+                var id = $('#MainContent_hid_trainingId').val();
+                var name = $("#MainContent_txt_name").val();
+                var description = $("#MainContent_txt_description").val();
+                var startDate = $("#MainContent_dp_start").val();
+                var endDate = $("#MainContent_dp_end").val();
+
+
+
+                var empIdsStr = "";
+                var inputs = $('ul li input');
+                inputs.each(function (e) {
+                    empIdsStr = empIdsStr + $(this).val() + ',';
+                });
+
+
+                var parameter = {
+                    trainingId: id,
+                    name: name,
+                    description: description,
+                    startDate: startDate,
+                    endDate: endDate,
+                    empIds: empIdsStr,
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "Trainings.aspx/SaveTraining",
+                    data: JSON.stringify(parameter),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        window.top.location = "Trainings.aspx";
+
+                    },
+                    failure: function (response) {
+                        alert(response.d);
+                    }
+                });
+            }
         }
 
         function addEmp() {
@@ -341,14 +411,20 @@
                      <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Training%>" /></span>
                                 <input type="hidden"  id="hid_trainingId" name="hid_trainingId" runat="server" value=""  />
-                                <input type="text" class="form-control input-lg" id="txt_name"  runat="server" value=""  />
+                                <input type="text" class="form-control input-lg" id="txt_name"  runat="server"  onchange="removeValidation($(this));"  />
+                                <div class="invalid-feedback" >
+                                    <asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" />
+                                </div>
                             </div>
                         </div> 
   
                    <div class ="row">
                      <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Description%>" /></span>
-                                <input type="text" class="form-control input-lg" id="txt_description"  runat="server" value=""  />
+                                <input type="text" class="form-control input-lg" id="txt_description"  runat="server"  onchange="removeValidation($(this));" />
+                                <div class="invalid-feedback" >
+                                    <asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" />
+                                </div>
                             </div>
                         </div> 
                      <div class ="row">
@@ -362,15 +438,17 @@
                     <div class ="row">
                    <div class="form-group" style="display:block">
                               <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,End%>" /></span>
-                            <asp:TextBox  ID="dp_end" runat="server" class="form-control input-lg hasdatepicker" ></asp:TextBox>
-                              <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
+                            <asp:TextBox  ID="dp_end" runat="server" class="form-control input-lg hasdatepicker"  onchange="removeValidation($(this));"></asp:TextBox>
+                              <div class="invalid-feedback" id="endValidMsg"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
 
                    </div>
                  </div>
                     <div class ="row">
                      <div class="form-group" style="display:block">
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,Employees%>" /></span>
-                                 <select runat="server" id="sel_employee" name="sel_employee" style="width:70%" class="form-control input-lg" ></select>
+                                 <select runat="server" id="sel_employee" name="sel_employee" 
+                                     style="width:70%" class="form-control input-lg ChosenSelector" ></select>
+                          <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
                                   <button class="add-arrow-btn"  runat="server" onclick="addEmp()" id="Button1" >
                                    <i class="fas fa-arrow-alt-circle-down"></i>
                                 </button>

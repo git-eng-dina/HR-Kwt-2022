@@ -1363,13 +1363,14 @@ input[type=checkbox], input[type=radio] {
         width:100%;
         padding-right:5px;
     }
-.employee-list  ul > li {
-    display: flex;
-    padding: 10px 15px 5px 38px;
-    text-decoration: none;
-    text-align:right;
-    height:25px;
-}
+        .employee-list ul > li {
+            display: flex;
+            padding: 10px 15px 5px 38px;
+            text-decoration: none;
+            text-align: right;
+            height: 25px;
+            color: inherit;
+        }
 
 .advisor-list {
     width: 100%;

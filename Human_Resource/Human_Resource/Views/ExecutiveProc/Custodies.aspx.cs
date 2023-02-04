@@ -1,8 +1,10 @@
 ﻿using Human_Resource.App_Code;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -41,6 +43,7 @@ namespace Human_Resource.Views.ExecutiveProc
 
                 BindData();
                 btn_new.Attributes.Add("OnClick", "ShowDialog('');");
+                hdnButtonID.Value = btn_ads.UniqueID;
             }
         }
 
@@ -75,12 +78,12 @@ namespace Human_Resource.Views.ExecutiveProc
             EmployeeModel employeeModel = new EmployeeModel();
             List<EmployeeModel> employees = new List<EmployeeModel>();
             employees = employeeModel.GetHiredEmployees(true);
-            emp.DataSource = employees;
-            emp.DataValueField = "EmployeeID";
+            sel_emp.DataSource = employees;
+            sel_emp.DataValueField = "EmployeeID";
             if (Session["CultureName"] != null && Session["CultureName"].ToString().ToLower() == "en-us")
-                emp.DataTextField = "NameEn";
+                sel_emp.DataTextField = "NameEn";
             else
-                emp.DataTextField = "NameAr";
+                sel_emp.DataTextField = "NameAr";
 
             long userId = long.Parse(Session["user_id"].ToString());
 
@@ -109,17 +112,19 @@ namespace Human_Resource.Views.ExecutiveProc
                 long userId = long.Parse(Session["user_id"].ToString());
 
                  string role = Session["urole"].ToString();
-                if (role != "GeneralDirector" && role != "CEO" && userId != 1)
-                {
+                
                     if (e.Row.RowType == DataControlRowType.DataRow)
                     {
                         var rowView = (CustodieModel)e.Row.DataItem;
                         if (rowView != null)
                         {
+                        LinkButton editBtn = (LinkButton)e.Row.FindControl("LinkProducts");
+                        ImageButton deleteBtn = (ImageButton)e.Row.FindControl("Image1");
+                        if (role != "GeneralDirector"  && userId != 1)
+                        {
                             List<UsersPermissionModel> permissions = Session["UserPermissions"] as List<UsersPermissionModel>;
                             var employees = permissions.Where(x => x.LiElementName.Trim().ToLower() == linkName).FirstOrDefault();
-                            LinkButton editBtn = (LinkButton)e.Row.FindControl("LinkProducts");
-                            ImageButton deleteBtn = (ImageButton)e.Row.FindControl("Image1");
+                            
                             if (employees != null && employees.EditObject == true)
                             {
                                 editBtn.Visible = true;
@@ -131,45 +136,113 @@ namespace Human_Resource.Views.ExecutiveProc
                                 deleteBtn.Visible = false;
                             }
                         }
+                        else
+                        {
+                            editBtn.Visible = true;
+                            deleteBtn.Visible = true;
+                        }
                     }
                 }
             }
             catch
             { }
         }
-        [WebMethod(EnableSession = true)]
-        public static string SaveCustodie(string custodieId, string employeeId, string type, string details, string isRecovery)
+
+        protected void btn_save_Click(object sender, EventArgs e)
         {
-            try
+            if (Session["user_id"] == null)
             {
-                CustodieModel dept = new CustodieModel();
-                if (custodieId != "")
-                    dept.CustodieID = int.Parse(custodieId);
-                else
-                    dept.CustodieID = 0;
-                dept.EmployeeID = int.Parse(employeeId);
-                dept.Type = type;
-                dept.Details = details;
-                dept.IsRecovery = bool.Parse(isRecovery);
+                Response.Redirect("~/login.aspx");
+            }
 
-                if (HttpContext.Current.Session["user_id"] != null && HttpContext.Current.Session["user_id"].ToString() != "")
-                    dept.CreateUserID = dept.UpdateUserID = int.Parse(HttpContext.Current.Session["user_id"].ToString());
+            CustodieModel custody = new CustodieModel();
+            if (hid_custodieId.Value != "")
+                custody.CustodieID = int.Parse(hid_custodieId.Value);
+            else
+                custody.CustodieID = 0;
+            custody.EmployeeID = int.Parse(sel_emp.Value);
+            custody.Type = dept_type.Value;
+            custody.Details = txt_details.Value;
+            custody.IsRecovery = chk_isRecovery.Checked;
+
+            if (HttpContext.Current.Session["user_id"] != null && HttpContext.Current.Session["user_id"].ToString() != "")
+                custody.CreateUserID = custody.UpdateUserID = int.Parse(HttpContext.Current.Session["user_id"].ToString());
 
 
-                int deptId = dept.SaveDept(dept);
-                if (deptId != 0)
+            long custodyId = custody.SaveCustody(custody);
+
+            if (file.FileName != "")
+            {
+                //folder path to save uploaded file
+                string folderPath = Server.MapPath(HelpClass.CustodyUpload);
+
+                //Check whether Directory (Folder) exists, although we have created, if it si not created this code will check
+                if (!Directory.Exists(folderPath))
                 {
-                    return "1";
+                    //If folder does not exists. Create it.
+                    Directory.CreateDirectory(folderPath);
                 }
-                return "0";
+                string extension = Path.GetExtension(file.FileName);
+                string newFileName = HelpClass.MD5Hash(custodyId.ToString()) + "-custody" + extension;
+                string filePath = Path.Combine(HostingEnvironment.MapPath(HelpClass.EventUpload), newFileName);
+                file.SaveAs(filePath);
+                UploadFile(newFileName, Path.GetFileNameWithoutExtension(file.FileName), custodyId);
             }
-            catch
+            else if (hid_custodieId.Value != "" && hasFiles.Value =="")
             {
-                return "0";
-
+                var attach = new Attachment();
+                attach.DeleteCustodyAttach(custodyId);
             }
+
+            Response.Redirect("Custodies.aspx");
+        }
+
+        public static void UploadFile(string fileName, string docTitle, long custodyID)
+        {
+
+            var attach = new Attachment()
+            {
+                docnum = fileName,
+                docName = docTitle,
+                CustodieID = custodyID,
+            };
+            attach.DeleteCustodyAttach(custodyID);
+            attach.SaveAttach(attach);
 
         }
+        //[WebMethod(EnableSession = true)]
+        //public static string SaveCustodie(string custodieId, string employeeId, string type, string details, string isRecovery)
+        //{
+        //    try
+        //    {
+        //        CustodieModel dept = new CustodieModel();
+        //        if (custodieId != "")
+        //            dept.CustodieID = int.Parse(custodieId);
+        //        else
+        //            dept.CustodieID = 0;
+        //        dept.EmployeeID = int.Parse(employeeId);
+        //        dept.Type = type;
+        //        dept.Details = details;
+        //        dept.IsRecovery = bool.Parse(isRecovery);
+
+        //        if (HttpContext.Current.Session["user_id"] != null && HttpContext.Current.Session["user_id"].ToString() != "")
+        //            dept.CreateUserID = dept.UpdateUserID = int.Parse(HttpContext.Current.Session["user_id"].ToString());
+
+
+        //        long deptId = dept.SaveDept(dept);
+        //        if (deptId != 0)
+        //        {
+        //            return "1";
+        //        }
+        //        return "0";
+        //    }
+        //    catch
+        //    {
+        //        return "0";
+
+        //    }
+
+        //}
         [WebMethod]
         public static void TypeChanged(string type)
         {
@@ -238,10 +311,5 @@ namespace Human_Resource.Views.ExecutiveProc
             }
         }
 
-        protected void gv_data_RowCreated(object sender, GridViewRowEventArgs e)
-        {
-            e.Row.Cells[5].Visible = false;
-            e.Row.Cells[6].Visible = false;
-        }
     }
 }
