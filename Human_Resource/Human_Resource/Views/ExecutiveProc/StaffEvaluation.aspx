@@ -82,8 +82,14 @@
                                          </ItemTemplate>
                                    </asp:TemplateField>             
                                    
-                                     
-                                           <asp:TemplateField HeaderText="<%$ Resources:Labels,Comment%>">
+                                       <asp:TemplateField HeaderText="<%$ Resources:Labels,OverAllProgress%>">
+                                         <ItemTemplate>
+                                                 <asp:Label ID="LblOverAllProgress" runat="server" 
+                                                 Text='<%# Eval("OverAllProgress") %>' />                              
+                                         </ItemTemplate>
+                                   </asp:TemplateField>   
+
+                                   <asp:TemplateField HeaderText="<%$ Resources:Labels,Comment%>">
                                          <ItemTemplate>
                                                  <asp:Label ID="LblComment" runat="server" 
                                                  Text='<%# Eval("Comment") %>' />                              

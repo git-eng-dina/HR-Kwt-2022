@@ -43,6 +43,12 @@ namespace Human_Resource.Views.ExecutiveProc
                 evaluations = evaluations.Where(x => x.EmployeeName.ToLower().Contains(textSearch.ToLower())
                 || x.Comment.ToLower().Contains(textSearch.ToLower())
                                 ).ToList();
+
+            foreach (var item in evaluations)
+            {
+                item.OverAllProgress = GetData.EvaluationTypeConverter(item.OverAllProgress);
+            }
+
             gv_evaluations.DataSource = evaluations;
 
 
