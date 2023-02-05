@@ -462,6 +462,7 @@ namespace Human_Resource
                                 Username = x.Username,
                                 NameAr = x.NameAr,
                                 NameEn = x.NameEn,
+                                VacationsBalance = x.VacationsBalance,
                                 BasicSalary = x.BasicSalary,
                                 Position = x.jobs.Name,
                                 DOB = x.DOB,
