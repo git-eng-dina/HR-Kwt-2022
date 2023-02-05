@@ -113,6 +113,27 @@ namespace Human_Resource.App_Code
                      };
             return evaluationTypeList;
         }
+
+        static public string EvaluationTypeConverter(string value)
+        {
+            switch (value)
+            {
+                case "Low":
+                    return Resources.Labels.Low;
+                case "Fair":
+                    return Resources.Labels.Fair;
+                case "Good":
+                    return Resources.Labels.Good;
+                case "Excellent":
+                    return Resources.Labels.Excellent;
+                case "VeryExcellent":
+                    return Resources.Labels.veryExcellent;
+
+                default:
+                    break;
+            }
+            return value;
+        }
         #endregion
 
     }
