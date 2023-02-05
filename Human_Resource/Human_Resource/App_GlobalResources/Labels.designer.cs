@@ -2824,6 +2824,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The upper limit is 24 hours.
+        /// </summary>
+        internal static string WorkHoursLimit {
+            get {
+                return ResourceManager.GetString("WorkHoursLimit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Work Permit.
         /// </summary>
         internal static string WorkingPermission {

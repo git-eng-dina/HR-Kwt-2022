@@ -41,6 +41,19 @@
                  $('[id*=contractFile]').trigger('click');
              });
 
+
+             //allow only alphabatic char for name
+             $("[id*=nameAR]").keypress(function (e) {
+                 var arregex = /[\u0600-\u06FF, ]/;
+                 if (!arregex.test(e.key)) {
+                     return false;
+                 }
+             });
+             $("[id*=nameEN]").keypress(function (e) {
+                 if (!/^[a-zA-Z, ]/.test(e.key)) {
+                     return false;
+                 }
+             });
              
          });
 
@@ -239,14 +252,14 @@
                  valid = false;
              }
              if ($('[id*=txt_identityNumber]').val() == "" || $('[id*=txt_identityNumber]').val() == null) {
-                 $('[id*=identityValidMsg]').text( "<%= Resources.Labels.ValueIsRequired %>");
+                 $('[id*=identityValidMsg]').text("<%= Resources.Labels.ValueIsRequired %>");
                  $('[id*=identityValidMsg]').show();
                  valid = false;
              }
- 
+
              if ($("[id*=txt_identityNumber]").val() != '' && $("[id*=txt_identityNumber]").val() != null) {
                  if ($("[id*=txt_identityNumber]").val().length < 12 || $("[id*=txt_identityNumber]").val().length > 12) {
-                     $('[id*=identityValidMsg]').text ("<%= Resources.Labels._12Digit %>");
+                     $('[id*=identityValidMsg]').text("<%= Resources.Labels._12Digit %>");
 
                      $('[id*=identityValidMsg]').show();
                      valid = false;
@@ -254,7 +267,7 @@
              }
              //check vacation balance (should be less than 200)
              if ($('[id*=txt_vacationBalance]').val() != "" && $('[id*=txt_vacationBalance]').val() != null) {
-                
+
                  if (parseInt($("[id*=txt_vacationBalance]").val()) > 200) {
                      $('[id*=txt_vacationBalance]').attr("class", "form-control is-invalid");
 
@@ -297,7 +310,15 @@
                  $('[id*=cerValidMsg]').show();
                  valid = false;
              }
+             //check work hours should be less than or equal 24 hours
+             if ($('[id*=txt_workHours]').val() != "" && $('[id*=txt_workHours]').val() != null) {
 
+                 if (parseInt($("[id*=txt_workHours]").val()) > 24) {
+                     $('[id*=txt_workHours]').attr("class", "form-control is-invalid");
+
+                     valid = false;
+                 }
+             } 
              if (valid) {
                  var uniqID = $('#MainContent_hdnButtonID').val();
 
@@ -331,7 +352,8 @@
                                     <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,NameAR%>" /></span>
                                     </div>
                                     <div class="col-md-8 col-sm-8 col-xs-8 div2" >
-                                        <input type="text" class="form-control input-lg" id="txt_nameAR"  runat="server" value="" onchange="removeValidation($(this));" />
+                                        <input type="text" class="form-control input-lg" id="txt_nameAR"  runat="server" value="" 
+                                            onchange="removeValidation($(this));" />
                                         <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,ValueIsRequired%>" /></div>
                                         </div>
                                     </div>
@@ -676,7 +698,13 @@
                                 <span><asp:Literal  runat="server" Text="<%$ Resources:Labels,WorkHours%>" /></span>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 div2">
-                                    <input type="number" class="form-control" id="txt_workHours"  runat="server" value=""  />
+                                    <input type="number" class="form-control" id="txt_workHours"  
+                                        runat="server"  
+                                        min="1"
+                                        step="1"
+                                        onkeypress="return event.charCode >= 48 && event.charCode <= 57" 
+                                        onchange="removeValidation($(this));" />
+                                     <div class="invalid-feedback"><asp:Literal  runat="server" Text="<%$ Resources:Labels,WorkHoursLimit%>" /></div>
                             </div>
                             </div>
                             <div class="form-group" style="display:block">

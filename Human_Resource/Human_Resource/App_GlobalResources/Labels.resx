@@ -1062,4 +1062,7 @@
   <data name="VacBalanceError" xml:space="preserve">
     <value>Vacations balance cannot exceed 200 days</value>
   </data>
+  <data name="WorkHoursLimit" xml:space="preserve">
+    <value>The upper limit is 24 hours</value>
+  </data>
 </root>

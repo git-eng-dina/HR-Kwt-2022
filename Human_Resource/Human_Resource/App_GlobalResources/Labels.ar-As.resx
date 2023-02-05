@@ -1059,4 +1059,7 @@
   <data name="VacBalanceError" xml:space="preserve">
     <value>رصيد الإجازات لا يمكن أن يتجاوز 200 يوم</value>
   </data>
+  <data name="WorkHoursLimit" xml:space="preserve">
+    <value>الحد الأعلى 24 ساعة</value>
+  </data>
 </root>
